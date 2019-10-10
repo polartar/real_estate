@@ -2,7 +2,7 @@ import { Component, Prop, State, h } from '@stencil/core';
 import { sayHello } from '../../helpers/utils';
 import { Action } from "@stencil/redux";
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
-import { login } from "../../store/actions/auth";
+import { login, logout } from "../../store/actions/auth";
 import { Store } from "@stencil/redux";
 
 @Component({
@@ -29,7 +29,8 @@ export class AppProfile {
     });
 
     this.store.mapDispatchToProps(this, {
-      login
+      login,
+      logout
     });
   }
 
@@ -46,7 +47,7 @@ export class AppProfile {
   }
 
   logout() {
-    console.log(this.user);
+    this.logout();
   }
 
   getName() {

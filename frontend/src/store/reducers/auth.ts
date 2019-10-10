@@ -46,6 +46,14 @@ const authReducer = (
       };
     }
 
+    case Actions.LOGOUT: {
+      return {
+        ...state,
+        user: {},
+        access_token: ''
+      }
+    }
+
     case Actions.SAVE_STATE: {
       saveState(action.payload);
     }

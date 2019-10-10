@@ -17,6 +17,20 @@ export function login(email: string, password: string) {
   };
 };
 
+export function logout() {
+  return async dispatch => {
+    dispatch({
+      type: Actions.LOGOUT
+    });
+
+    dispatch(saveState());
+  };
+};
+
+export interface logoutAction {
+  type: Actions.LOGOUT
+};
+
 export const loginBegin = () => async (dispatch, _getState) => {
   return dispatch({
     type: Actions.LOGIN_BEGIN
