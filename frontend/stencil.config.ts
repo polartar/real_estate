@@ -17,6 +17,6 @@ export const config: Config = {
       exclude: 'node_modules/**',
       delimiters: ['<@', '@>'],
       values: configValues
-    }),
+    })
   ]
 };
