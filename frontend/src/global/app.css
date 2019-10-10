@@ -29,3 +29,11 @@
   More info about color theming using Ionic:
   https://ionicframework.com/docs/theming/color-generator
 */
+
+:root {
+  --ion-color-primary: #000000;
+}
+
+ion-button {
+  --background-hover: green;
+}
