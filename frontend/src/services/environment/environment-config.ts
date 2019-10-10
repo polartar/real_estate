@@ -1,8 +1,6 @@
 // The interface which define the list of variables
 export interface EnvironmentConfig {
   API_URL: string;
-  API_CLIENT_ID: string;
-  API_CLIENT_SECRET: string;
   BASE_URL: string;
 }
 

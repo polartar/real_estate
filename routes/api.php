@@ -17,13 +17,15 @@ use Illuminate\Support\Facades\Auth;
 // unauthenticated endpoints
 Route::group(['middleware' => ['api', 'cors']], function () {
 
-    Route::post('auth', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken')->middleware('throttle');
+    Route::post('auth', 'SPAAuthController@login')->middleware('throttle');
 
 });
 
 
 // authenticated endpoints
 Route::group(['middleware' => ['auth:api', 'cors']], function() {
+
+    Route::post('logout', 'SPAAuthController@logout');
 
     Route::get('user', function() {
         return response(Auth::user());

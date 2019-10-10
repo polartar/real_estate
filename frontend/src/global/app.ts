@@ -4,8 +4,6 @@ import { setupConfig } from '../services/environment/environment-config';
 
 setupConfig({
     API_URL: '<@API_URL@>',
-    API_CLIENT_ID: '<@API_CLIENT_ID@>',
-    API_CLIENT_SECRET: '<@API_CLIENT_SECRET@>',
     BASE_URL: '<@BASE_URL@>'
 });
 

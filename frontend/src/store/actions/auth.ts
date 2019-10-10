@@ -1,14 +1,19 @@
 import { Actions } from "./index";
 import { APIService } from '../../services/api/api.service';
+import { APIAuthService } from "../../services/api/auth";
 
 export function login(email: string, password: string) {
   return async dispatch => {
     dispatch(loginBegin());
 
     try {
-      let user = await APIService.login(email, password);
+      let access_token = await APIAuthService.login(email, password);
 
-      dispatch(loginSuccess(user));
+      APIService.setAccessToken(access_token);
+
+      let user = await APIAuthService.getUser();
+
+      dispatch(loginSuccess(user, access_token));
 
       dispatch(saveState());
     } catch (err) {
@@ -24,6 +29,12 @@ export function logout() {
     });
 
     dispatch(saveState());
+
+    try {
+      APIAuthService.logout();
+    } catch (err) {
+
+    }
   };
 };
 
@@ -53,10 +64,10 @@ export interface LoginFailAction {
   payload: any;
 };
 
-export const loginSuccess = user => async (dispatch, _getState) => {
+export const loginSuccess = (user, access_token) => async (dispatch, _getState) => {
   return dispatch({
     type: Actions.LOGIN_SUCCESS,
-    payload: user
+    payload: { user, access_token }
   })
 };
 

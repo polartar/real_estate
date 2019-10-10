@@ -3,6 +3,7 @@ import { Component, h, Prop } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { configureStore } from "../../store/index";
 import { loadState } from "../../services/storage";
+import { APIService } from "../../services/api/api.service";
 
 @Component({
   tag: 'app-root',
@@ -14,6 +15,11 @@ export class AppRoot {
 
   componentWillLoad() {
     const persistedState = loadState();
+
+    if (persistedState && persistedState.authReducer && persistedState.authReducer.access_token) {
+      APIService.setAccessToken(persistedState.authReducer.access_token);
+    }
+
     this.store.setStore(configureStore(persistedState));
   }
 

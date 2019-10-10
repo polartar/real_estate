@@ -34,7 +34,8 @@ const authReducer = (
       return {
         ...state,
         loading: false,
-        user: action.payload
+        user: action.payload.user,
+        access_token: action.payload.access_token
       };
     }
 
