@@ -1,0 +1,17 @@
+{
+  "//": "Entries with a key starting with // are comments, can be removed in the config.app.json",
+
+
+  "//API_URL": "The url of the api, with NO trailing /",
+  "API_URL": "http://laravel-stencil.localhost:8080/api",
+
+  "//BASE_URL": "The url of the site itself, with NO trailing /",
+  "BASE_URL": "http://laravel-stencil.localhost:8080",
+
+  "//API_CLIENT_ID": "The ID of the password-based oauth client produced when running 'php artisan passport:install'",
+  "///API_CLIENT_ID": "Can be found in the oauth_clients table:  select id, secret from oauth_clients where password_client =  1;",
+  "API_CLIENT_ID": 2,
+
+  "//API_CLIENT_SECRET": "The secret for the password client:  select id, secret from oauth_clients where password_client =  1;",
+  "API_CLIENT_SECRET": "bWZOXYxn1gWv3SdpY6k25UKv6sKwA8etJ8kvAqN6",
+}

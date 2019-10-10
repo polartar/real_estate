@@ -1,0 +1,30 @@
+{
+  "name": "lstencil",
+  "private": true,
+  "version": "0.0.1",
+  "description": "lstencil",
+  "license": "MIT",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watch",
+    "generate": "stencil generate",
+    "prod": "npm run production",
+    "production": "stencil build --prerender"
+  },
+  "dependencies": {
+    "@ionic/core": "^4.9.0",
+    "@stencil/redux": "^0.1.1",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@stencil/core": "1.4.0",
+    "rollup-plugin-replace": "^2.2.0"
+  }
+}

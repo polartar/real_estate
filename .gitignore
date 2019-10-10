@@ -1,0 +1,22 @@
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+
+#custom ignores for stencil built files
+/public/index.html
+/public/manifest.json
+/public/build
+/public/assets
+/public/host.config.json
+/public/sitemap.xml
+/public/robots.txt
+
+/frontend/config.app.json
