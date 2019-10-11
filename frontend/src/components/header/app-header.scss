@@ -1,0 +1,105 @@
+@import '../../styles/mixins';
+
+$app-header-button-height: 48px;
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+  height: auto;
+
+  @include for-size(tablet-portrait-up) {
+    padding-top: 2rem;
+  }
+
+  @include for-size(desktop-up) {
+    padding-top: 0;
+    height: 112px;
+  }
+
+  .logo-link {
+    flex-grow: 1;
+
+    @include for-size(desktop-up) {
+      flex-grow: 0;
+    }
+  }
+
+  .logo {
+    height: 24px;
+    min-width: 126px;
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0 0 0 2.25rem;
+    padding-left: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0;
+    width: auto;
+
+    .feather {
+      width: 1rem;
+      margin-right: 0.5rem;
+    }
+
+    @include for-size(desktop-up) {
+      width: 365px;
+      font-size: 0.9rem;
+      height: $app-header-button-height;
+      box-shadow: 0 0 11px 0 rgba(134, 134, 134, 0.22);
+    }
+  }
+
+  .header-center {
+    height: 2px;
+
+    @include for-size(desktop-up) {
+      flex-grow: 1;
+    }
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav {
+    display: none;
+    text-transform: uppercase;
+    padding-right: 3.5rem;
+    font-weight: 600;
+
+    @include for-size(desktop-up) {
+      display: inline-block;
+    }
+  }
+
+  .call {
+    display: none;
+    font-size: 0.68rem;
+    font-weight: 600;
+    height: $app-header-button-height;
+
+    ion-icon {
+      padding-right: 0.5rem;
+    }
+
+    @include for-size(desktop-up) {
+      display: inline-block;
+    }
+  }
+
+  .menu {
+    --padding-start: 2rem;
+    --padding-end: 0;
+    --background-hover: transparent;
+    --ripple-color: transparent;
+  }
+}

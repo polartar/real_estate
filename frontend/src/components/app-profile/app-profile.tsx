@@ -16,6 +16,7 @@ export class AppProfile {
   @Prop({ context: "store" }) store: Store;
   @Prop() name: string;
   login: Action;
+  private divstyle = { minHeight: '1500px' };
 
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
@@ -96,6 +97,8 @@ export class AppProfile {
         </ion-item>
         <ion-button onClick={() => this.fetchApi() }>Log In</ion-button>
         <ion-button onClick={() => this.logout() }>Log Out</ion-button>
+
+        <div style={this.divstyle} >Large div</div>
       </ion-content>
     ];
   }

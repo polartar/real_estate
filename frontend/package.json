@@ -19,12 +19,14 @@
   "dependencies": {
     "@ionic/core": "^4.9.0",
     "@stencil/redux": "^0.1.1",
+    "chokidar": "^3.2.1",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@stencil/core": "1.4.0",
+    "@stencil/sass": "^1.1.0",
     "rollup-plugin-replace": "^2.2.0"
   }
 }
