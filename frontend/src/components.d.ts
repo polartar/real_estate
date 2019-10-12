@@ -10,13 +10,13 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface AppHeader {}
-  interface AppHome {}
   interface AppLayoutStandard {}
   interface AppProfile {
     'name': string;
   }
   interface AppRoot {}
   interface AppWrapper {}
+  interface PageHome {}
   interface SearchFilters {}
 }
 
@@ -27,12 +27,6 @@ declare global {
   var HTMLAppHeaderElement: {
     prototype: HTMLAppHeaderElement;
     new (): HTMLAppHeaderElement;
-  };
-
-  interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {}
-  var HTMLAppHomeElement: {
-    prototype: HTMLAppHomeElement;
-    new (): HTMLAppHomeElement;
   };
 
   interface HTMLAppLayoutStandardElement extends Components.AppLayoutStandard, HTMLStencilElement {}
@@ -59,6 +53,12 @@ declare global {
     new (): HTMLAppWrapperElement;
   };
 
+  interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {}
+  var HTMLPageHomeElement: {
+    prototype: HTMLPageHomeElement;
+    new (): HTMLPageHomeElement;
+  };
+
   interface HTMLSearchFiltersElement extends Components.SearchFilters, HTMLStencilElement {}
   var HTMLSearchFiltersElement: {
     prototype: HTMLSearchFiltersElement;
@@ -66,33 +66,33 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'app-header': HTMLAppHeaderElement;
-    'app-home': HTMLAppHomeElement;
     'app-layout-standard': HTMLAppLayoutStandardElement;
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'app-wrapper': HTMLAppWrapperElement;
+    'page-home': HTMLPageHomeElement;
     'search-filters': HTMLSearchFiltersElement;
   }
 }
 
 declare namespace LocalJSX {
   interface AppHeader extends JSXBase.HTMLAttributes<HTMLAppHeaderElement> {}
-  interface AppHome extends JSXBase.HTMLAttributes<HTMLAppHomeElement> {}
   interface AppLayoutStandard extends JSXBase.HTMLAttributes<HTMLAppLayoutStandardElement> {}
   interface AppProfile extends JSXBase.HTMLAttributes<HTMLAppProfileElement> {
     'name'?: string;
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface AppWrapper extends JSXBase.HTMLAttributes<HTMLAppWrapperElement> {}
+  interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {}
 
   interface IntrinsicElements {
     'app-header': AppHeader;
-    'app-home': AppHome;
     'app-layout-standard': AppLayoutStandard;
     'app-profile': AppProfile;
     'app-root': AppRoot;
     'app-wrapper': AppWrapper;
+    'page-home': PageHome;
     'search-filters': SearchFilters;
   }
 }

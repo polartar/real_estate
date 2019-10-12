@@ -2,14 +2,16 @@ import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'app-layout-standard',
-  styleUrl: 'app-layout-standard.scss',
+  styleUrl: 'app-layout-standard.scss'
 })
 export class AppLayoutStandard {
 
   render() {
     return (
       <app-wrapper>
-        <app-header />
+        <div class="header-wrapper">
+          <app-header />
+        </div>
 
         <section>
           <slot />

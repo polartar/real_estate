@@ -1,6 +1,7 @@
 import "@stencil/redux";
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Listen } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
+import { updateScreenSize } from "../../store/actions/screensize";
 import { configureStore } from "../../store/index";
 import { loadState } from "../../services/storage";
 import { APIService } from "../../services/api/api.service";
@@ -12,6 +13,14 @@ import { APIService } from "../../services/api/api.service";
 export class AppRoot {
   @Prop({ context: "store" }) store: Store;
   loadAuth: Action;
+  updateScreenSize: Action;
+
+  @Listen('resize', { target: 'window' })
+  handleResize() {
+    requestAnimationFrame(() => {
+      this.updateScreenSize(window.innerWidth);
+    });
+  }
 
   componentWillLoad() {
     const persistedState = loadState();
@@ -21,13 +30,19 @@ export class AppRoot {
     }
 
     this.store.setStore(configureStore(persistedState));
+
+    this.store.mapDispatchToProps(this, {
+      updateScreenSize
+    });
+
+    this.updateScreenSize(window.innerWidth);
   }
 
   render() {
     return (
       <ion-app>
           <ion-router useHash={false}>
-            <ion-route url="/" component="app-home" />
+            <ion-route url="/" component="page-home" />
             <ion-route url="/profile/:name" component="app-profile" />
           </ion-router>
           <ion-nav />
