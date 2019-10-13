@@ -96,6 +96,13 @@ export class PageHome {
               </button>
             </div>
           </div>
+
+          <div class="predefined-search">
+            <h2>Luxury apartments in full service doorman buildings</h2>
+
+            <listing-card />
+          </div>
+
         </app-layout-standard>
 
         <ion-fab horizontal="end" vertical="bottom" slot="fixed">

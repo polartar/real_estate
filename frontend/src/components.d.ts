@@ -16,6 +16,7 @@ export namespace Components {
   }
   interface AppRoot {}
   interface AppWrapper {}
+  interface ListingCard {}
   interface MediaLogos {}
   interface PageHome {}
   interface SearchFilters {}
@@ -54,6 +55,12 @@ declare global {
     new (): HTMLAppWrapperElement;
   };
 
+  interface HTMLListingCardElement extends Components.ListingCard, HTMLStencilElement {}
+  var HTMLListingCardElement: {
+    prototype: HTMLListingCardElement;
+    new (): HTMLListingCardElement;
+  };
+
   interface HTMLMediaLogosElement extends Components.MediaLogos, HTMLStencilElement {}
   var HTMLMediaLogosElement: {
     prototype: HTMLMediaLogosElement;
@@ -77,6 +84,7 @@ declare global {
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'app-wrapper': HTMLAppWrapperElement;
+    'listing-card': HTMLListingCardElement;
     'media-logos': HTMLMediaLogosElement;
     'page-home': HTMLPageHomeElement;
     'search-filters': HTMLSearchFiltersElement;
@@ -91,6 +99,7 @@ declare namespace LocalJSX {
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface AppWrapper extends JSXBase.HTMLAttributes<HTMLAppWrapperElement> {}
+  interface ListingCard extends JSXBase.HTMLAttributes<HTMLListingCardElement> {}
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {}
@@ -101,6 +110,7 @@ declare namespace LocalJSX {
     'app-profile': AppProfile;
     'app-root': AppRoot;
     'app-wrapper': AppWrapper;
+    'listing-card': ListingCard;
     'media-logos': MediaLogos;
     'page-home': PageHome;
     'search-filters': SearchFilters;
