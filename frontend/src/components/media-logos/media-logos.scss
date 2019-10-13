@@ -1,0 +1,20 @@
+.media-logos {
+  box-sizing: border-box;
+  display: flex;
+  place-content: center;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  .logo-container {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .media-logo {
+    width: 150px;
+    height: 40px;
+    object-fit: contain;
+    padding: 0.5rem;
+  }
+}

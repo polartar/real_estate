@@ -36,6 +36,7 @@
 :root {
   --ion-color-primary: #{$color-primary};
   --ion-color-secondary: #{$color-secondary};
+  --ion-font-family: 'Source Sans Pro', sans-serif;
 }
 
 ion-button {
@@ -52,5 +53,9 @@ html {
 
 h1 {
   font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+
+h2 {
   font-weight: 900;
 }
