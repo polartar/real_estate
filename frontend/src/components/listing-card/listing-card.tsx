@@ -27,6 +27,11 @@ export class ListingCard {
     return [
       <div class="listing-card">
         <img src="/assets/images/placeholder/apt1.jpeg" />
+        <star-rating
+             stars="5"
+             rating="3"
+        />
+        Hello World
       </div>
     ];
   }

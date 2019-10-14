@@ -17,12 +17,18 @@ export namespace Components {
   interface AppRoot {}
   interface AppWrapper {}
   interface ListingCard {}
+  interface ListingSlider {}
   interface MediaLogos {}
   interface PageHome {}
   interface SearchFilters {}
 }
 
 declare global {
+
+  // Adding a global JSX for backcompatibility with legacy dependencies
+  export namespace JSX {
+    export interface Element {}
+  }
 
 
   interface HTMLAppHeaderElement extends Components.AppHeader, HTMLStencilElement {}
@@ -61,6 +67,12 @@ declare global {
     new (): HTMLListingCardElement;
   };
 
+  interface HTMLListingSliderElement extends Components.ListingSlider, HTMLStencilElement {}
+  var HTMLListingSliderElement: {
+    prototype: HTMLListingSliderElement;
+    new (): HTMLListingSliderElement;
+  };
+
   interface HTMLMediaLogosElement extends Components.MediaLogos, HTMLStencilElement {}
   var HTMLMediaLogosElement: {
     prototype: HTMLMediaLogosElement;
@@ -85,6 +97,7 @@ declare global {
     'app-root': HTMLAppRootElement;
     'app-wrapper': HTMLAppWrapperElement;
     'listing-card': HTMLListingCardElement;
+    'listing-slider': HTMLListingSliderElement;
     'media-logos': HTMLMediaLogosElement;
     'page-home': HTMLPageHomeElement;
     'search-filters': HTMLSearchFiltersElement;
@@ -100,6 +113,7 @@ declare namespace LocalJSX {
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface AppWrapper extends JSXBase.HTMLAttributes<HTMLAppWrapperElement> {}
   interface ListingCard extends JSXBase.HTMLAttributes<HTMLListingCardElement> {}
+  interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {}
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {}
@@ -111,6 +125,7 @@ declare namespace LocalJSX {
     'app-root': AppRoot;
     'app-wrapper': AppWrapper;
     'listing-card': ListingCard;
+    'listing-slider': ListingSlider;
     'media-logos': MediaLogos;
     'page-home': PageHome;
     'search-filters': SearchFilters;

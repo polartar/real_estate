@@ -30,6 +30,17 @@
   https://ionicframework.com/docs/theming/color-generator
 */
 
+// Required Core Stylesheet
+// @import "../../node_modules/@glidejs/glide/src/assets/sass/glide.core";
+
+// // Optional Theme Stylesheet
+// @import "../../node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+
+// @import '../../node_modules/@glidejs/glide/src/assets/sass/glide.core';
+// @import '../../node_modules/@glidejs/glide/src/assets/sass/glide.theme';
+// @import '../styles/glidejs/glide.core';
+// @import '../styles/glidejs/glide.theme';
+
 @import '../styles/variables';
 @import '../styles/mixins';
 
