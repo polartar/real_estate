@@ -1,0 +1,18 @@
+.listing-list {
+
+  .list-wrapper {
+    display: grid;
+    grid-gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  listing-card {
+    max-width: 370px;
+  }
+
+  .show-all {
+    display: inline-block;
+    padding-top: 0.5rem;
+    font-weight: 900;
+  }
+}

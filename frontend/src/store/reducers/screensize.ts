@@ -6,7 +6,9 @@ interface screensizeState {
 
 const getInitialState = () => {
   return {
-    size: 'mobile'
+    size: 'phone-only',
+    isMobile: true,
+    isDesktop: false
   };
 };
 
@@ -18,6 +20,8 @@ const screensizeReducer = (
     case Actions.UPDATE_SCREENSIZE: {
       // try to keep these in sync with media queries
       let size = 'phone-only';
+      let isMobile = true;
+      let isDesktop = false;
 
       if (action.payload >= 768) {
         size = 'tablet-portrait-up';
@@ -29,15 +33,21 @@ const screensizeReducer = (
 
       if (action.payload >= 1200) {
         size = 'desktop-up';
+        isMobile = false;
+        isDesktop = true;
       }
 
       if (action.payload >= 1800) {
         size = 'big-desktop-up';
+        isMobile = false;
+        isDesktop = true;
       }
 
       return {
         ...state,
-        size
+        size,
+        isMobile,
+        isDesktop
       };
     }
   }

@@ -1,13 +1,13 @@
-import { Component, h  } from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
 import Glide from '@glidejs/glide';
-// import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
 
 
 @Component({
-  tag: 'listing-slider',
-  styleUrl: 'listing-slider.scss'
+  tag: 'neighborhood-slider',
+  styleUrl: 'neighborhood-slider.scss'
 })
-export class ListingSlider {
+export class NeighborhoodSlider {
+  @Prop() items: any[] = [];
   sliderClass: string = 'glide';
   glide: any;
 
@@ -25,8 +25,8 @@ export class ListingSlider {
 
     this.glide = new Glide('.' + this.sliderClass, {
       type: 'slider',
-      perView: 3,
-      gap:10,
+      perView: 4,
+      gap:40,
       rewind: false,
       breakpoints: {
         1024: {
@@ -54,17 +54,6 @@ export class ListingSlider {
       }
     });
 
-    // this.glide.on('run.after', () => {
-    //   let track: HTMLElement = document.querySelector('.' + this.sliderClass + ' .glide__track');
-    //   let slide: HTMLElement = document.querySelector('.' + this.sliderClass + ' .glide__slide');
-    //   var slideHeight = slide.offsetHeight;
-    //   var glideTrack = track.offsetHeight;
-    //   if (slideHeight != glideTrack) {
-    //     var newHeight = slideHeight;
-    //     track.style.height = newHeight + 'px';
-    //   }
-    // });
-
     this.glide.mount();
   }
 
@@ -89,20 +78,14 @@ export class ListingSlider {
       <div class={'glide ' + this.sliderClass}>
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
+            {this.items.map(neighborhood =>
+              <li class="glide__slide"><neighborhood-card item={neighborhood} /></li>
+            )}
           </ul>
         </div>
 
         <div class="glide__arrows" data-glide-el="controls">
-          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+          <button class="glide__arrow glide__arrow--left" data-glide-dir="<" onClick={() => console.log(this.items)}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="#ffffff" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg>
           </button>
           <button class="glide__arrow glide__arrow--right" data-glide-dir=">">

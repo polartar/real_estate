@@ -12,19 +12,64 @@ import Glide from '@glidejs/glide';
 export class PageHome {
   @Prop({ context: "store" }) store: Store;
   @State() size: string = 'phone-only';
+  @State() isMobile: boolean = true;
   @State() displayFilter: boolean;
   toggleSearchFilterDisplay: Action;
+
+  neighborhoods: any = [
+    {
+      id: Math.round(Math.random() * 10000),
+      title: 'Tribeca',
+      image: '/assets/images/neighborhoods/tribeca.jpg'
+    },
+    {
+      id: Math.round(Math.random() * 10000),
+      title: 'Battery Park City',
+      image: '/assets/images/neighborhoods/battery-park-city.jpg'
+    },
+    {
+      id: Math.round(Math.random() * 10000),
+      title: 'Financial District',
+      image: '/assets/images/neighborhoods/financial-district.jpg'
+    },
+    {
+      id: Math.round(Math.random() * 10000),
+      title: 'Fulton Seaport',
+      image: '/assets/images/neighborhoods/fulton-seaport.jpg'
+    },
+    {
+      id: Math.round(Math.random() * 10000),
+      title: 'Tribeca',
+      image: '/assets/images/neighborhoods/tribeca.jpg'
+    },
+    {
+      id: Math.round(Math.random() * 10000),
+      title: 'Battery Park City',
+      image: '/assets/images/neighborhoods/battery-park-city.jpg'
+    },
+    {
+      id: Math.round(Math.random() * 10000),
+      title: 'Financial District',
+      image: '/assets/images/neighborhoods/financial-district.jpg'
+    },
+    {
+      id: Math.round(Math.random() * 10000),
+      title: 'Fulton Seaport',
+      image: '/assets/images/neighborhoods/fulton-seaport.jpg'
+    }
+  ];
 
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
 
       const {
-        screenSize: { size },
+        screenSize: { size, isMobile },
         searchFilters: { displayFilter }
       } = state;
 
       return {
         size,
+        isMobile,
         displayFilter
       };
     });
@@ -45,12 +90,22 @@ export class PageHome {
                     Search
                   </button>
 
+    let luxuryTitle = 'Luxury Apartments in full service doorman buildings';
+    let uniqueTitle = 'Unique homes in New York';
+    let privateTitle = 'Private rooms in shared apartments';
+    let neighborhoodTitle = 'New York City Neighborhoods';
+
     if (this.size === 'phone-only') {
       phoneTitle = title;
       phoneSubtitle = subtitle;
       phoneSearch = <button class="search-dark" onClick={() => { this.toggleSearchFilterDisplay(!this.displayFilter) }}>
                       Search
                     </button>
+
+      luxuryTitle = 'Luxury apartments';
+      uniqueTitle = 'Unique homes';
+      privateTitle = 'Private rooms';
+      neighborhoodTitle = 'Neighborhoods';
     }
 
     return [
@@ -102,11 +157,33 @@ export class PageHome {
           </div>
 
           <div class="predefined-search">
-            {/* <h2>Luxury apartments in full service doorman buildings</h2>
+            <h2>{luxuryTitle}</h2>
 
-            <listing-card /> */}
+            {(this.isMobile) ? <listing-slider /> : <listing-list />}
+          </div>
 
-            <listing-slider />
+          <div class="predefined-search">
+            <h2>{uniqueTitle}</h2>
+
+            {(this.isMobile) ? <listing-slider /> : <listing-list />}
+          </div>
+
+          <div class="predefined-search">
+            <h2>{privateTitle}</h2>
+
+            {(this.isMobile) ? <listing-slider /> : <listing-list />}
+          </div>
+
+          <div class="predefined-search">
+            <h2>{neighborhoodTitle}</h2>
+
+            <div>
+              <neighborhood-slider items={this.neighborhoods} />
+            </div>
+
+            <div class="mt-24">
+              <neighborhood-slider items={this.neighborhoods} />
+            </div>
           </div>
 
         </app-layout-standard>

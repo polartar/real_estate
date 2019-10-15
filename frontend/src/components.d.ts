@@ -16,9 +16,18 @@ export namespace Components {
   }
   interface AppRoot {}
   interface AppWrapper {}
-  interface ListingCard {}
+  interface ListingCard {
+    'item': any;
+  }
+  interface ListingList {}
   interface ListingSlider {}
   interface MediaLogos {}
+  interface NeighborhoodCard {
+    'item': any;
+  }
+  interface NeighborhoodSlider {
+    'items': any[];
+  }
   interface PageHome {}
   interface SearchFilters {}
 }
@@ -67,6 +76,12 @@ declare global {
     new (): HTMLListingCardElement;
   };
 
+  interface HTMLListingListElement extends Components.ListingList, HTMLStencilElement {}
+  var HTMLListingListElement: {
+    prototype: HTMLListingListElement;
+    new (): HTMLListingListElement;
+  };
+
   interface HTMLListingSliderElement extends Components.ListingSlider, HTMLStencilElement {}
   var HTMLListingSliderElement: {
     prototype: HTMLListingSliderElement;
@@ -77,6 +92,18 @@ declare global {
   var HTMLMediaLogosElement: {
     prototype: HTMLMediaLogosElement;
     new (): HTMLMediaLogosElement;
+  };
+
+  interface HTMLNeighborhoodCardElement extends Components.NeighborhoodCard, HTMLStencilElement {}
+  var HTMLNeighborhoodCardElement: {
+    prototype: HTMLNeighborhoodCardElement;
+    new (): HTMLNeighborhoodCardElement;
+  };
+
+  interface HTMLNeighborhoodSliderElement extends Components.NeighborhoodSlider, HTMLStencilElement {}
+  var HTMLNeighborhoodSliderElement: {
+    prototype: HTMLNeighborhoodSliderElement;
+    new (): HTMLNeighborhoodSliderElement;
   };
 
   interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {}
@@ -97,8 +124,11 @@ declare global {
     'app-root': HTMLAppRootElement;
     'app-wrapper': HTMLAppWrapperElement;
     'listing-card': HTMLListingCardElement;
+    'listing-list': HTMLListingListElement;
     'listing-slider': HTMLListingSliderElement;
     'media-logos': HTMLMediaLogosElement;
+    'neighborhood-card': HTMLNeighborhoodCardElement;
+    'neighborhood-slider': HTMLNeighborhoodSliderElement;
     'page-home': HTMLPageHomeElement;
     'search-filters': HTMLSearchFiltersElement;
   }
@@ -112,9 +142,18 @@ declare namespace LocalJSX {
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface AppWrapper extends JSXBase.HTMLAttributes<HTMLAppWrapperElement> {}
-  interface ListingCard extends JSXBase.HTMLAttributes<HTMLListingCardElement> {}
+  interface ListingCard extends JSXBase.HTMLAttributes<HTMLListingCardElement> {
+    'item'?: any;
+  }
+  interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {}
   interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {}
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
+  interface NeighborhoodCard extends JSXBase.HTMLAttributes<HTMLNeighborhoodCardElement> {
+    'item'?: any;
+  }
+  interface NeighborhoodSlider extends JSXBase.HTMLAttributes<HTMLNeighborhoodSliderElement> {
+    'items'?: any[];
+  }
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {}
 
@@ -125,8 +164,11 @@ declare namespace LocalJSX {
     'app-root': AppRoot;
     'app-wrapper': AppWrapper;
     'listing-card': ListingCard;
+    'listing-list': ListingList;
     'listing-slider': ListingSlider;
     'media-logos': MediaLogos;
+    'neighborhood-card': NeighborhoodCard;
+    'neighborhood-slider': NeighborhoodSlider;
     'page-home': PageHome;
     'search-filters': SearchFilters;
   }
