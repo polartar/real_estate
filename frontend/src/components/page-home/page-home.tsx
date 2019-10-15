@@ -107,8 +107,11 @@ export class PageHome {
 
     return [
       <ion-content class="page-home">
-        <app-layout-standard>
+        <div class="header-wrapper section">
+          <app-header />
+        </div>
 
+        <section class="section">
           {phoneTitle}
           {phoneSubtitle}
 
@@ -182,25 +185,82 @@ export class PageHome {
               <neighborhood-slider items={this.neighborhoods} />
             </div>
           </div>
-
+        </section>
 
           <div class="faq">
             <lazy-image src="/assets/images/faq-background.jpg" class="faq-bg" />
-            <div class="faq-content flex-col-wrapper">
-              <div class="col-1of2">
-                <h3 class="h1 title no-padding-margin">FAQ</h3>
-                <p>Have anymore questions?</p>
-                <ion-router-link class="button-light" href="/faq">
-                  Frequently asked questions
-                </ion-router-link>
+            <div class="faq-mask" />
+
+            <div class="faq-content-wrapper">
+              <div class="section">
+              <div class="faq-content flex-col-wrapper">
+                <div class="col-1of2">
+                  <h3 class="h1 title no-padding-margin">FAQ</h3>
+                  <p>Have anymore questions?</p>
+                  <ion-router-link class="button-light" href="/faq">
+                    Frequently asked questions
+                  </ion-router-link>
+                </div>
+                <div class="col-1of2">
+                  <faq-accordian />
+                </div>
               </div>
-              <div class="col-1of2">
-                <faq-accordian />
               </div>
             </div>
           </div>
 
-        </app-layout-standard>
+
+        <section class="section">
+          <div class="home-features">
+            <div class="home-feature">
+              <lazy-image src="/assets/images/icons/inventory.svg" alt="inventory icon" />
+              <div class="feature-content">
+                <h2 class="h1 no-padding-margin">Inventory</h2>
+                <p>Locations througout Manhattan's most prestigious neighborhoods</p>
+              </div>
+            </div>
+
+            <div class="home-feature">
+              <lazy-image src="/assets/images/icons/inventory.svg" alt="inventory icon" />
+              <div class="feature-content">
+                <h2 class="h1 no-padding-margin">Inventory</h2>
+                <p>Locations througout Manhattan's most prestigious neighborhoods</p>
+              </div>
+            </div>
+
+            <div class="home-feature">
+              <lazy-image src="/assets/images/icons/inventory.svg" alt="inventory icon" />
+              <div class="feature-content">
+                <h2 class="h1 no-padding-margin">Inventory</h2>
+                <p>Locations througout Manhattan's most prestigious neighborhoods</p>
+              </div>
+            </div>
+
+            <div class="home-feature">
+              <lazy-image src="/assets/images/icons/inventory.svg" alt="inventory icon" />
+              <div class="feature-content">
+                <h2 class="h1 no-padding-margin">Inventory</h2>
+                <p>Locations througout Manhattan's most prestigious neighborhoods</p>
+              </div>
+            </div>
+
+            <div class="home-feature">
+              <lazy-image src="/assets/images/icons/inventory.svg" alt="inventory icon" />
+              <div class="feature-content">
+                <h2 class="h1 no-padding-margin">Inventory</h2>
+                <p>Locations througout Manhattan's most prestigious neighborhoods</p>
+              </div>
+            </div>
+
+            <div class="home-feature">
+              <lazy-image src="/assets/images/icons/inventory.svg" alt="inventory icon" />
+              <div class="feature-content">
+                <h2 class="h1 no-padding-margin">Inventory</h2>
+                <p>Locations througout Manhattan's most prestigious neighborhoods</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <ion-fab horizontal="end" vertical="bottom" slot="fixed">
             <ion-fab-button class="chat">

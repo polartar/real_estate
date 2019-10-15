@@ -119,3 +119,20 @@ h2, h3, h4 {
   color: inherit;
   outline: 0;
 }
+
+.section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 3rem 0 3rem;
+
+  @include for-size(phone-only) {
+    padding: 0 1rem;
+  }
+}
+
+.header-wrapper {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 999;
+}

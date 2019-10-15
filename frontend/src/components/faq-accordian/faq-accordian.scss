@@ -1,3 +1,5 @@
+@import '../../styles/mixins';
+
 .faq-accordian {
   .accordian-header {
     width: 100%;
@@ -6,6 +8,9 @@
     h4 {
       text-align: left;
       flex-grow: 1;
+      font-size: 1rem;
+      margin: 0;
+      padding: 0;
     }
 
     ion-icon {
@@ -15,11 +20,16 @@
 
   .accordian-content {
     max-height: 0;
+    padding-right: 30px;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    // transition: max-height 0.3s ease-out;
 
     &.active {
       max-height: 400px;
+    }
+
+    @include for-size(tablet-portrait-up) {
+      padding-right: 175px;
     }
   }
 }

@@ -8,8 +8,8 @@ export class AppLayoutStandard {
 
   render() {
     return (
-      <app-wrapper>
-        <div class="header-wrapper">
+      <div>
+        <div class="header-wrapper section">
           <app-header />
         </div>
 
@@ -20,7 +20,7 @@ export class AppLayoutStandard {
         <footer>
           Footer
         </footer>
-      </app-wrapper>
+      </div>
     );
   }
 }
