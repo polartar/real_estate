@@ -1,0 +1,25 @@
+.faq-accordian {
+  .accordian-header {
+    width: 100%;
+    align-items: center;
+
+    h4 {
+      text-align: left;
+      flex-grow: 1;
+    }
+
+    ion-icon {
+      font-size: 1.7rem;
+    }
+  }
+
+  .accordian-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+
+    &.active {
+      max-height: 400px;
+    }
+  }
+}

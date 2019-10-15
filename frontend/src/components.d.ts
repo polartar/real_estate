@@ -16,6 +16,7 @@ export namespace Components {
   }
   interface AppRoot {}
   interface AppWrapper {}
+  interface FaqAccordian {}
   interface LazyImage {
     'alt': string;
     'src': string;
@@ -72,6 +73,12 @@ declare global {
   var HTMLAppWrapperElement: {
     prototype: HTMLAppWrapperElement;
     new (): HTMLAppWrapperElement;
+  };
+
+  interface HTMLFaqAccordianElement extends Components.FaqAccordian, HTMLStencilElement {}
+  var HTMLFaqAccordianElement: {
+    prototype: HTMLFaqAccordianElement;
+    new (): HTMLFaqAccordianElement;
   };
 
   interface HTMLLazyImageElement extends Components.LazyImage, HTMLStencilElement {}
@@ -133,6 +140,7 @@ declare global {
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'app-wrapper': HTMLAppWrapperElement;
+    'faq-accordian': HTMLFaqAccordianElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
     'listing-list': HTMLListingListElement;
@@ -153,6 +161,7 @@ declare namespace LocalJSX {
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface AppWrapper extends JSXBase.HTMLAttributes<HTMLAppWrapperElement> {}
+  interface FaqAccordian extends JSXBase.HTMLAttributes<HTMLFaqAccordianElement> {}
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
     'src'?: string;
@@ -178,6 +187,7 @@ declare namespace LocalJSX {
     'app-profile': AppProfile;
     'app-root': AppRoot;
     'app-wrapper': AppWrapper;
+    'faq-accordian': FaqAccordian;
     'lazy-image': LazyImage;
     'listing-card': ListingCard;
     'listing-list': ListingList;
