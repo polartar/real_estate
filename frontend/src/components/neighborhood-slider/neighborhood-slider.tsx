@@ -75,7 +75,7 @@ export class NeighborhoodSlider {
 
   render() {
     return [
-      <div class={'glide ' + this.sliderClass}>
+      <div class={'neighborhood-slider glide ' + this.sliderClass}>
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
             {this.items.map(neighborhood =>

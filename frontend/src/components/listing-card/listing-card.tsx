@@ -36,20 +36,20 @@ export class ListingCard {
     return [
       <ion-router-link href={'/post/' + this.item.id}>
         <div class="listing-card">
-          <img src="/assets/images/placeholder/apt1.jpeg" class="list-feature-image"/>
+          <lazy-image src="/assets/images/placeholder/apt1.jpeg" class="list-feature-image"/>
           <h4 class="listing-title">{this.item.title}</h4>
           <div class="price">
             ${this.item.price} per month
           </div>
           <div class="bed-bath">
             <div>
-              <img src="/assets/images/icons/bedroom.svg" class="bedrooms" /> {this.item.bedrooms} Bedroom
+              <lazy-image src="/assets/images/icons/bedroom.svg" class="bedrooms" /> {this.item.bedrooms} Bedroom
             </div>
             <div class="divider">
               |
             </div>
             <div>
-              <img src="/assets/images/icons/bathroom.svg" class="bathrooms" /> {this.item.bathrooms} Bathroom
+              <lazy-image src="/assets/images/icons/bathroom.svg" class="bathrooms" /> {this.item.bathrooms} Bathroom
             </div>
           </div>
           <div class="rating-amenities">

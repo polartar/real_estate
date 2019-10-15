@@ -16,6 +16,9 @@ export namespace Components {
   }
   interface AppRoot {}
   interface AppWrapper {}
+  interface LazyImage {
+    'src': string;
+  }
   interface ListingCard {
     'item': any;
   }
@@ -68,6 +71,12 @@ declare global {
   var HTMLAppWrapperElement: {
     prototype: HTMLAppWrapperElement;
     new (): HTMLAppWrapperElement;
+  };
+
+  interface HTMLLazyImageElement extends Components.LazyImage, HTMLStencilElement {}
+  var HTMLLazyImageElement: {
+    prototype: HTMLLazyImageElement;
+    new (): HTMLLazyImageElement;
   };
 
   interface HTMLListingCardElement extends Components.ListingCard, HTMLStencilElement {}
@@ -123,6 +132,7 @@ declare global {
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'app-wrapper': HTMLAppWrapperElement;
+    'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
     'listing-list': HTMLListingListElement;
     'listing-slider': HTMLListingSliderElement;
@@ -142,6 +152,9 @@ declare namespace LocalJSX {
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface AppWrapper extends JSXBase.HTMLAttributes<HTMLAppWrapperElement> {}
+  interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
+    'src'?: string;
+  }
   interface ListingCard extends JSXBase.HTMLAttributes<HTMLListingCardElement> {
     'item'?: any;
   }
@@ -163,6 +176,7 @@ declare namespace LocalJSX {
     'app-profile': AppProfile;
     'app-root': AppRoot;
     'app-wrapper': AppWrapper;
+    'lazy-image': LazyImage;
     'listing-card': ListingCard;
     'listing-list': ListingList;
     'listing-slider': ListingSlider;

@@ -15,7 +15,6 @@ export class NeighborhoodCard {
   }
 
   componentDidLoad() {
-    console.log('card loaded', this.item);
     this.store.mapStateToProps(this, state => {
 
       const {
@@ -33,7 +32,7 @@ export class NeighborhoodCard {
     return [
       <ion-router-link href={'/neighborhood/' + this.item.id}>
         <div class="neighborhood-card">
-          <img src={this.item.image} class="neighborhood-feature-image"/>
+          <lazy-image src={this.item.image} class="neighborhood-feature-image"/>
           <h4 class="neighborhood-title">{this.item.title}</h4>
         </div>
       </ion-router-link>
