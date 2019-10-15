@@ -9,6 +9,7 @@ export class LazyImage {
   @Element() el: HTMLElement;
 
   @Prop() src: string;
+  @Prop() alt: string = '';
   private observer: IntersectionObserver;
   private observerSupported: boolean = true;
 
@@ -18,7 +19,7 @@ export class LazyImage {
     this.observerSupported = !!window.IntersectionObserver;
 
     if (img && this.observerSupported) {
-      this.observer = new IntersectionObserver(this.onIntersection, {rootMargin: "0px 0px 200px 0px"});
+      this.observer = new IntersectionObserver(this.onIntersection, {rootMargin: "200px 50px 200px 50px"});
       this.observer.observe(img);
     }
   }
@@ -40,6 +41,6 @@ export class LazyImage {
   };
 
   render() {
-    return this.observerSupported ? <img data-src={this.src} class="lazy-image"/> : <img src={this.src} class="lazy-image" />;
+    return this.observerSupported ? <img data-src={this.src} class="lazy-image" alt={this.alt} /> : <img src={this.src} class="lazy-image" alt={this.alt} />;
   }
 }

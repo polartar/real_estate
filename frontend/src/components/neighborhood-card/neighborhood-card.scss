@@ -2,7 +2,11 @@
 
 .neighborhood-card {
   position: relative;
-  height: 368px;
+  height: 192px;
+
+  @include for-size(tablet-landscape-up) {
+    height: 368px;
+  }
 
   .neighborhood-title {
     position: absolute;

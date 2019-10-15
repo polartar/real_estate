@@ -30,10 +30,12 @@ export class NeighborhoodSlider {
       rewind: false,
       breakpoints: {
         1024: {
-          perView: 3
+          perView: 3,
+          gap: 30
         },
         600: {
-          perView: 2
+          perView: 2,
+          gap: 10
         }
       }
     });

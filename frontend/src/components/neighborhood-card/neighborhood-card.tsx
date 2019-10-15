@@ -32,7 +32,7 @@ export class NeighborhoodCard {
     return [
       <ion-router-link href={'/neighborhood/' + this.item.id}>
         <div class="neighborhood-card">
-          <lazy-image src={this.item.image} class="neighborhood-feature-image"/>
+          <lazy-image src={this.item.image} alt={this.item.title} class="neighborhood-feature-image"/>
           <h4 class="neighborhood-title">{this.item.title}</h4>
         </div>
       </ion-router-link>

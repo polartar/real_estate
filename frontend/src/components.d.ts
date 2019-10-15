@@ -17,6 +17,7 @@ export namespace Components {
   interface AppRoot {}
   interface AppWrapper {}
   interface LazyImage {
+    'alt': string;
     'src': string;
   }
   interface ListingCard {
@@ -153,6 +154,7 @@ declare namespace LocalJSX {
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface AppWrapper extends JSXBase.HTMLAttributes<HTMLAppWrapperElement> {}
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
+    'alt'?: string;
     'src'?: string;
   }
   interface ListingCard extends JSXBase.HTMLAttributes<HTMLListingCardElement> {
