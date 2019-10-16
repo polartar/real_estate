@@ -9,6 +9,10 @@ Install dependencies:
 
 `composer install`
 
+Configure database credentials in `.env` then run migrations
+
+`php artisan migrate`
+
 Install passport (api auth back end):
 
 `php artisan passport:install`
