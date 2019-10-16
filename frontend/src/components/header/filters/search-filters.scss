@@ -11,8 +11,13 @@
     height: 100%;
 
     .dropdown {
+      display: none;
       position: relative;
       margin-right: 2.5rem;
+
+      @include for-size(desktop-up) {
+        display: inline-block;
+      }
 
       ion-icon {
         padding-left: 0.5rem;
