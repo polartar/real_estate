@@ -1,0 +1,44 @@
+form {
+
+  .input {
+    position: relative;
+    padding-bottom: 1rem;
+  }
+
+  input,
+  input[type="email"],
+  input[type="submit"] {
+      width: 100%;
+      border: 0;
+      height: 47px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+  }
+
+  .help-text {
+    font-size: 0.6rem;
+  }
+
+  &.dark {
+    input,
+    input[type="email"] {
+      background-color: #353535;
+      color: white;
+      border: 1px solid white;
+
+      &::placeholder {
+        color: white;
+      }
+    }
+
+    .help-text {
+      color: white;
+      opacity: 0.3;
+    }
+
+    input[type="submit"] {
+      background-color: white;
+      color: $color-primary;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface AppFooter {}
   interface AppHeader {}
   interface AppLayoutStandard {}
   interface AppProfile {
@@ -44,6 +45,12 @@ declare global {
     export interface Element {}
   }
 
+
+  interface HTMLAppFooterElement extends Components.AppFooter, HTMLStencilElement {}
+  var HTMLAppFooterElement: {
+    prototype: HTMLAppFooterElement;
+    new (): HTMLAppFooterElement;
+  };
 
   interface HTMLAppHeaderElement extends Components.AppHeader, HTMLStencilElement {}
   var HTMLAppHeaderElement: {
@@ -135,6 +142,7 @@ declare global {
     new (): HTMLSearchFiltersElement;
   };
   interface HTMLElementTagNameMap {
+    'app-footer': HTMLAppFooterElement;
     'app-header': HTMLAppHeaderElement;
     'app-layout-standard': HTMLAppLayoutStandardElement;
     'app-profile': HTMLAppProfileElement;
@@ -154,6 +162,7 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface AppFooter extends JSXBase.HTMLAttributes<HTMLAppFooterElement> {}
   interface AppHeader extends JSXBase.HTMLAttributes<HTMLAppHeaderElement> {}
   interface AppLayoutStandard extends JSXBase.HTMLAttributes<HTMLAppLayoutStandardElement> {}
   interface AppProfile extends JSXBase.HTMLAttributes<HTMLAppProfileElement> {
@@ -182,6 +191,7 @@ declare namespace LocalJSX {
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {}
 
   interface IntrinsicElements {
+    'app-footer': AppFooter;
     'app-header': AppHeader;
     'app-layout-standard': AppLayoutStandard;
     'app-profile': AppProfile;
