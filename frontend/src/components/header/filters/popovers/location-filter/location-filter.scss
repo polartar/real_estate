@@ -24,4 +24,36 @@
   ion-checkbox {
     --size: 0.75rem;
   }
+
+  .checkboxes-container {
+    max-height: 480px;
+    display: flex;
+    flex-direction: collumn;
+    flex-wrap: wrap;
+  }
+
+  .region-container {
+    flex: 1 1 auto;
+    padding-top: 1rem;
+
+    label {
+      font-weight: bold;
+    }
+
+    .neighborhoods-container {
+      max-height: 430px;
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: repeat(15, auto);
+      padding-top: 0.5rem;
+
+      label {
+        flex: 1 1 15px;
+        font-size: 0.8rem;
+        font-weight: normal;
+        padding-top: 0.5rem;
+        padding-right: 3rem;
+      }
+    }
+  }
 }

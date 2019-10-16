@@ -7,7 +7,7 @@ interface searchFiltersState {
 const getInitialState = () => {
   return {
     displayFilter: false
-  };
+  }
 };
 
 const searchFiltersReducer = (
