@@ -59,9 +59,9 @@ export class FAQAccordian {
             {this.activeInstance == 1 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>
           <p class="accordian-content active">
-            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, e.t.c.)
+            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, etc.)
             and set up with Wifi and Cable TV.<br /><br />
-            Not all units come with linen and towels, but a package is available for purchase at our Soho office.For most units, landlords are able to
+            Not all units come with linen and towels, but a package is available for purchase at our Soho office. For most units, landlords are able to
             offer bed changes to accommodate larger groups.
           </p>
         </div>
@@ -72,9 +72,9 @@ export class FAQAccordian {
             {this.activeInstance == 2 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>
           <p class="accordian-content">
-            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, e.t.c.)
+            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, etc.)
             and set up with Wifi and Cable TV.<br /><br />
-            Not all units come with linen and towels, but a package is available for purchase at our Soho office.For most units, landlords are able to
+            Not all units come with linen and towels, but a package is available for purchase at our Soho office. For most units, landlords are able to
             offer bed changes to accommodate larger groups.
           </p>
         </div>
@@ -85,9 +85,9 @@ export class FAQAccordian {
             {this.activeInstance == 3 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>
           <p class="accordian-content">
-            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, e.t.c.)
+            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, etc.)
             and set up with Wifi and Cable TV.<br /><br />
-            Not all units come with linen and towels, but a package is available for purchase at our Soho office.For most units, landlords are able to
+            Not all units come with linen and towels, but a package is available for purchase at our Soho office. For most units, landlords are able to
             offer bed changes to accommodate larger groups.
           </p>
         </div>
@@ -98,9 +98,9 @@ export class FAQAccordian {
             {this.activeInstance == 4 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>
           <p class="accordian-content">
-            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, e.t.c.)
+            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, etc.)
             and set up with Wifi and Cable TV.<br /><br />
-            Not all units come with linen and towels, but a package is available for purchase at our Soho office.For most units, landlords are able to
+            Not all units come with linen and towels, but a package is available for purchase at our Soho office. For most units, landlords are able to
             offer bed changes to accommodate larger groups.
           </p>
         </div>

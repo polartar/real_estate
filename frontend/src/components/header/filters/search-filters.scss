@@ -4,4 +4,42 @@
 .search-filters {
   box-shadow: inset 0 -1px 0 0 #ededed, inset 0 1px 0 0 #ededed;
   height: 56px;
+
+  .section {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    .dropdown {
+      position: relative;
+      margin-right: 2.5rem;
+
+      ion-icon {
+        padding-left: 0.5rem;
+        vertical-align: text-bottom;
+      }
+
+      // adds an invisible pseudo-element over top of the button
+      // to prevent click-capture from the ion-icon
+      &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+}
+
+.search-filter-popover {
+  .popover-content.sc-ion-popover-md {
+    margin-top: 18px;
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #f0f0f0;
+    --max-width: none;
+    --width: auto;
+  }
 }

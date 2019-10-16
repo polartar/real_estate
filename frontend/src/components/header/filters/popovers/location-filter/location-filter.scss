@@ -1,0 +1,27 @@
+.location-filter {
+  padding: 20px 24px;
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+
+    .spacer {
+      flex-grow: 1;
+    }
+
+    .button-light {
+      margin-left: 1.5rem;
+      border: 1px solid black;
+    }
+
+    ion-button.close {
+      --background-hover: transparent;
+      --padding-end: 0;
+      --ripple-color: transparent;
+    }
+  }
+
+  ion-checkbox {
+    --size: 0.75rem;
+  }
+}

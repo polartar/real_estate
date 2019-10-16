@@ -27,6 +27,7 @@ export namespace Components {
   }
   interface ListingList {}
   interface ListingSlider {}
+  interface LocationFilter {}
   interface MediaLogos {}
   interface NeighborhoodCard {
     'item': any;
@@ -112,6 +113,12 @@ declare global {
     new (): HTMLListingSliderElement;
   };
 
+  interface HTMLLocationFilterElement extends Components.LocationFilter, HTMLStencilElement {}
+  var HTMLLocationFilterElement: {
+    prototype: HTMLLocationFilterElement;
+    new (): HTMLLocationFilterElement;
+  };
+
   interface HTMLMediaLogosElement extends Components.MediaLogos, HTMLStencilElement {}
   var HTMLMediaLogosElement: {
     prototype: HTMLMediaLogosElement;
@@ -153,6 +160,7 @@ declare global {
     'listing-card': HTMLListingCardElement;
     'listing-list': HTMLListingListElement;
     'listing-slider': HTMLListingSliderElement;
+    'location-filter': HTMLLocationFilterElement;
     'media-logos': HTMLMediaLogosElement;
     'neighborhood-card': HTMLNeighborhoodCardElement;
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
@@ -180,6 +188,7 @@ declare namespace LocalJSX {
   }
   interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {}
   interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {}
+  interface LocationFilter extends JSXBase.HTMLAttributes<HTMLLocationFilterElement> {}
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
   interface NeighborhoodCard extends JSXBase.HTMLAttributes<HTMLNeighborhoodCardElement> {
     'item'?: any;
@@ -202,6 +211,7 @@ declare namespace LocalJSX {
     'listing-card': ListingCard;
     'listing-list': ListingList;
     'listing-slider': ListingSlider;
+    'location-filter': LocationFilter;
     'media-logos': MediaLogos;
     'neighborhood-card': NeighborhoodCard;
     'neighborhood-slider': NeighborhoodSlider;

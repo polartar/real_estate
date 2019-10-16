@@ -45,6 +45,7 @@ export class AppRoot {
             <ion-route url="/" component="page-home" />
             <ion-route url="/profile/:name" component="app-profile" />
           </ion-router>
+
           <ion-nav />
       </ion-app>
     );

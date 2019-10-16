@@ -38,6 +38,7 @@
   --ion-color-primary: #{$color-primary};
   --ion-color-secondary: #{$color-secondary};
   --ion-font-family: 'Source Sans Pro', sans-serif;
+  --ion-default-font: 'Source Sans Pro', sans-serif;
 }
 
 ion-button {
@@ -78,13 +79,19 @@ h2, h3, h4 {
 }
 
 
-.button-light {
+.button-light,
+.button-dark {
   display: inline-block;
   background-color: white;
   color: $color-primary;
   font-size: 0.8rem;
   font-weight: bold;
   padding: 12px 18px;
+}
+
+.button-dark {
+  background-color: $color-primary;
+  color: white;
 }
 
 .no-padding {
