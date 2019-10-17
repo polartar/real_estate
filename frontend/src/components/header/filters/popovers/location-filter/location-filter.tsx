@@ -1,5 +1,6 @@
 import { Component, h, Prop, State, Element} from '@stencil/core';
-import { Store } from '@stencil/redux';
+import { Store, Action } from '@stencil/redux';
+import { setLocationFilters } from '../../../../../store/actions/search-filters';
 
 @Component({
   tag: 'location-filter',
@@ -9,6 +10,8 @@ export class LocationFilter {
   @Prop({ context: "store" }) store: Store;
   @State() neighborhoods: any = {};
   @Element() el: HTMLElement;
+  setLocationFilters: Action;
+  value: Number[];
 
   // whether to check the region control for status after
   // changing a neighborhood checkbox
@@ -19,7 +22,24 @@ export class LocationFilter {
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
-        neighborhoods: state.neighborhoods.neighborhoods
+        neighborhoods: state.neighborhoods.neighborhoods,
+        value: state.searchFilters.filters.location
+      }
+    });
+
+    this.store.mapDispatchToProps(this, {
+      setLocationFilters: setLocationFilters
+    });
+  }
+
+  componentDidLoad() {
+    // fix issue with checked-binding on ion-checkbox
+    let checkboxes = this.el.querySelectorAll('ion-checkbox[data-checked="checked"]');
+
+    checkboxes.forEach(checkbox => {
+      if (checkbox.getAttribute('data-checked') && !checkbox.getAttribute('checked')) {
+        // we need to explicitly re-set the checked prop
+        checkbox.setAttribute('checked', 'checked');
       }
     });
   }
@@ -32,17 +52,31 @@ export class LocationFilter {
     }
   }
 
+  check(cb) {
+    cb.setAttribute('checked', 'checked');
+    cb.setAttribute('data-checked', 'checked');
+  }
+
+  uncheck(cb) {
+    cb.removeAttribute('checked');
+    cb.removeAttribute('data-checked');
+  }
+
+  isChecked(cb) {
+    return !!cb.getAttribute('checked') || !!cb.getAttribute('data-checked');
+  }
+
   toggleCheckbox(e) {
     let cb;
 
     if (e.target.tagName === 'LABEL') {
       cb = e.target.querySelector('ion-checkbox');
 
-      if (cb.getAttribute('checked')) {
-        cb.removeAttribute('checked');
+      if (this.isChecked(cb)) {
+        this.uncheck(cb);
       }
       else {
-        cb.setAttribute('checked', 'checked');
+        this.check(cb);
       }
     }
   }
@@ -59,10 +93,10 @@ export class LocationFilter {
 
     checkboxes.forEach(checkbox => {
       if (!!e.detail.checked) {
-        checkbox.setAttribute('checked', 'checked');
+        this.check(checkbox);
       }
       else {
-        checkbox.removeAttribute('checked');
+        this.uncheck(checkbox);
       }
     });
 
@@ -83,28 +117,36 @@ export class LocationFilter {
 
         let enable = true;
         checkboxes.forEach(checkbox => {
-          if (!checkbox.getAttribute('checked')) {
+          if (!this.isChecked(checkbox)) {
             enable = false;
           }
         });
 
         if (enable) {
-          regionCB.setAttribute('checked', 'checked');
+          this.check(regionCB);
         }
       }
       else {
         // unchecked, so we uncheck the region
-        regionCB.removeAttribute('checked');
+        this.uncheck(regionCB);
       }
 
       this.enableNeighborhoodCheck = true;
+    }
+
+    if (!!e.detail.checked) {
+      this.value.push(parseInt(e.target.getAttribute('data-value')));
+    }
+    else {
+      this.value = this.value.filter(val => {
+        return val !== parseInt(e.target.getAttribute('data-value'));
+      })
     }
 
     this.saveState();
   }
 
   onSubmit(e) {
-    console.log('form submit', e);
     e.preventDefault();
   }
 
@@ -113,26 +155,16 @@ export class LocationFilter {
 
     checkboxes.forEach(checkbox => {
       if (on) {
-        checkbox.setAttribute('checked', 'checked');
+        this.check(checkbox);
       }
       else {
-        checkbox.removeAttribute('checked');
+        this.uncheck(checkbox);
       }
     });
   }
 
   saveState() {
-    this.el.querySelector('form').submit();
-    // console.log('saving state');
-
-    // const state = [];
-    // const checkboxes = this.el.querySelectorAll('ion-checkboxes.neighborhood');
-
-    // checkboxes.forEach(checkbox => {
-    //   if (!!checkbox.getAttribute('checked')) {
-    //     state.push(checkbox.getAttribute('value'));
-    //   }
-    // });
+    this.setLocationFilters(this.value);
   }
 
   render() {
@@ -153,20 +185,51 @@ export class LocationFilter {
           <form onSubmit={e => this.onSubmit(e)} novalidate>
 
             <div class="checkboxes-container">
-            {Object.keys(this.neighborhoods).map(region =>
-              <div class="region-container">
-                <label onClick={e => this.toggleCheckbox(e)}>
-                  <ion-checkbox name={region} class="region" onIonChange={e => this.regionChange(e)}/> {region}
-                </label>
+            {Object.keys(this.neighborhoods).map(region => {
+              let regionCheckboxProps: any = {
+                name: region,
+                class: 'region',
+                onIonChange: e => this.regionChange(e),
+                checked: "checked",
+                'data-checked': "checked"
+              };
 
-                <div class="neighborhoods-container">
-                  {this.neighborhoods[region].map(neighborhood =>
-                    <label onClick={e => this.toggleCheckbox(e)}>
-                      <ion-checkbox name={neighborhood.name} value={neighborhood.id} class="neighborhood" onIonChange={e => this.neighborhoodChange(e)}/> {neighborhood.name}
-                    </label>
-                  )}
+              this.neighborhoods[region].forEach(neighborhood => {
+                if (this.value.indexOf(neighborhood.id) === -1) {
+                  regionCheckboxProps.checked = false;
+                  regionCheckboxProps['data-checked'] = false;
+                }
+              });
+
+              return(
+                <div class="region-container">
+                  <label onClick={e => this.toggleCheckbox(e)}>
+                    <ion-checkbox {...regionCheckboxProps} /> {region}
+                  </label>
+
+                  <div class="neighborhoods-container">
+                    {this.neighborhoods[region].map(neighborhood => {
+                      let checkboxProps: any = {
+                        name: neighborhood.name,
+                        'data-value': neighborhood.id,
+                        class: 'neighborhood',
+                        onIonChange: e => { this.neighborhoodChange(e) },
+                      };
+
+                      if (this.value.indexOf(neighborhood.id) > -1) {
+                        checkboxProps.checked = 'checked';
+                        checkboxProps['data-checked'] = "checked";
+                      }
+
+                      return (
+                        <label onClick={e => this.toggleCheckbox(e)}>
+                          <ion-checkbox {...checkboxProps} /> {neighborhood.name}
+                        </label>
+                      )
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
             )}
             </div>
           </form>

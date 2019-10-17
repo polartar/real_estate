@@ -1,12 +1,16 @@
 import { Actions, ActionTypes } from "../actions/index";
 
 interface searchFiltersState {
-  displayFilter: boolean
+  displayFilter: boolean,
+  filters: any
 }
 
 const getInitialState = () => {
   return {
-    displayFilter: false
+    displayFilter: false,
+    filters: {
+      location: []
+    }
   }
 };
 
@@ -19,6 +23,16 @@ const searchFiltersReducer = (
       return {
         ...state,
         displayFilter: action.payload
+      };
+    }
+
+    case Actions.SET_LOCATION_FILTERS: {
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          location: action.payload
+        }
       };
     }
   }
