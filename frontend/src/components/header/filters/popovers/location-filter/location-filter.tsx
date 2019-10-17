@@ -1,4 +1,4 @@
-import { Component, h, Prop, State} from '@stencil/core';
+import { Component, h, Prop, State, Element} from '@stencil/core';
 import { Store } from '@stencil/redux';
 
 @Component({
@@ -8,6 +8,13 @@ import { Store } from '@stencil/redux';
 export class LocationFilter {
   @Prop({ context: "store" }) store: Store;
   @State() neighborhoods: any = {};
+  @Element() el: HTMLElement;
+
+  // whether to check the region control for status after
+  // changing a neighborhood checkbox
+  enableRegionCheck: boolean = true;
+
+  enableNeighborhoodCheck: boolean = true;
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
@@ -26,38 +33,114 @@ export class LocationFilter {
   }
 
   toggleCheckbox(e) {
-    const label = e.target;
+    let cb;
 
-    const cb = label.querySelector('ion-checkbox');
+    if (e.target.tagName === 'LABEL') {
+      cb = e.target.querySelector('ion-checkbox');
 
-    if (cb.getAttribute('checked')) {
-      cb.removeAttribute('checked');
-    }
-    else {
-      cb.setAttribute('checked', true);
+      if (cb.getAttribute('checked')) {
+        cb.removeAttribute('checked');
+      }
+      else {
+        cb.setAttribute('checked', 'checked');
+      }
     }
   }
 
   regionChange(e) {
-    console.log(e);
-    console.log(e.target.getAttribute('checked'));
+    const container = e.target.closest('.region-container');
+    const checkboxes = container.querySelectorAll('ion-checkbox');
+
+    if (!this.enableNeighborhoodCheck) {
+      return;
+    }
+
+    this.enableRegionCheck = false;
+
+    checkboxes.forEach(checkbox => {
+      if (!!e.detail.checked) {
+        checkbox.setAttribute('checked', 'checked');
+      }
+      else {
+        checkbox.removeAttribute('checked');
+      }
+    });
+
+    this.enableRegionCheck = true;
   }
 
   neighborhoodChange(e) {
+    const container = e.target.closest('.region-container');
+    const regionCB = container.querySelector('ion-checkbox.region');
 
+    if (this.enableRegionCheck) {
+      this.enableNeighborhoodCheck = false;
+
+      if (!!e.detail.checked) {
+        // if all other ones in this region are checked
+        // then check the region box
+        const checkboxes = container.querySelectorAll('ion-checkbox.neighborhood');
+
+        let enable = true;
+        checkboxes.forEach(checkbox => {
+          if (!checkbox.getAttribute('checked')) {
+            enable = false;
+          }
+        });
+
+        if (enable) {
+          regionCB.setAttribute('checked', 'checked');
+        }
+      }
+      else {
+        // unchecked, so we uncheck the region
+        regionCB.removeAttribute('checked');
+      }
+
+      this.enableNeighborhoodCheck = true;
+    }
+
+    this.saveState();
   }
 
   onSubmit(e) {
-    console.log(e);
+    console.log('form submit', e);
     e.preventDefault();
+  }
+
+  toggleAll(on) {
+    const checkboxes = this.el.querySelectorAll('ion-checkbox');
+
+    checkboxes.forEach(checkbox => {
+      if (on) {
+        checkbox.setAttribute('checked', 'checked');
+      }
+      else {
+        checkbox.removeAttribute('checked');
+      }
+    });
+  }
+
+  saveState() {
+    this.el.querySelector('form').submit();
+    // console.log('saving state');
+
+    // const state = [];
+    // const checkboxes = this.el.querySelectorAll('ion-checkboxes.neighborhood');
+
+    // checkboxes.forEach(checkbox => {
+    //   if (!!checkbox.getAttribute('checked')) {
+    //     state.push(checkbox.getAttribute('value'));
+    //   }
+    // });
   }
 
   render() {
     return (
       <div class="location-filter">
         <div class="toolbar">
-          <button class="button-dark">Select All</button>
-          <button class="button-light">Clear All</button>
+          <button class="button-dark" onClick={() => this.toggleAll(true)}>Select All</button>
+          <button class="button-light" onClick={() => this.toggleAll(false)}>Clear All</button>
 
           <div class="spacer" />
 

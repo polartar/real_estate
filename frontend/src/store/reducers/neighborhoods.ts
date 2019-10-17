@@ -15,121 +15,121 @@ const getInitialState = () => {
           image: '/assets/images/neighborhoods/battery-park-city.jpg'
         },
         {
-          id: 1,
+          id: 2,
           name: 'Tribeca',
           slug: 'tribeca',
           image: '/assets/images/neighborhoods/tribeca.jpg'
         },
         {
-          id: 1,
+          id: 3,
           name: 'Financial District',
           slug: 'financial-district',
           image: '/assets/images/financial-district.jpg'
         },
         {
-          id: 1,
+          id: 4,
           name: 'Battery Park City',
           slug: 'battery-park-city',
           image: '/assets/images/neighborhoods/battery-park-city.jpg'
         },
         {
-          id: 1,
+          id: 5,
           name: 'Tribeca',
           slug: 'tribeca',
           image: '/assets/images/neighborhoods/tribeca.jpg'
         },
         {
-          id: 1,
+          id: 6,
           name: 'Financial District',
           slug: 'financial-district',
           image: '/assets/images/financial-district.jpg'
         },
         {
-          id: 1,
+          id: 7,
           name: 'Battery Park City',
           slug: 'battery-park-city',
           image: '/assets/images/neighborhoods/battery-park-city.jpg'
         },
         {
-          id: 1,
+          id: 8,
           name: 'Tribeca',
           slug: 'tribeca',
           image: '/assets/images/neighborhoods/tribeca.jpg'
         },
         {
-          id: 1,
+          id: 9,
           name: 'Financial District',
           slug: 'financial-district',
           image: '/assets/images/financial-district.jpg'
         },
         {
-          id: 1,
+          id: 10,
           name: 'Battery Park City',
           slug: 'battery-park-city',
           image: '/assets/images/neighborhoods/battery-park-city.jpg'
         },
         {
-          id: 1,
+          id: 11,
           name: 'Tribeca',
           slug: 'tribeca',
           image: '/assets/images/neighborhoods/tribeca.jpg'
         },
         {
-          id: 1,
+          id: 12,
           name: 'Financial District',
           slug: 'financial-district',
           image: '/assets/images/financial-district.jpg'
         },
         {
-          id: 1,
+          id: 13,
           name: 'Battery Park City',
           slug: 'battery-park-city',
           image: '/assets/images/neighborhoods/battery-park-city.jpg'
         },
         {
-          id: 1,
+          id: 14,
           name: 'Tribeca',
           slug: 'tribeca',
           image: '/assets/images/neighborhoods/tribeca.jpg'
         },
         {
-          id: 1,
+          id: 15,
           name: 'Financial District',
           slug: 'financial-district',
           image: '/assets/images/financial-district.jpg'
         },
         {
-          id: 1,
+          id: 16,
           name: 'Battery Park City',
           slug: 'battery-park-city',
           image: '/assets/images/neighborhoods/battery-park-city.jpg'
         },
         {
-          id: 1,
+          id: 17,
           name: 'Tribeca',
           slug: 'tribeca',
           image: '/assets/images/neighborhoods/tribeca.jpg'
         },
         {
-          id: 1,
+          id: 18,
           name: 'Financial District',
           slug: 'financial-district',
           image: '/assets/images/financial-district.jpg'
         },
         {
-          id: 1,
+          id: 19,
           name: 'Battery Park City',
           slug: 'battery-park-city',
           image: '/assets/images/neighborhoods/battery-park-city.jpg'
         },
         {
-          id: 1,
+          id: 20,
           name: 'Tribeca',
           slug: 'tribeca',
           image: '/assets/images/neighborhoods/tribeca.jpg'
         },
         {
-          id: 1,
+          id: 21,
           name: 'Financial District',
           slug: 'financial-district',
           image: '/assets/images/financial-district.jpg'
@@ -137,19 +137,19 @@ const getInitialState = () => {
       ],
       'Midtown': [
         {
-          id: 1,
+          id: 22,
           name: 'Battery Park City',
           slug: 'battery-park-city',
           image: '/assets/images/neighborhoods/battery-park-city.jpg'
         },
         {
-          id: 1,
+          id: 23,
           name: 'Tribeca',
           slug: 'tribeca',
           image: '/assets/images/neighborhoods/tribeca.jpg'
         },
         {
-          id: 1,
+          id: 24,
           name: 'Financial District',
           slug: 'financial-district',
           image: '/assets/images/financial-district.jpg'
@@ -157,19 +157,19 @@ const getInitialState = () => {
       ],
       'Upper East': [
         {
-          id: 1,
+          id: 25,
           name: 'Battery Park City',
           slug: 'battery-park-city',
           image: '/assets/images/neighborhoods/battery-park-city.jpg'
         },
         {
-          id: 1,
+          id: 26,
           name: 'Tribeca',
           slug: 'tribeca',
           image: '/assets/images/neighborhoods/tribeca.jpg'
         },
         {
-          id: 1,
+          id: 27,
           name: 'Financial District',
           slug: 'financial-district',
           image: '/assets/images/financial-district.jpg'
@@ -177,19 +177,19 @@ const getInitialState = () => {
       ],
       'Upper West': [
         {
-          id: 1,
+          id: 28,
           name: 'Battery Park City',
           slug: 'battery-park-city',
           image: '/assets/images/neighborhoods/battery-park-city.jpg'
         },
         {
-          id: 1,
+          id: 29,
           name: 'Tribeca',
           slug: 'tribeca',
           image: '/assets/images/neighborhoods/tribeca.jpg'
         },
         {
-          id: 1,
+          id: 30,
           name: 'Financial District',
           slug: 'financial-district',
           image: '/assets/images/financial-district.jpg'
@@ -197,19 +197,19 @@ const getInitialState = () => {
       ],
       'Upper Manhattan': [
         {
-          id: 1,
+          id: 31,
           name: 'Battery Park City',
           slug: 'battery-park-city',
           image: '/assets/images/neighborhoods/battery-park-city.jpg'
         },
         {
-          id: 1,
+          id: 32,
           name: 'Tribeca',
           slug: 'tribeca',
           image: '/assets/images/neighborhoods/tribeca.jpg'
         },
         {
-          id: 1,
+          id: 33,
           name: 'Financial District',
           slug: 'financial-district',
           image: '/assets/images/financial-district.jpg'
