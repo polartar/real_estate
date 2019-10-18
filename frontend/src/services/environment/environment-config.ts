@@ -2,6 +2,7 @@
 export interface EnvironmentConfig {
   API_URL: string;
   BASE_URL: string;
+  APP_ENVIRONMENT: string;
 }
 
 export function setupConfig(config: EnvironmentConfig) {

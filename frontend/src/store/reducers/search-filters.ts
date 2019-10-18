@@ -10,7 +10,7 @@ const getInitialState = () => {
     displayFilter: false,
     filters: {
       location: [],
-      moveInDate: new Date()
+      moveInDate: undefined,
     }
   }
 };

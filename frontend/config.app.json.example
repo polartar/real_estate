@@ -6,5 +6,8 @@
   "API_URL": "http://laravel-stencil.localhost:8080/api",
 
   "//BASE_URL": "The url of the site itself, with NO trailing /",
-  "BASE_URL": "http://laravel-stencil.localhost:8080"
+  "BASE_URL": "http://laravel-stencil.localhost:8080",
+
+  "//APP_ENVIRONMENT": "The build env of the app, 'production' removes redux logging and various dev things",
+  "APP_ENVIRONMENT": "development"
 }
