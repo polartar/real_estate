@@ -6,9 +6,9 @@ import { Component, h } from '@stencil/core';
 })
 export class SearchFilters {
 
-  async showFilterOptions(ev) {
+  async showFilterOptions(ev, component) {
     const popover = Object.assign(document.createElement('ion-popover'), {
-      component: 'location-filter',
+      component: component,
       event: ev,
       showBackdrop: false
     });
@@ -24,12 +24,12 @@ export class SearchFilters {
     return (
       <div class="search-filters">
         <div class="section">
-          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e)}>
+          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'location-filter')}>
             Location
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
 
-          <button class="button-reset dropdown">
+          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'move-in-date-filter')}>
             Move In Date
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
