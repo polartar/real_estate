@@ -41,3 +41,17 @@ export interface SetMoveInFilter {
   type: Actions.SET_MOVE_IN_FILTER,
   payload: any;
 }
+
+export function setPriceFilter(value) {
+  return async dispatch => {
+    dispatch({
+      type: Actions.SET_PRICE_FILTER,
+      payload: value
+    })
+  };
+}
+
+export interface SetPriceFilter {
+  type: Actions.SET_PRICE_FILTER,
+  payload: any
+}

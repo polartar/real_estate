@@ -1,0 +1,84 @@
+import { Component, h, State, Prop } from '@stencil/core';
+import { Store, Action } from '@stencil/redux';
+import searchFilterSelectors from '../../../../../store/selectors/search-filters';
+import { setPriceFilter } from '../../../../../store/actions/search-filters';
+
+@Component({
+  tag: 'price-filter',
+  styleUrl: 'price-filter.scss'
+})
+export class PriceFilter {
+  @Prop({ context: "store" }) store: Store;
+  @State() value: any = {
+    min: 0,
+    max: 15000
+  };
+  setPriceFilter: Action;
+
+  componentWillLoad() {
+    this.store.mapStateToProps(this, state => {
+      return {
+        value: searchFilterSelectors.getPrice(state)
+      }
+    });
+
+    this.store.mapDispatchToProps(this, {
+      setPriceFilter: setPriceFilter
+    });
+  }
+
+  updateMin(e) {
+    this.value = {
+      min: e.detail.value,
+      max: Math.max(this.value.max, e.detail.value),
+    };
+
+    this.setPriceFilter(this.value);
+  }
+
+  updateMax(e) {
+    this.value = {
+      min: Math.min(this.value.min, e.detail.value),
+      max: e.detail.value
+    };
+
+    this.setPriceFilter(this.value);
+  }
+
+  formatAmount(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+
+  closePopover() {
+    const popover = document.querySelector('ion-popover');
+
+    if (popover) {
+      popover.dismiss();
+    }
+  }
+
+  render() {
+    return (
+      <div class="price-filter">
+        <div class="title">Price Range (Per Month)</div>
+        <div class="value">
+          ${this.formatAmount(this.value.min)} - ${this.formatAmount(this.value.max)}
+        </div>
+
+        <div class="input">
+          <label>Minimum</label>
+          <ion-range min={0} max={40000} step={100} value={this.value.min} debounce={50} onIonChange={e => this.updateMin(e)}></ion-range>
+        </div>
+
+        <div class="input">
+          <label>Maximum</label>
+          <ion-range min={0} max={40000} step={100} value={this.value.max} debounce={50} onIonChange={e => this.updateMax(e)}></ion-range>
+        </div>
+
+        <ion-button fill="clear" class="close" onClick={() => this.closePopover()}>
+          <ion-icon name="close" slot="icon-only" />
+        </ion-button>
+      </div>
+    );
+  }
+}

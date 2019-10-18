@@ -37,6 +37,7 @@ export namespace Components {
     'items': any[];
   }
   interface PageHome {}
+  interface PriceFilter {}
   interface SearchFilters {}
 }
 
@@ -150,6 +151,12 @@ declare global {
     new (): HTMLPageHomeElement;
   };
 
+  interface HTMLPriceFilterElement extends Components.PriceFilter, HTMLStencilElement {}
+  var HTMLPriceFilterElement: {
+    prototype: HTMLPriceFilterElement;
+    new (): HTMLPriceFilterElement;
+  };
+
   interface HTMLSearchFiltersElement extends Components.SearchFilters, HTMLStencilElement {}
   var HTMLSearchFiltersElement: {
     prototype: HTMLSearchFiltersElement;
@@ -173,6 +180,7 @@ declare global {
     'neighborhood-card': HTMLNeighborhoodCardElement;
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
     'page-home': HTMLPageHomeElement;
+    'price-filter': HTMLPriceFilterElement;
     'search-filters': HTMLSearchFiltersElement;
   }
 }
@@ -206,6 +214,7 @@ declare namespace LocalJSX {
     'items'?: any[];
   }
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
+  interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {}
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {}
 
   interface IntrinsicElements {
@@ -226,6 +235,7 @@ declare namespace LocalJSX {
     'neighborhood-card': NeighborhoodCard;
     'neighborhood-slider': NeighborhoodSlider;
     'page-home': PageHome;
+    'price-filter': PriceFilter;
     'search-filters': SearchFilters;
   }
 }

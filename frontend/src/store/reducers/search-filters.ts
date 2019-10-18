@@ -11,6 +11,10 @@ const getInitialState = () => {
     filters: {
       location: [],
       moveInDate: undefined,
+      price: {
+        min: 0,
+        max: 15000
+      }
     }
   }
 };
@@ -43,6 +47,16 @@ const searchFiltersReducer = (
         filters: {
           ...state.filters,
           moveInDate: action.payload
+        }
+      }
+    }
+
+    case Actions.SET_PRICE_FILTER: {
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          price: action.payload
         }
       }
     }

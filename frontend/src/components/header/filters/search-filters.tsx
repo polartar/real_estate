@@ -34,7 +34,7 @@ export class SearchFilters {
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
 
-          <button class="button-reset dropdown">
+          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'price-filter')}>
             Price
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>

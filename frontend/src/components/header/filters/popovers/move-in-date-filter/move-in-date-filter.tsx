@@ -1,7 +1,7 @@
 import { Component, h, Element, Prop} from '@stencil/core';
 import datepicker from 'js-datepicker'
 import { Store, Action } from '@stencil/redux';
-import selectSearchFilterMoveInDate from '../../../../../store/selectors/search-filters';
+import searchFilterSelectors from '../../../../../store/selectors/search-filters';
 import { setMoveInFilter } from '../../../../../store/actions/search-filters';
 
 @Component({
@@ -18,7 +18,7 @@ export class LocationFilter {
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
-        value: selectSearchFilterMoveInDate(state)
+        value: searchFilterSelectors.getMoveInDate(state)
       }
     });
 

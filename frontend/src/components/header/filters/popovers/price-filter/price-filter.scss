@@ -1,0 +1,38 @@
+.price-filter {
+  position: relative;
+  padding: 1.5rem;
+  font-weight: bold;
+
+  .value {
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+
+  }
+
+  .input {
+    width: 308px;
+
+    label {
+      display: block;
+      padding: 1rem 0;
+    }
+  }
+
+  ion-range {
+    --bar-height: 8px;
+    --bar-border-radius: 4px;
+    --knob-size: 24px;
+    --bar-background: #d0d0d0;
+    padding: 0;
+  }
+
+  ion-button.close {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    z-index: 9999;
+    --background-hover: transparent;
+    --padding-end: 0;
+    --ripple-color: transparent;
+  }
+}
