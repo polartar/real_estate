@@ -9,7 +9,8 @@ const getInitialState = () => {
   return {
     displayFilter: false,
     filters: {
-      location: []
+      location: [],
+      moveInDate: new Date()
     }
   }
 };
@@ -34,6 +35,16 @@ const searchFiltersReducer = (
           location: action.payload
         }
       };
+    }
+
+    case Actions.SET_MOVE_IN_FILTER: {
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          moveInDate: action.payload
+        }
+      }
     }
   }
 

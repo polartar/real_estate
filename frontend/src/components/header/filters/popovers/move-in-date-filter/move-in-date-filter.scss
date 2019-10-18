@@ -1,0 +1,109 @@
+@import '../../../../../../node_modules/js-datepicker/src/datepicker.scss';
+
+$color-bg: #047365;
+
+.move-in-date-filter {
+  position: relative;
+  width: 360px;
+  height: 344px;
+  padding: 1.5rem;
+
+  .picker-wrapper {
+    margin-top: -0.5rem;
+  }
+
+  .disclaimer {
+    position: absolute;
+    bottom: 1rem;
+    left: 2.275rem;
+    font-weight: bold;
+  }
+
+  ion-button.close {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    z-index: 9999;
+    --background-hover: transparent;
+    --padding-end: 0;
+    --ripple-color: transparent;
+  }
+
+  .qs-datepicker-container {
+    border: 0;
+    box-shadow: none;
+  }
+
+  .qs-datepicker {
+    .qs-controls {
+      background: transparent;
+      padding: 0 0 1rem 0;
+
+      .qs-arrow {
+        &::after {
+          content: none;
+        }
+
+        &.qs-left {
+          margin-left: 3rem;
+          transform: rotate(180deg);
+        }
+
+        &.qs-right {
+          margin-right: 3rem;
+        }
+
+        &:hover {
+          background: transparent;
+        }
+      }
+    }
+
+    .qs-squares {
+      padding: 0;
+    }
+
+    .qs-month,
+    .qs-year {
+      font-size: 1rem;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .qs-square {
+      font-size: 1rem;
+      color: black;
+      font-weight: bold;
+      height: 2.1rem;
+      border-radius: 0;
+      margin: 0 5px;
+      width: calc((100% / 7) - 10px);
+
+      &.qs-day {
+        color: black;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+      }
+
+      &.qs-active {
+        background-color: $color-bg;
+        color: white;
+      }
+
+      &:not(.qs-empty):not(.qs-disabled):not(.qs-day):not(.qs-active):hover {
+        background: lighten($color-bg, 10%);
+        color: white;
+      }
+
+      &.qs-current {
+        span {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .qs-month-year:hover {
+      border: 0;
+    }
+  }
+}

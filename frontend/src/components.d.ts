@@ -29,6 +29,7 @@ export namespace Components {
   interface ListingSlider {}
   interface LocationFilter {}
   interface MediaLogos {}
+  interface MoveInDateFilter {}
   interface NeighborhoodCard {
     'item': any;
   }
@@ -125,6 +126,12 @@ declare global {
     new (): HTMLMediaLogosElement;
   };
 
+  interface HTMLMoveInDateFilterElement extends Components.MoveInDateFilter, HTMLStencilElement {}
+  var HTMLMoveInDateFilterElement: {
+    prototype: HTMLMoveInDateFilterElement;
+    new (): HTMLMoveInDateFilterElement;
+  };
+
   interface HTMLNeighborhoodCardElement extends Components.NeighborhoodCard, HTMLStencilElement {}
   var HTMLNeighborhoodCardElement: {
     prototype: HTMLNeighborhoodCardElement;
@@ -162,6 +169,7 @@ declare global {
     'listing-slider': HTMLListingSliderElement;
     'location-filter': HTMLLocationFilterElement;
     'media-logos': HTMLMediaLogosElement;
+    'move-in-date-filter': HTMLMoveInDateFilterElement;
     'neighborhood-card': HTMLNeighborhoodCardElement;
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
     'page-home': HTMLPageHomeElement;
@@ -190,6 +198,7 @@ declare namespace LocalJSX {
   interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {}
   interface LocationFilter extends JSXBase.HTMLAttributes<HTMLLocationFilterElement> {}
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
+  interface MoveInDateFilter extends JSXBase.HTMLAttributes<HTMLMoveInDateFilterElement> {}
   interface NeighborhoodCard extends JSXBase.HTMLAttributes<HTMLNeighborhoodCardElement> {
     'item'?: any;
   }
@@ -213,6 +222,7 @@ declare namespace LocalJSX {
     'listing-slider': ListingSlider;
     'location-filter': LocationFilter;
     'media-logos': MediaLogos;
+    'move-in-date-filter': MoveInDateFilter;
     'neighborhood-card': NeighborhoodCard;
     'neighborhood-slider': NeighborhoodSlider;
     'page-home': PageHome;

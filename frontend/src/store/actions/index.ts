@@ -13,7 +13,8 @@ import {
 
 import {
   ToggleSearchFilters,
-  SetLocationFilters
+  SetLocationFilters,
+  SetMoveInFilter
 } from "./search-filters";
 
 export type ActionTypes =
@@ -24,7 +25,8 @@ export type ActionTypes =
   | saveStateAction
   | UpdateScreenSize
   | ToggleSearchFilters
-  | SetLocationFilters;
+  | SetLocationFilters
+  | SetMoveInFilter;
 
 export enum Actions {
   LOGIN_BEGIN = "LOGIN_BEGIN",
@@ -34,5 +36,6 @@ export enum Actions {
   SAVE_STATE = "SAVE_STATE",
   UPDATE_SCREENSIZE = "UPDATE_SCREENSIZE",
   TOGGLE_SEARCH_FILTER_DISPLAY = "TOGGLE_SEARCH_FILTER_DISPLAY",
-  SET_LOCATION_FILTERS = "SET_LOCATION_FILTERS"
+  SET_LOCATION_FILTERS = "SET_LOCATION_FILTERS",
+  SET_MOVE_IN_FILTER = "SET_MOVE_IN_FILTER"
 }

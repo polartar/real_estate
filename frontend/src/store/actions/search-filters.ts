@@ -20,10 +20,24 @@ export function setLocationFilters(filters) {
       type: Actions.SET_LOCATION_FILTERS,
       payload: filters
     })
-  }
+  };
 };
 
 export interface SetLocationFilters {
   type: Actions.SET_LOCATION_FILTERS;
+  payload: any;
+}
+
+export function setMoveInFilter(value) {
+  return async dispatch => {
+    dispatch({
+      type: Actions.SET_MOVE_IN_FILTER,
+      payload: value
+    })
+  };
+}
+
+export interface SetMoveInFilter {
+  type: Actions.SET_MOVE_IN_FILTER,
   payload: any;
 }
