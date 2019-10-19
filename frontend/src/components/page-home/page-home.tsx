@@ -186,7 +186,7 @@ export class PageHome {
         </section>
 
           <div class="faq">
-            <lazy-image src="/assets/images/faq-background.jpg" class="faq-bg" />
+            <lazy-image src="/assets/images/faq-background.jpg" class="faq-bg" alt="background image" />
             <div class="faq-mask" />
 
             <div class="faq-content-wrapper">

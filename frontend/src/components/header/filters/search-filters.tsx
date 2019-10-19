@@ -24,35 +24,37 @@ export class SearchFilters {
     return (
       <div class="search-filters">
         <div class="section">
-          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'location-filter')}>
+          <button aria-label="Location filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'location-filter')}>
             Location
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
 
-          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'move-in-date-filter')}>
+          <button aria-label="Move in date filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'move-in-date-filter')}>
             Move In Date
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
 
-          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'price-filter')}>
+          <button aria-label="Price filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'price-filter')}>
             Price
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
 
-          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'bedroom-filter')}>
+          <button aria-label="Bedrooms filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'bedroom-filter')}>
             Beds
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
 
-          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'bathroom-filter')}>
+          <button aria-label="Bathrooms filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'bathroom-filter')}>
             Baths
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
 
-          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'building-type-filter')}>
+          <button aria-label="Building types filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'building-type-filter')}>
             Building Type
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
+
+          <ion-button aria-label="Search">Search</ion-button>
         </div>
       </div>
     );

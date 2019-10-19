@@ -32,7 +32,7 @@ export class AppHeader {
       <header class="header-wrapper">
         <div class="app-header section">
           <ion-router-link href="/" class="logo-link">
-            <img src="/assets/images/logo.svg" class="logo"></img>
+            <img src="/assets/images/logo.svg" class="logo" alt="APT212 Logo"></img>
           </ion-router-link>
 
           <button class="search" onClick={() => { this.toggleSearchFilterDisplay(!this.displayFilter) }}>

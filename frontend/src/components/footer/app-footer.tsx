@@ -71,7 +71,7 @@ export class AppFooter {
             <div class="footer-col footer-left">
               <div class="copyright">
                 <ion-router-link href="/" class="logo-link">
-                  <img src="/assets/images/logo-white.svg" class="logo"></img>
+                  <lazy-image src="/assets/images/logo-white.svg" class="logo" alt="APT212 logo" />
                 </ion-router-link>
                 <p class="no-margin">
                   <strong>#1 SOURCE</strong> FOR NEW YORK FURNISHED APARTMENTS<br />
@@ -84,19 +84,19 @@ export class AppFooter {
             </div>
             <div class="footer-col footer-right">
               <div class="social-media">
-                <a href="https://www.facebook.com/Apt212/" target="_blank">
+                <a href="https://www.facebook.com/Apt212/" target="_blank" rel="noopener">
                   <lazy-image src="/assets/images/icons/social-media/facebook-square.svg" alt="Facebook" />
                 </a>
 
-                <a href="https://twitter.com/apt212" target="_blank">
+                <a href="https://twitter.com/apt212" target="_blank" rel="noopener">
                   <lazy-image src="/assets/images/icons/social-media/twitter.svg" alt="Twitter" />
                 </a>
 
-                <a href="https://google.com/+APT212NewYork" target="_blank">
+                <a href="https://google.com/+APT212NewYork" target="_blank" rel="noopener">
                   <lazy-image src="/assets/images/icons/social-media/instagram.svg" alt="Instagram" />
                 </a>
 
-                <a href="https://youtube.com/c/APT212NewYork" target="_blank">
+                <a href="https://youtube.com/c/APT212NewYork" target="_blank" rel="noopener">
                   <lazy-image src="/assets/images/icons/social-media/youtube.svg" alt="Youtube" />
                 </a>
               </div>

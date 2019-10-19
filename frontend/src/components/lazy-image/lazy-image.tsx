@@ -9,7 +9,7 @@ export class LazyImage {
   @Element() el: HTMLElement;
 
   @Prop() src: string;
-  @Prop() alt: string = '';
+  @Prop() alt: string = "";
   private observer: IntersectionObserver;
   private observerSupported: boolean = true;
 
@@ -41,6 +41,12 @@ export class LazyImage {
   };
 
   render() {
-    return this.observerSupported ? <img data-src={this.src} class="lazy-image" alt={this.alt} /> : <img src={this.src} class="lazy-image" alt={this.alt} />;
+    const moreProps: any = {};
+
+    if (!this.alt) {
+      moreProps.role = 'presentation';
+    }
+
+    return this.observerSupported ? <img data-src={this.src} class="lazy-image" alt={this.alt} {...moreProps} /> : <img src={this.src} class="lazy-image" alt={this.alt} {...moreProps} />;
   }
 }
