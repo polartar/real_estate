@@ -38,7 +38,7 @@ $app-header-button-height: 48px;
     border: 0;
     padding: 0;
     margin: 0 0 0 2.25rem;
-    padding-left: 1rem;
+    padding: 0.25rem 1rem;
     text-transform: uppercase;
     font-size: 0;
     width: auto;
@@ -100,10 +100,14 @@ $app-header-button-height: 48px;
   }
 
   .menu {
-    --padding-start: 2rem;
+    --padding-start: 0.5rem;
     --padding-end: 0;
     --background-hover: transparent;
     --ripple-color: transparent;
     font-size: 22px;
+
+    @include for-size(desktop-up) {
+      --padding-start: 2rem;
+    }
   }
 }

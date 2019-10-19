@@ -9,6 +9,7 @@ import { setBathroomsFilter } from '../../../../../store/actions/search-filters'
 })
 export class BathroomFilter {
   @Prop({ context: "store" }) store: Store;
+  @Prop() inModal: boolean = false;
   @Element() el: HTMLElement;
 
   value: any[] = [];
@@ -96,9 +97,11 @@ export class BathroomFilter {
           </ion-grid>
         </div>
 
+        { this.inModal ?
         <ion-button fill="clear" class="close" onClick={() => this.closePopover()}>
           <ion-icon name="close" slot="icon-only" />
         </ion-button>
+        : null }
       </div>
     );
   }

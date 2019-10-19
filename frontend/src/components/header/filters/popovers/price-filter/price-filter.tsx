@@ -9,6 +9,7 @@ import { setPriceFilter } from '../../../../../store/actions/search-filters';
 })
 export class PriceFilter {
   @Prop({ context: "store" }) store: Store;
+  @Prop() inModal: boolean = false;
   @State() value: any = {
     min: 0,
     max: 15000
@@ -75,9 +76,11 @@ export class PriceFilter {
           <ion-range min={0} max={40000} step={100} value={this.value.max} debounce={50} onIonChange={e => this.updateMax(e)}></ion-range>
         </div>
 
+        { this.inModal ?
         <ion-button fill="clear" class="close" onClick={() => this.closePopover()}>
           <ion-icon name="close" slot="icon-only" />
         </ion-button>
+        : null }
       </div>
     );
   }

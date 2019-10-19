@@ -1,0 +1,68 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.app-menu {
+  --width: 100%;
+  --height: 100%;
+
+  .app-menu-container {
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 3rem 1.5rem 3rem;
+
+    @include for-size(phone-only) {
+      padding: 0 1rem;
+    }
+
+    .logo {
+      height: 24px;
+      min-width: 126px;
+    }
+
+    .app-menu-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      .spacer {
+        flex-grow: 1;
+      }
+    }
+
+    .main-menu {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      justify-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 1rem;
+
+      ion-router-link {
+        font-weight: 600;
+        padding: 0 0 0.25rem 0;
+        margin-bottom: 1.75rem;
+        text-transform: uppercase;
+        border-bottom: 4px solid transparent;
+
+        &:hover {
+          border-bottom: 4px solid $color-primary;
+        }
+      }
+
+      ion-button {
+        min-height: 48px;
+      }
+    }
+  }
+}

@@ -148,3 +148,12 @@ h2, h3, h4 {
   background-color: white;
   z-index: 999;
 }
+
+ion-button.reset {
+  color: $color-primary;
+  --background: transparent;
+  --background-hover: transparent;
+  --ripple-color: transparent;
+  --background-activated: transparent;
+  --color-activated: $color-primary;
+}

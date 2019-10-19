@@ -9,6 +9,7 @@ import { setBuildingTypesFilter } from '../../../../../store/actions/search-filt
 })
 export class BuildingTypeFilter {
   @Prop({ context: "store" }) store: Store;
+  @Prop() inModal: boolean = false;
   @Element() el: HTMLElement;
 
   value: any[] = [];
@@ -131,9 +132,11 @@ export class BuildingTypeFilter {
           })}
         </div>
 
+        { this.inModal ?
         <ion-button fill="clear" class="close" onClick={() => this.closePopover()}>
           <ion-icon name="close" slot="icon-only" />
         </ion-button>
+        : null }
       </div>
     );
   }

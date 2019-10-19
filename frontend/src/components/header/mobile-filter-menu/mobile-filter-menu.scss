@@ -1,0 +1,42 @@
+@import '../../../styles/variables';
+
+.mobile-filter-menu {
+  position: relative;
+
+  ion-button.close {
+    position: absolute;
+    top: 1rem;
+    right: 0.75rem;
+    font-size: 1rem;
+    --padding-end: 0;
+  }
+
+  ion-item {
+    --min-height: 64px;
+    --padding-start: 0;
+    --inner-padding-start: 1.5rem;
+    --detail-icon-opacity: 1;
+
+    &:not(.header) {
+      --background: #fafafa;
+    }
+
+    &.search {
+      --background: #{$color-primary};
+      --color: white;
+      --detail-icon-color: white;
+      --background-activated: #{$color-primary-lighter}
+    }
+
+    &.mobile-filter-menu-back {
+      --background: transparent;
+    }
+  }
+
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

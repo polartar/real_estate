@@ -36,6 +36,23 @@
       }
     }
 
+    .search {
+      display: none;
+
+      @include for-size(desktop-up) {
+        display: inline-block;
+      }
+    }
+
+    .mobile-filters {
+      font-size: 1rem;
+      --padding-start: 0.5rem;
+
+      @include for-size(desktop-up) {
+        display: none;
+      }
+    }
+
     .spacer {
       flex-grow: 1;
     }

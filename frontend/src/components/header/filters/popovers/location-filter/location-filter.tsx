@@ -8,6 +8,7 @@ import { setLocationFilters } from '../../../../../store/actions/search-filters'
 })
 export class LocationFilter {
   @Prop({ context: "store" }) store: Store;
+  @Prop() inModal: boolean = false;
   @State() neighborhoods: any = {};
   @Element() el: HTMLElement;
   setLocationFilters: Action;
@@ -176,9 +177,11 @@ export class LocationFilter {
 
           <div class="spacer" />
 
+          { this.inModal ?
           <ion-button fill="clear" class="close" onClick={() => this.closePopover()}>
             <ion-icon name="close" slot="icon-only" />
           </ion-button>
+          : null }
         </div>
 
         <div>

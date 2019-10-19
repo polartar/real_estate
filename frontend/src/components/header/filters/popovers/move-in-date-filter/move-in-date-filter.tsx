@@ -10,6 +10,7 @@ import { setMoveInFilter } from '../../../../../store/actions/search-filters';
 })
 export class LocationFilter {
   @Prop({ context: "store" }) store: Store;
+  @Prop() inModal: boolean = false;
   @Element() el: HTMLElement;
   picker: any;
   value: any;
@@ -93,9 +94,11 @@ export class LocationFilter {
           Minimum Stay 30 Days
         </div>
 
+        { this.inModal ?
         <ion-button fill="clear" class="close" onClick={() => this.closePopover()}>
           <ion-icon name="close" slot="icon-only" />
         </ion-button>
+        : null }
       </div>
     )
   }

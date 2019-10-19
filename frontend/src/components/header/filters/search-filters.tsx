@@ -19,6 +19,9 @@ export class SearchFilters {
   async showFilterOptions(ev, component) {
     const popover = Object.assign(document.createElement('ion-popover'), {
       component: component,
+      componentProps: {
+        inModal: true
+      },
       event: ev,
       showBackdrop: false
     });
@@ -29,6 +32,15 @@ export class SearchFilters {
     return popover.present();
   }
 
+  async launchMobileFilterMenu() {
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'mobile-filter-menu',
+      cssClass: 'app-menu'
+    });
+
+    document.body.appendChild(modal);
+    return modal.present();
+  }
 
   render() {
     return (
@@ -64,7 +76,12 @@ export class SearchFilters {
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
 
-          <ion-button aria-label="Search">Search</ion-button>
+          <ion-button aria-label="Search" class="search">Search</ion-button>
+
+          <ion-button aria-label="Search Filters" class="reset mobile-filters" onClick={() => this.launchMobileFilterMenu()}>
+            <ion-icon name="md-funnel" slot="start"></ion-icon>
+            Filter
+          </ion-button>
 
           <div class="spacer" />
 

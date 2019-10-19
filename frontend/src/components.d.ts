@@ -12,14 +12,21 @@ export namespace Components {
   interface AppFooter {}
   interface AppHeader {}
   interface AppLayoutStandard {}
+  interface AppMenu {}
   interface AppProfile {
     'name': string;
   }
   interface AppRoot {}
   interface AppWrapper {}
-  interface BathroomFilter {}
-  interface BedroomFilter {}
-  interface BuildingTypeFilter {}
+  interface BathroomFilter {
+    'inModal': boolean;
+  }
+  interface BedroomFilter {
+    'inModal': boolean;
+  }
+  interface BuildingTypeFilter {
+    'inModal': boolean;
+  }
   interface FaqAccordian {}
   interface LazyImage {
     'alt': string;
@@ -30,9 +37,14 @@ export namespace Components {
   }
   interface ListingList {}
   interface ListingSlider {}
-  interface LocationFilter {}
+  interface LocationFilter {
+    'inModal': boolean;
+  }
   interface MediaLogos {}
-  interface MoveInDateFilter {}
+  interface MobileFilterMenu {}
+  interface MoveInDateFilter {
+    'inModal': boolean;
+  }
   interface NeighborhoodCard {
     'item': any;
   }
@@ -40,7 +52,9 @@ export namespace Components {
     'items': any[];
   }
   interface PageHome {}
-  interface PriceFilter {}
+  interface PriceFilter {
+    'inModal': boolean;
+  }
   interface SearchFilters {}
 }
 
@@ -68,6 +82,12 @@ declare global {
   var HTMLAppLayoutStandardElement: {
     prototype: HTMLAppLayoutStandardElement;
     new (): HTMLAppLayoutStandardElement;
+  };
+
+  interface HTMLAppMenuElement extends Components.AppMenu, HTMLStencilElement {}
+  var HTMLAppMenuElement: {
+    prototype: HTMLAppMenuElement;
+    new (): HTMLAppMenuElement;
   };
 
   interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {}
@@ -148,6 +168,12 @@ declare global {
     new (): HTMLMediaLogosElement;
   };
 
+  interface HTMLMobileFilterMenuElement extends Components.MobileFilterMenu, HTMLStencilElement {}
+  var HTMLMobileFilterMenuElement: {
+    prototype: HTMLMobileFilterMenuElement;
+    new (): HTMLMobileFilterMenuElement;
+  };
+
   interface HTMLMoveInDateFilterElement extends Components.MoveInDateFilter, HTMLStencilElement {}
   var HTMLMoveInDateFilterElement: {
     prototype: HTMLMoveInDateFilterElement;
@@ -187,6 +213,7 @@ declare global {
     'app-footer': HTMLAppFooterElement;
     'app-header': HTMLAppHeaderElement;
     'app-layout-standard': HTMLAppLayoutStandardElement;
+    'app-menu': HTMLAppMenuElement;
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'app-wrapper': HTMLAppWrapperElement;
@@ -200,6 +227,7 @@ declare global {
     'listing-slider': HTMLListingSliderElement;
     'location-filter': HTMLLocationFilterElement;
     'media-logos': HTMLMediaLogosElement;
+    'mobile-filter-menu': HTMLMobileFilterMenuElement;
     'move-in-date-filter': HTMLMoveInDateFilterElement;
     'neighborhood-card': HTMLNeighborhoodCardElement;
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
@@ -213,14 +241,21 @@ declare namespace LocalJSX {
   interface AppFooter extends JSXBase.HTMLAttributes<HTMLAppFooterElement> {}
   interface AppHeader extends JSXBase.HTMLAttributes<HTMLAppHeaderElement> {}
   interface AppLayoutStandard extends JSXBase.HTMLAttributes<HTMLAppLayoutStandardElement> {}
+  interface AppMenu extends JSXBase.HTMLAttributes<HTMLAppMenuElement> {}
   interface AppProfile extends JSXBase.HTMLAttributes<HTMLAppProfileElement> {
     'name'?: string;
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface AppWrapper extends JSXBase.HTMLAttributes<HTMLAppWrapperElement> {}
-  interface BathroomFilter extends JSXBase.HTMLAttributes<HTMLBathroomFilterElement> {}
-  interface BedroomFilter extends JSXBase.HTMLAttributes<HTMLBedroomFilterElement> {}
-  interface BuildingTypeFilter extends JSXBase.HTMLAttributes<HTMLBuildingTypeFilterElement> {}
+  interface BathroomFilter extends JSXBase.HTMLAttributes<HTMLBathroomFilterElement> {
+    'inModal'?: boolean;
+  }
+  interface BedroomFilter extends JSXBase.HTMLAttributes<HTMLBedroomFilterElement> {
+    'inModal'?: boolean;
+  }
+  interface BuildingTypeFilter extends JSXBase.HTMLAttributes<HTMLBuildingTypeFilterElement> {
+    'inModal'?: boolean;
+  }
   interface FaqAccordian extends JSXBase.HTMLAttributes<HTMLFaqAccordianElement> {}
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
@@ -231,9 +266,14 @@ declare namespace LocalJSX {
   }
   interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {}
   interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {}
-  interface LocationFilter extends JSXBase.HTMLAttributes<HTMLLocationFilterElement> {}
+  interface LocationFilter extends JSXBase.HTMLAttributes<HTMLLocationFilterElement> {
+    'inModal'?: boolean;
+  }
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
-  interface MoveInDateFilter extends JSXBase.HTMLAttributes<HTMLMoveInDateFilterElement> {}
+  interface MobileFilterMenu extends JSXBase.HTMLAttributes<HTMLMobileFilterMenuElement> {}
+  interface MoveInDateFilter extends JSXBase.HTMLAttributes<HTMLMoveInDateFilterElement> {
+    'inModal'?: boolean;
+  }
   interface NeighborhoodCard extends JSXBase.HTMLAttributes<HTMLNeighborhoodCardElement> {
     'item'?: any;
   }
@@ -241,13 +281,16 @@ declare namespace LocalJSX {
     'items'?: any[];
   }
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
-  interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {}
+  interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {
+    'inModal'?: boolean;
+  }
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {}
 
   interface IntrinsicElements {
     'app-footer': AppFooter;
     'app-header': AppHeader;
     'app-layout-standard': AppLayoutStandard;
+    'app-menu': AppMenu;
     'app-profile': AppProfile;
     'app-root': AppRoot;
     'app-wrapper': AppWrapper;
@@ -261,6 +304,7 @@ declare namespace LocalJSX {
     'listing-slider': ListingSlider;
     'location-filter': LocationFilter;
     'media-logos': MediaLogos;
+    'mobile-filter-menu': MobileFilterMenu;
     'move-in-date-filter': MoveInDateFilter;
     'neighborhood-card': NeighborhoodCard;
     'neighborhood-slider': NeighborhoodSlider;

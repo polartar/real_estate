@@ -27,6 +27,16 @@ export class AppHeader {
     });
   }
 
+  async openMenu() {
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'app-menu',
+      cssClass: 'app-menu'
+    });
+
+    document.body.appendChild(modal);
+    return modal.present();
+  }
+
   render() {
     return [
       <header class="header-wrapper">
@@ -56,7 +66,7 @@ export class AppHeader {
               Speak to an expert
             </ion-button>
 
-            <ion-button fill="clear" class="menu">
+            <ion-button fill="clear" class="menu" onClick={() => this.openMenu()}>
               <ion-icon name="menu" slot="icon-only" />
             </ion-button>
           </div>
