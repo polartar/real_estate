@@ -46,8 +46,8 @@ export class AppFooter {
               <form onSubmit={e => this.handleSubmit(e)} novalidate class="dark">
                 <p>Sign up for offers, updates, and more</p>
                 <div class="input">
-                  <label htmlFor="email">Email</label>
-                  <input type="email" name="email" placeholder="Email Address" />
+                  <label htmlFor="signup-email">Email</label>
+                  <input type="email" name="email" placeholder="Email Address" id="signup-email"/>
                   <p class="help-text">
                     By submitting this form, you are consenting to receive marketing emails from: APT212.  You can revoke your consent to receive emails at any time by using the SaveUnsubscribe&reg; link found at the bottom of every email.  Emails are serviced by Constant Contact.
                   </p>
@@ -60,7 +60,8 @@ export class AppFooter {
 
               <form onSubmit={e => this.handleSubmit(e)} novalidate class="dark">
                 <div class="input">
-                  <input type="text" placeholder="WEB ID" name="webID" class="input-webid" />
+                  <label htmlFor="web-id-search" class="sr-only">Web ID</label>
+                  <input type="text" placeholder="WEB ID" name="webID" class="input-webid" id="web-id-search" />
                   <svg class="webid-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke="black" stroke-width="3" fill="transparent"></circle><line stroke="black" stroke-width="3" x1="24" x2="16.65" y1="24" y2="16.65"></line></svg>
                 </div>
               </form>
