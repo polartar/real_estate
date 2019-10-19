@@ -15,8 +15,8 @@ const getInitialState = () => {
         min: 0,
         max: 15000
       },
-      beds: undefined,
-      bathrooms: undefined,
+      beds: [],
+      bathrooms: [],
       buildingTypes: []
     }
   }

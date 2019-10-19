@@ -11,7 +11,7 @@ export class BedroomFilter {
   @Prop({ context: "store" }) store: Store;
   @Element() el: HTMLElement;
 
-  value: any = undefined;
+  value: any[] = [];
   setBedsFilter: Action;
 
   componentWillLoad() {
@@ -30,24 +30,27 @@ export class BedroomFilter {
     const buttons = this.el.querySelectorAll('.beds ion-button');
 
     buttons.forEach(button => {
-      if (button.getAttribute('data-value') === this.value) {
+      let val = button.getAttribute('data-value');
+      if (this.value.indexOf(val) > -1) {
         button.classList.remove('inactive');
       }
     });
   }
 
   setValue(e) {
-    const buttons = this.el.querySelectorAll('.beds ion-button');
+    if (e.target.classList.contains('inactive')) {
+      e.target.classList.remove('inactive');
 
-    buttons.forEach(button => {
-      if (button.getAttribute('data-value') != e.target.getAttribute('data-value')) {
-        button.classList.add('inactive');
-      }
-    });
+      this.value.push(e.target.getAttribute('data-value'));
+    }
+    else {
+      e.target.classList.add('inactive');
+      this.value = this.value.filter(val => {
+        return val !== e.target.getAttribute('data-value');
+      });
+    }
 
-    e.target.classList.remove('inactive');
-
-    this.setBedsFilter(e.target.getAttribute('data-value'));
+    this.setBedsFilter(this.value);
   }
 
   closePopover() {
