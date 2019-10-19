@@ -1,10 +1,20 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
+import { Store, Action } from "@stencil/redux";
+import { toggleSearchFilterDisplay } from "../../../store/actions/search-filters";
 
 @Component({
   tag: 'search-filters',
   styleUrl: 'search-filters.scss'
 })
 export class SearchFilters {
+  @Prop({ context: "store" }) store: Store;
+  toggleSearchFilterDisplay: Action;
+
+  componentDidLoad() {
+    this.store.mapDispatchToProps(this, {
+      toggleSearchFilterDisplay
+    });
+  }
 
   async showFilterOptions(ev, component) {
     const popover = Object.assign(document.createElement('ion-popover'), {
@@ -55,6 +65,12 @@ export class SearchFilters {
           </button>
 
           <ion-button aria-label="Search">Search</ion-button>
+
+          <div class="spacer" />
+
+          <button aria-label="Close Filters" class="button-reset close" onClick={() => this.toggleSearchFilterDisplay(false)}>
+            <ion-icon name="close" slot="icon-only"/>
+          </button>
         </div>
       </div>
     );

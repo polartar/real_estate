@@ -35,6 +35,14 @@
         top: 0;
       }
     }
+
+    .spacer {
+      flex-grow: 1;
+    }
+
+    .close {
+      font-size: 1.5rem;
+    }
   }
 }
 
