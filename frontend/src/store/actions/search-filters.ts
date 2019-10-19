@@ -55,3 +55,46 @@ export interface SetPriceFilter {
   type: Actions.SET_PRICE_FILTER,
   payload: any
 }
+
+export function setBedsFilter(value) {
+  return async dispatch => {
+    dispatch({
+      type: Actions.SET_BEDS_FILTER,
+      payload: value
+    })
+  };
+}
+
+export interface SetBedsFilter {
+  type: Actions.SET_BEDS_FILTER,
+  payload: any
+}
+
+export function setBathroomsFilter(value) {
+  return async dispatch => {
+    dispatch({
+      type: Actions.SET_BATHROOM_FILTER,
+      payload: value
+    })
+  };
+}
+
+export interface SetBathroomsFilter {
+  type: Actions.SET_BATHROOM_FILTER,
+  payload: any
+}
+
+
+export function setBuildingTypesFilter(value) {
+  return async dispatch => {
+    dispatch({
+      type: Actions.SET_BUILDING_TYPE_FILTER,
+      payload: value
+    })
+  };
+}
+
+export interface SetBuildingTypesFilter {
+  type: Actions.SET_BUILDING_TYPE_FILTER,
+  payload: any
+}

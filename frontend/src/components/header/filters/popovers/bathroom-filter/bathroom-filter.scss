@@ -1,0 +1,36 @@
+.bathroom-filter {
+  position: relative;
+  width: 380px;
+  height: 304px;
+  padding: 1.5rem;
+  font-weight: bold;
+
+  .bathrooms {
+    padding-top: 2rem;
+
+    ion-button {
+      display: inline-block;
+      margin: 0;
+      height: 40px;
+      width: 100%;
+
+      &.inactive {
+        --background: white;
+        --color: black;
+        --background-hover: #ececec;
+        border: 1px solid black;
+        font-weight: bold;
+      }
+    }
+  }
+
+  ion-button.close {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    z-index: 9999;
+    --background-hover: transparent;
+    --padding-end: 0;
+    --ripple-color: transparent;
+  }
+}

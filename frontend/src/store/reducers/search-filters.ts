@@ -14,7 +14,10 @@ const getInitialState = () => {
       price: {
         min: 0,
         max: 15000
-      }
+      },
+      beds: undefined,
+      bathrooms: undefined,
+      buildingTypes: []
     }
   }
 };
@@ -57,6 +60,36 @@ const searchFiltersReducer = (
         filters: {
           ...state.filters,
           price: action.payload
+        }
+      }
+    }
+
+    case Actions.SET_BEDS_FILTER: {
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          beds: action.payload
+        }
+      }
+    }
+
+    case Actions.SET_BATHROOM_FILTER: {
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          bathrooms: action.payload
+        }
+      }
+    }
+
+    case Actions.SET_BUILDING_TYPE_FILTER: {
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          buildingTypes: action.payload
         }
       }
     }

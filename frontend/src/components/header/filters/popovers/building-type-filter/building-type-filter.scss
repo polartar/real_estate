@@ -1,0 +1,33 @@
+.building-type-filter {
+  position: relative;
+  width: 380px;
+  height: 304px;
+  padding: 1.5rem;
+  font-weight: bold;
+
+  label {
+    display: flex;
+    align-items: center;
+    padding-top: 2rem;
+  }
+
+  ion-checkbox {
+    --size: 0.75rem;
+    margin-right: 1rem;
+  }
+
+  star-rating {
+    padding-top: 5px;
+    margin-right: 1rem;
+  }
+
+  ion-button.close {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    z-index: 9999;
+    --background-hover: transparent;
+    --padding-end: 0;
+    --ripple-color: transparent;
+  }
+}

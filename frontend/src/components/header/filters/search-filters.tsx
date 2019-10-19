@@ -39,17 +39,17 @@ export class SearchFilters {
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
 
-          <button class="button-reset dropdown">
+          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'bedroom-filter')}>
             Beds
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
 
-          <button class="button-reset dropdown">
+          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'bathroom-filter')}>
             Baths
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>
 
-          <button class="button-reset dropdown">
+          <button class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'building-type-filter')}>
             Building Type
             <ion-icon name="arrow-dropdown"></ion-icon>
           </button>

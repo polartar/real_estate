@@ -17,6 +17,9 @@ export namespace Components {
   }
   interface AppRoot {}
   interface AppWrapper {}
+  interface BathroomFilter {}
+  interface BedroomFilter {}
+  interface BuildingTypeFilter {}
   interface FaqAccordian {}
   interface LazyImage {
     'alt': string;
@@ -83,6 +86,24 @@ declare global {
   var HTMLAppWrapperElement: {
     prototype: HTMLAppWrapperElement;
     new (): HTMLAppWrapperElement;
+  };
+
+  interface HTMLBathroomFilterElement extends Components.BathroomFilter, HTMLStencilElement {}
+  var HTMLBathroomFilterElement: {
+    prototype: HTMLBathroomFilterElement;
+    new (): HTMLBathroomFilterElement;
+  };
+
+  interface HTMLBedroomFilterElement extends Components.BedroomFilter, HTMLStencilElement {}
+  var HTMLBedroomFilterElement: {
+    prototype: HTMLBedroomFilterElement;
+    new (): HTMLBedroomFilterElement;
+  };
+
+  interface HTMLBuildingTypeFilterElement extends Components.BuildingTypeFilter, HTMLStencilElement {}
+  var HTMLBuildingTypeFilterElement: {
+    prototype: HTMLBuildingTypeFilterElement;
+    new (): HTMLBuildingTypeFilterElement;
   };
 
   interface HTMLFaqAccordianElement extends Components.FaqAccordian, HTMLStencilElement {}
@@ -169,6 +190,9 @@ declare global {
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'app-wrapper': HTMLAppWrapperElement;
+    'bathroom-filter': HTMLBathroomFilterElement;
+    'bedroom-filter': HTMLBedroomFilterElement;
+    'building-type-filter': HTMLBuildingTypeFilterElement;
     'faq-accordian': HTMLFaqAccordianElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
@@ -194,6 +218,9 @@ declare namespace LocalJSX {
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface AppWrapper extends JSXBase.HTMLAttributes<HTMLAppWrapperElement> {}
+  interface BathroomFilter extends JSXBase.HTMLAttributes<HTMLBathroomFilterElement> {}
+  interface BedroomFilter extends JSXBase.HTMLAttributes<HTMLBedroomFilterElement> {}
+  interface BuildingTypeFilter extends JSXBase.HTMLAttributes<HTMLBuildingTypeFilterElement> {}
   interface FaqAccordian extends JSXBase.HTMLAttributes<HTMLFaqAccordianElement> {}
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
@@ -224,6 +251,9 @@ declare namespace LocalJSX {
     'app-profile': AppProfile;
     'app-root': AppRoot;
     'app-wrapper': AppWrapper;
+    'bathroom-filter': BathroomFilter;
+    'bedroom-filter': BedroomFilter;
+    'building-type-filter': BuildingTypeFilter;
     'faq-accordian': FaqAccordian;
     'lazy-image': LazyImage;
     'listing-card': ListingCard;
