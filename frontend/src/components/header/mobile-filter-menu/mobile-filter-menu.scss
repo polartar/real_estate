@@ -3,6 +3,10 @@
 .mobile-filter-menu {
   position: relative;
 
+  ion-list {
+    padding-top: 0;
+  }
+
   ion-button.close {
     position: absolute;
     top: 1rem;
