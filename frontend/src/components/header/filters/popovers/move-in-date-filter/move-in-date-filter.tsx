@@ -41,14 +41,12 @@ export class LocationFilter {
       },
       onMonthChange: () => {
         this.padNumbers();
-        this.updateArrows();
       },
       onShow: () => {
         // need settimeout to allow the component to render before querying the dom nodes
         // doesn't appear to be any better event for it
         setTimeout(() => {
           this.padNumbers();
-          this.updateArrows();
         }, 250);
       }
     });
@@ -63,15 +61,6 @@ export class LocationFilter {
       if (square.innerText.length === 1) {
         square.innerText = '0' + square.innerText;
       }
-    });
-  }
-
-  updateArrows() {
-    const arrows = this.el.querySelectorAll('.qs-controls .qs-arrow');
-
-    arrows.forEach(arrow => {
-      // arrow.innerHTML = '&#10140;';
-      // arrow.innerHTML = '<img src="/assets/images/icons/arrow.svg" />';
     });
   }
 
