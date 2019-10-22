@@ -39,6 +39,7 @@
   --ion-color-secondary: #{$color-secondary};
   --ion-font-family: 'Source Sans Pro', sans-serif;
   --ion-default-font: 'Source Sans Pro', sans-serif;
+  letter-spacing: 0;
 }
 
 /* visible to screen readers only - from bootstrap */
@@ -62,6 +63,7 @@ ion-button {
   --box-shadow: none;
   --ion-default-font: 'Source Sans Pro', sans-serif;
   --ion-font-family: 'Source Sans Pro', sans-serif;
+  letter-spacing: normal;
 }
 
 button {
@@ -165,6 +167,7 @@ ion-button.reset {
   --ripple-color: transparent;
   --background-activated: transparent;
   --color-activated: $color-primary;
+  letter-spacing: 0;
 }
 
 .text-lower {

@@ -38,6 +38,8 @@
 
     .search {
       display: none;
+      font-size: $font-size-sm;
+      font-weight: bold;
 
       @include for-size(desktop-up) {
         display: inline-block;

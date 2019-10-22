@@ -1,7 +1,12 @@
-@import '../../styles/mixins';
-@import '../../styles/variables';
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 .page-home {
+
+  .title {
+    font-size: 21px;
+  }
+
   .hero {
     position: relative;
     background-image: url('/assets/images/home-hero.jpg');

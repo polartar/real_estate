@@ -1,6 +1,6 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
-import { toggleSearchFilterDisplay } from "../../store/actions/search-filters";
+import { toggleSearchFilterDisplay } from "../../../store/actions/search-filters";
 
 @Component({
   tag: 'page-home',

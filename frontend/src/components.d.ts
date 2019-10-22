@@ -52,6 +52,7 @@ export namespace Components {
     'items': any[];
   }
   interface PageHome {}
+  interface PageSearch {}
   interface PriceFilter {
     'inModal': boolean;
   }
@@ -198,6 +199,12 @@ declare global {
     new (): HTMLPageHomeElement;
   };
 
+  interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
+  var HTMLPageSearchElement: {
+    prototype: HTMLPageSearchElement;
+    new (): HTMLPageSearchElement;
+  };
+
   interface HTMLPriceFilterElement extends Components.PriceFilter, HTMLStencilElement {}
   var HTMLPriceFilterElement: {
     prototype: HTMLPriceFilterElement;
@@ -232,6 +239,7 @@ declare global {
     'neighborhood-card': HTMLNeighborhoodCardElement;
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
     'page-home': HTMLPageHomeElement;
+    'page-search': HTMLPageSearchElement;
     'price-filter': HTMLPriceFilterElement;
     'search-filters': HTMLSearchFiltersElement;
   }
@@ -281,6 +289,7 @@ declare namespace LocalJSX {
     'items'?: any[];
   }
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
+  interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {}
   interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {
     'inModal'?: boolean;
   }
@@ -309,6 +318,7 @@ declare namespace LocalJSX {
     'neighborhood-card': NeighborhoodCard;
     'neighborhood-slider': NeighborhoodSlider;
     'page-home': PageHome;
+    'page-search': PageSearch;
     'price-filter': PriceFilter;
     'search-filters': SearchFilters;
   }
