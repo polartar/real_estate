@@ -196,7 +196,7 @@ export class PageHome {
                   <h3 class="h1 title no-padding-margin">FAQ</h3>
                   <p>Have anymore questions?</p>
                   <ion-router-link class="button-light" href="/faq">
-                    Frequently asked questions
+                    FREQUENTLY ASKED QUESTIONS
                   </ion-router-link>
                 </div>
                 <div class="col-1of2">
