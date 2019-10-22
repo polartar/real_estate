@@ -2,7 +2,7 @@
 @import '../../../styles/mixins';
 
 .search-filters {
-  box-shadow: inset 0 -1px 0 0 #ededed, inset 0 1px 0 0 #ededed;
+  box-shadow: none; // inset 0 -1px 0 0 #ededed, inset 0 1px 0 0 #ededed;
   height: 56px;
 
   .section {
