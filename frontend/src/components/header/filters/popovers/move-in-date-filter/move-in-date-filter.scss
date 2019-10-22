@@ -41,21 +41,27 @@ $color-bg: #047365;
       padding: 0 0 1rem 0;
 
       .qs-arrow {
+        background-image: url('/assets/images/icons/arrow.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+
         &::after {
           content: none;
         }
 
         &.qs-left {
           margin-left: 3rem;
-          transform: rotate(180deg);
+
         }
 
         &.qs-right {
           margin-right: 3rem;
+          transform: rotate(180deg);
         }
 
         &:hover {
-          background: transparent;
+          background-color: transparent;
         }
       }
     }

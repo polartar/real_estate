@@ -70,7 +70,8 @@ export class LocationFilter {
     const arrows = this.el.querySelectorAll('.qs-controls .qs-arrow');
 
     arrows.forEach(arrow => {
-      arrow.innerHTML = '&#10140;';
+      // arrow.innerHTML = '&#10140;';
+      // arrow.innerHTML = '<img src="/assets/images/icons/arrow.svg" />';
     });
   }
 
