@@ -212,7 +212,7 @@ export class PageHome {
             <div class="home-feature">
               <lazy-image src="/assets/images/icons/inventory.svg" alt="inventory icon" />
               <div class="feature-content">
-                <h2 class="h1 no-padding-margin">Inventory</h2>
+                <h2 class="h1 no-padding-margin text-capitalize">Inventory</h2>
                 <p>Locations througout Manhattan's most prestigious neighborhoods</p>
               </div>
             </div>
@@ -220,7 +220,7 @@ export class PageHome {
             <div class="home-feature">
               <lazy-image src="/assets/images/icons/local-booking-agents.svg" alt="inventory icon" />
               <div class="feature-content">
-                <h2 class="h1 no-padding-margin">Local Booking Agents</h2>
+                <h2 class="h1 no-padding-margin text-capitalize">Local Booking Agents</h2>
                 <p>Clients have direct access to our local team of housing experts</p>
               </div>
             </div>
@@ -228,7 +228,7 @@ export class PageHome {
             <div class="home-feature">
               <lazy-image src="/assets/images/icons/secure-booking.svg" alt="inventory icon" />
               <div class="feature-content">
-                <h2 class="h1 no-padding-margin">Secure Booking Platform</h2>
+                <h2 class="h1 no-padding-margin text-capitalize">Secure Booking Platform</h2>
                 <p>Secure booking system and rental process all done online</p>
               </div>
             </div>
@@ -236,7 +236,7 @@ export class PageHome {
             <div class="home-feature">
               <lazy-image src="/assets/images/icons/verified-host.svg" alt="inventory icon" />
               <div class="feature-content">
-                <h2 class="h1 no-padding-margin">Verified Hosts</h2>
+                <h2 class="h1 no-padding-margin text-capitalize">Verified Hosts</h2>
                 <p>Strict landlord and host verification process; mainly work with big management</p>
               </div>
             </div>
@@ -244,7 +244,7 @@ export class PageHome {
             <div class="home-feature">
               <lazy-image src="/assets/images/icons/minimal-paperwork.svg" alt="inventory icon" />
               <div class="feature-content">
-                <h2 class="h1 no-padding-margin">Minimal Paperwork</h2>
+                <h2 class="h1 no-padding-margin text-capitalize">Minimal Paperwork</h2>
                 <p>No credit checks or tax returns, only require background check and photo ID.  Month-to-month lease terms</p>
               </div>
             </div>
@@ -252,7 +252,7 @@ export class PageHome {
             <div class="home-feature">
               <lazy-image src="/assets/images/icons/accuracy.svg" alt="inventory icon" />
               <div class="feature-content">
-                <h2 class="h1 no-padding-margin">Accuracy</h2>
+                <h2 class="h1 no-padding-margin text-capitalize">Accuracy</h2>
                 <p>All listings are verified and include photos, videos, 3D floorplans, virtual tours, and more</p>
               </div>
             </div>

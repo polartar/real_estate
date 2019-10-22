@@ -157,3 +157,15 @@ ion-button.reset {
   --background-activated: transparent;
   --color-activated: $color-primary;
 }
+
+.text-lower {
+  text-transform: lowercase;
+}
+
+.text-upper {
+  text-transform: uppercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
