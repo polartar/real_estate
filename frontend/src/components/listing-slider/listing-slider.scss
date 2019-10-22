@@ -3,6 +3,8 @@
 // Optional Theme Stylesheet
 @import "../../../node_modules/@glidejs/glide/src/assets/sass/glide.theme";
 
+@import '../../styles/mixins';
+
 .glide {
   .glide__arrow {
     background-color: rgba(0,0,0,0.7);
@@ -11,6 +13,12 @@
     width: 20px;
     height: 24px;
     padding: 0;
+
+    top: 30%;
+
+    @include for-size(tablet-landscape-up) {
+      top: 35%;
+    }
 
     svg {
       width: 1rem;

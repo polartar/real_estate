@@ -33,7 +33,15 @@ export class NeighborhoodSlider {
           perView: 3,
           gap: 30
         },
+        768: {
+          perView: 4,
+          gap: 10
+        },
         600: {
+          perView: 3,
+          gap: 10
+        },
+        420: {
           perView: 2,
           gap: 10
         }
@@ -42,14 +50,19 @@ export class NeighborhoodSlider {
 
     this.glide.on('build.after', () => {
       let track: HTMLElement = document.querySelector('.' + this.sliderClass + ' .glide__track');
-      let slide: HTMLElement = document.querySelector('.' + this.sliderClass + ' .glide__slide');
+      let slides: any = document.querySelectorAll('.' + this.sliderClass + ' .glide__slide');
 
-      if (!track && !slide) {
+      if (!track && !slides) {
         return;
       }
 
-      var slideHeight = slide.offsetHeight;
+      let slideHeight = track.offsetHeight;
+      slides.forEach(slide => {
+        slideHeight = Math.max(slideHeight, slide.offsetHeight);
+      });
+
       var glideTrack = track.offsetHeight;
+
       if (slideHeight != glideTrack) {
         var newHeight = slideHeight;
         track.style.height = newHeight + 'px';

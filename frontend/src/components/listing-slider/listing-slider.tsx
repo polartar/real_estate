@@ -40,14 +40,19 @@ export class ListingSlider {
 
     this.glide.on('build.after', () => {
       let track: HTMLElement = document.querySelector('.' + this.sliderClass + ' .glide__track');
-      let slide: HTMLElement = document.querySelector('.' + this.sliderClass + ' .glide__slide');
+      let slides: any = document.querySelectorAll('.' + this.sliderClass + ' .glide__slide');
 
-      if (!track && !slide) {
+      if (!track && !slides) {
         return;
       }
 
-      var slideHeight = slide.offsetHeight;
+      let slideHeight = track.offsetHeight;
+      slides.forEach(slide => {
+        slideHeight = Math.max(slideHeight, slide.offsetHeight);
+      });
+
       var glideTrack = track.offsetHeight;
+
       if (slideHeight != glideTrack) {
         var newHeight = slideHeight;
         track.style.height = newHeight + 'px';
