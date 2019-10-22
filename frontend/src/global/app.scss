@@ -60,10 +60,20 @@ ion-button {
   --background-hover: #{$color-primary-lighter};
   --border-radius: 0;
   --box-shadow: none;
+  --ion-default-font: 'Source Sans Pro', sans-serif;
+  --ion-font-family: 'Source Sans Pro', sans-serif;
+}
+
+button {
+  font-size: $font-size-md;
+
+  @include for-size(desktop-up) {
+    font-size: $font-size-sm;
+  }
 }
 
 html {
-  font-size: 16px; /* standard rem */
+  font-size: $font-size; /* standard rem */
   font-family: 'Source Sans Pro', sans-serif;
   color: $color-text-dark;
 }
@@ -99,7 +109,6 @@ h2, h3, h4 {
   display: inline-block;
   background-color: white;
   color: $color-primary;
-  font-size: 0.8rem;
   font-weight: bold;
   padding: 12px 18px;
 }

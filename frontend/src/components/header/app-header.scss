@@ -1,4 +1,5 @@
 @import '../../styles/mixins';
+@import '../../styles/variables';
 
 $app-header-button-height: 48px;
 
@@ -55,7 +56,7 @@ $app-header-button-height: 48px;
 
     @include for-size(desktop-up) {
       width: 365px;
-      font-size: 0.9rem;
+      font-size: $font-size-md;
       height: $app-header-button-height;
       box-shadow: 0 0 11px 0 rgba(134, 134, 134, 0.22);
     }
@@ -86,7 +87,7 @@ $app-header-button-height: 48px;
 
   .call {
     display: none;
-    font-size: 0.68rem;
+    font-size: $font-size-sm;
     font-weight: 600;
     height: $app-header-button-height;
 

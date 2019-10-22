@@ -45,7 +45,7 @@
     }
 
     .mobile-filters {
-      font-size: 1rem;
+      font-size: $font-size;
       --padding-start: 0.5rem;
 
       @include for-size(desktop-up) {
@@ -58,7 +58,7 @@
     }
 
     .close {
-      font-size: 1.5rem;
+      font-size: $font-size-lg;
     }
   }
 }

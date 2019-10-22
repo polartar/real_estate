@@ -1,4 +1,5 @@
 @import '../../../../../../node_modules/js-datepicker/src/datepicker.scss';
+@import '../../../../../styles/variables';
 
 $color-bg: #047365;
 
@@ -65,13 +66,13 @@ $color-bg: #047365;
 
     .qs-month,
     .qs-year {
-      font-size: 1rem;
+      font-size: $font-size;
       padding-left: 0;
       padding-right: 0;
     }
 
     .qs-square {
-      font-size: 1rem;
+      font-size: $font-size;
       color: black;
       font-weight: bold;
       height: 2.1rem;
@@ -81,7 +82,7 @@ $color-bg: #047365;
 
       &.qs-day {
         color: black;
-        font-size: 0.8rem;
+        font-size: $font-size-sm;
         text-transform: uppercase;
       }
 
