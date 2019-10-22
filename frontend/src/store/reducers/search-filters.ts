@@ -11,10 +11,7 @@ const getInitialState = () => {
     filters: {
       location: [],
       moveInDate: undefined,
-      price: {
-        min: 0,
-        max: 15000
-      },
+      price: undefined,
       beds: [],
       bathrooms: [],
       buildingTypes: []
