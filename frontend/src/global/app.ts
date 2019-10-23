@@ -1,5 +1,4 @@
 import '@ionic/core';
-import 'star-rating-web-component';
 
 // import { setupConfig } from '@ionic/core';
 import { setupConfig } from '../services/environment/environment-config';

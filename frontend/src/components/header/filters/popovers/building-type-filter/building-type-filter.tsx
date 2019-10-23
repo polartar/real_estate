@@ -152,7 +152,7 @@ export class BuildingTypeFilter {
 
             return (
               <label onClick={e => this.toggleCheckbox(e)}>
-                <ion-checkbox {...checkboxProps} /> <star-rating rating={item.rating} stars="5" color="#f3b445" size="16" /> {item.name}
+                <ion-checkbox {...checkboxProps} /> <star-rating rating={item.rating} stars={5} color="#f3b445" size={16} readonly /> {item.name}
               </label>
             )
           })}

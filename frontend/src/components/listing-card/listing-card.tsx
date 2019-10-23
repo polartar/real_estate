@@ -54,10 +54,11 @@ export class ListingCard {
           </div>
           <div class="rating-amenities">
             <star-rating
-                stars="5"
-                size="16"
+                stars={5}
+                size={16}
                 color="#f3b445"
                 rating={this.item.rating}
+                readonly
             />
 
             <div class="amenities">

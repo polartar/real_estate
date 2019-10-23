@@ -63,14 +63,16 @@ export namespace Components {
     'inModal': boolean;
   }
   interface SearchFilters {}
+  interface StarRating {
+    'color': string;
+    'rating': number;
+    'readonly': boolean;
+    'size': number;
+    'stars': number;
+  }
 }
 
 declare global {
-
-  // Adding a global JSX for backcompatibility with legacy dependencies
-  export namespace JSX {
-    export interface Element {}
-  }
 
 
   interface HTMLAppFooterElement extends Components.AppFooter, HTMLStencilElement {}
@@ -222,6 +224,12 @@ declare global {
     prototype: HTMLSearchFiltersElement;
     new (): HTMLSearchFiltersElement;
   };
+
+  interface HTMLStarRatingElement extends Components.StarRating, HTMLStencilElement {}
+  var HTMLStarRatingElement: {
+    prototype: HTMLStarRatingElement;
+    new (): HTMLStarRatingElement;
+  };
   interface HTMLElementTagNameMap {
     'app-footer': HTMLAppFooterElement;
     'app-header': HTMLAppHeaderElement;
@@ -248,6 +256,7 @@ declare global {
     'page-search': HTMLPageSearchElement;
     'price-filter': HTMLPriceFilterElement;
     'search-filters': HTMLSearchFiltersElement;
+    'star-rating': HTMLStarRatingElement;
   }
 }
 
@@ -300,6 +309,14 @@ declare namespace LocalJSX {
     'inModal'?: boolean;
   }
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {}
+  interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
+    'color'?: string;
+    'onRated'?: (event: CustomEvent<number>) => void;
+    'rating'?: number;
+    'readonly'?: boolean;
+    'size'?: number;
+    'stars'?: number;
+  }
 
   interface IntrinsicElements {
     'app-footer': AppFooter;
@@ -327,6 +344,7 @@ declare namespace LocalJSX {
     'page-search': PageSearch;
     'price-filter': PriceFilter;
     'search-filters': SearchFilters;
+    'star-rating': StarRating;
   }
 }
 
