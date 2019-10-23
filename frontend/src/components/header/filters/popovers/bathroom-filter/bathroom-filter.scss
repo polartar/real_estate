@@ -8,6 +8,14 @@
   .bathrooms {
     padding-top: 2rem;
 
+    ion-grid {
+      padding: 0;
+
+      ion-col:first-child {
+        margin-left: -5px;
+      }
+    }
+
     ion-button {
       display: inline-block;
       margin: 0;

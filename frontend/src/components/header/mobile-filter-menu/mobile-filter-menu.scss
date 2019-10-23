@@ -43,4 +43,30 @@
     align-items: center;
     justify-content: center;
   }
+
+  ion-title {
+    padding-left: 0;
+  }
+
+  .bed-bath-header {
+    padding: 0 1rem 1rem 2rem;
+
+    ion-button:last-child {
+      margin-left: 1rem;
+      font-weight: bold;
+      border: 1px solid $color-primary;
+    }
+  }
+
+  &.menu {
+    ion-title {
+      padding-left: 1.25rem;
+    }
+  }
+
+  &.beds-baths {
+    bathroom-filter {
+      margin-top: -6rem;
+    }
+  }
 }

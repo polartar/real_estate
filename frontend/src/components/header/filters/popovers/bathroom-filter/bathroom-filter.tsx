@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element } from '@stencil/core';
+import { Component, h, Prop, Element, Method } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import searchFilterSelectors from '../../../../../store/selectors/search-filters';
 import { setBathroomsFilter } from '../../../../../store/actions/search-filters';
@@ -36,6 +36,36 @@ export class BathroomFilter {
         button.classList.remove('inactive');
       }
     });
+  }
+
+  @Method()
+  selectAll() {
+    const buttons = this.el.querySelectorAll('.bathrooms ion-button');
+
+    this.value = [];
+
+    buttons.forEach(button => {
+      let val = button.getAttribute('data-value');
+
+      button.classList.remove('inactive');
+
+      this.value.push(val);
+    });
+
+    this.setBathroomsFilter(this.value);
+  }
+
+  @Method()
+  clearAll() {
+    const buttons = this.el.querySelectorAll('.bathrooms ion-button');
+
+    this.value = [];
+
+    buttons.forEach(button => {
+       button.classList.add('inactive');
+    });
+
+    this.setBathroomsFilter(this.value);
   }
 
   setValue(e) {

@@ -1,4 +1,4 @@
-import { Component, h, State} from '@stencil/core';
+import { Component, h, State, Element } from '@stencil/core';
 
 @Component({
   tag: 'mobile-filter-menu',
@@ -6,6 +6,7 @@ import { Component, h, State} from '@stencil/core';
 })
 export class AppMenu {
   @State() display: string = 'menu';
+  @Element() el: HTMLElement;
   closeModal() {
     const modal = document.querySelector('ion-modal');
 
@@ -86,9 +87,24 @@ export class AppMenu {
     ]
   }
 
+  bedBathSelectAll(on) {
+    const beds = this.el.querySelector('bedroom-filter');
+    const baths = this.el.querySelector('bathroom-filter');
+
+    if (on) {
+      beds.selectAll();
+      baths.selectAll();
+    }
+    else {
+      beds.clearAll();
+      baths.clearAll();
+    }
+  }
 
   render() {
-    let title, content;
+    let title, content, headersuffix;
+
+    let className = `mobile-filter-menu ${this.display}`;
 
     switch (this.display) {
       case 'locations':
@@ -114,6 +130,11 @@ export class AppMenu {
       case 'beds-baths':
         title = 'Beds and baths';
         content = this.getBedsBaths();
+
+        headersuffix = <div class="bed-bath-header">
+          <ion-button onClick={() => {this.bedBathSelectAll(true) }}>Select All</ion-button>
+          <ion-button class="reset" onClick={() => {this.bedBathSelectAll(false) }}>Clear All</ion-button>
+        </div>
       break;
 
       case 'menu':
@@ -124,7 +145,7 @@ export class AppMenu {
     }
 
     return [
-        <ion-header>
+        <ion-header class={className}>
           <ion-toolbar mode="md">
             { this.display !== 'menu' ?
             <ion-buttons slot="start">
@@ -142,9 +163,11 @@ export class AppMenu {
               </ion-button>
             </ion-buttons>
           </ion-toolbar>
+
+          {headersuffix}
         </ion-header>,
 
-        <ion-content class="mobile-filter-menu">
+        <ion-content class={className}>
           {content}
         </ion-content>
     ]

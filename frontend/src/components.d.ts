@@ -19,10 +19,14 @@ export namespace Components {
   interface AppRoot {}
   interface AppWrapper {}
   interface BathroomFilter {
+    'clearAll': () => Promise<void>;
     'inModal': boolean;
+    'selectAll': () => Promise<void>;
   }
   interface BedroomFilter {
+    'clearAll': () => Promise<void>;
     'inModal': boolean;
+    'selectAll': () => Promise<void>;
   }
   interface BuildingTypeFilter {
     'inModal': boolean;
