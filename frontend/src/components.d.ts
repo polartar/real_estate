@@ -29,7 +29,9 @@ export namespace Components {
     'selectAll': () => Promise<void>;
   }
   interface BuildingTypeFilter {
+    'clearAll': () => Promise<void>;
     'inModal': boolean;
+    'selectAll': () => Promise<void>;
   }
   interface FaqAccordian {}
   interface LazyImage {

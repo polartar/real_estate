@@ -101,6 +101,17 @@ export class AppMenu {
     }
   }
 
+  buildingTypeSelectAll(on) {
+    const buildingTypes = this.el.querySelector('building-type-filter');
+
+    if (on) {
+      buildingTypes.selectAll();
+    }
+    else {
+      buildingTypes.clearAll();
+    }
+  }
+
   render() {
     let title, content, headersuffix;
 
@@ -125,6 +136,11 @@ export class AppMenu {
       case 'building-type':
         title = 'Building Type';
         content = this.getBuildingType();
+
+        headersuffix = <div class="bed-bath-header">
+          <ion-button onClick={() => {this.buildingTypeSelectAll(true) }}>Select All</ion-button>
+          <ion-button class="reset" onClick={() => {this.buildingTypeSelectAll(false) }}>Clear All</ion-button>
+        </div>
       break;
 
       case 'beds-baths':

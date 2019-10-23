@@ -39,7 +39,7 @@ export class BedroomFilter {
   }
 
   @Method()
-  selectAll() {
+  async selectAll() {
     const buttons = this.el.querySelectorAll('.beds ion-button');
 
     this.value = [];
@@ -56,7 +56,7 @@ export class BedroomFilter {
   }
 
   @Method()
-  clearAll() {
+  async clearAll() {
     const buttons = this.el.querySelectorAll('.beds ion-button');
 
     this.value = [];

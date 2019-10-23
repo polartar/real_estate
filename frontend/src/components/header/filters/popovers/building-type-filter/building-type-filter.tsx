@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element } from '@stencil/core';
+import { Component, h, Prop, Element, Method } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import searchFilterSelectors from '../../../../../store/selectors/search-filters';
 import { setBuildingTypesFilter } from '../../../../../store/actions/search-filters';
@@ -55,6 +55,32 @@ export class BuildingTypeFilter {
         checkbox.setAttribute('checked', 'checked');
       }
     });
+  }
+
+  @Method()
+  async selectAll() {
+    const checkboxes = this.el.querySelectorAll('ion-checkbox');
+
+    this.value = [];
+
+    checkboxes.forEach(checkbox => {
+      this.check(checkbox);
+    });
+
+    this.setBuildingTypesFilter(this.value);
+  }
+
+  @Method()
+  async clearAll() {
+    const checkboxes = this.el.querySelectorAll('ion-checkbox');
+
+    this.value = [];
+
+    checkboxes.forEach(checkbox => {
+      this.uncheck(checkbox);
+    });
+
+    this.setBuildingTypesFilter(this.value);
   }
 
   closePopover() {

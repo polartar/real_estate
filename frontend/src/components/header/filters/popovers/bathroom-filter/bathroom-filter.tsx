@@ -39,7 +39,7 @@ export class BathroomFilter {
   }
 
   @Method()
-  selectAll() {
+  async selectAll() {
     const buttons = this.el.querySelectorAll('.bathrooms ion-button');
 
     this.value = [];
@@ -56,7 +56,7 @@ export class BathroomFilter {
   }
 
   @Method()
-  clearAll() {
+  async clearAll() {
     const buttons = this.el.querySelectorAll('.bathrooms ion-button');
 
     this.value = [];
