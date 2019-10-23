@@ -21,7 +21,7 @@ export class StarRating {
   @Prop() rating: number = 0;
   @Prop() size: number = 25;
   @Prop() stars: number = 5;
-  @Prop() color: string = 'gold';
+  @Prop() color: string = '#f3b445';
   @Prop() readonly: boolean = false;
 
   //

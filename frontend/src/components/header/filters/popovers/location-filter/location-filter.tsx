@@ -108,6 +108,10 @@ export class LocationFilter {
     const container = e.target.closest('.region-container');
     const regionCB = container.querySelector('ion-checkbox.region');
 
+    if (!!e.detail.checked) {
+      e.target.setAttribute('data-checked', 'checked');
+    }
+
     if (this.enableRegionCheck) {
       this.enableNeighborhoodCheck = false;
 

@@ -56,7 +56,6 @@ export class ListingCard {
             <star-rating
                 stars={5}
                 size={16}
-                color="#f3b445"
                 rating={this.item.rating}
                 readonly
             />
