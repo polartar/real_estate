@@ -54,7 +54,7 @@ export class FAQAccordian {
     return [
       <div class="faq-accordian">
         <div class="accordian-item" data-index="1">
-          <button class="accordian-header button-reset flex-col-wrapper" onClick={() => this.toggleAccordian(1)}>
+          <button aria-label="Why Choose APT212?" class="accordian-header button-reset flex-col-wrapper" onClick={() => this.toggleAccordian(1)}>
             <h4 class="h1">Why Choose APT212?</h4>
             {this.activeInstance == 1 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>
@@ -67,7 +67,7 @@ export class FAQAccordian {
         </div>
 
         <div class="accordian-item" data-index="2">
-          <button class="accordian-header button-reset flex-col-wrapper" onClick={() => this.toggleAccordian(2)}>
+          <button aria-label="What Furniture is provided?" class="accordian-header button-reset flex-col-wrapper" onClick={() => this.toggleAccordian(2)}>
             <h4 class="h1">What Furniture is provided?</h4>
             {this.activeInstance == 2 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>
@@ -80,7 +80,7 @@ export class FAQAccordian {
         </div>
 
         <div class="accordian-item" data-index="3">
-          <button class="accordian-header button-reset flex-col-wrapper" onClick={() => this.toggleAccordian(3)}>
+          <button aria-label="Can I bring my own furniture?" class="accordian-header button-reset flex-col-wrapper" onClick={() => this.toggleAccordian(3)}>
             <h4 class="h1">Can I bring my own furniture?</h4>
             {this.activeInstance == 3 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>
@@ -93,7 +93,7 @@ export class FAQAccordian {
         </div>
 
         <div class="accordian-item" data-index="4">
-          <button class="accordian-header button-reset flex-col-wrapper" onClick={() => this.toggleAccordian(4)}>
+          <button aria-label="Can I flex the start-date?" class="accordian-header button-reset flex-col-wrapper" onClick={() => this.toggleAccordian(4)}>
             <h4 class="h1">Can I flex the start-date?</h4>
             {this.activeInstance == 4 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>

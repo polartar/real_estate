@@ -101,34 +101,34 @@ export class BedroomFilter {
           <ion-grid>
             <ion-row>
               <ion-col size="3">
-                <ion-button class="inactive" expand="full" data-value="room" onClick={(e) => this.setValue(e)}>Room</ion-button>
+                <ion-button aria-label="Room" class="inactive" expand="full" data-value="room" onClick={(e) => this.setValue(e)}>Room</ion-button>
               </ion-col>
               <ion-col size="3">
-                <ion-button class="inactive" expand="full" data-value="studio" onClick={(e) => this.setValue(e)}>Studio</ion-button>
+                <ion-button aria-label="Studio" class="inactive" expand="full" data-value="studio" onClick={(e) => this.setValue(e)}>Studio</ion-button>
               </ion-col>
               <ion-col size="3">
-               <ion-button class="inactive" expand="full" data-value={1} onClick={(e) => this.setValue(e)}>1</ion-button>
+               <ion-button aria-label="1 bedroom" class="inactive" expand="full" data-value={1} onClick={(e) => this.setValue(e)}>1</ion-button>
               </ion-col>
               <ion-col size="3">
-                <ion-button class="inactive" expand="full" data-value={2} onClick={(e) => this.setValue(e)}>2</ion-button>
+                <ion-button aria-label="2 bedrooms" class="inactive" expand="full" data-value={2} onClick={(e) => this.setValue(e)}>2</ion-button>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col size="3">
-                <ion-button class="inactive" expand="full" data-value={3} onClick={(e) => this.setValue(e)}>3</ion-button>
+                <ion-button aria-label="3 bedrooms" class="inactive" expand="full" data-value={3} onClick={(e) => this.setValue(e)}>3</ion-button>
               </ion-col>
               <ion-col size="3">
-                <ion-button class="inactive" expand="full" data-value={4} onClick={(e) => this.setValue(e)}>4</ion-button>
+                <ion-button aria-label="4 bedrooms" class="inactive" expand="full" data-value={4} onClick={(e) => this.setValue(e)}>4</ion-button>
               </ion-col>
               <ion-col size="3">
-                <ion-button class="inactive" expand="full" data-value={5} onClick={(e) => this.setValue(e)}>5</ion-button>
+                <ion-button aria-label="5 bedrooms" class="inactive" expand="full" data-value={5} onClick={(e) => this.setValue(e)}>5</ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>
         </div>
 
         { this.inModal ?
-        <ion-button fill="clear" class="close" onClick={() => this.closePopover()}>
+        <ion-button aria-label="close" fill="clear" class="close" onClick={() => this.closePopover()}>
           <ion-icon src="/assets/images/icons/cancel.svg" slot="icon-only" />
         </ion-button>
         : null }

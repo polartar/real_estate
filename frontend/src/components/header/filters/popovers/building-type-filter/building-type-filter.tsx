@@ -161,7 +161,7 @@ export class BuildingTypeFilter {
         </div>
 
         { this.inModal ?
-        <ion-button fill="clear" class="close" onClick={() => this.closePopover()}>
+        <ion-button aria-label="close" fill="clear" class="close" onClick={() => this.closePopover()}>
           <ion-icon src="/assets/images/icons/cancel.svg" slot="icon-only" />
         </ion-button>
         : null }

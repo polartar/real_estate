@@ -176,13 +176,13 @@ export class LocationFilter {
     return (
       <div class="location-filter">
         <div class="toolbar">
-          <button class="button-dark" onClick={() => this.toggleAll(true)}>Select All</button>
-          <button class="button-light" onClick={() => this.toggleAll(false)}>Clear All</button>
+          <button aria-label="Select All" class="button-dark" onClick={() => this.toggleAll(true)}>Select All</button>
+          <button aria-label="Clear All" class="button-light" onClick={() => this.toggleAll(false)}>Clear All</button>
 
           <div class="spacer" />
 
           { this.inModal ?
-          <ion-button fill="clear" class="close" onClick={() => this.closePopover()}>
+          <ion-button aria-label="close" fill="clear" class="close" onClick={() => this.closePopover()}>
             <ion-icon src="/assets/images/icons/cancel.svg" slot="icon-only" />
           </ion-button>
           : null }

@@ -139,8 +139,8 @@ export class AppMenu {
         content = this.getBuildingType();
 
         headersuffix = <div class="bed-bath-header">
-          <ion-button onClick={() => {this.buildingTypeSelectAll(true) }}>Select All</ion-button>
-          <ion-button class="reset" onClick={() => {this.buildingTypeSelectAll(false) }}>Clear All</ion-button>
+          <ion-button aria-label="Select All" onClick={() => {this.buildingTypeSelectAll(true) }}>Select All</ion-button>
+          <ion-button aria-label="Clear All" class="reset" onClick={() => {this.buildingTypeSelectAll(false) }}>Clear All</ion-button>
         </div>
       break;
 
@@ -149,8 +149,8 @@ export class AppMenu {
         content = this.getBedsBaths();
 
         headersuffix = <div class="bed-bath-header">
-          <ion-button onClick={() => {this.bedBathSelectAll(true) }}>Select All</ion-button>
-          <ion-button class="reset" onClick={() => {this.bedBathSelectAll(false) }}>Clear All</ion-button>
+          <ion-button aria-label="Select All" onClick={() => {this.bedBathSelectAll(true) }}>Select All</ion-button>
+          <ion-button aria-label="Clear All" class="reset" onClick={() => {this.bedBathSelectAll(false) }}>Clear All</ion-button>
         </div>
       break;
 

@@ -22,7 +22,7 @@ export class AppMenu {
 
               <div class="header-center" />
 
-              <ion-button class="reset close" onClick={() => this.closeMenu()}>
+              <ion-button aria-label="close" class="reset close" onClick={() => this.closeMenu()}>
                 <ion-icon src="/assets/images/icons/cancel.svg" slot="icon-only" />
               </ion-button>
             </div>

@@ -95,7 +95,7 @@ export class PageHome {
     if (this.size === 'phone-only') {
       phoneTitle = title;
       phoneSubtitle = subtitle;
-      phoneSearch = <button class="search-dark" onClick={() => { this.toggleSearchFilterDisplay(!this.displayFilter) }}>
+      phoneSearch = <button aria-label="Search" class="search-dark" onClick={() => { this.toggleSearchFilterDisplay(!this.displayFilter) }}>
                       Search
                     </button>
 
