@@ -7,6 +7,7 @@ import { Component, h, State, Element } from '@stencil/core';
 export class AppMenu {
   @State() display: string = 'menu';
   @Element() el: HTMLElement;
+
   closeModal() {
     const modal = document.querySelector('ion-modal');
 
@@ -38,7 +39,7 @@ export class AppMenu {
           Building Type
         </ion-item>
 
-        <ion-item aria-label="Search" class="search" button mode="md" detail detailIcon="md-arrow-dropright">
+        <ion-item aria-label="Search" href="/search" class="search" button mode="md" detail onClick={() => this.closeModal()} detailIcon="md-arrow-dropright">
           Search
         </ion-item>
       </ion-list>
