@@ -14,20 +14,21 @@ export class AppMenu {
   }
 
   render() {
-    return (
-        <div class="app-menu-container app-wrapper">
+    return [
+        <ion-content class="app-menu-container app-wrapper">
+          <header class="header-wrapper app-menu-header">
+            <div class="app-header section">
+              <img src="/assets/images/logo.svg" class="logo" alt="APT212 Logo" />
 
-          <div class="main-menu">
-            <div class="app-menu-header">
-              <img src="/assets/images/logo.svg" class="logo" alt="APT212 Logo"></img>
-
-              <div class="spacer" />
+              <div class="header-center" />
 
               <ion-button class="reset close" onClick={() => this.closeMenu()}>
-                <ion-icon name="close" slot="icon-only" />
+                <ion-icon src="/assets/images/icons/cancel.svg" slot="icon-only" />
               </ion-button>
             </div>
+          </header>
 
+          <div class="section main-menu">
             <ion-router-link href="/">
               Search Apartments
             </ion-router-link>
@@ -65,7 +66,7 @@ export class AppMenu {
               Speak to an expert
             </ion-button>
           </div>
-        </div>
-    )
+        </ion-content>
+    ]
   }
 }

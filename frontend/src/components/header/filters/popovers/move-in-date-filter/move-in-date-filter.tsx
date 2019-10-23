@@ -86,7 +86,7 @@ export class LocationFilter {
 
         { this.inModal ?
         <ion-button fill="clear" class="close" onClick={() => this.closePopover()}>
-          <ion-icon name="close" slot="icon-only" />
+          <ion-icon src="/assets/images/icons/cancel.svg" slot="icon-only" />
         </ion-button>
         : null }
       </div>

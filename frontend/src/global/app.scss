@@ -158,6 +158,43 @@ h2, h3, h4 {
   top: 0;
   background-color: white;
   z-index: 999;
+
+  .app-header {
+    display: flex;
+    align-items: center;
+    // padding-top: 1rem;
+    height: auto;
+
+    @include for-size(tablet-portrait-up) {
+      padding-top: 2rem;
+    }
+
+    @include for-size(desktop-up) {
+      padding-top: 0;
+      height: $header-height;
+    }
+
+    .logo-link {
+      flex-grow: 1;
+
+      @include for-size(desktop-up) {
+        flex-grow: 0;
+      }
+    }
+
+    .logo {
+      height: 24px;
+      min-width: 126px;
+    }
+
+    .header-center {
+      height: 2px;
+
+      @include for-size(desktop-up) {
+        flex-grow: 1;
+      }
+    }
+  }
 }
 
 ion-button.reset {

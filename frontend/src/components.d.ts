@@ -11,13 +11,11 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 export namespace Components {
   interface AppFooter {}
   interface AppHeader {}
-  interface AppLayoutStandard {}
   interface AppMenu {}
   interface AppProfile {
     'name': string;
   }
   interface AppRoot {}
-  interface AppWrapper {}
   interface BathroomFilter {
     'clearAll': () => Promise<void>;
     'inModal': boolean;
@@ -87,12 +85,6 @@ declare global {
     new (): HTMLAppHeaderElement;
   };
 
-  interface HTMLAppLayoutStandardElement extends Components.AppLayoutStandard, HTMLStencilElement {}
-  var HTMLAppLayoutStandardElement: {
-    prototype: HTMLAppLayoutStandardElement;
-    new (): HTMLAppLayoutStandardElement;
-  };
-
   interface HTMLAppMenuElement extends Components.AppMenu, HTMLStencilElement {}
   var HTMLAppMenuElement: {
     prototype: HTMLAppMenuElement;
@@ -109,12 +101,6 @@ declare global {
   var HTMLAppRootElement: {
     prototype: HTMLAppRootElement;
     new (): HTMLAppRootElement;
-  };
-
-  interface HTMLAppWrapperElement extends Components.AppWrapper, HTMLStencilElement {}
-  var HTMLAppWrapperElement: {
-    prototype: HTMLAppWrapperElement;
-    new (): HTMLAppWrapperElement;
   };
 
   interface HTMLBathroomFilterElement extends Components.BathroomFilter, HTMLStencilElement {}
@@ -233,11 +219,9 @@ declare global {
   interface HTMLElementTagNameMap {
     'app-footer': HTMLAppFooterElement;
     'app-header': HTMLAppHeaderElement;
-    'app-layout-standard': HTMLAppLayoutStandardElement;
     'app-menu': HTMLAppMenuElement;
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
-    'app-wrapper': HTMLAppWrapperElement;
     'bathroom-filter': HTMLBathroomFilterElement;
     'bedroom-filter': HTMLBedroomFilterElement;
     'building-type-filter': HTMLBuildingTypeFilterElement;
@@ -263,13 +247,11 @@ declare global {
 declare namespace LocalJSX {
   interface AppFooter extends JSXBase.HTMLAttributes<HTMLAppFooterElement> {}
   interface AppHeader extends JSXBase.HTMLAttributes<HTMLAppHeaderElement> {}
-  interface AppLayoutStandard extends JSXBase.HTMLAttributes<HTMLAppLayoutStandardElement> {}
   interface AppMenu extends JSXBase.HTMLAttributes<HTMLAppMenuElement> {}
   interface AppProfile extends JSXBase.HTMLAttributes<HTMLAppProfileElement> {
     'name'?: string;
   }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
-  interface AppWrapper extends JSXBase.HTMLAttributes<HTMLAppWrapperElement> {}
   interface BathroomFilter extends JSXBase.HTMLAttributes<HTMLBathroomFilterElement> {
     'inModal'?: boolean;
   }
@@ -321,11 +303,9 @@ declare namespace LocalJSX {
   interface IntrinsicElements {
     'app-footer': AppFooter;
     'app-header': AppHeader;
-    'app-layout-standard': AppLayoutStandard;
     'app-menu': AppMenu;
     'app-profile': AppProfile;
     'app-root': AppRoot;
-    'app-wrapper': AppWrapper;
     'bathroom-filter': BathroomFilter;
     'bedroom-filter': BedroomFilter;
     'building-type-filter': BuildingTypeFilter;

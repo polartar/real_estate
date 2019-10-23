@@ -93,7 +93,7 @@ export class AppHeader {
             </ion-button>
 
             <ion-button fill="clear" class="menu" onClick={() => this.openMenu()}>
-              <ion-icon name="menu" slot="icon-only" />
+              <ion-icon src="/assets/images/icons/hamburger.svg" slot="icon-only" />
             </ion-button>
           </div>
         </div>
