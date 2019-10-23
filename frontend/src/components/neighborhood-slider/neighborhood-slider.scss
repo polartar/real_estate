@@ -4,41 +4,73 @@
 // Optional Theme Stylesheet
 @import "../../../node_modules/@glidejs/glide/src/assets/sass/glide.theme";
 
+@mixin glideArrow {
+  display: block;
+  position: absolute;
+  background-color: rgba(0,0,0,0.7);
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  width: 20px;
+  height: 24px;
+  padding: 0;
+
+  top: 50%;
+
+  @include for-size(tablet-landscape-up) {
+    width: 40px;
+    height: 56px;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+$arrow-left-left: -10px;
+$arrow-right-right: -10px;
+
 .neighborhood-slider.glide {
   .glide__arrow {
-    background-color: rgba(0,0,0,0.7);
-    border: 0;
-    border-radius: 0;
-    height: 24px;
-    width: 20px;
-    padding: 0;
-
-    top: 50%;
-
-    @include for-size(tablet-landscape-up) {
-      width: 40px;
-      height: 56px;
-    }
-
-    svg {
-      width: 1rem;
-      height: 1rem;
-    }
+    @include glideArrow();
   }
 
   .glide__arrow--right {
-    right: -10px;
+    right: $arrow-right-right;
 
     @include for-size(tablet-landscape-up) {
-      right: -20px;
+      right: $arrow-right-right * 2;
     }
   }
 
   .glide__arrow--left {
-    left: -10px;
+    left: $arrow-left-left;
 
     @include for-size(tablet-landscape-up) {
-      left: -20px;
+      left: $arrow-left-left * 2;
+    }
+  }
+
+  .left-arrow-click-jacker {
+    @include glideArrow();
+
+    left: $arrow-left-left;
+    opacity: 0;
+
+    @include for-size(tablet-landscape-up) {
+      left: $arrow-left-left * 2;
+    }
+  }
+
+  .right-arrow-click-jacker {
+    @include glideArrow();
+
+    right: $arrow-right-right;
+    opacity: 0;
+
+    @include for-size(tablet-landscape-up) {
+      right: $arrow-right-right * 2;
     }
   }
 }

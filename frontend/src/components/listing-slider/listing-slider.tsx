@@ -1,4 +1,4 @@
-import { Component, h  } from '@stencil/core';
+import { Component, h, State  } from '@stencil/core';
 import Glide from '@glidejs/glide';
 // import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
 
@@ -8,6 +8,7 @@ import Glide from '@glidejs/glide';
   styleUrl: 'listing-slider.scss'
 })
 export class ListingSlider {
+  @State() index: number = 0;
   sliderClass: string = 'glide';
   glide: any;
 
@@ -27,13 +28,14 @@ export class ListingSlider {
       type: 'slider',
       perView: 3,
       gap:10,
+      focusAt: 0,
+      startAt: 0,
       rewind: false,
       breakpoints: {
-        1024: {
-          perView: 3
-        },
-        600: {
-          perView: 2
+        575: {
+          perView: 2,
+          startAt: 0,
+          focusAt: 0,
         }
       }
     });
@@ -89,6 +91,20 @@ export class ListingSlider {
     return Array.from(arr, this.dec2hex).join('')
   }
 
+  slideMove(dir) {
+    const numSlides = document.querySelectorAll('.' + this.sliderClass + ' .glide__slide').length;
+
+    const offsetRight = this.glide.settings.perView - this.glide.settings.focusAt;
+
+    if (dir === '<' && this.glide.index > this.glide.settings.startAt) {
+      this.glide.go('<');
+    }
+
+    if (dir === '>' && this.glide.index < numSlides - offsetRight) {
+      this.glide.go('>');
+    }
+  }
+
   render() {
     return [
       <div class={'glide ' + this.sliderClass}>
@@ -110,10 +126,21 @@ export class ListingSlider {
           <button aria-label="Previous slide" class="glide__arrow glide__arrow--left" data-glide-dir="<">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="#ffffff" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg>
           </button>
+
           <button aria-label="Next slide" class="glide__arrow glide__arrow--right" data-glide-dir=">">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="#ffffff" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
           </button>
         </div>
+
+        {/* hidden button overlay to capture the click events going back to prevent over-scroll */}
+        <button aria-label="" role="presentation" class="glide__arrow left-arrow-click-jacker" onClick={() => this.slideMove('<')}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="#ffffff" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"/></svg>
+        </button>
+
+        {/* hidden button overlay to capture the click events going back to prevent over-scroll */}
+        <button aria-label="" role="presentation" class="glide__arrow right-arrow-click-jacker" onClick={() => this.slideMove('>')}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="#ffffff" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
+        </button>
       </div>
     ];
   }

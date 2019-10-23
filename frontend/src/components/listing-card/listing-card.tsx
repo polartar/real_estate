@@ -37,7 +37,7 @@ export class ListingCard {
       <ion-router-link href={'/post/' + this.item.id}>
         <div class="listing-card">
           <lazy-image src="/assets/images/placeholder/apt1.jpeg" class="list-feature-image" alt={this.item.title} />
-          <h4 class="listing-title">{this.item.title}</h4>
+          <h4 class="listing-title">{this.item.title} {this.item.id}</h4>
           <div class="price">
             ${this.item.price} per month
           </div>
