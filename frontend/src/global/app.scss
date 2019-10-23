@@ -197,6 +197,22 @@ h2, h3, h4 {
   }
 }
 
+.chat {
+  --background-activated: #{$color-secondary};
+  --background-hover: #{$color-secondary};
+  --border-color: white;
+  --border-width: 1px;
+
+  @include for-size(desktop-up) {
+    margin-right: 30px;
+  }
+
+  .chat-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
 ion-button.reset {
   color: $color-primary;
   --background: transparent;

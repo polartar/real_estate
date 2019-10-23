@@ -29,7 +29,7 @@ export class AppMenu {
           </header>
 
           <div class="section main-menu">
-            <ion-router-link href="/">
+            <ion-router-link href="/search" onClick={() => this.closeMenu()}>
               Search Apartments
             </ion-router-link>
 
