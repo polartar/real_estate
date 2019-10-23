@@ -37,6 +37,7 @@ export namespace Components {
     'src': string;
   }
   interface ListingCard {
+    'contentPadding': boolean;
     'item': any;
   }
   interface ListingList {}
@@ -267,6 +268,7 @@ declare namespace LocalJSX {
     'src'?: string;
   }
   interface ListingCard extends JSXBase.HTMLAttributes<HTMLListingCardElement> {
+    'contentPadding'?: boolean;
     'item'?: any;
   }
   interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {}

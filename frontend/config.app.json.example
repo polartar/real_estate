@@ -9,5 +9,8 @@
   "BASE_URL": "http://laravel-stencil.localhost:8080",
 
   "//APP_ENVIRONMENT": "The build env of the app, 'production' removes redux logging and various dev things",
-  "APP_ENVIRONMENT": "development"
+  "APP_ENVIRONMENT": "development",
+
+  "//MAPBOX_PUBLIC_TOKEN": "The public API token for mapbox integration",
+  "MAPBOX_PUBLIC_TOKEN": "pk.lkasjfljfljsdlfjsdalfjsdalkfjasljasldk"
 }

@@ -3,6 +3,7 @@ export interface EnvironmentConfig {
   API_URL: string;
   BASE_URL: string;
   APP_ENVIRONMENT: string;
+  MAPBOX_PUBLIC_TOKEN: string;
 }
 
 export function setupConfig(config: EnvironmentConfig) {

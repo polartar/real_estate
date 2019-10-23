@@ -2,16 +2,7 @@
 @import '../../styles/variables';
 
 .listing-card {
-  max-width: 163px;
   padding-bottom: 15px;
-
-  @include for-size(tablet-portrait-up) {
-    max-width: 304px;
-  }
-
-  @include for-size(desktop-up) {
-    max-width: 340px;
-  }
 
   .listing-title {
     margin-top: 10px;
@@ -85,5 +76,9 @@
       padding-left: 0.5rem;
       padding-bottom: 4px;
     }
+  }
+
+  .listing-content-padding {
+    padding: 0 1rem 0 1rem;
   }
 }

@@ -18,7 +18,7 @@ export class AppRoot {
   @Listen('resize', { target: 'window' })
   handleResize() {
     requestAnimationFrame(() => {
-      this.updateScreenSize(window.innerWidth);
+      this.updateScreenSize(window.innerWidth, window.innerHeight);
     });
   }
 
@@ -35,7 +35,7 @@ export class AppRoot {
       updateScreenSize
     });
 
-    this.updateScreenSize(window.innerWidth);
+    this.updateScreenSize(window.innerWidth, window.innerHeight);
   }
 
   render() {

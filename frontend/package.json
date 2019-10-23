@@ -22,6 +22,7 @@
     "@stencil/redux": "^0.1.1",
     "chokidar": "^3.2.1",
     "js-datepicker": "^5.0.3",
+    "mapbox-gl": "^1.4.1",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"

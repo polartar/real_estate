@@ -7,7 +7,9 @@ import { Store } from "@stencil/redux";
 })
 export class ListingCard {
   @Prop({ context: "store" }) store: Store;
+  @Prop() contentPadding: boolean = false;
   @State() size: string = 'phone-only';
+
   @Prop() item: any = {
     id: Math.round(Math.random() * 10000),
     title: 'East Village',
@@ -37,31 +39,33 @@ export class ListingCard {
       <ion-router-link href={'/post/' + this.item.id}>
         <div class="listing-card">
           <lazy-image src="/assets/images/placeholder/apt1.jpeg" class="list-feature-image" alt={this.item.title} />
-          <h4 class="listing-title">{this.item.title} {this.item.id}</h4>
-          <div class="price">
-            ${this.item.price} per month
-          </div>
-          <div class="bed-bath">
-            <div>
-              <lazy-image src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {this.item.bedrooms} Bedroom
+          <div class={{"listing-content-padding": this.contentPadding}}>
+            <h4 class="listing-title">{this.item.title}</h4>
+            <div class="price">
+              ${this.item.price} per month
             </div>
-            <div class="divider">
-              |
+            <div class="bed-bath">
+              <div>
+                <lazy-image src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {this.item.bedrooms} Bedroom
+              </div>
+              <div class="divider">
+                |
+              </div>
+              <div>
+                <lazy-image src="/assets/images/icons/bathroom.svg" class="bathrooms" alt="bathroom icon" /> {this.item.bathrooms} Bathroom
+              </div>
             </div>
-            <div>
-              <lazy-image src="/assets/images/icons/bathroom.svg" class="bathrooms" alt="bathroom icon" /> {this.item.bathrooms} Bathroom
-            </div>
-          </div>
-          <div class="rating-amenities">
-            <star-rating
-                stars={5}
-                size={16}
-                rating={this.item.rating}
-                readonly
-            />
+            <div class="rating-amenities">
+              <star-rating
+                  stars={5}
+                  size={16}
+                  rating={this.item.rating}
+                  readonly
+              />
 
-            <div class="amenities">
-              Elevator
+              <div class="amenities">
+                Elevator
+              </div>
             </div>
           </div>
         </div>

@@ -1,14 +1,22 @@
 import { Actions, ActionTypes } from "../actions/index";
 
 interface screensizeState {
-  size: string
+  width: number,
+  height: number,
+  size: string,
+  isMobile: boolean,
+  isDesktop: boolean,
+  headerHeight: number | null
 }
 
 const getInitialState = () => {
   return {
+    width: 375,
+    height: 812,
     size: 'phone-only',
     isMobile: true,
-    isDesktop: false
+    isDesktop: false,
+    headerHeight: null
   };
 };
 
@@ -23,21 +31,21 @@ const screensizeReducer = (
       let isMobile = true;
       let isDesktop = false;
 
-      if (action.payload >= 768) {
+      if (action.payload.width >= 768) {
         size = 'tablet-portrait-up';
       }
 
-      if (action.payload >= 900) {
+      if (action.payload.width >= 900) {
         size = 'tablet-landscape-up';
       }
 
-      if (action.payload >= 1200) {
+      if (action.payload.width >= 1200) {
         size = 'desktop-up';
         isMobile = false;
         isDesktop = true;
       }
 
-      if (action.payload >= 1800) {
+      if (action.payload.width >= 1800) {
         size = 'big-desktop-up';
         isMobile = false;
         isDesktop = true;
@@ -45,10 +53,19 @@ const screensizeReducer = (
 
       return {
         ...state,
+        width: action.payload.width,
+        height: action.payload.height,
         size,
         isMobile,
         isDesktop
       };
+    }
+
+    case Actions.UPDATE_HEADER_HEIGHT: {
+      return {
+        ...state,
+        headerHeight: action.payload
+      }
     }
   }
 

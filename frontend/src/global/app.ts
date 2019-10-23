@@ -6,7 +6,8 @@ import { setupConfig } from '../services/environment/environment-config';
 setupConfig({
     API_URL: '<@API_URL@>',
     BASE_URL: '<@BASE_URL@>',
-    APP_ENVIRONMENT: '<@APP_ENVIRONMENT@>'
+    APP_ENVIRONMENT: '<@APP_ENVIRONMENT@>',
+    MAPBOX_PUBLIC_TOKEN: '<@MAPBOX_PUBLIC_TOKEN@>'
 });
 
 export default () => {

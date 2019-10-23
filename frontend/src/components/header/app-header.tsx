@@ -1,6 +1,7 @@
-import { Component, h, State, Prop } from '@stencil/core';
+import { Component, h, State, Prop, Element } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../store/actions/search-filters";
+import { updateHeaderHeight } from '../../store/actions/screensize';
 
 @Component({
   tag: 'app-header',
@@ -11,9 +12,12 @@ export class AppHeader {
   @State() displayFilter: boolean;
   @State() size: string;
   @State() isMobile: boolean;
-  toggleSearchFilterDisplay: Action;
+  @Element() el: HTMLElement;
 
-  componentDidLoad() {
+  toggleSearchFilterDisplay: Action;
+  updateHeaderHeight: Action;
+
+  componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       const {
         searchFilters: { displayFilter },
@@ -28,8 +32,16 @@ export class AppHeader {
     });
 
     this.store.mapDispatchToProps(this, {
-      toggleSearchFilterDisplay
+      toggleSearchFilterDisplay,
+      updateHeaderHeight
     });
+  }
+
+  componentDidRender() {
+    // page components may need to calculate things with the header height, like the sticky map
+    let headerHeight = this.el.querySelector('.app-header').clientHeight;
+
+    this.updateHeaderHeight(headerHeight);
   }
 
   async openMenu() {
