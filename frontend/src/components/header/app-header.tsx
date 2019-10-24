@@ -2,6 +2,7 @@ import { Component, h, State, Prop, Element } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../store/actions/search-filters";
 import { updateHeaderHeight } from '../../store/actions/screensize';
+import { createAnimation } from '@ionic/core';
 
 @Component({
   tag: 'app-header',
@@ -46,9 +47,35 @@ export class AppHeader {
   }
 
   async openMenu() {
+    const menuAnimation = (baseEl: HTMLElement): any => {
+      const baseAnimation = createAnimation();
+      const backdropAnimation = createAnimation();
+      const wrapperAnimation = createAnimation();
+
+      backdropAnimation
+        .addElement(baseEl.querySelector('ion-backdrop')!)
+        .fromTo('opacity', 0.01, 'var(--backdrop-opacity)');
+
+      wrapperAnimation
+        .addElement(baseEl.querySelector('.modal-wrapper')!)
+        .keyframes([
+          { offset: 0, opacity: 0.01, transform: 'translateY(40px)' },
+          { offset: 1, opacity: 1, transform: 'translateY(0px)' }
+        ]);
+
+      return baseAnimation
+        .addElement(baseEl)
+        .easing('cubic-bezier(0.36,0.66,0.04,1)')
+        .duration(0)
+        .beforeAddClass('show-modal')
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+    };
+
     const modal = Object.assign(document.createElement('ion-modal'), {
       component: 'app-menu',
-      cssClass: 'app-menu'
+      cssClass: 'app-menu',
+      enterAnimation: menuAnimation,
+      leaveAnimation: menuAnimation
     });
 
     document.body.appendChild(modal);
@@ -107,7 +134,7 @@ export class AppHeader {
                 Speak to an expert
               </ion-button>
 
-              <ion-button aria-label="Menu" fill="clear" class="menu" onClick={() => this.openMenu()}>
+              <ion-button aria-label="Menu" fill="clear" class="menu reset" onClick={() => this.openMenu()}>
                 <ion-icon aria-label="Menu" src="/assets/images/icons/hamburger.svg" slot="icon-only" />
               </ion-button>
             </div>
