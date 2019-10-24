@@ -234,3 +234,16 @@ ion-button.reset {
 .text-capitalize {
   text-transform: capitalize;
 }
+
+ion-checkbox {
+  &.checkbox-checked:after {
+    content: '';
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: 0;
+  }
+}

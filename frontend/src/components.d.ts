@@ -10,7 +10,9 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface AppFooter {}
-  interface AppHeader {}
+  interface AppHeader {
+    'hideSearchButton': boolean;
+  }
   interface AppMenu {}
   interface AppProfile {
     'name': string;
@@ -252,7 +254,9 @@ declare global {
 
 declare namespace LocalJSX {
   interface AppFooter extends JSXBase.HTMLAttributes<HTMLAppFooterElement> {}
-  interface AppHeader extends JSXBase.HTMLAttributes<HTMLAppHeaderElement> {}
+  interface AppHeader extends JSXBase.HTMLAttributes<HTMLAppHeaderElement> {
+    'hideSearchButton'?: boolean;
+  }
   interface AppMenu extends JSXBase.HTMLAttributes<HTMLAppMenuElement> {}
   interface AppProfile extends JSXBase.HTMLAttributes<HTMLAppProfileElement> {
     'name'?: string;

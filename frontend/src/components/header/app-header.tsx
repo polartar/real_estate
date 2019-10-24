@@ -9,6 +9,7 @@ import { updateHeaderHeight } from '../../store/actions/screensize';
 })
 export class AppHeader {
   @Prop({ context: "store" }) store: Store;
+  @Prop() hideSearchButton: boolean = false;
   @State() displayFilter: boolean;
   @State() size: string;
   @State() isMobile: boolean;
@@ -76,40 +77,45 @@ export class AppHeader {
   render() {
     return [
       <header class="header-wrapper">
-        <div class="app-header section">
-          <ion-router-link href="/" class="logo-link">
-            <img src="/assets/images/logo.svg" class="logo" alt="APT212 Logo"></img>
-          </ion-router-link>
-
-          <button class="search" aria-label="Search" onClick={() => { this.activateSearch() }}>
-            <svg class="feather feather-search" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke="black" stroke-width="3" fill="transparent"></circle><line stroke="black" stroke-width="3" x1="24" x2="16.65" y1="24" y2="16.65"></line></svg>
-            Search Apartments
-          </button>
-
-          <div class="header-center" />
-
-          <div class="header-right">
-            <ion-router-link href="/" class="nav">
-              Bookings
+        <div class="header-inner">
+          <div class="app-header section">
+            <ion-router-link href="/" class="logo-link">
+              <img src="/assets/images/logo.svg" class="logo" alt="APT212 Logo"></img>
             </ion-router-link>
 
-            <ion-router-link href="/" class="nav">
-              FAQ
-            </ion-router-link>
+            { !this.hideSearchButton ?
+            <button class="search" aria-label="Search" onClick={() => { this.activateSearch() }}>
+              <svg class="feather feather-search" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke="black" stroke-width="3" fill="transparent"></circle><line stroke="black" stroke-width="3" x1="24" x2="16.65" y1="24" y2="16.65"></line></svg>
+              Search Apartments
+            </button>
+            : null
+            }
 
-            <ion-button aria-label="Speak to an expert" class="call">
-              <ion-icon name="call"></ion-icon>
-              Speak to an expert
-            </ion-button>
+            <div class="header-center" />
 
-            <ion-button aria-label="Menu" fill="clear" class="menu" onClick={() => this.openMenu()}>
-              <ion-icon aria-label="Menu" src="/assets/images/icons/hamburger.svg" slot="icon-only" />
-            </ion-button>
+            <div class="header-right">
+              <ion-router-link href="/" class="nav">
+                Bookings
+              </ion-router-link>
+
+              <ion-router-link href="/" class="nav">
+                FAQ
+              </ion-router-link>
+
+              <ion-button aria-label="Speak to an expert" class="call">
+                <ion-icon name="call"></ion-icon>
+                Speak to an expert
+              </ion-button>
+
+              <ion-button aria-label="Menu" fill="clear" class="menu" onClick={() => this.openMenu()}>
+                <ion-icon aria-label="Menu" src="/assets/images/icons/hamburger.svg" slot="icon-only" />
+              </ion-button>
+            </div>
           </div>
-        </div>
 
-        <div>
-          {this.displayFilter ? <search-filters /> : ''}
+          <div class="search-filters-wrapper">
+              {this.displayFilter ? <search-filters /> : ''}
+          </div>
         </div>
       </header>
     ];
