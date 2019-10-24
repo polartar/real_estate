@@ -33,18 +33,6 @@ export class LocationFilter {
     });
   }
 
-  componentDidLoad() {
-    // fix issue with checked-binding on ion-checkbox
-    let checkboxes = this.el.querySelectorAll('ion-checkbox[data-checked="checked"]');
-
-    checkboxes.forEach(checkbox => {
-      if (checkbox.getAttribute('data-checked') && !checkbox.getAttribute('checked')) {
-        // we need to explicitly re-set the checked prop
-        checkbox.setAttribute('checked', 'checked');
-      }
-    });
-  }
-
   closePopover() {
     const popover = document.querySelector('ion-popover');
 
@@ -67,24 +55,9 @@ export class LocationFilter {
     return !!cb.getAttribute('checked') || !!cb.getAttribute('data-checked');
   }
 
-  toggleCheckbox(e) {
-    let cb;
-
-    if (e.target.tagName === 'LABEL') {
-      cb = e.target.querySelector('ion-checkbox');
-
-      if (this.isChecked(cb)) {
-        this.uncheck(cb);
-      }
-      else {
-        this.check(cb);
-      }
-    }
-  }
-
   regionChange(e) {
     const container = e.target.closest('.region-container');
-    const checkboxes = container.querySelectorAll('ion-checkbox');
+    const checkboxes = container.querySelectorAll('apt212-checkbox.neighborhood');
 
     if (!this.enableNeighborhoodCheck) {
       return;
@@ -92,25 +65,26 @@ export class LocationFilter {
 
     this.enableRegionCheck = false;
 
+    let promises = [];
+
     checkboxes.forEach(checkbox => {
       if (!!e.detail.checked) {
-        this.check(checkbox);
+        promises.push(checkbox.check());
       }
       else {
-        this.uncheck(checkbox);
+        promises.push(checkbox.uncheck());
       }
     });
 
-    this.enableRegionCheck = true;
+    Promise.all(promises).then(() => {
+      this.enableRegionCheck = true;
+    });
   }
 
-  neighborhoodChange(e) {
+  async neighborhoodChange(e) {
+    console.log('neighborhood change', e.detail.checked);
     const container = e.target.closest('.region-container');
-    const regionCB = container.querySelector('ion-checkbox.region');
-
-    if (!!e.detail.checked) {
-      e.target.setAttribute('data-checked', 'checked');
-    }
+    const regionCB = container.querySelector('apt212-checkbox.region');
 
     if (this.enableRegionCheck) {
       this.enableNeighborhoodCheck = false;
@@ -118,33 +92,34 @@ export class LocationFilter {
       if (!!e.detail.checked) {
         // if all other ones in this region are checked
         // then check the region box
-        const checkboxes = container.querySelectorAll('ion-checkbox.neighborhood');
+        const checkboxes = container.querySelectorAll('apt212-checkbox.neighborhood');
 
-        let enable = true;
-        checkboxes.forEach(checkbox => {
-          if (!this.isChecked(checkbox)) {
-            enable = false;
-          }
+        let promises = [];
+
+        checkboxes.forEach(async checkbox => {
+          promises.push(checkbox.isChecked());
         });
 
-        if (enable) {
-          this.check(regionCB);
+        let result = await Promise.all(promises);
+
+        if (!result.includes(false)) {
+          await regionCB.check();
         }
       }
       else {
         // unchecked, so we uncheck the region
-        this.uncheck(regionCB);
+        await regionCB.uncheck();
       }
 
       this.enableNeighborhoodCheck = true;
     }
 
-    if (!!e.detail.checked) {
-      this.value.push(parseInt(e.target.getAttribute('data-value')));
+    if (e.detail.checked) {
+      this.value.push(parseInt(e.detail.value));
     }
     else {
       this.value = this.value.filter(val => {
-        return val !== parseInt(e.target.getAttribute('data-value'));
+        return val !== parseInt(e.detail.value);
       })
     }
 
@@ -156,14 +131,14 @@ export class LocationFilter {
   }
 
   toggleAll(on) {
-    const checkboxes = this.el.querySelectorAll('ion-checkbox');
+    const checkboxes: any = this.el.querySelectorAll('apt212-checkbox.region');
 
     checkboxes.forEach(checkbox => {
       if (on) {
-        this.check(checkbox);
+        checkbox.check();
       }
       else {
-        this.uncheck(checkbox);
+        checkbox.uncheck();
       }
     });
   }
@@ -196,9 +171,8 @@ export class LocationFilter {
               let regionCheckboxProps: any = {
                 name: region,
                 class: 'region',
-                onIonChange: e => this.regionChange(e),
+                onCheckBoxChange: e => this.regionChange(e),
                 checked: "checked",
-                'data-checked': "checked"
               };
 
               this.neighborhoods[region].forEach(neighborhood => {
@@ -210,28 +184,27 @@ export class LocationFilter {
 
               return(
                 <div class="region-container">
-                  <label onClick={e => this.toggleCheckbox(e)}>
-                    <ion-checkbox {...regionCheckboxProps} /> {region}
-                  </label>
+                  <apt212-checkbox {...regionCheckboxProps}>
+                    {region}
+                  </apt212-checkbox>
 
                   <div class="neighborhoods-container">
                     {this.neighborhoods[region].map(neighborhood => {
                       let checkboxProps: any = {
                         name: neighborhood.name,
-                        'data-value': neighborhood.id,
+                        value: neighborhood.id,
                         class: 'neighborhood',
-                        onIonChange: e => { this.neighborhoodChange(e) },
+                        onCheckBoxChange: e => this.neighborhoodChange(e),
                       };
 
                       if (this.value.indexOf(neighborhood.id) > -1) {
                         checkboxProps.checked = 'checked';
-                        checkboxProps['data-checked'] = "checked";
                       }
 
                       return (
-                        <label onClick={e => this.toggleCheckbox(e)}>
-                          <ion-checkbox {...checkboxProps} /> {neighborhood.name}
-                        </label>
+                        <apt212-checkbox {...checkboxProps}>
+                          {neighborhood.name}
+                        </apt212-checkbox>
                       )
                     })}
                   </div>

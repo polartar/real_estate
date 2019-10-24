@@ -1,0 +1,28 @@
+.apt212-checkbox {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-top: var(--apt212-checkbox-padding-top, 0);
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  .checkbox {
+    display: inline-block;
+    width: var(--apt212-checkbox-width, 10px);
+    height: var(--apt212-checkbox-height, 10px);
+    margin-right: var(--apt212-margin-right, 0.25rem);
+    background-color: #f8f8f8;
+    border: 0.5px solid #979797;
+
+    &.checked {
+      background-color: black;
+      border-color: #454545;
+    }
+  }
+}

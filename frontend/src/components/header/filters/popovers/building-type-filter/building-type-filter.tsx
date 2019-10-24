@@ -45,39 +45,33 @@ export class BuildingTypeFilter {
     });
   }
 
-  componentDidLoad() {
-    // fix issue with checked-binding on ion-checkbox
-    let checkboxes = this.el.querySelectorAll('ion-checkbox[data-checked="checked"]');
-
-    checkboxes.forEach(checkbox => {
-      if (checkbox.getAttribute('data-checked') && !checkbox.getAttribute('checked')) {
-        // we need to explicitly re-set the checked prop
-        checkbox.setAttribute('checked', 'checked');
-      }
-    });
-  }
-
   @Method()
   async selectAll() {
-    const checkboxes = this.el.querySelectorAll('ion-checkbox');
+    const checkboxes: any = this.el.querySelectorAll('apt212-checkbox');
 
     this.value = [];
 
+    let promises = [];
+
     checkboxes.forEach(checkbox => {
-      this.check(checkbox);
+      // console.log('checking checkbox');
+      // checkbox.check().then(() => { console.log('done check')});
+      promises.push(checkbox.check());
     });
 
-    this.setBuildingTypesFilter(this.value);
+    Promise.all(promises).then(() => {
+      // this.setBuildingTypesFilter(this.value);
+    });
   }
 
   @Method()
   async clearAll() {
-    const checkboxes = this.el.querySelectorAll('ion-checkbox');
+    const checkboxes: any = this.el.querySelectorAll('apt212-checkbox');
 
     this.value = [];
 
     checkboxes.forEach(checkbox => {
-      this.uncheck(checkbox);
+      checkbox.uncheck();
     });
 
     this.setBuildingTypesFilter(this.value);
@@ -92,44 +86,21 @@ export class BuildingTypeFilter {
   }
 
   check(cb) {
-    cb.setAttribute('checked', 'checked');
-    cb.setAttribute('data-checked', 'checked');
+    cb.check();
   }
 
   uncheck(cb) {
-    cb.removeAttribute('checked');
-    cb.removeAttribute('data-checked');
-  }
-
-  isChecked(cb) {
-    return !!cb.getAttribute('checked') || !!cb.getAttribute('data-checked');
-  }
-
-  toggleCheckbox(e) {
-    let cb;
-
-    if (e.target.tagName === 'LABEL') {
-      cb = e.target.querySelector('ion-checkbox');
-
-      if (this.isChecked(cb)) {
-        this.uncheck(cb);
-      }
-      else {
-        this.check(cb);
-      }
-    }
+    cb.checked = false;
   }
 
   valueChanged(e) {
-    if (!!e.detail.checked) {
-      e.target.setAttribute('data-checked', 'checked');
-
+    if (e.detail.checked) {
       this.value.push(e.detail.value);
     }
     else {
       this.value = this.value.filter(val => {
         return val !== e.detail.value;
-      })
+      });
     }
 
     this.setBuildingTypesFilter(this.value);
@@ -144,18 +115,17 @@ export class BuildingTypeFilter {
           {this.structure.map(item => {
             const checkboxProps: any = {
               value: item.value,
-              onIonChange: e => this.valueChanged(e)
+              onCheckBoxChange: e => this.valueChanged(e)
             };
 
             if (this.value.indexOf(item.value) > -1) {
               checkboxProps.checked = 'checked';
-              checkboxProps['data-checked'] = 'checked';
             }
 
             return (
-              <label onClick={e => this.toggleCheckbox(e)}>
-                <ion-checkbox {...checkboxProps} /> <star-rating rating={item.rating} stars={5} size={16} readonly /> {item.name}
-              </label>
+              <apt212-checkbox {...checkboxProps}>
+                <star-rating rating={item.rating} stars={5} size={16} readonly /> {item.name}
+              </apt212-checkbox>
             )
           })}
         </div>
