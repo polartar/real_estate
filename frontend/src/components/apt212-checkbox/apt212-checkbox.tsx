@@ -22,7 +22,7 @@ export class Apt212Checkbox {
   }
 
   @Method('check')
-  check() {
+  async check() {
     const cb = this.getCheckbox();
 
     cb.checked = true;
@@ -31,7 +31,7 @@ export class Apt212Checkbox {
   }
 
   @Method('uncheck')
-  uncheck() {
+  async uncheck() {
     const cb = this.getCheckbox();
 
     cb.checked = false;

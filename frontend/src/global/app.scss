@@ -185,7 +185,7 @@ h2, h3, h4 {
     display: flex;
     align-items: center;
     // padding-top: 1rem;
-    height: auto;
+    height: $mobile-header-height;
 
     @include for-size(tablet-portrait-up) {
       padding-top: 2rem;
@@ -194,10 +194,6 @@ h2, h3, h4 {
     @include for-size(desktop-up) {
       padding-top: 0;
       height: $header-height;
-    }
-
-    @include for-size(phone-only) {
-      height: $mobile-header-height;
     }
 
     .logo-link {
