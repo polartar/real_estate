@@ -13,11 +13,15 @@
     position: absolute;
     width: 100%;
     text-align: center;
-    bottom: 20px;
+    bottom: 5px;
     color: white;
+    font-size: 15px;
+    font-weight: 600;
 
     @include for-size(desktop-up) {
       font-size: $font-size-lg;
+      font-weight: normal;
+      bottom: 20px;
     }
   }
 
