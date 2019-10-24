@@ -1,8 +1,9 @@
-import { Component, h, Prop, State, Listen } from '@stencil/core';
-import { Store, Action } from "@stencil/redux";
+import { Component, h, Prop, Listen, Build, Element, Watch } from '@stencil/core';
+import { Store } from "@stencil/redux";
+import { ScriptLoaderService } from '../../../services/script-loader.service';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
-import { toggleSearchFilterDisplay } from "../../../store/actions/search-filters";
-import mapboxgl from 'mapbox-gl';
+
+declare var mapboxgl: any;
 
 @Component({
   tag: 'page-search',
@@ -10,15 +11,19 @@ import mapboxgl from 'mapbox-gl';
 })
 export class PageSearch {
   @Prop({ context: "store" }) store: Store;
-  @State() size: string = 'phone-only';
-  @State() height: number;
-  @State() isMobile: boolean = true;
-  @State() displayFilter: boolean;
-  @State() headerHeight: number | null = null;
+  // @State() size: string = 'phone-only';
+  @Prop() size: string = 'phone-only';
+  // @State() height: number;
+  @Prop() height: number;
+  // @State() isMobile: boolean = true;
+  @Prop() isMobile: boolean = true;
+  // @State() headerHeight: number | null = null;
+  @Prop() headerHeight: number | null = null;
+  @Element() el: HTMLElement;
 
   map: any;
+  mapRendered: boolean = false;
 
-  toggleSearchFilterDisplay: Action;
   headerHeightInterval: any = null;
 
   componentDidLoad() {
@@ -26,7 +31,6 @@ export class PageSearch {
 
       const {
         screenSize: { size, isMobile, height, headerHeight },
-        searchFilters: { displayFilter }
       } = state;
 
       return {
@@ -34,17 +38,28 @@ export class PageSearch {
         height,
         headerHeight,
         isMobile,
-        displayFilter
       };
-    });
-
-    this.store.mapDispatchToProps(this, {
-      toggleSearchFilterDisplay
     });
   }
 
+  @Watch('height')
+  heightChanged(newValue, oldValue) {
+    console.log('height changed', newValue, oldValue);
+  }
+
+  @Watch('size')
+  sizeChanged(newValue, oldValue) {
+    console.log('sizechanged', newValue, oldValue);
+  }
+
   componentDidRender() {
-    if (this.canRenderMap()) {
+    if (this.canRenderMap() && !this.mapRendered) {
+      const container: any = this.el.querySelector("#page-search-map-instance");
+      console.log(this.height, this.headerHeight);
+      let newHeight = `${this.height - this.headerHeight}px`;
+      console.log(newHeight);
+      container.style.height = newHeight;
+
       this.initializeMap();
     }
   }
@@ -54,27 +69,37 @@ export class PageSearch {
     target: 'document'
   })
   routeChanged(event) {
-    if (event.detail.to !== '/search') {
-      if (this.map) {
-        this.map.remove();
-        this.map = null;
-      }
-    }
+    console.log(event);
   }
 
   initializeMap() {
-    mapboxgl.accessToken = EnvironmentConfigService.getInstance().get('MAPBOX_PUBLIC_TOKEN');
+    if (!this.canRenderMap()) {
+      return;
+    }
 
-    this.map = new mapboxgl.Map({
-      container: 'page-search-map-instance',
-      style: 'mapbox://styles/mapbox/streets-v11'
-    })
+    if (this.map) {
+      this.map.remove();
+      this.map = null;
+    }
+
+    ScriptLoaderService.loadScript('mapbox', 'https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js')
+      .then(() => {
+        mapboxgl.accessToken = EnvironmentConfigService.getInstance().get('MAPBOX_PUBLIC_TOKEN');
+
+        this.map = new mapboxgl.Map({
+          container: 'page-search-map-instance',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [-74.0392706, 40.7591704],
+          zoom: 12
+        });
+
+        this.mapRendered = true;
+      });
   }
 
   canRenderMap() {
-    return this.headerHeight !== null;
+    return !!Build.isBrowser;
   }
-
 
   render() {
 
@@ -98,7 +123,6 @@ export class PageSearch {
               {results}
             </div>
             <div class="search-map">
-
               { this.canRenderMap() ?
               <div id="page-search-map-instance" class="map-wrapper" style={{ height: `${mapHeight}px`, top: `${this.headerHeight}px`}}></div>
               : null }

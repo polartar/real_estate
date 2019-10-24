@@ -57,7 +57,12 @@ export namespace Components {
     'items': any[];
   }
   interface PageHome {}
-  interface PageSearch {}
+  interface PageSearch {
+    'headerHeight': number | null;
+    'height': number;
+    'isMobile': boolean;
+    'size': string;
+  }
   interface PriceFilter {
     'inModal': boolean;
   }
@@ -288,7 +293,12 @@ declare namespace LocalJSX {
     'items'?: any[];
   }
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
-  interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {}
+  interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
+    'headerHeight'?: number | null;
+    'height'?: number;
+    'isMobile'?: boolean;
+    'size'?: string;
+  }
   interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {
     'inModal'?: boolean;
   }
