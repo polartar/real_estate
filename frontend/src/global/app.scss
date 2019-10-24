@@ -196,6 +196,10 @@ h2, h3, h4 {
       height: $header-height;
     }
 
+    @include for-size(phone-only) {
+      height: $mobile-header-height;
+    }
+
     .logo-link {
       flex-grow: 1;
 
