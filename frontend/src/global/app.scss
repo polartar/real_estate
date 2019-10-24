@@ -62,12 +62,12 @@ html.md {
 }
 
 ion-button {
-  --background-hover: #{$color-primary-lighter};
+  --background-hover: #{$color-primary-lighter} !important;
   --border-radius: 0;
-  --box-shadow: none;
-  --ion-default-font: 'Source Sans Pro', sans-serif;
-  --ion-font-family: 'Source Sans Pro', sans-serif;
-  letter-spacing: normal;
+  --box-shadow: none !important;
+  --ion-default-font: 'Source Sans Pro', sans-serif !important;
+  --ion-font-family: 'Source Sans Pro', sans-serif !important;
+  letter-spacing: normal !important;
   font-weight: bold;
   font-size: $font-size-md;
   letter-spacing: 0;
@@ -78,12 +78,13 @@ ion-button {
 
   &.reset {
     color: $color-primary;
-    --background: transparent;
-    --background-hover: transparent;
-    --ripple-color: transparent;
-    --background-activated: transparent;
+    --background: transparent !important;
+    --background-hover: transparent !important;
+    --ripple-color: transparent !important;
+    --background-activated: transparent !important;
     --color-activated: $color-primary;
     letter-spacing: 0;
+    --box-shadow: none !important;
   }
 }
 
