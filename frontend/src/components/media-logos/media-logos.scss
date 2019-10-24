@@ -20,6 +20,10 @@
     @include for-size(tablet-landscape-up) {
       padding: 1rem;
     }
+
+    @include for-size(phone-only) {
+      width: 20%;
+    }
   }
 
   .media-logo {
