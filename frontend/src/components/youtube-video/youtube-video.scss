@@ -1,0 +1,28 @@
+.youtube-video {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+
+  .placeholder {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+  }
+
+  a.placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      color: white;
+      font-size: 3rem;
+    }
+  }
+
+  img.placeholder {
+    position: absolute;
+    object-fit: contain;
+  }
+}
