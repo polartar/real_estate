@@ -115,6 +115,12 @@ export class PageHome {
       neighborhoodTitle = 'Neighborhoods';
     }
 
+    // hacky workaround
+    let iframeProps = {
+      allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
+      allowfullscreen: true
+    };
+
     return [
       <ion-content class="page-home">
         <app-header />
@@ -159,7 +165,7 @@ export class PageHome {
 
             <div class="video">
               <maintain-ratio width={640} height={360}>
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/C0DPdy98e4c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/C0DPdy98e4c" frameborder="0" {...iframeProps}></iframe>
               </maintain-ratio>
             </div>
           </div>
