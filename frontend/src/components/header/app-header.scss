@@ -32,7 +32,7 @@ $app-header-button-height: 48px;
     @include for-size(desktop-up) {
       width: 365px;
       font-size: $font-size-md;
-      font-weight: bold;
+      font-weight: normal;
       height: $app-header-button-height;
       box-shadow: 0 0 11px 0 rgba(134, 134, 134, 0.22);
     }
