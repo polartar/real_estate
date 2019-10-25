@@ -1,4 +1,4 @@
-import { Component, h, Prop, Listen, Build, Element, Watch } from '@stencil/core';
+import { Component, h, Prop, Build, Element, Watch } from '@stencil/core';
 import { Store } from "@stencil/redux";
 import { ScriptLoaderService } from '../../../services/script-loader.service';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
@@ -62,14 +62,6 @@ export class PageSearch {
 
       this.initializeMap();
     }
-  }
-
-  // remove map when exiting
-  @Listen('ionRouteDidChange', {
-    target: 'document'
-  })
-  routeChanged(event) {
-    console.log(event);
   }
 
   initializeMap() {
