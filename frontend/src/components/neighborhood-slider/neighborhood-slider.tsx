@@ -17,6 +17,12 @@ export class NeighborhoodSlider {
   }
 
   componentDidLoad() {
+    setTimeout(() => {
+      this.initializeSlider();
+    }, 100);
+  }
+
+  initializeSlider() {
     let slides = document.querySelectorAll('.' + this.sliderClass + ' .glide__slide');
 
     if (!slides.length) {
@@ -69,9 +75,7 @@ export class NeighborhoodSlider {
       }
     });
 
-    setTimeout(() => {
-      this.glide.mount();
-    }, 100);
+    this.glide.mount();
   }
 
   componentDidUnload() {

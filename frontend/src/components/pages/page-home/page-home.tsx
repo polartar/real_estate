@@ -158,9 +158,9 @@ export class PageHome {
             </div>
 
             <div class="video">
-              <button class="video-start" aria-label="Play Video">
-                <ion-icon name="play" />
-              </button>
+              <maintain-ratio width={640} height={360}>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/C0DPdy98e4c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </maintain-ratio>
             </div>
           </div>
 

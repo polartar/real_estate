@@ -18,6 +18,12 @@ export class ListingSlider {
   }
 
   componentDidLoad() {
+    setTimeout(() => {
+      this.initializeSlider();
+    }, 100);
+  }
+
+  initializeSlider() {
     let slides = document.querySelectorAll('.' + this.sliderClass + ' .glide__slide');
 
     if (!slides.length) {
@@ -61,20 +67,7 @@ export class ListingSlider {
       }
     });
 
-    // this.glide.on('run.after', () => {
-    //   let track: HTMLElement = document.querySelector('.' + this.sliderClass + ' .glide__track');
-    //   let slide: HTMLElement = document.querySelector('.' + this.sliderClass + ' .glide__slide');
-    //   var slideHeight = slide.offsetHeight;
-    //   var glideTrack = track.offsetHeight;
-    //   if (slideHeight != glideTrack) {
-    //     var newHeight = slideHeight;
-    //     track.style.height = newHeight + 'px';
-    //   }
-    // });
-
-    setTimeout(() => {
-      this.glide.mount();
-    }, 100);
+    this.glide.mount();
   }
 
   componentDidUnload() {

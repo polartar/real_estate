@@ -61,6 +61,10 @@ export namespace Components {
   interface LocationFilter {
     'inModal': boolean;
   }
+  interface MaintainRatio {
+    'height': number;
+    'width': number;
+  }
   interface MediaLogos {}
   interface MobileFilterMenu {}
   interface MoveInDateFilter {
@@ -191,6 +195,12 @@ declare global {
     new (): HTMLLocationFilterElement;
   };
 
+  interface HTMLMaintainRatioElement extends Components.MaintainRatio, HTMLStencilElement {}
+  var HTMLMaintainRatioElement: {
+    prototype: HTMLMaintainRatioElement;
+    new (): HTMLMaintainRatioElement;
+  };
+
   interface HTMLMediaLogosElement extends Components.MediaLogos, HTMLStencilElement {}
   var HTMLMediaLogosElement: {
     prototype: HTMLMediaLogosElement;
@@ -267,6 +277,7 @@ declare global {
     'listing-list': HTMLListingListElement;
     'listing-slider': HTMLListingSliderElement;
     'location-filter': HTMLLocationFilterElement;
+    'maintain-ratio': HTMLMaintainRatioElement;
     'media-logos': HTMLMediaLogosElement;
     'mobile-filter-menu': HTMLMobileFilterMenuElement;
     'move-in-date-filter': HTMLMoveInDateFilterElement;
@@ -324,6 +335,10 @@ declare namespace LocalJSX {
   interface LocationFilter extends JSXBase.HTMLAttributes<HTMLLocationFilterElement> {
     'inModal'?: boolean;
   }
+  interface MaintainRatio extends JSXBase.HTMLAttributes<HTMLMaintainRatioElement> {
+    'height'?: number;
+    'width'?: number;
+  }
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
   interface MobileFilterMenu extends JSXBase.HTMLAttributes<HTMLMobileFilterMenuElement> {}
   interface MoveInDateFilter extends JSXBase.HTMLAttributes<HTMLMoveInDateFilterElement> {
@@ -372,6 +387,7 @@ declare namespace LocalJSX {
     'listing-list': ListingList;
     'listing-slider': ListingSlider;
     'location-filter': LocationFilter;
+    'maintain-ratio': MaintainRatio;
     'media-logos': MediaLogos;
     'mobile-filter-menu': MobileFilterMenu;
     'move-in-date-filter': MoveInDateFilter;
