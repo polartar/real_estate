@@ -1,7 +1,6 @@
 import { Component, h, Prop } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../../store/actions/search-filters";
-import { createAnimation } from '@ionic/core';
 
 @Component({
   tag: 'search-filters',
@@ -18,36 +17,15 @@ export class SearchFilters {
   }
 
   async showFilterOptions(ev, component) {
-    const leaveAnimation = (baseEl: HTMLElement): any => {
-      const baseAnimation = createAnimation();
-      const backdropAnimation = createAnimation();
-      const wrapperAnimation = createAnimation();
-
-      backdropAnimation
-        .addElement(baseEl.querySelector('ion-backdrop')!)
-        .fromTo('opacity', 'var(--backdrop-opacity)', 0);
-
-      wrapperAnimation
-        .addElement(baseEl.querySelector('.popover-wrapper')!)
-        .fromTo('opacity', 0.99, 0);
-
-      return baseAnimation.addElement(baseEl).easing('ease').duration(0).addAnimation([backdropAnimation, wrapperAnimation]);
-    };
-
-    const popover = Object.assign(document.createElement('ion-popover'), {
+    const popover = Object.assign(document.createElement('apt212-popover'), {
       component: component,
       componentProps: {
         inModal: true
       },
-      event: ev,
-      showBackdrop: false,
-      leaveAnimation: leaveAnimation
+      event: ev
     });
 
-    popover.classList.add('search-filter-popover');
-
     document.body.appendChild(popover);
-    return popover.present();
   }
 
   async launchMobileFilterMenu() {

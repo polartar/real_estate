@@ -63,7 +63,7 @@ html.md {
 
 ion-button {
   --background-hover: #{$color-primary-lighter} !important;
-  --border-radius: 0;
+  --border-radius: 0 !important;
   --box-shadow: none !important;
   --ion-default-font: 'Source Sans Pro', sans-serif !important;
   --ion-font-family: 'Source Sans Pro', sans-serif !important;

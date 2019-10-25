@@ -1,4 +1,4 @@
-import { Component, h, State, Prop } from '@stencil/core';
+import { Component, h, State, Prop, Element } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import searchFilterSelectors from '../../../../../store/selectors/search-filters';
 import { setPriceFilter } from '../../../../../store/actions/search-filters';
@@ -10,6 +10,7 @@ import { setPriceFilter } from '../../../../../store/actions/search-filters';
 export class PriceFilter {
   @Prop({ context: "store" }) store: Store;
   @Prop() inModal: boolean = false;
+  @Element() el: HTMLElement;
   @State() value: any = {
     min: 1000,
     max: 15000
@@ -63,7 +64,7 @@ export class PriceFilter {
   }
 
   closePopover() {
-    const popover = document.querySelector('ion-popover');
+    const popover = this.el.closest('apt212-popover');
 
     if (popover) {
       popover.dismiss();

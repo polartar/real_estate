@@ -26,6 +26,12 @@ export namespace Components {
     'uncheck': () => Promise<void>;
     'value': string;
   }
+  interface Apt212Popover {
+    'component': string;
+    'componentProps': any;
+    'dismiss': () => Promise<void>;
+    'event': any;
+  }
   interface BathroomFilter {
     'clearAll': () => Promise<void>;
     'inModal': boolean;
@@ -123,6 +129,12 @@ declare global {
   var HTMLApt212CheckboxElement: {
     prototype: HTMLApt212CheckboxElement;
     new (): HTMLApt212CheckboxElement;
+  };
+
+  interface HTMLApt212PopoverElement extends Components.Apt212Popover, HTMLStencilElement {}
+  var HTMLApt212PopoverElement: {
+    prototype: HTMLApt212PopoverElement;
+    new (): HTMLApt212PopoverElement;
   };
 
   interface HTMLBathroomFilterElement extends Components.BathroomFilter, HTMLStencilElement {}
@@ -245,6 +257,7 @@ declare global {
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'apt212-checkbox': HTMLApt212CheckboxElement;
+    'apt212-popover': HTMLApt212PopoverElement;
     'bathroom-filter': HTMLBathroomFilterElement;
     'bedroom-filter': HTMLBedroomFilterElement;
     'building-type-filter': HTMLBuildingTypeFilterElement;
@@ -282,6 +295,11 @@ declare namespace LocalJSX {
     'name'?: string;
     'onCheckBoxChange'?: (event: CustomEvent<any>) => void;
     'value'?: string;
+  }
+  interface Apt212Popover extends JSXBase.HTMLAttributes<HTMLApt212PopoverElement> {
+    'component': string;
+    'componentProps'?: any;
+    'event'?: any;
   }
   interface BathroomFilter extends JSXBase.HTMLAttributes<HTMLBathroomFilterElement> {
     'inModal'?: boolean;
@@ -344,6 +362,7 @@ declare namespace LocalJSX {
     'app-profile': AppProfile;
     'app-root': AppRoot;
     'apt212-checkbox': Apt212Checkbox;
+    'apt212-popover': Apt212Popover;
     'bathroom-filter': BathroomFilter;
     'bedroom-filter': BedroomFilter;
     'building-type-filter': BuildingTypeFilter;

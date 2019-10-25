@@ -51,7 +51,7 @@ export class LocationFilter {
       }
     });
 
-    this.picker.calendarContainer.style.setProperty('font-size', '1.25rem');
+    this.picker.calendarContainer.style.setProperty('font-size', '1.2rem');
   }
 
   padNumbers() {
@@ -65,7 +65,7 @@ export class LocationFilter {
   }
 
   closePopover() {
-    const popover = document.querySelector('ion-popover');
+    const popover = this.el.closest('apt212-popover');
 
     if (popover) {
       popover.dismiss();

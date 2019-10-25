@@ -1,0 +1,12 @@
+.apt212-popover {
+  position: absolute;
+  background-color: white;
+  transform: scale(0);
+  transform-origin: 0% 0%;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #f0f0f0;
+
+  &.active {
+    transform: scale(1);
+  }
+}
