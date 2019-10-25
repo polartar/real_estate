@@ -72,7 +72,9 @@ export class ListingSlider {
     //   }
     // });
 
-    this.glide.mount();
+    setTimeout(() => {
+      this.glide.mount();
+    }, 100);
   }
 
   componentDidUnload() {

@@ -69,7 +69,9 @@ export class NeighborhoodSlider {
       }
     });
 
-    this.glide.mount();
+    setTimeout(() => {
+      this.glide.mount();
+    }, 100);
   }
 
   componentDidUnload() {

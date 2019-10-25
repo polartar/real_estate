@@ -3,6 +3,7 @@
 
 .neighborhood-card {
   position: relative;
+  overflow: hidden;
   height: 192px;
 
   @include for-size(tablet-portrait-up) {
@@ -30,5 +31,46 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+
+    transition: all 0.3s ease-in-out;
+  }
+
+  .hover-cover {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 115, 101, 0.35) !important;
+    transition: all 0.3s ease-in-out;
+    transform: scale(0);
+  }
+
+  .hover-cover-text {
+    position: absolute;
+    top: 50%;
+    left: -400px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:hover {
+    .hover-cover {
+      transform: scale(1);
+    }
+
+    .hover-cover-text {
+      left: 0;
+    }
+
+    .neighborhood-feature-image {
+      width: 125%;
+      height: 125%
+    }
   }
 }
