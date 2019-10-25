@@ -27,7 +27,7 @@ export class YoutubeVideo {
         :
 
           <a aria-label="Youtube Video" class="placeholder" onClick={() => { this.played = true }}>
-            <img src={`https://i3.ytimg.com/vi/${this.videoId}/hqdefault.jpg`} class="placeholder" />
+            <lazy-image src={`https://i3.ytimg.com/vi/${this.videoId}/hqdefault.jpg`} class="placeholder" alt="Youtube Video" />
             <button aria-label="play video" class="reset">
               <ion-icon name="play" />
             </button>
