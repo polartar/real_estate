@@ -7,6 +7,7 @@
   height: 192px;
 
   @include for-size(tablet-portrait-up) {
+    max-width: 304px;
     height: 368px;
   }
 
