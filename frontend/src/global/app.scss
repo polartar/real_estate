@@ -184,7 +184,6 @@ h2, h3, h4 {
   .app-header {
     display: flex;
     align-items: center;
-    // padding-top: 1rem;
     height: $mobile-header-height;
 
     @include for-size(tablet-portrait-up) {
@@ -215,6 +214,29 @@ h2, h3, h4 {
       @include for-size(desktop-up) {
         flex-grow: 1;
       }
+    }
+
+    .menu {
+      --padding-start: 0.5rem;
+      --padding-end: 0;
+      --background-hover: transparent;
+      --ripple-color: transparent;
+      font-size: 16px;
+
+      @include for-size(desktop-up) {
+        --padding-start: 2rem;
+      }
+    }
+  }
+
+  .header-inner {
+    position: relative;
+
+    .search-filters-wrapper {
+      position: absolute;
+      width: 100%;
+      background-color: white;
+      bottom: -56px;
     }
   }
 }

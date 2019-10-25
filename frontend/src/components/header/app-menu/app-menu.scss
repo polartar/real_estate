@@ -7,9 +7,19 @@
 
   .app-menu-header {
 
+    @include for-size(desktop-up) {
+      // margin-left: -3px; // compensate for ion-content slight shift for modal
+    }
+
     .app-header {
       .header-center {
         flex-grow: 1;
+      }
+
+      @include for-size(desktop-up) {
+        .logo {
+          margin-left: -8px;
+        }
       }
     }
 
@@ -18,7 +28,7 @@
       --padding-end: 0;
       --background-hover: transparent;
       --ripple-color: transparent;
-      font-size: 16px;
+      font-size: 22px;
 
       @include for-size(desktop-up) {
         --padding-start: 2rem;

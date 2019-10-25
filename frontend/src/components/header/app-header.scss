@@ -69,29 +69,4 @@ $app-header-button-height: 48px;
       display: inline-block;
     }
   }
-
-  .menu {
-    --padding-start: 0.5rem;
-    --padding-end: 0;
-    --background-hover: transparent;
-    --ripple-color: transparent;
-    font-size: 16px;
-
-    @include for-size(desktop-up) {
-      --padding-start: 2rem;
-    }
-  }
-}
-
-.header-wrapper {
-  .header-inner {
-    position: relative;
-
-    .search-filters-wrapper {
-      position: absolute;
-      width: 100%;
-      background-color: white;
-      bottom: -56px;
-    }
-  }
 }
