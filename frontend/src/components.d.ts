@@ -94,6 +94,9 @@ export namespace Components {
     'size': number;
     'stars': number;
   }
+  interface YoutubeVideo {
+    'videoId': string;
+  }
 }
 
 declare global {
@@ -260,6 +263,12 @@ declare global {
     prototype: HTMLStarRatingElement;
     new (): HTMLStarRatingElement;
   };
+
+  interface HTMLYoutubeVideoElement extends Components.YoutubeVideo, HTMLStencilElement {}
+  var HTMLYoutubeVideoElement: {
+    prototype: HTMLYoutubeVideoElement;
+    new (): HTMLYoutubeVideoElement;
+  };
   interface HTMLElementTagNameMap {
     'app-footer': HTMLAppFooterElement;
     'app-header': HTMLAppHeaderElement;
@@ -288,6 +297,7 @@ declare global {
     'price-filter': HTMLPriceFilterElement;
     'search-filters': HTMLSearchFiltersElement;
     'star-rating': HTMLStarRatingElement;
+    'youtube-video': HTMLYoutubeVideoElement;
   }
 }
 
@@ -369,6 +379,9 @@ declare namespace LocalJSX {
     'size'?: number;
     'stars'?: number;
   }
+  interface YoutubeVideo extends JSXBase.HTMLAttributes<HTMLYoutubeVideoElement> {
+    'videoId': string;
+  }
 
   interface IntrinsicElements {
     'app-footer': AppFooter;
@@ -398,6 +411,7 @@ declare namespace LocalJSX {
     'price-filter': PriceFilter;
     'search-filters': SearchFilters;
     'star-rating': StarRating;
+    'youtube-video': YoutubeVideo;
   }
 }
 
