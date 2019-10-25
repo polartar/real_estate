@@ -76,6 +76,16 @@ export class PageHome {
     });
   }
 
+  async launchMobileFilterMenu() {
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'mobile-filter-menu',
+      cssClass: 'app-menu'
+    });
+
+    document.body.appendChild(modal);
+    return modal.present();
+  }
+
   render() {
     let phoneTitle, phoneSubtitle, phoneSearch;
 
@@ -95,7 +105,7 @@ export class PageHome {
     if (this.size === 'phone-only') {
       phoneTitle = title;
       phoneSubtitle = subtitle;
-      phoneSearch = <button aria-label="Search" class="search-dark" onClick={() => { this.toggleSearchFilterDisplay(!this.displayFilter) }}>
+      phoneSearch = <button aria-label="Search" class="search-dark" onClick={() => { this.launchMobileFilterMenu() }}>
                       Search
                     </button>
 

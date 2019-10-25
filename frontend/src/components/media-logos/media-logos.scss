@@ -2,34 +2,31 @@
 
 .media-logos {
   box-sizing: border-box;
-  padding-top: 3rem;
+  padding-top: 14rem;
   padding-bottom: 3rem;
 
   @include for-size(tablet-landscape-up) {
     display: flex;
     place-content: center;
     align-items: center;
+    padding-top: 3rem;
   }
 
   .logo-container {
     display: inline-block;
     width: 50%;
     text-align: center;
-    padding: 1rem;
+    padding: 1rem 2.5rem;
 
     @include for-size(tablet-landscape-up) {
       padding: 1rem;
-    }
-
-    @include for-size(phone-only) {
-      width: 20%;
     }
   }
 
   .media-logo {
     width: 100%;
     height: auto;
-    max-height: 50px;
+    max-height: 37px;
     object-fit: contain;
     vertical-align: middle;
 
