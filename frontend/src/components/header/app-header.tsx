@@ -58,15 +58,13 @@ export class AppHeader {
 
       wrapperAnimation
         .addElement(baseEl.querySelector('.modal-wrapper')!)
-        .keyframes([
-          { offset: 0, opacity: 0.01, transform: 'translateY(40px)' },
-          { offset: 1, opacity: 1, transform: 'translateY(0px)' }
-        ]);
+        .beforeStyles({ 'opacity': 1 })
+        .fromTo('transform', 'translateY(100%)', 'translateY(0%)');
 
       return baseAnimation
         .addElement(baseEl)
         .easing('cubic-bezier(0.36,0.66,0.04,1)')
-        .duration(0)
+        .duration(1)
         .beforeAddClass('show-modal')
         .addAnimation([backdropAnimation, wrapperAnimation]);
     };
