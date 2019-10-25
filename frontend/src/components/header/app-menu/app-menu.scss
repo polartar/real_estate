@@ -7,10 +7,6 @@
 
   .app-menu-header {
 
-    @include for-size(desktop-up) {
-      // margin-left: -3px; // compensate for ion-content slight shift for modal
-    }
-
     .app-header {
       .header-center {
         flex-grow: 1;
