@@ -32,6 +32,13 @@ $arrow-left-left: -10px;
 $arrow-right-right: -10px;
 
 .glide {
+
+  .glide__track {
+    transform: translateZ(0px);
+    transform: translate3d(0,0,0);
+    perspective: 1000;
+  }
+
   .glide__arrow {
     @include glideArrow();
   }
