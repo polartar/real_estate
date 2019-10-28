@@ -76,6 +76,7 @@ export namespace Components {
   interface NeighborhoodSlider {
     'items': any[];
   }
+  interface Page404 {}
   interface PageHome {}
   interface PageSearch {
     'headerHeight': number | null;
@@ -86,7 +87,9 @@ export namespace Components {
   interface PriceFilter {
     'inModal': boolean;
   }
-  interface SearchFilters {}
+  interface SearchFilters {
+    'closeable': boolean;
+  }
   interface StarRating {
     'color': string;
     'rating': number;
@@ -234,6 +237,12 @@ declare global {
     new (): HTMLNeighborhoodSliderElement;
   };
 
+  interface HTMLPage404Element extends Components.Page404, HTMLStencilElement {}
+  var HTMLPage404Element: {
+    prototype: HTMLPage404Element;
+    new (): HTMLPage404Element;
+  };
+
   interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {}
   var HTMLPageHomeElement: {
     prototype: HTMLPageHomeElement;
@@ -292,6 +301,7 @@ declare global {
     'move-in-date-filter': HTMLMoveInDateFilterElement;
     'neighborhood-card': HTMLNeighborhoodCardElement;
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
+    'page-404': HTMLPage404Element;
     'page-home': HTMLPageHomeElement;
     'page-search': HTMLPageSearchElement;
     'price-filter': HTMLPriceFilterElement;
@@ -360,6 +370,7 @@ declare namespace LocalJSX {
   interface NeighborhoodSlider extends JSXBase.HTMLAttributes<HTMLNeighborhoodSliderElement> {
     'items'?: any[];
   }
+  interface Page404 extends JSXBase.HTMLAttributes<HTMLPage404Element> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'headerHeight'?: number | null;
@@ -370,7 +381,9 @@ declare namespace LocalJSX {
   interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {
     'inModal'?: boolean;
   }
-  interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {}
+  interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {
+    'closeable'?: boolean;
+  }
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
     'color'?: string;
     'onRated'?: (event: CustomEvent<number>) => void;
@@ -406,6 +419,7 @@ declare namespace LocalJSX {
     'move-in-date-filter': MoveInDateFilter;
     'neighborhood-card': NeighborhoodCard;
     'neighborhood-slider': NeighborhoodSlider;
+    'page-404': Page404;
     'page-home': PageHome;
     'page-search': PageSearch;
     'price-filter': PriceFilter;

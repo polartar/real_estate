@@ -99,6 +99,10 @@ export class AppHeader {
     }
   }
 
+  showSearchFilters() {
+    return this.displayFilter || this.hideSearchButton;
+  }
+
   render() {
     return [
       <header class="header-wrapper">
@@ -147,7 +151,7 @@ export class AppHeader {
           </div>
 
           <div class="search-filters-wrapper">
-              {this.displayFilter ? <search-filters /> : ''}
+              {this.showSearchFilters() ? <search-filters closeable={!this.hideSearchButton} /> : ''}
           </div>
         </div>
       </header>

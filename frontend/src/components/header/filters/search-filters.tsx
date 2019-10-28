@@ -8,6 +8,7 @@ import { toggleSearchFilterDisplay } from "../../../store/actions/search-filters
 })
 export class SearchFilters {
   @Prop({ context: "store" }) store: Store;
+  @Prop() closeable: boolean = true;
   toggleSearchFilterDisplay: Action;
 
   componentDidLoad() {
@@ -81,9 +82,11 @@ export class SearchFilters {
 
           <div class="spacer" />
 
+          { this.closeable ?
           <button aria-label="Close Filters" class="button-reset close" onClick={() => this.toggleSearchFilterDisplay(false)}>
             <ion-icon mode="md" name="md-close" slot="icon-only"/>
           </button>
+          : null }
         </div>
       </div>
     );
