@@ -28,7 +28,7 @@ export class BathroomFilter {
   }
 
   componentDidLoad() {
-    const buttons = this.el.querySelectorAll('.bathrooms ion-button');
+    const buttons = this.el.querySelectorAll('.bathrooms button');
 
     buttons.forEach(button => {
       let val = button.getAttribute('data-value');
@@ -40,7 +40,7 @@ export class BathroomFilter {
 
   @Method()
   async selectAll() {
-    const buttons = this.el.querySelectorAll('.bathrooms ion-button');
+    const buttons = this.el.querySelectorAll('.bathrooms button');
 
     this.value = [];
 
@@ -57,7 +57,7 @@ export class BathroomFilter {
 
   @Method()
   async clearAll() {
-    const buttons = this.el.querySelectorAll('.bathrooms ion-button');
+    const buttons = this.el.querySelectorAll('.bathrooms button');
 
     this.value = [];
 
@@ -100,15 +100,15 @@ export class BathroomFilter {
         <div class="bathrooms">
           <table>
             <tr>
-              <td><ion-button aria-label="1 bathroom" class="inactive" expand="full" data-value={1} onClick={(e) => this.setValue(e)}>1</ion-button></td>
-              <td><ion-button aria-label="1.5 bathrooms" class="inactive" expand="full" data-value={1.5} onClick={(e) => this.setValue(e)}>1.5</ion-button></td>
-              <td><ion-button aria-label="2 bathrooms" class="inactive" expand="full" data-value={2} onClick={(e) => this.setValue(e)}>2</ion-button></td>
-              <td><ion-button aria-label="2.5 bathrooms" class="inactive" expand="full" data-value={2.5} onClick={(e) => this.setValue(e)}>2.5</ion-button></td>
+              <td><button aria-label="1 bathroom" class="inactive reset" data-value={1} onClick={(e) => this.setValue(e)}>1</button></td>
+              <td><button aria-label="1.5 bathrooms" class="inactive reset" data-value={1.5} onClick={(e) => this.setValue(e)}>1.5</button></td>
+              <td><button aria-label="2 bathrooms" class="inactive reset" data-value={2} onClick={(e) => this.setValue(e)}>2</button></td>
+              <td><button aria-label="2.5 bathrooms" class="inactive reset" data-value={2.5} onClick={(e) => this.setValue(e)}>2.5</button></td>
             </tr>
             <tr>
-              <td><ion-button aria-label="3 bathrooms" class="inactive" expand="full" data-value={3} onClick={(e) => this.setValue(e)}>3</ion-button></td>
-              <td><ion-button aria-label="3.5 bathrooms" class="inactive" expand="full" data-value={3.5} onClick={(e) => this.setValue(e)}>3.5</ion-button></td>
-              <td><ion-button aria-label="4 bathrooms" class="inactive" expand="full" data-value={4} onClick={(e) => this.setValue(e)}>4</ion-button></td>
+              <td><button aria-label="3 bathrooms" class="inactive" data-value={3} onClick={(e) => this.setValue(e)}>3</button></td>
+              <td><button aria-label="3.5 bathrooms" class="inactive" data-value={3.5} onClick={(e) => this.setValue(e)}>3.5</button></td>
+              <td><button aria-label="4 bathrooms" class="inactive" data-value={4} onClick={(e) => this.setValue(e)}>4</button></td>
             </tr>
           </table>
         </div>

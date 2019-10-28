@@ -18,22 +18,24 @@
       }
     }
 
-    ion-button {
+    button {
       display: inline-block;
       margin: 0;
       height: 40px;
       width: 100%;
-
-      &:hover {
-        --color: white !important;
-      }
+      max-width: 67px;
+      background: black;
+      color: white;
 
       &.inactive {
-        --background: white;
-        --color: black;
-        --background-hover: #ececec;
+        background: white;
+        color: black;
         border: 1px solid black;
         font-weight: bold;
+      }
+
+      &:focus {
+        outline: none;
       }
     }
   }
