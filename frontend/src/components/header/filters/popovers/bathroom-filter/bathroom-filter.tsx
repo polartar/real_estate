@@ -98,33 +98,19 @@ export class BathroomFilter {
         <div class="title">Number of bathrooms</div>
 
         <div class="bathrooms">
-          <ion-grid>
-            <ion-row>
-              <ion-col size="3">
-                <ion-button aria-label="1 bathroom" class="inactive" expand="full" data-value={1} onClick={(e) => this.setValue(e)}>1</ion-button>
-              </ion-col>
-              <ion-col size="3">
-                <ion-button aria-label="1.5 bathrooms" class="inactive" expand="full" data-value={1.5} onClick={(e) => this.setValue(e)}>1.5</ion-button>
-              </ion-col>
-              <ion-col size="3">
-               <ion-button aria-label="2 bathrooms" class="inactive" expand="full" data-value={2} onClick={(e) => this.setValue(e)}>2</ion-button>
-              </ion-col>
-              <ion-col size="3">
-                <ion-button aria-label="2.5 bathrooms" class="inactive" expand="full" data-value={2.5} onClick={(e) => this.setValue(e)}>2.5</ion-button>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="3">
-                <ion-button aria-label="3 bathrooms" class="inactive" expand="full" data-value={3} onClick={(e) => this.setValue(e)}>3</ion-button>
-              </ion-col>
-              <ion-col size="3">
-                <ion-button aria-label="3.5 bathrooms" class="inactive" expand="full" data-value={3.5} onClick={(e) => this.setValue(e)}>3.5</ion-button>
-              </ion-col>
-              <ion-col size="3">
-                <ion-button aria-label="4 bathrooms" class="inactive" expand="full" data-value={4} onClick={(e) => this.setValue(e)}>4</ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+          <table>
+            <tr>
+              <td><ion-button aria-label="1 bathroom" class="inactive" expand="full" data-value={1} onClick={(e) => this.setValue(e)}>1</ion-button></td>
+              <td><ion-button aria-label="1.5 bathrooms" class="inactive" expand="full" data-value={1.5} onClick={(e) => this.setValue(e)}>1.5</ion-button></td>
+              <td><ion-button aria-label="2 bathrooms" class="inactive" expand="full" data-value={2} onClick={(e) => this.setValue(e)}>2</ion-button></td>
+              <td><ion-button aria-label="2.5 bathrooms" class="inactive" expand="full" data-value={2.5} onClick={(e) => this.setValue(e)}>2.5</ion-button></td>
+            </tr>
+            <tr>
+              <td><ion-button aria-label="3 bathrooms" class="inactive" expand="full" data-value={3} onClick={(e) => this.setValue(e)}>3</ion-button></td>
+              <td><ion-button aria-label="3.5 bathrooms" class="inactive" expand="full" data-value={3.5} onClick={(e) => this.setValue(e)}>3.5</ion-button></td>
+              <td><ion-button aria-label="4 bathrooms" class="inactive" expand="full" data-value={4} onClick={(e) => this.setValue(e)}>4</ion-button></td>
+            </tr>
+          </table>
         </div>
 
         { this.inModal ?

@@ -98,33 +98,19 @@ export class BedroomFilter {
         <div class="title">Number of beds</div>
 
         <div class="beds">
-          <ion-grid>
-            <ion-row>
-              <ion-col size="3">
-                <ion-button aria-label="Room" class="inactive" expand="full" data-value="room" onClick={(e) => this.setValue(e)}>Room</ion-button>
-              </ion-col>
-              <ion-col size="3">
-                <ion-button aria-label="Studio" class="inactive" expand="full" data-value="studio" onClick={(e) => this.setValue(e)}>Studio</ion-button>
-              </ion-col>
-              <ion-col size="3">
-               <ion-button aria-label="1 bedroom" class="inactive" expand="full" data-value={1} onClick={(e) => this.setValue(e)}>1</ion-button>
-              </ion-col>
-              <ion-col size="3">
-                <ion-button aria-label="2 bedrooms" class="inactive" expand="full" data-value={2} onClick={(e) => this.setValue(e)}>2</ion-button>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="3">
-                <ion-button aria-label="3 bedrooms" class="inactive" expand="full" data-value={3} onClick={(e) => this.setValue(e)}>3</ion-button>
-              </ion-col>
-              <ion-col size="3">
-                <ion-button aria-label="4 bedrooms" class="inactive" expand="full" data-value={4} onClick={(e) => this.setValue(e)}>4</ion-button>
-              </ion-col>
-              <ion-col size="3">
-                <ion-button aria-label="5 bedrooms" class="inactive" expand="full" data-value={5} onClick={(e) => this.setValue(e)}>5</ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+          <table>
+            <tr>
+              <td><ion-button aria-label="Room" class="inactive" expand="full" data-value="room" onClick={(e) => this.setValue(e)}>Room</ion-button></td>
+              <td><ion-button aria-label="Studio" class="inactive" expand="full" data-value="studio" onClick={(e) => this.setValue(e)}>Studio</ion-button></td>
+              <td><ion-button aria-label="1 bedroom" class="inactive" expand="full" data-value={1} onClick={(e) => this.setValue(e)}>1</ion-button></td>
+              <td><ion-button aria-label="2 bedrooms" class="inactive" expand="full" data-value={2} onClick={(e) => this.setValue(e)}>2</ion-button></td>
+            </tr>
+            <tr>
+              <td><ion-button aria-label="3 bedrooms" class="inactive" expand="full" data-value={3} onClick={(e) => this.setValue(e)}>3</ion-button></td>
+              <td><ion-button aria-label="4 bedrooms" class="inactive" expand="full" data-value={4} onClick={(e) => this.setValue(e)}>4</ion-button></td>
+              <td><ion-button aria-label="5 bedrooms" class="inactive" expand="full" data-value={5} onClick={(e) => this.setValue(e)}>5</ion-button></td>
+            </tr>
+          </table>
         </div>
 
         { this.inModal ?
