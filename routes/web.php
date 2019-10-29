@@ -14,3 +14,4 @@
 
 Route::get('/', 'SPAController@serve');
 Route::get('/profile/{name}', 'SPAController@serve');
+Route::get('/search', 'SPAController@serve');
