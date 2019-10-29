@@ -73,7 +73,9 @@ export class SearchFilters {
             <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
           </button>
 
+          { this.closeable ?
           <ion-button aria-label="Search" class="search" href="/search">Search</ion-button>
+          : null }
 
           <ion-button aria-label="Search Filters" class="reset mobile-filters" onClick={() => this.launchMobileFilterMenu()}>
             <ion-icon mode="md" name="md-funnel" slot="start"></ion-icon>

@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, State } from '@stencil/core';
+import { Component, h, Prop, Element, State, Watch } from '@stencil/core';
 import { Store } from "@stencil/redux";
 
 @Component({
@@ -10,6 +10,20 @@ export class PageSearch {
   @Prop() size: string = 'phone-only';
 
   @State() view: string = 'map';
+
+  @Watch('view')
+  viewChanged(newVal, oldVal) {
+    if (oldVal !== newVal && newVal === 'map') {
+      // if the map re-renders while not in the map-view the size is off
+      // by triggering a window resize event it fixes itself
+      setTimeout(() => {
+        const event = document.createEvent('HTMLEvents');
+        event.initEvent('resize', true, false);
+
+        window.dispatchEvent(event);
+      }, 50);
+    }
+  }
 
   @Element() el: HTMLElement;
 
@@ -63,7 +77,7 @@ export class PageSearch {
 
   render() {
 
-    let results =[];
+    let results = [];
     for (let i = 0; i < 40; i++) {
       results.push(<div class="card-wrapper"><listing-card contentPadding/></div>);
     }
@@ -118,8 +132,11 @@ export class PageSearch {
 
 
               </div>
-              <div class="results-list">
+              <div class="results-grid">
                 {results}
+              </div>
+              <div class="results-list">
+                <listing-table />
               </div>
             </div>
             <div class="search-map">

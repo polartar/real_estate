@@ -1,0 +1,33 @@
+.listing-table-component {
+  table {
+    width: 100%;
+
+    thead {
+      font-weight: bold;
+    }
+
+    tbody {
+      tr {
+        border-top: 1px solid #d8d8d8;
+
+        &:hover {
+          background-color: rgba(0,0,0, 0.03);
+        }
+      }
+    }
+
+    td {
+      height: 47px;
+      padding: 0 1rem;
+    }
+  }
+
+  .button-reset {
+    font-weight: bold;
+
+    ion-icon {
+      font-size: 10px;
+      margin-left: 0.75rem;
+    }
+  }
+}

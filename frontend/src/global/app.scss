@@ -163,6 +163,11 @@ h2, h3, h4 {
   background: transparent;
   color: inherit;
   outline: 0;
+
+  &.has-icon {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .section {

@@ -58,6 +58,7 @@ export namespace Components {
   }
   interface ListingList {}
   interface ListingSlider {}
+  interface ListingTable {}
   interface LocationFilter {
     'inModal': boolean;
   }
@@ -198,6 +199,12 @@ declare global {
     new (): HTMLListingSliderElement;
   };
 
+  interface HTMLListingTableElement extends Components.ListingTable, HTMLStencilElement {}
+  var HTMLListingTableElement: {
+    prototype: HTMLListingTableElement;
+    new (): HTMLListingTableElement;
+  };
+
   interface HTMLLocationFilterElement extends Components.LocationFilter, HTMLStencilElement {}
   var HTMLLocationFilterElement: {
     prototype: HTMLLocationFilterElement;
@@ -303,6 +310,7 @@ declare global {
     'listing-card': HTMLListingCardElement;
     'listing-list': HTMLListingListElement;
     'listing-slider': HTMLListingSliderElement;
+    'listing-table': HTMLListingTableElement;
     'location-filter': HTMLLocationFilterElement;
     'maintain-ratio': HTMLMaintainRatioElement;
     'media-logos': HTMLMediaLogosElement;
@@ -362,6 +370,7 @@ declare namespace LocalJSX {
   }
   interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {}
   interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {}
+  interface ListingTable extends JSXBase.HTMLAttributes<HTMLListingTableElement> {}
   interface LocationFilter extends JSXBase.HTMLAttributes<HTMLLocationFilterElement> {
     'inModal'?: boolean;
   }
@@ -423,6 +432,7 @@ declare namespace LocalJSX {
     'listing-card': ListingCard;
     'listing-list': ListingList;
     'listing-slider': ListingSlider;
+    'listing-table': ListingTable;
     'location-filter': LocationFilter;
     'maintain-ratio': MaintainRatio;
     'media-logos': MediaLogos;
