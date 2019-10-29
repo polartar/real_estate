@@ -78,12 +78,26 @@
         top: calc(#{$header-height} + 56px);
 
         // height of window, minus header height, minus filter height
-        height: calc(100vh - #{$header-height} - 65px);
+        height: calc(100vh - #{$header-height} - 56px);
       }
     }
   }
 
   &.map {
 
+  }
+
+  &.grid {
+    .search-results {
+      width: 100%;
+
+      .results-list {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+    }
+
+    .search-map {
+      display: none;
+    }
   }
 }

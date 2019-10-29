@@ -3,10 +3,7 @@ class ScriptLoaderServiceInstance {
 
   loadScript(name, url) {
     return new Promise((resolve, reject) => {
-      console.log('loading script');
-
       if (this.loadedScripts[name] && this.loadedScripts[name] === url) {
-        console.log('previously loaded');
         resolve(true);
 
         return;

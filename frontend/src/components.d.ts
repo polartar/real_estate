@@ -88,6 +88,7 @@ export namespace Components {
     'closeable': boolean;
   }
   interface SearchMap {
+    'addNeighborhood': () => Promise<void>;
     'autoInit': boolean;
     'init': () => Promise<void>;
   }
