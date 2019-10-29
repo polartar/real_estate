@@ -105,8 +105,9 @@ export class SearchMap {
         this.map.on('load', () => { console.log('loaded');
           this.mapRendered = true;
 
+          // add fill layer for neighborhood
           this.map.addLayer({
-            'id': 'nolita',
+            'id': 'nolita-fill',
             'type': 'fill',
               'source': {
                 'type': 'geojson',
@@ -131,9 +132,41 @@ export class SearchMap {
               'layout': {},
               'paint': {
                 'fill-color': '#000',
-                'fill-opacity': 0.3
+                'fill-opacity': 0.3,
               }
             });
+
+            // add outline layer for neighborhood
+            this.map.addLayer({
+              'id': 'nolita-line',
+              'type': 'line',
+                'source': {
+                  'type': 'geojson',
+                  'data': {
+                    'type': 'Feature',
+                    'geometry': {
+                      'type': 'Polygon',
+                      'coordinates': [
+                        [
+                          [-73.994454, 40.71946],
+                          [-73.998241, 40.721062],
+                          [-73.997200, 40.722184],
+                          [-73.996674, 40.723477],
+                          [-73.995376, 40.725095],
+                          [-73.992608, 40.724144],
+                          [-73.994454, 40.71946]
+                        ]
+                      ]
+                    }
+                  }
+                },
+                'layout': {},
+                'paint': {
+                  'line-color': '#000',
+                  'line-opacity': 0.8,
+                  'line-width': 4
+                }
+              });
         });
 
       });
