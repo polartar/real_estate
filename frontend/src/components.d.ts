@@ -79,8 +79,6 @@ export namespace Components {
   interface Page404 {}
   interface PageHome {}
   interface PageSearch {
-    'height': number;
-    'isMobile': boolean;
     'size': string;
   }
   interface PriceFilter {
@@ -383,8 +381,6 @@ declare namespace LocalJSX {
   interface Page404 extends JSXBase.HTMLAttributes<HTMLPage404Element> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
-    'height'?: number;
-    'isMobile'?: boolean;
     'size'?: string;
   }
   interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {

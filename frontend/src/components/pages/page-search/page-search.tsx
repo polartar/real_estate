@@ -8,8 +8,6 @@ import { Store } from "@stencil/redux";
 export class PageSearch {
   @Prop({ context: "store" }) store: Store;
   @Prop() size: string = 'phone-only';
-  @Prop() height: number;
-  @Prop() isMobile: boolean = true;
 
   @State() view: string = 'map';
 
@@ -19,13 +17,11 @@ export class PageSearch {
     this.store.mapStateToProps(this, state => {
 
       const {
-        screenSize: { size, isMobile, height },
+        screenSize: { size },
       } = state;
 
       return {
         size,
-        height,
-        isMobile,
       };
     });
   }
@@ -47,7 +43,7 @@ export class PageSearch {
   render() {
 
     let results =[];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 40; i++) {
       results.push(<div class="card-wrapper"><listing-card contentPadding/></div>);
     }
 
