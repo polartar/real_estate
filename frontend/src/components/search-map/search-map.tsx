@@ -1,4 +1,4 @@
-import { Component, h, Element, Build, Method, Prop } from '@stencil/core';
+import { Component, h, Element, Build, Method, Prop, Event, EventEmitter } from '@stencil/core';
 import { ScriptLoaderService } from '../../services/script-loader.service';
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
 import { generateId } from '../../helpers/utils';
@@ -12,7 +12,11 @@ declare var mapboxgl: any;
 export class SearchMap {
   @Element() el: HTMLElement;
 
+  @Event() mapLoaded!: EventEmitter<void>;
+
   @Prop() autoInit: boolean = false;
+
+
   private mapId: string = `map-instance-${generateId(8)}`;
 
   private map: any = null;
@@ -28,51 +32,69 @@ export class SearchMap {
   }
 
   @Method('addNeighborhood')
-  async addNeighborhood() {
+  async addNeighborhood(slug, coords) {
     if (!this.mapRendered) {
       return;
     }
 
+    // make sure there's only one instance of each neighborhood
+    // at a given time
+    await this.removeNeighborhood(slug);
+
     this.map.addLayer({
-      'id': 'maine',
-      'type': 'fill',
+      'id': `${slug}-outline`,
+      'type': 'line',
         'source': {
           'type': 'geojson',
           'data': {
             'type': 'Feature',
             'geometry': {
               'type': 'Polygon',
-              'coordinates': [[[-67.13734351262877, 45.137451890638886],
-                [-66.96466, 44.8097],
-                [-68.03252, 44.3252],
-                [-69.06, 43.98],
-                [-70.11617, 43.68405],
-                [-70.64573401557249, 43.090083319667144],
-                [-70.75102474636725, 43.08003225358635],
-                [-70.79761105007827, 43.21973948828747],
-                [-70.98176001655037, 43.36789581966826],
-                [-70.94416541205806, 43.46633942318431],
-                [-71.08482, 45.3052400000002],
-                [-70.6600225491012, 45.46022288673396],
-                [-70.30495378282376, 45.914794623389355],
-                [-70.00014034695016, 46.69317088478567],
-                [-69.23708614772835, 47.44777598732787],
-                [-68.90478084987546, 47.184794623394396],
-                [-68.23430497910454, 47.35462921812177],
-                [-67.79035274928509, 47.066248887716995],
-                [-67.79141211614706, 45.702585354182816],
-                [-67.13734351262877, 45.137451890638886]]]
+              'coordinates': coords
             }
           }
         },
         'layout': {},
         'paint': {
-          'fill-color': '#088',
-          'fill-opacity': 0.8
+          'line-color': '#000',
+          'line-opacity': 0.8,
+          'line-width': 4
         }
       });
+
+      this.map.addLayer({
+        'id': `${slug}-fill`,
+        'type': 'fill',
+          'source': {
+            'type': 'geojson',
+            'data': {
+              'type': 'Feature',
+              'geometry': {
+                'type': 'Polygon',
+                'coordinates': coords
+              }
+            }
+          },
+          'layout': {},
+          'paint': {
+            'fill-color': '#000',
+            'fill-opacity': 0.3,
+          }
+        });
   }
 
+  @Method('removeNeighborhood')
+  async removeNeighborhood(slug) {
+    // remove fill layer
+    if (this.map.getLayer(`${slug}-fill`)) {
+      this.map.removeLayer(`${slug}-fill`);
+    }
+
+    // remove outline layer
+    if (this.map.getLayer(`${slug}-outline`)) {
+      this.map.removeLayer(`${slug}-outline`);
+    }
+  }
 
   componentDidRender() {
     if (Build.isBrowser && !this.mapRendered && this.autoInit) {
@@ -102,71 +124,10 @@ export class SearchMap {
           zoom: 15
         });
 
-        this.map.on('load', () => { console.log('loaded');
+        this.map.on('load', () => {
           this.mapRendered = true;
 
-          // add fill layer for neighborhood
-          this.map.addLayer({
-            'id': 'nolita-fill',
-            'type': 'fill',
-              'source': {
-                'type': 'geojson',
-                'data': {
-                  'type': 'Feature',
-                  'geometry': {
-                    'type': 'Polygon',
-                    'coordinates': [
-                      [
-                        [-73.994454, 40.71946],
-                        [-73.998241, 40.721062],
-                        [-73.997200, 40.722184],
-                        [-73.996674, 40.723477],
-                        [-73.995376, 40.725095],
-                        [-73.992608, 40.724144],
-                        [-73.994454, 40.71946]
-                      ]
-                    ]
-                  }
-                }
-              },
-              'layout': {},
-              'paint': {
-                'fill-color': '#000',
-                'fill-opacity': 0.3,
-              }
-            });
-
-            // add outline layer for neighborhood
-            this.map.addLayer({
-              'id': 'nolita-line',
-              'type': 'line',
-                'source': {
-                  'type': 'geojson',
-                  'data': {
-                    'type': 'Feature',
-                    'geometry': {
-                      'type': 'Polygon',
-                      'coordinates': [
-                        [
-                          [-73.994454, 40.71946],
-                          [-73.998241, 40.721062],
-                          [-73.997200, 40.722184],
-                          [-73.996674, 40.723477],
-                          [-73.995376, 40.725095],
-                          [-73.992608, 40.724144],
-                          [-73.994454, 40.71946]
-                        ]
-                      ]
-                    }
-                  }
-                },
-                'layout': {},
-                'paint': {
-                  'line-color': '#000',
-                  'line-opacity': 0.8,
-                  'line-width': 4
-                }
-              });
+          this.mapLoaded.emit();
         });
 
       });

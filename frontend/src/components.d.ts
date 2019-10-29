@@ -88,9 +88,10 @@ export namespace Components {
     'closeable': boolean;
   }
   interface SearchMap {
-    'addNeighborhood': () => Promise<void>;
+    'addNeighborhood': (slug: any, coords: any) => Promise<void>;
     'autoInit': boolean;
     'init': () => Promise<void>;
+    'removeNeighborhood': (slug: any) => Promise<void>;
   }
   interface StarRating {
     'color': string;
@@ -392,6 +393,7 @@ declare namespace LocalJSX {
   }
   interface SearchMap extends JSXBase.HTMLAttributes<HTMLSearchMapElement> {
     'autoInit'?: boolean;
+    'onMapLoaded'?: (event: CustomEvent<void>) => void;
   }
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
     'color'?: string;

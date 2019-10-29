@@ -40,6 +40,27 @@ export class PageSearch {
     return viewClass;
   }
 
+  mapLoaded() {
+    const coords = [
+      [
+        [-73.994454, 40.71946],
+        [-73.998241, 40.721062],
+        [-73.997200, 40.722184],
+        [-73.996674, 40.723477],
+        [-73.995376, 40.725095],
+        [-73.992608, 40.724144],
+        [-73.994454, 40.71946]
+      ]
+    ];
+
+    this.getMap().addNeighborhood('nolita', coords);
+  }
+
+  getMap() {
+    const map: any = this.el.querySelector('search-map');
+    return map;
+  }
+
   render() {
 
     let results =[];
@@ -103,7 +124,7 @@ export class PageSearch {
             </div>
             <div class="search-map">
               <div class="map-wrapper" >
-                <search-map />
+                <search-map onMapLoaded={() => { this.mapLoaded() }}/>
               </div>
 
             </div>
