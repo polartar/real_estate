@@ -79,7 +79,6 @@ export namespace Components {
   interface Page404 {}
   interface PageHome {}
   interface PageSearch {
-    'headerHeight': number | null;
     'height': number;
     'isMobile': boolean;
     'size': string;
@@ -89,6 +88,10 @@ export namespace Components {
   }
   interface SearchFilters {
     'closeable': boolean;
+  }
+  interface SearchMap {
+    'autoInit': boolean;
+    'init': () => Promise<void>;
   }
   interface StarRating {
     'color': string;
@@ -267,6 +270,12 @@ declare global {
     new (): HTMLSearchFiltersElement;
   };
 
+  interface HTMLSearchMapElement extends Components.SearchMap, HTMLStencilElement {}
+  var HTMLSearchMapElement: {
+    prototype: HTMLSearchMapElement;
+    new (): HTMLSearchMapElement;
+  };
+
   interface HTMLStarRatingElement extends Components.StarRating, HTMLStencilElement {}
   var HTMLStarRatingElement: {
     prototype: HTMLStarRatingElement;
@@ -306,6 +315,7 @@ declare global {
     'page-search': HTMLPageSearchElement;
     'price-filter': HTMLPriceFilterElement;
     'search-filters': HTMLSearchFiltersElement;
+    'search-map': HTMLSearchMapElement;
     'star-rating': HTMLStarRatingElement;
     'youtube-video': HTMLYoutubeVideoElement;
   }
@@ -373,7 +383,6 @@ declare namespace LocalJSX {
   interface Page404 extends JSXBase.HTMLAttributes<HTMLPage404Element> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
-    'headerHeight'?: number | null;
     'height'?: number;
     'isMobile'?: boolean;
     'size'?: string;
@@ -383,6 +392,9 @@ declare namespace LocalJSX {
   }
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {
     'closeable'?: boolean;
+  }
+  interface SearchMap extends JSXBase.HTMLAttributes<HTMLSearchMapElement> {
+    'autoInit'?: boolean;
   }
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
     'color'?: string;
@@ -424,6 +436,7 @@ declare namespace LocalJSX {
     'page-search': PageSearch;
     'price-filter': PriceFilter;
     'search-filters': SearchFilters;
+    'search-map': SearchMap;
     'star-rating': StarRating;
     'youtube-video': YoutubeVideo;
   }

@@ -1,9 +1,5 @@
-import { Component, h, Prop, Build, Element, Watch } from '@stencil/core';
+import { Component, h, Prop, Element, State } from '@stencil/core';
 import { Store } from "@stencil/redux";
-import { ScriptLoaderService } from '../../../services/script-loader.service';
-import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
-
-declare var mapboxgl: any;
 
 @Component({
   tag: 'page-search',
@@ -11,94 +7,44 @@ declare var mapboxgl: any;
 })
 export class PageSearch {
   @Prop({ context: "store" }) store: Store;
-  // @State() size: string = 'phone-only';
   @Prop() size: string = 'phone-only';
-  // @State() height: number;
   @Prop() height: number;
-  // @State() isMobile: boolean = true;
   @Prop() isMobile: boolean = true;
-  // @State() headerHeight: number | null = null;
-  @Prop() headerHeight: number | null = null;
+
+  @State() view: string = 'map';
+
   @Element() el: HTMLElement;
-
-  map: any;
-  mapRendered: boolean = false;
-
-  headerHeightInterval: any = null;
 
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
 
       const {
-        screenSize: { size, isMobile, height, headerHeight },
+        screenSize: { size, isMobile, height },
       } = state;
 
       return {
         size,
         height,
-        headerHeight,
         isMobile,
       };
     });
   }
 
-  @Watch('height')
-  heightChanged(newValue, oldValue) {
-    console.log('height changed', newValue, oldValue);
-  }
-
-  @Watch('size')
-  sizeChanged(newValue, oldValue) {
-    console.log('sizechanged', newValue, oldValue);
-  }
 
   componentDidRender() {
-    if (this.canRenderMap() && !this.mapRendered) {
-      const container: any = this.el.querySelector("#page-search-map-instance");
-      console.log(this.height, this.headerHeight);
-      let newHeight = `${this.height - this.headerHeight}px`;
-      console.log(newHeight);
-      container.style.height = newHeight;
-
-      this.initializeMap();
-    }
+      const map: any = this.el.querySelector('search-map');
+      map.init();
   }
 
-  initializeMap() {
-    if (!this.canRenderMap()) {
-      return;
-    }
+  getViewClass() {
+    let viewClass: any = { 'page-search': true };
 
-    if (this.map) {
-      this.map.remove();
-      this.map = null;
-    }
+    viewClass[this.view] = true;
 
-    ScriptLoaderService.loadScript('mapbox', 'https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js')
-      .then(() => {
-        mapboxgl.accessToken = EnvironmentConfigService.getInstance().get('MAPBOX_PUBLIC_TOKEN');
-
-        this.map = new mapboxgl.Map({
-          container: 'page-search-map-instance',
-          style: 'mapbox://styles/mapbox/streets-v11',
-          center: [-74.0392706, 40.7591704],
-          zoom: 12
-        });
-
-        this.mapRendered = true;
-      });
-  }
-
-  canRenderMap() {
-    return !!Build.isBrowser;
+    return viewClass;
   }
 
   render() {
-
-    let mapHeight = 300;
-    if (this.headerHeight) {
-      mapHeight = this.height - this.headerHeight;
-    }
 
     let results =[];
     for (let i = 0; i < 10; i++) {
@@ -106,18 +52,63 @@ export class PageSearch {
     }
 
     return [
-      <ion-content class="page-search">
+      <ion-content class={this.getViewClass()}>
         <app-header hide-search-button />
 
         <section class="section main">
           <div class="search-wrapper">
             <div class="search-results">
-              {results}
+              <div class="view-filters">
+                <button aria-label="Map View" class={{ 'view-nav': true, 'active': this.view === 'map'}} onClick={() => { this.view = 'map' }}>
+                  <svg width="22px" height="17px" viewBox="0 0 22 17" version="1.1">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <path d="M6.44693757,1.03946443 C6.7521634,0.92314383 7,1.07269915 7,1.3732543 L7,13.3434138 C7,13.6446884 6.75375471,13.9820849 6.44693757,14.099125 L1.55385803,15.9601514 C1.24783655,16.0771933 1,15.9276399 1,15.6263612 L1,3.65694337 C1,3.35566874 1.24624523,3.01827223 1.55385803,2.90123215 L6.44693757,1.03946443 Z M20.4461419,1.03984861 C20.7521634,0.922806667 21,1.07236016 21,1.37363852 L21,13.3430576 C21,13.6443323 20.7537547,13.9817289 20.4461419,14.0987689 L15.5530624,15.9605356 C15.2478366,16.0768562 15,15.9273008 15,15.6267451 L15,3.65658431 C15,3.35530965 15.2462453,3.0179131 15.5530624,2.90087301 L20.4461419,1.03984861 Z M8.55378464,1.03984861 C8.24780374,0.922806667 8,1.07236016 8,1.37363852 L8,13.3430576 C8,13.6443323 8.24621264,13.9817289 8.55378464,14.0987689 L13.4462154,15.9605356 C13.7521963,16.0768562 14,15.9273008 14,15.6267451 L14,3.65658431 C14,3.35530965 13.7537874,3.0179131 13.4462154,2.90087301 L8.55378464,1.03984861 Z" id="Fill-1" fill="#000000"></path>
+                      </g>
+                  </svg>
+                </button>
+
+                <button aria-label="Grid View" class={{ 'view-nav': true, 'active': this.view === 'grid'}} onClick={() => { this.view = 'grid' }}>
+                  <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g transform="translate(1.000000, 0.000000)" fill="#000000">
+                            <polygon points="0 3.55555556 3.55555556 3.55555556 3.55555556 0 0 0"></polygon>
+                            <polygon points="6.22266667 3.55555556 9.77822222 3.55555556 9.77822222 0 6.22266667 0"></polygon>
+                            <polygon points="12.4444444 3.55555556 16 3.55555556 16 0 12.4444444 0"></polygon>
+                            <polygon points="0 16 3.55555556 16 3.55555556 12.4444444 0 12.4444444"></polygon>
+                            <polygon points="6.22222222 16 9.77777778 16 9.77777778 12.4444444 6.22222222 12.4444444"></polygon>
+                            <polygon points="12.4444444 16 16 16 16 12.4444444 12.4444444 12.4444444"></polygon>
+                            <polygon points="12.4444444 9.77777778 16 9.77777778 16 6.22222222 12.4444444 6.22222222"></polygon>
+                            <polygon points="6.22222222 9.77777778 9.77777778 9.77777778 9.77777778 6.22222222 6.22222222 6.22222222"></polygon>
+                            <polygon points="0 9.77777778 3.55555556 9.77777778 3.55555556 6.22222222 0 6.22222222"></polygon>
+                        </g>
+                    </g>
+                  </svg>
+                </button>
+
+                <button aria-label="List View" class={{ 'view-nav': true, 'active': this.view === 'list'}} onClick={() => { this.view = 'list' }}>
+                  <svg version="1.1" x="0px" y="0px" viewBox="0 0 60.123 60.123">
+                    <g>
+                      <path d="M57.124,51.893H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3S58.781,51.893,57.124,51.893z"/>
+                      <path d="M57.124,33.062H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3
+                        C60.124,31.719,58.781,33.062,57.124,33.062z"/>
+                      <path d="M57.124,14.231H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3S58.781,14.231,57.124,14.231z"/>
+                      <circle cx="4.029" cy="11.463" r="4.029"/>
+                      <circle cx="4.029" cy="30.062" r="4.029"/>
+                      <circle cx="4.029" cy="48.661" r="4.029"/>
+                    </g>
+                  </svg>
+                </button>
+
+
+              </div>
+              <div class="results-list">
+                {results}
+              </div>
             </div>
             <div class="search-map">
-              { this.canRenderMap() ?
-              <div id="page-search-map-instance" class="map-wrapper" style={{ height: `${mapHeight}px`, top: `${this.headerHeight}px`}}></div>
-              : null }
+              <div class="map-wrapper" >
+                <search-map />
+              </div>
 
             </div>
           </div>
