@@ -1,6 +1,7 @@
 import { Component, h, Element, Listen, Prop} from '@stencil/core';
 
 declare var window: any;
+declare var ResizeObserver: any;
 
 @Component({
   tag: 'maintain-ratio',
@@ -21,7 +22,6 @@ export class MaintainRatio {
   })
   windowResize() {
     requestAnimationFrame(() => {
-      console.log(this.width, this.height, this.initialRender);
       if (this.initialRender) {
         this.enforceRatio();
       }
