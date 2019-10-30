@@ -1,15 +1,20 @@
 import { Component, h, Element, Listen, Prop} from '@stencil/core';
 
+declare var window: any;
+
 @Component({
   tag: 'maintain-ratio',
   styleUrl: 'maintain-ratio.scss'
 })
 export class MaintainRatio {
   @Element() el: HTMLElement;
-  @Prop() width: number;
-  @Prop() height: number;
+  @Prop() width!: number;
+  @Prop() height!: number;
+  @Prop() maxHeight?: number;
+  @Prop() minHeight?: number;
 
   private initialRender: boolean = false;
+  private changeInProgress: boolean = false;
 
   @Listen('resize', {
     target: 'window'
@@ -40,9 +45,34 @@ export class MaintainRatio {
     this.initialRender = true;
 
     this.enforceRatio();
+
+    if (window && window.ResizeObserver) {
+      new ResizeObserver(() => { this.observe() }).observe(this.getContainer());
+    }
+    else {
+      // no observer, let's just give it a couple of seconds of polling and assume it's settled down
+
+      let interval = setInterval(() => {
+        this.enforceRatio();
+      }, 250);
+
+      setTimeout(() => {
+        clearInterval(interval);
+      }, 2000);
+    }
+  }
+
+  observe() {
+    this.enforceRatio();
   }
 
   enforceRatio() {
+    if (this.changeInProgress) {
+      return;
+    }
+
+    this.changeInProgress = true;
+
     if (this.width === 0 || this.height === 0) {
       return;
     }
@@ -54,6 +84,10 @@ export class MaintainRatio {
     let newHeight = Math.round(currWidth / ratio);
 
     this.getContainer().style.height = `${newHeight}px`;
+
+    setTimeout(() => {
+      this.changeInProgress = false;
+    }, 50);
   }
 
   render() {

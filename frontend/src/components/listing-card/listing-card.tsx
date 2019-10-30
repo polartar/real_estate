@@ -38,7 +38,9 @@ export class ListingCard {
     return [
       <ion-router-link href={'/post/' + this.item.id}>
         <div class="listing-card">
-          <lazy-image src="/assets/images/placeholder/apt1.jpeg" class="list-feature-image" alt={this.item.title} />
+            <maintain-ratio width={322} height={182}>
+              <lazy-image src="/assets/images/placeholder/apt1.jpeg" class="list-feature-image" alt={this.item.title} />
+            </maintain-ratio>
           <div class={{"listing-content-padding": this.contentPadding}}>
             <h4 class="listing-title">{this.item.title}</h4>
             <div class="price">

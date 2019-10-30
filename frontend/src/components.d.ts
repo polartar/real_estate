@@ -64,6 +64,8 @@ export namespace Components {
   }
   interface MaintainRatio {
     'height': number;
+    'maxHeight'?: number;
+    'minHeight'?: number;
     'width': number;
   }
   interface MediaLogos {}
@@ -378,8 +380,10 @@ declare namespace LocalJSX {
     'inModal'?: boolean;
   }
   interface MaintainRatio extends JSXBase.HTMLAttributes<HTMLMaintainRatioElement> {
-    'height'?: number;
-    'width'?: number;
+    'height': number;
+    'maxHeight'?: number;
+    'minHeight'?: number;
+    'width': number;
   }
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
   interface MobileFilterMenu extends JSXBase.HTMLAttributes<HTMLMobileFilterMenuElement> {}

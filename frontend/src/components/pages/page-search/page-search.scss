@@ -84,6 +84,12 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
           padding-left: 1rem;
         }
       }
+
+      .card-wrapper {
+        display: inline-block;
+        border: 1px solid #cbcbcb;
+      }
+
     }
 
     .search-map {
@@ -147,11 +153,6 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
           padding: 2rem 1.5rem 1rem 0;
           grid-template-columns: 1fr 1fr 1fr 1fr;
         }
-
-        .card-wrapper {
-          display: inline-block;
-          border: 1px solid #cbcbcb;
-        }
       }
 
       .results-list {
@@ -195,6 +196,9 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
 
         @include for-size(desktop-up) {
           display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+          padding: 2rem 1.5rem 1rem 0;
         }
       }
 

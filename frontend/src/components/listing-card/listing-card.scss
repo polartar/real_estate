@@ -17,11 +17,13 @@
 
   .list-feature-image {
     width: 100%;
-    height: 94px;
+    height: 100%;
+    //height: 94px;
     object-fit: cover;
 
     @include for-size(tablet-portrait-up) {
-      height: 183px;
+      //height: 183px;
+      height: 100%;
     }
   }
 
