@@ -75,14 +75,9 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
         }
 
         select {
+          height: 32px;
           border: 1px solid #dfdfdf;
-          font-size: $font-size-md;
-
-          // hacky transform to use 16px font size to disable the iphone zoom
-          // but scale it back down to 12 px
-          height: 42.6666px;
-          transform-origin: center center;
-          transform: scale(0.75);
+          font-size: $font-size-sm;
         }
 
         .results-count {
@@ -132,9 +127,13 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
 
       .results-grid {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 24px;
-        padding: 2rem 1.5rem;
+        padding: calc(#{$search-filters-desktop-height} + #{$search-view-filters-height} + 1.5rem) 2rem 1.5rem;
+
+        @include for-size(phone-only) {
+          grid-template-columns: 1fr;
+        }
 
         @include for-size(tablet-portrait-up) {
           grid-template-columns: 1fr 1fr;
