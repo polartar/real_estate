@@ -2,6 +2,8 @@
 @import '../../../styles/variables';
 @import url('https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css');
 
+$mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-filters-height} - #{$search-filters-desktop-height} + 19px);
+
 .page-search {
   .section.main {
     padding: 0;
@@ -73,26 +75,19 @@
         }
 
         select {
-          height: 32px;
           border: 1px solid #dfdfdf;
-          font-size: $font-size-sm;
+          font-size: $font-size-md;
+
+          // hacky transform to use 16px font size to disable the iphone zoom
+          // but scale it back down to 12 px
+          height: 42.6666px;
+          transform-origin: center center;
+          transform: scale(0.75);
         }
 
         .results-count {
           padding-left: 1rem;
         }
-      }
-    }
-
-    .results-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      padding: 2rem 1.5rem 1rem 0;
-
-      .card-wrapper {
-        display: inline-block;
-        border: 1px solid #cbcbcb;
       }
     }
 
@@ -136,7 +131,28 @@
       width: 100%;
 
       .results-grid {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 2rem 1.5rem;
+
+        @include for-size(tablet-portrait-up) {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        @include for-size(tablet-landscape-up) {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @include for-size(desktop-up) {
+          padding: 2rem 1.5rem 1rem 0;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .card-wrapper {
+          display: inline-block;
+          border: 1px solid #cbcbcb;
+        }
       }
 
       .results-list {
