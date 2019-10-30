@@ -82,7 +82,6 @@ export class LocationFilter {
   }
 
   async neighborhoodChange(e) {
-    console.log('neighborhood change', e.detail.checked);
     const container = e.target.closest('.region-container');
     const regionCB = container.querySelector('apt212-checkbox.region');
 

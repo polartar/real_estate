@@ -32,13 +32,17 @@ const searchFiltersReducer = (
     }
 
     case Actions.SET_LOCATION_FILTERS: {
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          location: action.payload
-        }
-      };
+      const newState = { ...state };
+
+      newState.filters.location = action.payload;
+      return newState;
+      // return {
+      //   ...state,
+      //   filters: {
+      //     ...state.filters,
+      //     location: action.payload
+      //   }
+      // };
     }
 
     case Actions.SET_MOVE_IN_FILTER: {

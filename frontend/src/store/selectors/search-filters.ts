@@ -9,15 +9,19 @@ const searchFilterSelectors = {
   },
 
   getBeds: state => {
-    return state.searchFilters.filters.beds;
+    return [...state.searchFilters.filters.beds];
   },
 
   getBathrooms: state => {
-    return state.searchFilters.filters.bathrooms;
+    return [...state.searchFilters.filters.bathrooms];
   },
 
   getBuildingTypes: state => {
-    return state.searchFilters.filters.buildingTypes;
+    return [...state.searchFilters.filters.buildingTypes];
+  },
+
+  getLocations: state => {
+    return [...state.searchFilters.filters.location];
   }
 }
 

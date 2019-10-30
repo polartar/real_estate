@@ -49,11 +49,7 @@ export class MaintainRatio {
 
     let currWidth = this.currentWidth();
 
-    console.log(currWidth, this.width);
-
     let ratio = this.width / this.height;
-
-    console.log(ratio);
 
     let newHeight = Math.round(currWidth / ratio);
 

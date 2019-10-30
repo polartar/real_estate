@@ -80,6 +80,8 @@ export namespace Components {
   interface Page404 {}
   interface PageHome {}
   interface PageSearch {
+    'location': any;
+    'neighborhoods': any;
     'size': string;
   }
   interface PriceFilter {
@@ -92,6 +94,7 @@ export namespace Components {
     'addNeighborhood': (slug: any, coords: any) => Promise<void>;
     'autoInit': boolean;
     'init': () => Promise<void>;
+    'location': any;
     'removeNeighborhood': (slug: any) => Promise<void>;
   }
   interface StarRating {
@@ -392,6 +395,8 @@ declare namespace LocalJSX {
   interface Page404 extends JSXBase.HTMLAttributes<HTMLPage404Element> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
+    'location'?: any;
+    'neighborhoods'?: any;
     'size'?: string;
   }
   interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {
@@ -402,6 +407,7 @@ declare namespace LocalJSX {
   }
   interface SearchMap extends JSXBase.HTMLAttributes<HTMLSearchMapElement> {
     'autoInit'?: boolean;
+    'location'?: any;
     'onMapLoaded'?: (event: CustomEvent<void>) => void;
   }
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {

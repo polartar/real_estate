@@ -1,5 +1,7 @@
 import { Component, h, Prop, Element, State, Watch } from '@stencil/core';
 import { Store } from "@stencil/redux";
+import searchFilterSelectors from '../../../store/selectors/search-filters';
+import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 
 @Component({
   tag: 'page-search',
@@ -8,8 +10,32 @@ import { Store } from "@stencil/redux";
 export class PageSearch {
   @Prop({ context: "store" }) store: Store;
   @Prop() size: string = 'phone-only';
+  @Prop() neighborhoods: any;
+  @Prop() location: any;
+
+  @Element() el: HTMLElement;
 
   @State() view: string = 'map';
+
+  componentDidLoad() {
+    this.store.mapStateToProps(this, state => {
+
+      const {
+        screenSize: { size },
+      } = state;
+
+      return {
+        size,
+        neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
+        location: searchFilterSelectors.getLocations(state)
+      };
+    });
+  }
+
+  componentDidRender() {
+      const map: any = this.el.querySelector('search-map');
+      map.init();
+  }
 
   @Watch('view')
   viewChanged(newVal, oldVal) {
@@ -25,27 +51,6 @@ export class PageSearch {
     }
   }
 
-  @Element() el: HTMLElement;
-
-  componentDidLoad() {
-    this.store.mapStateToProps(this, state => {
-
-      const {
-        screenSize: { size },
-      } = state;
-
-      return {
-        size,
-      };
-    });
-  }
-
-
-  componentDidRender() {
-      const map: any = this.el.querySelector('search-map');
-      map.init();
-  }
-
   getViewClass() {
     let viewClass: any = { 'page-search': true };
 
@@ -55,19 +60,7 @@ export class PageSearch {
   }
 
   mapLoaded() {
-    const coords = [
-      [
-        [-73.994454, 40.71946],
-        [-73.998241, 40.721062],
-        [-73.997200, 40.722184],
-        [-73.996674, 40.723477],
-        [-73.995376, 40.725095],
-        [-73.992608, 40.724144],
-        [-73.994454, 40.71946]
-      ]
-    ];
-
-    this.getMap().addNeighborhood('nolita', coords);
+    // map loaded
   }
 
   getMap() {
@@ -130,6 +123,16 @@ export class PageSearch {
                   </svg>
                 </button>
 
+                <label htmlFor="search-filter-sort">Sort by</label>
+                <select id="search-filter-sort">
+                  <option>Soonest Available</option>
+                  <option>Price - Low to High</option>
+                  <option>Price - High to Low</option>
+                  <option>Size - Small to Big</option>
+                  <option>Size - Big to Small</option>
+                </select>
+
+                <div class="results-count">50 Results</div>
 
               </div>
               <div class="results-grid">
