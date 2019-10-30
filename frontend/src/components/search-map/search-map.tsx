@@ -141,7 +141,6 @@ export class SearchMap {
 
   @Watch('location')
   locationChanged(newVal, oldVal) {
-    console.log('location changed in map', newVal, oldVal);
     const removeLocations = oldVal.filter(id => !newVal.includes(id));
     const addLocations = newVal.filter(id => !oldVal.includes(id));
 

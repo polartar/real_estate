@@ -3,7 +3,7 @@
 
 .search-filters {
   box-shadow: none; // inset 0 -1px 0 0 #ededed, inset 0 1px 0 0 #ededed;
-  height: 56px;
+  height: $search-filters-desktop-height;
 
   .section {
     display: flex;
@@ -64,16 +64,5 @@
     .close {
       font-size: $font-size-lg;
     }
-  }
-}
-
-.search-filter-popover {
-  .popover-content.sc-ion-popover-md {
-    margin-top: 18px;
-    border-radius: 0;
-    box-shadow: none;
-    border: 1px solid #f0f0f0;
-    --max-width: none;
-    --width: auto;
   }
 }

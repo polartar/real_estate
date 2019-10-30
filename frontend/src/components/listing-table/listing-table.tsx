@@ -33,13 +33,13 @@ export class ListingTable {
                 <apt212-checkbox />
               </td>
               <td><button class="button-reset has-icon" aria-label="Sort by Web Id">Web Id <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
-              <td><button class="button-reset has-icon" aria-label="Sort by Web Id">Neighborhood <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
-              <td><button class="button-reset has-icon" aria-label="Sort by Web Id">Cross Street <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
-              <td><button class="button-reset has-icon" aria-label="Sort by Web Id">Beds <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
-              <td><button class="button-reset has-icon" aria-label="Sort by Web Id">Bath <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
-              <td><button class="button-reset has-icon" aria-label="Sort by Web Id">Price <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
-              <td><button class="button-reset has-icon" aria-label="Sort by Web Id">Building Type <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
-              <td><button class="button-reset has-icon" aria-label="Sort by Web Id">Available Date <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
+              <td><button class="button-reset has-icon" aria-label="Sort by Neighborhood">Neighborhood <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
+              <td><button class="button-reset has-icon" aria-label="Sort by Cross Street">Cross Street <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
+              <td><button class="button-reset has-icon" aria-label="Sort by Beds">Beds <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
+              <td><button class="button-reset has-icon" aria-label="Sort by Bathroom number">Bath <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
+              <td><button class="button-reset has-icon" aria-label="Sort by Price">Price <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
+              <td><button class="button-reset has-icon" aria-label="Sort by Building Type">Building Type <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
+              <td><button class="button-reset has-icon" aria-label="Sort by Available Date">Available Date <ion-icon src="/assets/images/icons/page_sort_arrow.svg" /></button></td>
               <td></td>
             </tr>
           </thead>

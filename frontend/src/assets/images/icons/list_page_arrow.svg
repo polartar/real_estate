@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
-    <title>Fill 11</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Search" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="5.3-Search-with-rows" transform="translate(-1358.000000, -296.000000)" fill="#000000">
-            <g id="Group-6" transform="translate(0.000000, 248.000000)">
-                <g id="Group-4" transform="translate(82.000000, 48.000000)">
-                    <g id="Group-2-Copy-8" transform="translate(1108.000000, 0.000000)">
-                        <g id="Group-4" transform="translate(177.000000, 9.000000) scale(-1, 1) translate(-177.000000, -9.000000) translate(168.000000, 0.000000)">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-1358.000000, -296.000000)" fill="#000000">
+            <g transform="translate(0.000000, 248.000000)">
+                <g transform="translate(82.000000, 48.000000)">
+                    <g transform="translate(1108.000000, 0.000000)">
+                        <g transform="translate(177.000000, 9.000000) scale(-1, 1) translate(-177.000000, -9.000000) translate(168.000000, 0.000000)">
                             <path d="M0.140625,17.8594203 L0.140625,0.1405818 L17.859465,0.1405818 L17.859465,3.3750018 L16.453215,3.3750018 L16.453215,1.5469218 L1.54705626,1.5469218 L1.54705626,16.4530804 L16.453215,16.4530804 L16.453215,14.625 L17.859465,14.625 L17.859465,17.8594203 L0.140625,17.8594203 Z M15.11712,8.29692 L15.11712,9.703188 L10.63116,9.703188 L12.417102,11.48913 L11.41866,12.473514 L7.9452,9.000054 L11.41866,5.526594 L12.417102,6.510978 L10.63116,8.29692 L15.11712,8.29692 Z M16.45308,9.70317 L16.45308,8.29692 L17.85933,8.29692 L17.85933,9.70317 L16.45308,9.70317 Z" id="Fill-11"></path>
                         </g>
                     </g>
