@@ -2,8 +2,6 @@
 @import '../../../styles/variables';
 @import url('https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css');
 
-$mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-filters-height} - #{$search-filters-desktop-height} + 19px);
-
 .page-search {
   .section.main {
     padding: 0;
@@ -15,74 +13,16 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
 
   .search-wrapper {
     @include for-size(desktop-up) {
-      padding-top: 50px;
+      padding-top: 1.5rem;
       display: flex;
     }
 
     .search-results {
       position: relative;
       width: 100%;
-      margin-top: -4px;
 
       @include for-size(desktop-up) {
         width: 50%;
-      }
-
-      .view-filters {
-        position: fixed;
-        display: flex;
-        align-items: center;
-        top: calc(#{$mobile-header-height} + #{$search-filters-desktop-height}); //131px;
-        background: white;
-        z-index: 1;
-        height: $search-view-filters-height;
-        width: 100%;
-        //margin-left: -16px;
-        box-shadow: inset 0 -1px 0 0 #e5e5e5, inset 0 1px 0 0 #e5e5e5;
-        overflow: hidden;
-
-        @include for-size(desktop-up) {
-          position: sticky;
-          top: calc(#{$header-height} + #{$search-filters-desktop-height});
-        }
-
-        button.view-nav {
-          background: transparent;
-          height: 100%;
-          width: 48px;
-          margin-top: -1px;
-
-          svg {
-            width: 20px;
-          }
-
-          &.active {
-            background: $color-primary;
-
-            svg * {
-              fill: white;
-            }
-          }
-        }
-
-        label {
-          display: none;
-
-          @include for-size(desktop-up) {
-            display: inline-block;
-            padding: 0 1rem;
-          }
-        }
-
-        select {
-          height: 32px;
-          border: 1px solid #dfdfdf;
-          font-size: $font-size-sm;
-        }
-
-        .results-count {
-          padding-left: 1rem;
-        }
       }
     }
 
@@ -100,7 +40,7 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
         position: fixed;
 
         // why the 19px? I don't know, but Chrome and Edge agree that's what it takes
-        top: calc(#{$header-height} + #{$search-view-filters-height} + 19px);
+        // top: 19px;
         width: 100%;
 
         // height of window, minus header height, minus view-filter height, minus the search-filter-height
@@ -109,14 +49,14 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
         @include for-size(desktop-up) {
           position: sticky;
           width: 100%;
-          top: calc(#{$header-height} + #{$search-filters-desktop-height});
+          top: 0;
           height: calc(100vh - #{$header-height} - #{$search-filters-desktop-height});
         }
       }
     }
 
     .results-list {
-      padding: 2rem 1.5rem 1rem 0;
+      padding: 0 1.5rem 1rem 0;
       display: none;
     }
   }
@@ -129,9 +69,10 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 24px;
-        padding: calc(#{$search-filters-desktop-height} + #{$search-view-filters-height} + 1.5rem) 2rem 1.5rem;
+        padding: 0 2rem 1.5rem;
 
         @include for-size(phone-only) {
+          padding-top: 1.5rem;
           grid-template-columns: 1fr;
         }
 
@@ -184,7 +125,6 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
 
   &.map {
     .search-results {
-      padding-top: 60px;
 
       @include for-size(desktop-up) {
         padding-top: 0;

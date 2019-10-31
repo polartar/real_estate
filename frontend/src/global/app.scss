@@ -180,70 +180,114 @@ h2, h3, h4 {
   }
 }
 
-app-header {
+app-header, app-menu {
   position: sticky;
   top: 0;
   background-color: white;
   z-index: 999;
 
-  .header-wrapper {
+  .app-header {
+    display: flex;
+    align-items: center;
+    height: $mobile-header-height;
 
-    .app-header {
-      display: flex;
-      align-items: center;
-      height: $mobile-header-height;
+    @include for-size(tablet-portrait-up) {
+      padding-top: 2rem;
+    }
 
-      @include for-size(tablet-portrait-up) {
-        padding-top: 2rem;
-      }
+    @include for-size(desktop-up) {
+      padding-top: 0;
+      height: $header-height;
+    }
+
+    .logo-link {
+      flex-grow: 1;
 
       @include for-size(desktop-up) {
-        padding-top: 0;
-        height: $header-height;
-      }
-
-      .logo-link {
-        flex-grow: 1;
-
-        @include for-size(desktop-up) {
-          flex-grow: 0;
-        }
-      }
-
-      .logo {
-        height: 24px;
-        min-width: 126px;
-      }
-
-      .header-center {
-        height: 2px;
-
-        @include for-size(desktop-up) {
-          flex-grow: 1;
-        }
-      }
-
-      .menu {
-        --padding-start: 0.5rem;
-        --padding-end: 0;
-        --background-hover: transparent;
-        --ripple-color: transparent;
-        font-size: 16px;
-
-        @include for-size(desktop-up) {
-          --padding-start: 2rem;
-        }
+        flex-grow: 0;
       }
     }
 
-    .header-inner {
-      position: relative;
+    .logo {
+      height: 24px;
+      min-width: 126px;
+    }
 
-      .search-filters-wrapper {
-        position: absolute;
-        width: 100%;
-        background-color: white;
-        bottom: -56px;
+    .header-center {
+      height: 2px;
+
+      @include for-size(desktop-up) {
+        flex-grow: 1;
+      }
+    }
+
+    .menu {
+      --padding-start: 0.5rem;
+      --padding-end: 0;
+      --background-hover: transparent;
+      --ripple-color: transparent;
+      font-size: 16px;
+
+      @include for-size(desktop-up) {
+        --padding-start: 2rem;
+      }
+    }
+  }
+
+  .header-inner {
+    position: relative;
+
+    .search-filters-wrapper {
+      width: 100%;
+      background-color: white;
+    }
+
+    .view-filters {
+      display: flex;
+      align-items: center;
+      background: white;
+      z-index: 1;
+      height: $search-view-filters-height;
+      width: 100%;
+      box-shadow: inset 0 -1px 0 0 #e5e5e5, inset 0 1px 0 0 #e5e5e5;
+      overflow: hidden;
+
+      button.view-nav {
+        background: transparent;
+        height: 100%;
+        width: 48px;
+        margin-top: -1px;
+
+        svg {
+          width: 20px;
+        }
+
+        &.active {
+          background: $color-primary;
+
+          svg * {
+            fill: white;
+          }
+        }
+      }
+
+      label {
+        display: none;
+
+        @include for-size(desktop-up) {
+          display: inline-block;
+          padding: 0 1rem;
+        }
+      }
+
+      select {
+        height: 32px;
+        border: 1px solid #dfdfdf;
+        font-size: $font-size-sm;
+      }
+
+      .results-count {
+        padding-left: 1rem;
       }
     }
   }
