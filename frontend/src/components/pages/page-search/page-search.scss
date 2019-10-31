@@ -103,14 +103,17 @@
       }
     }
 
-    .results-wrapper {
-      max-height: calc(100vh - (#{$search-filters-desktop-height} + #{$search-view-filters-height} + 75px));
-      overflow: hidden;
-      overflow-y: scroll;
-      .results-list {
-        padding: 0 1.5rem 1rem 0;
-        display: none;
+    @include for-size(tablet) {
+      .results-wrapper {
+        max-height: calc(100vh - (#{$search-filters-desktop-height} + #{$search-view-filters-height} + 75px));
+        overflow: hidden;
+        overflow-y: scroll;
       }
+    }
+
+    .results-list {
+      padding: 0 1.5rem 1rem 0;
+      display: none;
     }
   }
 
@@ -192,7 +195,6 @@
           padding: 1.5rem 1.5rem 1rem 0;
         }
       }
-
     }
   }
 }
