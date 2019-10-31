@@ -153,8 +153,6 @@ export class AppHeader {
           <div class="search-filters-wrapper">
               {this.showSearchFilters() ? <search-filters closeable={!this.hideSearchButton} /> : ''}
           </div>
-
-          <slot name="view-filters" />
         </div>
       </header>
     ];

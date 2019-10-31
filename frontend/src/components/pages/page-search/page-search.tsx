@@ -136,11 +136,13 @@ export class PageSearch {
               <div class="results-count">50 Results</div>
 
             </div>
-              <div class="results-grid">
-                {results}
-              </div>
-              <div class="results-list">
-                <listing-table />
+              <div class="results-wrapper">
+                <div class="results-grid">
+                  {results}
+                </div>
+                <div class="results-list">
+                  <listing-table />
+                </div>
               </div>
             </div>
             <div class="search-map">
