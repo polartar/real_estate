@@ -76,8 +76,8 @@ export class PageSearch {
     }
 
     return [
+      <app-header hide-search-button />,
       <ion-content class={this.getViewClass()}>
-        <app-header hide-search-button />
 
         <section class="section main">
           <div class="search-wrapper">
