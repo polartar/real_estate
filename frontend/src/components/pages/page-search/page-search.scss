@@ -70,7 +70,7 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
 
           @include for-size(desktop-up) {
             display: inline-block;
-            padding: 0 1rem;
+            padding-left: 1rem;
           }
         }
 
@@ -78,6 +78,7 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
           height: 32px;
           border: 1px solid #dfdfdf;
           font-size: $font-size-sm;
+          margin-left: 1rem;
         }
 
         .results-count {
@@ -122,7 +123,6 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
     }
 
     .results-list {
-      padding: 2rem 1.5rem 1rem 0;
       display: none;
     }
   }
@@ -175,6 +175,11 @@ $mobile-map-offset-top: calc(100vh - #{$mobile-header-height} - #{$search-view-f
 
       .results-list {
         display: block;
+        padding: calc(#{$search-filters-desktop-height} + #{$search-view-filters-height} + 1.5rem) 0 1.5rem 0;
+
+        @include for-size(desktop-up) {
+          padding: 2rem 1.5rem 1rem 0;
+        }
       }
     }
 

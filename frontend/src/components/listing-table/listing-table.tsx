@@ -12,14 +12,16 @@ export class ListingTable {
     for (let i = 0; i < 40; i++) {
       rows.push(<tr>
         <td><apt212-checkbox /></td>
-        <td>#12345</td>
-        <td>Upper West Side</td>
-        <td>351 Prospect Street</td>
-        <td>2</td>
-        <td>3</td>
-        <td>$20,000/month</td>
-        <td>Walk Up</td>
-        <td>4/17/2019</td>
+        <td class="desktop-only">#12345</td>
+        <td class="desktop-only">Upper West Side</td>
+        <td class="desktop-only">351 Prospect Street</td>
+        <td class="desktop-only">2</td>
+        <td class="desktop-only">3</td>
+        <td class="desktop-only">$20,000/month</td>
+        <td class="desktop-only">Walk Up</td>
+        <td class="desktop-only">4/17/2019</td>
+        <td class="mobile-only">Left Side</td>
+        <td class="mobile-only">Right Side</td>
         <td><ion-button aria-label="View Listing" class="reset" href="/post/12345"><ion-icon src="/assets/images/icons/list_page_arrow.svg" slot="icon-only" /></ion-button></td>
       </tr>);
     }
@@ -27,7 +29,7 @@ export class ListingTable {
     return (
       <div class="listing-table-component">
         <table class="listing-table">
-          <thead>
+          <thead class="mobile-only">
             <tr>
               <td>
                 <apt212-checkbox />

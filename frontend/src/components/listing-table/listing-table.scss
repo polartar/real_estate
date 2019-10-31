@@ -1,9 +1,19 @@
+@import '../../styles/mixins';
+
 .listing-table-component {
   table {
     width: 100%;
 
     thead {
       font-weight: bold;
+
+      &.mobile-only {
+        display: none;
+
+        @include for-size(desktop-up) {
+          display: table-header-group;
+        }
+      }
     }
 
     tbody {
@@ -19,6 +29,22 @@
     td {
       height: 47px;
       padding: 0 1rem;
+
+      &.mobile-only {
+        display: table-cell;
+
+        @include for-size(desktop-up) {
+          display: none;
+        }
+      }
+
+      &.desktop-only {
+        display: none;
+
+        @include for-size(desktop-up) {
+          display: table-cell;
+        }
+      }
     }
   }
 
