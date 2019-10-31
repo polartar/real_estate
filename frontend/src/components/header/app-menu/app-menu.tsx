@@ -15,22 +15,22 @@ export class AppMenu {
 
   render() {
     return [
-        <ion-content class="app-menu-container app-wrapper">
-          <header class="header-wrapper app-menu-header">
-            <div class="header-inner">
-              <div class="app-header section">
-                <ion-router-link href="/" class="logo-link">
-                  <img src="/assets/images/logo.svg" class="logo" alt="APT212 Logo" />
-                </ion-router-link>
+        <header class="app-menu-header">
+          <div class="header-inner">
+            <div class="app-header section">
+              <ion-router-link href="/" class="logo-link">
+                <img src="/assets/images/logo.svg" class="logo" alt="APT212 Logo" />
+              </ion-router-link>
 
-                <div class="header-center" />
+              <div class="header-center" />
 
-                <ion-button aria-label="close" class="reset close" onClick={() => this.closeMenu()}>
-                  <ion-icon src="/assets/images/icons/cancel.svg" slot="icon-only" />
-                </ion-button>
-              </div>
+              <ion-button aria-label="close" class="reset close" onClick={() => this.closeMenu()}>
+                <ion-icon src="/assets/images/icons/cancel.svg" slot="icon-only" />
+              </ion-button>
             </div>
-          </header>
+          </div>
+        </header>,
+        <ion-content class="app-menu-container app-wrapper">
 
           <div class="section main-menu">
             <ion-router-link href="/search" onClick={() => this.closeMenu()}>
