@@ -105,7 +105,7 @@ export class AppHeader {
 
   render() {
     return [
-      <header class="header-wrapper">
+      <header>
         <div class="header-inner">
           <div class="app-header section">
             <ion-router-link href="/" class="logo-link">
@@ -153,6 +153,8 @@ export class AppHeader {
           <div class="search-filters-wrapper">
               {this.showSearchFilters() ? <search-filters closeable={!this.hideSearchButton} /> : ''}
           </div>
+
+          <slot name="view-filters" />
         </div>
       </header>
     ];
