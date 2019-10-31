@@ -79,7 +79,7 @@
 
     .search-map {
       width: 100%;
-      height: calc(100vh - #{$mobile-header-height} - #{$search-view-filters-height} - #{$search-filters-desktop-height} + 19px);
+      height: ccalc(100vh - (#{$search-filters-desktop-height} + #{$search-view-filters-height} + 75px));
 
       @include for-size(desktop-up) {
         width: 50%;
