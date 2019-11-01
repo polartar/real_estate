@@ -20,8 +20,18 @@ export class ListingTable {
         <td class="desktop-only">$20,000/month</td>
         <td class="desktop-only">Walk Up</td>
         <td class="desktop-only">4/17/2019</td>
-        <td class="mobile-only">Left Side</td>
-        <td class="mobile-only">Right Side</td>
+        <td class="mobile-only">
+          2 BD | 3 BA<br />
+          Walk Up<br />
+          $20,000/month<br />
+          Available: 4/26/19
+        </td>
+        <td class="mobile-only">
+          Upper West Side<br />
+          351 Prospect Street<br /><br />
+
+          Web ID: #12345
+        </td>
         <td><ion-button aria-label="View Listing" class="reset" href="/post/12345"><ion-icon src="/assets/images/icons/list_page_arrow.svg" slot="icon-only" /></ion-button></td>
       </tr>);
     }
