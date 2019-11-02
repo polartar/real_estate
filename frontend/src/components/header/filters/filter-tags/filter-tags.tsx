@@ -1,5 +1,5 @@
-import { Component, h, Host, Prop, State, Watch } from '@stencil/core';
-import { Store, Action } from "@stencil/redux";
+import { Component, h, Host, Prop, State } from '@stencil/core';
+import { Store } from "@stencil/redux";
 import { FilterTagsService } from '../../../../services/search-filters/filter-tags.service';
 import searchFilterSelectors from '../../../../store/selectors/search-filters';
 
