@@ -2,6 +2,7 @@ import { Component, h, Prop, Element, Method } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import searchFilterSelectors from '../../../../../store/selectors/search-filters';
 import { setBuildingTypesFilter } from '../../../../../store/actions/search-filters';
+import { getBuildingTypeStructure } from '../../../../../helpers/filters';
 
 @Component({
   tag: 'building-type-filter',
@@ -15,23 +16,7 @@ export class BuildingTypeFilter {
   value: any[] = [];
   setBuildingTypesFilter: Action;
 
-  structure: any = [
-    {
-      name: 'Walk Up',
-      value: 'walkup',
-      rating: 3,
-    },
-    {
-      name: 'Elevator',
-      value: 'elevator',
-      rating: 4,
-    },
-    {
-      name: 'Elevator / Doorman',
-      value: 'elevator-doorman',
-      rating: 5,
-    }
-  ]
+  structure: any = getBuildingTypeStructure();
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {

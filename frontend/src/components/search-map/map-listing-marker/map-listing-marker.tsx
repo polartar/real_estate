@@ -22,7 +22,6 @@ export class MapListingMarker {
       this._ids = this.ids;
     }
     else {
-      console.log(this.ids);
       this._ids = JSON.parse(this.ids);
     }
 

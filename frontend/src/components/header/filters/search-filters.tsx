@@ -84,6 +84,8 @@ export class SearchFilters {
 
           <div class="spacer" />
 
+          <filter-tags />
+
           { this.closeable ?
           <button aria-label="Close Filters" class="button-reset close" onClick={() => this.toggleSearchFilterDisplay(false)}>
             <ion-icon mode="md" name="md-close" slot="icon-only"/>

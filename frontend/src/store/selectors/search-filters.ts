@@ -1,5 +1,16 @@
 
 const searchFilterSelectors = {
+  getAllFilters: state => {
+    return {
+      beds: searchFilterSelectors.getBeds(state),
+      bathrooms: searchFilterSelectors.getBathrooms(state),
+      price: searchFilterSelectors.getPrice(state),
+      moveInDate: searchFilterSelectors.getMoveInDate(state),
+      buildingTypes: searchFilterSelectors.getBuildingTypes(state),
+      location: searchFilterSelectors.getLocations(state)
+    };
+  },
+
   getMoveInDate: state => {
     return state.searchFilters.filters.moveInDate;
   },
