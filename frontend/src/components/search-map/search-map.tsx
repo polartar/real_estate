@@ -21,6 +21,9 @@ export class SearchMap {
   @Prop() autoInit: boolean = false;
 
   neighborhoods: any = [];
+  listings: any = {};
+  detail: any = null;
+
   @Prop() location: any = [];
 
 
@@ -39,6 +42,12 @@ export class SearchMap {
         location: searchFilterSelectors.getLocations(state)
       };
     });
+  }
+
+  componentDidRender() {
+    if (Build.isBrowser && !this.mapRendered && this.autoInit) {
+      this.initializeMap();
+    }
   }
 
   @Method('init')
@@ -133,10 +142,28 @@ export class SearchMap {
     }
   }
 
-  componentDidRender() {
-    if (Build.isBrowser && !this.mapRendered && this.autoInit) {
-      this.initializeMap();
+  @Method('showDetails')
+  async showDetails(ids, lat, lng) {
+
+    // remove any existing details
+    if (this.detail) {
+      this.detail.remove();
+      this.detail = null;
     }
+
+    const details = new mapboxgl.Popup({
+      closeOnClick: false,
+      closeButton: false,
+      className: 'map-listing-details',
+      anchor: 'top',
+      maxWidth: 'none',
+      offset: [-50, 30]
+    })
+      .setLngLat([lng, lat])
+      .setHTML(`<map-listing-details ids="${ids}" />`)
+      .addTo(this.map);
+
+    this.detail = details;
   }
 
   @Watch('location')
@@ -161,6 +188,14 @@ export class SearchMap {
         this.addNeighborhood(neighborhood.slug, neighborhood.coordinates);
       }
     });
+  }
+
+  onMapClick() {
+    // remove any existing details
+    if (this.detail) {
+      this.detail.remove();
+      this.detail = null;
+    }
   }
 
   initializeMap() {
@@ -188,6 +223,30 @@ export class SearchMap {
 
         this.map.on('load', () => {
           this.mapRendered = true;
+
+          new mapboxgl.Popup({
+            closeOnClick: false,
+            closeButton: false,
+            anchor: 'center',
+            className: 'map-listing-marker',
+            maxWidth: 'none'
+          })
+            .setLngLat([-73.995290, 40.722412])
+            .setHTML('<map-listing-marker ids="[12345,12346,12347]" lat="40.722412" lng="-73.995290" />')
+            .addTo(this.map);
+
+            new mapboxgl.Popup({
+              closeOnClick: false,
+              closeButton: false,
+              anchor: 'center',
+              className: 'map-listing-marker'
+            })
+              .setLngLat([-73.996390, 40.723512])
+              .setHTML('<map-listing-marker ids="[12345]" lat="40.723512" lng="-73.996390" />')
+              .addTo(this.map);
+
+
+          this.map.on('click', () => this.onMapClick());
 
           this.mapLoaded.emit();
         });

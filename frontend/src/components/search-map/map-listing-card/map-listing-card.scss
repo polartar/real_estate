@@ -1,0 +1,71 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.map-listing-card-component {
+  display: flex;
+  width: 300px;
+  margin-bottom: 3px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 3px;
+  font-size: $font-size-sm;
+  line-height: $font-size-sm;
+
+  .listing-title {
+    margin-top: 10px;
+    font-size: $font-size-md;
+    margin: 0;
+    padding: 0;
+    text-transform: none;
+  }
+
+  img.feature-image {
+    width: 96px;
+    height: 89px;
+    margin-right: 6px;
+    object-fit: cover;
+  }
+
+  .neighborhood {
+    font-size: $font-size-sm;
+  }
+
+  .price {
+    padding-top: 4px;
+    font-size: $font-size-sm;
+    line-height: $font-size-sm;
+  }
+
+  .bed-bath {
+    display: flex;
+    align-items: center;
+    padding-top: 4px;
+
+    &>div {
+      display: flex;
+      align-items: center;
+    }
+
+    .divider {
+      padding: 0 0.25rem;
+    }
+  }
+
+  .bedrooms,
+  .bathrooms {
+    width: 0.625rem;
+    height: 0.625rem;
+    margin-right: 0.25rem;
+  }
+
+  .rating-amenities {
+    display: flex;
+    align-items: center;
+    padding-top: 4px;
+
+    .amenities {
+      padding-left: 0.5rem;
+      padding-bottom: 4px;
+    }
+  }
+}

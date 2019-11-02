@@ -11,3 +11,13 @@ export function generateId(length) {
   window.crypto.getRandomValues(arr)
   return Array.from(arr, dec2hex).join('')
 }
+
+export function formatMoney(num: number, locale: string = 'en-US', options: any = {}) {
+  const formatter = new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: 'USD',
+    ...options
+  });
+
+  return formatter.format(num);
+}

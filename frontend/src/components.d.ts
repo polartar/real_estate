@@ -68,6 +68,17 @@ export namespace Components {
     'minHeight'?: number;
     'width': number;
   }
+  interface MapListingCard {
+    'item': any;
+  }
+  interface MapListingDetails {
+    'ids': any;
+  }
+  interface MapListingMarker {
+    'ids': any;
+    'lat': string;
+    'lng': string;
+  }
   interface MediaLogos {}
   interface MobileFilterMenu {}
   interface MoveInDateFilter {
@@ -98,6 +109,7 @@ export namespace Components {
     'init': () => Promise<void>;
     'location': any;
     'removeNeighborhood': (slug: any) => Promise<void>;
+    'showDetails': (ids: any, lat: any, lng: any) => Promise<void>;
   }
   interface StarRating {
     'color': string;
@@ -222,6 +234,24 @@ declare global {
     new (): HTMLMaintainRatioElement;
   };
 
+  interface HTMLMapListingCardElement extends Components.MapListingCard, HTMLStencilElement {}
+  var HTMLMapListingCardElement: {
+    prototype: HTMLMapListingCardElement;
+    new (): HTMLMapListingCardElement;
+  };
+
+  interface HTMLMapListingDetailsElement extends Components.MapListingDetails, HTMLStencilElement {}
+  var HTMLMapListingDetailsElement: {
+    prototype: HTMLMapListingDetailsElement;
+    new (): HTMLMapListingDetailsElement;
+  };
+
+  interface HTMLMapListingMarkerElement extends Components.MapListingMarker, HTMLStencilElement {}
+  var HTMLMapListingMarkerElement: {
+    prototype: HTMLMapListingMarkerElement;
+    new (): HTMLMapListingMarkerElement;
+  };
+
   interface HTMLMediaLogosElement extends Components.MediaLogos, HTMLStencilElement {}
   var HTMLMediaLogosElement: {
     prototype: HTMLMediaLogosElement;
@@ -318,6 +348,9 @@ declare global {
     'listing-table': HTMLListingTableElement;
     'location-filter': HTMLLocationFilterElement;
     'maintain-ratio': HTMLMaintainRatioElement;
+    'map-listing-card': HTMLMapListingCardElement;
+    'map-listing-details': HTMLMapListingDetailsElement;
+    'map-listing-marker': HTMLMapListingMarkerElement;
     'media-logos': HTMLMediaLogosElement;
     'mobile-filter-menu': HTMLMobileFilterMenuElement;
     'move-in-date-filter': HTMLMoveInDateFilterElement;
@@ -385,6 +418,17 @@ declare namespace LocalJSX {
     'minHeight'?: number;
     'width': number;
   }
+  interface MapListingCard extends JSXBase.HTMLAttributes<HTMLMapListingCardElement> {
+    'item': any;
+  }
+  interface MapListingDetails extends JSXBase.HTMLAttributes<HTMLMapListingDetailsElement> {
+    'ids': any;
+  }
+  interface MapListingMarker extends JSXBase.HTMLAttributes<HTMLMapListingMarkerElement> {
+    'ids': any;
+    'lat': string;
+    'lng': string;
+  }
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
   interface MobileFilterMenu extends JSXBase.HTMLAttributes<HTMLMobileFilterMenuElement> {}
   interface MoveInDateFilter extends JSXBase.HTMLAttributes<HTMLMoveInDateFilterElement> {
@@ -445,6 +489,9 @@ declare namespace LocalJSX {
     'listing-table': ListingTable;
     'location-filter': LocationFilter;
     'maintain-ratio': MaintainRatio;
+    'map-listing-card': MapListingCard;
+    'map-listing-details': MapListingDetails;
+    'map-listing-marker': MapListingMarker;
     'media-logos': MediaLogos;
     'mobile-filter-menu': MobileFilterMenu;
     'move-in-date-filter': MoveInDateFilter;

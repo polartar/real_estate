@@ -1,0 +1,13 @@
+@import '../../../styles/variables';
+
+:host {
+  cursor: pointer;
+}
+
+.map-listing-marker {
+  a {
+    cursor: pointer;
+    font-size: $font-size-md;
+    font-weight: bold;
+  }
+}
