@@ -23,7 +23,7 @@
       .view-filters {
         display: flex;
         position: sticky;
-        top: 0px;
+        top: 0;
         align-items: center;
         background: white;
         z-index: 1;
@@ -31,7 +31,6 @@
         width: 100%;
         box-shadow: inset 0 -1px 0 0 #e5e5e5, inset 0 1px 0 0 #e5e5e5;
         overflow: hidden;
-        z-index: 99999;
 
         button.view-nav {
           background: transparent;
@@ -75,39 +74,46 @@
       @include for-size(desktop-up) {
         width: 50%;
       }
+
+      @include for-size(tablet) {
+        max-height: calc(100vh - #{$mobile-header-height} - #{$search-filters-desktop-height});
+      }
     }
 
     .search-map {
+      position: relative;
       width: 100%;
-      height: calc(100vh - (#{$search-filters-desktop-height} + #{$search-view-filters-height} + 75px));
 
       @include for-size(desktop-up) {
         width: 50%;
         padding-top: 0;
-        height: auto;
       }
 
       .map-wrapper {
-        position: fixed;
+        display: block;
+        position: sticky;
+        overflow: hidden;
+        top: 0;
         width: 100%;
-
-        // height of window, minus header height, minus view-filter height, minus the search-filter-height
-        height: calc(100vh - #{$mobile-header-height} - #{$search-view-filters-height} - #{$search-filters-desktop-height});
+        height: calc(100vh - (#{$search-filters-desktop-height} + #{$search-view-filters-height} + #{$mobile-header-height}));
 
         @include for-size(desktop-up) {
-          position: sticky;
           width: 100%;
-          top: 0;
-          height: calc(100vh - #{$header-height} - #{$search-filters-desktop-height});
+          height: calc(100vh - (#{$search-filters-desktop-height} + #{$header-height}));
         }
       }
     }
 
     @include for-size(tablet) {
       .results-wrapper {
-        max-height: calc(100vh - (#{$search-filters-desktop-height} + #{$search-view-filters-height} + 75px));
+        max-height: calc(100vh - (#{$search-filters-desktop-height} + #{$search-view-filters-height} + #{$mobile-header-height}));
         overflow: hidden;
         overflow-y: scroll;
+      }
+
+      .mobile-map {
+        position: fixed;
+        width: 100%;
       }
     }
 
