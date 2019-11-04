@@ -69,7 +69,9 @@ export namespace Components {
   interface MaintainRatio {
     'height': number;
     'maxHeight'?: number;
+    'maxWidth'?: number;
     'minHeight'?: number;
+    'minWidth'?: number;
     'width': number;
   }
   interface MapListingCard {
@@ -437,7 +439,9 @@ declare namespace LocalJSX {
   interface MaintainRatio extends JSXBase.HTMLAttributes<HTMLMaintainRatioElement> {
     'height': number;
     'maxHeight'?: number;
+    'maxWidth'?: number;
     'minHeight'?: number;
+    'minWidth'?: number;
     'width': number;
   }
   interface MapListingCard extends JSXBase.HTMLAttributes<HTMLMapListingCardElement> {

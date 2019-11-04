@@ -13,6 +13,8 @@ export class MaintainRatio {
   @Prop() height!: number;
   @Prop() maxHeight?: number;
   @Prop() minHeight?: number;
+  @Prop() minWidth?: number;
+  @Prop() maxWidth?: number;
 
   private initialRender: boolean = false;
   private changeInProgress: boolean = false;
@@ -51,7 +53,7 @@ export class MaintainRatio {
     }
     else {
       // no observer, let's just give it a couple of seconds of polling and assume it's settled down
-      console.log('no observer here');
+      // anything more advanced can trigger a window resize event to force resizing if necessary
 
       let interval = setInterval(() => {
         this.enforceRatio();
