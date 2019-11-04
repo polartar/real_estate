@@ -24,7 +24,7 @@ export class FilterTag {
         { this.tag.title }
 
         <button aria-label={`Remove Filter: ${this.tag.title}`} class="button-reset" onClick={() => this.clearSearchFilter(this.tag.type, this.tag.value)}>
-          x
+          <img src="/assets/images/icons/cancel.svg" />
         </button>
       </div>
     )

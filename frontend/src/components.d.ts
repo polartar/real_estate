@@ -27,10 +27,12 @@ export namespace Components {
     'value': string;
   }
   interface Apt212Popover {
+    'bindTo': any;
     'component': string;
     'componentProps': any;
     'dismiss': () => Promise<void>;
     'event': any;
+    'styleOverride': any;
   }
   interface BathroomFilter {
     'clearAll': () => Promise<void>;
@@ -52,6 +54,7 @@ export namespace Components {
     'tag': any;
   }
   interface FilterTags {}
+  interface FilterTagsAll {}
   interface LazyImage {
     'alt': string;
     'src': string;
@@ -210,6 +213,12 @@ declare global {
     new (): HTMLFilterTagsElement;
   };
 
+  interface HTMLFilterTagsAllElement extends Components.FilterTagsAll, HTMLStencilElement {}
+  var HTMLFilterTagsAllElement: {
+    prototype: HTMLFilterTagsAllElement;
+    new (): HTMLFilterTagsAllElement;
+  };
+
   interface HTMLLazyImageElement extends Components.LazyImage, HTMLStencilElement {}
   var HTMLLazyImageElement: {
     prototype: HTMLLazyImageElement;
@@ -361,6 +370,7 @@ declare global {
     'faq-accordian': HTMLFaqAccordianElement;
     'filter-tag': HTMLFilterTagElement;
     'filter-tags': HTMLFilterTagsElement;
+    'filter-tags-all': HTMLFilterTagsAllElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
     'listing-list': HTMLListingListElement;
@@ -404,9 +414,11 @@ declare namespace LocalJSX {
     'value'?: string;
   }
   interface Apt212Popover extends JSXBase.HTMLAttributes<HTMLApt212PopoverElement> {
+    'bindTo'?: any;
     'component': string;
     'componentProps'?: any;
     'event'?: any;
+    'styleOverride'?: any;
   }
   interface BathroomFilter extends JSXBase.HTMLAttributes<HTMLBathroomFilterElement> {
     'inModal'?: boolean;
@@ -422,6 +434,7 @@ declare namespace LocalJSX {
     'tag'?: any;
   }
   interface FilterTags extends JSXBase.HTMLAttributes<HTMLFilterTagsElement> {}
+  interface FilterTagsAll extends JSXBase.HTMLAttributes<HTMLFilterTagsAllElement> {}
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
     'src'?: string;
@@ -510,6 +523,7 @@ declare namespace LocalJSX {
     'faq-accordian': FaqAccordian;
     'filter-tag': FilterTag;
     'filter-tags': FilterTags;
+    'filter-tags-all': FilterTagsAll;
     'lazy-image': LazyImage;
     'listing-card': ListingCard;
     'listing-list': ListingList;

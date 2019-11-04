@@ -95,34 +95,42 @@ const searchFiltersReducer = (
       switch (action.payload.type) {
         case 'all': {
           clearedFilterState.filters = initialState.filters;
+          break;
         }
 
         case 'beds': {
           clearedFilterState.filters.beds = initialState.filters.beds;
+          break;
         }
 
         case 'bathrooms': {
           clearedFilterState.filters.bathrooms = initialState.filters.bathrooms;
+          break;
         }
 
         case 'price': {
           clearedFilterState.filters.price = initialState.filters.price;
+          break;
         }
 
         case 'moveInDate': {
           clearedFilterState.filters.moveInDate = initialState.filters.moveInDate;
+          break;
         }
 
         case 'buildingTypes': {
           clearedFilterState.filters.buildingTypes = initialState.filters.buildingTypes;
+          break;
         }
 
         case 'locationAll': {
           clearedFilterState.filters.location = clearedFilterState.filters.location.filter(id => !action.payload.value.includes(id));
+          break;
         }
 
         case 'location': {
           clearedFilterState.filters.location = clearedFilterState.filters.location.filter(id => id !== action.payload.value);
+          break;
         }
       }
 

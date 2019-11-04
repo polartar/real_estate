@@ -19,6 +19,7 @@
 
       @include for-size(desktop-up) {
         display: inline-block;
+        white-space: nowrap;
       }
 
       ion-icon {
@@ -63,6 +64,7 @@
 
     .close {
       font-size: $font-size-lg;
+      padding-top: 3px;
     }
   }
 }
