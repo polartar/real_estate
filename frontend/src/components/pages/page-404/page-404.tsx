@@ -9,8 +9,8 @@ export class Page404 {
   render() {
 
     return [
+      <app-header />,
       <ion-content class="page-404">
-        <app-header />
 
         <section class="section">
           <div class="text-center">

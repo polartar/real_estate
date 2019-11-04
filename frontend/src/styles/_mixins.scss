@@ -6,6 +6,8 @@
 
   @if $range == phone-only {
     @media (max-width: #{$phone-upper-boundary - 1}) { @content; }
+  } @else if $range == tablet {
+    @media (max-width: $tablet-landscape-upper-boundary - 1) { @content; }
   } @else if $range == tablet-portrait-up {
     @media (min-width: $phone-upper-boundary) { @content; }
   } @else if $range == tablet-landscape-up {

@@ -44,6 +44,15 @@ html.md {
   --ion-font-family: 'Source Sans Pro', sans-serif;
   --ion-default-font: 'Source Sans Pro', sans-serif;
   letter-spacing: 0;
+
+  page-home {
+    .header-inner {
+      .search-filters-wrapper {
+        position: absolute;
+        bottom: -56px;
+      }
+    }
+  }
 }
 
 /* visible to screen readers only - from bootstrap */
@@ -180,7 +189,7 @@ h2, h3, h4 {
   }
 }
 
-.header-wrapper {
+app-header, app-menu {
   position: sticky;
   top: 0;
   background-color: white;
@@ -238,10 +247,8 @@ h2, h3, h4 {
     position: relative;
 
     .search-filters-wrapper {
-      position: absolute;
       width: 100%;
-      background-color: white;
-      bottom: -56px;
+      background-color: #fff;
     }
   }
 }

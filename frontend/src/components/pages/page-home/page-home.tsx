@@ -116,8 +116,8 @@ export class PageHome {
     }
 
     return [
+      <app-header />,
       <ion-content class="page-home">
-        <app-header />
 
         <section class="section">
           {phoneTitle}

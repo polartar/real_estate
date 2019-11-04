@@ -76,13 +76,14 @@ export class PageSearch {
     }
 
     return [
+      <app-header hide-search-button/>,
+
       <ion-content class={this.getViewClass()}>
-        <app-header hide-search-button />
 
         <section class="section main">
           <div class="search-wrapper">
             <div class="search-results">
-              <div class="view-filters">
+              <div class="view-filters" slot="view-filters">
                 <button aria-label="Map View" class={{ 'view-nav': true, 'active': this.view === 'map'}} onClick={() => { this.view = 'map' }}>
                   <svg width="22px" height="17px" viewBox="0 0 22 17" version="1.1">
                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -133,20 +134,22 @@ export class PageSearch {
                 </select>
 
                 <div class="results-count">50 Results</div>
+              </div>
 
-              </div>
-              <div class="results-grid">
-                {results}
-              </div>
-              <div class="results-list">
-                <listing-table />
+              <div class="results-wrapper">
+                <div class="results-grid">
+                  {results}
+                </div>
+                <div class="results-list">
+                  <listing-table />
+                </div>
               </div>
             </div>
-            <div class="search-map">
+
+            <div class={{ 'search-map': true, 'mobile-map': this.view === 'map' }}>
               <div class="map-wrapper" >
                 <search-map onMapLoaded={() => { this.mapLoaded() }}/>
               </div>
-
             </div>
           </div>
         </section>

@@ -105,7 +105,7 @@ export class AppHeader {
 
   render() {
     return [
-      <header class="header-wrapper">
+      <header>
         <div class="header-inner">
           <div class="app-header section">
             <ion-router-link href="/" class="logo-link">
