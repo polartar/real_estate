@@ -36,13 +36,6 @@ const searchFiltersReducer = (
 
       newState.filters.location = action.payload;
       return newState;
-      // return {
-      //   ...state,
-      //   filters: {
-      //     ...state.filters,
-      //     location: action.payload
-      //   }
-      // };
     }
 
     case Actions.SET_MOVE_IN_FILTER: {
@@ -93,6 +86,43 @@ const searchFiltersReducer = (
           buildingTypes: action.payload
         }
       }
+    }
+
+    case Actions.CLEAR_SEARCH_FILTER: {
+      const clearedFilterState = { ...state };
+      const initialState = getInitialState();
+
+      switch (action.payload.type) {
+        case 'beds': {
+          clearedFilterState.filters.beds = initialState.filters.beds;
+        }
+
+        case 'bathrooms': {
+          clearedFilterState.filters.bathrooms = initialState.filters.bathrooms;
+        }
+
+        case 'price': {
+          clearedFilterState.filters.price = initialState.filters.price;
+        }
+
+        case 'moveInDate': {
+          clearedFilterState.filters.moveInDate = initialState.filters.moveInDate;
+        }
+
+        case 'buildingTypes': {
+          clearedFilterState.filters.buildingTypes = initialState.filters.buildingTypes;
+        }
+
+        case 'locationAll': {
+          clearedFilterState.filters.location = clearedFilterState.filters.location.filter(id => !action.payload.value.includes(id));
+        }
+
+        case 'location': {
+          clearedFilterState.filters.location = clearedFilterState.filters.location.filter(id => id !== action.payload.value);
+        }
+      }
+
+      return clearedFilterState;
     }
   }
 

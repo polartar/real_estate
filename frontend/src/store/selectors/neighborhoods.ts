@@ -1,7 +1,7 @@
 
 const neighborhoodSelectors = {
   getNeighborhoods: state => {
-    return state.neighborhoods.neighborhoods;
+    return { ...state.neighborhoods.neighborhoods };
   },
 
   getNeighborhoodById: (id, neighborhoods) => {

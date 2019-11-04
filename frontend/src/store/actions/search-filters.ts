@@ -98,3 +98,20 @@ export interface SetBuildingTypesFilter {
   type: Actions.SET_BUILDING_TYPE_FILTER,
   payload: any
 }
+
+export function clearSearchFilter(type, value) {
+  return async dispatch => {
+    dispatch({
+      type: Actions.CLEAR_SEARCH_FILTER,
+      payload: {
+        type,
+        value
+      }
+    })
+  };
+}
+
+export interface ClearSearchFilter {
+  type: Actions.CLEAR_SEARCH_FILTER,
+  payload: any
+}

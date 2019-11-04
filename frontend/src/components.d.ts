@@ -48,6 +48,9 @@ export namespace Components {
     'selectAll': () => Promise<void>;
   }
   interface FaqAccordian {}
+  interface FilterTag {
+    'tag': any;
+  }
   interface FilterTags {}
   interface LazyImage {
     'alt': string;
@@ -191,6 +194,12 @@ declare global {
   var HTMLFaqAccordianElement: {
     prototype: HTMLFaqAccordianElement;
     new (): HTMLFaqAccordianElement;
+  };
+
+  interface HTMLFilterTagElement extends Components.FilterTag, HTMLStencilElement {}
+  var HTMLFilterTagElement: {
+    prototype: HTMLFilterTagElement;
+    new (): HTMLFilterTagElement;
   };
 
   interface HTMLFilterTagsElement extends Components.FilterTags, HTMLStencilElement {}
@@ -348,6 +357,7 @@ declare global {
     'bedroom-filter': HTMLBedroomFilterElement;
     'building-type-filter': HTMLBuildingTypeFilterElement;
     'faq-accordian': HTMLFaqAccordianElement;
+    'filter-tag': HTMLFilterTagElement;
     'filter-tags': HTMLFilterTagsElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
@@ -406,6 +416,9 @@ declare namespace LocalJSX {
     'inModal'?: boolean;
   }
   interface FaqAccordian extends JSXBase.HTMLAttributes<HTMLFaqAccordianElement> {}
+  interface FilterTag extends JSXBase.HTMLAttributes<HTMLFilterTagElement> {
+    'tag'?: any;
+  }
   interface FilterTags extends JSXBase.HTMLAttributes<HTMLFilterTagsElement> {}
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
@@ -491,6 +504,7 @@ declare namespace LocalJSX {
     'bedroom-filter': BedroomFilter;
     'building-type-filter': BuildingTypeFilter;
     'faq-accordian': FaqAccordian;
+    'filter-tag': FilterTag;
     'filter-tags': FilterTags;
     'lazy-image': LazyImage;
     'listing-card': ListingCard;

@@ -2,6 +2,7 @@ import { Component, h, Host, Prop, State } from '@stencil/core';
 import { Store } from "@stencil/redux";
 import { FilterTagsService } from '../../../../services/search-filters/filter-tags.service';
 import searchFilterSelectors from '../../../../store/selectors/search-filters';
+import neighborhoodSelectors from '../../../../store/selectors/neighborhoods';
 
 @Component({
   tag: 'filter-tags',
@@ -16,8 +17,9 @@ export class FilterTags {
     this.store.mapStateToProps(this, state => {
 
       const allFilters = searchFilterSelectors.getAllFilters(state);
+      const neighborhoods = neighborhoodSelectors.getNeighborhoods(state);
       return {
-        tags: FilterTagsService.getPrioritizedTags(allFilters)
+        tags: FilterTagsService.getPrioritizedTags(allFilters, neighborhoods)
       };
     });
   }
@@ -34,14 +36,17 @@ export class FilterTags {
     return (
       <Host>
         <div class="tags">
-          { this.tags.map(tag => <div>{tag.title}</div>)}
+          { this.tags.map(tag => <filter-tag tag={tag} />) }
         </div>
         <div class="controls">
-          <button aria-label="Clear Filters" class="button-reset" onClick={() => { this.clearFilters() }}>
+          <button aria-label="Clear Filters" class="button-reset clear-filters" onClick={() => { this.clearFilters() }}>
             Clear
           </button>
-          <button aria-label="Show all filters" class="button-reset" onClick={() => { this.showAllFilters() }}>
+          <button aria-label="Show all filters" class="button-reset show-all" onClick={() => { this.showAllFilters() }}>
             {this.tags.length} Filter{ this.tags.length === 1 ? '' : 's' }
+          </button>
+          <button aria-label="Show all filters" class="button-reset show-all" onClick={() => { this.showAllFilters() }}>
+            {this.tags.length} More
           </button>
         </div>
       </Host>

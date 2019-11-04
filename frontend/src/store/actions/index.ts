@@ -19,7 +19,8 @@ import {
   SetPriceFilter,
   SetBedsFilter,
   SetBathroomsFilter,
-  SetBuildingTypesFilter
+  SetBuildingTypesFilter,
+  ClearSearchFilter
 } from "./search-filters";
 
 export type ActionTypes =
@@ -36,7 +37,9 @@ export type ActionTypes =
   | SetPriceFilter
   | SetBedsFilter
   | SetBathroomsFilter
-  | SetBuildingTypesFilter;
+  | SetBuildingTypesFilter
+  | ClearSearchFilter
+;
 
 export enum Actions {
   LOGIN_BEGIN = "LOGIN_BEGIN",
@@ -52,5 +55,6 @@ export enum Actions {
   SET_PRICE_FILTER = "SET_PRICE_FILTER",
   SET_BEDS_FILTER = "SET_BEDS_FILTER",
   SET_BATHROOM_FILTER = "SET_BATHROOM_FILTER",
-  SET_BUILDING_TYPE_FILTER = "SET_BUILDING_TYPE_FILTER"
+  SET_BUILDING_TYPE_FILTER = "SET_BUILDING_TYPE_FILTER",
+  CLEAR_SEARCH_FILTER = "CLEAR_SEARCH_FILTER"
 }
