@@ -24,7 +24,7 @@ export function formatDate(date: Date, format?: string) {
     // m.d.Y
     case 'short':
     default:
-      result = date.getMonth() + '.' + date.getDate() + '.' + date.getFullYear();
+      result = (date.getMonth() + 1) + '.' + date.getDate() + '.' + date.getFullYear();
     break;
   }
   return result;
