@@ -81,7 +81,7 @@ class FilterTagsServiceInstance {
     if (filters.moveInDate) {
       tags.push({
         type: 'moveInDate',
-        title: formatDate(filters.moveInDate),
+        title: 'Move In: ' + formatDate(filters.moveInDate),
         value: filters.moveInDate,
         priority: this.tagPriorities.moveInDate
       });

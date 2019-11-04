@@ -1,0 +1,41 @@
+@import '../../../../styles/mixins';
+
+.filter-tags-component {
+  display: flex;
+
+  .tags {
+    display: none;
+
+    @include for-size(desktop-up) {
+      display: block;
+    }
+  }
+
+  .controls {
+    display: flex;
+
+    .clear-filters {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      text-decoration: underline;
+
+      @include for-size(desktop-up) {
+        display: none;
+      }
+    }
+
+    .show-all-mobile {
+      @include for-size(desktop-up) {
+        display: none;
+      }
+    }
+
+    .show-all {
+      display: none;
+
+      @include for-size(desktop-up) {
+        display: inline-block;
+      }
+    }
+  }
+}

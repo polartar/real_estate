@@ -1,8 +1,9 @@
 import { Component, h, Host, Prop, State } from '@stencil/core';
-import { Store } from "@stencil/redux";
+import { Store, Action } from "@stencil/redux";
 import { FilterTagsService } from '../../../../services/search-filters/filter-tags.service';
 import searchFilterSelectors from '../../../../store/selectors/search-filters';
 import neighborhoodSelectors from '../../../../store/selectors/neighborhoods';
+import { clearSearchFilter } from '../../../../store/actions/search-filters';
 
 @Component({
   tag: 'filter-tags',
@@ -13,6 +14,9 @@ export class FilterTags {
 
   @State() tags: any[] = [];
 
+
+  clearSearchFilter: Action;
+
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
 
@@ -22,10 +26,10 @@ export class FilterTags {
         tags: FilterTagsService.getPrioritizedTags(allFilters, neighborhoods)
       };
     });
-  }
 
-  clearFilters() {
-    console.log('clearing filters');
+    this.store.mapDispatchToProps(this, {
+      clearSearchFilter
+    });
   }
 
   showAllFilters() {
@@ -33,21 +37,35 @@ export class FilterTags {
   }
 
   render() {
+    const moreCount: number = Math.max(0, this.tags.length - 2);
+
     return (
-      <Host>
+      <Host class="filter-tags-component">
         <div class="tags">
-          { this.tags.map(tag => <filter-tag tag={tag} />) }
+          { this.tags.map((tag, index) => {
+            if (index < 2) {
+              return <filter-tag tag={tag} />
+            }
+          }) }
         </div>
         <div class="controls">
-          <button aria-label="Clear Filters" class="button-reset clear-filters" onClick={() => { this.clearFilters() }}>
-            Clear
-          </button>
-          <button aria-label="Show all filters" class="button-reset show-all" onClick={() => { this.showAllFilters() }}>
-            {this.tags.length} Filter{ this.tags.length === 1 ? '' : 's' }
-          </button>
-          <button aria-label="Show all filters" class="button-reset show-all" onClick={() => { this.showAllFilters() }}>
-            {this.tags.length} More
-          </button>
+          { this.tags.length ?
+            <button aria-label="Clear Filters" class="button-reset clear-filters" onClick={() => { this.clearSearchFilter('all') }}>
+              Clear
+            </button>
+          : null }
+
+          { this.tags.length ?
+            <button aria-label="Show all filters" class="button-reset show-all-mobile" onClick={() => { this.showAllFilters() }}>
+              {this.tags.length} Filter{ this.tags.length === 1 ? '' : 's' }
+            </button>
+          : null }
+
+          { moreCount ?
+            <button aria-label="Show all filters" class="button-reset show-all" onClick={() => { this.showAllFilters() }}>
+              {moreCount} More
+            </button>
+          : null }
         </div>
       </Host>
     )

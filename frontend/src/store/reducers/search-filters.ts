@@ -93,6 +93,10 @@ const searchFiltersReducer = (
       const initialState = getInitialState();
 
       switch (action.payload.type) {
+        case 'all': {
+          clearedFilterState.filters = initialState.filters;
+        }
+
         case 'beds': {
           clearedFilterState.filters.beds = initialState.filters.beds;
         }
