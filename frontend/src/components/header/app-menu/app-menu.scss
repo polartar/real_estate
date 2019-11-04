@@ -11,12 +11,6 @@
       .header-center {
         flex-grow: 1;
       }
-
-      @include for-size(desktop-up) {
-        .logo {
-          margin-left: -9px;
-        }
-      }
     }
 
     ion-button.close {
