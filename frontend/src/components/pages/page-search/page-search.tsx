@@ -38,17 +38,15 @@ export class PageSearch {
   }
 
   @Watch('view')
-  viewChanged(newVal, oldVal) {
-    if (oldVal !== newVal && newVal === 'map') {
-      // if the map re-renders while not in the map-view the size is off
-      // by triggering a window resize event it fixes itself
-      setTimeout(() => {
-        const event = document.createEvent('HTMLEvents');
-        event.initEvent('resize', true, false);
+  viewChanged() {
+    // if the map re-renders while not in the map-view the size is off
+    // by triggering a window resize event it fixes itself
+    setTimeout(() => {
+      const event = document.createEvent('HTMLEvents');
+      event.initEvent('resize', true, false);
 
-        window.dispatchEvent(event);
-      }, 50);
-    }
+      window.dispatchEvent(event);
+    }, 25);
   }
 
   getViewClass() {
@@ -57,15 +55,6 @@ export class PageSearch {
     viewClass[this.view] = true;
 
     return viewClass;
-  }
-
-  mapLoaded() {
-    // map loaded
-  }
-
-  getMap() {
-    const map: any = this.el.querySelector('search-map');
-    return map;
   }
 
   render() {
@@ -148,7 +137,7 @@ export class PageSearch {
 
             <div class={{ 'search-map': true, 'mobile-map': this.view === 'map' }}>
               <div class="map-wrapper" >
-                <search-map onMapLoaded={() => { this.mapLoaded() }}/>
+                <search-map />
               </div>
             </div>
           </div>

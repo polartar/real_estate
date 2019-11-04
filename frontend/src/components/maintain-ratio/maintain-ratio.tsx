@@ -51,6 +51,7 @@ export class MaintainRatio {
     }
     else {
       // no observer, let's just give it a couple of seconds of polling and assume it's settled down
+      console.log('no observer here');
 
       let interval = setInterval(() => {
         this.enforceRatio();
