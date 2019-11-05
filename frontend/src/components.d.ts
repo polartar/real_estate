@@ -9,7 +9,9 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface AppFooter {}
+  interface AppFooter {
+    'noMargin': boolean;
+  }
   interface AppHeader {
     'hideSearchButton': boolean;
   }
@@ -105,6 +107,7 @@ export namespace Components {
     'location': any;
     'neighborhoods': any;
     'size': string;
+    'width': any;
   }
   interface PriceFilter {
     'inModal': boolean;
@@ -118,6 +121,7 @@ export namespace Components {
     'init': () => Promise<void>;
     'location': any;
     'removeNeighborhood': (slug: any) => Promise<void>;
+    'resize': () => Promise<void>;
     'showDetails': (ids: any, lat: any, lng: any) => Promise<void>;
   }
   interface StarRating {
@@ -398,7 +402,9 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface AppFooter extends JSXBase.HTMLAttributes<HTMLAppFooterElement> {}
+  interface AppFooter extends JSXBase.HTMLAttributes<HTMLAppFooterElement> {
+    'noMargin'?: boolean;
+  }
   interface AppHeader extends JSXBase.HTMLAttributes<HTMLAppHeaderElement> {
     'hideSearchButton'?: boolean;
   }
@@ -433,7 +439,9 @@ declare namespace LocalJSX {
   interface FilterTag extends JSXBase.HTMLAttributes<HTMLFilterTagElement> {
     'tag'?: any;
   }
-  interface FilterTags extends JSXBase.HTMLAttributes<HTMLFilterTagsElement> {}
+  interface FilterTags extends JSXBase.HTMLAttributes<HTMLFilterTagsElement> {
+    'onShowAllTags'?: (event: CustomEvent<void>) => void;
+  }
   interface FilterTagsAll extends JSXBase.HTMLAttributes<HTMLFilterTagsAllElement> {}
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
@@ -485,6 +493,7 @@ declare namespace LocalJSX {
     'location'?: any;
     'neighborhoods'?: any;
     'size'?: string;
+    'width'?: any;
   }
   interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {
     'inModal'?: boolean;

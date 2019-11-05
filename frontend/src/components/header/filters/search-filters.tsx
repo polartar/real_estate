@@ -1,6 +1,9 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Host, State } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../../store/actions/search-filters";
+import { FilterTagsService } from '../../../services/search-filters/filter-tags.service';
+import searchFilterSelectors from '../../../store/selectors/search-filters';
+import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 
 @Component({
   tag: 'search-filters',
@@ -11,7 +14,19 @@ export class SearchFilters {
   @Prop() closeable: boolean = true;
   toggleSearchFilterDisplay: Action;
 
+  @State() tags: any[] = [];
+  @State() showAllTags: boolean = false;
+
   componentDidLoad() {
+    this.store.mapStateToProps(this, state => {
+
+      const allFilters = searchFilterSelectors.getAllFilters(state);
+      const neighborhoods = neighborhoodSelectors.getNeighborhoods(state);
+      return {
+        tags: FilterTagsService.getPrioritizedTags(allFilters, neighborhoods)
+      };
+    });
+
     this.store.mapDispatchToProps(this, {
       toggleSearchFilterDisplay
     });
@@ -41,58 +56,67 @@ export class SearchFilters {
 
   render() {
     return (
-      <div class="search-filters">
-        <div class="section">
-          <button aria-label="Location filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'location-filter')}>
-            Location
-            <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
-          </button>
+      <Host>
+        <div class="search-filters">
+          <div class="section">
+            <button aria-label="Location filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'location-filter')}>
+              Location
+              <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
+            </button>
 
-          <button aria-label="Move in date filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'move-in-date-filter')}>
-            Move In Date
-            <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
-          </button>
+            <button aria-label="Move in date filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'move-in-date-filter')}>
+              Move In Date
+              <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
+            </button>
 
-          <button aria-label="Price filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'price-filter')}>
-            Price
-            <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
-          </button>
+            <button aria-label="Price filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'price-filter')}>
+              Price
+              <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
+            </button>
 
-          <button aria-label="Bedrooms filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'bedroom-filter')}>
-            Beds
-            <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
-          </button>
+            <button aria-label="Bedrooms filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'bedroom-filter')}>
+              Beds
+              <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
+            </button>
 
-          <button aria-label="Bathrooms filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'bathroom-filter')}>
-            Baths
-            <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
-          </button>
+            <button aria-label="Bathrooms filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'bathroom-filter')}>
+              Baths
+              <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
+            </button>
 
-          <button aria-label="Building types filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'building-type-filter')}>
-            Building Type
-            <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
-          </button>
+            <button aria-label="Building types filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'building-type-filter')}>
+              Building Type
+              <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
+            </button>
 
-          { this.closeable ?
-          <ion-button aria-label="Search" class="search" href="/search">Search</ion-button>
-          : null }
+            { this.closeable ?
+            <ion-button aria-label="Search" class="search" href="/search">Search</ion-button>
+            : null }
 
-          <ion-button aria-label="Search Filters" class="reset mobile-filters" onClick={() => this.launchMobileFilterMenu()}>
-            <ion-icon mode="md" name="md-funnel" slot="start"></ion-icon>
-            Filter
-          </ion-button>
+            <ion-button aria-label="Search Filters" class="reset mobile-filters" onClick={() => this.launchMobileFilterMenu()}>
+              <ion-icon mode="md" name="md-funnel" slot="start"></ion-icon>
+              Filter
+            </ion-button>
 
-          <div class="spacer" />
+            <div class="spacer" />
 
-          <filter-tags />
+            <filter-tags onShowAllTags={() => { this.showAllTags = !this.showAllTags} } />
 
-          { this.closeable ?
-          <button aria-label="Close Filters" class="button-reset close" onClick={() => this.toggleSearchFilterDisplay(false)}>
-            <ion-icon mode="md" name="md-close" slot="icon-only"/>
-          </button>
-          : null }
+            { this.closeable ?
+            <button aria-label="Close Filters" class="button-reset close" onClick={() => this.toggleSearchFilterDisplay(false)}>
+              <ion-icon mode="md" name="md-close" slot="icon-only"/>
+            </button>
+            : null }
+          </div>
         </div>
-      </div>
+
+        { this.showAllTags && this.tags.length ?
+        <div class="filter-tags-all">
+          <filter-tags-all />
+        </div>
+        : null
+        }
+      </Host>
     );
   }
 }

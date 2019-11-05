@@ -285,6 +285,10 @@ app-header, app-menu {
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
 ion-checkbox {
   &.checkbox-checked:after {
     content: '';

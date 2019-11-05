@@ -29,7 +29,8 @@
       --background: #{$color-primary};
       --color: white;
       --detail-icon-color: white;
-      --background-activated: #{$color-primary-lighter}
+      --background-activated: #{$color-primary};
+      --background-hover: #{$color-primary};
     }
 
     &.mobile-filter-menu-back {

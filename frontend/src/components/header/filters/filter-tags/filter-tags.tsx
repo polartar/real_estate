@@ -1,4 +1,4 @@
-import { Component, h, Host, Prop, State } from '@stencil/core';
+import { Component, h, Host, Prop, State, Event, EventEmitter } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { FilterTagsService } from '../../../../services/search-filters/filter-tags.service';
 import searchFilterSelectors from '../../../../store/selectors/search-filters';
@@ -15,6 +15,7 @@ export class FilterTags {
   @State() tags: any[] = [];
   @State() screenWidth: number;
 
+  @Event() showAllTags: EventEmitter<void>;
 
   clearSearchFilter: Action;
 
@@ -32,10 +33,6 @@ export class FilterTags {
     this.store.mapDispatchToProps(this, {
       clearSearchFilter
     });
-  }
-
-  showAllFilters() {
-    console.log('show all filters');
   }
 
   async showFiltersPopover(ev) {
@@ -92,7 +89,7 @@ export class FilterTags {
           : null }
 
           { this.tags.length ?
-            <button aria-label="Show all filters" class="button-reset show-all-mobile" onClick={() => { this.showAllFilters() }}>
+            <button aria-label="Show all filters" class="button-reset show-all-mobile" onClick={() => { this.showAllTags.emit() }}>
               {this.tags.length} Filter{ this.tags.length === 1 ? '' : 's' }
             </button>
           : null }

@@ -12,24 +12,44 @@ export class PageSearch {
   @Prop() size: string = 'phone-only';
   @Prop() neighborhoods: any;
   @Prop() location: any;
+  @Prop() width: any;
 
   @Element() el: HTMLElement;
 
   @State() view: string = 'map';
 
+  headerObserver: any = null;
+
+  @State() footerOpen: boolean = false;
+
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
 
       const {
-        screenSize: { size },
+        screenSize: { size, width },
       } = state;
 
       return {
         size,
+        width,
         neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
         location: searchFilterSelectors.getLocations(state)
       };
     });
+
+    if (window.MutationObserver) {
+      this.headerObserver = new MutationObserver(() => this.headerResized());
+
+      const config = {
+        attributes: false,
+        childList: true,
+        subtree: true
+      };
+
+      const header = document.querySelector('app-header');
+
+      this.headerObserver.observe(header, config);
+    }
   }
 
   componentDidRender() {
@@ -47,6 +67,30 @@ export class PageSearch {
 
       window.dispatchEvent(event);
     }, 25);
+  }
+
+  // adjust the size of results wrapper based on the header
+  @Watch('width')
+  headerResized() {
+    const header = document.querySelector('app-header');
+    const resultsWrapper: any = this.el.querySelector('.results-wrapper');
+    const mapWrapper: any = this.el.querySelector('.map-wrapper');
+    const viewFilters: any = this.el.querySelector('.view-filters');
+    const map: any = this.el.querySelector('search-map');
+
+    const headerHeight = header.clientHeight;
+    const viewFilterHeight = viewFilters ? viewFilters.clientHeight : 0;
+
+    if (this.size.includes('desktop')) {
+      resultsWrapper.style.maxHeight = null;
+      mapWrapper.style.height = null;
+    }
+    else {
+      resultsWrapper.style.maxHeight = `calc(100vh - (${headerHeight}px + ${viewFilterHeight}px))`;
+      mapWrapper.style.height = `calc(100vh - (${headerHeight}px + ${viewFilterHeight}px))`;
+    }
+
+    map.resize();
   }
 
   getViewClass() {
@@ -142,6 +186,22 @@ export class PageSearch {
             </div>
           </div>
         </section>
+
+        <div class={{'search-footer': true, 'footer-open': this.footerOpen, 'footer-closed': !this.footerOpen }}>
+          <div class="section text-right">
+            <button class="button-reset toggle-footer" aria-label="Open/Close Footer" onClick={() => this.footerOpen = !this.footerOpen }>
+              <span class="closed">Open Footer</span>
+              <ion-icon mode="md" name="md-arrow-dropup" class="closed"></ion-icon>
+
+              <span class="open">Close Footer</span>
+              <ion-icon mode="md" name="md-arrow-dropdown" class="open"></ion-icon>
+            </button>
+          </div>
+
+          <div class="footer-wrapper">
+            <app-footer no-margin />
+          </div>
+        </div>
       </ion-content>
     ];
   }

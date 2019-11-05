@@ -58,6 +58,13 @@ export class SearchMap {
     }
   }
 
+  @Method('resize')
+  async resize() {
+    if (this.mapInitialized && this.map) {
+      this.map.resize();
+    }
+  }
+
   @Method('addNeighborhood')
   async addNeighborhood(slug, coords) {
     if (!this.mapRendered) {

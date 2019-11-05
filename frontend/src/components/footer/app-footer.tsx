@@ -1,4 +1,4 @@
-import { Component, h, State} from '@stencil/core';
+import { Component, h, State, Prop} from '@stencil/core';
 
 @Component({
   tag: 'app-footer',
@@ -6,6 +6,7 @@ import { Component, h, State} from '@stencil/core';
 })
 export class AppFooter {
   @State() year: number = 2019;
+  @Prop() noMargin: boolean = false;
 
   componentDidLoad() {
     let dt = new Date();
@@ -19,7 +20,7 @@ export class AppFooter {
 
   render() {
     return [
-      <footer class="app-footer">
+      <footer class={{'app-footer': true, 'no-margin': this.noMargin}}>
         <div class="section">
           <div class="footer-wrapper">
             <div class="footer-col footer-left">

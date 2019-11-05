@@ -10,6 +10,10 @@
   color: white;
   min-height: 300px;
 
+  &.no-margin {
+    margin-top: 0;
+  }
+
   .footer-wrapper {
 
     @include for-size(tablet-landscape-up) {

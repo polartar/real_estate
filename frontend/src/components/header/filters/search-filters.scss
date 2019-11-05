@@ -9,7 +9,11 @@
     display: flex;
     align-items: center;
     height: 100%;
-    padding-left: 1.5rem;
+    padding-left: 10px;
+
+    @include for-size(desktop-up) {
+      padding-left: 1.5rem;
+    }
 
     .dropdown {
       display: none;
@@ -67,5 +71,11 @@
       padding-top: 3px;
       margin-left: 1rem;
     }
+  }
+}
+
+.filter-tags-all {
+  @include for-size(desktop-up) {
+    display: none;
   }
 }
