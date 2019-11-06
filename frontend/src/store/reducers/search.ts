@@ -1,8 +1,11 @@
 import { Actions, ActionTypes } from "../actions/index";
 
-interface searchFiltersState {
+interface searchState {
   displayFilter: boolean,
-  filters: any
+  filters: any,
+  loading: boolean,
+  listings: any[],
+  listingsCount: number
 }
 
 const getInitialState = () => {
@@ -15,12 +18,15 @@ const getInitialState = () => {
       beds: [],
       bathrooms: [],
       buildingTypes: []
-    }
+    },
+    loading: false,
+    listings: [],
+    listingsCount: 0,
   }
 };
 
-const searchFiltersReducer = (
-  state: searchFiltersState = getInitialState(),
+const searchReducer = (
+  state: searchState = getInitialState(),
   action: ActionTypes
 ) => {
   switch (action.type) {
@@ -29,6 +35,21 @@ const searchFiltersReducer = (
         ...state,
         displayFilter: action.payload
       };
+    }
+
+    case Actions.SET_SEARCH_LOADING: {
+      return {
+        ...state,
+        loading: action.payload
+      }
+    }
+
+    case Actions.SET_SEARCH_LISTINGS: {
+      return {
+        ...state,
+        listings: action.payload.listings,
+        listingsCount: action.payload.listingsCount
+      }
     }
 
     case Actions.SET_LOCATION_FILTERS: {
@@ -141,4 +162,4 @@ const searchFiltersReducer = (
   return state;
 };
 
-export default searchFiltersReducer;
+export default searchReducer;

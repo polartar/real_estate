@@ -1,7 +1,7 @@
 import { Component, h, Prop, Element, Method } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
-import searchFilterSelectors from '../../../../../store/selectors/search-filters';
-import { setBuildingTypesFilter } from '../../../../../store/actions/search-filters';
+import { searchFilterSelectors } from '../../../../../store/selectors/search';
+import { setBuildingTypesFilter } from '../../../../../store/actions/search';
 import { getBuildingTypeStructure } from '../../../../../helpers/filters';
 
 @Component({

@@ -1,9 +1,9 @@
 import { Component, h, Host, Prop, State, Event, EventEmitter } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { FilterTagsService } from '../../../../services/search-filters/filter-tags.service';
-import searchFilterSelectors from '../../../../store/selectors/search-filters';
+import { searchFilterSelectors } from '../../../../store/selectors/search';
 import neighborhoodSelectors from '../../../../store/selectors/neighborhoods';
-import { clearSearchFilter } from '../../../../store/actions/search-filters';
+import { clearSearchFilter } from '../../../../store/actions/search';
 
 @Component({
   tag: 'filter-tags',

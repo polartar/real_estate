@@ -1,3 +1,9 @@
+const searchSelectors = {
+  getLoading: state => {
+    return !!state.loading;
+  }
+};
+
 
 const searchFilterSelectors = {
   getAllFilters: state => {
@@ -11,29 +17,36 @@ const searchFilterSelectors = {
     };
   },
 
+  getDisplayFilter: state => {
+    return state.search.displayFilter;
+  },
+
   getMoveInDate: state => {
-    return state.searchFilters.filters.moveInDate;
+    return state.search.filters.moveInDate;
   },
 
   getPrice: state => {
-    return state.searchFilters.filters.price;
+    return state.search.filters.price;
   },
 
   getBeds: state => {
-    return [...state.searchFilters.filters.beds];
+    return [...state.search.filters.beds];
   },
 
   getBathrooms: state => {
-    return [...state.searchFilters.filters.bathrooms];
+    return [...state.search.filters.bathrooms];
   },
 
   getBuildingTypes: state => {
-    return [...state.searchFilters.filters.buildingTypes];
+    return [...state.search.filters.buildingTypes];
   },
 
   getLocations: state => {
-    return [...state.searchFilters.filters.location];
+    return [...state.search.filters.location];
   }
 }
 
-export default searchFilterSelectors;
+export {
+  searchFilterSelectors,
+  searchSelectors
+};

@@ -124,6 +124,7 @@ export namespace Components {
     'resize': () => Promise<void>;
     'showDetails': (ids: any, lat: any, lng: any) => Promise<void>;
   }
+  interface SearchStateEmpty {}
   interface StarRating {
     'color': string;
     'rating': number;
@@ -349,6 +350,12 @@ declare global {
     new (): HTMLSearchMapElement;
   };
 
+  interface HTMLSearchStateEmptyElement extends Components.SearchStateEmpty, HTMLStencilElement {}
+  var HTMLSearchStateEmptyElement: {
+    prototype: HTMLSearchStateEmptyElement;
+    new (): HTMLSearchStateEmptyElement;
+  };
+
   interface HTMLStarRatingElement extends Components.StarRating, HTMLStencilElement {}
   var HTMLStarRatingElement: {
     prototype: HTMLStarRatingElement;
@@ -396,6 +403,7 @@ declare global {
     'price-filter': HTMLPriceFilterElement;
     'search-filters': HTMLSearchFiltersElement;
     'search-map': HTMLSearchMapElement;
+    'search-state-empty': HTMLSearchStateEmptyElement;
     'star-rating': HTMLStarRatingElement;
     'youtube-video': HTMLYoutubeVideoElement;
   }
@@ -506,6 +514,7 @@ declare namespace LocalJSX {
     'location'?: any;
     'onMapLoaded'?: (event: CustomEvent<void>) => void;
   }
+  interface SearchStateEmpty extends JSXBase.HTMLAttributes<HTMLSearchStateEmptyElement> {}
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
     'color'?: string;
     'onRated'?: (event: CustomEvent<number>) => void;
@@ -554,6 +563,7 @@ declare namespace LocalJSX {
     'price-filter': PriceFilter;
     'search-filters': SearchFilters;
     'search-map': SearchMap;
+    'search-state-empty': SearchStateEmpty;
     'star-rating': StarRating;
     'youtube-video': YoutubeVideo;
   }

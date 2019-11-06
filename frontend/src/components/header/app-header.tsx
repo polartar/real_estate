@@ -1,6 +1,6 @@
 import { Component, h, State, Prop, Element } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
-import { toggleSearchFilterDisplay } from "../../store/actions/search-filters";
+import { toggleSearchFilterDisplay } from "../../store/actions/search";
 import { updateHeaderHeight } from '../../store/actions/screensize';
 import { createAnimation } from '@ionic/core';
 
@@ -22,7 +22,7 @@ export class AppHeader {
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       const {
-        searchFilters: { displayFilter },
+        search: { displayFilter },
         screenSize: { size, isMobile },
       } = state;
 

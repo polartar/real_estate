@@ -1,6 +1,7 @@
 import { Component, h, Prop, Element, State, Watch } from '@stencil/core';
-import { Store } from "@stencil/redux";
-import searchFilterSelectors from '../../../store/selectors/search-filters';
+import { Store, Action } from "@stencil/redux";
+import { searchFilterSelectors, searchSelectors } from '../../../store/selectors/search';
+import { getSearchListings } from '../../../store/actions/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 
 @Component({
@@ -17,12 +18,20 @@ export class PageSearch {
   @Element() el: HTMLElement;
 
   @State() view: string = 'map';
+  @State() searchResults: any[] = [];
+  @State() searchResultsCount: number = 0;
+  @State() searchFilters: any;
+  @State() loading: boolean;
+
+  rendered: boolean = false;
+
+  performSearchAction: Action;
 
   headerObserver: any = null;
 
   @State() footerOpen: boolean = false;
 
-  componentDidLoad() {
+  componentWillLoad() {
     this.store.mapStateToProps(this, state => {
 
       const {
@@ -33,10 +42,18 @@ export class PageSearch {
         size,
         width,
         neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
-        location: searchFilterSelectors.getLocations(state)
+        location: searchFilterSelectors.getLocations(state),
+        searchFilters: searchFilterSelectors.getAllFilters(state),
+        loading: searchSelectors.getLoading(state)
       };
     });
 
+    this.store.mapDispatchToProps(this, {
+      performSearchAction: getSearchListings
+    });
+  }
+
+  componentDidLoad() {
     if (window.MutationObserver) {
       this.headerObserver = new MutationObserver(() => this.headerResized());
 
@@ -53,8 +70,15 @@ export class PageSearch {
   }
 
   componentDidRender() {
+      this.rendered = true;
+
       const map: any = this.el.querySelector('search-map');
       map.init();
+
+      const router: any = document.querySelector('ion-router');
+      router.addEventListener('ionRouteDidChange', () => {
+        map.resize();
+      });
   }
 
   @Watch('view')
@@ -72,13 +96,17 @@ export class PageSearch {
   // adjust the size of results wrapper based on the header
   @Watch('width')
   headerResized() {
+    if (!this.rendered) {
+      return;
+    }
+
     const header = document.querySelector('app-header');
     const resultsWrapper: any = this.el.querySelector('.results-wrapper');
     const mapWrapper: any = this.el.querySelector('.map-wrapper');
     const viewFilters: any = this.el.querySelector('.view-filters');
     const map: any = this.el.querySelector('search-map');
 
-    const headerHeight = header.clientHeight;
+    const headerHeight = header ? header.clientHeight : 0;
     const viewFilterHeight = viewFilters ? viewFilters.clientHeight : 0;
 
     if (this.size.includes('desktop')) {
@@ -93,10 +121,32 @@ export class PageSearch {
     map.resize();
   }
 
+  @Watch('searchFilters')
+  performSearch(newVal, oldVal) {
+    // simulate a search
+
+    // ensure filters are materially different
+    if (JSON.stringify(newVal) === JSON.stringify(oldVal)) {
+      return;
+    }
+
+    console.log(newVal, oldVal);
+    console.log('perform search');
+    // this.performSearchAction(this.searchFilters);
+  }
+
   getViewClass() {
     let viewClass: any = { 'page-search': true };
 
     viewClass[this.view] = true;
+
+    if (!this.searchResults.length && !this.loading) {
+      viewClass['no-results'] = true;
+    }
+
+    if (this.loading) {
+      viewClass['loading'] = true;
+    }
 
     return viewClass;
   }
@@ -166,7 +216,7 @@ export class PageSearch {
                   <option>Size - Big to Small</option>
                 </select>
 
-                <div class="results-count">50 Results</div>
+                <div class="results-count">{this.searchResultsCount} Results</div>
               </div>
 
               <div class="results-wrapper">
@@ -175,6 +225,12 @@ export class PageSearch {
                 </div>
                 <div class="results-list">
                   <listing-table />
+                </div>
+                <div class="empty-state">
+                  <search-state-empty />
+                </div>
+                <div class="loading-state">
+                  Loading
                 </div>
               </div>
             </div>

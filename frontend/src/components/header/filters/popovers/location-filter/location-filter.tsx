@@ -1,6 +1,7 @@
 import { Component, h, Prop, State, Element} from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
-import { setLocationFilters } from '../../../../../store/actions/search-filters';
+import { setLocationFilters } from '../../../../../store/actions/search';
+import { searchFilterSelectors } from '../../../../../store/selectors/search';
 
 @Component({
   tag: 'location-filter',
@@ -24,7 +25,7 @@ export class LocationFilter {
     this.store.mapStateToProps(this, state => {
       return {
         neighborhoods: state.neighborhoods.neighborhoods,
-        value: state.searchFilters.filters.location
+        value: searchFilterSelectors.getLocations(state)
       }
     });
 

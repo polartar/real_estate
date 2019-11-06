@@ -1,6 +1,12 @@
 @import '../../../styles/mixins';
 @import '../../../styles/variables';
 
+$map-height-mobile: calc(100vh - (#{$search-filters-desktop-height} + #{$search-view-filters-height} + #{$mobile-header-height}));
+$map-height-desktop: calc(100vh - (#{$search-filters-desktop-height} + #{$header-height}));
+
+$state-height-mobile: calc(100vh - (#{$search-filters-desktop-height} + #{$header-height} + #{$search-view-filters-height}));
+$state-height-desktop: calc(100vh - (#{$search-filters-desktop-height} + #{$header-height} + #{$search-view-filters-height}));
+
 .page-search {
   .section.main {
     padding: 0;
@@ -95,18 +101,18 @@
         overflow: hidden;
         top: 0;
         width: 100%;
-        height: calc(100vh - (#{$search-filters-desktop-height} + #{$search-view-filters-height} + #{$mobile-header-height}));
+        height: $map-height-mobile;
 
         @include for-size(desktop-up) {
           width: 100%;
-          height: calc(100vh - (#{$search-filters-desktop-height} + #{$header-height}));
+          height: $map-height-desktop;
         }
       }
     }
 
     @include for-size(tablet) {
       .results-wrapper {
-        max-height: calc(100vh - (#{$search-filters-desktop-height} + #{$search-view-filters-height} + #{$mobile-header-height}));
+        max-height: $map-height-mobile;
         overflow: hidden;
         overflow-y: scroll;
       }
@@ -120,6 +126,49 @@
     .results-list {
       padding: 0 1.5rem 1rem 0;
       display: none;
+    }
+  }
+
+
+  .empty-state,
+  .loading-state {
+    display: none;
+    height: $state-height-mobile;
+
+    @include for-size(desktop-up) {
+      height: $state-height-desktop;
+    }
+  }
+
+  &.no-results {
+    .empty-state {
+      display: block;
+    }
+
+    .results-wrapper {
+      & > div:not(.empty-state) {
+        display: none;
+      }
+    }
+
+    .search-map {
+      display: none;
+
+      @include for-size(desktop-up) {
+        display: block;
+      }
+    }
+  }
+
+  &.loading {
+    .loading-state {
+      display: block;
+    }
+
+    .results-wrapper {
+      & > div:not(.loading-state) {
+        display: none;
+      }
     }
   }
 

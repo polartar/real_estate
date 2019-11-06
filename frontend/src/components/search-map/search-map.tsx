@@ -3,7 +3,7 @@ import { Store } from "@stencil/redux";
 import { ScriptLoaderService } from '../../services/script-loader.service';
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
 import { generateId } from '../../helpers/utils';
-import searchFilterSelectors from '../../store/selectors/search-filters';
+import { searchFilterSelectors } from '../../store/selectors/search';
 import neighborhoodSelectors from '../../store/selectors/neighborhoods';
 
 declare var mapboxgl: any;

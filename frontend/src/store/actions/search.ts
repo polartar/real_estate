@@ -115,3 +115,41 @@ export interface ClearSearchFilter {
   type: Actions.CLEAR_SEARCH_FILTER,
   payload: any
 }
+
+export function getSearchListings(filters) {
+  return async dispatch => {
+
+    // set loading states
+    dispatch({
+      type: Actions.SET_SEARCH_LOADING,
+      payload: true
+    });
+
+    // perform our search
+    console.log('searching', filters);
+    await new Promise(resolve => setTimeout(() => resolve, 3000));
+
+    dispatch({
+      type: Actions.SET_SEARCH_LISTINGS,
+      payload: {
+        count: 0,
+        listings: []
+      }
+    });
+
+    dispatch({
+      type: Actions.SET_SEARCH_LOADING,
+      payload: false
+    });
+  }
+}
+
+export interface SetSearchListings {
+  type: Actions.SET_SEARCH_LISTINGS,
+  payload: any
+}
+
+export interface SetSearchLoading {
+  type: Actions.SET_SEARCH_LOADING,
+  payload: boolean
+}

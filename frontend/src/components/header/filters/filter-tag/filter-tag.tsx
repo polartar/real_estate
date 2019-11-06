@@ -1,6 +1,6 @@
 import { Component, h, Prop } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
-import { clearSearchFilter } from '../../../../store/actions/search-filters';
+import { clearSearchFilter } from '../../../../store/actions/search';
 
 @Component({
   tag: 'filter-tag',
