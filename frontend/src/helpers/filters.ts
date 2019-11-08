@@ -33,3 +33,11 @@ export function getBuildingTypeStructure() {
     rating: 5,
   }];
 }
+
+export function getBuildingTypeLabel(value) {
+  const structure = getBuildingTypeStructure();
+
+  const type = structure.filter(b => b.value === value);
+
+  return type.length ? type[0].name : value;
+}

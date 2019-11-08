@@ -47,7 +47,8 @@ export function generateListings(num: number = 10) {
     rating: 5,
     neighborhood_id: 10,
     building_type: 'elevator',
-    available_date: '12/01/2019'
+    available_date: '12/01/2019',
+    images: []
   };
 
   const buildingTypes = getBuildingTypeStructure();
@@ -55,7 +56,7 @@ export function generateListings(num: number = 10) {
   let listings = [];
 
   for (let i = 0; i < num; i++) {
-    let listing = baseListing;
+    let listing = { ...baseListing };
     let unit_num = Math.ceil(Math.random() * 1000);
     let unit_str = arrayShuffle(['Front', 'Side', 'Main', 'Ventura', 'Jersey', 'Blake', 'Connor', 'David', 'Woodgrove']).pop();
     let unit_str_type = arrayShuffle(['Street', 'Str', 'Ave', 'Avenue', 'Place', 'Pl', 'Grove', 'Circle']).pop();
@@ -73,7 +74,17 @@ export function generateListings(num: number = 10) {
     listing.rating = Math.ceil(Math.random() * 5);
     listing.building_type = arrayShuffle([ ...buildingTypes]).pop().value;
 
+    let numPics = Math.round(Math.random() * 10) + 1;
+    let images = [];
+    for (let i = 0; i < numPics; i++) {
+      images.push('https://picsum.photos/seed/' + listing.id + '/400/300.jpg');
+    }
+
+    listing.images = [...images];
+
     listings.push({ ...listing });
+
+    listing = null;
   }
 
   return listings;

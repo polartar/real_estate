@@ -1,5 +1,6 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import { Store } from "@stencil/redux";
+import { getBuildingTypeLabel } from '../../helpers/filters';
 
 @Component({
   tag: 'listing-card',
@@ -17,7 +18,8 @@ export class ListingCard {
     bedrooms: 3,
     bathrooms: 3,
     rating: 4,
-    building_type: 'Elevator'
+    building_type: 'Elevator',
+    images: []
   }
 
   componentDidLoad() {
@@ -33,13 +35,17 @@ export class ListingCard {
     });
   }
 
+  getImageURL() {
+    return this.item.images.length ? this.item.images[0] : '/assets/images/placeholder/apt1.jpeg';
+  }
+
   render() {
 
     return [
       <ion-router-link href={'/post/' + this.item.id}>
         <div class="listing-card">
             <maintain-ratio width={322} height={182}>
-              <lazy-image src="/assets/images/placeholder/apt1.jpeg" class="list-feature-image" alt={this.item.address} />
+              <lazy-image src={this.getImageURL()} class="list-feature-image" alt={this.item.address} />
             </maintain-ratio>
           <div class={{"listing-content-padding": this.contentPadding}}>
             <h4 class="listing-title">{this.item.address}</h4>
@@ -66,7 +72,7 @@ export class ListingCard {
               />
 
               <div class="amenities">
-                { this.item.building_type }
+                { getBuildingTypeLabel(this.item.building_type) }
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import neighborhoodSelectors from '../../store/selectors/neighborhoods';
+import { getBuildingTypeLabel } from '../../helpers/filters';
 import { formatMoney } from '../../helpers/utils';
 
 @Component({
@@ -35,11 +36,11 @@ export class ListingTable {
         <td class="desktop-only">{item.bedrooms}</td>
         <td class="desktop-only">{item.bathrooms}</td>
         <td class="desktop-only">{formatMoney(item.price)}/month</td>
-        <td class="desktop-only">{item.building_type}</td>
+        <td class="desktop-only">{getBuildingTypeLabel(item.building_type)}</td>
         <td class="desktop-only">{item.available_date}</td>
         <td class="mobile-only">
           {item.bedrooms} BD | {item.bathrooms} BA<br />
-          {item.building_type}<br />
+          {getBuildingTypeLabel(item.building_type)}<br />
           {formatMoney(item.price)}/month<br />
           Available: {item.available_date}
         </td>
