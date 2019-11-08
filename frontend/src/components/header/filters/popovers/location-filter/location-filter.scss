@@ -30,7 +30,7 @@
   }
 
   .checkboxes-container {
-    max-height: 500px;
+    max-height: 520px;
     display: flex;
     flex-wrap: wrap;
   }
@@ -52,10 +52,10 @@
     }
 
     .neighborhoods-container {
-      max-height: 500px;
+      max-height: 520px;
       display: grid;
       grid-auto-flow: column;
-      grid-template-rows: repeat(20, auto);
+      grid-template-rows: repeat(#{$region-downtown-count}, auto);
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
 
@@ -79,14 +79,14 @@
       }
 
       .neighborhoods-container {
-        grid-template-rows: repeat(#{$region-downtown-count / 2}, auto);
+        grid-template-rows: repeat(#{ceil($region-downtown-count / 2)}, auto);
 
         label {
           width: 163px;
         }
 
         @include for-size(desktop-up) {
-          grid-template-rows: repeat(20, auto) !important;
+          grid-template-rows: repeat(#{$region-downtown-count}, auto) !important;
 
           label {
             width: auto;

@@ -1,6 +1,7 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
-import { toggleSearchFilterDisplay } from "../../../store/actions/search-filters";
+import { toggleSearchFilterDisplay } from "../../../store/actions/search";
+import { searchFilterSelectors } from '../../../store/selectors/search';
 
 @Component({
   tag: 'page-home',
@@ -61,13 +62,12 @@ export class PageHome {
 
       const {
         screenSize: { size, isMobile },
-        searchFilters: { displayFilter }
       } = state;
 
       return {
         size,
         isMobile,
-        displayFilter
+        displayFilter: searchFilterSelectors.getDisplayFilter(state)
       };
     });
 

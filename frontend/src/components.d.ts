@@ -67,7 +67,9 @@ export namespace Components {
   }
   interface ListingList {}
   interface ListingSlider {}
-  interface ListingTable {}
+  interface ListingTable {
+    'items': any[];
+  }
   interface LocationFilter {
     'inModal': boolean;
   }
@@ -124,6 +126,7 @@ export namespace Components {
     'resize': () => Promise<void>;
     'showDetails': (ids: any, lat: any, lng: any) => Promise<void>;
   }
+  interface SearchStateEmpty {}
   interface StarRating {
     'color': string;
     'rating': number;
@@ -349,6 +352,12 @@ declare global {
     new (): HTMLSearchMapElement;
   };
 
+  interface HTMLSearchStateEmptyElement extends Components.SearchStateEmpty, HTMLStencilElement {}
+  var HTMLSearchStateEmptyElement: {
+    prototype: HTMLSearchStateEmptyElement;
+    new (): HTMLSearchStateEmptyElement;
+  };
+
   interface HTMLStarRatingElement extends Components.StarRating, HTMLStencilElement {}
   var HTMLStarRatingElement: {
     prototype: HTMLStarRatingElement;
@@ -396,6 +405,7 @@ declare global {
     'price-filter': HTMLPriceFilterElement;
     'search-filters': HTMLSearchFiltersElement;
     'search-map': HTMLSearchMapElement;
+    'search-state-empty': HTMLSearchStateEmptyElement;
     'star-rating': HTMLStarRatingElement;
     'youtube-video': HTMLYoutubeVideoElement;
   }
@@ -453,7 +463,9 @@ declare namespace LocalJSX {
   }
   interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {}
   interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {}
-  interface ListingTable extends JSXBase.HTMLAttributes<HTMLListingTableElement> {}
+  interface ListingTable extends JSXBase.HTMLAttributes<HTMLListingTableElement> {
+    'items'?: any[];
+  }
   interface LocationFilter extends JSXBase.HTMLAttributes<HTMLLocationFilterElement> {
     'inModal'?: boolean;
   }
@@ -506,6 +518,7 @@ declare namespace LocalJSX {
     'location'?: any;
     'onMapLoaded'?: (event: CustomEvent<void>) => void;
   }
+  interface SearchStateEmpty extends JSXBase.HTMLAttributes<HTMLSearchStateEmptyElement> {}
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
     'color'?: string;
     'onRated'?: (event: CustomEvent<number>) => void;
@@ -554,6 +567,7 @@ declare namespace LocalJSX {
     'price-filter': PriceFilter;
     'search-filters': SearchFilters;
     'search-map': SearchMap;
+    'search-state-empty': SearchStateEmpty;
     'star-rating': StarRating;
     'youtube-video': YoutubeVideo;
   }

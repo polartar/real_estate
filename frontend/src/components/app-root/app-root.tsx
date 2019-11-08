@@ -5,6 +5,7 @@ import { updateScreenSize } from "../../store/actions/screensize";
 import { configureStore } from "../../store/index";
 import { loadState } from "../../services/storage";
 import { APIService } from "../../services/api/api.service";
+import Debounce from 'debounce-decorator';
 
 @Component({
   tag: 'app-root',
@@ -16,6 +17,7 @@ export class AppRoot {
   updateScreenSize: Action;
 
   @Listen('resize', { target: 'window' })
+  @Debounce(250)
   handleResize() {
     requestAnimationFrame(() => {
       this.updateScreenSize(window.innerWidth, window.innerHeight);

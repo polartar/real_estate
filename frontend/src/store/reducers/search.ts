@@ -1,8 +1,12 @@
 import { Actions, ActionTypes } from "../actions/index";
 
-interface searchFiltersState {
+interface searchState {
   displayFilter: boolean,
-  filters: any
+  filters: any,
+  loading: boolean,
+  searchRequestId: string,
+  listings: any[],
+  listingsCount: number
 }
 
 const getInitialState = () => {
@@ -15,12 +19,16 @@ const getInitialState = () => {
       beds: [],
       bathrooms: [],
       buildingTypes: []
-    }
+    },
+    loading: false,
+    searchRequestId: '',
+    listings: [],
+    listingsCount: 0,
   }
 };
 
-const searchFiltersReducer = (
-  state: searchFiltersState = getInitialState(),
+const searchReducer = (
+  state: searchState = getInitialState(),
   action: ActionTypes
 ) => {
   switch (action.type) {
@@ -29,6 +37,32 @@ const searchFiltersReducer = (
         ...state,
         displayFilter: action.payload
       };
+    }
+
+    case Actions.SET_SEARCH_LOADING: {
+
+      return {
+        ...state,
+        loading: action.payload.loading,
+        searchRequestId: action.payload.id
+      }
+    }
+
+    case Actions.SET_SEARCH_LISTINGS: {
+      // make sure this isn't results from a stale request
+      if (state.searchRequestId !== action.payload.id) {
+        // searchRequestId changed since this action was triggered
+        // these are stale results
+
+        return state;
+      }
+
+      return {
+        ...state,
+        listings: action.payload.listings,
+        listingsCount: action.payload.listingsCount,
+        loading: false,
+      }
     }
 
     case Actions.SET_LOCATION_FILTERS: {
@@ -141,4 +175,4 @@ const searchFiltersReducer = (
   return state;
 };
 
-export default searchFiltersReducer;
+export default searchReducer;

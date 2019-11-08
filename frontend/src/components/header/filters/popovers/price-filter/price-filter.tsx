@@ -1,7 +1,7 @@
 import { Component, h, State, Prop, Element } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
-import searchFilterSelectors from '../../../../../store/selectors/search-filters';
-import { setPriceFilter } from '../../../../../store/actions/search-filters';
+import { searchFilterSelectors } from '../../../../../store/selectors/search';
+import { setPriceFilter } from '../../../../../store/actions/search';
 
 @Component({
   tag: 'price-filter',

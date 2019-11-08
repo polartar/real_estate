@@ -1,9 +1,9 @@
 import { Component, h, Host, Prop, State, Event, EventEmitter } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { FilterTagsService } from '../../../../services/search-filters/filter-tags.service';
-import searchFilterSelectors from '../../../../store/selectors/search-filters';
+import { searchFilterSelectors } from '../../../../store/selectors/search';
 import neighborhoodSelectors from '../../../../store/selectors/neighborhoods';
-import { clearSearchFilter } from '../../../../store/actions/search-filters';
+import { clearSearchFilter } from '../../../../store/actions/search';
 
 @Component({
   tag: 'filter-tags',
@@ -57,8 +57,9 @@ export class FilterTags {
     let maxChars = 34; // max num of chars before breaking the layout
 
     // give more chars for wider screens
-    maxChars += Math.round((this.screenWidth - 1200) / 24);
-    maxChars = Math.min(45, maxChars);
+    // maxChars += Math.round((this.screenWidth - 1200) / 15);
+    // maxChars = Math.min(50, maxChars);
+    maxChars = 50;
 
     this.tags.forEach((t, i) => {
       if (i !== 0) {

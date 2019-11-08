@@ -1,7 +1,7 @@
 import { Component, h, Prop, Element, Method } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
-import searchFilterSelectors from '../../../../../store/selectors/search-filters';
-import { setBathroomsFilter } from '../../../../../store/actions/search-filters';
+import { searchFilterSelectors } from '../../../../../store/selectors/search';
+import { setBathroomsFilter } from '../../../../../store/actions/search';
 
 @Component({
   tag: 'bathroom-filter',

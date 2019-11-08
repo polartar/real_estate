@@ -1,7 +1,7 @@
 import { Component, h, Prop, Element, Method } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
-import searchFilterSelectors from '../../../../../store/selectors/search-filters';
-import { setBedsFilter } from '../../../../../store/actions/search-filters';
+import { searchFilterSelectors } from '../../../../../store/selectors/search';
+import { setBedsFilter } from '../../../../../store/actions/search';
 import { getBedsLabel } from '../../../../../helpers/filters';
 
 @Component({

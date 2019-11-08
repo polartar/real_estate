@@ -1,8 +1,8 @@
 import { Component, h, Element, Prop} from '@stencil/core';
 import datepicker from 'js-datepicker'
 import { Store, Action } from '@stencil/redux';
-import searchFilterSelectors from '../../../../../store/selectors/search-filters';
-import { setMoveInFilter } from '../../../../../store/actions/search-filters';
+import { searchFilterSelectors } from '../../../../../store/selectors/search';
+import { setMoveInFilter } from '../../../../../store/actions/search';
 
 @Component({
   tag: 'move-in-date-filter',
