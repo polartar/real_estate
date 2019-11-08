@@ -121,9 +121,11 @@ export namespace Components {
     'addNeighborhood': (slug: any, coords: any) => Promise<void>;
     'autoInit': boolean;
     'init': () => Promise<void>;
+    'loading': boolean;
     'location': any;
     'removeNeighborhood': (slug: any) => Promise<void>;
     'resize': () => Promise<void>;
+    'searchResults': any;
     'showDetails': (ids: any, lat: any, lng: any) => Promise<void>;
   }
   interface SearchStateEmpty {}
@@ -515,8 +517,10 @@ declare namespace LocalJSX {
   }
   interface SearchMap extends JSXBase.HTMLAttributes<HTMLSearchMapElement> {
     'autoInit'?: boolean;
+    'loading'?: boolean;
     'location'?: any;
     'onMapLoaded'?: (event: CustomEvent<void>) => void;
+    'searchResults'?: any;
   }
   interface SearchStateEmpty extends JSXBase.HTMLAttributes<HTMLSearchStateEmptyElement> {}
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {

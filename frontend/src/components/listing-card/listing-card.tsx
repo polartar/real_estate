@@ -1,6 +1,7 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
 import { Store } from "@stencil/redux";
 import { getBuildingTypeLabel } from '../../helpers/filters';
+import neighborhoodSelectors from '../../store/selectors/neighborhoods';
 
 @Component({
   tag: 'listing-card',
@@ -9,7 +10,8 @@ import { getBuildingTypeLabel } from '../../helpers/filters';
 export class ListingCard {
   @Prop({ context: "store" }) store: Store;
   @Prop() contentPadding: boolean = false;
-  @State() size: string = 'phone-only';
+
+  neighborhoods: any[] = [];
 
   @Prop() item: any = {
     id: Math.round(Math.random() * 10000),
@@ -19,18 +21,14 @@ export class ListingCard {
     bathrooms: 3,
     rating: 4,
     building_type: 'Elevator',
-    images: []
+    images: [],
+    neighborhood_id: 10
   }
 
-  componentDidLoad() {
+  componentWillLoad() {
     this.store.mapStateToProps(this, state => {
-
-      const {
-        screenSize: { size },
-      } = state;
-
       return {
-        size
+        neighborhoods: neighborhoodSelectors.getNeighborhoods(state)
       };
     });
   }
@@ -40,15 +38,16 @@ export class ListingCard {
   }
 
   render() {
+    const neighborhood = neighborhoodSelectors.getNeighborhoodById(this.item.neighborhood_id, this.neighborhoods);
 
     return [
       <ion-router-link href={'/post/' + this.item.id}>
         <div class="listing-card">
             <maintain-ratio width={322} height={182}>
-              <lazy-image src={this.getImageURL()} class="list-feature-image" alt={this.item.address} />
+              <lazy-image src={this.getImageURL()} class="list-feature-image" alt={neighborhood.name} />
             </maintain-ratio>
           <div class={{"listing-content-padding": this.contentPadding}}>
-            <h4 class="listing-title">{this.item.address}</h4>
+            <h4 class="listing-title">{neighborhood.name}</h4>
             <div class="price">
               ${this.item.price} per month
             </div>

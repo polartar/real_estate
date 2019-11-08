@@ -23,7 +23,7 @@ class FilterTagsServiceInstance {
     5: 7
   };
 
-  getPrioritizedTags(filters, neighborhoods) {
+  getPrioritizedTags(filters, neighborhoods, regions) {
     const tags = [];
 
     // beds tag
@@ -112,25 +112,25 @@ class FilterTagsServiceInstance {
       let locations = filters.location;
 
       // determine the "all" regions first
-      Object.keys(neighborhoods).forEach(region => {
+      regions.forEach(region => {
+        const regionNeighborhoods = neighborhoodSelectors.getNeighborhoodsByRegionId(region.id, neighborhoods);
+        const ids = regionNeighborhoods.map(n => n.id);
 
-        const regionIds = neighborhoods[region].map(n => n.id);
-
-        const diff = neighborhoods[region].filter(n => {
+        const diff = regionNeighborhoods.filter(n => {
           return !filters.location.includes(n.id);
         });
 
         if (!diff.length) {
           tags.push({
             type: 'locationAll',
-            title: `${region}: All`,
-            value: regionIds,
+            title: `${region.name}: All`,
+            value: ids,
             priority: this.tagPriorities.locationAll
           });
 
-          // remove values from this region from the individual tags
+          // remove values from this region from individual tags
           locations = locations.filter(l => {
-            return !regionIds.includes(l);
+            return !ids.includes(l);
           });
         }
       });

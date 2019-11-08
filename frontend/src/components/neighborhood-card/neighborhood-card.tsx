@@ -8,11 +8,7 @@ import { Store } from "@stencil/redux";
 export class NeighborhoodCard {
   @Prop({ context: "store" }) store: Store;
   @State() size: string = 'phone-only';
-  @Prop() item: any = {
-    id: Math.round(Math.random() * 10000),
-    title: 'Tribeca',
-    image: '/assets/images/neighborhoods/tribeca.jpg'
-  }
+  @Prop() item: any = {};
 
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
@@ -36,7 +32,7 @@ export class NeighborhoodCard {
           <div class="hover-cover" />
           <div class="hover-cover-text">EXPLORE</div>
 
-          <h4 class="neighborhood-title">{this.item.title}</h4>
+          <h4 class="neighborhood-title">{this.item.name}</h4>
         </div>
       </ion-router-link>
     ];

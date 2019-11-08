@@ -1,4 +1,6 @@
 import { Component, h, Host, Prop, State, Element } from '@stencil/core';
+import { Store } from '@stencil/redux';
+import { searchSelectors } from '../../../store/selectors/search';
 import {formatMoney } from '../../../helpers/utils';
 
 @Component({
@@ -7,6 +9,7 @@ import {formatMoney } from '../../../helpers/utils';
 })
 export class MapListingMarker {
   @Element() el: HTMLElement;
+  @Prop({ context: "store" }) store: Store;
   @Prop() ids!: any;
   @Prop() lat!: string;
   @Prop() lng!: string;
@@ -14,7 +17,16 @@ export class MapListingMarker {
   @State() text: string = '';
 
   _ids: any = [];
+  listings: any = [];
 
+  componentWillLoad() {
+    this.store.mapStateToProps(this, state => {
+
+      return {
+        listings: searchSelectors.getListings(state)
+      }
+    });
+  }
 
 
   componentDidLoad() {
@@ -28,13 +40,10 @@ export class MapListingMarker {
     const items = [];
 
     this._ids.forEach(id => {
-      items.push({
-        id,
-        price: Math.round(Math.random() * 10000),
-        beds: Math.round(Math.ceil(Math.random() * 3)),
-        baths: Math.round(Math.ceil(Math.random() * 4)),
-        rating: Math.round(Math.ceil(Math.random() * 5)),
-      });
+
+      const item = this.listings.find(l => l.id === id);
+
+      items.push(item);
     });
 
     if (items.length === 1) {

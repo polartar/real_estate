@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+import { generateId } from '../../helpers/utils';
 import Glide from '@glidejs/glide';
 
 
@@ -13,7 +14,7 @@ export class NeighborhoodSlider {
 
   componentWillLoad() {
     // make instance unique
-    this.sliderClass += '-' + this.generateId(8);
+    this.sliderClass += '-' + generateId(8);
   }
 
   componentDidLoad() {
@@ -82,16 +83,6 @@ export class NeighborhoodSlider {
     if (this.glide) {
       this.glide.destroy();
     }
-  }
-
-  dec2hex (dec) {
-    return ('0' + dec.toString(16)).substr(-2)
-  }
-
-  generateId (len) {
-    var arr = new Uint8Array((len || 40) / 2)
-    window.crypto.getRandomValues(arr)
-    return Array.from(arr, this.dec2hex).join('')
   }
 
   slideMove(dir) {

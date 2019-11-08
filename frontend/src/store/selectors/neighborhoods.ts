@@ -1,20 +1,23 @@
 
 const neighborhoodSelectors = {
   getNeighborhoods: state => {
-    return { ...state.neighborhoods.neighborhoods };
+    return [ ...state.neighborhoods.neighborhoods ];
+  },
+
+  getRegions: state => {
+    return [ ...state.neighborhoods.regions ];
+  },
+
+  getRegionById: (id, regions) => {
+    return regions.find(r => r.id === id);
   },
 
   getNeighborhoodById: (id, neighborhoods) => {
-    let neighborhood = null;
-    Object.keys(neighborhoods).forEach(key => {
-      const result = neighborhoods[key].find(n => n.id === id);
+    return neighborhoods.find(n => n.id === id);
+  },
 
-      if (result) {
-        neighborhood = result;
-      }
-    });
-
-    return neighborhood;
+  getNeighborhoodsByRegionId: (region_id, neighborhoods) => {
+    return neighborhoods.filter(n => n.region_id === region_id);
   }
 }
 

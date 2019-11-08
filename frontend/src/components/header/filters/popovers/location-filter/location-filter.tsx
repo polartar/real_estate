@@ -2,6 +2,7 @@ import { Component, h, Prop, State, Element} from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import { setLocationFilters } from '../../../../../store/actions/search';
 import { searchFilterSelectors } from '../../../../../store/selectors/search';
+import neighborhoodSelectors from '../../../../../store/selectors/neighborhoods';
 
 @Component({
   tag: 'location-filter',
@@ -10,7 +11,8 @@ import { searchFilterSelectors } from '../../../../../store/selectors/search';
 export class LocationFilter {
   @Prop({ context: "store" }) store: Store;
   @Prop() inModal: boolean = false;
-  @State() neighborhoods: any = {};
+  @State() neighborhoods: any[] = [];
+  @State() regions: any[] = [];
   @Element() el: HTMLElement;
   setLocationFilters: Action;
   value: Number[];
@@ -24,7 +26,8 @@ export class LocationFilter {
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
-        neighborhoods: state.neighborhoods.neighborhoods,
+        regions: neighborhoodSelectors.getRegions(state),
+        neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
         value: searchFilterSelectors.getLocations(state)
       }
     });
@@ -167,16 +170,16 @@ export class LocationFilter {
           <form onSubmit={e => this.onSubmit(e)} novalidate>
 
             <div class="checkboxes-container">
-            {Object.keys(this.neighborhoods).map(region => {
+            {this.regions.map(region => {
               let regionCheckboxProps: any = {
-                name: region,
+                name: region.name,
                 class: 'region',
                 onCheckBoxChange: e => this.regionChange(e),
                 checked: "checked",
               };
 
-              this.neighborhoods[region].forEach(neighborhood => {
-                if (this.value.indexOf(neighborhood.id) === -1) {
+              this.neighborhoods.forEach(neighborhood => {
+                if (neighborhood.region_id === region.id && this.value.indexOf(neighborhood.id) === -1) {
                   regionCheckboxProps.checked = false;
                   regionCheckboxProps['data-checked'] = false;
                 }
@@ -185,11 +188,15 @@ export class LocationFilter {
               return(
                 <div class="region-container">
                   <apt212-checkbox {...regionCheckboxProps}>
-                    {region}
+                    {region.name}
                   </apt212-checkbox>
 
                   <div class="neighborhoods-container">
-                    {this.neighborhoods[region].map(neighborhood => {
+                    {this.neighborhoods.map(neighborhood => {
+                      if (neighborhood.region_id !== region.id) {
+                        return null;
+                      }
+
                       let checkboxProps: any = {
                         name: neighborhood.name,
                         value: neighborhood.id,

@@ -2,6 +2,7 @@ import { Component, h, Prop, State } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../../store/actions/search";
 import { searchFilterSelectors } from '../../../store/selectors/search';
+import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 
 @Component({
   tag: 'page-home',
@@ -14,50 +15,9 @@ export class PageHome {
   @State() displayFilter: boolean;
   toggleSearchFilterDisplay: Action;
 
-  neighborhoods: any = [
-    {
-      id: Math.round(Math.random() * 10000),
-      title: 'Tribeca',
-      image: '/assets/images/neighborhoods/tribeca.jpg'
-    },
-    {
-      id: Math.round(Math.random() * 10000),
-      title: 'Battery Park City',
-      image: '/assets/images/neighborhoods/battery-park-city.jpg'
-    },
-    {
-      id: Math.round(Math.random() * 10000),
-      title: 'Financial District',
-      image: '/assets/images/neighborhoods/financial-district.jpg'
-    },
-    {
-      id: Math.round(Math.random() * 10000),
-      title: 'Fulton Seaport',
-      image: '/assets/images/neighborhoods/fulton-seaport.jpg'
-    },
-    {
-      id: Math.round(Math.random() * 10000),
-      title: 'Tribeca',
-      image: '/assets/images/neighborhoods/tribeca.jpg'
-    },
-    {
-      id: Math.round(Math.random() * 10000),
-      title: 'Battery Park City',
-      image: '/assets/images/neighborhoods/battery-park-city.jpg'
-    },
-    {
-      id: Math.round(Math.random() * 10000),
-      title: 'Financial District',
-      image: '/assets/images/neighborhoods/financial-district.jpg'
-    },
-    {
-      id: Math.round(Math.random() * 10000),
-      title: 'Fulton Seaport',
-      image: '/assets/images/neighborhoods/fulton-seaport.jpg'
-    }
-  ];
+  neighborhoods: any[] = [];
 
-  componentDidLoad() {
+  componentWillLoad() {
     this.store.mapStateToProps(this, state => {
 
       const {
@@ -67,7 +27,8 @@ export class PageHome {
       return {
         size,
         isMobile,
-        displayFilter: searchFilterSelectors.getDisplayFilter(state)
+        displayFilter: searchFilterSelectors.getDisplayFilter(state),
+        neighborhoods: neighborhoodSelectors.getNeighborhoods(state)
       };
     });
 
@@ -84,6 +45,16 @@ export class PageHome {
 
     document.body.appendChild(modal);
     return modal.present();
+  }
+
+  neighborhoodsSlider(num) {
+    const splitIndex = Math.round(this.neighborhoods.length / 2);
+
+    if (num === 1) {
+      return this.neighborhoods.slice(0, splitIndex);
+    }
+
+    return this.neighborhoods.slice(splitIndex + 1);
   }
 
   render() {
@@ -186,11 +157,11 @@ export class PageHome {
             <h2>{neighborhoodTitle}</h2>
 
             <div>
-              <neighborhood-slider items={this.neighborhoods} />
+              <neighborhood-slider items={this.neighborhoodsSlider(1)} />
             </div>
 
             <div class="mt-24">
-              <neighborhood-slider items={this.neighborhoods} />
+              <neighborhood-slider items={this.neighborhoodsSlider(2)} />
             </div>
           </div>
         </section>

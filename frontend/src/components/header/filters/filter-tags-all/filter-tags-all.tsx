@@ -20,8 +20,9 @@ export class FilterTagsAll {
 
       const allFilters = searchFilterSelectors.getAllFilters(state);
       const neighborhoods = neighborhoodSelectors.getNeighborhoods(state);
+      const regions = neighborhoodSelectors.getRegions(state);
       return {
-        tags: FilterTagsService.getPrioritizedTags(allFilters, neighborhoods)
+        tags: FilterTagsService.getPrioritizedTags(allFilters, neighborhoods, regions)
       };
     });
   }

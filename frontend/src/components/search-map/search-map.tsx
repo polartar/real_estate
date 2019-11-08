@@ -3,7 +3,7 @@ import { Store } from "@stencil/redux";
 import { ScriptLoaderService } from '../../services/script-loader.service';
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
 import { generateId } from '../../helpers/utils';
-import { searchFilterSelectors } from '../../store/selectors/search';
+import { searchFilterSelectors, searchSelectors } from '../../store/selectors/search';
 import neighborhoodSelectors from '../../store/selectors/neighborhoods';
 
 declare var mapboxgl: any;
@@ -25,7 +25,10 @@ export class SearchMap {
   detail: any = null;
 
   @Prop() location: any = [];
+  @Prop() searchResults: any = [];
 
+  markers: any = [];
+  @Prop() loading: boolean = false;
 
   private mapId: string = `map-instance-${generateId(8)}`;
 
@@ -39,7 +42,9 @@ export class SearchMap {
 
       return {
         neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
-        location: searchFilterSelectors.getLocations(state)
+        location: searchFilterSelectors.getLocations(state),
+        searchResults: searchSelectors.getListings(state),
+        loading: searchSelectors.getLoading(state),
       };
     });
   }
@@ -197,6 +202,43 @@ export class SearchMap {
     });
   }
 
+  @Watch('searchResults')
+  placeMarkers(results) {
+    this.removeAllMarkers(true);
+
+    results.forEach(r => {
+      this.markers.push(
+        new mapboxgl.Popup({
+          closeOnClick: false,
+          closeButton: false,
+          anchor: 'center',
+          className: 'map-listing-marker',
+          maxWidth: 'none'
+        })
+          .setLngLat([r.longitude, r.latitude])
+          .setHTML(`<map-listing-marker ids="[${r.id}]" lat="${r.latitude}" lng="${r.longitude}" />`)
+          .addTo(this.map)
+      );
+    });
+  }
+
+  @Watch('loading')
+  removeAllMarkers(val) {
+    if (!val) {
+      return;
+    }
+
+    // remove any existing details
+    if (this.detail) {
+      this.detail.remove();
+      this.detail = null;
+    }
+
+    this.markers.forEach(m => m.remove());
+
+    this.markers = [];
+  }
+
   onMapClick() {
     // remove any existing details
     if (this.detail) {
@@ -231,26 +273,26 @@ export class SearchMap {
         this.map.on('load', () => {
           this.mapRendered = true;
 
-          new mapboxgl.Popup({
-            closeOnClick: false,
-            closeButton: false,
-            anchor: 'center',
-            className: 'map-listing-marker',
-            maxWidth: 'none'
-          })
-            .setLngLat([-73.995290, 40.722412])
-            .setHTML('<map-listing-marker ids="[12345,12346,12347]" lat="40.722412" lng="-73.995290" />')
-            .addTo(this.map);
+          // new mapboxgl.Popup({
+          //   closeOnClick: false,
+          //   closeButton: false,
+          //   anchor: 'center',
+          //   className: 'map-listing-marker',
+          //   maxWidth: 'none'
+          // })
+          //   .setLngLat([-73.995290, 40.722412])
+          //   .setHTML('<map-listing-marker ids="[12345,12346,12347]" lat="40.722412" lng="-73.995290" />')
+          //   .addTo(this.map);
 
-            new mapboxgl.Popup({
-              closeOnClick: false,
-              closeButton: false,
-              anchor: 'center',
-              className: 'map-listing-marker'
-            })
-              .setLngLat([-73.996390, 40.723512])
-              .setHTML('<map-listing-marker ids="[12345]" lat="40.723512" lng="-73.996390" />')
-              .addTo(this.map);
+          //   new mapboxgl.Popup({
+          //     closeOnClick: false,
+          //     closeButton: false,
+          //     anchor: 'center',
+          //     className: 'map-listing-marker'
+          //   })
+          //     .setLngLat([-73.996390, 40.723512])
+          //     .setHTML('<map-listing-marker ids="[12345]" lat="40.723512" lng="-73.996390" />')
+          //     .addTo(this.map);
 
 
           this.map.on('click', () => this.onMapClick());

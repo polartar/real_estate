@@ -66,13 +66,14 @@ export function generateListings(num: number = 10) {
 
     listing.id = Math.round(Math.random() * 100000);
     listing.address = `${unit_num} ${unit_str} ${unit_str_type}`;
-    listing.latitude = baseListing.latitude + (latdir * (Math.random() / 10));
-    listing.longitude = baseListing.longitude + (lngdir * (Math.random() / 10));
+    listing.latitude = baseListing.latitude + (latdir * (Math.random() / 100));
+    listing.longitude = baseListing.longitude + (lngdir * (Math.random() / 100));
     listing.price = Math.ceil(Math.random() * 10000) + 1000;
     listing.bedrooms = Math.ceil(Math.random() * 4);
     listing.bathrooms = Math.ceil(Math.random() * 4);
     listing.rating = Math.ceil(Math.random() * 5);
     listing.building_type = arrayShuffle([ ...buildingTypes]).pop().value;
+    listing.neighborhood_id = Math.ceil(Math.random() * 52);
 
     let numPics = Math.round(Math.random() * 10) + 1;
     let images = [];
@@ -86,6 +87,8 @@ export function generateListings(num: number = 10) {
 
     listing = null;
   }
+
+  console.log(listings);
 
   return listings;
 }

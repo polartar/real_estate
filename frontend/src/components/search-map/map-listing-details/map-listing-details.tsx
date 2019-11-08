@@ -1,15 +1,27 @@
 import { Component, h, Host, Prop, State } from '@stencil/core';
+import { Store } from '@stencil/redux';
+import { searchSelectors } from '../../../store/selectors/search';
 
 @Component({
   tag: 'map-listing-details',
   styleUrl: 'map-listing-details.scss'
 })
 export class MapListingDetails {
+  @Prop({ context: "store" }) store: Store;
   @Prop() ids!: any;
 
   @State() items: any = [];
+  listings: any = [];
 
   _ids: any;
+
+  componentWillLoad() {
+    this.store.mapStateToProps(this, state => {
+      return {
+        listings: searchSelectors.getListings(state)
+      }
+    });
+  }
 
   componentDidLoad() {
     if (Array.isArray(this.ids)) {
@@ -22,14 +34,8 @@ export class MapListingDetails {
     const items = [];
 
     this._ids.forEach(id => {
-      items.push({
-        id,
-        title: '351 Prospect Street',
-        price: Math.round(Math.random() * 10000),
-        bedrooms: Math.round(Math.ceil(Math.random() * 3)),
-        bathrooms: Math.round(Math.ceil(Math.random() * 4)),
-        rating: Math.round(Math.ceil(Math.random() * 5)),
-      });
+      const item = this.listings.find(l => l.id === id);
+      items.push(item);
     });
 
     this.items = items;

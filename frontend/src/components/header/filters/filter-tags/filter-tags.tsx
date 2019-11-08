@@ -24,8 +24,9 @@ export class FilterTags {
 
       const allFilters = searchFilterSelectors.getAllFilters(state);
       const neighborhoods = neighborhoodSelectors.getNeighborhoods(state);
+      const regions = neighborhoodSelectors.getRegions(state);
       return {
-        tags: FilterTagsService.getPrioritizedTags(allFilters, neighborhoods),
+        tags: FilterTagsService.getPrioritizedTags(allFilters, neighborhoods, regions),
         screenWidth: state.screenSize.width
       };
     });

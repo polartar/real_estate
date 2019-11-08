@@ -1,28 +1,43 @@
 import { Component, h, Prop } from '@stencil/core';
+import { Store } from '@stencil/redux';
+import { getBuildingTypeLabel } from '../../../helpers/filters';
+import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 
 @Component({
   tag: 'map-listing-card',
   styleUrl: 'map-listing-card.scss'
 })
 export class MapListingCard {
+  @Prop({ context: "store" }) store: Store;
   @Prop() item!: any;
+  neighborhoods: any[];
+
+  componentWillLoad() {
+    this.store.mapStateToProps(this, state => {
+      return {
+        neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
+      }
+    });
+  }
 
   render() {
+    const neighborhood = neighborhoodSelectors.getNeighborhoodById(this.item.neighborhood_id, this.neighborhoods);
+
     return (
-      <ion-router-link href={'/post/12345'}>
+      <ion-router-link href={`/post/${this.item.id}`}>
         <div class="map-listing-card-component">
-          <img src="/assets/images/placeholder/apt1.jpeg" class="feature-image" />
+          <img src={this.item.images[0]} class="feature-image" />
 
           <div class="details">
             <h4 class="listing-title">{this.item.title}</h4>
               <div class="neighborhood">
-                East Village
+                { neighborhood.name }
               </div>
               <div class="price">
                 ${this.item.price} /month
               </div>
               <div class="avialable">
-                Available 6.1.19
+                Available {this.item.available_date}
               </div>
               <div class="bed-bath">
                 <div>
@@ -44,7 +59,7 @@ export class MapListingCard {
                 />
 
                 <div class="amenities">
-                  Elevator
+                  { getBuildingTypeLabel(this.item.building_type)}
                 </div>
               </div>
           </div>
