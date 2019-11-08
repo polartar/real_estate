@@ -4,6 +4,7 @@ interface searchState {
   displayFilter: boolean,
   filters: any,
   loading: boolean,
+  searchRequestId: string,
   listings: any[],
   listingsCount: number
 }
@@ -20,6 +21,7 @@ const getInitialState = () => {
       buildingTypes: []
     },
     loading: false,
+    searchRequestId: '',
     listings: [],
     listingsCount: 0,
   }
@@ -38,17 +40,28 @@ const searchReducer = (
     }
 
     case Actions.SET_SEARCH_LOADING: {
+
       return {
         ...state,
-        loading: action.payload
+        loading: action.payload.loading,
+        searchRequestId: action.payload.id
       }
     }
 
     case Actions.SET_SEARCH_LISTINGS: {
+      // make sure this isn't results from a stale request
+      if (state.searchRequestId !== action.payload.id) {
+        // searchRequestId changed since this action was triggered
+        // these are stale results
+
+        return state;
+      }
+
       return {
         ...state,
         listings: action.payload.listings,
-        listingsCount: action.payload.listingsCount
+        listingsCount: action.payload.listingsCount,
+        loading: false,
       }
     }
 

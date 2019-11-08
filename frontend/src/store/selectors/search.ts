@@ -1,6 +1,16 @@
 const searchSelectors = {
   getLoading: state => {
-    return !!state.loading;
+    return state.search.loading;
+  },
+
+  getListingsCount: state => {
+    return state.search.listingsCount;
+  },
+
+  getListings: state => {
+    return [
+      ...state.search.listings
+    ];
   }
 };
 

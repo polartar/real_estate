@@ -1,4 +1,5 @@
 import { Actions } from "./index";
+import { generateId, generateListings } from '../../helpers/utils';
 
 export function toggleSearchFilterDisplay(status) {
   return async dispatch => {
@@ -118,28 +119,38 @@ export interface ClearSearchFilter {
 
 export function getSearchListings(filters) {
   return async dispatch => {
+    const requestId = generateId(16);
 
     // set loading states
     dispatch({
       type: Actions.SET_SEARCH_LOADING,
-      payload: true
+      payload: {
+        loading: true,
+        id: requestId // id used to make sure we don't load stale results in race conditions
+      }
     });
 
+    console.log('searching with filters', filters);
+
     // perform our search
-    console.log('searching', filters);
-    await new Promise(resolve => setTimeout(() => resolve, 3000));
+    await new Promise(resolve => setTimeout(() => resolve(), 3000));
+
+    let results = [];
+    let resultsNum = 0;
+
+    // get results
+    if (Math.random() < 0.8) {
+      resultsNum = Math.ceil(Math.random() * 20);
+      results = generateListings(resultsNum);
+    }
 
     dispatch({
       type: Actions.SET_SEARCH_LISTINGS,
       payload: {
-        count: 0,
-        listings: []
+        id: requestId, // if the id in state no longer matches this ID it means another request is in progress and this will be ignored
+        listings: results,
+        listingsCount: resultsNum
       }
-    });
-
-    dispatch({
-      type: Actions.SET_SEARCH_LOADING,
-      payload: false
     });
   }
 }
@@ -151,5 +162,5 @@ export interface SetSearchListings {
 
 export interface SetSearchLoading {
   type: Actions.SET_SEARCH_LOADING,
-  payload: boolean
+  payload: any
 }

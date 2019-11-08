@@ -57,8 +57,9 @@ export class FilterTags {
     let maxChars = 34; // max num of chars before breaking the layout
 
     // give more chars for wider screens
-    maxChars += Math.round((this.screenWidth - 1200) / 24);
-    maxChars = Math.min(45, maxChars);
+    // maxChars += Math.round((this.screenWidth - 1200) / 15);
+    // maxChars = Math.min(50, maxChars);
+    maxChars = 50;
 
     this.tags.forEach((t, i) => {
       if (i !== 0) {

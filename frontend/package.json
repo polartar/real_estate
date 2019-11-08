@@ -29,6 +29,7 @@
   "devDependencies": {
     "@stencil/core": "1.4.0",
     "@stencil/sass": "^1.1.0",
+    "debounce-decorator": "^1.0.6",
     "rollup-plugin-replace": "^2.2.0"
   }
 }

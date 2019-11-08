@@ -1,8 +1,9 @@
-import { Component, h, Prop, Element, State, Watch } from '@stencil/core';
+import { Component, h, Prop, Element, State, Watch, Build } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { searchFilterSelectors, searchSelectors } from '../../../store/selectors/search';
 import { getSearchListings } from '../../../store/actions/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
+import Debounce from 'debounce-decorator';
 
 @Component({
   tag: 'page-search',
@@ -44,7 +45,9 @@ export class PageSearch {
         neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
         location: searchFilterSelectors.getLocations(state),
         searchFilters: searchFilterSelectors.getAllFilters(state),
-        loading: searchSelectors.getLoading(state)
+        loading: searchSelectors.getLoading(state),
+        searchResultsCount: searchSelectors.getListingsCount(state),
+        searchResults: searchSelectors.getListings(state)
       };
     });
 
@@ -66,6 +69,10 @@ export class PageSearch {
       const header = document.querySelector('app-header');
 
       this.headerObserver.observe(header, config);
+    }
+
+    if (Build.isBrowser) {
+      this.performSearchAction(this.searchFilters);
     }
   }
 
@@ -122,6 +129,7 @@ export class PageSearch {
   }
 
   @Watch('searchFilters')
+  @Debounce(250)
   performSearch(newVal, oldVal) {
     // simulate a search
 
@@ -130,9 +138,7 @@ export class PageSearch {
       return;
     }
 
-    console.log(newVal, oldVal);
-    console.log('perform search');
-    // this.performSearchAction(this.searchFilters);
+    this.performSearchAction(this.searchFilters);
   }
 
   getViewClass() {
@@ -154,9 +160,9 @@ export class PageSearch {
   render() {
 
     let results = [];
-    for (let i = 0; i < 40; i++) {
-      results.push(<div class="card-wrapper"><listing-card contentPadding/></div>);
-    }
+    this.searchResults.forEach(r => {
+      results.push(<div class="card-wrapper"><listing-card item={r} contentPadding /></div>);
+    });
 
     return [
       <app-header hide-search-button/>,
@@ -224,13 +230,14 @@ export class PageSearch {
                   {results}
                 </div>
                 <div class="results-list">
-                  <listing-table />
+                  <listing-table items={this.searchResults} />
                 </div>
                 <div class="empty-state">
                   <search-state-empty />
                 </div>
                 <div class="loading-state">
-                  Loading
+                  <ion-spinner name="lines" />
+                  Search in progress...
                 </div>
               </div>
             </div>

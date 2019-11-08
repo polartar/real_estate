@@ -67,7 +67,9 @@ export namespace Components {
   }
   interface ListingList {}
   interface ListingSlider {}
-  interface ListingTable {}
+  interface ListingTable {
+    'items': any[];
+  }
   interface LocationFilter {
     'inModal': boolean;
   }
@@ -461,7 +463,9 @@ declare namespace LocalJSX {
   }
   interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {}
   interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {}
-  interface ListingTable extends JSXBase.HTMLAttributes<HTMLListingTableElement> {}
+  interface ListingTable extends JSXBase.HTMLAttributes<HTMLListingTableElement> {
+    'items'?: any[];
+  }
   interface LocationFilter extends JSXBase.HTMLAttributes<HTMLLocationFilterElement> {
     'inModal'?: boolean;
   }

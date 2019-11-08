@@ -12,12 +12,12 @@ export class ListingCard {
 
   @Prop() item: any = {
     id: Math.round(Math.random() * 10000),
-    title: 'East Village',
+    address: 'East Village',
     price: 1400,
     bedrooms: 3,
     bathrooms: 3,
-    text: Math.round(Math.random() * 100),
     rating: 4,
+    building_type: 'Elevator'
   }
 
   componentDidLoad() {
@@ -39,10 +39,10 @@ export class ListingCard {
       <ion-router-link href={'/post/' + this.item.id}>
         <div class="listing-card">
             <maintain-ratio width={322} height={182}>
-              <lazy-image src="/assets/images/placeholder/apt1.jpeg" class="list-feature-image" alt={this.item.title} />
+              <lazy-image src="/assets/images/placeholder/apt1.jpeg" class="list-feature-image" alt={this.item.address} />
             </maintain-ratio>
           <div class={{"listing-content-padding": this.contentPadding}}>
-            <h4 class="listing-title">{this.item.title}</h4>
+            <h4 class="listing-title">{this.item.address}</h4>
             <div class="price">
               ${this.item.price} per month
             </div>
@@ -66,7 +66,7 @@ export class ListingCard {
               />
 
               <div class="amenities">
-                Elevator
+                { this.item.building_type }
               </div>
             </div>
           </div>
