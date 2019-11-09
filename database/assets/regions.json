@@ -1,0 +1,22 @@
+[
+    {
+      "id": 1,
+      "name": "Downtown"
+    },
+    {
+      "id": 2,
+      "name": "Midtown"
+    },
+    {
+      "id": 3,
+      "name": "Upper East"
+    },
+    {
+      "id": 4,
+      "name": "Upper West"
+    },
+    {
+      "id": 5,
+      "name": "Upper Manhattan"
+    }
+]

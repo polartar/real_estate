@@ -22,6 +22,7 @@ export class PageHome {
   getNamedSearch: Action;
 
   neighborhoods: any[] = [];
+  @State() neighborhoodsLoaded: boolean = false;
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
@@ -34,7 +35,8 @@ export class PageHome {
         size,
         isMobile,
         displayFilter: searchFilterSelectors.getDisplayFilter(state),
-        neighborhoods: neighborhoodSelectors.getNeighborhoods(state)
+        neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
+        neighborhoodsLoaded: neighborhoodSelectors.getNeighborhoodsLoaded(state)
       };
     });
 
@@ -156,7 +158,7 @@ export class PageHome {
           </div>
 
           {
-            this.luxuryList.length ?
+            this.luxuryList.length && this.neighborhoodsLoaded ?
             <div class="predefined-search">
               <h2>{luxuryTitle}</h2>
 
@@ -166,7 +168,7 @@ export class PageHome {
           }
 
           {
-            this.uniqueList.length ?
+            this.uniqueList.length && this.neighborhoodsLoaded?
             <div class="predefined-search">
               <h2>{uniqueTitle}</h2>
 
@@ -176,7 +178,7 @@ export class PageHome {
           }
 
           {
-            this.privateRoomList.length ?
+            this.privateRoomList.length && this.neighborhoodsLoaded ?
             <div class="predefined-search">
               <h2>{privateTitle}</h2>
 
@@ -186,7 +188,7 @@ export class PageHome {
           }
 
           {
-            this.neighborhoods.length ?
+            this.neighborhoods.length && this.neighborhoodsLoaded?
             <div class="predefined-search">
               <h2>{neighborhoodTitle}</h2>
 

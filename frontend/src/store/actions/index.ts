@@ -26,6 +26,11 @@ import {
   GetNamedSearch,
 } from "./search";
 
+import {
+  SetNeighborhoodsTaxonomy,
+  SetNeighborhoodsLoading
+} from './neighborhoods';
+
 export type ActionTypes =
   | LoginBeginAction
   | LoginFailAction
@@ -45,6 +50,8 @@ export type ActionTypes =
   | SetSearchListings
   | SetSearchLoading
   | GetNamedSearch
+  | SetNeighborhoodsTaxonomy
+  | SetNeighborhoodsLoading
 ;
 
 export enum Actions {
@@ -65,5 +72,7 @@ export enum Actions {
   CLEAR_SEARCH_FILTER = "CLEAR_SEARCH_FILTER",
   SET_SEARCH_LOADING = "SET_SEARCH_LOADING",
   SET_SEARCH_LISTINGS = "SEARCH_LISTINGS",
-  GET_NAMED_SEARCH_RESULTS = "GET_NAMED_SEARCH_RESULTS"
+  GET_NAMED_SEARCH_RESULTS = "GET_NAMED_SEARCH_RESULTS",
+  SET_NEIGHBORHOODS_TAXONOMY = "SET_NEIGHBORHOODS_TAXONOMY",
+  SET_NEIGHBORHOODS_LOADING = "SET_NEIGHBORHOODS_LOADING"
 }

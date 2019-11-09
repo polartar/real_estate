@@ -1,5 +1,9 @@
 
 const neighborhoodSelectors = {
+  getNeighborhoodsLoaded: state => {
+    return !!state.neighborhoods.loaded;
+  },
+
   getNeighborhoods: state => {
     return [ ...state.neighborhoods.neighborhoods ];
   },

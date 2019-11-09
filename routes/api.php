@@ -19,6 +19,8 @@ Route::group(['middleware' => ['api', 'cors']], function () {
 
     Route::post('auth', 'SPAAuthController@login')->middleware('throttle');
 
+    Route::get('taxonomy', 'NeighborhoodsController@taxonomy');
+
 });
 
 
