@@ -1,8 +1,9 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Build } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../../store/actions/search";
 import { searchFilterSelectors } from '../../../store/selectors/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
+import { getNamedSearch } from '../../../store/actions/search';
 
 @Component({
   tag: 'page-home',
@@ -14,6 +15,11 @@ export class PageHome {
   @State() isMobile: boolean = true;
   @State() displayFilter: boolean;
   toggleSearchFilterDisplay: Action;
+
+  @State() luxuryList: any[] = [];
+  @State() uniqueList: any[] = [];
+  @State() privateRoomList: any[] = [];
+  getNamedSearch: Action;
 
   neighborhoods: any[] = [];
 
@@ -33,8 +39,22 @@ export class PageHome {
     });
 
     this.store.mapDispatchToProps(this, {
-      toggleSearchFilterDisplay
+      toggleSearchFilterDisplay,
+      getNamedSearch
     });
+  }
+
+  componentDidLoad() {
+
+    if (Build.isBrowser) {
+      this.getNamedSearch('homePageInit')
+        .then(result => {
+          this.uniqueList = result.uniqueList;
+          this.privateRoomList = result.privateRoomList;
+          this.luxuryList = result.luxuryList;
+        })
+        .catch(e => console.log(e));
+    }
   }
 
   async launchMobileFilterMenu() {
@@ -135,35 +155,52 @@ export class PageHome {
             </div>
           </div>
 
-          <div class="predefined-search">
-            <h2>{luxuryTitle}</h2>
+          {
+            this.luxuryList.length ?
+            <div class="predefined-search">
+              <h2>{luxuryTitle}</h2>
 
-            {(this.isMobile) ? <listing-slider /> : <listing-list />}
-          </div>
-
-          <div class="predefined-search">
-            <h2>{uniqueTitle}</h2>
-
-            {(this.isMobile) ? <listing-slider /> : <listing-list />}
-          </div>
-
-          <div class="predefined-search">
-            <h2>{privateTitle}</h2>
-
-            {(this.isMobile) ? <listing-slider /> : <listing-list />}
-          </div>
-
-          <div class="predefined-search">
-            <h2>{neighborhoodTitle}</h2>
-
-            <div>
-              <neighborhood-slider items={this.neighborhoodsSlider(1)} />
+              {(this.isMobile) ? <listing-slider items={this.luxuryList} /> : <listing-list items={this.luxuryList} />}
             </div>
+            : null
+          }
 
-            <div class="mt-24">
-              <neighborhood-slider items={this.neighborhoodsSlider(2)} />
+          {
+            this.uniqueList.length ?
+            <div class="predefined-search">
+              <h2>{uniqueTitle}</h2>
+
+              {(this.isMobile) ? <listing-slider items={this.uniqueList} /> : <listing-list items={this.uniqueList} />}
             </div>
-          </div>
+            : null
+          }
+
+          {
+            this.privateRoomList.length ?
+            <div class="predefined-search">
+              <h2>{privateTitle}</h2>
+
+              {(this.isMobile) ? <listing-slider items={this.privateRoomList} /> : <listing-list items={this.privateRoomList} />}
+            </div>
+            : null
+          }
+
+          {
+            this.neighborhoods.length ?
+            <div class="predefined-search">
+              <h2>{neighborhoodTitle}</h2>
+
+              <div>
+                <neighborhood-slider items={this.neighborhoodsSlider(1)} />
+              </div>
+
+              <div class="mt-24">
+                <neighborhood-slider items={this.neighborhoodsSlider(2)} />
+              </div>
+            </div>
+            : null
+          }
+
         </section>
 
           <div class="faq">

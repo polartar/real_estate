@@ -1,6 +1,6 @@
-import { Component, h, State  } from '@stencil/core';
+import { Component, h, State, Prop  } from '@stencil/core';
 import Glide from '@glidejs/glide';
-// import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
+import { generateId } from '../../helpers/utils';
 
 
 @Component({
@@ -9,12 +9,14 @@ import Glide from '@glidejs/glide';
 })
 export class ListingSlider {
   @State() index: number = 0;
+  @Prop() items: any[] = [];
+
   sliderClass: string = 'glide';
   glide: any;
 
   componentWillLoad() {
     // make instance unique
-    this.sliderClass += '-' + this.generateId(8);
+    this.sliderClass += '-' + generateId(8);
   }
 
   componentDidLoad() {
@@ -76,16 +78,6 @@ export class ListingSlider {
     }
   }
 
-  dec2hex (dec) {
-    return ('0' + dec.toString(16)).substr(-2)
-  }
-
-  generateId (len) {
-    var arr = new Uint8Array((len || 40) / 2)
-    window.crypto.getRandomValues(arr)
-    return Array.from(arr, this.dec2hex).join('')
-  }
-
   slideMove(dir) {
     const numSlides = document.querySelectorAll('.' + this.sliderClass + ' .glide__slide').length;
 
@@ -101,19 +93,15 @@ export class ListingSlider {
   }
 
   render() {
+    if (!this.items.length) {
+      return null;
+    }
+
     return [
       <div class={'glide ' + this.sliderClass}>
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
-            <li class="glide__slide"><listing-card /></li>
+            { this.items.map(item => <li class="glide__slide"><listing-card item={item} /></li>)}
           </ul>
         </div>
 

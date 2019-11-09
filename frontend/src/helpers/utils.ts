@@ -88,9 +88,35 @@ export function generateListings(num: number = 10) {
     listing = null;
   }
 
-  console.log(listings);
-
   return listings;
+}
+
+export function getPlaceholderListings(num) {
+  let baseListing = {
+    id: 1,
+    address: 'Loading...',
+    latitude: 40.722412,
+    longitude: -73.995290,
+    price: 0,
+    bedrooms: 3,
+    bathrooms: 2,
+    rating: 5,
+    neighborhood_id: 10,
+    building_type: '',
+    available_date: '',
+    images: [
+      '/assets/images/icons/image-placeholder.svg'
+    ],
+    placeholder: true
+  };
+
+  const result = [];
+
+  for (let i=0; i<num; i++) {
+    result.push(baseListing);
+  }
+
+  return result;
 }
 
 export function arrayShuffle(array) {

@@ -164,3 +164,31 @@ export interface SetSearchLoading {
   type: Actions.SET_SEARCH_LOADING,
   payload: any
 }
+
+export function getNamedSearch(name) {
+  // call some API that gets results for named search
+  // like unique homes in new york = 'unique'
+  // used for home page sliders
+  // these results don't get placed in the store, used locally by component that calls it
+
+  return async () => {
+    // perform our search
+    await new Promise(resolve => setTimeout(() => resolve(), 3000));
+
+    // get results
+    if (name === 'homePageInit') {
+      return {
+        uniqueList: generateListings(8),
+        privateRoomList: generateListings(8),
+        luxuryList: generateListings(8)
+      };
+    }
+
+    return generateListings(8);
+  }
+}
+
+export interface GetNamedSearch {
+  type: Actions.GET_NAMED_SEARCH_RESULTS,
+  payload: any
+}

@@ -65,8 +65,12 @@ export namespace Components {
     'contentPadding': boolean;
     'item': any;
   }
-  interface ListingList {}
-  interface ListingSlider {}
+  interface ListingList {
+    'items': any[];
+  }
+  interface ListingSlider {
+    'items': any[];
+  }
   interface ListingTable {
     'items': any[];
   }
@@ -463,8 +467,12 @@ declare namespace LocalJSX {
     'contentPadding'?: boolean;
     'item'?: any;
   }
-  interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {}
-  interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {}
+  interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {
+    'items'?: any[];
+  }
+  interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {
+    'items'?: any[];
+  }
   interface ListingTable extends JSXBase.HTMLAttributes<HTMLListingTableElement> {
     'items'?: any[];
   }

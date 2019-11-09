@@ -1,27 +1,17 @@
-import { Component, h  } from '@stencil/core';
+import { Component, h, Prop  } from '@stencil/core';
 
 @Component({
   tag: 'listing-list',
   styleUrl: 'listing-list.scss'
 })
 export class ListingList {
-
-  componentDidLoad() {
-
-  }
+  @Prop() items: any[] = [];
 
   render() {
     return [
       <div class="listing-list">
         <div class="list-wrapper">
-          <listing-card />
-          <listing-card />
-          <listing-card />
-          <listing-card />
-          <listing-card />
-          <listing-card />
-          <listing-card />
-          <listing-card />
+          { this.items.map(item => <listing-card item={item} />) }
         </div>
         <ion-router-link href="/" class="show-all">Show All ></ion-router-link>
       </div>

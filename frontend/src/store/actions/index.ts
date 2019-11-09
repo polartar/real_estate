@@ -22,7 +22,8 @@ import {
   SetBuildingTypesFilter,
   ClearSearchFilter,
   SetSearchListings,
-  SetSearchLoading
+  SetSearchLoading,
+  GetNamedSearch,
 } from "./search";
 
 export type ActionTypes =
@@ -43,6 +44,7 @@ export type ActionTypes =
   | ClearSearchFilter
   | SetSearchListings
   | SetSearchLoading
+  | GetNamedSearch
 ;
 
 export enum Actions {
@@ -62,5 +64,6 @@ export enum Actions {
   SET_BUILDING_TYPE_FILTER = "SET_BUILDING_TYPE_FILTER",
   CLEAR_SEARCH_FILTER = "CLEAR_SEARCH_FILTER",
   SET_SEARCH_LOADING = "SET_SEARCH_LOADING",
-  SET_SEARCH_LISTINGS = "SEARCH_LISTINGS"
+  SET_SEARCH_LISTINGS = "SEARCH_LISTINGS",
+  GET_NAMED_SEARCH_RESULTS = "GET_NAMED_SEARCH_RESULTS"
 }
