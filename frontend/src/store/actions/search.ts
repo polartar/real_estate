@@ -1,4 +1,5 @@
 import { Actions } from "./index";
+import { APISearchService } from '../../services/api/search';
 import { generateId, generateListings } from '../../helpers/utils';
 
 export function toggleSearchFilterDisplay(status) {
@@ -173,18 +174,12 @@ export function getNamedSearch(name) {
 
   return async () => {
     // perform our search
-    await new Promise(resolve => setTimeout(() => resolve(), 3000));
-
-    // get results
-    if (name === 'homePageInit') {
-      return {
-        uniqueList: generateListings(8),
-        privateRoomList: generateListings(8),
-        luxuryList: generateListings(8)
-      };
+    try {
+      return await APISearchService.getNamedSearch(name);
     }
-
-    return generateListings(8);
+    catch (e) {
+      return [];
+    }
   }
 }
 
