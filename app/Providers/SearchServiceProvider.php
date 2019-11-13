@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class SearchServiceProvider extends ServiceProvider
 {
@@ -37,6 +40,27 @@ class SearchServiceProvider extends ServiceProvider
                 ];
             break;
         }
+
+        return $results;
+    }
+
+    public static function search($filters) {
+        $filter_hash = md5(json_encode($filters));
+
+        $results = Cache::remember('search-' . $filter_hash, 600, function() {
+            $num_results = random_int(0, 60);
+
+            $faked = factory(\App\Listing::class, $num_results)->make(['faked' => true]);
+            $id = 0;
+            foreach ($faked as $k => $v) {
+                $faked[$k]['id'] = $id++;
+            }
+
+            return [
+                'results' => $faked,
+                'total' => $num_results
+            ];
+        });
 
         return $results;
     }

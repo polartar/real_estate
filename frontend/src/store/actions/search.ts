@@ -131,18 +131,15 @@ export function getSearchListings(filters) {
       }
     });
 
-    console.log('searching with filters', filters);
-
-    // perform our search
-    await new Promise(resolve => setTimeout(() => resolve(), 3000));
-
     let results = [];
     let resultsNum = 0;
 
-    // get results
-    if (Math.random() < 0.8) {
-      resultsNum = Math.ceil(Math.random() * 20);
-      results = generateListings(resultsNum);
+    try {
+      const result = await APISearchService.search(filters);
+      results = result.results;
+      resultsNum = result.total;
+    } catch(e) {
+      console.log(e);
     }
 
     dispatch({

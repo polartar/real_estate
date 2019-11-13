@@ -21,6 +21,8 @@ Route::group(['middleware' => ['api', 'cors']], function () {
 
     Route::get('taxonomy', 'NeighborhoodsController@taxonomy');
 
+    // Searches
+    Route::post('search', 'SearchController@search');
     Route::get('search/named/{name}', 'SearchController@named');
 
 });

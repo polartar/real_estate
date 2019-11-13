@@ -5,6 +5,7 @@ import { EnvironmentConfigService } from '../../services/environment/environment
 import { generateId } from '../../helpers/utils';
 import { searchFilterSelectors, searchSelectors } from '../../store/selectors/search';
 import neighborhoodSelectors from '../../store/selectors/neighborhoods';
+import Debounce from 'debounce-decorator';
 
 declare var mapboxgl: any;
 
@@ -36,6 +37,8 @@ export class SearchMap {
   private mapRendered: boolean = false;
   private mapInitialized: boolean = false;
   private neighborhoodLayerMap: any = {};
+
+  private mapZoom: number = 15;
 
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
@@ -106,8 +109,8 @@ export class SearchMap {
         'layout': {},
         'paint': {
           'line-color': '#000',
-          'line-opacity': 0.8,
-          'line-width': 4
+          'line-opacity': 0.7,
+          'line-width': 2
         }
       });
 
@@ -127,7 +130,7 @@ export class SearchMap {
           'layout': {},
           'paint': {
             'fill-color': '#000',
-            'fill-opacity': 0.3,
+            'fill-opacity': 0.2,
           }
         });
   }
@@ -158,10 +161,7 @@ export class SearchMap {
   async showDetails(ids, lat, lng) {
 
     // remove any existing details
-    if (this.detail) {
-      this.detail.remove();
-      this.detail = null;
-    }
+    this.closeDetails();
 
     const details = new mapboxgl.Popup({
       closeOnClick: false,
@@ -203,11 +203,48 @@ export class SearchMap {
   }
 
   @Watch('searchResults')
-  placeMarkers(results) {
+  placeMarkers(results, _oldResults, resize: boolean = true) {
+    if (!this.map) {
+      return;
+    }
+
     this.removeAllMarkers(true);
 
+    const groupDistance = this.getGroupDistance();
+
+    let boundsBoxSet = false;
+    let boundsBox = [[null, null], [null, null]];
+
+    let grouped = [];
+    let markers = [];
+
     results.forEach(r => {
-      this.markers.push(
+      if (grouped.includes(r.id)) {
+        // this has already been added as a multiple
+        return;
+      }
+
+      let markerIds = [r.id];
+      let isGrouped = false;
+
+      // find others that can group with this
+      results.filter(p => {
+        const isPeer = Math.abs(p.latitude - r.latitude) < groupDistance && Math.abs(p.longitude - r.longitude) < groupDistance && p.id !== r.id && !grouped.includes(p.id);
+
+        if (isPeer) {
+          grouped = [...grouped, p.id];
+          markerIds = [...markerIds, p.id];
+          isGrouped = true;
+        }
+
+        return isPeer;
+      });
+
+      if (isGrouped) {
+        grouped.push(r.id);
+      }
+
+      markers.push(
         new mapboxgl.Popup({
           closeOnClick: false,
           closeButton: false,
@@ -216,10 +253,101 @@ export class SearchMap {
           maxWidth: 'none'
         })
           .setLngLat([r.longitude, r.latitude])
-          .setHTML(`<map-listing-marker ids="[${r.id}]" lat="${r.latitude}" lng="${r.longitude}" />`)
-          .addTo(this.map)
+          .setHTML(`<map-listing-marker ids="[${markerIds.join(',')}]" lat="${r.latitude}" lng="${r.longitude}" />`)
       );
+
+      boundsBox[0][0] = boundsBox[0][0] === null ? r.longitude : Math.min(boundsBox[0][0], r.longitude);
+      boundsBox[0][1] = boundsBox[0][1] === null ? r.latitude : Math.min(boundsBox[0][1], r.latitude);
+      boundsBox[1][0] = boundsBox[1][0] === null ? r.longitude : Math.max(boundsBox[1][0], r.longitude);
+      boundsBox[1][1] = boundsBox[1][1] === null ? r.latitude : Math.max(boundsBox[1][1], r.latitude);
+
+      boundsBoxSet = true;
     });
+
+    // zoom/pan to fit results in the map
+    if (this.map && boundsBoxSet && resize) {
+      this.map.fitBounds(boundsBox, {
+        maxZoom: 15,
+        linear: true,
+        padding: 40
+      });
+    }
+
+    markers.forEach(m => m.addTo(this.map));
+
+    this.markers = markers;
+
+    setTimeout(() => {
+      this.onMapZoomEnd();
+    }, 100);
+  }
+
+  /**
+   * Determine the distance in lat/lng
+   * required whereby listings closer than that are grouped
+   */
+  getGroupDistance() {
+    if (!this.map) {
+      return 0;
+    }
+
+    let groupDistance = 0;
+
+    const mapZoom = this.map.getZoom();
+
+    if (mapZoom >= 20) {
+      groupDistance = 0; // no grouping
+    }
+
+    if (mapZoom < 19) {
+      groupDistance = 0.00025;
+    }
+
+    if (mapZoom < 18) {
+      groupDistance = 0.0004;
+    }
+
+    if (mapZoom < 17) {
+      groupDistance = 0.0005;
+    }
+
+    if (mapZoom < 16) {
+      groupDistance = 0.0008;
+    }
+
+    if (mapZoom < 15) {
+      groupDistance = 0.002;
+    }
+
+    if (mapZoom < 14) {
+      groupDistance = 0.003;
+    }
+
+    if (mapZoom < 13) {
+      groupDistance = 0.008;
+    }
+
+    if (mapZoom < 12) {
+      groupDistance = 0.025;
+    }
+
+    if (mapZoom < 11) {
+      groupDistance = 0.04;
+    }
+
+    if (mapZoom < 10) {
+      groupDistance = 0.06;
+    }
+
+    if (mapZoom < 9) {
+      groupDistance = 0.08;
+    }
+
+    if (mapZoom < 8) {
+      groupDistance = 0.12;
+    }
+
+    return groupDistance; // groupDistance;
   }
 
   @Watch('loading')
@@ -239,12 +367,28 @@ export class SearchMap {
     this.markers = [];
   }
 
-  onMapClick() {
-    // remove any existing details
+  closeDetails() {
     if (this.detail) {
       this.detail.remove();
       this.detail = null;
     }
+  }
+
+  onMapClick() {
+    // remove any existing details
+    this.closeDetails();
+  }
+
+  @Debounce(100)
+  onMapZoomEnd() {
+    // group overlapping
+    if (Math.abs(this.mapZoom - this.map.getZoom()) <= 0.5) {
+      return;
+    }
+
+    this.mapZoom = this.map.getZoom();
+
+    this.placeMarkers(this.searchResults, null, false);
   }
 
   initializeMap() {
@@ -265,7 +409,7 @@ export class SearchMap {
           container: this.mapId,
           style: 'mapbox://styles/mapbox/streets-v11',
           center: [-73.995290, 40.722412],
-          zoom: 15
+          zoom: this.mapZoom
         });
 
         this.map.addControl(new mapboxgl.NavigationControl());
@@ -273,29 +417,9 @@ export class SearchMap {
         this.map.on('load', () => {
           this.mapRendered = true;
 
-          // new mapboxgl.Popup({
-          //   closeOnClick: false,
-          //   closeButton: false,
-          //   anchor: 'center',
-          //   className: 'map-listing-marker',
-          //   maxWidth: 'none'
-          // })
-          //   .setLngLat([-73.995290, 40.722412])
-          //   .setHTML('<map-listing-marker ids="[12345,12346,12347]" lat="40.722412" lng="-73.995290" />')
-          //   .addTo(this.map);
-
-          //   new mapboxgl.Popup({
-          //     closeOnClick: false,
-          //     closeButton: false,
-          //     anchor: 'center',
-          //     className: 'map-listing-marker'
-          //   })
-          //     .setLngLat([-73.996390, 40.723512])
-          //     .setHTML('<map-listing-marker ids="[12345]" lat="40.723512" lng="-73.996390" />')
-          //     .addTo(this.map);
-
-
           this.map.on('click', () => this.onMapClick());
+
+          this.map.on('zoomend', () => this.onMapZoomEnd());
 
           this.mapLoaded.emit();
         });
