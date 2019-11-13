@@ -1,6 +1,6 @@
 import { Actions } from "./index";
 import { APISearchService } from '../../services/api/search';
-import { generateId, generateListings } from '../../helpers/utils';
+import { generateId } from '../../helpers/utils';
 
 export function toggleSearchFilterDisplay(status) {
   return async dispatch => {
