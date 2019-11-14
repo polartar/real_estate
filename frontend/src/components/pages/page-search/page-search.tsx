@@ -23,6 +23,7 @@ export class PageSearch {
   @State() searchResultsCount: number = 0;
   @State() searchFilters: any;
   @State() sortBy: any;
+  @State() selectedListings: any[] = [];
   @State() loading: boolean;
 
   rendered: boolean = false;
@@ -50,7 +51,8 @@ export class PageSearch {
         sortBy: searchFilterSelectors.getSortBy(state),
         loading: searchSelectors.getLoading(state),
         searchResultsCount: searchSelectors.getListingsCount(state),
-        searchResults: searchSelectors.getListings(state)
+        searchResults: searchSelectors.getListings(state),
+        selectedListings: searchSelectors.getSelectedListings(state)
       };
     });
 
@@ -261,6 +263,17 @@ export class PageSearch {
                 { this.getSearchFilterSortElement() }
 
                 <div class="results-count">{this.searchResultsCount} Results</div>
+
+                <div class="results-count">{this.selectedListings.length} Selected</div>
+
+                <button aria-label="Share selected listings" class="button-reset has-icon selected-action share">
+                  Share
+                  <ion-icon name="star" />
+                </button>
+
+                <button aria-label="Add to Wishlist" class="button-reset has-icon selected-action wishlist">
+                  Add to Wishlist
+                </button>
               </div>
 
               <div class="results-wrapper">

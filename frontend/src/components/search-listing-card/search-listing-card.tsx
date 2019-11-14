@@ -1,8 +1,11 @@
-import { Component, h, Prop } from '@stencil/core';
-import { Store } from "@stencil/redux";
+import { Component, h, Prop, State } from '@stencil/core';
+import { Store, Action } from "@stencil/redux";
 import { getBuildingTypeLabel } from '../../helpers/filters';
 import neighborhoodSelectors from '../../store/selectors/neighborhoods';
+import { setSelectedListing } from '../../store/actions/search';
+import { searchSelectors } from '../../store/selectors/search';
 import { formatMoney, formatDate } from '../../helpers/utils';
+
 
 @Component({
   tag: 'search-listing-card',
@@ -11,6 +14,9 @@ import { formatMoney, formatDate } from '../../helpers/utils';
 export class SearchListingCard {
   @Prop({ context: "store" }) store: Store;
   @Prop() contentPadding: boolean = false;
+  @State() selectedListings: any[];
+
+  setSelectedListing: Action;
 
   neighborhoods: any[] = [];
 
@@ -19,8 +25,13 @@ export class SearchListingCard {
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
-        neighborhoods: neighborhoodSelectors.getNeighborhoods(state)
+        neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
+        selectedListings: searchSelectors.getSelectedListings(state)
       };
+    });
+
+    this.store.mapDispatchToProps(this, {
+      setSelectedListing
     });
   }
 
@@ -80,7 +91,7 @@ export class SearchListingCard {
 
               <div class="flex-spacer" />
 
-              <apt212-checkbox />
+              <apt212-checkbox checked={this.selectedListings.includes(this.item.id)} onCheckBoxChange={e => this.setSelectedListing(this.item.id, e.detail.checked)}/>
             </div>
           </div>
         </div>
