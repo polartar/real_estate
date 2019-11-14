@@ -6,7 +6,8 @@ interface searchState {
   loading: boolean,
   searchRequestId: string,
   listings: any[],
-  listingsCount: number
+  listingsCount: number,
+  selectedListings: any[]
 }
 
 const getInitialState = () => {
@@ -25,6 +26,7 @@ const getInitialState = () => {
     searchRequestId: '',
     listings: [],
     listingsCount: 0,
+    selectedListings: []
   }
 };
 
@@ -58,11 +60,15 @@ const searchReducer = (
         return state;
       }
 
+      // remove selected listings that are no longer in the results
+      let newSelected = state.selectedListings.filter(v => !!action.payload.listings.find(l => l.id === v));
+
       return {
         ...state,
         listings: action.payload.listings,
         listingsCount: action.payload.listingsCount,
         loading: false,
+        selectedListings: newSelected
       }
     }
 
@@ -177,6 +183,22 @@ const searchReducer = (
       }
 
       return clearedFilterState;
+    }
+
+    case Actions.SET_SELECTED_LISTING: {
+      let newState = {...state};
+
+      if (action.payload.value) {
+        newState.selectedListings = [...newState.selectedListings, action.payload.id];
+
+        // make sure they're unique
+        newState.selectedListings = [...new Set(newState.selectedListings)];
+      }
+      else {
+        newState.selectedListings = newState.selectedListings.filter(v => v !== action.payload.id);
+      }
+
+      return newState;
     }
   }
 

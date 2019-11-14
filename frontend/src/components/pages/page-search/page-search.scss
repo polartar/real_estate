@@ -79,6 +79,22 @@ $state-height-desktop: calc(100vh - (#{$search-filters-desktop-height} + #{$head
         .results-count {
           padding-left: 1rem;
         }
+
+        button.selected-action {
+          margin: 0 0.5rem;
+          border: 1px solid #dfdfdf;
+          height: 32px;
+          padding: 0 12px;
+          font-size: $font-size-md;
+
+          ion-icon {
+            margin-left: 0.5rem;
+          }
+
+          &.share {
+            margin-left: 1rem;
+          }
+        }
       }
 
       @include for-size(desktop-up) {
