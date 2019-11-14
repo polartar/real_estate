@@ -11,6 +11,12 @@ const searchSelectors = {
     return [
       ...state.search.listings
     ];
+  },
+
+  getSelectedListings: state => {
+    return [
+      ...state.search.selectedListings
+    ];
   }
 };
 

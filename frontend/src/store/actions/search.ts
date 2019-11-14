@@ -198,3 +198,20 @@ export interface GetNamedSearch {
   type: Actions.GET_NAMED_SEARCH_RESULTS,
   payload: any
 }
+
+export function setSelectedListing(id: number, value: boolean) {
+  return dispatch => {
+    dispatch({
+      type: Actions.SET_SELECTED_LISTING,
+      payload: {
+        id,
+        value
+      }
+    });
+  }
+}
+
+export interface SetSelectedListing {
+  type: Actions.SET_SELECTED_LISTING,
+  payload: any
+}

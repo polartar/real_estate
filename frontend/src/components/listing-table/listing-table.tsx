@@ -1,18 +1,25 @@
-import { Component, h, Prop, State, Watch } from '@stencil/core';
-import { Store } from '@stencil/redux';
+import { Component, h, Prop, State, Watch, Element } from '@stencil/core';
+import { Store, Action } from '@stencil/redux';
 import neighborhoodSelectors from '../../store/selectors/neighborhoods';
 import { getBuildingTypeLabel, getBuildingTypeSortValue, getBedsSortValue } from '../../helpers/filters';
 import { formatMoney } from '../../helpers/utils';
+import { searchSelectors } from '../../store/selectors/search';
+import { setSelectedListing } from '../../store/actions/search';
 
 @Component({
   tag: 'listing-table',
   styleUrl: 'listing-table.scss'
 })
 export class ListingTable {
+  @Element() el: HTMLElement;
+
   @Prop() items: any[] = [];
   @Prop({ context: "store" }) store: Store;
   @State() neighborhoods: any[] = [];
   @State() sortedItems: any[] = [...this.items];
+  @State() selectedListings: any[] = [];
+
+  setSelectedListing: Action;
 
 
   @State() sortMap: any = [
@@ -57,7 +64,12 @@ export class ListingTable {
 
       return {
         neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
+        selectedListings: searchSelectors.getSelectedListings(state)
       };
+    });
+
+    this.store.mapDispatchToProps(this, {
+      setSelectedListing
     });
   }
 
@@ -221,14 +233,30 @@ export class ListingTable {
     return classObj;
   }
 
+  toggleAll(e) {
+    const checkboxes: any = this.el.querySelectorAll('apt212-checkbox.item-checkbox');
+
+    if (checkboxes) {
+      if (e.detail.checked) {
+        // check all
+        checkboxes.forEach(cb => cb.check());
+      }
+      else {
+        checkboxes.forEach(cb => cb.uncheck());
+      }
+    }
+  }
+
   render() {
+    const unselected = this.items.filter(v => !this.selectedListings.includes(v.id));
+
     return (
       <div class="listing-table-component">
         <table class="listing-table">
           <thead class="mobile-only">
             <tr>
               <td>
-                <apt212-checkbox />
+                <apt212-checkbox checked={!unselected.length} onCheckBoxChange={e => this.toggleAll(e)} />
               </td>
               <td>
                 <button class={this.getButtonClass('webId')} aria-label="Sort by Web Id" onClick={() => this.toggleSort('webId')}>
@@ -279,7 +307,13 @@ export class ListingTable {
             {
               this.sortedItems.map(item =>
                 <tr>
-                  <td><apt212-checkbox /></td>
+                  <td>
+                    <apt212-checkbox
+                      class="item-checkbox"
+                      checked={this.selectedListings.includes(item.id)}
+                      onCheckBoxChange={e => this.setSelectedListing(item.id, e.detail.checked)}
+                    />
+                  </td>
                   <td class="desktop-only">#{ item.id }</td>
                   <td class="desktop-only">{ this.neighborhoodMap[item.neighborhood_id] }</td>
                   <td class="desktop-only">{item.address}</td>
