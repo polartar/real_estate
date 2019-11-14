@@ -1,7 +1,7 @@
 import { Component, h, Prop, Element, State, Watch, Build } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { searchFilterSelectors, searchSelectors } from '../../../store/selectors/search';
-import { getSearchListings } from '../../../store/actions/search';
+import { getSearchListings, setSortbyFilter } from '../../../store/actions/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 import Debounce from 'debounce-decorator';
 
@@ -22,11 +22,13 @@ export class PageSearch {
   @State() searchResults: any[] = [];
   @State() searchResultsCount: number = 0;
   @State() searchFilters: any;
+  @State() sortBy: any;
   @State() loading: boolean;
 
   rendered: boolean = false;
 
   performSearchAction: Action;
+  setSortbyFilter: Action;
 
   headerObserver: any = null;
 
@@ -45,6 +47,7 @@ export class PageSearch {
         neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
         location: searchFilterSelectors.getLocations(state),
         searchFilters: searchFilterSelectors.getAllFilters(state),
+        sortBy: searchFilterSelectors.getSortBy(state),
         loading: searchSelectors.getLoading(state),
         searchResultsCount: searchSelectors.getListingsCount(state),
         searchResults: searchSelectors.getListings(state)
@@ -52,7 +55,8 @@ export class PageSearch {
     });
 
     this.store.mapDispatchToProps(this, {
-      performSearchAction: getSearchListings
+      performSearchAction: getSearchListings,
+      setSortbyFilter: setSortbyFilter
     });
   }
 
@@ -157,11 +161,51 @@ export class PageSearch {
     return viewClass;
   }
 
+  @Debounce(250)
+  sortFilterChanged(e) {
+    this.setSortbyFilter(e.target.options[e.target.options.selectedIndex].value);
+  }
+
+  getSearchFilterSortElement() {
+    const optionsMap = [
+      {
+        label: 'Soonest Available',
+        value: 'availability',
+        selected: this.sortBy === 'availability'
+      },
+      {
+        label: 'Price - Low to High',
+        value: 'price_asc',
+        selected: this.sortBy === 'price_asc'
+      },
+      {
+        label: 'Price - High to Low',
+        value: 'price_desc',
+        selected: this.sortBy === 'price_desc'
+      },
+      {
+        label: 'Size - Small to Big',
+        value: 'size_asc',
+        selected: this.sortBy === 'size_asc'
+      },
+      {
+        label: 'Size - Big to Small',
+        value: 'size_desc',
+        selected: this.sortBy === 'size_desc'
+      }
+    ];
+
+
+    return <select id="search-filter-sort" onChange={e => this.sortFilterChanged(e)}>
+      { optionsMap.map(o => <option value={o.value} selected={o.selected}>{o.label}</option>)}
+  </select>
+  }
+
   render() {
 
     let results = [];
     this.searchResults.forEach(r => {
-      results.push(<div class="card-wrapper"><listing-card item={r} contentPadding /></div>);
+      results.push(<div class="card-wrapper"><search-listing-card item={r} contentPadding /></div>);
     });
 
     return [
@@ -214,13 +258,7 @@ export class PageSearch {
                 </button>
 
                 <label htmlFor="search-filter-sort">Sort by</label>
-                <select id="search-filter-sort">
-                  <option>Soonest Available</option>
-                  <option>Price - Low to High</option>
-                  <option>Price - High to Low</option>
-                  <option>Size - Small to Big</option>
-                  <option>Size - Big to Small</option>
-                </select>
+                { this.getSearchFilterSortElement() }
 
                 <div class="results-count">{this.searchResultsCount} Results</div>
               </div>

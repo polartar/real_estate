@@ -25,6 +25,10 @@ $state-height-desktop: calc(100vh - (#{$search-filters-desktop-height} + #{$head
       position: relative;
       width: 100%;
 
+      .card-wrapper {
+        border: 1px solid #cbcbcb;
+      }
+
       .view-filters {
         display: flex;
         position: sticky;

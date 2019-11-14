@@ -23,7 +23,8 @@ const searchFilterSelectors = {
       price: searchFilterSelectors.getPrice(state),
       moveInDate: searchFilterSelectors.getMoveInDate(state),
       buildingTypes: searchFilterSelectors.getBuildingTypes(state),
-      location: searchFilterSelectors.getLocations(state)
+      location: searchFilterSelectors.getLocations(state),
+      sortBy: searchFilterSelectors.getSortBy(state)
     };
   },
 
@@ -53,6 +54,10 @@ const searchFilterSelectors = {
 
   getLocations: state => {
     return [...state.search.filters.location];
+  },
+
+  getSortBy: state => {
+    return [...state.search.filters.sortBy]
   }
 }
 

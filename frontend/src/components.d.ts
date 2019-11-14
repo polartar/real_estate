@@ -59,6 +59,7 @@ export namespace Components {
   interface FilterTagsAll {}
   interface LazyImage {
     'alt': string;
+    'expand': boolean;
     'src': string;
   }
   interface ListingCard {
@@ -120,6 +121,10 @@ export namespace Components {
   }
   interface SearchFilters {
     'closeable': boolean;
+  }
+  interface SearchListingCard {
+    'contentPadding': boolean;
+    'item': any;
   }
   interface SearchMap {
     'addNeighborhood': (slug: any, coords: any) => Promise<void>;
@@ -352,6 +357,12 @@ declare global {
     new (): HTMLSearchFiltersElement;
   };
 
+  interface HTMLSearchListingCardElement extends Components.SearchListingCard, HTMLStencilElement {}
+  var HTMLSearchListingCardElement: {
+    prototype: HTMLSearchListingCardElement;
+    new (): HTMLSearchListingCardElement;
+  };
+
   interface HTMLSearchMapElement extends Components.SearchMap, HTMLStencilElement {}
   var HTMLSearchMapElement: {
     prototype: HTMLSearchMapElement;
@@ -410,6 +421,7 @@ declare global {
     'page-search': HTMLPageSearchElement;
     'price-filter': HTMLPriceFilterElement;
     'search-filters': HTMLSearchFiltersElement;
+    'search-listing-card': HTMLSearchListingCardElement;
     'search-map': HTMLSearchMapElement;
     'search-state-empty': HTMLSearchStateEmptyElement;
     'star-rating': HTMLStarRatingElement;
@@ -461,6 +473,7 @@ declare namespace LocalJSX {
   interface FilterTagsAll extends JSXBase.HTMLAttributes<HTMLFilterTagsAllElement> {}
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
+    'expand'?: boolean;
     'src'?: string;
   }
   interface ListingCard extends JSXBase.HTMLAttributes<HTMLListingCardElement> {
@@ -523,6 +536,10 @@ declare namespace LocalJSX {
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {
     'closeable'?: boolean;
   }
+  interface SearchListingCard extends JSXBase.HTMLAttributes<HTMLSearchListingCardElement> {
+    'contentPadding'?: boolean;
+    'item'?: any;
+  }
   interface SearchMap extends JSXBase.HTMLAttributes<HTMLSearchMapElement> {
     'autoInit'?: boolean;
     'loading'?: boolean;
@@ -578,6 +595,7 @@ declare namespace LocalJSX {
     'page-search': PageSearch;
     'price-filter': PriceFilter;
     'search-filters': SearchFilters;
+    'search-listing-card': SearchListingCard;
     'search-map': SearchMap;
     'search-state-empty': SearchStateEmpty;
     'star-rating': StarRating;

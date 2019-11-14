@@ -15,6 +15,10 @@
           display: table-header-group;
         }
       }
+
+      td {
+        white-space: nowrap;
+      }
     }
 
     tbody {
@@ -59,6 +63,12 @@
     ion-icon {
       font-size: 10px;
       margin-left: 0.75rem;
+    }
+
+    &.desc {
+      ion-icon {
+        transform: rotate(180deg);
+      }
     }
   }
 }

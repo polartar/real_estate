@@ -10,6 +10,7 @@ export class LazyImage {
 
   @Prop() src: string;
   @Prop() alt: string = "";
+  @Prop() expand: boolean = false;
   private observer: IntersectionObserver;
   private observerSupported: boolean = true;
 
@@ -40,6 +41,18 @@ export class LazyImage {
     }
   };
 
+  getClass() {
+    let classObj: any = {
+      'lazy-image': true
+    };
+
+    if (this.expand) {
+      classObj.expand = true;
+    }
+
+    return classObj;
+  }
+
   render() {
     const moreProps: any = {};
 
@@ -47,6 +60,6 @@ export class LazyImage {
       moreProps.role = 'presentation';
     }
 
-    return this.observerSupported ? <img data-src={this.src} class="lazy-image" alt={this.alt} {...moreProps} /> : <img src={this.src} class="lazy-image" alt={this.alt} {...moreProps} />;
+    return this.observerSupported ? <img data-src={this.src} class={this.getClass()} alt={this.alt} {...moreProps} /> : <img src={this.src} class={this.getClass()} alt={this.alt} {...moreProps} />;
   }
 }

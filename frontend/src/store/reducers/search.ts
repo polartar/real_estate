@@ -18,7 +18,8 @@ const getInitialState = () => {
       price: undefined,
       beds: [],
       bathrooms: [],
-      buildingTypes: []
+      buildingTypes: [],
+      sortBy: 'availability',
     },
     loading: false,
     searchRequestId: '',
@@ -120,6 +121,13 @@ const searchReducer = (
           buildingTypes: action.payload
         }
       }
+    }
+
+    case Actions.SET_SORTBY_FILTER: {
+      let newState = {...state};
+      newState.filters.sortBy = action.payload;
+
+      return newState;
     }
 
     case Actions.CLEAR_SEARCH_FILTER: {

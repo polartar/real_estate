@@ -101,6 +101,20 @@ export interface SetBuildingTypesFilter {
   payload: any
 }
 
+export function setSortbyFilter(sortby) {
+  return async dispatch => {
+    dispatch({
+      type: Actions.SET_SORTBY_FILTER,
+      payload: sortby
+    })
+  }
+}
+
+export interface SetSortbyFilter {
+  type: Actions.SET_SORTBY_FILTER,
+  payload: any
+}
+
 export function clearSearchFilter(type, value) {
   return async dispatch => {
     dispatch({
