@@ -14,6 +14,8 @@ $factory->define(Listing::class, function (Faker $faker, $params) {
         $possible_images[] = 'https://picsum.photos/seed/' . $i . '/400/300.jpg';
     }
 
+    $neighborhood_num = random_int(0, 100) < 80 ? 1 : 2;
+
     $listing = [
         'streetAddress' => $faker->streetAddress,
         'address' => $faker->address,
@@ -24,7 +26,7 @@ $factory->define(Listing::class, function (Faker $faker, $params) {
         'bedrooms' => $faker->randomElement(['room','studio',1,2,3,4,5]),
         'bathrooms' => $faker->randomElement([1,1.5,2,2.5,3,3.5,4]),
         'rating' => $faker->numberBetween(1, 5),
-        'neighborhood_id' => $faker->randomElement($possible_neighborhoods),
+        'neighborhood_id' => $faker->randomElements($possible_neighborhoods, $neighborhood_num),
         'building_type' => $faker->randomElement(['elevator', 'walkup', 'elevator-doorman']),
         'available_date' => date('m-d-Y', $faker->dateTimeInInterval('now', '+ 4 months')->getTimestamp()),
         'images' => $faker->randomElements($possible_images, random_int(0, 10))

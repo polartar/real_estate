@@ -45,7 +45,7 @@ export function generateListings(num: number = 10) {
     bedrooms: 3,
     bathrooms: 2,
     rating: 5,
-    neighborhood_id: 10,
+    neighborhood_id: [10],
     building_type: 'elevator',
     available_date: '12/01/2019',
     images: []
@@ -73,7 +73,7 @@ export function generateListings(num: number = 10) {
     listing.bathrooms = Math.ceil(Math.random() * 4);
     listing.rating = Math.ceil(Math.random() * 5);
     listing.building_type = arrayShuffle([ ...buildingTypes]).pop().value;
-    listing.neighborhood_id = Math.ceil(Math.random() * 52);
+    listing.neighborhood_id = [Math.ceil(Math.random() * 52)];
 
     let numPics = Math.round(Math.random() * 10) + 1;
     let images = [];
@@ -89,34 +89,6 @@ export function generateListings(num: number = 10) {
   }
 
   return listings;
-}
-
-export function getPlaceholderListings(num) {
-  let baseListing = {
-    id: 1,
-    address: 'Loading...',
-    latitude: 40.722412,
-    longitude: -73.995290,
-    price: 0,
-    bedrooms: 3,
-    bathrooms: 2,
-    rating: 5,
-    neighborhood_id: 10,
-    building_type: '',
-    available_date: '',
-    images: [
-      '/assets/images/icons/image-placeholder.svg'
-    ],
-    placeholder: true
-  };
-
-  const result = [];
-
-  for (let i=0; i<num; i++) {
-    result.push(baseListing);
-  }
-
-  return result;
 }
 
 export function arrayShuffle(array) {

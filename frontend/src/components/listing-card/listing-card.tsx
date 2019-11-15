@@ -14,17 +14,7 @@ export class ListingCard {
 
   neighborhoods: any[] = [];
 
-  @Prop() item: any = {
-    id: Math.round(Math.random() * 10000),
-    address: 'East Village',
-    price: 1400,
-    bedrooms: 3,
-    bathrooms: 3,
-    rating: 4,
-    building_type: 'Elevator',
-    images: [],
-    neighborhood_id: 10
-  }
+  @Prop() item: any = {};
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
@@ -39,7 +29,7 @@ export class ListingCard {
   }
 
   render() {
-    const neighborhood = neighborhoodSelectors.getNeighborhoodById(this.item.neighborhood_id, this.neighborhoods);
+    const neighborhood = neighborhoodSelectors.getNeighborhoodById(this.item.neighborhood_id[0], this.neighborhoods);
 
     return [
       <ion-router-link href={'/post/' + this.item.id}>
