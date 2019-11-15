@@ -30,7 +30,7 @@
   }
 
   .checkboxes-container {
-    max-height: 520px;
+    max-height: 570px;
     display: flex;
     flex-wrap: wrap;
   }
@@ -52,7 +52,7 @@
     }
 
     .neighborhoods-container {
-      max-height: 520px;
+      max-height: 570px;
       display: grid;
       grid-auto-flow: column;
       grid-template-rows: repeat(#{$region-downtown-count}, auto);
