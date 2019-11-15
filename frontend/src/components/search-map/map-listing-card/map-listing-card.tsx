@@ -1,6 +1,6 @@
 import { Component, h, Prop } from '@stencil/core';
 import { Store } from '@stencil/redux';
-import { getBuildingTypeLabel } from '../../../helpers/filters';
+import { getBuildingTypeLabel, getBedsListingText } from '../../../helpers/filters';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 
 @Component({
@@ -41,7 +41,7 @@ export class MapListingCard {
               </div>
               <div class="bed-bath">
                 <div>
-                  <img src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {this.item.bedrooms} Bedroom
+                  <img src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {getBedsListingText(this.item.bedrooms)}
                 </div>
                 <div class="divider">
                   |

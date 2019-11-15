@@ -410,6 +410,8 @@ export class SearchMap {
       return;
     }
 
+    this.closeDetails();
+
     const highlight = val => {
       const marker: any = this.el.querySelector(`.marker-instance-${val}`);
       marker.classList.add('hover');
