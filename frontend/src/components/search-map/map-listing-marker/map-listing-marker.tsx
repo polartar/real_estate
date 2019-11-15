@@ -2,6 +2,7 @@ import { Component, h, Host, Prop, State, Element } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import { searchSelectors } from '../../../store/selectors/search';
 import {formatMoney } from '../../../helpers/utils';
+import { getBedsListingText } from '../../../helpers/filters';
 
 @Component({
   tag: 'map-listing-marker',
@@ -49,7 +50,8 @@ export class MapListingMarker {
 
     if (items.length === 1) {
       this.text = formatMoney(items[0].price);
-      this.hoverText = `${formatMoney(items[0].price)} | ${items[0].bedrooms} BD | ${items[0].bathrooms} BA`;
+
+      this.hoverText = `${formatMoney(items[0].price)} | ${getBedsListingText(items[0].bedrooms, 'short')} | ${items[0].bathrooms} BA`;
     }
     else {
       let priceMin = 0;

@@ -16,6 +16,17 @@ export function getBedsLabel(value) {
   return label;
 }
 
+export function getBedsListingText(value, format: string = 'long') {
+
+  switch (format) {
+    case 'short':
+        return value.length > 2 ? getBedsLabel(value) : `${getBedsLabel(value)} BD`
+    case 'long':
+    default:
+        return value.length > 2 ? getBedsLabel(value) : `${getBedsLabel(value)} Bedroom`
+  }
+}
+
 export function getBedsSortValue(value) {
   switch (value) {
     case 'room':

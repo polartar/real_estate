@@ -42,9 +42,10 @@
     align-items: center;
     padding-top: 4px;
 
-    &>div {
+    & > div {
       display: flex;
       align-items: center;
+      white-space: nowrap;
     }
 
     .divider {

@@ -1,6 +1,6 @@
 import { Component, h, Prop } from '@stencil/core';
 import { Store } from "@stencil/redux";
-import { getBuildingTypeLabel } from '../../helpers/filters';
+import { getBuildingTypeLabel, getBedsListingText } from '../../helpers/filters';
 import neighborhoodSelectors from '../../store/selectors/neighborhoods';
 import { formatMoney } from '../../helpers/utils';
 
@@ -54,7 +54,7 @@ export class ListingCard {
             </div>
             <div class="bed-bath">
               <div>
-                <lazy-image src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {this.item.bedrooms} Bedroom
+                <lazy-image src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {getBedsListingText(this.item.bedrooms)}
               </div>
               <div class="divider">
                 |
