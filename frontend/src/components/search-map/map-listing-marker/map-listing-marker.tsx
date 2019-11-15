@@ -15,6 +15,7 @@ export class MapListingMarker {
   @Prop() lng!: string;
 
   @State() text: string = '';
+  @State() hoverText: string = '';
 
   _ids: any = [];
   listings: any = [];
@@ -48,10 +49,38 @@ export class MapListingMarker {
 
     if (items.length === 1) {
       this.text = formatMoney(items[0].price);
+      this.hoverText = `${formatMoney(items[0].price)} | ${items[0].bedrooms} BD | ${items[0].bathrooms} BA`;
     }
     else {
+      let priceMin = 0;
+      let priceMax = 0;
+
+      items.forEach(item => {
+        priceMin = priceMin === 0 ? item.price : Math.min(priceMin, item.price);
+        priceMax = Math.max(priceMax, item.price);
+      });
+
       this.text = `${items.length} listings`
+
+      if (priceMin === priceMax) {
+        this.hoverText = formatMoney(priceMax);
+      } else {
+        this.hoverText = `${formatMoney(priceMin)} - ${formatMoney(priceMax)}`;
+      }
     }
+  }
+
+  componentDidRender() {
+    // center the hover-card
+    const card: any = this.el.querySelector('.hover-card');
+    const container: any = this.el.querySelector('.marker-container');
+
+    const containerWidth = container.clientWidth;
+    const cardWidth = card.clientWidth;
+
+    const left = Math.round((cardWidth - containerWidth) / 2)
+
+    card.style.marginLeft = `-${left}px`;
   }
 
   select() {
@@ -64,7 +93,10 @@ export class MapListingMarker {
   render() {
     return (
       <Host class="map-listing-marker">
-        <div>
+        <div class="marker-container">
+          <div class="hover-card">
+            {this.hoverText}
+          </div>
           <a aria-label="View listing details" onClick={() => this.select()}>{this.text}</a>
         </div>
       </Host>

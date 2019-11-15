@@ -7,7 +7,8 @@ interface searchState {
   searchRequestId: string,
   listings: any[],
   listingsCount: number,
-  selectedListings: any[]
+  selectedListings: any[],
+  listingHover: number | boolean
 }
 
 const getInitialState = () => {
@@ -26,7 +27,8 @@ const getInitialState = () => {
     searchRequestId: '',
     listings: [],
     listingsCount: 0,
-    selectedListings: []
+    selectedListings: [],
+    listingHover: false
   }
 };
 
@@ -199,6 +201,14 @@ const searchReducer = (
       }
 
       return newState;
+    }
+
+
+    case Actions.SET_SEARCH_LISTING_HOVER: {
+      return {
+        ...state,
+        listingHover: action.payload
+      }
     }
   }
 

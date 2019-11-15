@@ -27,6 +27,7 @@ export class SearchMap {
 
   @Prop() location: any = [];
   @Prop() searchResults: any = [];
+  @Prop() listingHover: number | boolean = false;
 
   markers: any = [];
   @Prop() loading: boolean = false;
@@ -38,7 +39,7 @@ export class SearchMap {
   private mapInitialized: boolean = false;
   private neighborhoodLayerMap: any = {};
 
-  private mapZoom: number = 15;
+  private mapZoom: number = 11;
 
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
@@ -48,6 +49,7 @@ export class SearchMap {
         location: searchFilterSelectors.getLocations(state),
         searchResults: searchSelectors.getListings(state),
         loading: searchSelectors.getLoading(state),
+        listingHover: searchSelectors.getSearchListingHover(state)
       };
     });
   }
@@ -203,8 +205,13 @@ export class SearchMap {
   }
 
   @Watch('searchResults')
-  placeMarkers(results, _oldResults, resize: boolean = true) {
+  placeMarkers(results, oldResults, resize: boolean = true) {
     if (!this.map) {
+      return;
+    }
+
+    // this sometimes gets triggered with no changes, ensure only changes re-render
+    if (JSON.stringify(results) === JSON.stringify(oldResults)) {
       return;
     }
 
@@ -244,12 +251,20 @@ export class SearchMap {
         grouped.push(r.id);
       }
 
+      let className = markerIds.reduce((acc, cur) => {
+        acc += ` marker-instance-${cur}`;
+
+        return acc;
+      }, '');
+
+      className = `map-listing-marker${className}`;
+
       markers.push(
         new mapboxgl.Popup({
           closeOnClick: false,
           closeButton: false,
           anchor: 'center',
-          className: 'map-listing-marker',
+          className: className,
           maxWidth: 'none'
         })
           .setLngLat([r.longitude, r.latitude])
@@ -263,6 +278,28 @@ export class SearchMap {
 
       boundsBoxSet = true;
     });
+
+    if (this.location.length) {
+      // if specific location is selected zoom to those boundaries
+      // start again, le sigh
+      boundsBoxSet = false;
+      boundsBox = [[null, null], [null, null]];
+
+      this.location.forEach(l => {
+        let neighborhood = neighborhoodSelectors.getNeighborhoodById(l, this.neighborhoods);
+
+        if (neighborhood.coordinates.length) {
+          neighborhood.coordinates[0].forEach(c => {
+            boundsBox[0][0] = boundsBox[0][0] === null ? c[0] : Math.min(boundsBox[0][0], c[0]);
+            boundsBox[0][1] = boundsBox[0][1] === null ? c[1] : Math.min(boundsBox[0][1], c[1]);
+            boundsBox[1][0] = boundsBox[1][0] === null ? c[0] : Math.max(boundsBox[1][0], c[0]);
+            boundsBox[1][1] = boundsBox[1][1] === null ? c[1] : Math.max(boundsBox[1][1], c[1]);
+          });
+
+          boundsBoxSet = true;
+        }
+      });
+    }
 
     // zoom/pan to fit results in the map
     if (this.map && boundsBoxSet && resize) {
@@ -367,6 +404,32 @@ export class SearchMap {
     this.markers = [];
   }
 
+  @Watch('listingHover')
+  highlightMarker(newVal, oldVal) {
+    if (newVal === oldVal) {
+      return;
+    }
+
+    const highlight = val => {
+      const marker: any = this.el.querySelector(`.marker-instance-${val}`);
+      marker.classList.add('hover');
+    };
+
+    const unhighlight = val => {
+      const marker: any = this.el.querySelector(`.marker-instance-${val}`);
+      marker.classList.remove('hover');
+    }
+
+    if (newVal !== false) {
+      // highlight the new one
+      highlight(newVal);
+    }
+
+    if (newVal === false && oldVal !== false) {
+      unhighlight(oldVal);
+    }
+  }
+
   closeDetails() {
     if (this.detail) {
       this.detail.remove();
@@ -409,7 +472,9 @@ export class SearchMap {
           container: this.mapId,
           style: 'mapbox://styles/mapbox/streets-v11',
           center: [-73.995290, 40.722412],
-          zoom: this.mapZoom
+          zoom: this.mapZoom,
+          minZoom: 10,
+          maxZoom: 17
         });
 
         this.map.addControl(new mapboxgl.NavigationControl());

@@ -2,7 +2,7 @@ import { Component, h, Prop, State } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { getBuildingTypeLabel } from '../../helpers/filters';
 import neighborhoodSelectors from '../../store/selectors/neighborhoods';
-import { setSelectedListing } from '../../store/actions/search';
+import { setSelectedListing, setSearchListingHover } from '../../store/actions/search';
 import { searchSelectors } from '../../store/selectors/search';
 import { formatMoney, formatDate } from '../../helpers/utils';
 
@@ -17,6 +17,7 @@ export class SearchListingCard {
   @State() selectedListings: any[];
 
   setSelectedListing: Action;
+  setSearchListingHover: Action;
 
   neighborhoods: any[] = [];
 
@@ -31,7 +32,8 @@ export class SearchListingCard {
     });
 
     this.store.mapDispatchToProps(this, {
-      setSelectedListing
+      setSelectedListing,
+      setSearchListingHover
     });
   }
 
@@ -43,7 +45,7 @@ export class SearchListingCard {
     const neighborhood = neighborhoodSelectors.getNeighborhoodById(this.item.neighborhood_id, this.neighborhoods);
 
     return [
-        <div class="search-listing-card">
+        <div class="search-listing-card" onMouseEnter={() => this.setSearchListingHover(this.item.id)} onMouseLeave={() => this.setSearchListingHover(false)}>
             <maintain-ratio width={322} height={182}>
               <lazy-image src={this.getImageURL()} class="list-feature-image" alt={neighborhood.name} />
             </maintain-ratio>

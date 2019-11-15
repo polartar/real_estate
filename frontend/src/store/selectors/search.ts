@@ -17,6 +17,10 @@ const searchSelectors = {
     return [
       ...state.search.selectedListings
     ];
+  },
+
+  getSearchListingHover: state => {
+    return state.search.listingHover;
   }
 };
 

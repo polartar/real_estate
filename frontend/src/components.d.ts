@@ -130,6 +130,7 @@ export namespace Components {
     'addNeighborhood': (slug: any, coords: any) => Promise<void>;
     'autoInit': boolean;
     'init': () => Promise<void>;
+    'listingHover': number | boolean;
     'loading': boolean;
     'location': any;
     'removeNeighborhood': (slug: any) => Promise<void>;
@@ -542,6 +543,7 @@ declare namespace LocalJSX {
   }
   interface SearchMap extends JSXBase.HTMLAttributes<HTMLSearchMapElement> {
     'autoInit'?: boolean;
+    'listingHover'?: number | boolean;
     'loading'?: boolean;
     'location'?: any;
     'onMapLoaded'?: (event: CustomEvent<void>) => void;

@@ -215,3 +215,18 @@ export interface SetSelectedListing {
   type: Actions.SET_SELECTED_LISTING,
   payload: any
 }
+
+
+export interface SetSearchListingHover {
+  type: Actions.SET_SEARCH_LISTING_HOVER,
+  payload: number | boolean
+}
+
+export function setSearchListingHover(id) {
+  return dispatch => {
+    dispatch({
+      type: Actions.SET_SEARCH_LISTING_HOVER,
+      payload: id
+    });
+  }
+}

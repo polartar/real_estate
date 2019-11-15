@@ -25,7 +25,8 @@ import {
   SetSearchListings,
   SetSearchLoading,
   GetNamedSearch,
-  SetSelectedListing
+  SetSelectedListing,
+  SetSearchListingHover
 } from "./search";
 
 import {
@@ -56,6 +57,7 @@ export type ActionTypes =
   | SetNeighborhoodsTaxonomy
   | SetNeighborhoodsLoading
   | SetSelectedListing
+  | SetSearchListingHover
 ;
 
 export enum Actions {
@@ -80,5 +82,6 @@ export enum Actions {
   GET_NAMED_SEARCH_RESULTS = "GET_NAMED_SEARCH_RESULTS",
   SET_NEIGHBORHOODS_TAXONOMY = "SET_NEIGHBORHOODS_TAXONOMY",
   SET_NEIGHBORHOODS_LOADING = "SET_NEIGHBORHOODS_LOADING",
-  SET_SELECTED_LISTING = "SET_SELECTED_LISTING"
+  SET_SELECTED_LISTING = "SET_SELECTED_LISTING",
+  SET_SEARCH_LISTING_HOVER = "SET_SEARCH_LISTING_HOVER"
 }
