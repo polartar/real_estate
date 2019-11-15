@@ -302,7 +302,7 @@ export class PageSearch {
         </section>
 
         <div class={{'search-footer': true, 'footer-open': this.footerOpen, 'footer-closed': !this.footerOpen }}>
-          <div class="section text-right">
+          <div class="section toggle-footer-wrapper">
             <button class="button-reset toggle-footer" aria-label="Open/Close Footer" onClick={() => this.footerOpen = !this.footerOpen }>
               <span class="closed">Open Footer</span>
               <ion-icon mode="md" name="md-arrow-dropup" class="closed"></ion-icon>
