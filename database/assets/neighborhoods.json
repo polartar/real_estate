@@ -2529,8 +2529,8 @@
     },
     {
         "id": 23,
-        "name": "Hells Kitchen / Midtown West",
-        "slug": "hells-kitchen/ Midtown West",
+        "name": "Midtown West",
+        "slug": "Midtown West",
         "image": "/assets/images/neighborhoods/battery-park-city.jpg",
         "region_id": 2,
         "coordinates": [
