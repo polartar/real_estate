@@ -21,7 +21,7 @@ export class MapListingCard {
   }
 
   render() {
-    const neighborhood = neighborhoodSelectors.getNeighborhoodById(this.item.neighborhood_id, this.neighborhoods);
+    const neighborhood = neighborhoodSelectors.getNeighborhoodById(this.item.neighborhood_id[0], this.neighborhoods);
 
     return (
       <ion-router-link href={`/post/${this.item.id}`}>

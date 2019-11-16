@@ -126,9 +126,9 @@ export class ListingTable {
       case 'neighborhood': {
         if (!this.neighborhoods.length) { return 0; }
 
-        if (a.neighborhood_id === b.neighborhood_id) { return 0; }
+        if (a.neighborhood_id[0] === b.neighborhood_id[0]) { return 0; }
 
-        if (this.neighborhoodMap[a.neighborhood_id].toLowerCase() > this.neighborhoodMap[b.neighborhood_id].toLowerCase()) {
+        if (this.neighborhoodMap[a.neighborhood_id[0]].toLowerCase() > this.neighborhoodMap[b.neighborhood_id[0]].toLowerCase()) {
           return sortMapItem.dir === 'asc' ? 1 : -1;
         }
 
@@ -315,7 +315,7 @@ export class ListingTable {
                     />
                   </td>
                   <td class="desktop-only">#{ item.id }</td>
-                  <td class="desktop-only">{ this.neighborhoodMap[item.neighborhood_id] }</td>
+                  <td class="desktop-only">{ this.neighborhoodMap[item.neighborhood_id[0]] }</td>
                   <td class="desktop-only">{item.address}</td>
                   <td class="desktop-only">{item.bedrooms}</td>
                   <td class="desktop-only">{item.bathrooms}</td>
@@ -329,7 +329,7 @@ export class ListingTable {
                     Available: {item.available_date}
                   </td>
                   <td class="mobile-only">
-                  { this.neighborhoodMap[item.neighborhood_id] }<br />
+                  { this.neighborhoodMap[item.neighborhood_id[0]] }<br />
                     {item.address}<br /><br />
 
                     Web ID: #{item.id}
