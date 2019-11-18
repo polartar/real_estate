@@ -63,11 +63,12 @@
         flex: 1 1 15px;
         font-weight: normal;
         padding-top: 0.5rem;
-        padding-right: 1.4rem;
         font-size: $font-size-sm;
+        @include for-size(desktop-up) {
+          padding-right: 1.4rem;
+        }
       }
     }
-
 
     &:first-child,
     &:nth-child(2),
