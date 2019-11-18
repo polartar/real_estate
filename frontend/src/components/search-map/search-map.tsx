@@ -477,10 +477,10 @@ export class SearchMap {
           zoom: this.mapZoom,
           minZoom: 10,
           maxZoom: 17,
-          maxBounds: [
-            [-74.076242, 40.657445],
-            [-73.815763, 40.907992]
-          ]
+          // maxBounds: [
+          //   [-74.076242, 40.657445],
+          //   [-73.815763, 40.907992]
+          // ]
         });
 
         this.map.addControl(new mapboxgl.NavigationControl());
