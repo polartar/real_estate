@@ -2,12 +2,17 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Listing;
+use App\Apartment;
+use App\BuildingType;
+use App\BedroomType;
 use Faker\Generator as Faker;
 
-$factory->define(Listing::class, function (Faker $faker, $params) {
+$factory->define(Apartment::class, function (Faker $faker, $params) {
     $possible_neighborhoods = json_decode(file_get_contents(base_path('database/assets/neighborhoods.json')));
     $possible_neighborhoods = array_map(function($n) { return $n->id; }, $possible_neighborhoods);
+
+    $bedroomType = BedroomType::orderByRaw('RAND()')->first();
+    $buildintType = BuildingType::orderByRaw('RAND()')->first();
 
     $possible_images = [];
     for ($i = 0; $i < 10; $i++) {
@@ -23,8 +28,10 @@ $factory->define(Listing::class, function (Faker $faker, $params) {
         'latitude' => $faker->latitude(40.720412, 40.725412),
         'longitude' => $faker->longitude(-73.992290, -73.998290),
         'price' => $faker->numberBetween(1000, 15000),
-        'bedrooms' => $faker->randomElement(['room','studio',1,2,3,4,5]),
-        'bathrooms' => $faker->randomElement([1,1.5,2,2.5,3,3.5,4]),
+        'bedroom_type_id' => $bedroomType->id,
+        'building_type_id' => $buildintType->id,
+        // 'bedrooms' => $faker->randomElement(['room','studio',1,2,3,4,5]),
+        // 'bathrooms' => $faker->randomElement([1,1.5,2,2.5,3,3.5,4]),
         'rating' => $faker->numberBetween(1, 5),
         'neighborhood_id' => $faker->randomElements($possible_neighborhoods, $neighborhood_num),
         'building_type' => $faker->randomElement(['elevator', 'walkup', 'elevator-doorman']),
