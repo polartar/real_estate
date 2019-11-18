@@ -303,11 +303,11 @@ export class SearchMap {
 
     // zoom/pan to fit results in the map
     if (this.map && boundsBoxSet && resize) {
-      this.map.fitBounds(boundsBox, {
-        maxZoom: 15,
-        linear: true,
-        padding: 40
-      });
+      // this.map.fitBounds(boundsBox, {
+      //   maxZoom: 15,
+      //   linear: true,
+      //   padding: 40
+      // });
     }
 
     markers.forEach(m => m.addTo(this.map));
@@ -473,10 +473,14 @@ export class SearchMap {
         this.map = new mapboxgl.Map({
           container: this.mapId,
           style: 'mapbox://styles/mapbox/streets-v11',
-          center: [-73.995290, 40.722412],
+          center: [-73.9830029, 40.7825883],
           zoom: this.mapZoom,
           minZoom: 10,
-          maxZoom: 17
+          maxZoom: 17,
+          maxBounds: [
+            [-74.076242, 40.657445],
+            [-73.815763, 40.907992]
+          ]
         });
 
         this.map.addControl(new mapboxgl.NavigationControl());
