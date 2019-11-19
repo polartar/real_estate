@@ -44,12 +44,14 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
 
     $listing = [
         'address' => $faker->address,
+        'street_address' => $faker->streetAddress,
         'zip' => $faker->postcode,
         'city' => $faker->city,
         'state' => $faker->state,
         'apartment_number' => $faker->secondaryAddress,
         'bedroom_type_id' => $bedroomType->id,
         'building_type_id' => $buildingType->id,
+        'bathrooms' => $faker->randomElement([1,1.5,2,2.5,3,3.5,4]),
         'cross_streets' => $faker->streetName,
         'available_date' => $faker->dateTimeBetween('now', '+6 months'),
         'available_until' => $faker->dateTimeBetween('+6 months', '+12 months'),

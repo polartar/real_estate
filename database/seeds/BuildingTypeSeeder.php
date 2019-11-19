@@ -20,7 +20,7 @@ class BuildingTypeSeeder extends Seeder
                 'name' => "Elevator",
             ],
             [
-                'name' => "Elevator Doorman",
+                'name' => "Elevator/Doorman",
             ]
         ])->map(function ($item) {
             BuildingType::create([

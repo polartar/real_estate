@@ -19,6 +19,7 @@ class CreateNeighborhoodsTable extends Migration
             $table->string('slug')->unique();
             $table->bigInteger('region_id');
             $table->longText('description')->nullable();
+            $table->string('image')->nullable();
             $table->longText('live')->nullable();
             $table->longText('play')->nullable();
             $table->longText('shop')->nullable();

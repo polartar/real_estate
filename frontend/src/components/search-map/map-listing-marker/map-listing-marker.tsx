@@ -3,6 +3,7 @@ import { Store } from '@stencil/redux';
 import { searchSelectors } from '../../../store/selectors/search';
 import {formatMoney } from '../../../helpers/utils';
 import { getBedsListingText } from '../../../helpers/filters';
+import taxonomySelectors from '../../../store/selectors/taxonomy';
 
 @Component({
   tag: 'map-listing-marker',
@@ -20,12 +21,14 @@ export class MapListingMarker {
 
   _ids: any = [];
   listings: any = [];
+  bedroomTypes: any[] = [];
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
 
       return {
-        listings: searchSelectors.getListings(state)
+        listings: searchSelectors.getListings(state),
+        bedroomTypes: taxonomySelectors.getBedroomTypes(state)
       }
     });
   }
@@ -49,17 +52,18 @@ export class MapListingMarker {
     });
 
     if (items.length === 1) {
-      this.text = formatMoney(items[0].price);
+      const bedroomType = taxonomySelectors.getBedroomTypeById(items[0].bedroom_type_id, this.bedroomTypes);
+      this.text = formatMoney(items[0].rate);
 
-      this.hoverText = `${formatMoney(items[0].price)} | ${getBedsListingText(items[0].bedrooms, 'short')} | ${items[0].bathrooms} BA`;
+      this.hoverText = `${formatMoney(items[0].rate)} | ${getBedsListingText(bedroomType, 'short')} | ${items[0].bathrooms} BA`;
     }
     else {
       let priceMin = 0;
       let priceMax = 0;
 
       items.forEach(item => {
-        priceMin = priceMin === 0 ? item.price : Math.min(priceMin, item.price);
-        priceMax = Math.max(priceMax, item.price);
+        priceMin = priceMin === 0 ? item.rate : Math.min(priceMin, item.rate);
+        priceMax = Math.max(priceMax, item.rate);
       });
 
       this.text = `${items.length} listings`

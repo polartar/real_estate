@@ -1,8 +1,8 @@
 import { Component, h, Prop, Element, Method } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import { searchFilterSelectors } from '../../../../../store/selectors/search';
+import taxonomySelectors from '../../../../../store/selectors/taxonomy';
 import { setBuildingTypesFilter } from '../../../../../store/actions/search';
-import { getBuildingTypeStructure } from '../../../../../helpers/filters';
 
 @Component({
   tag: 'building-type-filter',
@@ -14,14 +14,14 @@ export class BuildingTypeFilter {
   @Element() el: HTMLElement;
 
   value: any[] = [];
+  buildingTypes: any[] = [];
   setBuildingTypesFilter: Action;
-
-  structure: any = getBuildingTypeStructure();
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
-        value: searchFilterSelectors.getBuildingTypes(state)
+        value: searchFilterSelectors.getBuildingTypes(state),
+        buildingTypes: taxonomySelectors.getBuildingTypes(state)
       }
     });
 
@@ -39,13 +39,11 @@ export class BuildingTypeFilter {
     let promises = [];
 
     checkboxes.forEach(checkbox => {
-      // console.log('checking checkbox');
-      // checkbox.check().then(() => { console.log('done check')});
       promises.push(checkbox.check());
     });
 
     Promise.all(promises).then(() => {
-      // this.setBuildingTypesFilter(this.value);
+      // checkbox event handler takes care of the rest
     });
   }
 
@@ -80,7 +78,7 @@ export class BuildingTypeFilter {
 
   valueChanged(e) {
     if (e.detail.checked) {
-      this.value.push(e.detail.value);
+      this.value.push(parseInt(e.detail.value));
     }
     else {
       this.value = this.value.filter(val => {
@@ -97,19 +95,19 @@ export class BuildingTypeFilter {
         <div class="title">Building Type</div>
 
         <div class="building-types">
-          {this.structure.map(item => {
+          {this.buildingTypes.map((item, index) => {
             const checkboxProps: any = {
-              value: item.value,
+              value: item.id,
               onCheckBoxChange: e => this.valueChanged(e)
             };
 
-            if (this.value.indexOf(item.value) > -1) {
+            if (this.value.indexOf(item.id) > -1) {
               checkboxProps.checked = 'checked';
             }
 
             return (
               <apt212-checkbox {...checkboxProps}>
-                <star-rating rating={item.rating} stars={5} size={16} readonly /> {item.name}
+                <star-rating rating={3 + index} stars={5} size={16} readonly /> {item.name}
               </apt212-checkbox>
             )
           })}

@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 import { Store } from '@stencil/redux';
-import { getBuildingTypeLabel, getBedsListingText } from '../../../helpers/filters';
-import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
+import { getBedsListingText } from '../../../helpers/filters';
+import taxonomySelectors from '../../../store/selectors/taxonomy';
 
 @Component({
   tag: 'map-listing-card',
@@ -10,18 +10,25 @@ import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 export class MapListingCard {
   @Prop({ context: "store" }) store: Store;
   @Prop() item!: any;
+
   neighborhoods: any[];
+  bedroomTypes: any[] = [];
+  buildingTypes: any[] = [];
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
-        neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
+        neighborhoods: taxonomySelectors.getNeighborhoods(state),
+        bedroomTypes: taxonomySelectors.getBedroomTypes(state),
+        buildingTypes: taxonomySelectors.getBuildingTypes(state),
       }
     });
   }
 
   render() {
-    const neighborhood = neighborhoodSelectors.getNeighborhoodById(this.item.neighborhood_id[0], this.neighborhoods);
+    const neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
+    const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
+    const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
 
     return (
       <ion-router-link href={`/post/${this.item.id}`}>
@@ -34,14 +41,14 @@ export class MapListingCard {
                 { neighborhood.name }
               </div>
               <div class="price">
-                ${this.item.price} /month
+                ${this.item.rate} /month
               </div>
               <div class="avialable">
                 Available {this.item.available_date}
               </div>
               <div class="bed-bath">
                 <div>
-                  <img src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {getBedsListingText(this.item.bedrooms)}
+                  <img src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {getBedsListingText(bedroomType)}
                 </div>
                 <div class="divider">
                   |
@@ -59,7 +66,7 @@ export class MapListingCard {
                 />
 
                 <div class="amenities">
-                  { getBuildingTypeLabel(this.item.building_type)}
+                  { buildingType.name }
                 </div>
               </div>
           </div>

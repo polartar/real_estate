@@ -16,6 +16,7 @@ class CreateApartmentsTable extends Migration
         Schema::create('apartments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('address')->nullable();
+            $table->text('street_address')->nullable();
             $table->string('zip')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
@@ -23,6 +24,7 @@ class CreateApartmentsTable extends Migration
             $table->string('floors')->nullable();
             $table->integer('bedroom_type_id')->nullable()->index();
             $table->integer('building_type_id')->nullable()->index();
+            $table->float('bathrooms')->nullable();
             $table->text('cross_streets')->nullable();
             $table->date('available_date')->nullable()->index();
             $table->date('available_until')->nullable()->index();

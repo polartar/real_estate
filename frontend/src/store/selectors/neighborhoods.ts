@@ -1,15 +1,15 @@
 
 const neighborhoodSelectors = {
   getNeighborhoodsLoaded: state => {
-    return !!state.neighborhoods.loaded;
+    return !!state.taxonomy.loaded;
   },
 
   getNeighborhoods: state => {
-    return [ ...state.neighborhoods.neighborhoods ];
+    return [ ...state.taxonomy.neighborhoods ];
   },
 
   getRegions: state => {
-    return [ ...state.neighborhoods.regions ];
+    return [ ...state.taxonomy.regions ];
   },
 
   getRegionById: (id, regions) => {

@@ -23,7 +23,7 @@ class FilterTagsServiceInstance {
     5: 7
   };
 
-  getPrioritizedTags(filters, neighborhoods, regions) {
+  getPrioritizedTags(filters, taxonomy) {
     const tags = [];
 
     // beds tag
@@ -91,10 +91,8 @@ class FilterTagsServiceInstance {
     if (filters.buildingTypes.length) {
       let title = 'Building: ';
 
-      let structure = getBuildingTypeStructure();
-
       let labels = filters.buildingTypes.map(t => {
-        return structure.find(p => p.value === t)['name'];
+        return taxonomy.buildingTypes.find(p => p.id === t)['name'];
       });
 
       title += this.stringifyResult(labels);
@@ -112,8 +110,8 @@ class FilterTagsServiceInstance {
       let locations = filters.location;
 
       // determine the "all" regions first
-      regions.forEach(region => {
-        const regionNeighborhoods = neighborhoodSelectors.getNeighborhoodsByRegionId(region.id, neighborhoods);
+      taxonomy.regions.forEach(region => {
+        const regionNeighborhoods = neighborhoodSelectors.getNeighborhoodsByRegionId(region.id, taxonomy.neighborhoods);
         const ids = regionNeighborhoods.map(n => n.id);
 
         const diff = regionNeighborhoods.filter(n => {
@@ -137,7 +135,7 @@ class FilterTagsServiceInstance {
 
       // all that remains is individual locations
       locations.forEach(l => {
-        const neighborhood = neighborhoodSelectors.getNeighborhoodById(l, neighborhoods);
+        const neighborhood = neighborhoodSelectors.getNeighborhoodById(l, taxonomy.neighborhoods);
 
         if (neighborhood) {
           tags.push({

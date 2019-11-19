@@ -2,7 +2,7 @@ import { Component, h, Host, Prop, State, Event, EventEmitter } from '@stencil/c
 import { Store, Action } from "@stencil/redux";
 import { FilterTagsService } from '../../../../services/search-filters/filter-tags.service';
 import { searchFilterSelectors } from '../../../../store/selectors/search';
-import neighborhoodSelectors from '../../../../store/selectors/neighborhoods';
+import taxonomySelectors from '../../../../store/selectors/taxonomy';
 import { clearSearchFilter } from '../../../../store/actions/search';
 
 @Component({
@@ -22,11 +22,17 @@ export class FilterTags {
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
 
+      const taxonomy = {
+        neighborhoods: taxonomySelectors.getNeighborhoods(state),
+        regions: taxonomySelectors.getRegions(state),
+        bedroomTypes: taxonomySelectors.getBedroomTypes(state),
+        buildingTypes: taxonomySelectors.getBuildingTypes(state)
+      };
+
       const allFilters = searchFilterSelectors.getAllFilters(state);
-      const neighborhoods = neighborhoodSelectors.getNeighborhoods(state);
-      const regions = neighborhoodSelectors.getRegions(state);
+
       return {
-        tags: FilterTagsService.getPrioritizedTags(allFilters, neighborhoods, regions),
+        tags: FilterTagsService.getPrioritizedTags(allFilters, taxonomy),
         screenWidth: state.screenSize.width
       };
     });

@@ -10,7 +10,7 @@ class Neighborhood extends Model
 
     //
     protected $casts = [
-        'coordinates' => 'array'
+        'perimeter_coordinates' => 'array'
     ];
 
     function region() {
@@ -19,5 +19,9 @@ class Neighborhood extends Model
 
     function apartments() {
         return $this->hasMany(Apartment::class);
+    }
+
+    public function getPerimeterCoordinatesAttribute($val) {
+        return json_decode(json_decode($val)); // not sure why it's double-encoded;
     }
 }

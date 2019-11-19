@@ -1,6 +1,6 @@
 import { Component, h, Prop, State, Watch, Element } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
-import neighborhoodSelectors from '../../store/selectors/neighborhoods';
+import taxonomySelectors from '../../store/selectors/taxonomy';
 import { getBuildingTypeLabel, getBuildingTypeSortValue, getBedsSortValue } from '../../helpers/filters';
 import { formatMoney } from '../../helpers/utils';
 import { searchSelectors } from '../../store/selectors/search';
@@ -20,6 +20,8 @@ export class ListingTable {
   @State() selectedListings: any[] = [];
 
   setSelectedListing: Action;
+  bedroomTypes: any[] = [];
+  buildingTypes: any[] = [];
 
 
   @State() sortMap: any = [
@@ -63,8 +65,10 @@ export class ListingTable {
     this.store.mapStateToProps(this, state => {
 
       return {
-        neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
-        selectedListings: searchSelectors.getSelectedListings(state)
+        neighborhoods: taxonomySelectors.getNeighborhoods(state),
+        selectedListings: searchSelectors.getSelectedListings(state),
+        buildingTypes: taxonomySelectors.getBuildingTypes(state),
+        bedroomTypes: taxonomySelectors.getBedroomTypes(state)
       };
     });
 
@@ -126,9 +130,9 @@ export class ListingTable {
       case 'neighborhood': {
         if (!this.neighborhoods.length) { return 0; }
 
-        if (a.neighborhood_id[0] === b.neighborhood_id[0]) { return 0; }
+        if (a.neighborhood_ids[0] === b.neighborhood_ids[0]) { return 0; }
 
-        if (this.neighborhoodMap[a.neighborhood_id[0]].toLowerCase() > this.neighborhoodMap[b.neighborhood_id[0]].toLowerCase()) {
+        if (this.neighborhoodMap[a.neighborhood_ids[0]].toLowerCase() > this.neighborhoodMap[b.neighborhood_ids[0]].toLowerCase()) {
           return sortMapItem.dir === 'asc' ? 1 : -1;
         }
 
@@ -148,9 +152,12 @@ export class ListingTable {
 
 
       case 'beds': {
-        if (a.bedrooms === b.bedrooms) { return 0; }
+        if (a.bedroom_type_id === b.bedroom_type_id) { return 0; }
 
-        if (getBedsSortValue(a.bedrooms) > getBedsSortValue(b.bedrooms)) {
+        const roomscountA = taxonomySelectors.getBedroomTypeById(a.bedroom_type_id, this.bedroomTypes).rooms_count;
+        const roomscountB = taxonomySelectors.getBedroomTypeById(b.bedroom_type_id, this.bedroomTypes).rooms_count;
+
+        if (roomscountA > roomscountB) {
           return sortMapItem.dir === 'asc' ? 1 : -1;
         }
 
@@ -170,9 +177,9 @@ export class ListingTable {
 
 
       case 'price': {
-        if (a.price === b.price) { return 0; }
+        if (a.rate === b.rate) { return 0; }
 
-        if (a.price > b.price) {
+        if (a.rate > b.rate) {
           return sortMapItem.dir === 'asc' ? 1 : -1;
         }
 
@@ -181,9 +188,12 @@ export class ListingTable {
 
 
       case 'buildingType': {
-        if (a.building_type === b.building_type) { return 0; }
+        if (a.building_type_id === b.building_type_id) { return 0; }
 
-        if (getBuildingTypeSortValue(a.building_type) > getBuildingTypeSortValue(b.building_type)) {
+        const nameA = taxonomySelectors.getBuildingTypeById(a.building_type_id, this.buildingTypes).name;
+        const nameB = taxonomySelectors.getBuildingTypeById(b.building_type_id, this.buildingTypes).name;
+
+        if (nameA.toLowerCase() > nameB.toLowerCase()) {
           return sortMapItem.dir === 'asc' ? 1 : -1;
         }
 
@@ -305,7 +315,11 @@ export class ListingTable {
           </thead>
           <tbody>
             {
-              this.sortedItems.map(item =>
+              this.sortedItems.map(item => {
+                const buildingType = taxonomySelectors.getBuildingTypeById(item.building_type_id, this.buildingTypes);
+                const bedroomType = taxonomySelectors.getBedroomTypeById(item.bedroom_type_id, this.bedroomTypes);
+
+                return (
                 <tr>
                   <td>
                     <apt212-checkbox
@@ -315,28 +329,29 @@ export class ListingTable {
                     />
                   </td>
                   <td class="desktop-only">#{ item.id }</td>
-                  <td class="desktop-only">{ this.neighborhoodMap[item.neighborhood_id[0]] }</td>
+                  <td class="desktop-only">{ this.neighborhoodMap[item.neighborhood_ids[0]] }</td>
                   <td class="desktop-only">{item.address}</td>
-                  <td class="desktop-only">{item.bedrooms}</td>
+                  <td class="desktop-only">{bedroomType.name}</td>
                   <td class="desktop-only">{item.bathrooms}</td>
-                  <td class="desktop-only">{formatMoney(item.price)}/month</td>
-                  <td class="desktop-only">{getBuildingTypeLabel(item.building_type)}</td>
+                  <td class="desktop-only">{formatMoney(item.rate)}/month</td>
+                  <td class="desktop-only">{buildingType.name}</td>
                   <td class="desktop-only">{item.available_date}</td>
                   <td class="mobile-only">
-                    {item.bedrooms} BD | {item.bathrooms} BA<br />
-                    {getBuildingTypeLabel(item.building_type)}<br />
-                    {formatMoney(item.price)}/month<br />
+                    { bedroomType.rooms_count > 0 ? `${bedroomType.name} BD` : bedroomType.name } | {item.bathrooms} BA<br />
+                    {buildingType.name}<br />
+                    {formatMoney(item.rate)}/month<br />
                     Available: {item.available_date}
                   </td>
                   <td class="mobile-only">
-                  { this.neighborhoodMap[item.neighborhood_id[0]] }<br />
+                  { this.neighborhoodMap[item.neighborhood_ids[0]] }<br />
                     {item.address}<br /><br />
 
                     Web ID: #{item.id}
                   </td>
                   <td><ion-button aria-label="View Listing" class="reset" href={`/post/${item.id}`}><ion-icon src="/assets/images/icons/list_page_arrow.svg" slot="icon-only" /></ion-button></td>
                 </tr>
-              )
+                )
+              })
             }
           </tbody>
         </table>

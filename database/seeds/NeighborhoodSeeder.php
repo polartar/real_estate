@@ -26,7 +26,8 @@ class NeighborhoodSeeder extends Seeder
                 'name' => $n->name,
                 'slug' => Str::slug($n->slug),
                 'region_id' => $region->id,
-                'perimeter_coordinates' => json_encode($n->coordinates)
+                'perimeter_coordinates' => json_encode($n->coordinates),
+                'image' => $n->image
             ]);
 
             return $neighborhood;
