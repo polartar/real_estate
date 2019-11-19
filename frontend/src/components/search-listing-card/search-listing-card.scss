@@ -6,11 +6,12 @@
 
   .listing-title {
     margin-top: 10px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     height: 16px;
     position: relative;
 
     @include for-size(desktop-up) {
+      margin-bottom: 0;
       height: 28px;
     }
 
@@ -21,12 +22,9 @@
       text-overflow: ellipsis;
       overflow: hidden;
 
-      font-size: $font-size-md;
+      font-size: $font-size-lg;
       text-transform: none;
 
-      @include for-size(desktop-up) {
-        font-size: $font-size-lg;
-      }
     }
   }
 
@@ -53,7 +51,7 @@
   .bed-bath {
     display: flex;
     align-items: center;
-    font-size: $font-size-xs;
+    font-size: $font-size-sm;
     padding-bottom: 0.5rem;
 
     @include for-size(desktop-up) {
@@ -92,6 +90,10 @@
     align-items: center;
     font-size: $font-size-sm;
 
+    @include for-size(desktop-up) {
+      font-size: $font-size-md;
+    }
+
     .amenities {
       padding-left: 0.5rem;
       padding-bottom: 4px;
@@ -106,4 +108,10 @@
   .listing-content-padding {
     padding: 0 1rem 0 1rem;
   }
+
+  .apt212-checkbox .checkbox {
+    background-color: #fff;
+    border: solid 1px rgba(0, 0, 0, 0.73);
+  }
+
 }

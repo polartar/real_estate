@@ -46,7 +46,7 @@ export class ListingCard {
           <div class={{"listing-content-padding": this.contentPadding}}>
             <h4 class="listing-title">{neighborhood.name}</h4>
             <div class="price">
-              {formatMoney(this.item.rate)} per month
+              {formatMoney(this.item.rate)} /month
             </div>
             <div class="bed-bath">
               <div>
