@@ -4,7 +4,7 @@ import { ScriptLoaderService } from '../../services/script-loader.service';
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
 import { generateId } from '../../helpers/utils';
 import { searchFilterSelectors, searchSelectors } from '../../store/selectors/search';
-import neighborhoodSelectors from '../../store/selectors/neighborhoods';
+import taxonomySelectors from '../../store/selectors/taxonomy';
 import Debounce from 'debounce-decorator';
 
 declare var mapboxgl: any;
@@ -45,7 +45,7 @@ export class SearchMap {
     this.store.mapStateToProps(this, state => {
 
       return {
-        neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
+        neighborhoods: taxonomySelectors.getNeighborhoods(state),
         location: searchFilterSelectors.getLocations(state),
         searchResults: searchSelectors.getListings(state),
         loading: searchSelectors.getLoading(state),
@@ -187,7 +187,7 @@ export class SearchMap {
 
     // remove locations first
     removeLocations.forEach(id => {
-      const neighborhood = neighborhoodSelectors.getNeighborhoodById(id, this.neighborhoods);
+      const neighborhood = taxonomySelectors.getNeighborhoodById(id, this.neighborhoods);
 
       if (neighborhood) {
         this.removeNeighborhood(neighborhood.slug);
@@ -196,10 +196,10 @@ export class SearchMap {
 
     // add locations
     addLocations.forEach(id => {
-      const neighborhood = neighborhoodSelectors.getNeighborhoodById(id, this.neighborhoods);
+      const neighborhood = taxonomySelectors.getNeighborhoodById(id, this.neighborhoods);
 
-      if (neighborhood && neighborhood.coordinates) {
-        this.addNeighborhood(neighborhood.slug, neighborhood.coordinates);
+      if (neighborhood && neighborhood.perimeter_coordinates) {
+        this.addNeighborhood(neighborhood.slug, neighborhood.perimeter_coordinates);
       }
     });
   }
@@ -236,7 +236,7 @@ export class SearchMap {
 
       // find others that can group with this
       results.filter(p => {
-        const isPeer = Math.abs(p.latitude - r.latitude) < groupDistance && Math.abs(p.longitude - r.longitude) < groupDistance && p.id !== r.id && !grouped.includes(p.id);
+        const isPeer = Math.abs(p.lat - r.lat) < groupDistance && Math.abs(p.lng - r.lng) < groupDistance && p.id !== r.id && !grouped.includes(p.id);
 
         if (isPeer) {
           grouped = [...grouped, p.id];
@@ -267,14 +267,14 @@ export class SearchMap {
           className: className,
           maxWidth: 'none'
         })
-          .setLngLat([r.longitude, r.latitude])
-          .setHTML(`<map-listing-marker ids="[${markerIds.join(',')}]" lat="${r.latitude}" lng="${r.longitude}" />`)
+          .setLngLat([r.lng, r.lat])
+          .setHTML(`<map-listing-marker ids="[${markerIds.join(',')}]" lat="${r.lat}" lng="${r.lng}" />`)
       );
 
-      boundsBox[0][0] = boundsBox[0][0] === null ? r.longitude : Math.min(boundsBox[0][0], r.longitude);
-      boundsBox[0][1] = boundsBox[0][1] === null ? r.latitude : Math.min(boundsBox[0][1], r.latitude);
-      boundsBox[1][0] = boundsBox[1][0] === null ? r.longitude : Math.max(boundsBox[1][0], r.longitude);
-      boundsBox[1][1] = boundsBox[1][1] === null ? r.latitude : Math.max(boundsBox[1][1], r.latitude);
+      boundsBox[0][0] = boundsBox[0][0] === null ? r.lng : Math.min(boundsBox[0][0], r.lng);
+      boundsBox[0][1] = boundsBox[0][1] === null ? r.lat : Math.min(boundsBox[0][1], r.lat);
+      boundsBox[1][0] = boundsBox[1][0] === null ? r.lng : Math.max(boundsBox[1][0], r.lng);
+      boundsBox[1][1] = boundsBox[1][1] === null ? r.lat : Math.max(boundsBox[1][1], r.lat);
 
       boundsBoxSet = true;
     });
@@ -286,10 +286,10 @@ export class SearchMap {
       boundsBox = [[null, null], [null, null]];
 
       this.location.forEach(l => {
-        let neighborhood = neighborhoodSelectors.getNeighborhoodById(l, this.neighborhoods);
+        let neighborhood = taxonomySelectors.getNeighborhoodById(l, this.neighborhoods);
 
-        if (neighborhood.coordinates.length) {
-          neighborhood.coordinates[0].forEach(c => {
+        if (neighborhood.perimeter_coordinates.length) {
+          neighborhood.perimeter_coordinates[0].forEach(c => {
             boundsBox[0][0] = boundsBox[0][0] === null ? c[0] : Math.min(boundsBox[0][0], c[0]);
             boundsBox[0][1] = boundsBox[0][1] === null ? c[1] : Math.min(boundsBox[0][1], c[1]);
             boundsBox[1][0] = boundsBox[1][0] === null ? c[0] : Math.max(boundsBox[1][0], c[0]);

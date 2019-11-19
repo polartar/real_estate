@@ -247,14 +247,14 @@ export class PageSearch {
 
                 <button aria-label="List View" class={{ 'view-nav': true, 'active': this.view === 'list'}} onClick={() => { this.view = 'list' }}>
                 <svg width="22px" height="17px" viewBox="0 0 22 17" version="1.1" >
-                    <g id="List-Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                        <g id="Group-10-Copy" transform="translate(2.000000, 0.000000)" fill="#000000">
-                            <polygon id="Fill-1" points="0 3.55555556 3.55555556 3.55555556 3.55555556 0 0 0"></polygon>
-                            <polygon id="Fill-2" points="6.22266667 3.55555556 17.2226667 3.55555556 17.2226667 0 6.22266667 0"></polygon>
-                            <polygon id="Fill-4" points="0 16 3.55555556 16 3.55555556 12.4444444 0 12.4444444"></polygon>
-                            <polygon id="Fill-5" points="6.22222222 16 17.2222222 16 17.2222222 12.4444444 6.22222222 12.4444444"></polygon>
-                            <polygon id="Fill-8" points="6.22222222 9.77777778 17.2222222 9.77777778 17.2222222 6.22222222 6.22222222 6.22222222"></polygon>
-                            <polygon id="Fill-9" points="0 9.77777778 3.55555556 9.77777778 3.55555556 6.22222222 0 6.22222222"></polygon>
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g transform="translate(2.000000, 0.000000)" fill="#000000">
+                            <polygon points="0 3.55555556 3.55555556 3.55555556 3.55555556 0 0 0"></polygon>
+                            <polygon points="6.22266667 3.55555556 17.2226667 3.55555556 17.2226667 0 6.22266667 0"></polygon>
+                            <polygon points="0 16 3.55555556 16 3.55555556 12.4444444 0 12.4444444"></polygon>
+                            <polygon points="6.22222222 16 17.2222222 16 17.2222222 12.4444444 6.22222222 12.4444444"></polygon>
+                            <polygon points="6.22222222 9.77777778 17.2222222 9.77777778 17.2222222 6.22222222 6.22222222 6.22222222"></polygon>
+                            <polygon points="0 9.77777778 3.55555556 9.77777778 3.55555556 6.22222222 0 6.22222222"></polygon>
                         </g>
                     </g>
                 </svg>

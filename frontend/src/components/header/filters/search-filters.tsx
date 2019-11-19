@@ -3,7 +3,7 @@ import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../../store/actions/search";
 import { FilterTagsService } from '../../../services/search-filters/filter-tags.service';
 import { searchFilterSelectors } from '../../../store/selectors/search';
-import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
+import taxonomySelectors from '../../../store/selectors/taxonomy';
 
 @Component({
   tag: 'search-filters',
@@ -21,10 +21,14 @@ export class SearchFilters {
     this.store.mapStateToProps(this, state => {
 
       const allFilters = searchFilterSelectors.getAllFilters(state);
-      const neighborhoods = neighborhoodSelectors.getNeighborhoods(state);
-      const regions = neighborhoodSelectors.getRegions(state);
+      const taxonomy = {
+        neighborhoods: taxonomySelectors.getNeighborhoods(state),
+        regions: taxonomySelectors.getRegions(state),
+        bedroomTypes: taxonomySelectors.getBedroomTypes(state),
+        buildingTypes: taxonomySelectors.getBuildingTypes(state)
+      };
       return {
-        tags: FilterTagsService.getPrioritizedTags(allFilters, neighborhoods, regions)
+        tags: FilterTagsService.getPrioritizedTags(allFilters, taxonomy)
       };
     });
 

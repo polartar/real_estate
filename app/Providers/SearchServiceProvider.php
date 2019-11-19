@@ -34,9 +34,9 @@ class SearchServiceProvider extends ServiceProvider
         switch ($name) {
             case 'homePageInit':
                 $results = [
-                    'uniqueList' => factory(\App\Listing::class, 8)->make(['faked' => true]),
-                    'privateRoomList' => factory(\App\Listing::class, 8)->make(['faked' => true]),
-                    'luxuryList' => factory(\App\Listing::class, 8)->make(['faked' => true])
+                    'uniqueList' => \App\Apartment::whereRaw('RAND()')->limit(8)->get(),
+                    'privateRoomList' => \App\Apartment::whereRaw('RAND()')->limit(8)->get(),
+                    'luxuryList' => \App\Apartment::whereRaw('RAND()')->limit(8)->get()
                 ];
             break;
         }
@@ -50,14 +50,8 @@ class SearchServiceProvider extends ServiceProvider
         $results = Cache::remember('search-' . $filter_hash, 600, function() {
             $num_results = random_int(0, 60);
 
-            $faked = factory(\App\Listing::class, $num_results)->make(['faked' => true]);
-            $id = 0;
-            foreach ($faked as $k => $v) {
-                $faked[$k]['id'] = $id++;
-            }
-
             return [
-                'results' => $faked,
+                'results' => \App\Apartment::whereRaw('RAND()')->limit($num_results)->get(),
                 'total' => $num_results
             ];
         });

@@ -1,7 +1,7 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
-import { getBuildingTypeLabel, getBedsListingText } from '../../helpers/filters';
-import neighborhoodSelectors from '../../store/selectors/neighborhoods';
+import { getBedsListingText } from '../../helpers/filters';
+import taxonomySelectors from '../../store/selectors/taxonomy';
 import { setSelectedListing, setSearchListingHover } from '../../store/actions/search';
 import { searchSelectors } from '../../store/selectors/search';
 import { formatMoney, formatDate } from '../../helpers/utils';
@@ -20,13 +20,17 @@ export class SearchListingCard {
   setSearchListingHover: Action;
 
   neighborhoods: any[] = [];
+  bedroomTypes: any[] = [];
+  buildingTypes: any[] = [];
 
   @Prop() item: any = {};
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
-        neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
+        neighborhoods: taxonomySelectors.getNeighborhoods(state),
+        bedroomTypes: taxonomySelectors.getBedroomTypes(state),
+        buildingTypes: taxonomySelectors.getBuildingTypes(state),
         selectedListings: searchSelectors.getSelectedListings(state)
       };
     });
@@ -42,7 +46,9 @@ export class SearchListingCard {
   }
 
   render() {
-    const neighborhood = neighborhoodSelectors.getNeighborhoodById(this.item.neighborhood_id[0], this.neighborhoods);
+    const neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
+    const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
+    const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
 
     return [
         <div class="search-listing-card" onMouseEnter={() => this.setSearchListingHover(this.item.id)} onMouseLeave={() => this.setSearchListingHover(false)}>
@@ -51,7 +57,7 @@ export class SearchListingCard {
             </maintain-ratio>
           <div class={{"listing-content-padding": this.contentPadding}}>
             <h4 class="listing-title">
-              <ion-router-link href={'/post/' + this.item.id}>{this.item.streetAddress}</ion-router-link>
+              <ion-router-link href={'/post/' + this.item.id}>{this.item.street_address}</ion-router-link>
             </h4>
             <div class="neighborhood">
               <ion-router-link href={'/post/' + this.item.id}>
@@ -60,7 +66,7 @@ export class SearchListingCard {
             </div>
             <div class="price">
               <ion-router-link href={'/post/' + this.item.id}>
-                {formatMoney(this.item.price)} /month
+                {formatMoney(this.item.rate)} /month
               </ion-router-link>
             </div>
             <div class="available">
@@ -70,7 +76,7 @@ export class SearchListingCard {
             </div>
             <div class="bed-bath">
               <div>
-                <lazy-image src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {getBedsListingText(this.item.bedrooms)}
+                <lazy-image src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {getBedsListingText(bedroomType)}
               </div>
               <div class="divider">
                 |
@@ -88,7 +94,7 @@ export class SearchListingCard {
               />
 
               <div class="amenities">
-                { getBuildingTypeLabel(this.item.building_type) }
+                { buildingType.name }
               </div>
 
               <div class="flex-spacer" />

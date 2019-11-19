@@ -30,9 +30,9 @@ import {
 } from "./search";
 
 import {
-  SetNeighborhoodsTaxonomy,
-  SetNeighborhoodsLoading
-} from './neighborhoods';
+  SetTaxonomy,
+  SetTaxonomyLoading
+} from './taxonomy';
 
 export type ActionTypes =
   | LoginBeginAction
@@ -54,8 +54,8 @@ export type ActionTypes =
   | SetSearchListings
   | SetSearchLoading
   | GetNamedSearch
-  | SetNeighborhoodsTaxonomy
-  | SetNeighborhoodsLoading
+  | SetTaxonomy
+  | SetTaxonomyLoading
   | SetSelectedListing
   | SetSearchListingHover
 ;
@@ -80,8 +80,8 @@ export enum Actions {
   SET_SEARCH_LOADING = "SET_SEARCH_LOADING",
   SET_SEARCH_LISTINGS = "SEARCH_LISTINGS",
   GET_NAMED_SEARCH_RESULTS = "GET_NAMED_SEARCH_RESULTS",
-  SET_NEIGHBORHOODS_TAXONOMY = "SET_NEIGHBORHOODS_TAXONOMY",
-  SET_NEIGHBORHOODS_LOADING = "SET_NEIGHBORHOODS_LOADING",
+  SET_TAXONOMY = "SET_TAXONOMY",
+  SET_TAXONOMY_LOADING = "SET_TAXONOMY_LOADING",
   SET_SELECTED_LISTING = "SET_SELECTED_LISTING",
   SET_SEARCH_LISTING_HOVER = "SET_SEARCH_LISTING_HOVER"
 }
