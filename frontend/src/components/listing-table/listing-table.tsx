@@ -1,7 +1,6 @@
 import { Component, h, Prop, State, Watch, Element } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import taxonomySelectors from '../../store/selectors/taxonomy';
-import { getBuildingTypeLabel, getBuildingTypeSortValue, getBedsSortValue } from '../../helpers/filters';
 import { formatMoney } from '../../helpers/utils';
 import { searchSelectors } from '../../store/selectors/search';
 import { setSelectedListing } from '../../store/actions/search';

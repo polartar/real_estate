@@ -1,5 +1,3 @@
-import { getBuildingTypeStructure } from './filters';
-
 export function generateId(length) {
   const dec2hex = dec => ('0' + dec.toString(16)).substr(-2);
 
@@ -30,65 +28,6 @@ export function formatDate(date: Date, format?: string) {
     break;
   }
   return result;
-}
-
-/*
- *  Generate placeholder listings
- */
-export function generateListings(num: number = 10) {
-  let baseListing = {
-    id: 1,
-    address: '321 Front Street',
-    latitude: 40.722412,
-    longitude: -73.995290,
-    price: 8300,
-    bedrooms: 3,
-    bathrooms: 2,
-    rating: 5,
-    neighborhood_id: [10],
-    building_type: 'elevator',
-    available_date: '12/01/2019',
-    images: []
-  };
-
-  const buildingTypes = getBuildingTypeStructure();
-
-  let listings = [];
-
-  for (let i = 0; i < num; i++) {
-    let listing = { ...baseListing };
-    let unit_num = Math.ceil(Math.random() * 1000);
-    let unit_str = arrayShuffle(['Front', 'Side', 'Main', 'Ventura', 'Jersey', 'Blake', 'Connor', 'David', 'Woodgrove']).pop();
-    let unit_str_type = arrayShuffle(['Street', 'Str', 'Ave', 'Avenue', 'Place', 'Pl', 'Grove', 'Circle']).pop();
-
-    let latdir = Math.floor(Math.random() * 2) == 1 ? 1 : -1;
-    let lngdir = Math.floor(Math.random() * 2) == 1 ? 1 : -1;
-
-    listing.id = Math.round(Math.random() * 100000);
-    listing.address = `${unit_num} ${unit_str} ${unit_str_type}`;
-    listing.latitude = baseListing.latitude + (latdir * (Math.random() / 100));
-    listing.longitude = baseListing.longitude + (lngdir * (Math.random() / 100));
-    listing.price = Math.ceil(Math.random() * 10000) + 1000;
-    listing.bedrooms = Math.ceil(Math.random() * 4);
-    listing.bathrooms = Math.ceil(Math.random() * 4);
-    listing.rating = Math.ceil(Math.random() * 5);
-    listing.building_type = arrayShuffle([ ...buildingTypes]).pop().value;
-    listing.neighborhood_id = [Math.ceil(Math.random() * 52)];
-
-    let numPics = Math.round(Math.random() * 10) + 1;
-    let images = [];
-    for (let i = 0; i < numPics; i++) {
-      images.push('https://picsum.photos/seed/' + listing.id + '/400/300.jpg');
-    }
-
-    listing.images = [...images];
-
-    listings.push({ ...listing });
-
-    listing = null;
-  }
-
-  return listings;
 }
 
 export function arrayShuffle(array) {
