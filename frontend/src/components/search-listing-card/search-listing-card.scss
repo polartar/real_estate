@@ -92,6 +92,10 @@
     align-items: center;
     font-size: $font-size-sm;
 
+    @include for-size(desktop-up) {
+      font-size: $font-size-md;
+    }
+
     .amenities {
       padding-left: 0.5rem;
       padding-bottom: 4px;

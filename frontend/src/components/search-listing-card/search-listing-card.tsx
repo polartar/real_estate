@@ -60,7 +60,7 @@ export class SearchListingCard {
             </div>
             <div class="price">
               <ion-router-link href={'/post/' + this.item.id}>
-                {formatMoney(this.item.price)} per month
+                {formatMoney(this.item.price)} /month
               </ion-router-link>
             </div>
             <div class="available">
