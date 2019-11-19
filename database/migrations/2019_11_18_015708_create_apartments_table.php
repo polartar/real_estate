@@ -35,6 +35,7 @@ class CreateApartmentsTable extends Migration
             $table->integer('duci_days_count')->nullable();
             $table->integer('months_due')->nullable();
             $table->float('rating')->nullable()->index();
+            $table->json('images')->nullable();
             $table->double('lat')->nullable()->index();
             $table->double('lng')->nullable()->index();
             $table->string('floor_plan_file_path')->nullable();

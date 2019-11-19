@@ -19,10 +19,11 @@ Route::group(['middleware' => ['api', 'cors']], function () {
 
     Route::post('auth', 'SPAAuthController@login')->middleware('throttle');
 
-    Route::get('taxonomy', 'NeighborhoodsController@taxonomy');
+    Route::get('taxonomy', 'TaxonomyController@taxonomy');
 
     // Searches
     Route::post('search', 'SearchController@search');
+    Route::get('search', 'SearchController@search');
     Route::get('search/named/{name}', 'SearchController@named');
 
 });

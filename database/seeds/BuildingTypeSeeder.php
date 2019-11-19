@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\BuildingType;
 
 class BuildingTypeSeeder extends Seeder
 {

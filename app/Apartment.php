@@ -12,20 +12,22 @@ class Apartment extends Model
         "bedroom_type_id" => "int",
         "rating" => "float",
         "advance_charges" => "array",
-        "available_date" => 'date',
-        "available_until" => 'date'
+        "available_date" => 'date:Y-m-d',
+        "available_until" => 'date:Y-m-d'
     ];
 
     /**
      * @return BelongsTo
      */
-    function bedroom_type()
-    {
+    function bedroom_type() {
         return $this->belongsTo(BedroomType::class);
     }
 
-    function building_type()
-    {
+    function building_type() {
         return $this->belongsTo(BuildingType::class);
+    }
+
+    function neighborhoods() {
+        return $this->belongsToMany(Neighborhood::class);
     }
 }

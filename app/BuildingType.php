@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class BuildingType extends Model
 {
+    public $timestamps = false;
+
     /**
      * @param $name
      * @return BuildingType

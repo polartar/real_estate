@@ -13,5 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(BedroomTypeSeeder::class);
         $this->call(BuildingTypeSeeder::class);
+        $this->call(RegionSeeder::class);
+        $this->call(NeighborhoodSeeder::class);
     }
 }

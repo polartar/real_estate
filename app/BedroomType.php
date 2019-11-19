@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class BedroomType extends Model
 {
+    public $timestamps = false;
+
     /**
      * @param $name
      * @return BedroomType

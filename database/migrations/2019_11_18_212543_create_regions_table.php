@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBuildingTypesTable extends Migration
+class CreateRegionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateBuildingTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('building_types', function (Blueprint $table) {
+        Schema::create('regions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('import_id');
             $table->string('name')->unique();
         });
     }
@@ -26,6 +27,6 @@ class CreateBuildingTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('building_types');
+        Schema::dropIfExists('regions');
     }
 }
