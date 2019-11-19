@@ -65,10 +65,6 @@
     align-items: center;
     padding-top: 4px;
 
-    @include for-size(desktop-up) {
-      font-size: $font-size-md;
-    }
-
     .amenities {
       padding-left: 0.5rem;
       padding-bottom: 4px;
