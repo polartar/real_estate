@@ -282,7 +282,7 @@ export class ListingTable {
 
   render() {
     const unselected = this.items.filter(v => !this.selectedListings.includes(v.id));
-console.log(this.items);
+
     return (
       <div class="listing-table-component">
         <table class="listing-table">

@@ -1,6 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import { getBedsListingText } from '../../../helpers/filters';
+import { formatDate } from '../../../helpers/utils';
 import taxonomySelectors from '../../../store/selectors/taxonomy';
 
 @Component({
@@ -44,7 +45,7 @@ export class MapListingCard {
                 ${this.item.rate} /month
               </div>
               <div class="avialable">
-                Available {this.item.available_date}
+                Available { formatDate(this.item.available_date, 'short') }
               </div>
               <div class="bed-bath">
                 <div>

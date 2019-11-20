@@ -17,7 +17,12 @@ export function formatMoney(num: number, locale: string = 'en-US', options: any 
   return formatter.format(num);
 }
 
-export function formatDate(date: Date, format?: string) {
+export function formatDate(vdate, format?: string) {
+  const date = new Date(vdate);
+
+  // normalize timezone
+  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+
   let result = '';
 
   switch (format) {
