@@ -226,7 +226,7 @@ export function setSelectedListings(values) {
 }
 
 export interface SetSelectedListings {
-  type: Actions.SET_SEARCH_LISTINGS;
+  type: Actions.SET_SELECTED_LISTINGS;
   payload: any[]
 }
 
