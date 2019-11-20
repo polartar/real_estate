@@ -11,19 +11,18 @@
     height: 0;
     width: 0;
   }
-  
+
   .checkbox {
     display: inline-block;
     width: var(--apt212-checkbox-width, 10px);
     height: var(--apt212-checkbox-height, 10px);
     margin-right: var(--apt212-margin-right, 0.25rem);
-    background-color: #fff;
-    border: solid 1px rgba(0, 0, 0, 0.73);
-    border-radius: 1px;
+    background-color: var(--apt212-checkbox-bg-color, #f8f8f8);
+    border: var(--apt212-checkbox-border, 0.5px solid #979797);
 
     &.checked {
-      background-color: black;
-      border-color: #454545;
+      background-color: var(--apt212-checkbox-checked-bg-color, black);
+      border-color: var(--apt212-checkbox-checked-border-color, #454545);
     }
   }
 }

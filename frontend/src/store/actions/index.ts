@@ -26,13 +26,14 @@ import {
   SetSearchLoading,
   GetNamedSearch,
   SetSelectedListing,
+  SetSelectedListings,
   SetSearchListingHover
 } from "./search";
 
 import {
   SetTaxonomy,
   SetTaxonomyLoading
-} from './taxonomy';
+} from "./taxonomy";
 
 export type ActionTypes =
   | LoginBeginAction
@@ -57,6 +58,7 @@ export type ActionTypes =
   | SetTaxonomy
   | SetTaxonomyLoading
   | SetSelectedListing
+  | SetSelectedListings
   | SetSearchListingHover
 ;
 
@@ -83,5 +85,6 @@ export enum Actions {
   SET_TAXONOMY = "SET_TAXONOMY",
   SET_TAXONOMY_LOADING = "SET_TAXONOMY_LOADING",
   SET_SELECTED_LISTING = "SET_SELECTED_LISTING",
+  SET_SELECTED_LISTINGS = "SET_SELECTED_LISTINGS",
   SET_SEARCH_LISTING_HOVER = "SET_SEARCH_LISTING_HOVER"
 }

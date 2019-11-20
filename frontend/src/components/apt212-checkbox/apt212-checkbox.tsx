@@ -5,7 +5,7 @@ import { Component, h, Prop, Element, Method, Event, EventEmitter } from '@stenc
   styleUrl: 'apt212-checkbox.scss'
 })
 export class Apt212Checkbox {
-  @Prop() value: string;
+  @Prop({ reflect: true }) value: string;
   @Prop() name: string;
   @Prop() checked: boolean = false;
   @Element() el: HTMLElement;

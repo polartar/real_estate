@@ -1,9 +1,10 @@
 import { Component, h, Prop, State, Watch, Element } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import taxonomySelectors from '../../store/selectors/taxonomy';
-import { formatMoney } from '../../helpers/utils';
+import { formatMoney, formatDate } from '../../helpers/utils';
 import { searchSelectors } from '../../store/selectors/search';
-import { setSelectedListing } from '../../store/actions/search';
+import { setSelectedListings } from '../../store/actions/search';
+import Debounce from 'debounce-decorator';
 
 @Component({
   tag: 'listing-table',
@@ -18,7 +19,7 @@ export class ListingTable {
   @State() sortedItems: any[] = [...this.items];
   @State() selectedListings: any[] = [];
 
-  setSelectedListing: Action;
+  setSelectedListings: Action;
   bedroomTypes: any[] = [];
   buildingTypes: any[] = [];
 
@@ -72,7 +73,7 @@ export class ListingTable {
     });
 
     this.store.mapDispatchToProps(this, {
-      setSelectedListing
+      setSelectedListings
     });
   }
 
@@ -256,9 +257,32 @@ export class ListingTable {
     }
   }
 
+  @Debounce(100)
+  checkboxChecked() {
+    const checkboxes: any = this.el.querySelectorAll('.item-checkbox');
+
+    const promises = [];
+    checkboxes.forEach(cb => {
+      promises.push(new Promise(async resolve => {
+        const isChecked = await cb.isChecked();
+
+        resolve({
+          id: cb.getAttribute('value'),
+          checked: isChecked
+        });
+      }));
+    });
+
+    Promise.all(promises).then(result => {
+      const value = result.filter(v => v.checked).map(v => parseInt(v.id));
+
+      this.setSelectedListings(value);
+    });
+  }
+
   render() {
     const unselected = this.items.filter(v => !this.selectedListings.includes(v.id));
-
+console.log(this.items);
     return (
       <div class="listing-table-component">
         <table class="listing-table">
@@ -323,31 +347,88 @@ export class ListingTable {
                   <td>
                     <apt212-checkbox
                       class="item-checkbox"
+                      value={item.id}
                       checked={this.selectedListings.includes(item.id)}
-                      onCheckBoxChange={e => this.setSelectedListing(item.id, e.detail.checked)}
+                      onCheckBoxChange={() => this.checkboxChecked()}
                     />
                   </td>
                   <td class="desktop-only">#{ item.id }</td>
                   <td class="desktop-only">{ this.neighborhoodMap[item.neighborhood_ids[0]] }</td>
-                  <td class="desktop-only">{item.address}</td>
+                  <td class="desktop-only">{item.street_address}</td>
                   <td class="desktop-only">{bedroomType.name}</td>
                   <td class="desktop-only">{item.bathrooms}</td>
                   <td class="desktop-only">{formatMoney(item.rate)}/month</td>
                   <td class="desktop-only">{buildingType.name}</td>
                   <td class="desktop-only">{item.available_date}</td>
                   <td class="mobile-only">
-                    { bedroomType.rooms_count > 0 ? `${bedroomType.name} BD` : bedroomType.name } | {item.bathrooms} BA<br />
-                    {buildingType.name}<br />
-                    {formatMoney(item.rate)}/month<br />
-                    Available: {item.available_date}
+                    <table class="mobile-inner">
+                      <tr>
+                        <td>
+                          { bedroomType.rooms_count > 0 ? `${bedroomType.name} BD` : bedroomType.name } | {item.bathrooms} BA
+                        </td>
+                        <td>
+                          { this.neighborhoodMap[item.neighborhood_ids[0]] }
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="space">
+                            {buildingType.name}
+                          </div>
+
+                          <div class="space">
+                            {formatMoney(item.rate)}/month
+                          </div>
+                        </td>
+                        <td>
+                          {item.street_address}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="space no-wrap">
+                            Available: {formatDate(new Date(item.available_date), 'm/d/y')}
+                          </div>
+                        </td>
+                        <td>
+                          <div class="space">
+                            Web ID: #{item.id}
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  {/* <td class="mobile-only">
+                    <div class="space top">
+                      { bedroomType.rooms_count > 0 ? `${bedroomType.name} BD` : bedroomType.name } | {item.bathrooms} BA
+                    </div>
+
+                    <div class="space">
+                      {buildingType.name}
+                    </div>
+
+                    <div class="space">
+                      {formatMoney(item.rate)}/month
+                    </div>
+
+                    <div class="space no-wrap">
+                      Available: {formatDate(new Date(item.available_date), 'm/d/y')}
+                    </div>
                   </td>
                   <td class="mobile-only">
-                  { this.neighborhoodMap[item.neighborhood_ids[0]] }<br />
-                    {item.address}<br /><br />
+                    <div class="space">
+                      { this.neighborhoodMap[item.neighborhood_ids[0]] }
+                    </div>
 
-                    Web ID: #{item.id}
-                  </td>
-                  <td><ion-button aria-label="View Listing" class="reset" href={`/post/${item.id}`}><ion-icon src="/assets/images/icons/list_page_arrow.svg" slot="icon-only" /></ion-button></td>
+                    <div class="space">
+                      {item.street_address}
+                    </div>
+
+                    <div class="space">
+                      Web ID: #{item.id}
+                    </div>
+                  </td> */}
+                  <td><ion-button aria-label="View Listing" class="reset view-listing" href={`/post/${item.id}`}><ion-icon src="/assets/images/icons/list_page_arrow.svg" slot="icon-only" /></ion-button></td>
                 </tr>
                 )
               })

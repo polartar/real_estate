@@ -203,6 +203,13 @@ const searchReducer = (
       return newState;
     }
 
+    case Actions.SET_SELECTED_LISTINGS: {
+      return {
+        ...state,
+        selectedListings: action.payload
+      }
+    }
+
 
     case Actions.SET_SEARCH_LISTING_HOVER: {
       return {

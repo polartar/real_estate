@@ -21,9 +21,12 @@ export function formatDate(date: Date, format?: string) {
   let result = '';
 
   switch (format) {
-    // m.d.Y
+    case 'm/d/y':
+      result = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear().toString().slice(-2);
+    break;
     case 'short':
     default:
+      // m.d.Y
       result = (date.getMonth() + 1) + '.' + date.getDate() + '.' + date.getFullYear();
     break;
   }

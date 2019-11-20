@@ -216,6 +216,20 @@ export interface SetSelectedListing {
   payload: any
 }
 
+export function setSelectedListings(values) {
+  return dispatch => {
+    dispatch({
+      type: Actions.SET_SELECTED_LISTINGS,
+      payload: values
+    });
+  }
+}
+
+export interface SetSelectedListings {
+  type: Actions.SET_SEARCH_LISTINGS;
+  payload: any[]
+}
+
 
 export interface SetSearchListingHover {
   type: Actions.SET_SEARCH_LISTING_HOVER,

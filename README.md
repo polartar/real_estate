@@ -17,6 +17,18 @@ Install passport (api auth back end):
 
 `php artisan passport:install`
 
+Seed the database with required taxonomies
+
+`php artisan db:seed`
+
+Optional: For development builds a seeder is available for apartments, which will create 100 apartments
+
+`php artisan db:seed --class=ApartmentSeeder`
+
+Clear caches
+
+`php artisan cache:clear`
+
 # PWA (front end)
 
 ## Installation

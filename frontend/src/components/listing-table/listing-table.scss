@@ -54,6 +54,10 @@
           display: table-cell;
         }
       }
+
+      &:last-child {
+        padding-left: 0;
+      }
     }
   }
 
@@ -68,6 +72,54 @@
     &.desc {
       ion-icon {
         transform: rotate(180deg);
+      }
+    }
+  }
+
+  .item-checkbox {
+    --apt212-checkbox-width: 14px;
+    --apt212-checkbox-height: 14px;
+
+    @include for-size(desktop-up) {
+      --apt212-checkbox-width: 10px;
+      --apt212-checkbox-height: 10px;
+    }
+  }
+
+  .view-listing {
+    ion-icon {
+      font-size: 18px;
+    }
+  }
+
+  .mobile-only {
+    .space {
+      padding-top: 0.5rem;
+
+      &.top {
+        padding-top: 0;
+      }
+    }
+
+    table.mobile-inner {
+      width: 100%;
+
+      tr {
+        border: 0;
+      }
+
+      td {
+        height: auto;
+        padding: 0;
+
+        &:first-child {
+          width: 125px;
+          min-width: 125px;
+        }
+
+        &:first-child {
+          padding: 0 1rem 0 0;
+        }
       }
     }
   }

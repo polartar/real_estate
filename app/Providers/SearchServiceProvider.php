@@ -34,9 +34,9 @@ class SearchServiceProvider extends ServiceProvider
         switch ($name) {
             case 'homePageInit':
                 $results = [
-                    'uniqueList' => \App\Apartment::whereRaw('RAND()')->limit(8)->get(),
-                    'privateRoomList' => \App\Apartment::whereRaw('RAND()')->limit(8)->get(),
-                    'luxuryList' => \App\Apartment::whereRaw('RAND()')->limit(8)->get()
+                    'uniqueList' => \App\Apartment::inRandomOrder()->take(8)->get(),
+                    'privateRoomList' => \App\Apartment::inRandomOrder()->take(8)->get(),
+                    'luxuryList' => \App\Apartment::inRandomOrder()->take(8)->get()
                 ];
             break;
         }
@@ -51,7 +51,7 @@ class SearchServiceProvider extends ServiceProvider
             $num_results = random_int(0, 60);
 
             return [
-                'results' => \App\Apartment::whereRaw('RAND()')->limit($num_results)->get(),
+                'results' => \App\Apartment::inRandomOrder()->take($num_results)->get(),
                 'total' => $num_results
             ];
         });
