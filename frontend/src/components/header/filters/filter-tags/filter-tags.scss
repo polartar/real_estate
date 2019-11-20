@@ -17,7 +17,7 @@
     .clear-filters {
       padding-left: 1rem;
       padding-right: 1rem;
-      text-decoration: underline;
+      text-decoration: none;
 
       @include for-size(desktop-up) {
         display: none;
