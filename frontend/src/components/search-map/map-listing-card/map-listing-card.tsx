@@ -36,7 +36,7 @@ export class MapListingCard {
           <img src={this.item.images[0]} class="feature-image" />
 
           <div class="details">
-            <h4 class="listing-title">{this.item.title}</h4>
+            <h4 class="listing-title">{this.item.street_address}</h4>
               <div class="neighborhood">
                 { neighborhood.name }
               </div>
