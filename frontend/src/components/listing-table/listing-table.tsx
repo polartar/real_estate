@@ -398,36 +398,6 @@ console.log(this.items);
                       </tr>
                     </table>
                   </td>
-                  {/* <td class="mobile-only">
-                    <div class="space top">
-                      { bedroomType.rooms_count > 0 ? `${bedroomType.name} BD` : bedroomType.name } | {item.bathrooms} BA
-                    </div>
-
-                    <div class="space">
-                      {buildingType.name}
-                    </div>
-
-                    <div class="space">
-                      {formatMoney(item.rate)}/month
-                    </div>
-
-                    <div class="space no-wrap">
-                      Available: {formatDate(new Date(item.available_date), 'm/d/y')}
-                    </div>
-                  </td>
-                  <td class="mobile-only">
-                    <div class="space">
-                      { this.neighborhoodMap[item.neighborhood_ids[0]] }
-                    </div>
-
-                    <div class="space">
-                      {item.street_address}
-                    </div>
-
-                    <div class="space">
-                      Web ID: #{item.id}
-                    </div>
-                  </td> */}
                   <td><ion-button aria-label="View Listing" class="reset view-listing" href={`/post/${item.id}`}><ion-icon src="/assets/images/icons/list_page_arrow.svg" slot="icon-only" /></ion-button></td>
                 </tr>
                 )
