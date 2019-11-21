@@ -303,11 +303,11 @@ export class SearchMap {
 
     // zoom/pan to fit results in the map
     if (this.map && boundsBoxSet && resize) {
-      // this.map.fitBounds(boundsBox, {
-      //   maxZoom: 15,
-      //   linear: true,
-      //   padding: 40
-      // });
+      this.map.fitBounds(boundsBox, {
+        maxZoom: 15,
+        linear: true,
+        padding: 40
+      });
     }
 
     markers.forEach(m => m.addTo(this.map));

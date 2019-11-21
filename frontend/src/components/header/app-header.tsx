@@ -2,7 +2,7 @@ import { Component, h, State, Prop, Element } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../store/actions/search";
 import { updateHeaderHeight } from '../../store/actions/screensize';
-import { createAnimation } from '@ionic/core';
+// import { createAnimation } from '@ionic/core';
 
 @Component({
   tag: 'app-header',
@@ -46,38 +46,29 @@ export class AppHeader {
     this.updateHeaderHeight(headerHeight);
   }
 
-  async openMenu() {
-    const menuAnimation = (baseEl: HTMLElement): any => {
-      const baseAnimation = createAnimation();
-      const backdropAnimation = createAnimation();
-      const wrapperAnimation = createAnimation();
-
-      backdropAnimation
-        .addElement(baseEl.querySelector('ion-backdrop')!)
-        .fromTo('opacity', 0.01, 'var(--backdrop-opacity)');
-
-      wrapperAnimation
-        .addElement(baseEl.querySelector('.modal-wrapper')!)
-        .beforeStyles({ 'opacity': 1 })
-        .fromTo('transform', 'translateY(100%)', 'translateY(0%)');
-
-      return baseAnimation
-        .addElement(baseEl)
-        .easing('cubic-bezier(0.36,0.66,0.04,1)')
-        .duration(1)
-        .beforeAddClass('show-modal')
-        .addAnimation([backdropAnimation, wrapperAnimation]);
-    };
-
-    const modal = Object.assign(document.createElement('ion-modal'), {
+  async openMenu(ev) {
+    const popover = Object.assign(document.createElement('apt212-popover'), {
       component: 'app-menu',
-      cssClass: 'app-menu',
-      enterAnimation: menuAnimation,
-      leaveAnimation: menuAnimation
+      componentProps: {
+        inModal: true
+      },
+      event: ev,
+      styleOverride: {
+        width: '100%',
+        height: '100%',
+        top: 0,
+        left: 0,
+        transform: 'none'
+      },
+      bindTo: {
+        target: 'none',
+        popover: 'none'
+      },
     });
 
-    document.body.appendChild(modal);
-    return modal.present();
+    popover.classList.add('app-menu');
+
+    document.body.appendChild(popover);
   }
 
   async launchMobileFilterMenu() {
@@ -144,7 +135,7 @@ export class AppHeader {
                 Speak to an expert
               </ion-button>
 
-              <ion-button aria-label="Menu" fill="clear" class="menu reset" onClick={() => this.openMenu()}>
+              <ion-button aria-label="Menu" fill="clear" class="menu reset" onClick={e => this.openMenu(e)}>
                 <ion-icon aria-label="Menu" src="/assets/images/icons/hamburger.svg" slot="icon-only" />
               </ion-button>
             </div>

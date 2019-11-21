@@ -6,7 +6,7 @@ import { Component, h} from '@stencil/core';
 })
 export class AppMenu {
   closeMenu() {
-    const modal = document.querySelector('ion-modal');
+    const modal: any = document.querySelector('apt212-popover.app-menu');
 
     if (modal) {
       modal.dismiss();

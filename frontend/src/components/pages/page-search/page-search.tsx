@@ -296,7 +296,7 @@ export class PageSearch {
 
             <div class={{ 'search-map': true, 'mobile-map': this.view === 'map' }}>
               <div class="map-wrapper" >
-                <search-map />
+                <search-map onMapLoaded={e => { const map: any = e.target; map.resize(); }}/>
               </div>
             </div>
           </div>

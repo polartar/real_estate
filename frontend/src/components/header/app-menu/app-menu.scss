@@ -11,6 +11,18 @@
       .header-center {
         flex-grow: 1;
       }
+
+      .logo {
+        margin-top: -1px;
+        margin-left: -1px;
+      }
+
+      @include for-size(desktop-up) {
+        .logo {
+          margin-top: -3px;
+          margin-left: 0;
+        }
+      }
     }
 
     ion-button.close {
