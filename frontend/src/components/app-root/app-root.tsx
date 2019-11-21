@@ -46,10 +46,17 @@ export class AppRoot {
       this.getTaxonomy();
     }
 
-    const rel = document.createElement('link');
-    rel.setAttribute('rel', 'canonical');
-    rel.setAttribute('href', this.baseUrl);
-    document.querySelector('head').appendChild(rel);
+    // note - this might already exist due to pre-rendering
+    let rel = document.querySelector('link[rel="canonical"]');
+    if (rel) {
+      rel.setAttribute('href', this.baseUrl);
+    }
+    else {
+      rel = document.createElement('link');
+      rel.setAttribute('rel', 'canonical');
+      rel.setAttribute('href', this.baseUrl);
+      document.querySelector('head').appendChild(rel);
+    }
 
     this.updateScreenSize(window.innerWidth, window.innerHeight);
   }
