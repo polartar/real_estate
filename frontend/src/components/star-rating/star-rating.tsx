@@ -94,12 +94,21 @@ export class StarRating {
     else { return 'star-outline' };
   }
 
+  getColor(startNumber: number): string {{
+    const threshold = this.currentRating - startNumber;
+    if (threshold >= 0) {
+      return this.color;
+    }
+
+    return '#cdcdcd';
+  }}
+
   render() {
     return (
       <div class="star-rating">
-        {this._starCounter.map((_, currentIndex) => <ion-icon name={this.iconName(currentIndex + 1)}
+        {this._starCounter.map((_, currentIndex) => <ion-icon name='star'
                                                               onClick={_ => this.updateRating(currentIndex + 1)}
-                                                              style={{'font-size': this._fontSizeExpression, 'color': this.color}}>
+                                                              style={{'font-size': this._fontSizeExpression, 'color': this.getColor(currentIndex + 1)}}>
                                                     </ion-icon>)}
       </div>
     );
