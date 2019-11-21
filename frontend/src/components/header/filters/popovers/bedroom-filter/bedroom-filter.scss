@@ -29,6 +29,8 @@
       background: black;
       color: white;
       font-size: 16px;
+      padding: 0;
+      white-space: nowrap;
 
       &.inactive {
         background: white;
