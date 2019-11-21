@@ -174,7 +174,9 @@ export class SearchListingCard {
 
               <div class="flex-spacer" />
 
-              <apt212-checkbox checked={this.selectedListings.includes(this.item.id)} onCheckBoxChange={e => this.setSelectedListing(this.item.id, e.detail.checked)}/>
+              <apt212-checkbox checked={this.selectedListings.includes(this.item.id)} onCheckBoxChange={e => this.setSelectedListing(this.item.id, e.detail.checked)}>
+                <span class="sr-only">Select this listing</span>
+              </apt212-checkbox>
             </div>
           </div>
         </div>
