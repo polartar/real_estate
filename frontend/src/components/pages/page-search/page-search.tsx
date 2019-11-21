@@ -3,6 +3,7 @@ import { Store, Action } from "@stencil/redux";
 import { searchFilterSelectors, searchSelectors } from '../../../store/selectors/search';
 import { getSearchListings, setSortbyFilter } from '../../../store/actions/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
+import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import Debounce from 'debounce-decorator';
 
 @Component({
@@ -60,6 +61,11 @@ export class PageSearch {
       performSearchAction: getSearchListings,
       setSortbyFilter: setSortbyFilter
     });
+
+    const rel: any = document.querySelector('link[rel="canonical"]');
+    if (rel) {
+      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL') + '/search');
+    }
   }
 
   componentDidLoad() {

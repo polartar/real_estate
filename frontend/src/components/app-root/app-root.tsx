@@ -6,6 +6,7 @@ import { getTaxonomy } from '../../store/actions/taxonomy';
 import { configureStore } from "../../store/index";
 import { loadState } from "../../services/storage";
 import { APIService } from "../../services/api/api.service";
+import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
 import Debounce from 'debounce-decorator';
 
 @Component({
@@ -17,6 +18,7 @@ export class AppRoot {
   loadAuth: Action;
   updateScreenSize: Action;
   getTaxonomy: Action;
+  baseUrl: string = EnvironmentConfigService.getInstance().get('BASE_URL');
 
   @Listen('resize', { target: 'window' })
   @Debounce(250)
@@ -43,6 +45,11 @@ export class AppRoot {
     if (Build.isBrowser) {
       this.getTaxonomy();
     }
+
+    const rel = document.createElement('link');
+    rel.setAttribute('rel', 'canonical');
+    rel.setAttribute('href', this.baseUrl);
+    document.querySelector('head').appendChild(rel);
 
     this.updateScreenSize(window.innerWidth, window.innerHeight);
   }
