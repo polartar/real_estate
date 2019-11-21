@@ -289,6 +289,7 @@ $state-height-desktop: calc(100vh - (#{$search-filters-desktop-height} + #{$head
 
   .search-footer {
     display: none;
+    z-index: 1;
 
     @include for-size(desktop-up) {
       display: block;
