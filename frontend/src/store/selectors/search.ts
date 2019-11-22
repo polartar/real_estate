@@ -67,7 +67,7 @@ const searchFilterSelectors = {
   },
 
   getSortBy: state => {
-    return [...state.search.filters.sortBy]
+    return state.search.filters.sortBy
   }
 }
 

@@ -78,22 +78,30 @@ $state-height-desktop: calc(100vh - (#{$search-filters-desktop-height} + #{$head
         }
 
         .results-count {
+          display: none;
           padding-left: 1rem;
+
+          @include for-size(desktop-up) {
+            display: inline-block;
+          }
         }
 
-        button.selected-action {
-          margin: 0 0.5rem;
-          border: 1px solid #dfdfdf;
-          height: 32px;
-          padding: 0 12px;
+        button.dropdown {
+          margin-left: 2rem;
           font-size: $font-size-md;
 
           ion-icon {
-            margin-left: 0.5rem;
+            margin-left: 0.25rem;
           }
+        }
 
-          &.share {
-            margin-left: 1rem;
+        @include for-size(desktop-up) {
+          button.dropdown {
+            font-size: $font-size;
+
+            ion-icon {
+              margin-left: 0.5rem;
+            }
           }
         }
       }

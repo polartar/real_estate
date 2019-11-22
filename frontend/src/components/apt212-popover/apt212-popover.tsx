@@ -6,11 +6,12 @@ import { Component, h, Host, Prop, Element, Method, Listen} from '@stencil/core'
 })
 export class Apt212Popover {
   @Element() el: HTMLElement;
-  @Prop() event;
+  @Prop() target: any = null; // override target to bind the popover to
   @Prop() component!: string;
   @Prop() componentProps: any = {};
   @Prop() styleOverride: any = {};
   @Prop() bindTo: any = { target: 'bottom left', popover: 'top left'};
+  @Prop() animateSrc?: string = '';
 
   mutationObserver: any;
   rendered: boolean = false;
@@ -64,7 +65,13 @@ export class Apt212Popover {
       'apt212-popover': true
     }
 
-    let bindClass = 'bind-' + this.bindTo.popover.replace(/ /g, '-');
+    let bindClass;
+    if (this.animateSrc) {
+      bindClass = 'bind-' + this.animateSrc.replace(/ /g, '-');
+    }
+    else {
+      bindClass = 'bind-' + this.bindTo.popover.replace(/ /g, '-');
+    }
 
     classNames[bindClass] = true;
 
@@ -76,7 +83,7 @@ export class Apt212Popover {
    */
 
   positionTargetBottomLeft() {
-    let bounds = this.event.target.getBoundingClientRect();
+    let bounds = this.target.getBoundingClientRect();
 
     switch (this.bindTo.popover) {
       case 'top left': {
@@ -87,7 +94,7 @@ export class Apt212Popover {
   }
 
   positionTargetTopRight() {
-    let targetBounds = this.event.target.getBoundingClientRect();
+    let targetBounds = this.target.getBoundingClientRect();
     let popoverBounds = this.getWrapper().getBoundingClientRect();
 
     switch (this.bindTo.popover) {

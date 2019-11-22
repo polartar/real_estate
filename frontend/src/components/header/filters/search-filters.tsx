@@ -43,7 +43,7 @@ export class SearchFilters {
       componentProps: {
         inModal: true
       },
-      event: ev
+      target: ev.currentTarget
     });
 
     document.body.appendChild(popover);

@@ -1,0 +1,17 @@
+@import '../../../styles/variables';
+
+.search-sortby-dropdown-component {
+  .sort-by-button {
+    display: block;
+    font-size: $font-size-md;
+    height: 39px;
+    width: 141px;
+    padding: 0 1rem;
+    margin: 0;
+
+    &.selected {
+      background-color: $color-secondary;
+      color: white;
+    }
+  }
+}

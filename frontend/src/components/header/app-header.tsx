@@ -52,7 +52,7 @@ export class AppHeader {
       componentProps: {
         inModal: true
       },
-      event: ev,
+      target: ev.currentTarget,
       styleOverride: {
         width: '100%',
         height: '100%',

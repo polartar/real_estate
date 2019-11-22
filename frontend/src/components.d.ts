@@ -29,12 +29,13 @@ export namespace Components {
     'value': string;
   }
   interface Apt212Popover {
+    'animateSrc'?: string;
     'bindTo': any;
     'component': string;
     'componentProps': any;
     'dismiss': () => Promise<void>;
-    'event': any;
     'styleOverride': any;
+    'target': any;
   }
   interface BathroomFilter {
     'clearAll': () => Promise<void>;
@@ -138,6 +139,7 @@ export namespace Components {
     'searchResults': any;
     'showDetails': (ids: any, lat: any, lng: any) => Promise<void>;
   }
+  interface SearchSortbyDropdown {}
   interface SearchStateEmpty {}
   interface StarRating {
     'color': string;
@@ -370,6 +372,12 @@ declare global {
     new (): HTMLSearchMapElement;
   };
 
+  interface HTMLSearchSortbyDropdownElement extends Components.SearchSortbyDropdown, HTMLStencilElement {}
+  var HTMLSearchSortbyDropdownElement: {
+    prototype: HTMLSearchSortbyDropdownElement;
+    new (): HTMLSearchSortbyDropdownElement;
+  };
+
   interface HTMLSearchStateEmptyElement extends Components.SearchStateEmpty, HTMLStencilElement {}
   var HTMLSearchStateEmptyElement: {
     prototype: HTMLSearchStateEmptyElement;
@@ -424,6 +432,7 @@ declare global {
     'search-filters': HTMLSearchFiltersElement;
     'search-listing-card': HTMLSearchListingCardElement;
     'search-map': HTMLSearchMapElement;
+    'search-sortby-dropdown': HTMLSearchSortbyDropdownElement;
     'search-state-empty': HTMLSearchStateEmptyElement;
     'star-rating': HTMLStarRatingElement;
     'youtube-video': HTMLYoutubeVideoElement;
@@ -449,11 +458,12 @@ declare namespace LocalJSX {
     'value'?: string;
   }
   interface Apt212Popover extends JSXBase.HTMLAttributes<HTMLApt212PopoverElement> {
+    'animateSrc'?: string;
     'bindTo'?: any;
     'component': string;
     'componentProps'?: any;
-    'event'?: any;
     'styleOverride'?: any;
+    'target'?: any;
   }
   interface BathroomFilter extends JSXBase.HTMLAttributes<HTMLBathroomFilterElement> {
     'inModal'?: boolean;
@@ -549,6 +559,7 @@ declare namespace LocalJSX {
     'onMapLoaded'?: (event: CustomEvent<void>) => void;
     'searchResults'?: any;
   }
+  interface SearchSortbyDropdown extends JSXBase.HTMLAttributes<HTMLSearchSortbyDropdownElement> {}
   interface SearchStateEmpty extends JSXBase.HTMLAttributes<HTMLSearchStateEmptyElement> {}
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
     'color'?: string;
@@ -599,6 +610,7 @@ declare namespace LocalJSX {
     'search-filters': SearchFilters;
     'search-listing-card': SearchListingCard;
     'search-map': SearchMap;
+    'search-sortby-dropdown': SearchSortbyDropdown;
     'search-state-empty': SearchStateEmpty;
     'star-rating': StarRating;
     'youtube-video': YoutubeVideo;

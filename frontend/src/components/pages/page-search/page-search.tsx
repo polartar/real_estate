@@ -1,7 +1,7 @@
 import { Component, h, Prop, Element, State, Watch, Build } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { searchFilterSelectors, searchSelectors } from '../../../store/selectors/search';
-import { getSearchListings, setSortbyFilter } from '../../../store/actions/search';
+import { getSearchListings } from '../../../store/actions/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import Debounce from 'debounce-decorator';
@@ -23,14 +23,12 @@ export class PageSearch {
   @State() searchResults: any[] = [];
   @State() searchResultsCount: number = 0;
   @State() searchFilters: any;
-  @State() sortBy: any;
   @State() selectedListings: any[] = [];
   @State() loading: boolean;
 
   rendered: boolean = false;
 
   performSearchAction: Action;
-  setSortbyFilter: Action;
 
   headerObserver: any = null;
 
@@ -49,7 +47,6 @@ export class PageSearch {
         neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
         location: searchFilterSelectors.getLocations(state),
         searchFilters: searchFilterSelectors.getAllFilters(state),
-        sortBy: searchFilterSelectors.getSortBy(state),
         loading: searchSelectors.getLoading(state),
         searchResultsCount: searchSelectors.getListingsCount(state),
         searchResults: searchSelectors.getListings(state),
@@ -58,8 +55,7 @@ export class PageSearch {
     });
 
     this.store.mapDispatchToProps(this, {
-      performSearchAction: getSearchListings,
-      setSortbyFilter: setSortbyFilter
+      performSearchAction: getSearchListings
     });
 
     const rel: any = document.querySelector('link[rel="canonical"]');
@@ -169,44 +165,20 @@ export class PageSearch {
     return viewClass;
   }
 
-  @Debounce(250)
-  sortFilterChanged(e) {
-    this.setSortbyFilter(e.target.options[e.target.options.selectedIndex].value);
-  }
+  openSortBy(ev) {
+    const popover = Object.assign(document.createElement('apt212-popover'), {
+      component: 'search-sortby-dropdown',
+      target: ev.currentTarget,
+      styleOverride: {
+        marginTop: '15px',
+        transform: 'none'
+      },
+      animateSrc: 'top center'
+    });
 
-  getSearchFilterSortElement() {
-    const optionsMap = [
-      {
-        label: 'Soonest Available',
-        value: 'availability',
-        selected: this.sortBy === 'availability'
-      },
-      {
-        label: 'Price - Low to High',
-        value: 'price_asc',
-        selected: this.sortBy === 'price_asc'
-      },
-      {
-        label: 'Price - High to Low',
-        value: 'price_desc',
-        selected: this.sortBy === 'price_desc'
-      },
-      {
-        label: 'Size - Small to Big',
-        value: 'size_asc',
-        selected: this.sortBy === 'size_asc'
-      },
-      {
-        label: 'Size - Big to Small',
-        value: 'size_desc',
-        selected: this.sortBy === 'size_desc'
-      }
-    ];
+    popover.classList.add('app-menu');
 
-
-    return <select id="search-filter-sort" onChange={e => this.sortFilterChanged(e)}>
-      { optionsMap.map(o => <option value={o.value} selected={o.selected}>{o.label}</option>)}
-  </select>
+    document.body.appendChild(popover);
   }
 
   render() {
@@ -266,20 +238,17 @@ export class PageSearch {
                 </svg>
                 </button>
 
-                <label htmlFor="search-filter-sort">Sort by</label>
-                { this.getSearchFilterSortElement() }
-
                 <div class="results-count">{this.searchResultsCount} Results</div>
 
-                <div class="results-count">{this.selectedListings.length} Selected</div>
-
-                <button aria-label="Share selected listings" class="button-reset has-icon selected-action share">
-                  Share
-                  <ion-icon name="star" />
+                <button class="button-reset has-icon dropdown" onClick={e => this.openSortBy(e)}>
+                  Sort By
+                  <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
                 </button>
 
-                <button aria-label="Add to Wishlist" class="button-reset has-icon selected-action wishlist">
-                  Add to Wishlist
+                <button class="button-reset has-icon dropdown">
+                  {this.selectedListings.length} Selected
+
+                  {this.selectedListings.length ? <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon> : null }
                 </button>
               </div>
 

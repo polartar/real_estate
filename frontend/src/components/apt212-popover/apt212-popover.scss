@@ -24,6 +24,10 @@
     transform-origin: 100% 100%;
   }
 
+  &.bind-top-center {
+    transform-origin: 50% 0%;
+  }
+
   &.initialized {
     visibility: visible;
     transform: scale(0);

@@ -89,6 +89,11 @@ export class MaintainRatio {
     let newHeight = Math.round(currWidth / ratio);
 
     if (!newHeight) {
+      // try again
+      requestAnimationFrame(() => {
+        this.enforceRatio();
+      });
+
       return;
     }
 
