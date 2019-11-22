@@ -26,6 +26,8 @@ export class PageSearch {
   @State() selectedListings: any[] = [];
   @State() loading: boolean;
 
+  _lastSearchFilters: any = {};
+
   rendered: boolean = false;
 
   performSearchAction: Action;
@@ -138,13 +140,13 @@ export class PageSearch {
 
   @Watch('searchFilters')
   @Debounce(250)
-  performSearch(newVal, oldVal) {
-    // simulate a search
-
+  performSearch() {
     // ensure filters are materially different
-    if (JSON.stringify(newVal) === JSON.stringify(oldVal)) {
+    if (JSON.stringify(this.searchFilters) === JSON.stringify(this._lastSearchFilters)) {
       return;
     }
+
+    this._lastSearchFilters = {...this.searchFilters};
 
     this.performSearchAction(this.searchFilters);
   }

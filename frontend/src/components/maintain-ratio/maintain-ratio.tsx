@@ -25,6 +25,7 @@ export class MaintainRatio {
   windowResize() {
     requestAnimationFrame(() => {
       if (this.initialRender) {
+        console.log('enforcing ratio');
         this.enforceRatio();
       }
     });
@@ -79,6 +80,7 @@ export class MaintainRatio {
     this.changeInProgress = true;
 
     if (this.width === 0 || this.height === 0) {
+      this.changeInProgress = false;
       return;
     }
 
@@ -89,11 +91,7 @@ export class MaintainRatio {
     let newHeight = Math.round(currWidth / ratio);
 
     if (!newHeight) {
-      // try again
-      requestAnimationFrame(() => {
-        this.enforceRatio();
-      });
-
+      this.changeInProgress = false;
       return;
     }
 
