@@ -414,12 +414,16 @@ export class SearchMap {
 
     const highlight = val => {
       const marker: any = this.el.querySelector(`.marker-instance-${val}`);
-      marker.classList.add('hover');
+      if (marker) {
+        marker.classList.add('hover');
+      }
     };
 
     const unhighlight = val => {
       const marker: any = this.el.querySelector(`.marker-instance-${val}`);
-      marker.classList.remove('hover');
+      if (marker) {
+        marker.classList.remove('hover');
+      }
     }
 
     if (newVal !== false) {

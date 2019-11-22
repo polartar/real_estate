@@ -4,6 +4,7 @@ import { FilterTagsService } from '../../../../services/search-filters/filter-ta
 import { searchFilterSelectors } from '../../../../store/selectors/search';
 import taxonomySelectors from '../../../../store/selectors/taxonomy';
 import { clearSearchFilter } from '../../../../store/actions/search';
+import Debounce from 'debounce-decorator';
 
 @Component({
   tag: 'filter-tags',
@@ -71,7 +72,8 @@ export class FilterTags {
    * do choose to be picky as hell over the most inane things.
    * I had this working with a simple estimation in like 3 lines of code.
    */
-  componentDidRender() {
+  @Debounce(100)
+  majorlyFuckWithTheDom() {
     const componentContainer = this.el.querySelector('.filter-tags-component');
     const tagsContainer: any = this.el.querySelector('.tags');
     const moreButton = this.el.querySelector('button.show-all');
@@ -173,6 +175,10 @@ export class FilterTags {
     }
 
     moreCount.innerText = this.el.querySelectorAll('.tag-measurement filter-tag.hidden').length;
+  }
+
+  componentDidRender() {
+    this.majorlyFuckWithTheDom();
   }
 
 
