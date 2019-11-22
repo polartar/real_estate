@@ -72,6 +72,12 @@
       margin-left: 1rem;
     }
   }
+
+  filter-tags {
+    flex-grow: 1;
+    justify-content: flex-end;
+    width: 100%;
+  }
 }
 
 .filter-tags-all {

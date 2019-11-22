@@ -103,7 +103,7 @@ export class SearchFilters {
               Filter
             </ion-button>
 
-            <div class="spacer" />
+            {/* <div class="spacer" /> */}
 
             <filter-tags onShowAllTags={() => { this.showAllTags = !this.showAllTags} } />
 

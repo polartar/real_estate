@@ -50,6 +50,8 @@ export class MaintainRatio {
 
     if (window && window.ResizeObserver) {
       new ResizeObserver(() => { this.observe() }).observe(this.getContainer());
+
+      setTimeout(() => this.enforceRatio(), 100); // for good measure
     }
     else {
       // no observer, let's just give it a couple of seconds of polling and assume it's settled down
@@ -85,6 +87,10 @@ export class MaintainRatio {
     let ratio = this.width / this.height;
 
     let newHeight = Math.round(currWidth / ratio);
+
+    if (!newHeight) {
+      return;
+    }
 
     this.getContainer().style.height = `${newHeight}px`;
 

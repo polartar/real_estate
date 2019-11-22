@@ -5,7 +5,7 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 
 const configureStore = (preloadedState: any) => {
-  if (EnvironmentConfigService.getInstance().get('APP_ENVIRONMENT') === 'production') {
+  if (EnvironmentConfigService.getInstance().get('APP_ENVIRONMENT')) {
     return createStore(rootReducer, preloadedState, applyMiddleware(thunk));
   }
   else {
