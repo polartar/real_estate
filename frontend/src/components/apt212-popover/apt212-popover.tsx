@@ -83,12 +83,20 @@ export class Apt212Popover {
    */
 
   positionTargetBottomLeft() {
-    let bounds = this.target.getBoundingClientRect();
+    let targetBounds = this.target.getBoundingClientRect();
 
     switch (this.bindTo.popover) {
       case 'top left': {
-        this.getWrapper().style.top = `${bounds.bottom}px`;
-        this.getWrapper().style.left = `${bounds.left}px`;
+        this.getWrapper().style.top = `${targetBounds.bottom}px`;
+        this.getWrapper().style.left = `${targetBounds.left}px`;
+
+        break;
+      }
+
+      case 'top right': {
+        const left = targetBounds.left - this.getWrapper().clientWidth;
+        this.getWrapper().style.top = `${targetBounds.bottom}px`;
+        this.getWrapper().style.left = `${left}px`;
       }
     }
   }
@@ -111,7 +119,15 @@ export class Apt212Popover {
   }
 
   positionTargetBottomRight() {
+    let targetBounds = this.target.getBoundingClientRect();
 
+    switch (this.bindTo.popover) {
+      case 'top right': {
+        const left = targetBounds.right - this.getWrapper().clientWidth;
+        this.getWrapper().style.top = `${targetBounds.bottom}px`;
+        this.getWrapper().style.left = `${left}px`;
+      }
+    }
   }
 
   mutationObserved() {

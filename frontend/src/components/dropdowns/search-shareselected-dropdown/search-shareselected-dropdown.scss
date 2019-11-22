@@ -1,0 +1,33 @@
+@import '../../../styles/variables';
+
+.search-shareselected-dropdown-component {
+  .share-button {
+    display: block;
+    font-size: $font-size-md;
+    height: 39px;
+    width: 141px;
+    padding: 0 1rem;
+    margin: 0;
+
+    svg {
+      width: 10px;
+      height: 10px;
+      margin-right: 0.5rem;
+
+      path {
+        fill: black;
+      }
+    }
+
+    &:hover {
+      background-color: $color-secondary;
+      color: white;
+
+      svg {
+        path {
+          fill: white;
+        }
+      }
+    }
+  }
+}

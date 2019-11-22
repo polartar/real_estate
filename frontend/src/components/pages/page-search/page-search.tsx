@@ -178,7 +178,27 @@ export class PageSearch {
       animateSrc: 'top center'
     });
 
-    popover.classList.add('app-menu');
+    document.body.appendChild(popover);
+  }
+
+  openSelectedMenu(ev) {
+    if (!this.selectedListings.length) {
+      return;
+    }
+
+    const popover = Object.assign(document.createElement('apt212-popover'), {
+      component: 'search-shareselected-dropdown',
+      target: ev.currentTarget,
+      styleOverride: {
+        marginTop: '15px',
+        transform: 'none'
+      },
+      bindTo: {
+        target: this.width > 450 ? 'bottom left' : 'bottom right',
+        popover: this.width > 450 ? 'top left' : 'top right',
+      },
+      animateSrc: 'top center'
+    });
 
     document.body.appendChild(popover);
   }
@@ -247,7 +267,7 @@ export class PageSearch {
                   <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
                 </button>
 
-                <button class="button-reset has-icon dropdown">
+                <button class="button-reset has-icon dropdown" onClick={e => this.openSelectedMenu(e)}>
                   {this.selectedListings.length} Selected
 
                   {this.selectedListings.length ? <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon> : null }

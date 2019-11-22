@@ -139,6 +139,7 @@ export namespace Components {
     'searchResults': any;
     'showDetails': (ids: any, lat: any, lng: any) => Promise<void>;
   }
+  interface SearchShareselectedDropdown {}
   interface SearchSortbyDropdown {}
   interface SearchStateEmpty {}
   interface StarRating {
@@ -372,6 +373,12 @@ declare global {
     new (): HTMLSearchMapElement;
   };
 
+  interface HTMLSearchShareselectedDropdownElement extends Components.SearchShareselectedDropdown, HTMLStencilElement {}
+  var HTMLSearchShareselectedDropdownElement: {
+    prototype: HTMLSearchShareselectedDropdownElement;
+    new (): HTMLSearchShareselectedDropdownElement;
+  };
+
   interface HTMLSearchSortbyDropdownElement extends Components.SearchSortbyDropdown, HTMLStencilElement {}
   var HTMLSearchSortbyDropdownElement: {
     prototype: HTMLSearchSortbyDropdownElement;
@@ -432,6 +439,7 @@ declare global {
     'search-filters': HTMLSearchFiltersElement;
     'search-listing-card': HTMLSearchListingCardElement;
     'search-map': HTMLSearchMapElement;
+    'search-shareselected-dropdown': HTMLSearchShareselectedDropdownElement;
     'search-sortby-dropdown': HTMLSearchSortbyDropdownElement;
     'search-state-empty': HTMLSearchStateEmptyElement;
     'star-rating': HTMLStarRatingElement;
@@ -559,6 +567,7 @@ declare namespace LocalJSX {
     'onMapLoaded'?: (event: CustomEvent<void>) => void;
     'searchResults'?: any;
   }
+  interface SearchShareselectedDropdown extends JSXBase.HTMLAttributes<HTMLSearchShareselectedDropdownElement> {}
   interface SearchSortbyDropdown extends JSXBase.HTMLAttributes<HTMLSearchSortbyDropdownElement> {}
   interface SearchStateEmpty extends JSXBase.HTMLAttributes<HTMLSearchStateEmptyElement> {}
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
@@ -610,6 +619,7 @@ declare namespace LocalJSX {
     'search-filters': SearchFilters;
     'search-listing-card': SearchListingCard;
     'search-map': SearchMap;
+    'search-shareselected-dropdown': SearchShareselectedDropdown;
     'search-sortby-dropdown': SearchSortbyDropdown;
     'search-state-empty': SearchStateEmpty;
     'star-rating': StarRating;

@@ -25,7 +25,6 @@ export class MaintainRatio {
   windowResize() {
     requestAnimationFrame(() => {
       if (this.initialRender) {
-        console.log('enforcing ratio');
         this.enforceRatio();
       }
     });

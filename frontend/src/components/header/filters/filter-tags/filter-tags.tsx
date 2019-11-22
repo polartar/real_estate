@@ -1,7 +1,7 @@
 import { Component, h, Prop, State, Event, EventEmitter, Element } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { FilterTagsService } from '../../../../services/search-filters/filter-tags.service';
-import { searchFilterSelectors } from '../../../../store/selectors/search';
+import { searchFilterSelectors,searchSelectors } from '../../../../store/selectors/search';
 import taxonomySelectors from '../../../../store/selectors/taxonomy';
 import { clearSearchFilter } from '../../../../store/actions/search';
 import Debounce from 'debounce-decorator';
@@ -16,6 +16,7 @@ export class FilterTags {
 
   @State() tags: any[] = [];
   @State() screenWidth: number;
+  @State() searchResultsCount: number;
 
   @Event() showAllTags: EventEmitter<void>;
 
@@ -35,7 +36,8 @@ export class FilterTags {
 
       return {
         tags: FilterTagsService.getPrioritizedTags(allFilters, taxonomy),
-        screenWidth: state.screenSize.width
+        screenWidth: state.screenSize.width,
+        searchResultsCount: searchSelectors.getListingsCount(state),
       };
     });
 
@@ -65,7 +67,7 @@ export class FilterTags {
    * Daniel's insistence that *every* fucking pixel be utilized
    * So it has to render ALL tags in a hidden div to measure the width of them and
    * then calculate what can fit into the container.
-   * Once a list of fitting tags are made they are manuall inserted into the visible container
+   * Once a list of fitting tags are made they are manually inserted into the visible container
    * and manually removed/re-added on re-render
    *
    * Considering they want the site to be as fast and efficient as possible they sure
@@ -189,6 +191,13 @@ export class FilterTags {
             {/* tags will be added here post-render after being measured in the tag-measurement div */}
           </div>
           <div class="controls">
+
+
+            <div class="show-all-mobile">
+              { this.searchResultsCount} { this.searchResultsCount === 1 ? 'Result' : 'Results' }
+            </div>
+
+
             {
               this.tags.length > 0 ?
                 <button aria-label="Clear Filters" class="button-reset clear-filters" onClick={() => { this.clearSearchFilter('all') }}>
