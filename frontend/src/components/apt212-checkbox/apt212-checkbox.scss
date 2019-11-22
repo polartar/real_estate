@@ -18,7 +18,7 @@
     height: var(--apt212-checkbox-height, 10px);
     margin-right: var(--apt212-margin-right, 0.25rem);
     background-color: var(--apt212-checkbox-bg-color, #f8f8f8);
-    border: var(--apt212-checkbox-border, 0.5px solid #979797);
+    border: var(--apt212-checkbox-border, 1px solid #c7c7c7);
 
     &.checked {
       background-color: var(--apt212-checkbox-checked-bg-color, black);
