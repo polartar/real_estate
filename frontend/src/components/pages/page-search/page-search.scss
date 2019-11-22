@@ -89,6 +89,7 @@ $state-height-desktop: calc(100vh - (#{$search-filters-desktop-height} + #{$head
         button.dropdown {
           margin-left: 2rem;
           font-size: $font-size-md;
+          height: $search-view-filters-height;
 
           ion-icon {
             margin-left: 0.25rem;

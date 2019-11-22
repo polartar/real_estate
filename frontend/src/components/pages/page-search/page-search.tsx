@@ -172,7 +172,7 @@ export class PageSearch {
       component: 'search-sortby-dropdown',
       target: ev.currentTarget,
       styleOverride: {
-        marginTop: '15px',
+        marginTop: '-1px',
         transform: 'none'
       },
       animateSrc: 'top center'
@@ -190,7 +190,7 @@ export class PageSearch {
       component: 'search-shareselected-dropdown',
       target: ev.currentTarget,
       styleOverride: {
-        marginTop: '15px',
+        marginTop: '-1px',
         transform: 'none'
       },
       bindTo: {
