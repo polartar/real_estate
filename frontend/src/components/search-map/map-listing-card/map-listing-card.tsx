@@ -3,6 +3,7 @@ import { Store } from '@stencil/redux';
 import { getBedsListingText } from '../../../helpers/filters';
 import { formatDate } from '../../../helpers/utils';
 import taxonomySelectors from '../../../store/selectors/taxonomy';
+import { formatMoney, formatDate } from '../../../helpers/utils';
 
 @Component({
   tag: 'map-listing-card',
@@ -42,7 +43,7 @@ export class MapListingCard {
                 { neighborhood.name }
               </div>
               <div class="price">
-                ${this.item.rate} /month
+                {formatMoney(this.item.rate)} /month
               </div>
               <div class="avialable">
                 Available { formatDate(this.item.available_date, 'short') }
