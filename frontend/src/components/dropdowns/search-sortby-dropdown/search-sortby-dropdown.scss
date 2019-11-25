@@ -13,5 +13,12 @@
       background-color: $color-secondary;
       color: white;
     }
+
+    &:hover {
+      background-color: $color-secondary;
+      opacity: .75;
+    }
+
+   
   }
 }
