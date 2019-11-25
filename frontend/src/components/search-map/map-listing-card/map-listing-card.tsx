@@ -1,7 +1,6 @@
 import { Component, h, Prop } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import { getBedsListingText } from '../../../helpers/filters';
-import { formatDate } from '../../../helpers/utils';
 import taxonomySelectors from '../../../store/selectors/taxonomy';
 import { formatMoney, formatDate } from '../../../helpers/utils';
 
