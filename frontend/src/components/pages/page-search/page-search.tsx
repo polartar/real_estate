@@ -181,6 +181,11 @@ export class PageSearch {
   }
 
   openSortBy(ev) {
+    const existingPopover = document.querySelector('apt212-popover.search-sortby');
+    if (existingPopover) {
+      return; // just allow it to close without re-opening
+    }
+
     const popover = Object.assign(document.createElement('apt212-popover'), {
       component: 'search-sortby-dropdown',
       target: ev.currentTarget,
@@ -191,12 +196,19 @@ export class PageSearch {
       animateSrc: 'top center'
     });
 
+    popover.classList.add('search-sortby');
+
     document.body.appendChild(popover);
   }
 
   openSelectedMenu(ev) {
     if (!this.selectedListings.length) {
       return;
+    }
+
+    const existingPopover = document.querySelector('apt212-popover.search-share');
+    if (existingPopover) {
+      return; // just allow it to close without re-opening
     }
 
     const popover = Object.assign(document.createElement('apt212-popover'), {
@@ -212,6 +224,8 @@ export class PageSearch {
       },
       animateSrc: 'top center'
     });
+
+    popover.classList.add('search-share');
 
     document.body.appendChild(popover);
   }
