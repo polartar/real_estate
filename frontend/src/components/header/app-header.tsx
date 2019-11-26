@@ -1,8 +1,9 @@
 import { Component, h, State, Prop, Element } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../store/actions/search";
-import { updateHeaderHeight } from '../../store/actions/screensize';
-// import { createAnimation } from '@ionic/core';
+import { searchFilterSelectors } from '../../store/selectors/search';
+import taxonomySelectors from '../../store/selectors/taxonomy';
+import { FilterTagsService } from '../../services/search-filters/filter-tags.service';
 
 @Component({
   tag: 'app-header',
@@ -12,38 +13,37 @@ export class AppHeader {
   @Prop({ context: "store" }) store: Store;
   @Prop() hideSearchButton: boolean = false;
   @State() displayFilter: boolean;
-  @State() size: string;
   @State() isMobile: boolean;
   @Element() el: HTMLElement;
 
   toggleSearchFilterDisplay: Action;
-  updateHeaderHeight: Action;
+  @State() filterTags: any[];
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       const {
         search: { displayFilter },
-        screenSize: { size, isMobile },
+        screenSize: { isMobile },
       } = state;
+
+      const filters = searchFilterSelectors.getAllFilters(state);
+      const taxonomy = {
+        neighborhoods: taxonomySelectors.getNeighborhoods(state),
+        regions: taxonomySelectors.getRegions(state),
+        bedroomTypes: taxonomySelectors.getBedroomTypes(state),
+        buildingTypes: taxonomySelectors.getBuildingTypes(state)
+      };
 
       return {
         displayFilter,
-        size,
-        isMobile
+        isMobile,
+        filterTags: FilterTagsService.getPrioritizedTags(filters, taxonomy)
       };
     });
 
     this.store.mapDispatchToProps(this, {
       toggleSearchFilterDisplay,
-      updateHeaderHeight
     });
-  }
-
-  componentDidRender() {
-    // page components may need to calculate things with the header height, like the sticky map
-    let headerHeight = this.el.querySelector('.app-header').clientHeight;
-
-    this.updateHeaderHeight(headerHeight);
   }
 
   async openMenu(ev) {
@@ -91,7 +91,7 @@ export class AppHeader {
   }
 
   showSearchFilters() {
-    return this.displayFilter || this.hideSearchButton;
+    return this.displayFilter || this.hideSearchButton || (this.isMobile && this.filterTags.length);
   }
 
   render() {

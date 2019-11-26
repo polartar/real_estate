@@ -7,8 +7,7 @@ import {
 } from "./auth";
 
 import {
-  UpdateScreenSize,
-  UpdateHeaderHeight
+  UpdateScreenSize
 } from "./screensize";
 
 
@@ -42,7 +41,6 @@ export type ActionTypes =
   | logoutAction
   | saveStateAction
   | UpdateScreenSize
-  | UpdateHeaderHeight
   | ToggleSearchFilters
   | SetLocationFilters
   | SetMoveInFilter
@@ -69,7 +67,6 @@ export enum Actions {
   LOGOUT = "LOGOUT",
   SAVE_STATE = "SAVE_STATE",
   UPDATE_SCREENSIZE = "UPDATE_SCREENSIZE",
-  UPDATE_HEADER_HEIGHT = "UPDATE_HEADER_HEIGHT",
   TOGGLE_SEARCH_FILTER_DISPLAY = "TOGGLE_SEARCH_FILTER_DISPLAY",
   SET_LOCATION_FILTERS = "SET_LOCATION_FILTERS",
   SET_MOVE_IN_FILTER = "SET_MOVE_IN_FILTER",

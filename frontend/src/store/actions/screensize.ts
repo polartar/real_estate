@@ -13,18 +13,3 @@ export interface UpdateScreenSize {
   type: Actions.UPDATE_SCREENSIZE;
   payload: any;
 };
-
-
-export function updateHeaderHeight(height) {
-  return async dispatch => {
-    dispatch ({
-      type: Actions.UPDATE_HEADER_HEIGHT,
-      payload: height
-    })
-  }
-}
-
-export interface UpdateHeaderHeight {
-  type: Actions.UPDATE_HEADER_HEIGHT;
-  payload: number;
-}

@@ -67,9 +67,14 @@
     }
 
     .close {
+      display: none;
       font-size: $font-size-lg;
       padding-top: 3px;
       margin-left: 1rem;
+
+      @include for-size(desktop-up) {
+        display: inline-block;
+      }
     }
   }
 

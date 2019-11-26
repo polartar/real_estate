@@ -6,7 +6,6 @@ interface screensizeState {
   size: string,
   isMobile: boolean,
   isDesktop: boolean,
-  headerHeight: number | null
 }
 
 const getInitialState = () => {
@@ -16,7 +15,6 @@ const getInitialState = () => {
     size: 'phone-only',
     isMobile: true,
     isDesktop: false,
-    headerHeight: null
   };
 };
 
@@ -59,13 +57,6 @@ const screensizeReducer = (
         isMobile,
         isDesktop
       };
-    }
-
-    case Actions.UPDATE_HEADER_HEIGHT: {
-      return {
-        ...state,
-        headerHeight: action.payload
-      }
     }
   }
 

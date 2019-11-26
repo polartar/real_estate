@@ -140,6 +140,10 @@ export class SearchMap {
   @Method('removeNeighborhood')
   async removeNeighborhood(slug) {
 
+    if (!this.map) {
+      return;
+    }
+
     let fillLayerName = `${slug}-fill`;
     let outlineLayerName = `${slug}-outline`;
 
