@@ -1,5 +1,5 @@
 import "@stencil/redux";
-import { Component, h, Prop, Listen, Build } from '@stencil/core';
+import { Component, h, Prop, Listen, Build, Element } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { updateScreenSize } from "../../store/actions/screensize";
 import { getTaxonomy } from '../../store/actions/taxonomy';
@@ -7,6 +7,7 @@ import { configureStore } from "../../store/index";
 import { loadState } from "../../services/storage";
 import { APIService } from "../../services/api/api.service";
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
+import { PrefetchComponentService } from '../../services/prefetch-components.service';
 import Debounce from 'debounce-decorator';
 
 @Component({
@@ -15,6 +16,8 @@ import Debounce from 'debounce-decorator';
 })
 export class AppRoot {
   @Prop({ context: "store" }) store: Store;
+  @Element() el: HTMLElement;
+
   loadAuth: Action;
   updateScreenSize: Action;
   getTaxonomy: Action;
@@ -61,8 +64,19 @@ export class AppRoot {
     this.updateScreenSize(window.innerWidth, window.innerHeight);
   }
 
+  componentDidLoad() {
+
+    if (Build.isBrowser) {
+      // prefetch code for componetns
+      const prefetch = this.el.querySelector('component-prefetch');
+      prefetch.setDelay(1500).then(() => {
+        prefetch.setComponents(PrefetchComponentService.getConfig());
+      });
+    }
+  }
+
   render() {
-    return (
+    return [
       <ion-app>
           <ion-router useHash={false}>
             <ion-route url="/" component="page-home" />
@@ -72,7 +86,9 @@ export class AppRoot {
           </ion-router>
 
           <ion-nav />
-      </ion-app>
-    );
+      </ion-app>,
+
+      <component-prefetch />
+    ];
   }
 }

@@ -56,7 +56,7 @@ export class FilterTags {
         target: 'top right',
         popover: 'top right'
       },
-      event: ev
+      target: ev.currentTarget
     });
 
     document.body.appendChild(popover);

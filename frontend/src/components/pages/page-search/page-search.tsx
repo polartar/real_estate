@@ -12,12 +12,13 @@ import Debounce from 'debounce-decorator';
 })
 export class PageSearch {
   @Prop({ context: "store" }) store: Store;
+  @Element() el: HTMLElement;
+
+  @Prop() prefetching: boolean = false;
   @Prop() size: string = 'phone-only';
   @Prop() neighborhoods: any;
   @Prop() location: any;
   @Prop() width: any;
-
-  @Element() el: HTMLElement;
 
   @State() view: string = 'map';
   @State() searchResults: any[] = [];
@@ -37,6 +38,10 @@ export class PageSearch {
   @State() footerOpen: boolean = false;
 
   componentWillLoad() {
+    if (this.prefetching) {
+      return;
+    }
+
     this.store.mapStateToProps(this, state => {
 
       const {
@@ -67,6 +72,10 @@ export class PageSearch {
   }
 
   componentDidLoad() {
+    if (this.prefetching) {
+      return;
+    }
+
     if (window.MutationObserver) {
       this.headerObserver = new MutationObserver(() => this.headerResized());
 
@@ -87,15 +96,19 @@ export class PageSearch {
   }
 
   componentDidRender() {
-      this.rendered = true;
+    if (this.prefetching) {
+      return;
+    }
 
-      const map: any = this.el.querySelector('search-map');
-      map.init();
+    this.rendered = true;
 
-      const router: any = document.querySelector('ion-router');
-      router.addEventListener('ionRouteDidChange', () => {
-        map.resize();
-      });
+    const map: any = this.el.querySelector('search-map');
+    map.init();
+
+    const router: any = document.querySelector('ion-router');
+    router.addEventListener('ionRouteDidChange', () => {
+      map.resize();
+    });
   }
 
   @Watch('view')
@@ -204,6 +217,9 @@ export class PageSearch {
   }
 
   render() {
+    if (this.prefetching) {
+      return null;
+    }
 
     let results = [];
     this.searchResults.forEach(r => {

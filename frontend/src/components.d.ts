@@ -6,7 +6,9 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  prefetchComponentInterface,
+} from './components/component-prefetch/component-prefetch';
 
 export namespace Components {
   interface AppFooter {
@@ -51,6 +53,13 @@ export namespace Components {
     'clearAll': () => Promise<void>;
     'inModal': boolean;
     'selectAll': () => Promise<void>;
+  }
+  interface ComponentPrefetch {
+    /**
+    * @param components an array of component information to prefetch  [ { tag: 'my-component', props: { myProp: value, otherProp, otherValue } } ]
+    */
+    'setComponents': (components: prefetchComponentInterface[]) => Promise<void>;
+    'setDelay': (delay: number) => Promise<void>;
   }
   interface FaqAccordian {}
   interface FilterTag {
@@ -110,10 +119,13 @@ export namespace Components {
     'items': any[];
   }
   interface Page404 {}
-  interface PageHome {}
+  interface PageHome {
+    'prefetching': boolean;
+  }
   interface PageSearch {
     'location': any;
     'neighborhoods': any;
+    'prefetching': boolean;
     'size': string;
     'width': any;
   }
@@ -215,6 +227,12 @@ declare global {
   var HTMLBuildingTypeFilterElement: {
     prototype: HTMLBuildingTypeFilterElement;
     new (): HTMLBuildingTypeFilterElement;
+  };
+
+  interface HTMLComponentPrefetchElement extends Components.ComponentPrefetch, HTMLStencilElement {}
+  var HTMLComponentPrefetchElement: {
+    prototype: HTMLComponentPrefetchElement;
+    new (): HTMLComponentPrefetchElement;
   };
 
   interface HTMLFaqAccordianElement extends Components.FaqAccordian, HTMLStencilElement {}
@@ -413,6 +431,7 @@ declare global {
     'bathroom-filter': HTMLBathroomFilterElement;
     'bedroom-filter': HTMLBedroomFilterElement;
     'building-type-filter': HTMLBuildingTypeFilterElement;
+    'component-prefetch': HTMLComponentPrefetchElement;
     'faq-accordian': HTMLFaqAccordianElement;
     'filter-tag': HTMLFilterTagElement;
     'filter-tags': HTMLFilterTagsElement;
@@ -482,6 +501,7 @@ declare namespace LocalJSX {
   interface BuildingTypeFilter extends JSXBase.HTMLAttributes<HTMLBuildingTypeFilterElement> {
     'inModal'?: boolean;
   }
+  interface ComponentPrefetch extends JSXBase.HTMLAttributes<HTMLComponentPrefetchElement> {}
   interface FaqAccordian extends JSXBase.HTMLAttributes<HTMLFaqAccordianElement> {}
   interface FilterTag extends JSXBase.HTMLAttributes<HTMLFilterTagElement> {
     'tag'?: any;
@@ -542,10 +562,13 @@ declare namespace LocalJSX {
     'items'?: any[];
   }
   interface Page404 extends JSXBase.HTMLAttributes<HTMLPage404Element> {}
-  interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {}
+  interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {
+    'prefetching'?: boolean;
+  }
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
+    'prefetching'?: boolean;
     'size'?: string;
     'width'?: any;
   }
@@ -593,6 +616,7 @@ declare namespace LocalJSX {
     'bathroom-filter': BathroomFilter;
     'bedroom-filter': BedroomFilter;
     'building-type-filter': BuildingTypeFilter;
+    'component-prefetch': ComponentPrefetch;
     'faq-accordian': FaqAccordian;
     'filter-tag': FilterTag;
     'filter-tags': FilterTags;

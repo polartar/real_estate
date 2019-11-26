@@ -12,6 +12,7 @@ import { EnvironmentConfigService } from '../../../services/environment/environm
 })
 export class PageHome {
   @Prop({ context: "store" }) store: Store;
+  @Prop() prefetching: boolean = false;
   @State() size: string = 'phone-only';
   @State() isMobile: boolean = true;
   @State() displayFilter: boolean;
@@ -26,6 +27,10 @@ export class PageHome {
   @State() neighborhoodsLoaded: boolean = false;
 
   componentWillLoad() {
+    if (this.prefetching) {
+      return;
+    }
+
     this.store.mapStateToProps(this, state => {
 
       const {
@@ -53,6 +58,9 @@ export class PageHome {
   }
 
   componentDidLoad() {
+    if (this.prefetching) {
+      return;
+    }
 
     if (Build.isBrowser) {
       this.getNamedSearch('homePageInit')
@@ -86,6 +94,10 @@ export class PageHome {
   }
 
   render() {
+    if (this.prefetching) {
+      return null;
+    }
+
     let phoneTitle, phoneSubtitle, phoneSearch;
 
     let title = <h1 class="title">#1 SOURCE FOR NEW YORK<br></br> FURNISHED APARTMENTS</h1>
