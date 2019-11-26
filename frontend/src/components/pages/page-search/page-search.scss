@@ -299,7 +299,7 @@ $state-height-desktop: calc(100vh - (#{$search-filters-desktop-height} + #{$head
 
   .search-footer {
     display: none;
-    z-index: 1;
+    z-index: 2;
 
     @include for-size(desktop-up) {
       display: block;
@@ -313,6 +313,8 @@ $state-height-desktop: calc(100vh - (#{$search-filters-desktop-height} + #{$head
 
       .toggle-footer {
         position: absolute;
+        display: flex;
+        align-items: center;
         top: -48px;
         right: 52px;
         width: 190px;
