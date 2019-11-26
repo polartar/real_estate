@@ -1,7 +1,8 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, State } from '@stencil/core';
 import { Store } from "@stencil/redux";
 import { getBedsListingText } from '../../helpers/filters';
 import taxonomySelectors from '../../store/selectors/taxonomy';
+import screensizeSelectors from '../../store/selectors/screensize';
 import { formatMoney } from '../../helpers/utils';
 
 @Component({
@@ -11,6 +12,7 @@ import { formatMoney } from '../../helpers/utils';
 export class ListingCard {
   @Prop({ context: "store" }) store: Store;
   @Prop() contentPadding: boolean = false;
+  @State() isMobile: boolean = true;
 
   neighborhoods: any[] = [];
   bedroomTypes: any[] = [];
@@ -23,7 +25,8 @@ export class ListingCard {
       return {
         neighborhoods: taxonomySelectors.getNeighborhoods(state),
         bedroomTypes: taxonomySelectors.getBedroomTypes(state),
-        buildingTypes: taxonomySelectors.getBuildingTypes(state)
+        buildingTypes: taxonomySelectors.getBuildingTypes(state),
+        isMobile: screensizeSelectors.getIsMobile(state)
       };
     });
   }
@@ -62,7 +65,7 @@ export class ListingCard {
             <div class="rating-amenities">
               <star-rating
                   stars={5}
-                  size={16}
+                  size={this.isMobile ? 10 : 16}
                   rating={this.item.rating}
                   readonly
               />

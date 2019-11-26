@@ -17,7 +17,6 @@ export class MaintainRatio {
   @Prop() maxWidth?: number;
 
   private initialRender: boolean = false;
-  private changeInProgress: boolean = false;
 
   @Listen('resize', {
     target: 'window'
@@ -43,7 +42,7 @@ export class MaintainRatio {
     return this.getContainer().clientHeight;
   }
 
-  componentDidRender() {
+  componentDidLoad() {
     this.initialRender = true;
 
     this.enforceRatio();
@@ -72,12 +71,6 @@ export class MaintainRatio {
   }
 
   enforceRatio() {
-    if (this.changeInProgress) {
-      return;
-    }
-
-    this.changeInProgress = true;
-
     if (this.width === 0 || this.height === 0) {
       this.changeInProgress = false;
       return;
@@ -90,15 +83,10 @@ export class MaintainRatio {
     let newHeight = Math.round(currWidth / ratio);
 
     if (!newHeight) {
-      this.changeInProgress = false;
       return;
     }
 
     this.getContainer().style.height = `${newHeight}px`;
-
-    setTimeout(() => {
-      this.changeInProgress = false;
-    }, 50);
   }
 
   render() {
