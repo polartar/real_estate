@@ -72,7 +72,6 @@ export class MaintainRatio {
 
   enforceRatio() {
     if (this.width === 0 || this.height === 0) {
-      this.changeInProgress = false;
       return;
     }
 
