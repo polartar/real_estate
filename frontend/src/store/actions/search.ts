@@ -177,6 +177,54 @@ export interface SetSearchLoading {
   payload: any
 }
 
+export function getMapMarkers(params) {
+  return async dispatch => {
+    const requestId = generateId(16);
+
+    // set loading states
+    dispatch({
+      type: Actions.SET_MAP_MARKERS_LOADING,
+      payload: {
+        loading: true,
+        id: requestId // id used to make sure we don't load stale results in race conditions
+      }
+    });
+
+    let results = [];
+
+    try {
+      const result = await APISearchService.markerSearch(params);
+      results = result.markers;
+    } catch(e) {
+      console.log(e);
+    }
+
+    dispatch({
+      type: Actions.SET_MAP_MARKERS,
+      payload: {
+        id: requestId, // if the id in state no longer matches this ID it means another request is in progress and this will be ignored
+        markers: results
+      }
+    });
+  }
+}
+
+export interface SetMapMarkersLoading {
+  type: Actions.SET_MAP_MARKERS_LOADING,
+  payload: {
+    loading: boolean,
+    id: string,
+  }
+}
+
+export interface SetMapMarkers {
+  type: Actions.SET_MAP_MARKERS,
+  payload: {
+    id: string,
+    markers: any[]
+  }
+}
+
 export function getNamedSearch(name) {
   // call some API that gets results for named search
   // like unique homes in new york = 'unique'

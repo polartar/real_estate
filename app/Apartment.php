@@ -37,6 +37,10 @@ class Apartment extends Model
         return $this->belongsToMany(Neighborhood::class);
     }
 
+    function map_markers() {
+        return $this->belongsToMany(MapMarker::class);
+    }
+
     // accessors
 
     /**

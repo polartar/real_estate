@@ -28,6 +28,7 @@ export class SearchMap {
   @Prop() location: any = [];
   @Prop() searchResults: any = [];
   @Prop() listingHover: number | boolean = false;
+  @Prop() searchFilters: any = [];
 
   markers: any = [];
   @Prop() loading: boolean = false;
@@ -41,6 +42,8 @@ export class SearchMap {
 
   private mapZoom: number = 11;
 
+  private lastMarkerSearchParams: string = '';
+
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
 
@@ -49,7 +52,8 @@ export class SearchMap {
         location: searchFilterSelectors.getLocations(state),
         searchResults: searchSelectors.getListings(state),
         loading: searchSelectors.getLoading(state),
-        listingHover: searchSelectors.getSearchListingHover(state)
+        listingHover: searchSelectors.getSearchListingHover(state),
+        searchFilters: searchFilterSelectors.getAllFilters(state)
       };
     });
   }
@@ -447,6 +451,25 @@ export class SearchMap {
     }
   }
 
+  @Debounce(200)
+  getMarkers() {
+    if (this.map) {
+      const currentMarkerSearchParams = JSON.stringify({
+        filters: this.searchFilters,
+        bounds: this.map.getBounds()
+      });
+
+      if (currentMarkerSearchParams === this.lastMarkerSearchParams) {
+        // prevent duplicate calls
+        return;
+      }
+
+      this.lastMarkerSearchParams = currentMarkerSearchParams;
+
+      console.log(this.map.getBounds());
+    }
+  }
+
   onMapClick() {
     // remove any existing details
     this.closeDetails();
@@ -499,6 +522,8 @@ export class SearchMap {
           this.map.on('click', () => this.onMapClick());
 
           this.map.on('zoomend', () => this.onMapZoomEnd());
+
+          this.map.on('moveend', () => this.getMarkers());
 
           this.mapLoaded.emit();
         });

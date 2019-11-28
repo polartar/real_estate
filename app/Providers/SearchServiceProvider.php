@@ -52,10 +52,16 @@ class SearchServiceProvider extends ServiceProvider
 
             return [
                 'results' => \App\Apartment::inRandomOrder()->take($num_results)->get(),
-                'total' => $num_results
+                'total' => $num_results,
             ];
         });
 
         return $results;
+    }
+
+    public static function searchMarkers($filters) {
+        $filter_hash = md5(json_encode($filters));
+
+
     }
 }

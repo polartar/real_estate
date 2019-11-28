@@ -148,6 +148,7 @@ export namespace Components {
     'location': any;
     'removeNeighborhood': (slug: any) => Promise<void>;
     'resize': () => Promise<void>;
+    'searchFilters': any;
     'searchResults': any;
     'showDetails': (ids: any, lat: any, lng: any) => Promise<void>;
   }
@@ -588,6 +589,7 @@ declare namespace LocalJSX {
     'loading'?: boolean;
     'location'?: any;
     'onMapLoaded'?: (event: CustomEvent<void>) => void;
+    'searchFilters'?: any;
     'searchResults'?: any;
   }
   interface SearchShareselectedDropdown extends JSXBase.HTMLAttributes<HTMLSearchShareselectedDropdownElement> {}

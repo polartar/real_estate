@@ -63,9 +63,5 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         'is_active' => true,
     ];
 
-    // if ($params['faked']) {
-    //     $listing['id'] = $faker->randomNumber();
-    // }
-
     return $listing;
 });

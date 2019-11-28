@@ -35,6 +35,23 @@ class APISearchInstance {
     }
   }
 
+  public async markerSearch(params) {
+    try {
+      let response = await fetch(APIService.getAPIUrl() + '/mapMarkers', {
+        method: 'POST',
+        headers: APIService.getHeaders(),
+        body: JSON.stringify(params)
+      });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      return await response.json();
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
 }
 
 export const APISearchService = new APISearchInstance();

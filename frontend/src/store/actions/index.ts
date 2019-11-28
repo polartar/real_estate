@@ -26,7 +26,9 @@ import {
   GetNamedSearch,
   SetSelectedListing,
   SetSelectedListings,
-  SetSearchListingHover
+  SetSearchListingHover,
+  SetMapMarkers,
+  SetMapMarkersLoading
 } from "./search";
 
 import {
@@ -58,6 +60,8 @@ export type ActionTypes =
   | SetSelectedListing
   | SetSelectedListings
   | SetSearchListingHover
+  | SetMapMarkers
+  | SetMapMarkersLoading
 ;
 
 export enum Actions {
@@ -77,7 +81,9 @@ export enum Actions {
   SET_SORTBY_FILTER = "SET_SORTBY_FILTER",
   CLEAR_SEARCH_FILTER = "CLEAR_SEARCH_FILTER",
   SET_SEARCH_LOADING = "SET_SEARCH_LOADING",
-  SET_SEARCH_LISTINGS = "SEARCH_LISTINGS",
+  SET_SEARCH_LISTINGS = "SET_SEARCH_LISTINGS",
+  SET_MAP_MARKERS = "SET_MAP_MARKERS",
+  SET_MAP_MARKERS_LOADING = "SET_MAP_MARKERS_LOADING",
   GET_NAMED_SEARCH_RESULTS = "GET_NAMED_SEARCH_RESULTS",
   SET_TAXONOMY = "SET_TAXONOMY",
   SET_TAXONOMY_LOADING = "SET_TAXONOMY_LOADING",
