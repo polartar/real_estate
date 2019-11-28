@@ -2,6 +2,7 @@ import { Component, h, State, Prop, Element } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import { searchFilterSelectors } from '../../../../../store/selectors/search';
 import { setPriceFilter } from '../../../../../store/actions/search';
+import Debounce from 'debounce-decorator';
 
 @Component({
   tag: 'price-filter',
@@ -41,6 +42,7 @@ export class PriceFilter {
     this.setPriceFilter(this.value);
   }
 
+  @Debounce(200)
   updateMin(e) {
     this.value = {
       min: e.detail.value,
@@ -50,6 +52,7 @@ export class PriceFilter {
     this.setPriceFilter(this.value);
   }
 
+  @Debounce(200)
   updateMax(e) {
     this.value = {
       min: Math.min(this.value.min, e.detail.value),

@@ -16,7 +16,9 @@ class SearchController extends Controller
     }
 
     public function search() {
-        $filters = request()->all();
+        $params = request()->params;
+
+        $filters = json_decode($params, true);
 
         $results = SearchServiceProvider::search($filters);
 

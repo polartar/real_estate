@@ -1,9 +1,10 @@
 import { Component, h, Element, Build, Method, Prop, Event, EventEmitter, Watch } from '@stencil/core';
-import { Store } from "@stencil/redux";
+import { Store, Action } from "@stencil/redux";
 import { ScriptLoaderService } from '../../services/script-loader.service';
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
 import { generateId } from '../../helpers/utils';
 import { searchFilterSelectors, searchSelectors } from '../../store/selectors/search';
+import { getMapMarkers } from '../../store/actions/search';
 import taxonomySelectors from '../../store/selectors/taxonomy';
 import Debounce from 'debounce-decorator';
 
@@ -20,6 +21,8 @@ export class SearchMap {
   @Event() mapLoaded!: EventEmitter<void>;
 
   @Prop() autoInit: boolean = false;
+
+  getMapMarkers: Action;
 
   neighborhoods: any = [];
   listings: any = {};
@@ -55,6 +58,10 @@ export class SearchMap {
         listingHover: searchSelectors.getSearchListingHover(state),
         searchFilters: searchFilterSelectors.getAllFilters(state)
       };
+    });
+
+    this.store.mapDispatchToProps(this, {
+      getMapMarkers
     });
   }
 
@@ -454,10 +461,12 @@ export class SearchMap {
   @Debounce(200)
   getMarkers() {
     if (this.map) {
-      const currentMarkerSearchParams = JSON.stringify({
+      const params = {
         filters: this.searchFilters,
         bounds: this.map.getBounds()
-      });
+      };
+
+      const currentMarkerSearchParams = JSON.stringify(params);
 
       if (currentMarkerSearchParams === this.lastMarkerSearchParams) {
         // prevent duplicate calls
@@ -466,7 +475,7 @@ export class SearchMap {
 
       this.lastMarkerSearchParams = currentMarkerSearchParams;
 
-      console.log(this.map.getBounds());
+      // this.getMapMarkers(params);
     }
   }
 

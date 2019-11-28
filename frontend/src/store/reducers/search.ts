@@ -8,7 +8,10 @@ interface searchState {
   listings: any[],
   listingsCount: number,
   selectedListings: any[],
-  listingHover: number | boolean
+  listingHover: number | boolean,
+  mapMarkersRequestId: string,
+  mapMarkersLoading: boolean,
+  mapMarkers: any[]
 }
 
 const getInitialState = () => {
@@ -16,8 +19,8 @@ const getInitialState = () => {
     displayFilter: false,
     filters: {
       location: [],
-      moveInDate: undefined,
-      price: undefined,
+      moveInDate: '',
+      price: '',
       beds: [],
       bathrooms: [],
       buildingTypes: [],
@@ -28,7 +31,10 @@ const getInitialState = () => {
     listings: [],
     listingsCount: 0,
     selectedListings: [],
-    listingHover: false
+    listingHover: false,
+    mapMarkersRequestId: '',
+    mapMarkersLoading: false,
+    mapMarkers: []
   }
 };
 
@@ -71,6 +77,30 @@ const searchReducer = (
         listingsCount: action.payload.listingsCount,
         loading: false,
         selectedListings: newSelected
+      }
+    }
+
+    case Actions.SET_MAP_MARKERS_LOADING: {
+      return {
+        ...state,
+        mapMarkersLoading: action.payload.loading,
+        mapMarkersRequestId: action.payload.id
+      }
+    }
+
+    case Actions.SET_MAP_MARKERS: {
+      // make sure this isn't results from a stale request
+      if (state.mapMarkersRequestId !== action.payload.id) {
+        // mapMarkersRequestId changed since this action was triggered
+        // these are stale results
+
+        return state;
+      }
+
+      return {
+        ...state,
+        mapMarkers: action.payload.markers,
+        mapMarkersLoading: false,
       }
     }
 

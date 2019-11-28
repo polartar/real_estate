@@ -20,10 +20,11 @@ class APISearchInstance {
 
   public async search(filters) {
     try {
-      let response = await fetch(APIService.getAPIUrl() + '/search', {
-        method: 'POST',
+
+      const params = encodeURIComponent(JSON.stringify(filters));
+
+      let response = await fetch(APIService.getAPIUrl() + '/search?params=' + params, {
         headers: APIService.getHeaders(),
-        body: JSON.stringify(filters)
       });
       if (!response.ok) {
         throw new Error(response.statusText);

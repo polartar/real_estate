@@ -1,8 +1,8 @@
-import { Component, h, Prop, Element, Method } from '@stencil/core';
+import { Component, h, Prop, Element, Method, State } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import { searchFilterSelectors } from '../../../../../store/selectors/search';
+import taxonomySelectors from '../../../../../store/selectors/taxonomy';
 import { setBedsFilter } from '../../../../../store/actions/search';
-import { getBedsLabel } from '../../../../../helpers/filters';
 
 @Component({
   tag: 'bedroom-filter',
@@ -11,6 +11,7 @@ import { getBedsLabel } from '../../../../../helpers/filters';
 export class BedroomFilter {
   @Prop({ context: "store" }) store: Store;
   @Prop() inModal: boolean = false;
+  @State() bedroomTypes: any[] = [];
   @Element() el: HTMLElement;
 
   value: any[] = [];
@@ -19,7 +20,8 @@ export class BedroomFilter {
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
-        value: searchFilterSelectors.getBeds(state)
+        value: searchFilterSelectors.getBeds(state),
+        bedroomTypes: taxonomySelectors.getBedroomTypes(state)
       }
     });
 
@@ -101,15 +103,18 @@ export class BedroomFilter {
         <div class="beds">
           <table>
             <tr>
-              <td><button aria-label="Room" class="inactive reset" data-value="room" onClick={(e) => this.setValue(e)}>{getBedsLabel('room')}</button></td>
-              <td><button aria-label="Studio" class="inactive reset" data-value="studio" onClick={(e) => this.setValue(e)}>{getBedsLabel('studio')}</button></td>
-              <td><button aria-label="1 bedroom" class="inactive reset"  data-value={1} onClick={(e) => this.setValue(e)}>{getBedsLabel(1)}</button></td>
-              <td><button aria-label="2 bedrooms" class="inactive reset" data-value={2} onClick={(e) => this.setValue(e)}>{getBedsLabel(2)}</button></td>
+              {
+                this.bedroomTypes.slice(0, 4).map(b => {
+                  return <td><button aria-label={b.name} class="inactive reset" data-value={b.id} onClick={(e) => this.setValue(e)}>{b.name}</button></td>
+                })
+              }
             </tr>
             <tr>
-              <td><button aria-label="3 bedrooms" class="inactive reset" data-value={3} onClick={(e) => this.setValue(e)}>{getBedsLabel(3)}</button></td>
-              <td><button aria-label="4 bedrooms" class="inactive reset" data-value={4} onClick={(e) => this.setValue(e)}>{getBedsLabel(4)}</button></td>
-              <td><button aria-label="5 bedrooms" class="inactive reset" data-value={5} onClick={(e) => this.setValue(e)}>{getBedsLabel(5)}</button></td>
+              {
+                this.bedroomTypes.slice(-3).map(b => {
+                  return <td><button aria-label={b.name} class="inactive reset" data-value={b.id} onClick={(e) => this.setValue(e)}>{b.name}</button></td>
+                })
+              }
             </tr>
           </table>
         </div>

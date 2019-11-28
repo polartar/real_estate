@@ -47,14 +47,53 @@ class SearchServiceProvider extends ServiceProvider
     public static function search($filters) {
         $filter_hash = md5(json_encode($filters));
 
-        $results = Cache::remember('search-' . $filter_hash, 600, function() {
-            $num_results = random_int(0, 60);
+        // $results = Cache::remember('search-' . $filter_hash, 600, function() {
+        //     $num_results = random_int(0, 60);
 
-            return [
-                'results' => \App\Apartment::inRandomOrder()->take($num_results)->get(),
-                'total' => $num_results,
-            ];
-        });
+        //     return [
+        //         'results' => \App\Apartment::inRandomOrder()->take($num_results)->get(),
+        //         'total' => $num_results,
+        //     ];
+        // });
+
+        // dd($filters);
+
+        $apartments = \App\Apartment::where('is_active', 1);
+
+        if ($filters['beds']) {
+            $apartments->whereIn('bedroom_type_id', $filters['beds']);
+        }
+
+        if ($filters['bathrooms']) {
+            $apartments->whereIn('bathrooms', $filters['bathrooms']);
+        }
+
+        if ($filters['price']) {
+            $min = (int) $filters['price']['min'];
+            $max = (int) $filters['price']['max'];
+            $apartments->whereBetween('rate', [$min, $max]);
+        }
+
+        if ($filters['moveInDate']) {
+            $apartments->where('available_date', '<=', $filters['moveInDate']);
+        }
+
+        if ($filters['buildingTypes']) {
+            $apartments->whereIn('building_type_id', $filters['buildingTypes']);
+        }
+
+        if ($filters['location']) {
+            $apartments->whereHas('neighborhoods', function($query) use ($filters) {
+                $query->whereIn('neighborhoods.id', $filters['location']);
+            });
+        }
+
+        $r = $apartments->get();
+
+        $results = [
+            'results' => $r,
+            'total' => $r->count()
+        ];
 
         return $results;
     }

@@ -31,10 +31,17 @@ class FilterTagsServiceInstance {
       let title = 'Beds: ';
 
       let labels = filters.beds.sort((a, b) => {
-        return this.bedPriorities[a] - this.bedPriorities[b];
+        const aType = taxonomy.bedroomTypes.find(bed => bed.id === parseInt(a));
+        const bType = taxonomy.bedroomTypes.find(bed => bed.id === parseInt(b));
+
+        return aType.rooms_count - bType.rooms_count;
       });
 
-      labels = labels.map(l => getBedsLabel(l));
+      labels = labels.map(l => {
+        const bedType = taxonomy.bedroomTypes.find(bed => bed.id === parseInt(l));
+
+        return bedType.name;
+      });
 
       title += this.stringifyResult(labels);
 
