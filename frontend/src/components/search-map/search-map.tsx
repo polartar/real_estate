@@ -463,7 +463,8 @@ export class SearchMap {
     if (this.map) {
       const params = {
         filters: this.searchFilters,
-        bounds: this.map.getBounds()
+        bounds: this.map.getBounds(),
+        zoom: 1, // @TODO - determine zooms 1-5 (1 zoomed out, 5 zoomed in)
       };
 
       const currentMarkerSearchParams = JSON.stringify(params);
@@ -475,7 +476,7 @@ export class SearchMap {
 
       this.lastMarkerSearchParams = currentMarkerSearchParams;
 
-      // this.getMapMarkers(params);
+      this.getMapMarkers(params);
     }
   }
 

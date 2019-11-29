@@ -5,6 +5,7 @@
 use App\Apartment;
 use App\BuildingType;
 use App\BedroomType;
+use App\Neighborhood;
 use Faker\Generator as Faker;
 
 $factory->define(Apartment::class, function (Faker $faker, $params) {
@@ -40,7 +41,23 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         ]
     ];
 
-    $latlngPair = $faker->randomElement($latlngPairs);
+    $neighborhoods = Neighborhood::all();
+    $neighborhood_point_found = false;
+
+    while (!$neighborhood_point_found) {
+        $latlngPair = $faker->randomElement($latlngPairs);
+
+        $lat = $faker->latitude($latlngPair['lat']['min'], $latlngPair['lat']['max']);
+        $lng = $faker->longitude($latlngPair['lng']['min'], $latlngPair['lng']['max']);
+
+        foreach ($neighborhoods as $n) {
+            if ($n->containsPoint($lng, $lat)) {
+                $neighborhood_point_found = true;
+
+                break;
+            }
+        }
+    }
 
     $listing = [
         'address' => $faker->address,
@@ -58,8 +75,8 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         'rate' => $faker->numberBetween(1000, 15000),
         'rating' => $faker->numberBetween(1, 5),
         'images' => json_encode($faker->randomElements($possible_images, random_int(0, 10))),
-        'lat' => $faker->latitude($latlngPair['lat']['min'], $latlngPair['lat']['max']),
-        'lng' => $faker->longitude($latlngPair['lng']['min'], $latlngPair['lng']['max']),
+        'lat' => $lat,
+        'lng' => $lng,
         'is_active' => true,
     ];
 

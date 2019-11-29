@@ -29,6 +29,10 @@ class SearchServiceProvider extends ServiceProvider
         //
     }
 
+    /**
+     * Get pre-defined search results for things like
+     * sliders/lists
+     */
     public static function getNamedSearch($name) {
         $results = [];
         switch ($name) {
@@ -44,6 +48,13 @@ class SearchServiceProvider extends ServiceProvider
         return $results;
     }
 
+
+    /**
+     *  Main search builder for apartments
+     *
+     *  @param $filters - an array of filters
+     *
+     */
     public static function search($filters) {
         $filter_hash = md5(json_encode($filters));
 
@@ -56,10 +67,36 @@ class SearchServiceProvider extends ServiceProvider
         //     ];
         // });
 
-        // dd($filters);
-
         $apartments = \App\Apartment::where('is_active', 1);
 
+        $apartments = self::applySearchFilters($apartments, $filters);
+
+        $count = $apartments->count();
+
+        $apartments = self::applySorts($apartments, $filters);
+        $apartments = self::applyLimitOffsets($apartments, $filters);
+
+        $results = [
+            'results' => $apartments->get(),
+            'total' => $count
+        ];
+
+        return $results;
+    }
+
+    /**
+     *  Search for map markers within a bounding box
+     *  that have apartments matching filters
+     *
+     */
+    public static function searchMapMarkers($params) {
+
+        $markers = \App\MapMarker::where('zoom', $params['zoom']);
+
+        return $markers->get();
+    }
+
+    public static function applySearchFilters($apartments, $filters) {
         if ($filters['beds']) {
             $apartments->whereIn('bedroom_type_id', $filters['beds']);
         }
@@ -88,19 +125,37 @@ class SearchServiceProvider extends ServiceProvider
             });
         }
 
-        $r = $apartments->get();
-
-        $results = [
-            'results' => $r,
-            'total' => $r->count()
-        ];
-
-        return $results;
+        return $apartments;
     }
 
-    public static function searchMarkers($filters) {
-        $filter_hash = md5(json_encode($filters));
+    public static function applySorts($apartments, $filters) {
+        switch ($filters['sortBy']) {
+            case 'price_asc':
+                $apartments->orderBy('rate', 'ASC');
+            break;
 
+            case 'price_desc':
+                $apartments->orderBy('rate', 'DESC');
+            break;
 
+            case 'size_asc':
+                // @TODO
+            break;
+
+            case 'size_desc':
+                // @TODO
+            break;
+
+            case 'availability':
+            default:
+                $apartments->orderBy('available_date', 'ASC');
+            break;
+        }
+
+        return $apartments;
+    }
+
+    public static function applyLimitOffsets($apartments, $filters) {
+        return $apartments->take(40);
     }
 }

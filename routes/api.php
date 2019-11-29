@@ -22,9 +22,9 @@ Route::group(['middleware' => ['api', 'cors']], function () {
     Route::get('taxonomy', 'TaxonomyController@taxonomy');
 
     // Searches
-    Route::post('search', 'SearchController@search');
     Route::get('search', 'SearchController@search');
     Route::get('search/named/{name}', 'SearchController@named');
+    Route::get('search/map_markers', 'SearchController@mapMarkers');
 
 });
 

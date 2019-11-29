@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Apartment;
 use App\Providers\MapMarkerServiceProvider;
+use App\Providers\NeighborhoodServiceProvider;
 
 class ApartmentObserver
 {
@@ -17,6 +18,7 @@ class ApartmentObserver
     {
         // find mapMarkers for each zoom level
         MapMarkerServiceProvider::assignMarkers($apartment);
+        NeighborhoodServiceProvider::assignNeighborhoods($apartment);
     }
 
     /**
@@ -29,6 +31,7 @@ class ApartmentObserver
     {
         // lat/lng may have changed, reassign markers just in case
         MapMarkerServiceProvider::assignMarkers($apartment);
+        NeighborhoodServiceProvider::assignNeighborhoods($apartment);
     }
 
     /**

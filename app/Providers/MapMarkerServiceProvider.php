@@ -13,7 +13,7 @@ class MapMarkerServiceProvider extends ServiceProvider
         2 => 0.008,
         3 => 0.002,
         4 => 0.0008,
-        5 => 0.0004
+        5 => 0.0002
     ];
 
     /**
@@ -41,10 +41,10 @@ class MapMarkerServiceProvider extends ServiceProvider
      * Creates markers at the apartment location if none are in range
      */
     public static function assignMarkers($apartment) {
-        foreach (self::$zoomMap as $zoom_level => $distance) {
-            // remove any existing marker attachments
-            $apartment->map_markers()->detach();
+        // remove any existing marker attachments
+        $apartment->map_markers()->detach();
 
+        foreach (self::$zoomMap as $zoom_level => $distance) {
             // first get any markers with lat/lngs within the distance
             $latmin = $apartment->lat - $distance;
             $latmax = $apartment->lat + $distance;

@@ -98,7 +98,13 @@ export class SearchListingCard {
   }
 
   render() {
-    const neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
+    let neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
+    if (!neighborhood) {
+      neighborhood = {
+        name: 'Unknown Neighborhood'
+      }
+    }
+
     const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
 

@@ -11,19 +11,11 @@ Install dependencies:
 
 Configure database credentials in `.env` then run migrations
 
-`php artisan migrate`
+`php artisan dev:refresh`
 
-Install passport (api auth back end):
+To seed apartments for development use the `--apts` option:
 
-`php artisan passport:install`
-
-Seed the database with required taxonomies
-
-`php artisan db:seed`
-
-Optional: For development builds a seeder is available for apartments, which will create 100 apartments
-
-`php artisan db:seed --class=ApartmentSeeder`
+`php artisan dev:refresh --apts`
 
 Clear caches
 

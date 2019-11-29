@@ -38,10 +38,10 @@ class APISearchInstance {
 
   public async markerSearch(params) {
     try {
-      let response = await fetch(APIService.getAPIUrl() + '/mapMarkers', {
-        method: 'POST',
+
+      const queryParms = encodeURIComponent(JSON.stringify(params));
+      let response = await fetch(APIService.getAPIUrl() + '/search/map_markers?params=' + queryParms, {
         headers: APIService.getHeaders(),
-        body: JSON.stringify(params)
       });
       if (!response.ok) {
         throw new Error(response.statusText);

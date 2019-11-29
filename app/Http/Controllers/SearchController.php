@@ -10,9 +10,7 @@ class SearchController extends Controller
 {
     //
     public function named($name) {
-        $results = SearchServiceProvider::getNamedSearch($name);
-
-        return $results;
+        return SearchServiceProvider::getNamedSearch($name);
     }
 
     public function search() {
@@ -20,8 +18,14 @@ class SearchController extends Controller
 
         $filters = json_decode($params, true);
 
-        $results = SearchServiceProvider::search($filters);
+        return SearchServiceProvider::search($filters);
+    }
 
-        return $results;
+    public function mapMarkers() {
+        $params_json = request()->params;
+
+        $params = json_decode($params_json, true);
+
+        return SearchServiceProvider::searchMapMarkers($params);
     }
 }

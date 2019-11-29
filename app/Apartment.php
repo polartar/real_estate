@@ -17,8 +17,8 @@ class Apartment extends Model
         "images" => 'array'
     ];
 
-    protected $appends = ['neighborhood_ids'];
-    protected $hidden = ['neighborhoods'];
+    protected $appends = ['neighborhood_ids', 'map_marker_ids'];
+    protected $hidden = ['neighborhoods', 'map_markers'];
 
     // relationships
 
@@ -46,13 +46,15 @@ class Apartment extends Model
     /**
      * Get the neighborhood ids
      */
-    // @TODO - this also sends all the neighborhood data
-    // strip that from the json
     public function getNeighborhoodIdsAttribute() {
         return $this->neighborhoods->pluck('id');
     }
 
     public function getImagesAttribute($val) {
         return json_decode(json_decode($val)); // not sure why it's double-encoded;
+    }
+
+    public function getMapMarkerIdsAttribute() {
+        return $this->map_markers->pluck('id');
     }
 }
