@@ -9,9 +9,9 @@ class MapMarkerServiceProvider extends ServiceProvider
 {
     // map zoom levels to a distance in lat/lng
     private static $zoomMap = [
-        1 => 0.04,
+        1 => 0.015,
         2 => 0.008,
-        3 => 0.002,
+        3 => 0.003,
         4 => 0.0008,
         5 => 0.0002
     ];
