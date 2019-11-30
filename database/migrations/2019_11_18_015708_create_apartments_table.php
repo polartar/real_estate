@@ -22,6 +22,7 @@ class CreateApartmentsTable extends Migration
             $table->string('state')->nullable();
             $table->string('apartment_number')->nullable();
             $table->string('floors')->nullable();
+            $table->integer('size')->nullable()->index();
             $table->integer('bedroom_type_id')->nullable()->index();
             $table->integer('building_type_id')->nullable()->index();
             $table->float('bathrooms')->nullable();

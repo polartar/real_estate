@@ -3,6 +3,7 @@ import { Store, Action } from '@stencil/redux';
 import { setLocationFilters } from '../../../../../store/actions/search';
 import { searchFilterSelectors } from '../../../../../store/selectors/search';
 import neighborhoodSelectors from '../../../../../store/selectors/neighborhoods';
+import Debounce from 'debounce-decorator';
 
 @Component({
   tag: 'location-filter',
@@ -45,20 +46,6 @@ export class LocationFilter {
     }
   }
 
-  check(cb) {
-    cb.setAttribute('checked', 'checked');
-    cb.setAttribute('data-checked', 'checked');
-  }
-
-  uncheck(cb) {
-    cb.removeAttribute('checked');
-    cb.removeAttribute('data-checked');
-  }
-
-  isChecked(cb) {
-    return !!cb.getAttribute('checked') || !!cb.getAttribute('data-checked');
-  }
-
   regionChange(e) {
     const container = e.target.closest('.region-container');
     const checkboxes = container.querySelectorAll('apt212-checkbox.neighborhood');
@@ -85,7 +72,8 @@ export class LocationFilter {
     });
   }
 
-  async neighborhoodChange(e) {
+  @Debounce(100)
+  async neighborhoodChanged(e) {
     const container = e.target.closest('.region-container');
     const regionCB = container.querySelector('apt212-checkbox.region');
 
@@ -117,15 +105,6 @@ export class LocationFilter {
       this.enableNeighborhoodCheck = true;
     }
 
-    if (e.detail.checked) {
-      this.value.push(parseInt(e.detail.value));
-    }
-    else {
-      this.value = this.value.filter(val => {
-        return val !== parseInt(e.detail.value);
-      })
-    }
-
     this.saveState();
   }
 
@@ -146,8 +125,29 @@ export class LocationFilter {
     });
   }
 
-  saveState() {
-    this.setLocationFilters(this.value);
+  async saveState() {
+    const checkboxes: any = this.el.querySelectorAll('apt212-checkbox.neighborhood');
+
+    const promises = [];
+
+    checkboxes.forEach(cb => {
+      promises.push(new Promise(async resolve => {
+        const isChecked = await cb.isChecked();
+
+        resolve({
+          id: cb.getAttribute('value'),
+          checked: isChecked
+        });
+      }));
+    });
+
+    Promise.all(promises).then(result => {
+      const value = result.filter(v => v.checked).map(v => parseInt(v.id));
+
+      this.setLocationFilters(value);
+
+      this.value = value;
+    });
   }
 
   render() {
@@ -201,7 +201,7 @@ export class LocationFilter {
                         name: neighborhood.name,
                         value: neighborhood.id,
                         class: 'neighborhood',
-                        onCheckBoxChange: e => this.neighborhoodChange(e),
+                        onCheckBoxChange: e => this.neighborhoodChanged(e),
                       };
 
                       if (this.value.indexOf(neighborhood.id) > -1) {

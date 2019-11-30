@@ -1,4 +1,4 @@
-import { Component, h, Element, Build, Method, Prop, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, h, Element, Build, Method, Prop, Event, EventEmitter, Watch, State } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { ScriptLoaderService } from '../../services/script-loader.service';
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
@@ -7,6 +7,7 @@ import { searchFilterSelectors, searchSelectors } from '../../store/selectors/se
 import { getMapMarkers } from '../../store/actions/search';
 import taxonomySelectors from '../../store/selectors/taxonomy';
 import Debounce from 'debounce-decorator';
+import screensizeSelectors from '../../store/selectors/screensize';
 
 declare var mapboxgl: any;
 
@@ -29,9 +30,10 @@ export class SearchMap {
   detail: any = null;
 
   @Prop() location: any = [];
-  @Prop() searchResults: any = [];
   @Prop() listingHover: number | boolean = false;
   @Prop() searchFilters: any = [];
+  @Prop() mapMarkers: any[] = [];
+  @State() isMobile: boolean = false;
 
   markers: any = [];
   @Prop() loading: boolean = false;
@@ -43,9 +45,15 @@ export class SearchMap {
   private mapInitialized: boolean = false;
   private neighborhoodLayerMap: any = {};
 
-  private mapZoom: number = 11;
-
   private lastMarkerSearchParams: string = '';
+  private lastLocationIds: string = '';
+
+  // map constants
+  private mapInitialCenter: number[] = [-73.9830029, 40.7825883];
+  private mapInitialZoom: number = 11;
+  private mapInitialMobileZoom: number = 10.3;
+  private mapZoomMax: number = 17;
+  private mapZoomMin: number = 11;
 
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
@@ -53,10 +61,11 @@ export class SearchMap {
       return {
         neighborhoods: taxonomySelectors.getNeighborhoods(state),
         location: searchFilterSelectors.getLocations(state),
-        searchResults: searchSelectors.getListings(state),
-        loading: searchSelectors.getLoading(state),
+        loading: searchSelectors.getMapMarkersLoading(state),
         listingHover: searchSelectors.getSearchListingHover(state),
-        searchFilters: searchFilterSelectors.getAllFilters(state)
+        searchFilters: searchFilterSelectors.getAllFilters(state),
+        mapMarkers: searchSelectors.getMapMarkers(state),
+        isMobile: screensizeSelectors.getIsMobile(state)
       };
     });
 
@@ -175,10 +184,31 @@ export class SearchMap {
   }
 
   @Method('showDetails')
-  async showDetails(ids, lat, lng) {
+  async showDetails(markerId) {
+    if (!this.map) {
+      return;
+    }
+
+    const marker = this.mapMarkers.find(m => m.id === parseInt(markerId));
+    if (!marker) {
+      return;
+    }
 
     // remove any existing details
     this.closeDetails();
+
+    // zoom in if this isn't zoom level 5
+    const zoom = this.getZoomStep(this.map.getZoom());
+    if (marker.apartments_count > 1 && zoom < 5) {
+      const zoomTo = this.getMapZoomByStep(zoom + 1);
+
+      this.map.easeTo({
+        center: [marker.lng, marker.lat],
+        zoom: zoomTo
+      });
+
+      return;
+    }
 
     const details = new mapboxgl.Popup({
       closeOnClick: false,
@@ -188,8 +218,8 @@ export class SearchMap {
       maxWidth: 'none',
       offset: [-50, 30]
     })
-      .setLngLat([lng, lat])
-      .setHTML(`<map-listing-details ids="${ids}" />`)
+      .setLngLat([marker.lng, marker.lat])
+      .setHTML(`<map-listing-details marker-id="${marker.id}" />`)
       .addTo(this.map);
 
     this.detail = details;
@@ -197,6 +227,17 @@ export class SearchMap {
 
   @Watch('location')
   locationChanged(newVal, oldVal) {
+    if (!this.map) {
+      return;
+    }
+
+    const locationIds = JSON.stringify(this.location.map(l => l.id));
+    if (locationIds === this.lastLocationIds) {
+      return;
+    }
+
+    this.lastLocationIds = locationIds;
+
     const removeLocations = oldVal.filter(id => !newVal.includes(id));
     const addLocations = newVal.filter(id => !oldVal.includes(id));
 
@@ -217,10 +258,44 @@ export class SearchMap {
         this.addNeighborhood(neighborhood.slug, neighborhood.perimeter_coordinates);
       }
     });
+
+    // zoom to locations
+    let boundsBoxSet = false;
+    let boundsBox = [[null, null], [null, null]];
+
+    this.location.forEach(l => {
+      let neighborhood = taxonomySelectors.getNeighborhoodById(l, this.neighborhoods);
+
+      if (neighborhood.perimeter_coordinates.length) {
+        neighborhood.perimeter_coordinates[0].forEach(c => {
+          boundsBox[0][0] = boundsBox[0][0] === null ? c[0] : Math.min(boundsBox[0][0], c[0]);
+          boundsBox[0][1] = boundsBox[0][1] === null ? c[1] : Math.min(boundsBox[0][1], c[1]);
+          boundsBox[1][0] = boundsBox[1][0] === null ? c[0] : Math.max(boundsBox[1][0], c[0]);
+          boundsBox[1][1] = boundsBox[1][1] === null ? c[1] : Math.max(boundsBox[1][1], c[1]);
+        });
+
+        boundsBoxSet = true;
+      }
+    });
+
+    if (boundsBoxSet) {
+      this.map.fitBounds(boundsBox, {
+        maxZoom: 15,
+        linear: true,
+        padding: 40
+      });
+    }
+    else {
+      // location has been unset, so zoom out?
+      this.map.easeTo({
+        center: this.mapInitialCenter,
+        zoom: this.isMobile ? this.mapInitialMobileZoom : this.mapInitialZoom
+      });
+    }
   }
 
-  @Watch('searchResults')
-  placeMarkers(results, oldResults, resize: boolean = true) {
+  @Watch('mapMarkers')
+  placeMarkers(results, oldResults) {
     if (!this.map) {
       return;
     }
@@ -232,47 +307,14 @@ export class SearchMap {
 
     this.removeAllMarkers(true);
 
-    const groupDistance = this.getGroupDistance();
-
-    let boundsBoxSet = false;
+    // let boundsBoxSet = false;
     let boundsBox = [[null, null], [null, null]];
 
-    let grouped = [];
     let markers = [];
 
     results.forEach(r => {
-      if (grouped.includes(r.id)) {
-        // this has already been added as a multiple
-        return;
-      }
 
-      let markerIds = [r.id];
-      let isGrouped = false;
-
-      // find others that can group with this
-      results.filter(p => {
-        const isPeer = Math.abs(p.lat - r.lat) < groupDistance && Math.abs(p.lng - r.lng) < groupDistance && p.id !== r.id && !grouped.includes(p.id);
-
-        if (isPeer) {
-          grouped = [...grouped, p.id];
-          markerIds = [...markerIds, p.id];
-          isGrouped = true;
-        }
-
-        return isPeer;
-      });
-
-      if (isGrouped) {
-        grouped.push(r.id);
-      }
-
-      let className = markerIds.reduce((acc, cur) => {
-        acc += ` marker-instance-${cur}`;
-
-        return acc;
-      }, '');
-
-      className = `map-listing-marker${className}`;
+      const className = `map-listing-marker marker-instance-${r.id}`;
 
       markers.push(
         new mapboxgl.Popup({
@@ -283,7 +325,7 @@ export class SearchMap {
           maxWidth: 'none'
         })
           .setLngLat([r.lng, r.lat])
-          .setHTML(`<map-listing-marker ids="[${markerIds.join(',')}]" lat="${r.lat}" lng="${r.lng}" />`)
+          .setHTML(`<map-listing-marker marker-id="${r.id}" />`)
       );
 
       boundsBox[0][0] = boundsBox[0][0] === null ? r.lng : Math.min(boundsBox[0][0], r.lng);
@@ -291,118 +333,24 @@ export class SearchMap {
       boundsBox[1][0] = boundsBox[1][0] === null ? r.lng : Math.max(boundsBox[1][0], r.lng);
       boundsBox[1][1] = boundsBox[1][1] === null ? r.lat : Math.max(boundsBox[1][1], r.lat);
 
-      boundsBoxSet = true;
+      // boundsBoxSet = true;
     });
 
-    if (this.location.length) {
-      // if specific location is selected zoom to those boundaries
-      // start again, le sigh
-      boundsBoxSet = false;
-      boundsBox = [[null, null], [null, null]];
-
-      this.location.forEach(l => {
-        let neighborhood = taxonomySelectors.getNeighborhoodById(l, this.neighborhoods);
-
-        if (neighborhood.perimeter_coordinates.length) {
-          neighborhood.perimeter_coordinates[0].forEach(c => {
-            boundsBox[0][0] = boundsBox[0][0] === null ? c[0] : Math.min(boundsBox[0][0], c[0]);
-            boundsBox[0][1] = boundsBox[0][1] === null ? c[1] : Math.min(boundsBox[0][1], c[1]);
-            boundsBox[1][0] = boundsBox[1][0] === null ? c[0] : Math.max(boundsBox[1][0], c[0]);
-            boundsBox[1][1] = boundsBox[1][1] === null ? c[1] : Math.max(boundsBox[1][1], c[1]);
-          });
-
-          boundsBoxSet = true;
-        }
-      });
-    }
-
     // zoom/pan to fit results in the map
-    if (this.map && boundsBoxSet && resize) {
-      this.map.fitBounds(boundsBox, {
-        maxZoom: 15,
-        linear: true,
-        padding: 40
-      });
-    }
+    // if (this.map && boundsBoxSet && resize) {
+    //   this.map.fitBounds(boundsBox, {
+    //     maxZoom: 15,
+    //     linear: true,
+    //     padding: 40
+    //   });
+    // }
 
     markers.forEach(m => m.addTo(this.map));
 
     this.markers = markers;
-
-    setTimeout(() => {
-      this.onMapZoomEnd();
-    }, 100);
   }
 
-  /**
-   * Determine the distance in lat/lng
-   * required whereby listings closer than that are grouped
-   */
-  getGroupDistance() {
-    if (!this.map) {
-      return 0;
-    }
 
-    let groupDistance = 0;
-
-    const mapZoom = this.map.getZoom();
-
-    if (mapZoom >= 20) {
-      groupDistance = 0; // no grouping
-    }
-
-    if (mapZoom < 19) {
-      groupDistance = 0.00025;
-    }
-
-    if (mapZoom < 18) {
-      groupDistance = 0.0004;
-    }
-
-    if (mapZoom < 17) {
-      groupDistance = 0.0005;
-    }
-
-    if (mapZoom < 16) {
-      groupDistance = 0.0008;
-    }
-
-    if (mapZoom < 15) {
-      groupDistance = 0.002;
-    }
-
-    if (mapZoom < 14) {
-      groupDistance = 0.003;
-    }
-
-    if (mapZoom < 13) {
-      groupDistance = 0.008;
-    }
-
-    if (mapZoom < 12) {
-      groupDistance = 0.025;
-    }
-
-    if (mapZoom < 11) {
-      groupDistance = 0.04;
-    }
-
-    if (mapZoom < 10) {
-      groupDistance = 0.06;
-    }
-
-    if (mapZoom < 9) {
-      groupDistance = 0.08;
-    }
-
-    if (mapZoom < 8) {
-      groupDistance = 0.12;
-    }
-
-    return groupDistance; // groupDistance;
-  }
-
-  @Watch('loading')
   removeAllMarkers(val) {
     if (!val) {
       return;
@@ -443,11 +391,11 @@ export class SearchMap {
 
     if (newVal !== false) {
       // highlight the new one
-      highlight(newVal);
+      newVal.forEach(v => highlight(v));
     }
 
     if (newVal === false && oldVal !== false) {
-      unhighlight(oldVal);
+      oldVal.forEach(v => unhighlight(v));
     }
   }
 
@@ -464,7 +412,7 @@ export class SearchMap {
       const params = {
         filters: this.searchFilters,
         bounds: this.map.getBounds(),
-        zoom: 1, // @TODO - determine zooms 1-5 (1 zoomed out, 5 zoomed in)
+        zoom: this.getZoomStep(this.map.getZoom()),
       };
 
       const currentMarkerSearchParams = JSON.stringify(params);
@@ -480,21 +428,41 @@ export class SearchMap {
     }
   }
 
+  /**
+   * Takes the current map zoom and converts it into a 1-5 scale
+   * used for marker queries.
+   * 1 zoomed out
+   * 5 all the way zoomed in
+   *
+   * @param zoom float
+   */
+  getZoomStep(zoom) {
+    const interval = (this.mapZoomMax - this.mapZoomMin) / 4;
+
+    let level = this.mapZoomMin;
+    let step = 1;
+    while (zoom > level) {
+      step++;
+      level += interval;
+    }
+
+    return step;
+  }
+
+  /**
+   * Gets the map zooom level that corresponds with search zoom step
+   *
+   * @param step int 1-5
+   */
+  getMapZoomByStep(step) {
+    const interval = (this.mapZoomMax - this.mapZoomMin) / 4;
+
+    return this.mapZoomMin + (interval * (step - 1));
+  }
+
   onMapClick() {
     // remove any existing details
     this.closeDetails();
-  }
-
-  @Debounce(100)
-  onMapZoomEnd() {
-    // group overlapping
-    if (Math.abs(this.mapZoom - this.map.getZoom()) <= 0.5) {
-      return;
-    }
-
-    this.mapZoom = this.map.getZoom();
-
-    this.placeMarkers(this.searchResults, null, false);
   }
 
   initializeMap() {
@@ -514,8 +482,8 @@ export class SearchMap {
         this.map = new mapboxgl.Map({
           container: this.mapId,
           style: 'mapbox://styles/mapbox/streets-v11',
-          center: [-73.9830029, 40.7825883],
-          zoom: this.mapZoom,
+          center: this.mapInitialCenter,
+          zoom: this.isMobile ? this.mapInitialMobileZoom : this.mapInitialZoom,
           minZoom: 10,
           maxZoom: 17,
           // maxBounds: [
@@ -530,8 +498,6 @@ export class SearchMap {
           this.mapRendered = true;
 
           this.map.on('click', () => this.onMapClick());
-
-          this.map.on('zoomend', () => this.onMapZoomEnd());
 
           this.map.on('moveend', () => this.getMarkers());
 

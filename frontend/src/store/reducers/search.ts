@@ -8,7 +8,7 @@ interface searchState {
   listings: any[],
   listingsCount: number,
   selectedListings: any[],
-  listingHover: number | boolean,
+  listingHover: number[] | boolean,
   mapMarkersRequestId: string,
   mapMarkersLoading: boolean,
   mapMarkers: any[]

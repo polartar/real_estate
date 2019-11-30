@@ -190,11 +190,10 @@ export function getMapMarkers(params) {
       }
     });
 
-    let results = [];
+    let result = [];
 
     try {
-      const result = await APISearchService.markerSearch(params);
-      results = result.markers;
+      result = await APISearchService.markerSearch(params);
     } catch(e) {
       console.log(e);
     }
@@ -203,7 +202,7 @@ export function getMapMarkers(params) {
       type: Actions.SET_MAP_MARKERS,
       payload: {
         id: requestId, // if the id in state no longer matches this ID it means another request is in progress and this will be ignored
-        markers: results
+        markers: result
       }
     });
   }
@@ -281,14 +280,14 @@ export interface SetSelectedListings {
 
 export interface SetSearchListingHover {
   type: Actions.SET_SEARCH_LISTING_HOVER,
-  payload: number | boolean
+  payload: number[] | boolean
 }
 
-export function setSearchListingHover(id) {
+export function setSearchListingHover(ids) {
   return dispatch => {
     dispatch({
       type: Actions.SET_SEARCH_LISTING_HOVER,
-      payload: id
+      payload: ids
     });
   }
 }

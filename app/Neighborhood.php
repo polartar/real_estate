@@ -22,7 +22,7 @@ class Neighborhood extends Model
     }
 
     function apartments() {
-        return $this->hasMany(Apartment::class);
+        return $this->belongsToMany(Apartment::class);
     }
 
     public function getPerimeterCoordinatesAttribute($val) {

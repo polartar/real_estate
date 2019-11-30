@@ -1,4 +1,3 @@
-import { getBedsLabel } from '../../helpers/filters';
 import { formatMoney, formatDate } from '../../helpers/utils';
 import neighborhoodSelectors from '../../store/selectors/neighborhoods';
 

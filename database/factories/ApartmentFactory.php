@@ -21,22 +21,12 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
     $latlngPairs = [
         [
             'lat' => [
-                'min' => 40.711804,
-                'max' => 40.753383
+                'min' => 40.701544,
+                'max' => 40.879336
             ],
             'lng' => [
-                'min' => -74.007956,
-                'max' => -73.972988
-            ]
-        ],
-        [
-            'lat' => [
-                'min' => 40.775855,
-                'max' => 40.809058
-            ],
-            'lng' => [
-                'min' => -73.968140,
-                'max' => -73.942884
+                'min' => -73.972988,
+                'max' => -73.904001
             ]
         ]
     ];
@@ -66,6 +56,7 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         'city' => $faker->city,
         'state' => $faker->state,
         'apartment_number' => $faker->secondaryAddress,
+        'size' => $faker->numberBetween(900, 4000),
         'bedroom_type_id' => $bedroomType->id,
         'building_type_id' => $buildingType->id,
         'bathrooms' => $faker->randomElement([1,1.5,2,2.5,3,3.5,4]),
@@ -77,7 +68,7 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         'images' => json_encode($faker->randomElements($possible_images, random_int(0, 10))),
         'lat' => $lat,
         'lng' => $lng,
-        'is_active' => true,
+        'is_active' => $faker->numberBetween(1, 100) > 15, // 85% active
     ];
 
     return $listing;

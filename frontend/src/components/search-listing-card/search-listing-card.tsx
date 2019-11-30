@@ -109,7 +109,7 @@ export class SearchListingCard {
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
 
     return [
-        <div class="search-listing-card" onMouseEnter={() => this.setSearchListingHover(this.item.id)} onMouseLeave={() => this.setSearchListingHover(false)}>
+        <div class="search-listing-card" onMouseEnter={() => this.setSearchListingHover(this.item.map_marker_ids)} onMouseLeave={() => this.setSearchListingHover(false)}>
             <maintain-ratio width={322} height={182}>
               <div class="gallery">
               {

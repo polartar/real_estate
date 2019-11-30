@@ -21,6 +21,16 @@ const searchSelectors = {
 
   getSearchListingHover: state => {
     return state.search.listingHover;
+  },
+
+  getMapMarkersLoading: state => {
+    return state.search.mapMarkersLoading;
+  },
+
+  getMapMarkers: state => {
+    return [
+      ...state.search.mapMarkers
+    ]
   }
 };
 

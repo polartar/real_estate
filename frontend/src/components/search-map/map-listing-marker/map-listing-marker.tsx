@@ -12,66 +12,46 @@ import taxonomySelectors from '../../../store/selectors/taxonomy';
 export class MapListingMarker {
   @Element() el: HTMLElement;
   @Prop({ context: "store" }) store: Store;
-  @Prop() ids!: any;
-  @Prop() lat!: string;
-  @Prop() lng!: string;
+  @Prop() markerId!: any;
 
   @State() text: string = '';
   @State() hoverText: string = '';
+  @State() mapMarkers: any[] = [];
 
   _ids: any = [];
-  listings: any = [];
   bedroomTypes: any[] = [];
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
 
       return {
-        listings: searchSelectors.getListings(state),
-        bedroomTypes: taxonomySelectors.getBedroomTypes(state)
+        bedroomTypes: taxonomySelectors.getBedroomTypes(state),
+        mapMarkers: searchSelectors.getMapMarkers(state)
       }
     });
   }
 
 
   componentDidLoad() {
-    if (Array.isArray(this.ids)) {
-      this._ids = this.ids;
+    const marker = this.mapMarkers.find(m => m.id === parseInt(this.markerId));
+    if (!marker) {
+      return;
+    }
+
+    if (marker.apartments_count === 1) {
+      const bedroomType = taxonomySelectors.getBedroomTypeById(marker.apartments[0].bedroom_type_id, this.bedroomTypes);
+      this.text = formatMoney(marker.apartments[0].rate);
+
+      this.hoverText = `${formatMoney(marker.apartments[0].rate)} | ${getBedsListingText(bedroomType, 'short')} | ${marker.apartments[0].bathrooms} BA`;
     }
     else {
-      this._ids = JSON.parse(this.ids);
-    }
+      this.text = `${marker.apartments_count} listings`;
 
-    const items = [];
-
-    this._ids.forEach(id => {
-
-      const item = this.listings.find(l => l.id === id);
-
-      items.push(item);
-    });
-
-    if (items.length === 1) {
-      const bedroomType = taxonomySelectors.getBedroomTypeById(items[0].bedroom_type_id, this.bedroomTypes);
-      this.text = formatMoney(items[0].rate);
-
-      this.hoverText = `${formatMoney(items[0].rate)} | ${getBedsListingText(bedroomType, 'short')} | ${items[0].bathrooms} BA`;
-    }
-    else {
-      let priceMin = 0;
-      let priceMax = 0;
-
-      items.forEach(item => {
-        priceMin = priceMin === 0 ? item.rate : Math.min(priceMin, item.rate);
-        priceMax = Math.max(priceMax, item.rate);
-      });
-
-      this.text = `${items.length} listings`
-
-      if (priceMin === priceMax) {
-        this.hoverText = formatMoney(priceMax);
-      } else {
-        this.hoverText = `${formatMoney(priceMin)} - ${formatMoney(priceMax)}`;
+      if (marker.min_rate === marker.max_rate) {
+        this.hoverText = formatMoney(marker.max_rate);
+      }
+      else {
+        this.hoverText = `${formatMoney(marker.min_rate)} - ${formatMoney(marker.max_rate)}`;
       }
     }
   }
@@ -93,7 +73,7 @@ export class MapListingMarker {
     const map: any = this.el.closest('search-map');
 
     // set listing details
-    map.showDetails(this.ids, this.lat, this.lng);
+    map.showDetails(this.markerId);
   }
 
   render() {

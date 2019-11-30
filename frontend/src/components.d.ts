@@ -100,12 +100,10 @@ export namespace Components {
     'item': any;
   }
   interface MapListingDetails {
-    'ids': any;
+    'markerId': any;
   }
   interface MapListingMarker {
-    'ids': any;
-    'lat': string;
-    'lng': string;
+    'markerId': any;
   }
   interface MediaLogos {}
   interface MobileFilterMenu {}
@@ -146,11 +144,11 @@ export namespace Components {
     'listingHover': number | boolean;
     'loading': boolean;
     'location': any;
+    'mapMarkers': any[];
     'removeNeighborhood': (slug: any) => Promise<void>;
     'resize': () => Promise<void>;
     'searchFilters': any;
-    'searchResults': any;
-    'showDetails': (ids: any, lat: any, lng: any) => Promise<void>;
+    'showDetails': (markerId: any) => Promise<void>;
   }
   interface SearchShareselectedDropdown {}
   interface SearchSortbyDropdown {}
@@ -544,12 +542,10 @@ declare namespace LocalJSX {
     'item': any;
   }
   interface MapListingDetails extends JSXBase.HTMLAttributes<HTMLMapListingDetailsElement> {
-    'ids': any;
+    'markerId': any;
   }
   interface MapListingMarker extends JSXBase.HTMLAttributes<HTMLMapListingMarkerElement> {
-    'ids': any;
-    'lat': string;
-    'lng': string;
+    'markerId': any;
   }
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
   interface MobileFilterMenu extends JSXBase.HTMLAttributes<HTMLMobileFilterMenuElement> {}
@@ -588,9 +584,9 @@ declare namespace LocalJSX {
     'listingHover'?: number | boolean;
     'loading'?: boolean;
     'location'?: any;
+    'mapMarkers'?: any[];
     'onMapLoaded'?: (event: CustomEvent<void>) => void;
     'searchFilters'?: any;
-    'searchResults'?: any;
   }
   interface SearchShareselectedDropdown extends JSXBase.HTMLAttributes<HTMLSearchShareselectedDropdownElement> {}
   interface SearchSortbyDropdown extends JSXBase.HTMLAttributes<HTMLSearchSortbyDropdownElement> {}

@@ -91,9 +91,64 @@ class SearchServiceProvider extends ServiceProvider
      */
     public static function searchMapMarkers($params) {
 
-        $markers = \App\MapMarker::where('zoom', $params['zoom']);
+        $minlat = $params['bounds']['_sw']['lat'];
+        $minlng = $params['bounds']['_sw']['lng'];
+        $maxlat = $params['bounds']['_ne']['lat'];
+        $maxlng = $params['bounds']['_ne']['lng'];
 
-        return $markers->get();
+        $markers = \App\MapMarker::select()
+                    ->withCount(['apartments' => function($query) use ($params) {
+                        self::applySearchFilters($query, $params['filters']);
+                    }])
+                    ->where('zoom', $params['zoom'])
+                    ->whereBetween('lat', [$minlat, $maxlat])
+                    ->whereBetween('lng', [$minlng, $maxlng])
+                    ->having('apartments_count', '>', 0)
+                    ->get();
+
+
+        $markers->map(function($m) use ($params) {
+
+            if ($m->apartments_count === 1 || $params['zoom'] == 5) {
+                $apts = $m->apartments()->where(function($query) use ($params) {
+                    self::applySearchFilters($query, $params['filters']);
+                })->get();
+
+                $m->apartments = $apts;
+
+                $m->max_rate = $apts->reduce(function($carry, $item) {
+                    return max($carry, $item->rate);
+                }, 0);
+
+                $m->min_rate = $apts->reduce(function($carry, $item) {
+                    if ($carry === null) {
+                        return $item->rate;
+                    }
+
+                    return min($carry, $item->rate);
+                }, null);
+            }
+            else {
+                $max = $m->apartments()->where(function($query) use ($params) {
+                    self::applySearchFilters($query, $params['filters']);
+                })
+                ->orderBy('rate', 'DESC')
+                ->take(1)->get()->get(0);
+
+                $min = $m->apartments()->where(function($query) use ($params) {
+                    self::applySearchFilters($query, $params['filters']);
+                })
+                ->orderBy('rate', 'ASC')
+                ->take(1)->get()->get(0);
+
+                $m->max_rate = $max->rate;
+                $m->min_rate = $min->rate;
+            }
+
+            return $m;
+        });
+
+        return $markers;
     }
 
     public static function applySearchFilters($apartments, $filters) {
@@ -139,11 +194,11 @@ class SearchServiceProvider extends ServiceProvider
             break;
 
             case 'size_asc':
-                // @TODO
+                $apartments->orderBy('size', 'ASC');
             break;
 
             case 'size_desc':
-                // @TODO
+                $apartments->orderBy('size', 'DESC');
             break;
 
             case 'availability':

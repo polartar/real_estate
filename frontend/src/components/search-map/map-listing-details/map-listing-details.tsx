@@ -8,37 +8,28 @@ import { searchSelectors } from '../../../store/selectors/search';
 })
 export class MapListingDetails {
   @Prop({ context: "store" }) store: Store;
-  @Prop() ids!: any;
+  @Prop() markerId!: any;
 
   @State() items: any = [];
-  listings: any = [];
+  mapMarkers: any = [];
 
   _ids: any;
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
-        listings: searchSelectors.getListings(state)
+        mapMarkers: searchSelectors.getMapMarkers(state)
       }
     });
   }
 
   componentDidLoad() {
-    if (Array.isArray(this.ids)) {
-      this._ids = this.ids;
-    }
-    else {
-      this._ids = JSON.parse(this.ids);
+    const marker = this.mapMarkers.find(m => m.id === parseInt(this.markerId));
+    if (!marker) {
+      return;
     }
 
-    const items = [];
-
-    this._ids.forEach(id => {
-      const item = this.listings.find(l => l.id === id);
-      items.push(item);
-    });
-
-    this.items = items;
+    this.items = marker.apartments;
   }
 
   render() {
