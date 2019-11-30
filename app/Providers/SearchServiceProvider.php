@@ -58,30 +58,23 @@ class SearchServiceProvider extends ServiceProvider
     public static function search($filters) {
         $filter_hash = md5(json_encode($filters));
 
-        // $results = Cache::remember('search-' . $filter_hash, 600, function() {
-        //     $num_results = random_int(0, 60);
+        return Cache::remember('search-' . $filter_hash, 600, function() use ($filters) {
+            $apartments = \App\Apartment::where('is_active', 1);
 
-        //     return [
-        //         'results' => \App\Apartment::inRandomOrder()->take($num_results)->get(),
-        //         'total' => $num_results,
-        //     ];
-        // });
+            $apartments = self::applySearchFilters($apartments, $filters);
 
-        $apartments = \App\Apartment::where('is_active', 1);
+            $count = $apartments->count();
 
-        $apartments = self::applySearchFilters($apartments, $filters);
+            $apartments = self::applySorts($apartments, $filters);
+            $apartments = self::applyLimitOffsets($apartments, $filters);
 
-        $count = $apartments->count();
+            $results = [
+                'results' => $apartments->get(),
+                'total' => $count
+            ];
 
-        $apartments = self::applySorts($apartments, $filters);
-        $apartments = self::applyLimitOffsets($apartments, $filters);
-
-        $results = [
-            'results' => $apartments->get(),
-            'total' => $count
-        ];
-
-        return $results;
+            return $results;
+        });
     }
 
     /**
@@ -90,65 +83,68 @@ class SearchServiceProvider extends ServiceProvider
      *
      */
     public static function searchMapMarkers($params) {
+        $params_hash = md5(json_encode($params));
 
-        $minlat = $params['bounds']['_sw']['lat'];
-        $minlng = $params['bounds']['_sw']['lng'];
-        $maxlat = $params['bounds']['_ne']['lat'];
-        $maxlng = $params['bounds']['_ne']['lng'];
+        return Cache::remember('markers-' . $params_hash, 600, function() use ($params) {
+            $minlat = $params['bounds']['_sw']['lat'];
+            $minlng = $params['bounds']['_sw']['lng'];
+            $maxlat = $params['bounds']['_ne']['lat'];
+            $maxlng = $params['bounds']['_ne']['lng'];
 
-        $markers = \App\MapMarker::select()
-                    ->withCount(['apartments' => function($query) use ($params) {
+            $markers = \App\MapMarker::select()
+                        ->withCount(['apartments' => function($query) use ($params) {
+                            self::applySearchFilters($query, $params['filters']);
+                        }])
+                        ->where('zoom', $params['zoom'])
+                        ->whereBetween('lat', [$minlat, $maxlat])
+                        ->whereBetween('lng', [$minlng, $maxlng])
+                        ->having('apartments_count', '>', 0)
+                        ->get();
+
+
+            $markers->map(function($m) use ($params) {
+
+                if ($m->apartments_count === 1 || $params['zoom'] == 5) {
+                    $apts = $m->apartments()->where(function($query) use ($params) {
                         self::applySearchFilters($query, $params['filters']);
-                    }])
-                    ->where('zoom', $params['zoom'])
-                    ->whereBetween('lat', [$minlat, $maxlat])
-                    ->whereBetween('lng', [$minlng, $maxlng])
-                    ->having('apartments_count', '>', 0)
-                    ->get();
+                    })->get();
 
+                    $m->apartments = $apts;
 
-        $markers->map(function($m) use ($params) {
+                    $m->max_rate = $apts->reduce(function($carry, $item) {
+                        return max($carry, $item->rate);
+                    }, 0);
 
-            if ($m->apartments_count === 1 || $params['zoom'] == 5) {
-                $apts = $m->apartments()->where(function($query) use ($params) {
-                    self::applySearchFilters($query, $params['filters']);
-                })->get();
+                    $m->min_rate = $apts->reduce(function($carry, $item) {
+                        if ($carry === null) {
+                            return $item->rate;
+                        }
 
-                $m->apartments = $apts;
+                        return min($carry, $item->rate);
+                    }, null);
+                }
+                else {
+                    $max = $m->apartments()->where(function($query) use ($params) {
+                        self::applySearchFilters($query, $params['filters']);
+                    })
+                    ->orderBy('rate', 'DESC')
+                    ->take(1)->get()->get(0);
 
-                $m->max_rate = $apts->reduce(function($carry, $item) {
-                    return max($carry, $item->rate);
-                }, 0);
+                    $min = $m->apartments()->where(function($query) use ($params) {
+                        self::applySearchFilters($query, $params['filters']);
+                    })
+                    ->orderBy('rate', 'ASC')
+                    ->take(1)->get()->get(0);
 
-                $m->min_rate = $apts->reduce(function($carry, $item) {
-                    if ($carry === null) {
-                        return $item->rate;
-                    }
+                    $m->max_rate = $max->rate;
+                    $m->min_rate = $min->rate;
+                }
 
-                    return min($carry, $item->rate);
-                }, null);
-            }
-            else {
-                $max = $m->apartments()->where(function($query) use ($params) {
-                    self::applySearchFilters($query, $params['filters']);
-                })
-                ->orderBy('rate', 'DESC')
-                ->take(1)->get()->get(0);
+                return $m;
+            });
 
-                $min = $m->apartments()->where(function($query) use ($params) {
-                    self::applySearchFilters($query, $params['filters']);
-                })
-                ->orderBy('rate', 'ASC')
-                ->take(1)->get()->get(0);
-
-                $m->max_rate = $max->rate;
-                $m->min_rate = $min->rate;
-            }
-
-            return $m;
+            return $markers;
         });
-
-        return $markers;
     }
 
     public static function applySearchFilters($apartments, $filters) {
