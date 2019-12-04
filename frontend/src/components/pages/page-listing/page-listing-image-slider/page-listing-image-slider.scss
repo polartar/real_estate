@@ -1,0 +1,82 @@
+@import "../../../../../node_modules/@glidejs/glide/src/assets/sass/glide.core";
+
+// Optional Theme Stylesheet
+@import "../../../../../node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+
+@import '../../../../styles/mixins';
+
+@mixin glideArrow {
+  display: block;
+  position: absolute;
+  // background-color: rgba(0,0,0,0.7);
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  padding: 0;
+  font-size: 32px;
+
+  top: calc(50% - 30px);
+
+  img {
+    width: 20px;
+    height: 60px;
+  }
+}
+
+$arrow-left-left: 35px;
+$arrow-right-right: 35px;
+
+.page-listing-image-slider-component {
+  .glide {
+
+    .glide__track {
+      transform: translateZ(0px);
+      transform: translate3d(0,0,0);
+      perspective: 1000;
+    }
+
+    .glide__arrow {
+      @include glideArrow();
+    }
+
+    .glide__arrow--right {
+      right: $arrow-right-right;
+
+      img {
+        transform: rotate(180deg);
+      }
+    }
+
+    .glide__arrow--left {
+      left: $arrow-left-left;
+    }
+
+    .left-arrow-click-jacker {
+      @include glideArrow();
+
+      left: $arrow-left-left;
+      opacity: 0;
+    }
+
+    .right-arrow-click-jacker {
+      @include glideArrow();
+
+      right: $arrow-right-right;
+      opacity: 0;
+    }
+  }
+
+  .slider__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+ion-modal.listing-gallery {
+
+  @include for-size(tablet-portrait-up) {
+    --width: calc(100% - 60px);
+    --height: calc(100% - 60px);
+  }
+}

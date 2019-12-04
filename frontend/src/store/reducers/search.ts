@@ -68,12 +68,21 @@ const searchReducer = (
         return state;
       }
 
+      // if offset is greater than 0 then this is an additional page, append results
+      let newListings = [];
+      if (!action.payload.offset) {
+        newListings = action.payload.listings;
+      }
+      else {
+        newListings = [...state.listings, ...action.payload.listings];
+      }
+
       // remove selected listings that are no longer in the results
-      let newSelected = state.selectedListings.filter(v => !!action.payload.listings.find(l => l.id === v));
+      let newSelected = state.selectedListings.filter(v => !!newListings.find(l => l.id === v));
 
       return {
         ...state,
-        listings: action.payload.listings,
+        listings: newListings,
         listingsCount: action.payload.listingsCount,
         loading: false,
         selectedListings: newSelected

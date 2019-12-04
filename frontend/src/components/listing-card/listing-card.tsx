@@ -41,7 +41,7 @@ export class ListingCard {
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
 
     return [
-      <ion-router-link href={'/post/' + this.item.id}>
+      <ion-router-link href={'/listing/' + this.item.id}>
         <div class="listing-card">
             <maintain-ratio width={322} height={182}>
               <lazy-image src={this.getImageURL()} class="list-feature-image" alt={neighborhood.name} />

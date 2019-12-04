@@ -20,13 +20,7 @@ export class Page404 {
       <app-header />,
       <ion-content class="page-404">
 
-        <section class="section">
-          <div class="text-center">
-            <h1>Not Found</h1>
-            <p>The page you navigated to could not be found...</p>
-            <ion-button href="/">Return Home</ion-button>
-          </div>
-        </section>
+        <content-404 />
 
         <app-footer />
       </ion-content>

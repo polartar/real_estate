@@ -50,18 +50,53 @@
 
   <style>
     /* css for outdated browser notification */
+    #buorg {
+      background-color: white;
+      box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.5) !important;
+      border: 0 !important;
+      font-family: "Source Sans Pro";
+    }
+
     #buorgul {
       display: none !important;
     }
 
-    .buorg-buttons {
-      text-align: right !important;
+    #buorgpermanent {
+      text-align: center;
+      background-color: black !important;
+      box-shadow: none !important;
+      font-size: 12px !important;
+      text-transform: uppercase !important;
+      padding: 6px 20px !important;
+      border-radius: 0 !important;
+    }
+
+    #buorgig {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      text-align: center;
+      background-color: black !important;
+      box-shadow: none !important;
+      font-size: 12px !important;
+      text-transform: uppercase !important;
+      padding: 6px 20px !important;
+      border-radius: 0 !important;
+    }
+
+    .buorg-pad {
+      padding-top: 34px !important;
+      padding-bottom: 20px !important;
+    }
+
+    .buorg-icon {
+      display: none !important;
     }
 
     .bu-browser-icon {
       display: block;
       margin: 6px auto 0 auto;
-      height: 40px;
+      height: 38px;
     }
 
     .bu-recommendation {
@@ -69,6 +104,20 @@
       padding: 0 16px;
       text-align: center;
       vertical-align: middle;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .bu-logo {
+      width: 200px;
+      position: absolute;
+      left: 54px;
+    }
+
+    .buorg-mainmsg {
+      display: inline-block;
+      font-size: 16px !important;
+      padding-bottom: 16px !important;
     }
 
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
@@ -77,6 +126,41 @@
      app-root {
        display: none;
      }
+    }
+
+    @media screen and (max-width: 1200px) {
+      .bu-logo {
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 14px;
+        width: 100px;
+        left: 0;
+      }
+
+      .buorg-pad {
+        padding: 10px 30px 35px 30px !important;
+      }
+
+      .buorg-mainmsg,
+      .buorg-moremsg {
+        font-size: 14px !important;
+        line-height: 1.29 !important;
+        padding-bottom: 0 !important;
+      }
+
+      #buorgig {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        text-align: center;
+        background-color: black !important;
+        box-shadow: none !important;
+        font-size: 12px !important;
+        text-transform: uppercase !important;
+        padding: 3px 10px !important;
+        border-radius: 0 !important;
+      }
     }
   </style>
 </head>
@@ -97,7 +181,7 @@
           l: false,
           test: false,
           text: {
-            msg: "Your browser, {brow_name} is too old and may not support the features used in this site.<br>Please upgrade your browser for speed, security, and the latest features.",
+            msg: '<img src="/assets/images/logo.svg" class="bu-logo">Your browser, {brow_name} is too old and may not support the features used in this site.<br>Please upgrade your browser for speed, security, and the latest features.',
             msgmore: '<br><div class="bu-recommendation"><a href="https://www.google.com/chrome/"><img src="/assets/images/icons/google_chrome.svg" class="bu-browser-icon">Chrome</a></div><div class="bu-recommendation"><a href="https://www.mozilla.org/firefox/download/thanks/"><img src="/assets/images/icons/firefox.svg" class="bu-browser-icon">Firefox</a></div><div class="bu-recommendation"><a href="https://www.microsoft.com/windows/microsoft-edge"><img src="/assets/images/icons/ms_edge.svg" class="bu-browser-icon">Edge</a></div>'
           },
           text_in_xx: "",

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <svg width="21px" height="55px" viewBox="0 0 21 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
+<svg width="21px" height="55px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <polygon id="path-1" points="75 300.429309 75.9595749 302 90 279 75.9595749 256 75 257.570691 88.0972038 279.008997"></polygon>
+        <filter x="-35.3%" y="-8.9%" width="170.6%" height="126.6%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="1.10249996" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Listing-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="7.3" transform="translate(-72.000000, -365.000000)" fill-rule="nonzero">
+            <g id="Picture-Slider" transform="translate(0.000000, 112.000000)">
+                <g id="Shape-Copy-7" transform="translate(82.500000, 279.000000) scale(-1, 1) translate(-82.500000, -279.000000) ">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use stroke="#FFFFFF" stroke-width="2.20499992" fill="#FFFFFF" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

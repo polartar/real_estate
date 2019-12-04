@@ -132,7 +132,7 @@ export interface ClearSearchFilter {
   payload: any
 }
 
-export function getSearchListings(filters) {
+export function getSearchListings(filters, offset: number = 0) {
   return async dispatch => {
     const requestId = generateId(16);
 
@@ -149,7 +149,7 @@ export function getSearchListings(filters) {
     let resultsNum = 0;
 
     try {
-      const result = await APISearchService.search(filters);
+      const result = await APISearchService.search(filters, offset);
       results = result.results;
       resultsNum = result.total;
     } catch(e) {
@@ -161,7 +161,8 @@ export function getSearchListings(filters) {
       payload: {
         id: requestId, // if the id in state no longer matches this ID it means another request is in progress and this will be ignored
         listings: results,
-        listingsCount: resultsNum
+        listingsCount: resultsNum,
+        offset
       }
     });
   }

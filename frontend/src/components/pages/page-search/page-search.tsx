@@ -230,6 +230,17 @@ export class PageSearch {
     document.body.appendChild(popover);
   }
 
+  /**
+   * Trigger infinite scroll
+   *
+   * @param e
+   */
+  async infiniteScroll(e) {
+    await this.performSearchAction(this.searchFilters, this.searchResults.length);
+
+    e.target.complete();
+  }
+
   render() {
     if (this.prefetching) {
       return null;
@@ -319,6 +330,12 @@ export class PageSearch {
                   Search in progress...
                 </div>
               </div>
+              <ion-infinite-scroll threshold="100px" onIonInfinite={e => this.infiniteScroll(e)}>
+                <ion-infinite-scroll-content
+                  loading-spinner="lines"
+                >
+                </ion-infinite-scroll-content>
+              </ion-infinite-scroll>
             </div>
 
             <div class={{ 'search-map': true, 'mobile-map': this.view === 'map' }}>

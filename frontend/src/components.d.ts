@@ -61,6 +61,7 @@ export namespace Components {
     'setComponents': (components: prefetchComponentInterface[]) => Promise<void>;
     'setDelay': (delay: number) => Promise<void>;
   }
+  interface Content404 {}
   interface FaqAccordian {}
   interface FilterTag {
     'tag': any;
@@ -119,6 +120,18 @@ export namespace Components {
   interface Page404 {}
   interface PageHome {
     'prefetching': boolean;
+  }
+  interface PageListing {
+    'apartmentId': number;
+  }
+  interface PageListingBody {
+    'item': Object;
+  }
+  interface PageListingImageModal {
+    'src': string;
+  }
+  interface PageListingImageSlider {
+    'item': any;
   }
   interface PageSearch {
     'location': any;
@@ -232,6 +245,12 @@ declare global {
   var HTMLComponentPrefetchElement: {
     prototype: HTMLComponentPrefetchElement;
     new (): HTMLComponentPrefetchElement;
+  };
+
+  interface HTMLContent404Element extends Components.Content404, HTMLStencilElement {}
+  var HTMLContent404Element: {
+    prototype: HTMLContent404Element;
+    new (): HTMLContent404Element;
   };
 
   interface HTMLFaqAccordianElement extends Components.FaqAccordian, HTMLStencilElement {}
@@ -360,6 +379,30 @@ declare global {
     new (): HTMLPageHomeElement;
   };
 
+  interface HTMLPageListingElement extends Components.PageListing, HTMLStencilElement {}
+  var HTMLPageListingElement: {
+    prototype: HTMLPageListingElement;
+    new (): HTMLPageListingElement;
+  };
+
+  interface HTMLPageListingBodyElement extends Components.PageListingBody, HTMLStencilElement {}
+  var HTMLPageListingBodyElement: {
+    prototype: HTMLPageListingBodyElement;
+    new (): HTMLPageListingBodyElement;
+  };
+
+  interface HTMLPageListingImageModalElement extends Components.PageListingImageModal, HTMLStencilElement {}
+  var HTMLPageListingImageModalElement: {
+    prototype: HTMLPageListingImageModalElement;
+    new (): HTMLPageListingImageModalElement;
+  };
+
+  interface HTMLPageListingImageSliderElement extends Components.PageListingImageSlider, HTMLStencilElement {}
+  var HTMLPageListingImageSliderElement: {
+    prototype: HTMLPageListingImageSliderElement;
+    new (): HTMLPageListingImageSliderElement;
+  };
+
   interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
   var HTMLPageSearchElement: {
     prototype: HTMLPageSearchElement;
@@ -431,6 +474,7 @@ declare global {
     'bedroom-filter': HTMLBedroomFilterElement;
     'building-type-filter': HTMLBuildingTypeFilterElement;
     'component-prefetch': HTMLComponentPrefetchElement;
+    'content-404': HTMLContent404Element;
     'faq-accordian': HTMLFaqAccordianElement;
     'filter-tag': HTMLFilterTagElement;
     'filter-tags': HTMLFilterTagsElement;
@@ -452,6 +496,10 @@ declare global {
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
     'page-404': HTMLPage404Element;
     'page-home': HTMLPageHomeElement;
+    'page-listing': HTMLPageListingElement;
+    'page-listing-body': HTMLPageListingBodyElement;
+    'page-listing-image-modal': HTMLPageListingImageModalElement;
+    'page-listing-image-slider': HTMLPageListingImageSliderElement;
     'page-search': HTMLPageSearchElement;
     'price-filter': HTMLPriceFilterElement;
     'search-filters': HTMLSearchFiltersElement;
@@ -501,6 +549,7 @@ declare namespace LocalJSX {
     'inModal'?: boolean;
   }
   interface ComponentPrefetch extends JSXBase.HTMLAttributes<HTMLComponentPrefetchElement> {}
+  interface Content404 extends JSXBase.HTMLAttributes<HTMLContent404Element> {}
   interface FaqAccordian extends JSXBase.HTMLAttributes<HTMLFaqAccordianElement> {}
   interface FilterTag extends JSXBase.HTMLAttributes<HTMLFilterTagElement> {
     'tag'?: any;
@@ -562,6 +611,18 @@ declare namespace LocalJSX {
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {
     'prefetching'?: boolean;
   }
+  interface PageListing extends JSXBase.HTMLAttributes<HTMLPageListingElement> {
+    'apartmentId'?: number;
+  }
+  interface PageListingBody extends JSXBase.HTMLAttributes<HTMLPageListingBodyElement> {
+    'item': Object;
+  }
+  interface PageListingImageModal extends JSXBase.HTMLAttributes<HTMLPageListingImageModalElement> {
+    'src': string;
+  }
+  interface PageListingImageSlider extends JSXBase.HTMLAttributes<HTMLPageListingImageSliderElement> {
+    'item': any;
+  }
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
@@ -615,6 +676,7 @@ declare namespace LocalJSX {
     'bedroom-filter': BedroomFilter;
     'building-type-filter': BuildingTypeFilter;
     'component-prefetch': ComponentPrefetch;
+    'content-404': Content404;
     'faq-accordian': FaqAccordian;
     'filter-tag': FilterTag;
     'filter-tags': FilterTags;
@@ -636,6 +698,10 @@ declare namespace LocalJSX {
     'neighborhood-slider': NeighborhoodSlider;
     'page-404': Page404;
     'page-home': PageHome;
+    'page-listing': PageListing;
+    'page-listing-body': PageListingBody;
+    'page-listing-image-modal': PageListingImageModal;
+    'page-listing-image-slider': PageListingImageSlider;
     'page-search': PageSearch;
     'price-filter': PriceFilter;
     'search-filters': SearchFilters;

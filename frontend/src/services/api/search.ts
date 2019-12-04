@@ -18,10 +18,10 @@ class APISearchInstance {
   }
 
 
-  public async search(filters) {
+  public async search(filters, offset) {
     try {
 
-      const params = encodeURIComponent(JSON.stringify(filters));
+      const params = encodeURIComponent(JSON.stringify({...filters, offset }));
 
       let response = await fetch(APIService.getAPIUrl() + '/search?params=' + params, {
         headers: APIService.getHeaders(),
