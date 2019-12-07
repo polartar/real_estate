@@ -170,7 +170,7 @@ export class PageHome {
 
             <div class="video">
               <maintain-ratio width={640} height={360}>
-                  <youtube-video videoId="C0DPdy98e4c" />
+                  <youtube-video src="https://youtube.com/watch?v=C0DPdy98e4c" />
               </maintain-ratio>
             </div>
           </div>

@@ -3,8 +3,10 @@
 namespace App\Observers;
 
 use App\Apartment;
+use App\Providers\AmenitiesServiceProvider;
 use App\Providers\MapMarkerServiceProvider;
 use App\Providers\NeighborhoodServiceProvider;
+use App\Providers\SubwayServiceProvider;
 
 class ApartmentObserver
 {
@@ -19,6 +21,8 @@ class ApartmentObserver
         // find mapMarkers for each zoom level
         MapMarkerServiceProvider::assignMarkers($apartment);
         NeighborhoodServiceProvider::assignNeighborhoods($apartment);
+        SubwayServiceProvider::assignFakedSubways($apartment);
+        AmenitiesServiceProvider::assignFakedAmenities($apartment);
     }
 
     /**

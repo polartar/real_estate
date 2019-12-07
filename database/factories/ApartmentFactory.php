@@ -49,6 +49,23 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         }
     }
 
+    $floor_plan_num = 0;
+    $floor_plan_check = random_int(0, 100);
+
+    if ($floor_plan_check > 20) {
+        $floor_plan_num = 1;
+    }
+
+    if ($floor_plan_check > 70) {
+        $floor_plan_check = 2;
+    }
+
+    if ($floor_plan_check > 90) {
+        $floor_plan_num = 3;
+    }
+
+    $videos = ['https://www.youtube.com/watch?v=C0DPdy98e4c', 'https://www.youtube.com/watch?v=Bey4XXJAqS8', 'https://www.youtube.com/watch?v=HmZKgaHa3Fg'];
+
     $listing = [
         'address' => $faker->address,
         'street_address' => $faker->streetAddress,
@@ -65,9 +82,13 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         'available_until' => $faker->dateTimeBetween('+6 months', '+12 months'),
         'rate' => $faker->numberBetween(1000, 15000),
         'rating' => $faker->numberBetween(1, 5),
-        'images' => json_encode($faker->randomElements($possible_images, random_int(0, 10))),
+        'video_url' => random_int(0, 100) > 20 ? $faker->randomElement($videos) : null,
+        'images' => $faker->randomElements($possible_images, random_int(0, 10)),
+        'floor_plans' => $faker->randomElements($possible_images, $floor_plan_num),
         'lat' => $lat,
         'lng' => $lng,
+        'title' => $faker->sentence(),
+        'description' => $faker->paragraph($faker->numberBetween(3, 8)),
         'is_active' => $faker->numberBetween(1, 100) > 15, // 85% active
     ];
 

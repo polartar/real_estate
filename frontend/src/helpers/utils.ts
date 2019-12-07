@@ -29,6 +29,11 @@ export function formatDate(vdate, format?: string) {
     case 'm/d/y':
       result = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear().toString().slice(-2);
     break;
+    case 'm.d.y':
+        result = (date.getMonth() + 1) + '.' + date.getDate() + '.' + date.getFullYear().toString().slice(-2);
+    break;
+
+    case 'm.d.Y':
     case 'short':
     default:
       // m.d.Y

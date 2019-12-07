@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Element } from '@stencil/core';
 import Glide from '@glidejs/glide';
 import { generateId } from '../../../../helpers/utils';
 
@@ -7,14 +7,25 @@ import { generateId } from '../../../../helpers/utils';
   styleUrl: 'page-listing-image-slider.scss'
 })
 export class PageListingImageSlider {
+  @Element() el: HTMLElement;
   @Prop() item!: any;
 
   sliderClass: string = 'glide';
   glide: any;
+  images: any[] = [];
 
   componentWillLoad() {
     // make instance unique
     this.sliderClass += '-' + generateId(8);
+
+    this.images = [...this.item.images];
+
+    // make sure there are at least 3 images
+    if (this.images.length) {
+      while (this.images.length < 3) {
+        this.images.push(this.images[0]);
+      }
+    }
   }
 
   componentDidLoad() {
@@ -33,7 +44,7 @@ export class PageListingImageSlider {
     this.glide = new Glide('.' + this.sliderClass, {
       type: 'slider',
       perView: 3,
-      gap: 10,
+      gap: 8,
       focusAt: 0,
       startAt: 0,
       rewind: false,
@@ -67,6 +78,9 @@ export class PageListingImageSlider {
       }
     });
 
+    this.glide.on('resize', () => { this.hideShowArrows() });
+
+    this.hideShowArrows();
     this.glide.mount();
   }
 
@@ -104,6 +118,26 @@ export class PageListingImageSlider {
     return modal.present();
   }
 
+  hideShowArrows() {
+    const wrapper: any = this.el.querySelector('.page-listing-image-slider-component');
+    const arrowsContainer: any = this.el.querySelector('.glide__arrows');
+
+    if (wrapper.clientWidth <= 575) {
+      // only dealing with 1 image width
+      if (this.images.length > 1) {
+        arrowsContainer.style.display = 'block';
+      }
+    }
+    else {
+      if (this.images.length > 3) {
+        arrowsContainer.style.display = 'block';
+      }
+      else {
+        arrowsContainer.style.display = 'none';
+      }
+    }
+  }
+
   render() {
     if (!this.item.images.length) {
       return null;
@@ -115,7 +149,7 @@ export class PageListingImageSlider {
           <div class="glide__track" data-glide-el="track">
             <ul class="glide__slides">
               {
-              this.item.images.map(img => <li class="glide__slide">
+              this.images.map(img => <li class="glide__slide">
                   <maintain-ratio width={478} height={504}>
                     <lazy-image src={img} class="slider__img" onClick={() => this.showImg(img)}/>
                   </maintain-ratio>

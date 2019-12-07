@@ -4502,7 +4502,7 @@
           ]
       ]
   },
-  
+
     {
         "id": 24,
         "name": "Theater District",
@@ -4863,7 +4863,7 @@
         "region_id": 2,
         "coordinates": [
             [
-                
+
                 [
                 -73.9797208,
                 40.7463994
@@ -6373,7 +6373,7 @@
         "id": 43,
         "name": "Morningside Heights",
         "slug": "morningside-heights",
-        "image": "/assets/images/morningside-heights.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.jpg",
         "region_id": 4,
         "coordinates": [
             [

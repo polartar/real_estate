@@ -22,6 +22,7 @@ class CreateApartmentsTable extends Migration
             $table->string('state')->nullable();
             $table->string('apartment_number')->nullable();
             $table->string('floors')->nullable();
+            $table->string('floor')->nullable();
             $table->integer('size')->nullable()->index();
             $table->integer('bedroom_type_id')->nullable()->index();
             $table->integer('building_type_id')->nullable()->index();
@@ -38,12 +39,15 @@ class CreateApartmentsTable extends Migration
             $table->integer('duci_days_count')->nullable();
             $table->integer('months_due')->nullable();
             $table->float('rating')->nullable()->index();
-            $table->json('images')->nullable();
             $table->double('lat')->nullable()->index();
             $table->double('lng')->nullable()->index();
-            $table->string('floor_plan_file_path')->nullable();
+            $table->string('video_url')->nullable();
+            $table->json('images')->nullable();
+            $table->json('floor_plans')->nullable();
             $table->text('advance_charges')->nullable();
             $table->boolean('is_active')->default(false)->index();
+            $table->mediumText('title');
+            $table->longText('description');
             $table->boolean('faked');
             $table->timestamps();
         });

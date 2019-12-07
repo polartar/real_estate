@@ -15,6 +15,7 @@ class CreateBuildingTypesTable extends Migration
     {
         Schema::create('building_types', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('rating')->default(0);
             $table->string('name')->unique();
         });
     }

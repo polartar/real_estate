@@ -80,6 +80,9 @@ export namespace Components {
   interface ListingList {
     'items': any[];
   }
+  interface ListingMap {
+    'item': any;
+  }
   interface ListingSlider {
     'items': any[];
   }
@@ -125,7 +128,7 @@ export namespace Components {
     'apartmentId': number;
   }
   interface PageListingBody {
-    'item': Object;
+    'item': any;
   }
   interface PageListingImageModal {
     'src': string;
@@ -174,7 +177,22 @@ export namespace Components {
     'stars': number;
   }
   interface YoutubeVideo {
-    'videoId': string;
+    /**
+    * Explicit height of the video
+    */
+    'height': string;
+    /**
+    * The youtube video URL
+    */
+    'src': string;
+    /**
+    * Title of the video
+    */
+    'videoTitle': string;
+    /**
+    * Explicit width of the video
+    */
+    'width': string;
   }
 }
 
@@ -293,6 +311,12 @@ declare global {
   var HTMLListingListElement: {
     prototype: HTMLListingListElement;
     new (): HTMLListingListElement;
+  };
+
+  interface HTMLListingMapElement extends Components.ListingMap, HTMLStencilElement {}
+  var HTMLListingMapElement: {
+    prototype: HTMLListingMapElement;
+    new (): HTMLListingMapElement;
   };
 
   interface HTMLListingSliderElement extends Components.ListingSlider, HTMLStencilElement {}
@@ -482,6 +506,7 @@ declare global {
     'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
     'listing-list': HTMLListingListElement;
+    'listing-map': HTMLListingMapElement;
     'listing-slider': HTMLListingSliderElement;
     'listing-table': HTMLListingTableElement;
     'location-filter': HTMLLocationFilterElement;
@@ -570,6 +595,9 @@ declare namespace LocalJSX {
   interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {
     'items'?: any[];
   }
+  interface ListingMap extends JSXBase.HTMLAttributes<HTMLListingMapElement> {
+    'item': any;
+  }
   interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {
     'items'?: any[];
   }
@@ -615,7 +643,7 @@ declare namespace LocalJSX {
     'apartmentId'?: number;
   }
   interface PageListingBody extends JSXBase.HTMLAttributes<HTMLPageListingBodyElement> {
-    'item': Object;
+    'item': any;
   }
   interface PageListingImageModal extends JSXBase.HTMLAttributes<HTMLPageListingImageModalElement> {
     'src': string;
@@ -661,7 +689,22 @@ declare namespace LocalJSX {
     'stars'?: number;
   }
   interface YoutubeVideo extends JSXBase.HTMLAttributes<HTMLYoutubeVideoElement> {
-    'videoId': string;
+    /**
+    * Explicit height of the video
+    */
+    'height'?: string;
+    /**
+    * The youtube video URL
+    */
+    'src': string;
+    /**
+    * Title of the video
+    */
+    'videoTitle'?: string;
+    /**
+    * Explicit width of the video
+    */
+    'width'?: string;
   }
 
   interface IntrinsicElements {
@@ -684,6 +727,7 @@ declare namespace LocalJSX {
     'lazy-image': LazyImage;
     'listing-card': ListingCard;
     'listing-list': ListingList;
+    'listing-map': ListingMap;
     'listing-slider': ListingSlider;
     'listing-table': ListingTable;
     'location-filter': LocationFilter;

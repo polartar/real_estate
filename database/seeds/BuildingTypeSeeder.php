@@ -15,16 +15,20 @@ class BuildingTypeSeeder extends Seeder
         collect([
             [
                 'name' => "Walk Up",
+                'rating' => 3
             ],
             [
                 'name' => "Elevator",
+                'rating' => 4
             ],
             [
                 'name' => "Elevator/Doorman",
+                'rating' => 5
             ]
         ])->map(function ($item) {
             BuildingType::create([
-                "name" => $item['name']
+                "name" => $item['name'],
+                "rating" => $item['rating']
             ]);
         });
     }

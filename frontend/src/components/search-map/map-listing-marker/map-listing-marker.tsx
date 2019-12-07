@@ -71,6 +71,8 @@ export class MapListingMarker {
 
   select() {
     const map: any = this.el.closest('search-map');
+    const marker = this.mapMarkers.find(m => m.id === parseInt(this.markerId));
+    console.log(marker);
 
     // set listing details
     map.showDetails(this.markerId);

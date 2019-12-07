@@ -14,9 +14,9 @@ class CreateApartmentNeighborhoodTable extends Migration
     public function up()
     {
         Schema::create('apartment_neighborhood', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->bigInteger('apartment_id')->unsigned();
             $table->bigInteger('neighborhood_id')->unsigned();
+            $table->unique(['apartment_id', 'neighborhood_id']);
         });
 
         Schema::table('apartment_neighborhood', function($table) {

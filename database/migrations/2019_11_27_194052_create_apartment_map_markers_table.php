@@ -14,9 +14,9 @@ class CreateApartmentMapMarkersTable extends Migration
     public function up()
     {
         Schema::create('apartment_map_marker', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->bigInteger('apartment_id')->unsigned()->index();
             $table->bigInteger('map_marker_id')->unsigned()->index();
+            $table->unique(['apartment_id', 'map_marker_id']);
         });
 
         Schema::table('apartment_map_marker', function($table) {

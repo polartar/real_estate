@@ -14,11 +14,13 @@ class Apartment extends Model
         "advance_charges" => "array",
         "available_date" => 'date:Y-m-d',
         "available_until" => 'date:Y-m-d',
-        "images" => 'array'
+        "images" => 'array',
+        'floor_plans' => 'array'
     ];
 
     protected $appends = ['neighborhood_ids', 'map_marker_ids'];
     protected $hidden = ['neighborhoods', 'map_markers'];
+    protected $with = ['amenities', 'subways', 'neighborhoods', 'map_markers'];
 
     // relationships
 
@@ -41,6 +43,14 @@ class Apartment extends Model
         return $this->belongsToMany(MapMarker::class);
     }
 
+    function subways() {
+        return $this->belongsToMany(Subway::class);
+    }
+
+    function amenities() {
+        return $this->belongsToMany(Amenity::class);
+    }
+
     // accessors
 
     /**
@@ -48,10 +58,6 @@ class Apartment extends Model
      */
     public function getNeighborhoodIdsAttribute() {
         return $this->neighborhoods->pluck('id');
-    }
-
-    public function getImagesAttribute($val) {
-        return json_decode(json_decode($val)); // not sure why it's double-encoded;
     }
 
     public function getMapMarkerIdsAttribute() {

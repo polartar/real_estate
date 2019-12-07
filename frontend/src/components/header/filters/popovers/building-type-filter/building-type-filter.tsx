@@ -95,7 +95,7 @@ export class BuildingTypeFilter {
         <div class="title">Building Type</div>
 
         <div class="building-types">
-          {this.buildingTypes.map((item, index) => {
+          {this.buildingTypes.map(item => {
             const checkboxProps: any = {
               value: item.id,
               onCheckBoxChange: e => this.valueChanged(e)
@@ -107,7 +107,7 @@ export class BuildingTypeFilter {
 
             return (
               <apt212-checkbox {...checkboxProps}>
-                <star-rating rating={3 + index} stars={5} size={16} readonly /> {item.name}
+                <star-rating rating={item.rating} stars={5} size={16} readonly /> {item.name}
               </apt212-checkbox>
             )
           })}
