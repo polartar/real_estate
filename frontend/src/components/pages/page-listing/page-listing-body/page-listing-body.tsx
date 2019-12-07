@@ -1,8 +1,9 @@
-import { Component, h, Prop, Host } from '@stencil/core';
+import { Component, h, Prop, Host, State } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import taxonomySelectors from '../../../../store/selectors/taxonomy';
 import { formatMoney, formatDate } from '../../../../helpers/utils';
 import { getBedsListingText } from '../../../../helpers/filters';
+import { APISearchService } from '../../../../services/api/search';
 
 @Component({
   tag: 'page-listing-body',
@@ -11,6 +12,8 @@ import { getBedsListingText } from '../../../../helpers/filters';
 export class PageListingBody {
   @Prop({ context: "store" }) store: Store;
   @Prop() item!: any;
+
+  @State() nearbyApts: any[] = [];
 
   bedroomTypes: any;
   buildingTypes: any;
@@ -26,6 +29,16 @@ export class PageListingBody {
         neighborhoods: neighborhoods.filter(n => this.item.neighborhood_ids.includes(n.id))
       }
     });
+  }
+
+  async componentDidLoad() {
+    try {
+      const nearbyApts = await APISearchService.getNamedSearch('nearbyApts', {id: this.item.id});
+
+      this.nearbyApts = nearbyApts;
+    } catch (e) {
+      // fail silently
+    }
   }
 
   getFeatures() {
@@ -187,7 +200,7 @@ export class PageListingBody {
 
                 {
                   this.item.amenities.map(a => <div class="amenity flex-vertical-center">
-                    <div class="amenity-icon">
+                    <div class="icon">
                       <lazy-image src={a.icon} />
                     </div>
 
@@ -220,7 +233,7 @@ export class PageListingBody {
                     <div class="description">
                       { n.description }
 
-                      <a href="" class="button-dark">
+                      <a href={`/neighborhood/${n.slug}`} class="button-dark">
                         Explore
                       </a>
                     </div>
@@ -229,8 +242,73 @@ export class PageListingBody {
               )
             }
 
+            <div class="listing-section">
+              <div class="title">
+                The booking process
+              </div>
+
+              <div class="booking-process flex-vertical-center">
+                <div class="icon">
+                  <lazy-image src="/assets/images/icons/add.svg" />
+                </div>
+
+                Make a payment of 1 month's rent
+              </div>
+
+              <div class="booking-process flex-vertical-center">
+                <div class="icon">
+                  <lazy-image src="/assets/images/icons/application.svg" />
+                </div>
+
+                Fill out an application online
+              </div>
+
+              <div class="booking-process flex-vertical-center">
+                <div class="icon">
+                  <lazy-image src="/assets/images/icons/approved.svg" />
+                </div>
+
+                We will get you approved within 48 hours
+              </div>
+
+              <div class="booking-process flex-vertical-center">
+                <div class="icon">
+                  <lazy-image src="/assets/images/icons/sign_lease.svg" />
+                </div>
+
+                Sign a lease
+              </div>
+
+              <div class="booking-process flex-vertical-center">
+                <div class="icon">
+                  <lazy-image src="/assets/images/icons/shield.svg" />
+                </div>
+
+                Make final payment and move in
+              </div>
+            </div>
           </div>
         </section>
+
+        {
+          this.nearbyApts.length ?
+            <section class="section">
+              <div class="listing-section full-width">
+                <div class="title">
+                  Nearby Apartments
+                </div>
+
+                <div class="nearby-list">
+                  { this.nearbyApts.map(a => <listing-card item={a} />)}
+                </div>
+              </div>
+              <div>
+                <ion-router-link href="/" class="show-all">Show All ></ion-router-link>
+              </div>
+            </section>
+            : null
+        }
+
       </Host>
     )
   }

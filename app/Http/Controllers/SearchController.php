@@ -10,7 +10,11 @@ class SearchController extends Controller
 {
     //
     public function named($name) {
-        return SearchServiceProvider::getNamedSearch($name);
+        $params_json = request()->params;
+
+        $params = json_decode($params_json, true);
+
+        return SearchServiceProvider::getNamedSearch($name, $params);
     }
 
     public function search() {

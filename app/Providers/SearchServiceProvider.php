@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Apartment;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Cache;
@@ -33,15 +34,39 @@ class SearchServiceProvider extends ServiceProvider
      * Get pre-defined search results for things like
      * sliders/lists
      */
-    public static function getNamedSearch($name) {
+    public static function getNamedSearch($name, $params) {
         $results = [];
         switch ($name) {
             case 'homePageInit':
-                $results = [
-                    'uniqueList' => \App\Apartment::inRandomOrder()->take(8)->get(),
-                    'privateRoomList' => \App\Apartment::inRandomOrder()->take(8)->get(),
-                    'luxuryList' => \App\Apartment::inRandomOrder()->take(8)->get()
-                ];
+                $results = Cache::remember('search-homePageInit', 600, function() {
+                    return [
+                        'uniqueList' => \App\Apartment::inRandomOrder()->take(8)->get(),
+                        'privateRoomList' => \App\Apartment::inRandomOrder()->take(8)->get(),
+                        'luxuryList' => \App\Apartment::inRandomOrder()->take(8)->get()
+                    ];
+                });
+            break;
+
+            case 'nearbyApts':
+                $results = Cache::remember('search-nearbyApts-' . $params['id'], 1, function() use ($params) {
+                    $apt = Apartment::findOrFail($params['id']);
+                    $distance = 5;
+
+                    // $nearbyApts = Apartment::inRandomOrder()->take(4)->get();
+
+                    // to use km use 6371 instead of 3959
+                    $nearbyApts = Apartment::select()->addSelect(\DB::raw('( 3959 * acos( cos( radians(' . $apt->lat . ') )
+                        * cos( radians( apartments.lat ) )
+                        * cos( radians( apartments.lng ) - radians(' . $apt->lng . ') )
+                        + sin( radians(' . $apt->lat . ') )
+                        * sin( radians( apartments.lat ) ) ) ) AS distance'))
+                    ->having('distance', '<', $distance)
+                    ->orderBy('distance', 'ASC')
+                    ->take(4)
+                    ->get();
+
+                    return $nearbyApts;
+                });
             break;
         }
 

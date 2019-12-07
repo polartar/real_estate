@@ -2,9 +2,11 @@ import { APIService } from './api.service';
 
 class APISearchInstance {
 
-  public async getNamedSearch(name) {
+  public async getNamedSearch(name, params: any = {}) {
+    const queryParams = encodeURIComponent(JSON.stringify(params));
+
     try {
-      let response = await fetch(APIService.getAPIUrl() + '/search/named/' + name, {
+      let response = await fetch(APIService.getAPIUrl() + `/search/named/${name}?params=${queryParams}`, {
         headers: APIService.getHeaders()
       });
       if (!response.ok) {

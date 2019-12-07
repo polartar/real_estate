@@ -26,7 +26,7 @@ export class NeighborhoodCard {
   render() {
 
     return [
-      <ion-router-link href={'/neighborhood/' + this.item.id}>
+      <ion-router-link href={`/neighborhood/${this.item.slug}`}>
         <div class="neighborhood-card">
           <lazy-image src={this.item.image} alt={this.item.title} class="neighborhood-feature-image"/>
           <div class="hover-cover" />
