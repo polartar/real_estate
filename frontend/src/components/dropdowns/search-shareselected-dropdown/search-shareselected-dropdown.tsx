@@ -64,7 +64,6 @@ export class SearchShareSelectedDropdown {
               </g>
           </svg>
 
-
           Add to wishlist
         </button>
       </div>

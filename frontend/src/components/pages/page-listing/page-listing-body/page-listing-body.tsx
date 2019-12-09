@@ -56,7 +56,7 @@ export class PageListingBody {
       },
       {
         'name': 'Building Type',
-        'value': <div class="flex-vertical-center"><star-rating stars={5} rating={buildingType.rating} size={16} readonly />&nbsp;&nbsp;&nbsp;&nbsp;{ buildingType.name }</div>
+        'value': <div class="flex-vertical-center building-type"><star-rating stars={5} rating={buildingType.rating} size={16} readonly /> { buildingType.name }</div>
       }
     ];
 
@@ -109,8 +109,6 @@ export class PageListingBody {
   }
 
   render() {
-    console.log(this.item, this.neighborhoods);
-
     return (
       <Host class="page-listing-body-component">
         <section class="section no-padding">
@@ -130,6 +128,16 @@ export class PageListingBody {
               </div>
 
               <page-listing-checkin />
+            </div>
+
+            <div class="wishlist-share">
+              <button aria-label="Add to wishlist" class="button-reset has-icon">
+                <ion-icon src="/assets/images/icons/heart_icon.svg" /> Add to wishlist
+              </button>
+
+              <button aria-label="Share listing" class="button-reset has-icon">
+                <ion-icon src="/assets/images/icons/share.svg" /> Share
+              </button>
             </div>
           </div>
 

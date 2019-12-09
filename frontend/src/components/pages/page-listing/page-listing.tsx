@@ -4,6 +4,7 @@ import { searchSelectors } from '../../../store/selectors/search';
 import taxonomySelectors from '../../../store/selectors/taxonomy';
 import { APIApartmentsService } from '../../../services/api/apartments';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
+import { formatMoney, formatDate } from '../../../helpers/utils';
 
 @Component({
   tag: 'page-listing',
@@ -90,6 +91,18 @@ export class PageListing {
           }
 
         <app-footer />
+        <div class="mobile-booking">
+          <div class="rate-date-details">
+            <span class="highlight">{ formatMoney(this.item.rate) }</span> per month<br />
+            <span class="highlight">{ formatDate(this.item.available_date, 'm.d.y')}</span> next available date
+          </div>
+
+          <div>
+            <button aria-label="Booking Details" class="button-dark booking-details">
+              Booking Details
+            </button>
+          </div>
+        </div>
       </ion-content>
     ]
 

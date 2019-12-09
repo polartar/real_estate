@@ -1,7 +1,85 @@
+@import '../../../../styles/variables';
+
 .page-listing-checkin-component {
   .check-in-out {
+    display: flex;
+    padding: 0 26px;
     height: 56px;
     width: 100%;
     border: 1px solid black;
+
+    .arrow {
+      width: 32px;
+      transform: rotate(180deg);
+    }
+
+    .checkin-button {
+      flex-grow: 1;
+      font-size: 22px;
+      text-align: left;
+
+      &.checkout {
+        text-align: right;
+      }
+
+      lazy-image {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .guests {
+    display: flex;
+    width: 100%;
+    text-align: left;
+    height: 56px;
+    border: 1px solid black;
+    padding: 0 15px;
+    margin-top: 13px;
+
+    .guest-value {
+      flex-grow: 1;
+      font-size: 22px;
+    }
+
+    .dropdown {
+      font-size: 26px;
+    }
+  }
+
+  .booking-details,
+  .ask-question {
+    width: 100%;
+    height: 56px;
+    text-transform: uppercase;
+    font-size: $font-size-md;
+    margin-top: 16px;
+    font-weight: bold;
+  }
+
+  .ask-question {
+    border: 1px solid black;
+  }
+
+  .seasonal-rating {
+    display: flex;
+    margin-top: 16px;
+
+    .min-stay {
+      flex-grow: 1;
+    }
+
+    .rating {
+      display: flex;
+      color: $color-secondary;
+      align-items: center;
+
+      ion-icon {
+        font-size: 13px;
+        margin-left: 0.5rem;
+      }
+    }
   }
 }

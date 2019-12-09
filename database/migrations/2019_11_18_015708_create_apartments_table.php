@@ -28,6 +28,7 @@ class CreateApartmentsTable extends Migration
             $table->integer('building_type_id')->nullable()->index();
             $table->float('bathrooms')->nullable();
             $table->text('cross_streets')->nullable();
+            $table->text('floor')->nullable();
             $table->date('available_date')->nullable()->index();
             $table->date('available_until')->nullable()->index();
             $table->float('rate')->nullable()->index();

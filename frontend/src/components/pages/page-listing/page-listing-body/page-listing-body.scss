@@ -7,10 +7,15 @@
     flex-direction: row-reverse;
 
     .listing-right {
+      display: none;
       min-width: 480px;
       width: 480px;
       margin-right: 45px;
       z-index: 1;
+
+      @include for-size(desktop-up) {
+        display: block;
+      }
 
       &.has-slider {
         margin-top: -88px;
@@ -19,7 +24,10 @@
 
     .listing-left {
       flex-grow: 1;
-      margin-right: 130px;
+
+      @include for-size(desktop-up) {
+        margin-right: 130px;
+      }
     }
 
     .listing-price {
@@ -59,6 +67,23 @@
     }
   }
 
+  .wishlist-share {
+    margin-top: 20px;
+    display: flex;
+
+    button {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      font-size: 20px;
+
+      ion-icon {
+        font-size: 18px;
+        margin-right: 1rem;
+      }
+    }
+  }
+
   .listing-description {
     h2 {
       font-size: $font-size-lg;
@@ -72,9 +97,12 @@
   }
 
   .listing-section {
-    max-width: 591px;
     width: 100%;
     margin-top: 50px;
+
+    @include for-size(desktop-up) {
+      max-width: 591px;
+    }
 
     &.full-width {
       max-width: 100%;
@@ -101,7 +129,7 @@
   }
 
   .feature {
-    height: 72px;
+    min-height: 72px;
     align-items: center;
     display: flex;
     border-bottom: 1px solid #929292;
@@ -112,6 +140,7 @@
 
     .feature-name {
       flex-grow: 1;
+      white-space: nowrap;
 
       .feature-icon {
         width: 18px;
@@ -126,6 +155,12 @@
 
       star-rating {
         margin-top: 2px;
+        margin-right: 10px;
+      }
+
+      .building-type {
+        flex-wrap: wrap;
+        justify-content: flex-end;
       }
     }
 
@@ -141,7 +176,11 @@
     line-height: 1.88;
     margin-bottom: 30px;
     display: inline-block;
-    width: 33%;
+    width: 100%;
+
+    @include for-size(desktop-up) {
+      width: 33%;
+    }
 
     .icon {
       display: inline-block;
@@ -172,13 +211,23 @@
   }
 
   .neighborhood {
-    display: flex;
+    display: block;
+
+    @include for-size(desktop-up) {
+      display: flex;
+    }
 
     .description {
-      flex-grow: 1;
-      padding-left: 50px;
+      margin-top: 1.5rem;
+
+      @include for-size(desktop-up) {
+        flex-grow: 1;
+        margin-top: 0;
+        padding-left: 50px;
+      }
 
       a.button-dark {
+        display: block;
         width: 204px;
         text-align: center;
         font-size: $font-size-md;
@@ -190,8 +239,12 @@
   }
 
   .neighborhood-image {
-    width: 271px;
-    min-width: 271px;
+    width: 100%;
+
+    @include for-size(desktop-up) {
+      width: 271px;
+      min-width: 271px;
+    }
   }
 
   .nearby-list {

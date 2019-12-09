@@ -78,6 +78,7 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         'building_type_id' => $buildingType->id,
         'bathrooms' => $faker->randomElement([1,1.5,2,2.5,3,3.5,4]),
         'cross_streets' => $faker->streetName,
+        'floor' => random_int(0, 100) > 30 ? $faker->numberBetween(1, 15) : '',
         'available_date' => $faker->dateTimeBetween('now', '+6 months'),
         'available_until' => $faker->dateTimeBetween('+6 months', '+12 months'),
         'rate' => $faker->numberBetween(1000, 15000),

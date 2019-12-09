@@ -1,0 +1,36 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.page-listing {
+  .mobile-booking {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    font-size: $font-size-sm;
+    font-weight: bold;
+    white-space: nowrap;
+    line-height: 1.8;
+
+    .rate-date-details {
+      margin-right: 1rem;
+    }
+
+    .booking-details {
+      padding-top: 18px;
+      padding-bottom: 18px;
+    }
+
+    .highlight {
+      font-size: $font-size * 1.25;
+    }
+
+    @include for-size(desktop-up) {
+      display: none;
+    }
+  }
+}
