@@ -34,7 +34,7 @@ class AmenitiesServiceProvider extends ServiceProvider
         }
 
         // only assign random subways to faked apartments
-        $num = random_int(0, 15);
+        $num = random_int(0, 32);
         if (!$num) {
             return;
         }

@@ -130,6 +130,7 @@ export namespace Components {
   interface PageListingBody {
     'item': any;
   }
+  interface PageListingCheckin {}
   interface PageListingImageModal {
     'src': string;
   }
@@ -415,6 +416,12 @@ declare global {
     new (): HTMLPageListingBodyElement;
   };
 
+  interface HTMLPageListingCheckinElement extends Components.PageListingCheckin, HTMLStencilElement {}
+  var HTMLPageListingCheckinElement: {
+    prototype: HTMLPageListingCheckinElement;
+    new (): HTMLPageListingCheckinElement;
+  };
+
   interface HTMLPageListingImageModalElement extends Components.PageListingImageModal, HTMLStencilElement {}
   var HTMLPageListingImageModalElement: {
     prototype: HTMLPageListingImageModalElement;
@@ -523,6 +530,7 @@ declare global {
     'page-home': HTMLPageHomeElement;
     'page-listing': HTMLPageListingElement;
     'page-listing-body': HTMLPageListingBodyElement;
+    'page-listing-checkin': HTMLPageListingCheckinElement;
     'page-listing-image-modal': HTMLPageListingImageModalElement;
     'page-listing-image-slider': HTMLPageListingImageSliderElement;
     'page-search': HTMLPageSearchElement;
@@ -645,6 +653,7 @@ declare namespace LocalJSX {
   interface PageListingBody extends JSXBase.HTMLAttributes<HTMLPageListingBodyElement> {
     'item': any;
   }
+  interface PageListingCheckin extends JSXBase.HTMLAttributes<HTMLPageListingCheckinElement> {}
   interface PageListingImageModal extends JSXBase.HTMLAttributes<HTMLPageListingImageModalElement> {
     'src': string;
   }
@@ -744,6 +753,7 @@ declare namespace LocalJSX {
     'page-home': PageHome;
     'page-listing': PageListing;
     'page-listing-body': PageListingBody;
+    'page-listing-checkin': PageListingCheckin;
     'page-listing-image-modal': PageListingImageModal;
     'page-listing-image-slider': PageListingImageSlider;
     'page-search': PageSearch;

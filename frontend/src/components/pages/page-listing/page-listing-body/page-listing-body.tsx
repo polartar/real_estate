@@ -129,7 +129,7 @@ export class PageListingBody {
                 <span class="date">{formatDate(this.item.available_date, 'm.d.y')}</span> next available date
               </div>
 
-
+              <page-listing-checkin />
             </div>
           </div>
 
