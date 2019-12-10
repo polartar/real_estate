@@ -97,8 +97,11 @@ export class PageWishlist {
 
           {
             this.loaded && !this.apartments.length ?
-            <div class="empty-state">
-              Empty State
+            <div class="text-center">
+              Your wishlist is empty.<br /><br />
+              Search for listings that match your criteria, then add them to your wishlist.<br /><br />
+
+              <ion-router-link href="/search" class="button-dark">SEARCH</ion-router-link>
             </div>
             : null
           }
