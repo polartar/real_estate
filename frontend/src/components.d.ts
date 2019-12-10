@@ -9,6 +9,9 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   prefetchComponentInterface,
 } from './components/component-prefetch/component-prefetch';
+import {
+  InlineImageInterface,
+} from './components/inline-gallery/inline-gallery';
 
 export namespace Components {
   interface AppFooter {
@@ -68,6 +71,9 @@ export namespace Components {
   }
   interface FilterTags {}
   interface FilterTagsAll {}
+  interface InlineGallery {
+    'images': InlineImageInterface[];
+  }
   interface LazyImage {
     'alt': string;
     'expand': boolean;
@@ -177,6 +183,9 @@ export namespace Components {
     'readonly': boolean;
     'size': number;
     'stars': number;
+  }
+  interface WishlistCard {
+    'item': any;
   }
   interface YoutubeVideo {
     /**
@@ -295,6 +304,12 @@ declare global {
   var HTMLFilterTagsAllElement: {
     prototype: HTMLFilterTagsAllElement;
     new (): HTMLFilterTagsAllElement;
+  };
+
+  interface HTMLInlineGalleryElement extends Components.InlineGallery, HTMLStencilElement {}
+  var HTMLInlineGalleryElement: {
+    prototype: HTMLInlineGalleryElement;
+    new (): HTMLInlineGalleryElement;
   };
 
   interface HTMLLazyImageElement extends Components.LazyImage, HTMLStencilElement {}
@@ -495,6 +510,12 @@ declare global {
     new (): HTMLStarRatingElement;
   };
 
+  interface HTMLWishlistCardElement extends Components.WishlistCard, HTMLStencilElement {}
+  var HTMLWishlistCardElement: {
+    prototype: HTMLWishlistCardElement;
+    new (): HTMLWishlistCardElement;
+  };
+
   interface HTMLYoutubeVideoElement extends Components.YoutubeVideo, HTMLStencilElement {}
   var HTMLYoutubeVideoElement: {
     prototype: HTMLYoutubeVideoElement;
@@ -517,6 +538,7 @@ declare global {
     'filter-tag': HTMLFilterTagElement;
     'filter-tags': HTMLFilterTagsElement;
     'filter-tags-all': HTMLFilterTagsAllElement;
+    'inline-gallery': HTMLInlineGalleryElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
     'listing-list': HTMLListingListElement;
@@ -550,6 +572,7 @@ declare global {
     'search-sortby-dropdown': HTMLSearchSortbyDropdownElement;
     'search-state-empty': HTMLSearchStateEmptyElement;
     'star-rating': HTMLStarRatingElement;
+    'wishlist-card': HTMLWishlistCardElement;
     'youtube-video': HTMLYoutubeVideoElement;
   }
 }
@@ -599,6 +622,9 @@ declare namespace LocalJSX {
     'onShowAllTags'?: (event: CustomEvent<void>) => void;
   }
   interface FilterTagsAll extends JSXBase.HTMLAttributes<HTMLFilterTagsAllElement> {}
+  interface InlineGallery extends JSXBase.HTMLAttributes<HTMLInlineGalleryElement> {
+    'images': InlineImageInterface[];
+  }
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
     'expand'?: boolean;
@@ -706,6 +732,9 @@ declare namespace LocalJSX {
     'size'?: number;
     'stars'?: number;
   }
+  interface WishlistCard extends JSXBase.HTMLAttributes<HTMLWishlistCardElement> {
+    'item': any;
+  }
   interface YoutubeVideo extends JSXBase.HTMLAttributes<HTMLYoutubeVideoElement> {
     /**
     * Explicit height of the video
@@ -742,6 +771,7 @@ declare namespace LocalJSX {
     'filter-tag': FilterTag;
     'filter-tags': FilterTags;
     'filter-tags-all': FilterTagsAll;
+    'inline-gallery': InlineGallery;
     'lazy-image': LazyImage;
     'listing-card': ListingCard;
     'listing-list': ListingList;
@@ -775,6 +805,7 @@ declare namespace LocalJSX {
     'search-sortby-dropdown': SearchSortbyDropdown;
     'search-state-empty': SearchStateEmpty;
     'star-rating': StarRating;
+    'wishlist-card': WishlistCard;
     'youtube-video': YoutubeVideo;
   }
 }

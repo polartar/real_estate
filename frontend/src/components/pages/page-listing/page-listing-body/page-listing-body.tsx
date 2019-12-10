@@ -122,10 +122,10 @@ export class PageListingBody {
 
   toggleWishlist() {
     if (this.wishlist.includes(this.item.id)) {
-      this.removeFromWishlist(this.item.id);
+      this.removeFromWishlist([this.item.id]);
     }
     else {
-      this.addToWishlist(this.item.id);
+      this.addToWishlist([this.item.id]);
     }
   }
 

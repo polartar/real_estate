@@ -1,11 +1,11 @@
 import { Actions } from "./index";
 import { saveState } from '../../services/storage';
 
-export function addToWishlist(id) {
+export function addToWishlist(ids: number[]) {
   return async (dispatch, getState) => {
     dispatch({
       type: Actions.ADD_TO_WISHLIST,
-      payload: id
+      payload: ids
     });
 
     const state = getState();
@@ -16,7 +16,7 @@ export function addToWishlist(id) {
 
 export interface AddToWishlist {
   type: Actions.ADD_TO_WISHLIST;
-  payload: number;
+  payload: number[];
 };
 
 export function removeFromWishlist(id) {
@@ -34,5 +34,5 @@ export function removeFromWishlist(id) {
 
 export interface RemoveFromWishlist {
   type: Actions.REMOVE_FROM_WISHLIST,
-  payload: number;
+  payload: number[];
 }

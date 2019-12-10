@@ -46,57 +46,6 @@ export class SearchListingCard {
     return this.item.images.length ? this.item.images[0] : '/assets/images/placeholder/apt1.jpeg';
   }
 
-  changeImage(dir) {
-    const image: any = this.el.querySelector('.list-feature-image.active');
-
-    if (dir === 'next') {
-
-      if (image && image.nodeName === 'LAZY-IMAGE') {
-        const nextImg = image.nextSibling;
-        if (nextImg && nextImg.nodeName === 'LAZY-IMAGE') {
-          image.classList.remove('active');
-          nextImg.classList.add('active');
-
-          const images = this.el.querySelectorAll('.list-feature-image');
-
-          if (this.item.images.length > images.length) {
-            // insert the next image
-
-            const newImg = Object.assign(document.createElement('lazy-image'), {
-              src: this.item.images[images.length],
-              alt: `${this.item.street_address} image ${images.length}`
-            });
-
-            newImg.classList.add('list-feature-image');
-
-            nextImg.insertAdjacentElement('afterend', newImg);
-          }
-
-          if (nextImg.nextSibling.nodeName !== 'LAZY-IMAGE') {
-            this.el.querySelector('.gallery .controls .next').setAttribute('disabled', 'disabled');
-          }
-
-          this.el.querySelector('.gallery .controls .previous').removeAttribute('disabled');
-        }
-      }
-    }
-    else {
-      if (image && image.nodeName === 'LAZY-IMAGE') {
-        const prevImg = image.previousSibling;
-        if (prevImg && prevImg.nodeName === 'LAZY-IMAGE') {
-          image.classList.remove('active');
-          prevImg.classList.add('active');
-
-          if (!prevImg.previousSibling || (prevImg.previousSibling && prevImg.previousSibling.nodeName !== 'LAZY-IMAGE')) {
-            this.el.querySelector('.gallery .controls .previous').setAttribute('disabled', 'disabled');
-          }
-
-          this.el.querySelector('.gallery .controls .next').removeAttribute('disabled');
-        }
-      }
-    }
-  }
-
   render() {
     let neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
     if (!neighborhood) {
@@ -108,33 +57,23 @@ export class SearchListingCard {
     const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
 
+    let images;
+    if (this.item.images.length === 0) {
+      images = [
+        {
+          src: this.getImageURL(),
+          alt: this.item.street_address
+        }
+      ]
+    }
+    else {
+      images = this.item.images.map((image, index) => { return { src: image, alt: `${this.item.street_address} image ${index + 1}` } });
+    }
+
     return [
         <div class="search-listing-card" onMouseEnter={() => this.setSearchListingHover(this.item.map_marker_ids)} onMouseLeave={() => this.setSearchListingHover(false)}>
             <maintain-ratio width={322} height={182}>
-              <div class="gallery">
-              {
-                this.item.images.length === 0 ?
-                <lazy-image src={this.getImageURL()} class="list-feature-image" alt={this.item.street_address} />
-                : null
-              }
-
-              {
-                this.item.images.filter((_i, ind) => ind < 2).map((href, index) => <lazy-image src={href} class={{'list-feature-image': true, active: index === 0}} alt={`${this.item.street_address} image ${index + 1}`} />)
-              }
-
-              {
-                this.item.images.length > 1 ?
-                <div class="controls">
-                  <button class="button-reset previous" disabled aria-label="Previous image" onClick={() => this.changeImage('prev')}>
-                    <ion-icon name="play" />
-                  </button>
-                  <button class="button-reset next" aria-label="Next image" onClick={() => this.changeImage('next')}>
-                    <ion-icon name="play" />
-                  </button>
-                </div>
-                : null
-              }
-              </div>
+              <inline-gallery class="gallery" images={images} />
             </maintain-ratio>
           <div class={{"listing-content-padding": this.contentPadding}}>
             <h4 class="listing-title">

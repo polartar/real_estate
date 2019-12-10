@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Apartment extends Model
@@ -21,6 +22,15 @@ class Apartment extends Model
     protected $appends = ['neighborhood_ids', 'map_marker_ids'];
     protected $hidden = ['neighborhoods', 'map_markers'];
     protected $with = ['amenities', 'subways', 'neighborhoods', 'map_markers'];
+
+
+    protected static function boot() {
+        parent::boot();
+
+        static::addGlobalScope('active', function(Builder $builder) {
+            $builder->where('is_active', true);
+        });
+    }
 
     // relationships
 

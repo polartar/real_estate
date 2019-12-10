@@ -1,0 +1,50 @@
+.inline-gallery-component {
+  display: block;
+  height: 100%;
+
+  .gallery-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  .gallery-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    &.active {
+      z-index: 1;
+    }
+  }
+
+  .controls {
+    position: absolute;
+    bottom: var(--inline-gallery-controls-bottom, 8px);
+    right: var(--inline-gallery-controls-right, 14px);
+    background: rgba(0,0,0,0.6);
+    border-radius: 1px;
+    z-index: 1;
+
+    ion-icon {
+      font-size: 14px;
+    }
+
+    button {
+      color: white;
+      padding: 10px 16px;
+
+      &[disabled] {
+        opacity: 0.5;
+      }
+    }
+
+    .previous {
+      ion-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

@@ -28,16 +28,6 @@
     }
   }
 
-  .list-feature-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-    @include for-size(tablet-portrait-up) {
-      height: 100%;
-    }
-  }
-
   .neighborhood {
     margin-bottom: 10px;
   }
@@ -117,43 +107,5 @@
   .gallery {
     position: relative;
     height: 100%;
-
-    lazy-image {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-
-      &.active {
-        z-index: 1;
-      }
-    }
-
-    .controls {
-      position: absolute;
-      bottom: 8px;
-      right: 14px;
-      background: rgba(0,0,0,0.6);
-      border-radius: 1px;
-      z-index: 1;
-
-      ion-icon {
-        font-size: 14px;
-      }
-
-      button {
-        color: white;
-        padding: 10px 16px;
-
-        &[disabled] {
-          opacity: 0.5;
-        }
-      }
-
-      .previous {
-        ion-icon {
-          transform: rotate(180deg);
-        }
-      }
-    }
   }
 }

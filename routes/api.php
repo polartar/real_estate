@@ -27,6 +27,8 @@ Route::group(['middleware' => ['api', 'cors']], function () {
     Route::get('search/map_markers', 'SearchController@mapMarkers');
 
     // Apartments
+    Route::get('apartments/list', 'ApartmentController@getList');
+
     Route::apiResources([
         'apartments' => 'ApartmentController'
     ]);

@@ -16,7 +16,7 @@ const wishlistReducer = (
 ) => {
   switch (action.type) {
     case Actions.ADD_TO_WISHLIST: {
-      const list = [...state.list, action.payload];
+      const list = [...state.list, ...action.payload];
 
       return {
         ...state,
@@ -29,7 +29,7 @@ const wishlistReducer = (
 
       return {
         ...state,
-        list: list.filter(v => v !== action.payload)
+        list: list.filter(v => !action.payload.includes(v))
       };
     }
   }

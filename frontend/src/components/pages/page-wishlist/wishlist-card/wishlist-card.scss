@@ -1,0 +1,123 @@
+@import '../../../../styles/mixins';
+@import '../../../../styles/variables';
+
+.wishlist-card-component {
+
+  @include for-size(desktop-up) {
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .gallery {
+    width: 100%;
+
+    @include for-size(desktop-up) {
+      width: 377px;
+      height: 251px;
+      margin-right: 36px;
+    }
+
+    --inline-gallery-controls-bottom: 20px;
+    --inline-gallery-controls-right: 20px;
+  }
+
+  .info {
+
+    @include for-size(desktop-up) {
+      width: 226px;
+    }
+  }
+
+  .listing-title {
+    margin-top: 10px;
+    padding-top: 0;
+    margin-bottom: 5px;
+    height: 28px;
+    position: relative;
+
+    @include for-size(desktop-up) {
+      margin-top: -10px;
+    }
+
+    ion-router-link {
+      position: absolute;
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      font-size: 26px;
+      text-transform: none;
+
+    }
+  }
+
+  .neighborhood {
+    margin-bottom: 10px;
+    font-size: $font-size;
+  }
+
+  .price,
+  .available {
+    font-size: $font-size;
+    padding-bottom: 4px;
+  }
+
+  .bed-bath {
+    display: flex;
+    align-items: center;
+    font-size: $font-size;
+    padding-bottom: 4px;
+
+    @include for-size(desktop-up) {
+      font-size: $font-size;
+    }
+
+    &>div {
+      display: flex;
+      align-items: center;
+    }
+
+    .divider {
+      padding: 0 1rem;
+
+      @include for-size(desktop-up) {
+        padding: 0 0.5rem;
+      }
+    }
+  }
+
+  .bedrooms,
+  .bathrooms {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  .rating-amenities {
+    display: flex;
+    align-items: center;
+    font-size: $font-size;
+
+    @include for-size(desktop-up) {
+      font-size: $font-size;
+    }
+
+    .amenities {
+      padding-right: 0.5rem;
+      padding-bottom: 4px;
+    }
+  }
+
+  .view-apt {
+    display: flex;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    font-size: $font-size-sm;
+    margin-top: 16px;
+    cursor: pointer;
+  }
+}

@@ -1,16 +1,57 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 .page-wishlist {
   .title {
     font-family: "Source Sans Pro";
-    font-size: 42px;
+    font-size: $font-size-xl;
     font-weight: 600;
     text-transform: none;
+
+    @include for-size(desktop-up) {
+      font-size: 42px;
+    }
   }
 
   .subtitle {
-    font-size: 24px;
+    font-size: $font-size;
     font-weight: normal;
     text-transform: none;
     margin-bottom: 2rem;
+
+    @include for-size(desktop-up) {
+      font-size: $font-size-lg;
+    }
+  }
+
+  .wishlist {
+    @include for-size(desktop-up) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    wishlist-card:not(:first-child) {
+      display: block;
+      margin-top: 12px;
+
+      @include for-size(desktop-up) {
+        margin-top: 36px;
+      }
+    }
+  }
+
+  .mobile-only {
+    @include for-size(desktop-up) {
+      display: none;
+    }
+  }
+
+  .desktop-only {
+    display: none;
+
+    @include for-size(desktop-up) {
+      display: block;
+    }
   }
 }

@@ -61,4 +61,10 @@ class ApartmentController extends Controller
     {
         //
     }
+
+    public function getList() {
+        $ids = request()->ids;
+
+        return Apartment::find($ids);
+    }
 }
