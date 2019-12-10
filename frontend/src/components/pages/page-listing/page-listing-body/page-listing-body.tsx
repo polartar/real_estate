@@ -1,5 +1,7 @@
 import { Component, h, Prop, Host, State } from '@stencil/core';
-import { Store } from '@stencil/redux';
+import { Store, Action } from '@stencil/redux';
+import { addToWishlist, removeFromWishlist } from '../../../../store/actions/wishlist';
+import wishlistSelectors from '../../../../store/selectors/wishlist';
 import taxonomySelectors from '../../../../store/selectors/taxonomy';
 import { formatMoney, formatDate } from '../../../../helpers/utils';
 import { getBedsListingText } from '../../../../helpers/filters';
@@ -12,8 +14,12 @@ import { APISearchService } from '../../../../services/api/search';
 export class PageListingBody {
   @Prop({ context: "store" }) store: Store;
   @Prop() item!: any;
+  @State() wishlist: any[] = [];
 
   @State() nearbyApts: any[] = [];
+
+  addToWishlist: Action;
+  removeFromWishlist: Action;
 
   bedroomTypes: any;
   buildingTypes: any;
@@ -26,8 +32,14 @@ export class PageListingBody {
       return {
         bedroomTypes: taxonomySelectors.getBedroomTypes(state),
         buildingTypes: taxonomySelectors.getBuildingTypes(state),
-        neighborhoods: neighborhoods.filter(n => this.item.neighborhood_ids.includes(n.id))
+        neighborhoods: neighborhoods.filter(n => this.item.neighborhood_ids.includes(n.id)),
+        wishlist: wishlistSelectors.getWishlist(state)
       }
+    });
+
+    this.store.mapDispatchToProps(this, {
+      addToWishlist,
+      removeFromWishlist
     });
   }
 
@@ -108,6 +120,15 @@ export class PageListingBody {
     return features;
   }
 
+  toggleWishlist() {
+    if (this.wishlist.includes(this.item.id)) {
+      this.removeFromWishlist(this.item.id);
+    }
+    else {
+      this.addToWishlist(this.item.id);
+    }
+  }
+
   render() {
     return (
       <Host class="page-listing-body-component">
@@ -131,9 +152,11 @@ export class PageListingBody {
             </div>
 
             <div class="wishlist-share">
-              <button aria-label="Add to wishlist" class="button-reset has-icon">
-                <ion-icon src="/assets/images/icons/heart_icon.svg" /> Add to wishlist
+              <button aria-label="Add to wishlist" class="button-reset has-icon" onClick={() => this.toggleWishlist()}>
+                <ion-icon src="/assets/images/icons/heart_icon.svg" /> { this.wishlist.includes(this.item.id) ? 'Remove from wishlist' : 'Add to wishlist' }
               </button>
+
+
 
               <button aria-label="Share listing" class="button-reset has-icon">
                 <ion-icon src="/assets/images/icons/share.svg" /> Share

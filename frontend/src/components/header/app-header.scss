@@ -59,10 +59,16 @@
   }
 
   .mobile-wishlist {
-    padding-top: 4px;
-    font-size: 22px;
+    margin-top: -4px;
+    font-size: 18px;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+    font-weight: bold;
+
+    ion-icon {
+      font-size: 22px;
+      vertical-align: middle;
+    }
 
     @include for-size(desktop-up) {
       display: none;

@@ -34,8 +34,8 @@ export class AppRoot {
   componentWillLoad() {
     const persistedState = loadState();
 
-    if (persistedState && persistedState.authReducer && persistedState.authReducer.access_token) {
-      APIService.setAccessToken(persistedState.authReducer.access_token);
+    if (persistedState && persistedState.auth && persistedState.auth.access_token) {
+      APIService.setAccessToken(persistedState.auth.access_token);
     }
 
     this.store.setStore(configureStore(persistedState));
@@ -82,6 +82,7 @@ export class AppRoot {
             <ion-route url="/" component="page-home" />
             <ion-route url="/search" component="page-search" />
             <ion-route url="/listing/:apartmentId" component="page-listing" />
+            <ion-route url="/wishlist" component="page-wishlist" />
             <ion-route url="/profile/:name" component="app-profile" />
             <ion-route url=":any" component="page-404" />
           </ion-router>

@@ -144,6 +144,7 @@ export namespace Components {
     'size': string;
     'width': any;
   }
+  interface PageWishlist {}
   interface PriceFilter {
     'inModal': boolean;
   }
@@ -440,6 +441,12 @@ declare global {
     new (): HTMLPageSearchElement;
   };
 
+  interface HTMLPageWishlistElement extends Components.PageWishlist, HTMLStencilElement {}
+  var HTMLPageWishlistElement: {
+    prototype: HTMLPageWishlistElement;
+    new (): HTMLPageWishlistElement;
+  };
+
   interface HTMLPriceFilterElement extends Components.PriceFilter, HTMLStencilElement {}
   var HTMLPriceFilterElement: {
     prototype: HTMLPriceFilterElement;
@@ -534,6 +541,7 @@ declare global {
     'page-listing-image-modal': HTMLPageListingImageModalElement;
     'page-listing-image-slider': HTMLPageListingImageSliderElement;
     'page-search': HTMLPageSearchElement;
+    'page-wishlist': HTMLPageWishlistElement;
     'price-filter': HTMLPriceFilterElement;
     'search-filters': HTMLSearchFiltersElement;
     'search-listing-card': HTMLSearchListingCardElement;
@@ -667,6 +675,7 @@ declare namespace LocalJSX {
     'size'?: string;
     'width'?: any;
   }
+  interface PageWishlist extends JSXBase.HTMLAttributes<HTMLPageWishlistElement> {}
   interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {
     'inModal'?: boolean;
   }
@@ -757,6 +766,7 @@ declare namespace LocalJSX {
     'page-listing-image-modal': PageListingImageModal;
     'page-listing-image-slider': PageListingImageSlider;
     'page-search': PageSearch;
+    'page-wishlist': PageWishlist;
     'price-filter': PriceFilter;
     'search-filters': SearchFilters;
     'search-listing-card': SearchListingCard;

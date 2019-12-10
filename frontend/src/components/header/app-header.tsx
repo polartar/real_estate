@@ -2,6 +2,7 @@ import { Component, h, State, Prop, Element } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../store/actions/search";
 import { searchFilterSelectors } from '../../store/selectors/search';
+import wishlistSelectors from '../../store/selectors/wishlist';
 import taxonomySelectors from '../../store/selectors/taxonomy';
 import { FilterTagsService } from '../../services/search-filters/filter-tags.service';
 
@@ -18,6 +19,7 @@ export class AppHeader {
 
   toggleSearchFilterDisplay: Action;
   @State() filterTags: any[];
+  @State() wishlist: any[];
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
@@ -37,7 +39,8 @@ export class AppHeader {
       return {
         displayFilter,
         isMobile,
-        filterTags: FilterTagsService.getPrioritizedTags(filters, taxonomy)
+        filterTags: FilterTagsService.getPrioritizedTags(filters, taxonomy),
+        wishlist: wishlistSelectors.getWishlist(state)
       };
     });
 
@@ -103,8 +106,8 @@ export class AppHeader {
               <img src="/assets/images/logo.svg" class="logo" alt="APT212 Logo" />
             </ion-router-link>
 
-            <ion-router-link href="/" class="mobile-wishlist">
-              <ion-icon src="/assets/images/icons/heart_icon.svg" />
+            <ion-router-link href="/wishlist" class="mobile-wishlist">
+              <ion-icon src="/assets/images/icons/heart_icon.svg" />{ this.wishlist.length ? ` | ${this.wishlist.length}` : null }
             </ion-router-link>
 
             { !this.hideSearchButton ?
@@ -122,8 +125,8 @@ export class AppHeader {
                 Bookings
               </ion-router-link>
 
-              <ion-router-link href="/" class="nav">
-                Wishlist
+              <ion-router-link href="/wishlist" class="nav">
+                Wishlist{ this.wishlist.length ? ` | ${this.wishlist.length}` : null }
               </ion-router-link>
 
               <ion-router-link href="/" class="nav">

@@ -20,7 +20,7 @@ export class AppProfile {
   componentDidLoad() {
     this.store.mapStateToProps(this, state => {
       const {
-        authReducer: { user }
+        auth: { user }
       } = state;
 
       return {

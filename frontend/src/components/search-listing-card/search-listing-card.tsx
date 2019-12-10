@@ -138,7 +138,7 @@ export class SearchListingCard {
             </maintain-ratio>
           <div class={{"listing-content-padding": this.contentPadding}}>
             <h4 class="listing-title">
-              <ion-router-link href={'/listing/' + this.item.id}>{this.item.street_address}</ion-router-link>
+              <ion-router-link href={'/listing/' + this.item.id}>{this.item.cross_streets}</ion-router-link>
             </h4>
             <div class="neighborhood">
               <ion-router-link href={'/listing/' + this.item.id}>

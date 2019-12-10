@@ -56,9 +56,12 @@ export const loadState = () => {
 };
 
 export const saveState = (state: any) => {
+  // only save certain parts of the state
+
+  let savedState = (({ auth, wishlist}) => ({auth, wishlist}))(state);
 
   try {
-    storage.setItem('state', JSON.stringify(state));
+    storage.setItem('state', JSON.stringify(savedState));
   } catch (err) {
     console.log(err);
   }

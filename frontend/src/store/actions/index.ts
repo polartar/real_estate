@@ -36,6 +36,11 @@ import {
   SetTaxonomyLoading
 } from "./taxonomy";
 
+import {
+  AddToWishlist,
+  RemoveFromWishlist
+} from "./wishlist";
+
 export type ActionTypes =
   | LoginBeginAction
   | LoginFailAction
@@ -62,6 +67,8 @@ export type ActionTypes =
   | SetSearchListingHover
   | SetMapMarkers
   | SetMapMarkersLoading
+  | AddToWishlist
+  | RemoveFromWishlist
 ;
 
 export enum Actions {
@@ -89,5 +96,7 @@ export enum Actions {
   SET_TAXONOMY_LOADING = "SET_TAXONOMY_LOADING",
   SET_SELECTED_LISTING = "SET_SELECTED_LISTING",
   SET_SELECTED_LISTINGS = "SET_SELECTED_LISTINGS",
-  SET_SEARCH_LISTING_HOVER = "SET_SEARCH_LISTING_HOVER"
+  SET_SEARCH_LISTING_HOVER = "SET_SEARCH_LISTING_HOVER",
+  ADD_TO_WISHLIST = "ADD_TO_WISHLIST",
+  REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST"
 }
