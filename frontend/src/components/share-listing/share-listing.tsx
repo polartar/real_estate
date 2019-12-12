@@ -21,14 +21,30 @@ export class ShareListing {
   componentDidLoad() {
     this.clipboard = new Clipboard(this.el.querySelector('.copytext'));
 
-    this.clipboard.on('success', e => {
+    this.clipboard.on('success', () => {
       // toast success
-      console.log(e);
+      const toast = document.createElement('ion-toast');
+      toast.message = 'The link has been copied to your clipboard';
+      toast.duration = 2000;
+      toast.color = 'secondary';
+      toast.showCloseButton = true;
+      toast.mode = 'md';
+
+      document.body.appendChild(toast);
+      return toast.present();
     });
 
-    this.clipboard.on('error', e => {
-      // toast failure
-      console.log(e);
+    this.clipboard.on('error', () => {
+      // toast error
+      const toast = document.createElement('ion-toast');
+      toast.message = 'There was an issue copying the link';
+      toast.duration = 2000;
+      toast.color = 'danger';
+      toast.showCloseButton = true;
+      toast.mode = 'md';
+
+      document.body.appendChild(toast);
+      return toast.present();
     });
   }
 
