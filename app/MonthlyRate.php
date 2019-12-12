@@ -21,7 +21,7 @@ class MonthlyRate extends Model
 
     // Relationships
     public function apartment() {
-        return $this->belongsTo(Apartment::class, 'apartment_id');
+        return $this->belongsTo(Apartment::class, 'apartment_id')->withoutGlobalScope('active');
     }
 
     /**
