@@ -81,7 +81,6 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         'floor' => random_int(0, 100) > 30 ? $faker->numberBetween(1, 15) : '',
         'available_date' => $faker->dateTimeBetween('now', '+6 months'),
         'available_until' => $faker->dateTimeBetween('+6 months', '+12 months'),
-        'rate' => $faker->numberBetween(1000, 15000),
         'rating' => $faker->numberBetween(1, 5),
         'video_url' => random_int(0, 100) > 20 ? $faker->randomElement($videos) : null,
         'images' => $faker->randomElements($possible_images, random_int(0, 10)),
@@ -91,6 +90,7 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         'title' => $faker->sentence(),
         'description' => $faker->paragraph($faker->numberBetween(3, 8)),
         'is_active' => $faker->numberBetween(1, 100) > 15, // 85% active
+        'faked' => true
     ];
 
     return $listing;

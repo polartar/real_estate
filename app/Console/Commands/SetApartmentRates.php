@@ -3,24 +3,23 @@
 namespace App\Console\Commands;
 
 use App\Apartment;
-use App\Providers\MapMarkerServiceProvider;
 use Illuminate\Console\Command;
 
-class RegenerateMarkers extends Command
+class SetApartmentRates extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'apt212:regenerateMarkers';
+    protected $signature = 'apt212:setApartmentRates';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Regenerate map markers for all apartments';
+    protected $description = 'Sets all apartment rates based on the current month and next available date';
 
     /**
      * Create a new command instance.
@@ -39,10 +38,20 @@ class RegenerateMarkers extends Command
      */
     public function handle()
     {
-        Apartment::orderBy('id')->chunk(100, function ($apartments) {
+        //
+        $count = Apartment::withoutGlobalScope('active')->count();
+
+        $bar = $this->output->createProgressBar($count);
+        $bar->start();
+
+
+        Apartment::orderBy('id')->chunk(100, function ($apartments) use ($bar) {
             foreach ($apartments as $apartment) {
-                MapMarkerServiceProvider::assignMarkers($apartment);
+                $apartment->updateRate();
+                $bar->advance();
             }
         });
+
+        $bar->finish();
     }
 }

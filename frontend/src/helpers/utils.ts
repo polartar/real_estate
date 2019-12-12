@@ -30,7 +30,10 @@ export function formatDate(vdate, format?: string) {
       result = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear().toString().slice(-2);
     break;
     case 'm.d.y':
-        result = (date.getMonth() + 1) + '.' + date.getDate() + '.' + date.getFullYear().toString().slice(-2);
+      result = (date.getMonth() + 1) + '.' + date.getDate() + '.' + date.getFullYear().toString().slice(-2);
+    break;
+    case 'MMMM':
+      result = date.toLocaleString('default', { month: 'long' });
     break;
 
     case 'm.d.Y':

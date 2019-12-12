@@ -1,0 +1,58 @@
+.share-listing-component {
+  .hidden {
+    display: none;
+  }
+
+  .share-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 25px;
+
+    & > :first-child {
+      margin-right: 50px;
+    }
+
+    button {
+      font-weight: bold;
+
+      img {
+        margin-right: 0.75rem;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input.text {
+    height: 33px;
+    border: 1px solid #979797;
+    margin-bottom: 24px;
+  }
+
+  label {
+    display: block;
+    padding-bottom: 3px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 92px;
+    border: 1px solid #979797;
+    margin-bottom: 40px;
+    padding: 5px 12px;
+  }
+
+  .submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 124px;
+    height: 35px;
+    font-size: 12px;
+    margin: 0 auto;
+  }
+}

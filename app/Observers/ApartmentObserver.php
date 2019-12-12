@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Apartment;
 use App\Providers\AmenitiesServiceProvider;
 use App\Providers\MapMarkerServiceProvider;
+use App\Providers\MonthlyRateServiceProvider;
 use App\Providers\NeighborhoodServiceProvider;
 use App\Providers\SubwayServiceProvider;
 
@@ -21,8 +22,11 @@ class ApartmentObserver
         // find mapMarkers for each zoom level
         MapMarkerServiceProvider::assignMarkers($apartment);
         NeighborhoodServiceProvider::assignNeighborhoods($apartment);
+
+        // assign stuff for faked apartments
         SubwayServiceProvider::assignFakedSubways($apartment);
         AmenitiesServiceProvider::assignFakedAmenities($apartment);
+        MonthlyRateServiceProvider::assignFakeRates($apartment);
     }
 
     /**
@@ -34,8 +38,23 @@ class ApartmentObserver
     public function updated(Apartment $apartment)
     {
         // lat/lng may have changed, reassign markers just in case
-        MapMarkerServiceProvider::assignMarkers($apartment);
-        NeighborhoodServiceProvider::assignNeighborhoods($apartment);
+        $original_lat = $apartment->getOriginal('lat');
+        $original_lng = $apartment->getOriginal('lng');
+
+        if ($apartment->lat !== $original_lat || $apartment->lng !== $original_lng) {
+            MapMarkerServiceProvider::assignMarkers($apartment);
+            NeighborhoodServiceProvider::assignNeighborhoods($apartment);
+        }
+    }
+
+    /**
+     * Handle the apartment "saving" event.
+     * @param \App\Apartment $apartment
+     * @return void
+     */
+    public function saving(Apartment $apartment)
+    {
+
     }
 
     /**

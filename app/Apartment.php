@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +22,7 @@ class Apartment extends Model
 
     protected $appends = ['neighborhood_ids', 'map_marker_ids'];
     protected $hidden = ['neighborhoods', 'map_markers'];
-    protected $with = ['amenities', 'subways', 'neighborhoods', 'map_markers'];
+    protected $with = ['amenities', 'subways', 'neighborhoods', 'map_markers', 'rates'];
 
 
     protected static function boot() {
@@ -61,6 +62,10 @@ class Apartment extends Model
         return $this->belongsToMany(Amenity::class);
     }
 
+    function rates() {
+        return $this->hasMany(MonthlyRate::class);
+    }
+
     // accessors
 
     /**
@@ -72,5 +77,33 @@ class Apartment extends Model
 
     public function getMapMarkerIdsAttribute() {
         return $this->map_markers->pluck('id');
+    }
+
+    /**
+     * Custom methods
+     */
+
+     /**
+      * Gets the current rate based on the current month and seasonal rates
+      */
+    public function getCurrentRate() {
+        $date = Carbon::now();
+
+        if ($this->available_date) {
+            $date = $date->greaterThan($this->available_date) ? $date : $this->available_date;
+        }
+
+        $rate = $this->rates->firstWhere('month', $date->month);
+
+        return $rate ? $rate->rate : null;
+    }
+
+    public function updateRate() {
+        $new_rate = $this->getCurrentRate();
+
+        if ($new_rate !== $this->rate) {
+            $this->rate = $new_rate;
+            $this->save();
+        }
     }
 }

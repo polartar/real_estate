@@ -33,6 +33,11 @@ export namespace Components {
     'uncheck': () => Promise<void>;
     'value': string;
   }
+  interface Apt212ModalBookingFrame {
+    'component': string;
+    'componentProps': any;
+    'test': string;
+  }
   interface Apt212Popover {
     'animateSrc'?: string;
     'bindTo': any;
@@ -177,6 +182,12 @@ export namespace Components {
   interface SearchShareselectedDropdown {}
   interface SearchSortbyDropdown {}
   interface SearchStateEmpty {}
+  interface SeasonalRates {
+    'item': any;
+  }
+  interface ShareListing {
+    'item': any;
+  }
   interface StarRating {
     'color': string;
     'rating': number;
@@ -244,6 +255,12 @@ declare global {
   var HTMLApt212CheckboxElement: {
     prototype: HTMLApt212CheckboxElement;
     new (): HTMLApt212CheckboxElement;
+  };
+
+  interface HTMLApt212ModalBookingFrameElement extends Components.Apt212ModalBookingFrame, HTMLStencilElement {}
+  var HTMLApt212ModalBookingFrameElement: {
+    prototype: HTMLApt212ModalBookingFrameElement;
+    new (): HTMLApt212ModalBookingFrameElement;
   };
 
   interface HTMLApt212PopoverElement extends Components.Apt212Popover, HTMLStencilElement {}
@@ -504,6 +521,18 @@ declare global {
     new (): HTMLSearchStateEmptyElement;
   };
 
+  interface HTMLSeasonalRatesElement extends Components.SeasonalRates, HTMLStencilElement {}
+  var HTMLSeasonalRatesElement: {
+    prototype: HTMLSeasonalRatesElement;
+    new (): HTMLSeasonalRatesElement;
+  };
+
+  interface HTMLShareListingElement extends Components.ShareListing, HTMLStencilElement {}
+  var HTMLShareListingElement: {
+    prototype: HTMLShareListingElement;
+    new (): HTMLShareListingElement;
+  };
+
   interface HTMLStarRatingElement extends Components.StarRating, HTMLStencilElement {}
   var HTMLStarRatingElement: {
     prototype: HTMLStarRatingElement;
@@ -528,6 +557,7 @@ declare global {
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'apt212-checkbox': HTMLApt212CheckboxElement;
+    'apt212-modal-booking-frame': HTMLApt212ModalBookingFrameElement;
     'apt212-popover': HTMLApt212PopoverElement;
     'bathroom-filter': HTMLBathroomFilterElement;
     'bedroom-filter': HTMLBedroomFilterElement;
@@ -571,6 +601,8 @@ declare global {
     'search-shareselected-dropdown': HTMLSearchShareselectedDropdownElement;
     'search-sortby-dropdown': HTMLSearchSortbyDropdownElement;
     'search-state-empty': HTMLSearchStateEmptyElement;
+    'seasonal-rates': HTMLSeasonalRatesElement;
+    'share-listing': HTMLShareListingElement;
     'star-rating': HTMLStarRatingElement;
     'wishlist-card': HTMLWishlistCardElement;
     'youtube-video': HTMLYoutubeVideoElement;
@@ -594,6 +626,11 @@ declare namespace LocalJSX {
     'name'?: string;
     'onCheckBoxChange'?: (event: CustomEvent<any>) => void;
     'value'?: string;
+  }
+  interface Apt212ModalBookingFrame extends JSXBase.HTMLAttributes<HTMLApt212ModalBookingFrameElement> {
+    'component': string;
+    'componentProps'?: any;
+    'test'?: string;
   }
   interface Apt212Popover extends JSXBase.HTMLAttributes<HTMLApt212PopoverElement> {
     'animateSrc'?: string;
@@ -687,7 +724,14 @@ declare namespace LocalJSX {
   interface PageListingBody extends JSXBase.HTMLAttributes<HTMLPageListingBodyElement> {
     'item': any;
   }
-  interface PageListingCheckin extends JSXBase.HTMLAttributes<HTMLPageListingCheckinElement> {}
+  interface PageListingCheckin extends JSXBase.HTMLAttributes<HTMLPageListingCheckinElement> {
+    'onShowAskQuestionInput'?: (event: CustomEvent<any>) => void;
+    'onShowBookingDetails'?: (event: CustomEvent<any>) => void;
+    'onShowCheckInInput'?: (event: CustomEvent<any>) => void;
+    'onShowCheckOutInput'?: (event: CustomEvent<any>) => void;
+    'onShowGuestsInput'?: (event: CustomEvent<any>) => void;
+    'onShowSeasonalRates'?: (event: CustomEvent<any>) => void;
+  }
   interface PageListingImageModal extends JSXBase.HTMLAttributes<HTMLPageListingImageModalElement> {
     'src': string;
   }
@@ -724,6 +768,12 @@ declare namespace LocalJSX {
   interface SearchShareselectedDropdown extends JSXBase.HTMLAttributes<HTMLSearchShareselectedDropdownElement> {}
   interface SearchSortbyDropdown extends JSXBase.HTMLAttributes<HTMLSearchSortbyDropdownElement> {}
   interface SearchStateEmpty extends JSXBase.HTMLAttributes<HTMLSearchStateEmptyElement> {}
+  interface SeasonalRates extends JSXBase.HTMLAttributes<HTMLSeasonalRatesElement> {
+    'item': any;
+  }
+  interface ShareListing extends JSXBase.HTMLAttributes<HTMLShareListingElement> {
+    'item': any;
+  }
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
     'color'?: string;
     'onRated'?: (event: CustomEvent<number>) => void;
@@ -761,6 +811,7 @@ declare namespace LocalJSX {
     'app-profile': AppProfile;
     'app-root': AppRoot;
     'apt212-checkbox': Apt212Checkbox;
+    'apt212-modal-booking-frame': Apt212ModalBookingFrame;
     'apt212-popover': Apt212Popover;
     'bathroom-filter': BathroomFilter;
     'bedroom-filter': BedroomFilter;
@@ -804,6 +855,8 @@ declare namespace LocalJSX {
     'search-shareselected-dropdown': SearchShareselectedDropdown;
     'search-sortby-dropdown': SearchSortbyDropdown;
     'search-state-empty': SearchStateEmpty;
+    'seasonal-rates': SeasonalRates;
+    'share-listing': ShareListing;
     'star-rating': StarRating;
     'wishlist-card': WishlistCard;
     'youtube-video': YoutubeVideo;

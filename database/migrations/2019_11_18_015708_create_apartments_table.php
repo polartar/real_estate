@@ -30,7 +30,7 @@ class CreateApartmentsTable extends Migration
             $table->text('cross_streets')->nullable();
             $table->date('available_date')->nullable()->index();
             $table->date('available_until')->nullable()->index();
-            $table->float('rate')->nullable()->index();
+            $table->float('rate', 10, 2)->nullable()->index();
             $table->float('tax_rate')->nullable();
             $table->float('application_charge')->nullable();
             $table->float('service_charge')->nullable();
@@ -48,7 +48,7 @@ class CreateApartmentsTable extends Migration
             $table->boolean('is_active')->default(false)->index();
             $table->mediumText('title');
             $table->longText('description');
-            $table->boolean('faked');
+            $table->boolean('faked')->default(false);
             $table->timestamps();
         });
     }

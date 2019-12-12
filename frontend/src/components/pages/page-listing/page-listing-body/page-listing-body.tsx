@@ -129,6 +129,38 @@ export class PageListingBody {
     }
   }
 
+  showSeasonalRates() {
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'apt212-modal-booking-frame',
+      cssClass: 'seasonal-rates-modal',
+      componentProps: {
+        component: 'seasonal-rates',
+        componentProps: {
+          item: this.item
+        }
+      }
+    });
+
+    document.body.appendChild(modal);
+    return modal.present();
+  }
+
+  shareApartment() {
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'apt212-modal-booking-frame',
+      cssClass: 'share-listing-modal',
+      componentProps: {
+        component: 'share-listing',
+        componentProps: {
+          item: this.item
+        }
+      }
+    });
+
+    document.body.appendChild(modal);
+    return modal.present();
+  }
+
   render() {
     return (
       <Host class="page-listing-body-component">
@@ -148,7 +180,14 @@ export class PageListingBody {
                 <span class="date">{formatDate(this.item.available_date, 'm.d.y')}</span> next available date
               </div>
 
-              <page-listing-checkin />
+              <page-listing-checkin
+                onShowCheckInInput={e => console.log('show checkin', e)}
+                onShowCheckOutInput={() => console.log('show checkout')}
+                onShowGuestsInput={() => console.log('show guests input')}
+                onShowSeasonalRates={() => this.showSeasonalRates()}
+                onShowBookingDetails={() => console.log('show booking details')}
+                onShowAskQuestionInput={() => console.log('show ask question input')}
+              />
             </div>
 
             <div class="wishlist-share">
@@ -158,7 +197,7 @@ export class PageListingBody {
 
 
 
-              <button aria-label="Share listing" class="button-reset has-icon">
+              <button aria-label="Share listing" class="button-reset has-icon" onClick={() => this.shareApartment()}>
                 <ion-icon src="/assets/images/icons/share.svg" /> Share
               </button>
             </div>

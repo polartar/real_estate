@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Send Email</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Share-Apartment" transform="translate(-111.000000, -112.000000)" fill="#000000">
+            <path d="M111.443182,112 C111.198516,112 111,112.20157 111,112.45 L111,120.55 C111,120.79843 111.198516,121 111.443182,121 L123.556818,121 C123.801484,121 124,120.79843 124,120.55 L124,112.45 C124,112.20157 123.801484,112 123.556818,112 L111.443182,112 Z M112.698864,112.9 L122.301136,112.9 L117.5,116.8234 L112.698864,112.9 Z M111.886364,113.3875 L117.223011,117.7468 C117.385172,117.87805 117.614828,117.87805 117.776989,117.7468 L123.113636,113.3875 L123.113636,120.1 L111.886364,120.1 L111.886364,113.3875 Z" id="Send-Email"></path>
+        </g>
+    </g>
+</svg>

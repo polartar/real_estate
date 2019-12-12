@@ -26,6 +26,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        // update apartment rates each day in case the next available date falls into the past
+        // and the current day jumps into a new rate interval
+        $schedule->command('apt212:setApartmentRates')->daily();
     }
 
     /**

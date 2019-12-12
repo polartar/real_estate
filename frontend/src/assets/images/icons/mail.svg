@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="13px" viewBox="0 0 18 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Mail Icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Listing-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="7.9" transform="translate(-883.000000, -382.000000)" fill="#000000">
+            <g id="Group-23" transform="translate(479.000000, 190.000000)">
+                <g id="Group-20" transform="translate(47.000000, 182.000000)">
+                    <path d="M357.613636,10 C357.274868,10 357,10.2911567 357,10.65 L357,22.35 C357,22.7088433 357.274868,23 357.613636,23 L374.386364,23 C374.725132,23 375,22.7088433 375,22.35 L375,10.65 C375,10.2911567 374.725132,10 374.386364,10 L357.613636,10 Z M359.352273,11.3 L372.647727,11.3 L366,16.9671333 L359.352273,11.3 Z M358.227273,12.0041667 L365.616477,18.3009333 C365.841007,18.4905167 366.158993,18.4905167 366.383523,18.3009333 L373.772727,12.0041667 L373.772727,21.7 L358.227273,21.7 L358.227273,12.0041667 Z" id="Mail-Icon"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
