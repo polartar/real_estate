@@ -86,10 +86,9 @@
   }
 
   .errors {
-    padding-top: 0.5rem;
-
     > div {
       color: red;
+      padding-top: 0.5rem;
     }
   }
 }
