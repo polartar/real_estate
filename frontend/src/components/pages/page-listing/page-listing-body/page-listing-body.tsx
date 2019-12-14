@@ -205,19 +205,19 @@ export class PageListingBody {
   }
 
   showBookingDetails() {
-    // const modal = Object.assign(document.createElement('ion-modal'), {
-    //   component: 'apt212-modal-booking-frame',
-    //   cssClass: 'booking-details-modal',
-    //   componentProps: {
-    //     component: 'booking-details',
-    //     componentProps: {
-    //       item: this.item
-    //     }
-    //   }
-    // });
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'apt212-modal-booking-frame',
+      cssClass: 'booking-details-modal',
+      componentProps: {
+        component: 'booking-details',
+        componentProps: {
+          item: this.item
+        }
+      }
+    });
 
-    // document.body.appendChild(modal);
-    // return modal.present();
+    document.body.appendChild(modal);
+    return modal.present();
   }
 
   render() {
@@ -241,6 +241,7 @@ export class PageListingBody {
                 </div>
 
                 <page-listing-checkin
+                  item={this.item}
                   onShowCheckInInput={() => this.showBookingDateInput('checkin')}
                   onShowCheckOutInput={() => this.showBookingDateInput('checkout')}
                   onShowGuestsInput={() => this.showGuestInput()}

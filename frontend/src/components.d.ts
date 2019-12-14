@@ -62,6 +62,9 @@ export namespace Components {
     'inModal': boolean;
     'selectAll': () => Promise<void>;
   }
+  interface BookingDetails {
+    'item': any;
+  }
   interface BuildingTypeFilter {
     'clearAll': () => Promise<void>;
     'inModal': boolean;
@@ -154,7 +157,9 @@ export namespace Components {
   interface PageListingBody {
     'item': any;
   }
-  interface PageListingCheckin {}
+  interface PageListingCheckin {
+    'item': any;
+  }
   interface PageListingImageModal {
     'src': string;
   }
@@ -298,6 +303,12 @@ declare global {
   var HTMLBedroomFilterElement: {
     prototype: HTMLBedroomFilterElement;
     new (): HTMLBedroomFilterElement;
+  };
+
+  interface HTMLBookingDetailsElement extends Components.BookingDetails, HTMLStencilElement {}
+  var HTMLBookingDetailsElement: {
+    prototype: HTMLBookingDetailsElement;
+    new (): HTMLBookingDetailsElement;
   };
 
   interface HTMLBuildingTypeFilterElement extends Components.BuildingTypeFilter, HTMLStencilElement {}
@@ -593,6 +604,7 @@ declare global {
     'apt212-popover': HTMLApt212PopoverElement;
     'bathroom-filter': HTMLBathroomFilterElement;
     'bedroom-filter': HTMLBedroomFilterElement;
+    'booking-details': HTMLBookingDetailsElement;
     'building-type-filter': HTMLBuildingTypeFilterElement;
     'component-prefetch': HTMLComponentPrefetchElement;
     'content-404': HTMLContent404Element;
@@ -686,6 +698,9 @@ declare namespace LocalJSX {
   interface BedroomFilter extends JSXBase.HTMLAttributes<HTMLBedroomFilterElement> {
     'inModal'?: boolean;
   }
+  interface BookingDetails extends JSXBase.HTMLAttributes<HTMLBookingDetailsElement> {
+    'item': any;
+  }
   interface BuildingTypeFilter extends JSXBase.HTMLAttributes<HTMLBuildingTypeFilterElement> {
     'inModal'?: boolean;
   }
@@ -773,6 +788,7 @@ declare namespace LocalJSX {
     'item': any;
   }
   interface PageListingCheckin extends JSXBase.HTMLAttributes<HTMLPageListingCheckinElement> {
+    'item': any;
     'onShowAskQuestionInput'?: (event: CustomEvent<any>) => void;
     'onShowBookingDetails'?: (event: CustomEvent<any>) => void;
     'onShowCheckInInput'?: (event: CustomEvent<any>) => void;
@@ -864,6 +880,7 @@ declare namespace LocalJSX {
     'apt212-popover': Apt212Popover;
     'bathroom-filter': BathroomFilter;
     'bedroom-filter': BedroomFilter;
+    'booking-details': BookingDetails;
     'building-type-filter': BuildingTypeFilter;
     'component-prefetch': ComponentPrefetch;
     'content-404': Content404;

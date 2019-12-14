@@ -1,0 +1,85 @@
+.booking-details-component {
+  width: 100%;
+  display: flex;
+  padding-top: 20px;
+
+  .left {
+    width: 60%;
+    padding-right: 1.5rem;
+  }
+
+  .right {
+    padding-top: 30px;
+    width: 40%;
+  }
+
+  .details-section {
+    padding-bottom: 0.5rem;
+
+    &.breakdown {
+      border-top: 1px dashed black;
+      border-bottom: 1px dashed black;
+    }
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: center;
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+    .info {
+      width: 15px;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+    }
+
+    .center {
+      flex-grow: 1;
+    }
+
+    .arrow-right {
+      transform: rotate(180deg);
+    }
+
+    .info-wrapper {
+      position: relative;
+
+      button {
+        display: block;
+      }
+
+      .tooltip {
+        display: none;
+        position: absolute;
+        padding: 0.5rem;
+        border: 1px solid black;
+        width: 200px;
+        font-size: 12px;
+        left: 100%;
+        top: 0;
+        background-color: white;
+        z-index: 1;
+        text-align: center;
+        border-radius: 4px;
+
+        &.active {
+          display: block;
+        }
+
+        .indicator {
+          width: 6px;
+          height: 6px;
+          position: absolute;
+          border-top: 1px solid black;
+          border-left: 1px solid black;
+          transform: rotate(-45deg);
+          left: 0;
+          top: calc(50% - 6px);
+          margin-left: -4px;
+          background: white;
+        }
+      }
+    }
+  }
+}

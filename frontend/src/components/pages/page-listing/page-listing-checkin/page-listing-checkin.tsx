@@ -1,5 +1,6 @@
 import { Component, h, Event, EventEmitter, Prop, State } from '@stencil/core';
-import { Store } from '@stencil/redux';
+import { Store, Action } from '@stencil/redux';
+import { bookingReset } from '../../../../store/actions/booking';
 import bookingSelectors from '../../../../store/selectors/booking';
 import { formatDate } from '../../../../helpers/utils';
 
@@ -9,10 +10,15 @@ import { formatDate } from '../../../../helpers/utils';
 })
 export class PageListingCheckin {
   @Prop({ context: "store" }) store: Store;
+  @Prop() item!: any;
+
+  bookingReset: Action;
+
   @State() guests: number = 0;
   @State() checkinDate: Date | null = null;
   @State() checkoutDate: Date | null = null;
   @State() submitAttempt: number = 0;
+  @State() apartmentId: number | null = null;
 
   @Event() showSeasonalRates: EventEmitter;
   @Event() showCheckInInput: EventEmitter;
@@ -25,10 +31,20 @@ export class PageListingCheckin {
     this.store.mapStateToProps(this, state => {
       return {
         guests: bookingSelectors.getGuests(state),
+        apartmentId: bookingSelectors.getApartmentId(state),
         checkinDate: bookingSelectors.getCheckinDate(state),
         checkoutDate: bookingSelectors.getCheckoutDate(state)
       };
     });
+
+    this.store.mapDispatchToProps(this, {
+      bookingReset
+    });
+
+    if (this.apartmentId !== this.item.id) {
+      // reset the booking state
+      this.bookingReset();
+    }
   }
 
   getErrors() {
