@@ -17,6 +17,7 @@
       flex-grow: 1;
       font-size: 22px;
       text-align: left;
+      width: 176px;
 
       &.checkout {
         text-align: right;
@@ -32,6 +33,7 @@
 
   .guests {
     display: flex;
+    align-items: center;
     width: 100%;
     text-align: left;
     height: 56px;
@@ -80,6 +82,14 @@
         font-size: 13px;
         margin-left: 0.5rem;
       }
+    }
+  }
+
+  .errors {
+    padding-top: 0.5rem;
+
+    > div {
+      color: red;
     }
   }
 }

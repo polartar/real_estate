@@ -33,6 +33,11 @@ export namespace Components {
     'uncheck': () => Promise<void>;
     'value': string;
   }
+  interface Apt212Datepicker {
+    'minDate': any;
+    'size': number;
+    'value': any;
+  }
   interface Apt212ModalBookingFrame {
     'component': string;
     'componentProps': any;
@@ -78,6 +83,14 @@ export namespace Components {
   interface FilterTagsAll {}
   interface InlineGallery {
     'images': InlineImageInterface[];
+  }
+  interface InputBookingDate {
+    'inPopover': boolean;
+    'item': any;
+    'type': string;
+  }
+  interface InputBookingGuests {
+    'item': any;
   }
   interface LazyImage {
     'alt': string;
@@ -257,6 +270,12 @@ declare global {
     new (): HTMLApt212CheckboxElement;
   };
 
+  interface HTMLApt212DatepickerElement extends Components.Apt212Datepicker, HTMLStencilElement {}
+  var HTMLApt212DatepickerElement: {
+    prototype: HTMLApt212DatepickerElement;
+    new (): HTMLApt212DatepickerElement;
+  };
+
   interface HTMLApt212ModalBookingFrameElement extends Components.Apt212ModalBookingFrame, HTMLStencilElement {}
   var HTMLApt212ModalBookingFrameElement: {
     prototype: HTMLApt212ModalBookingFrameElement;
@@ -327,6 +346,18 @@ declare global {
   var HTMLInlineGalleryElement: {
     prototype: HTMLInlineGalleryElement;
     new (): HTMLInlineGalleryElement;
+  };
+
+  interface HTMLInputBookingDateElement extends Components.InputBookingDate, HTMLStencilElement {}
+  var HTMLInputBookingDateElement: {
+    prototype: HTMLInputBookingDateElement;
+    new (): HTMLInputBookingDateElement;
+  };
+
+  interface HTMLInputBookingGuestsElement extends Components.InputBookingGuests, HTMLStencilElement {}
+  var HTMLInputBookingGuestsElement: {
+    prototype: HTMLInputBookingGuestsElement;
+    new (): HTMLInputBookingGuestsElement;
   };
 
   interface HTMLLazyImageElement extends Components.LazyImage, HTMLStencilElement {}
@@ -557,6 +588,7 @@ declare global {
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'apt212-checkbox': HTMLApt212CheckboxElement;
+    'apt212-datepicker': HTMLApt212DatepickerElement;
     'apt212-modal-booking-frame': HTMLApt212ModalBookingFrameElement;
     'apt212-popover': HTMLApt212PopoverElement;
     'bathroom-filter': HTMLBathroomFilterElement;
@@ -569,6 +601,8 @@ declare global {
     'filter-tags': HTMLFilterTagsElement;
     'filter-tags-all': HTMLFilterTagsAllElement;
     'inline-gallery': HTMLInlineGalleryElement;
+    'input-booking-date': HTMLInputBookingDateElement;
+    'input-booking-guests': HTMLInputBookingGuestsElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
     'listing-list': HTMLListingListElement;
@@ -627,6 +661,12 @@ declare namespace LocalJSX {
     'onCheckBoxChange'?: (event: CustomEvent<any>) => void;
     'value'?: string;
   }
+  interface Apt212Datepicker extends JSXBase.HTMLAttributes<HTMLApt212DatepickerElement> {
+    'minDate'?: any;
+    'onSelect'?: (event: CustomEvent<any>) => void;
+    'size'?: number;
+    'value'?: any;
+  }
   interface Apt212ModalBookingFrame extends JSXBase.HTMLAttributes<HTMLApt212ModalBookingFrameElement> {
     'component': string;
     'componentProps'?: any;
@@ -661,6 +701,14 @@ declare namespace LocalJSX {
   interface FilterTagsAll extends JSXBase.HTMLAttributes<HTMLFilterTagsAllElement> {}
   interface InlineGallery extends JSXBase.HTMLAttributes<HTMLInlineGalleryElement> {
     'images': InlineImageInterface[];
+  }
+  interface InputBookingDate extends JSXBase.HTMLAttributes<HTMLInputBookingDateElement> {
+    'inPopover'?: boolean;
+    'item': any;
+    'type'?: string;
+  }
+  interface InputBookingGuests extends JSXBase.HTMLAttributes<HTMLInputBookingGuestsElement> {
+    'item': any;
   }
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
@@ -811,6 +859,7 @@ declare namespace LocalJSX {
     'app-profile': AppProfile;
     'app-root': AppRoot;
     'apt212-checkbox': Apt212Checkbox;
+    'apt212-datepicker': Apt212Datepicker;
     'apt212-modal-booking-frame': Apt212ModalBookingFrame;
     'apt212-popover': Apt212Popover;
     'bathroom-filter': BathroomFilter;
@@ -823,6 +872,8 @@ declare namespace LocalJSX {
     'filter-tags': FilterTags;
     'filter-tags-all': FilterTagsAll;
     'inline-gallery': InlineGallery;
+    'input-booking-date': InputBookingDate;
+    'input-booking-guests': InputBookingGuests;
     'lazy-image': LazyImage;
     'listing-card': ListingCard;
     'listing-list': ListingList;

@@ -1,5 +1,4 @@
 import { Component, h, Element, Prop} from '@stencil/core';
-import datepicker from 'js-datepicker'
 import { Store, Action } from '@stencil/redux';
 import { searchFilterSelectors } from '../../../../../store/selectors/search';
 import { setMoveInFilter } from '../../../../../store/actions/search';
@@ -28,42 +27,6 @@ export class LocationFilter {
     });
   }
 
-  componentDidLoad() {
-    const node = this.el.querySelector('.datepicker');
-    this.picker = datepicker(node, {
-      alwaysShow: true,
-      startDay: 1,
-      minDate: new Date(),
-      dateSelected: this.value,
-      disableYearOverlay: true,
-      onSelect: (_instance, date) => {
-        this.setMoveInFilter(date);
-      },
-      onMonthChange: () => {
-        this.padNumbers();
-      },
-      onShow: () => {
-        // need settimeout to allow the component to render before querying the dom nodes
-        // doesn't appear to be any better event for it
-        setTimeout(() => {
-          this.padNumbers();
-        }, 250);
-      }
-    });
-
-    this.picker.calendarContainer.style.setProperty('font-size', '1.2rem');
-  }
-
-  padNumbers() {
-    const squares: any = this.el.querySelectorAll('.qs-square .qs-num');
-
-    squares.forEach(square => {
-      if (square.innerText.length === 1) {
-        square.innerText = '0' + square.innerText;
-      }
-    });
-  }
-
   closePopover() {
     const popover = this.el.closest('apt212-popover');
 
@@ -75,11 +38,11 @@ export class LocationFilter {
   render() {
     return (
       <div class="move-in-date-filter">
-        <div class="picker-wrapper">
-          <div class="datepicker">
 
-          </div>
+        <div class="picker">
+          <apt212-datepicker onSelect={e => this.setMoveInFilter(e.detail) }/>
         </div>
+
         <div class="disclaimer">
           Minimum Stay 30 Days
         </div>

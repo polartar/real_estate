@@ -17,15 +17,24 @@ export function formatMoney(num: number, locale: string = 'en-US', options: any 
   return formatter.format(num);
 }
 
-export function formatDate(vdate, format?: string) {
-  const date = new Date(vdate);
+export function getDate(vdate) {
+  const date = new  Date(vdate);
 
   // normalize timezone
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
+  return date;
+}
+
+export function formatDate(vdate, format?: string) {
+  const date = getDate(vdate); new Date(vdate);
+
   let result = '';
 
   switch (format) {
+    case 'm/d/Y':
+      result = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+    break;
     case 'm/d/y':
       result = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear().toString().slice(-2);
     break;

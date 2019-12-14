@@ -1,0 +1,45 @@
+.input-booking-date-component {
+  width: 100%;
+  position: relative;
+
+  /**
+   * Note these are basically all magic numbers to create the triangle
+   * that points out of the popover
+   */
+  .popover-marker {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    transform: rotate(45deg);
+    background: white;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    top: -7px;
+
+    &.checkin {
+      left: 72px;
+    }
+
+    &.checkout {
+      right: 72px;
+    }
+  }
+
+  .picker {
+    padding-top: 20px;
+    width: 100%;
+    min-height: 300px;
+  }
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 9002;
+  }
+
+  .disclaimer {
+    font-weight: bold;
+    padding: 1.5rem 1.5rem 1.5rem 2.3rem;
+  }
+}

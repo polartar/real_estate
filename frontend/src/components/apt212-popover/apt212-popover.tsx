@@ -6,7 +6,7 @@ import { Component, h, Host, Prop, Element, Method, Listen} from '@stencil/core'
 })
 export class Apt212Popover {
   @Element() el: HTMLElement;
-  @Prop() target: any = null; // override target to bind the popover to
+  @Prop() target: any; // override target to bind the popover to
   @Prop() component!: string;
   @Prop() componentProps: any = {};
   @Prop() styleOverride: any = {};
@@ -83,6 +83,10 @@ export class Apt212Popover {
    */
 
   positionTargetBottomLeft() {
+    if (!this.target) {
+      return;
+    }
+
     let targetBounds = this.target.getBoundingClientRect();
 
     switch (this.bindTo.popover) {
@@ -102,6 +106,10 @@ export class Apt212Popover {
   }
 
   positionTargetTopRight() {
+    if (!this.target) {
+      return;
+    }
+
     let targetBounds = this.target.getBoundingClientRect();
     let popoverBounds = this.getWrapper().getBoundingClientRect();
 
@@ -119,6 +127,10 @@ export class Apt212Popover {
   }
 
   positionTargetBottomRight() {
+    if (!this.target) {
+      return;
+    }
+
     let targetBounds = this.target.getBoundingClientRect();
 
     switch (this.bindTo.popover) {

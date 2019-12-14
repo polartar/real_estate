@@ -7,6 +7,13 @@ import {
 } from "./auth";
 
 import {
+  BookingReset,
+  BookingSetCheckin,
+  BookingSetCheckout,
+  BookingSetGuests
+} from "./booking";
+
+import {
   UpdateScreenSize
 } from "./screensize";
 
@@ -69,6 +76,10 @@ export type ActionTypes =
   | SetMapMarkersLoading
   | AddToWishlist
   | RemoveFromWishlist
+  | BookingReset
+  | BookingSetCheckin
+  | BookingSetCheckout
+  | BookingSetGuests
 ;
 
 export enum Actions {
@@ -98,5 +109,9 @@ export enum Actions {
   SET_SELECTED_LISTINGS = "SET_SELECTED_LISTINGS",
   SET_SEARCH_LISTING_HOVER = "SET_SEARCH_LISTING_HOVER",
   ADD_TO_WISHLIST = "ADD_TO_WISHLIST",
-  REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST"
+  REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST",
+  BOOKING_SET_CHECKIN_DATE = "BOOKING_SET_CHECKIN_DATE",
+  BOOKING_SET_CHECKOUT_DATE = "BOOKING_SET_CHECKOUT_DATE",
+  BOOKING_SET_GUESTS = "BOOKING_SET_GUESTS",
+  BOOKING_RESET = "BOOKING_RESET"
 }

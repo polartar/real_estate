@@ -1,0 +1,19 @@
+@import '../../../styles/variables';
+
+.input-booking-guests-component {
+  .option {
+    display: block;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+
+    &:hover,
+    .selected {
+      background-color: $color-secondary;
+      color: white;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, h, Prop, Host, State } from '@stencil/core';
+import { Component, h, Prop, Host, State, Element } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import { addToWishlist, removeFromWishlist } from '../../../../store/actions/wishlist';
 import wishlistSelectors from '../../../../store/selectors/wishlist';
@@ -13,6 +13,7 @@ import { APISearchService } from '../../../../services/api/search';
 })
 export class PageListingBody {
   @Prop({ context: "store" }) store: Store;
+  @Element() el: HTMLElement;
   @Prop() item!: any;
   @State() wishlist: any[] = [];
 
@@ -161,6 +162,64 @@ export class PageListingBody {
     return modal.present();
   }
 
+  showBookingDateInput(type) {
+    const popover = Object.assign(document.createElement('apt212-popover'), {
+      component: 'input-booking-date',
+      componentProps: {
+        type: type,
+        inPopover: true,
+        item: this.item
+      },
+      animateSrc: 'none',
+      styleOverride: {
+        top: '142px',
+        left: '20px',
+        width: '438px',
+        zIndex: '1',
+        border: '1px solid black',
+        transform: 'none'
+      }
+    });
+
+    this.el.querySelector('.checkin-form').appendChild(popover);
+  }
+
+  showGuestInput() {
+    const popover = Object.assign(document.createElement('apt212-popover'), {
+      component: 'input-booking-guests',
+      componentProps: {
+        item: this.item
+      },
+      animateSrc: 'none',
+      styleOverride: {
+        top: '200px',
+        left: '20px',
+        width: '438px',
+        zIndex: '1',
+        border: '1px solid black',
+        transform: 'none'
+      }
+    });
+
+    this.el.querySelector('.checkin-form').appendChild(popover);
+  }
+
+  showBookingDetails() {
+    // const modal = Object.assign(document.createElement('ion-modal'), {
+    //   component: 'apt212-modal-booking-frame',
+    //   cssClass: 'booking-details-modal',
+    //   componentProps: {
+    //     component: 'booking-details',
+    //     componentProps: {
+    //       item: this.item
+    //     }
+    //   }
+    // });
+
+    // document.body.appendChild(modal);
+    // return modal.present();
+  }
+
   render() {
     return (
       <Host class="page-listing-body-component">
@@ -169,37 +228,39 @@ export class PageListingBody {
         </section>
         <section class="section listing-main">
           <div class={{'listing-right': true, 'has-slider': !!this.item.images.length}}>
-            <div class="listing-price">
-              <div>
-                <span class="rate">{formatMoney(this.item.rate)}</span> per month
-              </div>
-            </div>
-
-            <div class="checkin-form">
-              <div class="available-date">
-                <span class="date">{formatDate(this.item.available_date, 'm.d.y')}</span> next available date
+            <div class="stickyblock">
+              <div class="listing-price">
+                <div>
+                  <span class="rate">{formatMoney(this.item.rate)}</span> per month
+                </div>
               </div>
 
-              <page-listing-checkin
-                onShowCheckInInput={e => console.log('show checkin', e)}
-                onShowCheckOutInput={() => console.log('show checkout')}
-                onShowGuestsInput={() => console.log('show guests input')}
-                onShowSeasonalRates={() => this.showSeasonalRates()}
-                onShowBookingDetails={() => console.log('show booking details')}
-                onShowAskQuestionInput={() => console.log('show ask question input')}
-              />
-            </div>
+              <div class="checkin-form">
+                <div class="available-date">
+                  <span class="date">{formatDate(this.item.available_date, 'm.d.y')}</span> next available date
+                </div>
 
-            <div class="wishlist-share">
-              <button aria-label="Add to wishlist" class="button-reset has-icon" onClick={() => this.toggleWishlist()}>
-                <ion-icon src="/assets/images/icons/heart_icon.svg" /> { this.wishlist.includes(this.item.id) ? 'Remove from wishlist' : 'Add to wishlist' }
-              </button>
+                <page-listing-checkin
+                  onShowCheckInInput={() => this.showBookingDateInput('checkin')}
+                  onShowCheckOutInput={() => this.showBookingDateInput('checkout')}
+                  onShowGuestsInput={() => this.showGuestInput()}
+                  onShowSeasonalRates={() => this.showSeasonalRates()}
+                  onShowBookingDetails={() => this.showBookingDetails()}
+                  onShowAskQuestionInput={() => console.log('show ask question input')}
+                />
+              </div>
+
+              <div class="wishlist-share">
+                <button aria-label="Add to wishlist" class="button-reset has-icon" onClick={() => this.toggleWishlist()}>
+                  <img src="/assets/images/icons/heart_icon.svg" class="wishlist-icon" /> { this.wishlist.includes(this.item.id) ? 'Remove from wishlist' : 'Add to wishlist' }
+                </button>
 
 
 
-              <button aria-label="Share listing" class="button-reset has-icon" onClick={() => this.shareApartment()}>
-                <ion-icon src="/assets/images/icons/share.svg" /> Share
-              </button>
+                <button aria-label="Share listing" class="button-reset has-icon" onClick={() => this.shareApartment()}>
+                  <img src="/assets/images/icons/share.svg" class="share-icon" /> Share
+                </button>
+              </div>
             </div>
           </div>
 
