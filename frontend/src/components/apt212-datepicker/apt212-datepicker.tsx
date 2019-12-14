@@ -12,7 +12,7 @@ export class Apt212Datepicker {
   @Prop() value: any;
   @Prop() minDate: any = new Date();
 
-  @Event() select: EventEmitter;
+  @Event() selected: EventEmitter;
 
   componentDidLoad() {
     const node = this.el.querySelector('.datepicker');
@@ -23,7 +23,7 @@ export class Apt212Datepicker {
       dateSelected: this.value,
       disableYearOverlay: true,
       onSelect: (_instance, date) => {
-        this.select.emit(date);
+        this.selected.emit(date);
       },
       onMonthChange: () => {
         this.padNumbers();

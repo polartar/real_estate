@@ -663,7 +663,7 @@ declare namespace LocalJSX {
   }
   interface Apt212Datepicker extends JSXBase.HTMLAttributes<HTMLApt212DatepickerElement> {
     'minDate'?: any;
-    'onSelect'?: (event: CustomEvent<any>) => void;
+    'onSelected'?: (event: CustomEvent<any>) => void;
     'size'?: number;
     'value'?: any;
   }

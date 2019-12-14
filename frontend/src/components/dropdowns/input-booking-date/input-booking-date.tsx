@@ -80,7 +80,7 @@ export class InputBookingDate {
         <div class="picker">
           <apt212-datepicker
             size={1.6}
-            onSelect={e => this.dateSelected(e)}
+            onSelected={e => this.dateSelected(e)}
             value={this.type === 'checkin' ? this.checkinDate : this.checkoutDate }
             minDate={this.getMinDate()}
           />

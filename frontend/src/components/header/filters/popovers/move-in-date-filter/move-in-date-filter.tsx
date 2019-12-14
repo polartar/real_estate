@@ -40,7 +40,7 @@ export class LocationFilter {
       <div class="move-in-date-filter">
 
         <div class="picker">
-          <apt212-datepicker onSelect={e => this.setMoveInFilter(e.detail) }/>
+          <apt212-datepicker onSelected={e => this.setMoveInFilter(e.detail) }/>
         </div>
 
         <div class="disclaimer">
