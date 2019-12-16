@@ -28,9 +28,18 @@
   .detail-item {
     display: flex;
     align-items: center;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    height: 26px;
+    padding: 2px 8px;
+    height: 24px;
+    margin-left: -8px;
+
+    &.highlight {
+      color: #057365;
+    }
+
+    &.bg-highlight {
+      background-color: rgba(5, 115, 101, 0.1);
+      height: 33px;
+    }
 
     .info {
       width: 15px;
@@ -50,7 +59,8 @@
       position: relative;
 
       button {
-        display: block;
+        display: flex;
+        align-items: center;
       }
 
       .tooltip {
@@ -88,7 +98,7 @@
   }
 
   .action-buttons {
-    padding-top: 20px;
+    padding-top: 50px;
 
     button {
       padding-top: 16px;

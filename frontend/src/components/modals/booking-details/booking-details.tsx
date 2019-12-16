@@ -150,7 +150,8 @@ export class BookingDetails {
         tooltip: '',
         description: 'Refundable Deposit:',
         center: '',
-        value: formatMoney(3000)
+        value: formatMoney(3000),
+        class: 'highlight'
       },
       {
         tooltip: '',
@@ -165,7 +166,8 @@ export class BookingDetails {
         tooltip: '',
         description: 'Due now to reserve:',
         center: '',
-        value: formatMoney(9000)
+        value: formatMoney(9000),
+        class: 'bg-highlight'
       },
       {
         tooltip: '',
@@ -189,7 +191,8 @@ export class BookingDetails {
         tooltip: '',
         description: 'Deposit Refund:',
         center: '',
-        value: formatMoney(-3000)
+        value: formatMoney(-3000),
+        class: 'highlight'
       }
     ];
 
@@ -234,8 +237,14 @@ export class BookingDetails {
           <div class="details-section breakdown">
             <h3>Total Breakdown</h3>
             {
-              breakdownDetails.map(b =>
-                <div class="detail-item">
+              breakdownDetails.map(b => {
+                let classObj = { 'detail-item': true };
+                if (b.hasOwnProperty('class')) {
+                  classObj[b.class] = true;
+                }
+
+                return (
+                <div class={classObj}>
                   <div class="info-wrapper">
                     <button class="button-reset" aria-label="Line item details" onClick={e => this.setTooltip(e)}>
                       <img src="/assets/images/icons/question-circle.svg" alt="info" class="info"/>
@@ -261,15 +270,22 @@ export class BookingDetails {
                     { b.value }
                   </div>
                 </div>
-              )
+                )
+              })
             }
           </div>
 
           <div class="details-section payment">
             <h3>Payment Timeline</h3>
             {
-              paymentDetails.map(b =>
-                <div class="detail-item">
+              paymentDetails.map(b => {
+                let classObj = { 'detail-item': true };
+                if (b.hasOwnProperty('class')) {
+                  classObj[b.class] = true;
+                }
+
+                return (
+                <div class={classObj}>
                   <div class="info-wrapper">
                     <button class="button-reset" aria-label="Line item details" onClick={e => this.setTooltip(e)}>
                       <img src="/assets/images/icons/question-circle.svg" alt="info" class="info"/>
@@ -295,7 +311,8 @@ export class BookingDetails {
                     { b.value }
                   </div>
                 </div>
-              )
+                )
+              })
             }
           </div>
 
