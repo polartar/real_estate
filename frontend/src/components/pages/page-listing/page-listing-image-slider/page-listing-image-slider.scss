@@ -14,6 +14,7 @@
   border-radius: 0;
   padding: 0;
   font-size: 32px;
+  box-shadow: none;
 
   top: calc(50% - 30px);
 
@@ -35,6 +36,10 @@ $arrow-right-right: 35px;
       perspective: 1000;
     }
 
+    .glide__slides {
+      margin: 0;
+    }
+
     .glide__arrow {
       @include glideArrow();
     }
@@ -48,21 +53,8 @@ $arrow-right-right: 35px;
     }
 
     .glide__arrow--left {
+      display: none;
       left: $arrow-left-left;
-    }
-
-    .left-arrow-click-jacker {
-      @include glideArrow();
-
-      left: $arrow-left-left;
-      opacity: 0;
-    }
-
-    .right-arrow-click-jacker {
-      @include glideArrow();
-
-      right: $arrow-right-right;
-      opacity: 0;
     }
   }
 

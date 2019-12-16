@@ -14,7 +14,10 @@
 
     .button-light {
       margin-left: 1.5rem;
-      border: 1px solid black;
+    }
+
+    .select-all {
+      text-transform: none;
     }
 
     ion-button.close {

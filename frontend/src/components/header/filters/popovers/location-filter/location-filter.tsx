@@ -154,8 +154,8 @@ export class LocationFilter {
     return (
       <div class="location-filter">
         <div class="toolbar">
-          <button aria-label="Select All" class="button-dark" onClick={() => this.toggleAll(true)}>Select All</button>
-          <button aria-label="Clear All" class="button-light" onClick={() => this.toggleAll(false)}>Clear All</button>
+          <button aria-label="Select All" class="button-dark select-all outline" onClick={() => this.toggleAll(true)}>Select All</button>
+          <button aria-label="Clear All" class="button-light clear-all outline" onClick={() => this.toggleAll(false)}>Clear All</button>
 
           <div class="spacer" />
 

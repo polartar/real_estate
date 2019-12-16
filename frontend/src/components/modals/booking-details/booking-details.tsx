@@ -1,7 +1,10 @@
 import { Component, h, Prop, Element } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import bookingSelectors from '../../../store/selectors/booking';
+import taxonomySelectors from '../../../store/selectors/taxonomy';
+import screensizeSelectors from '../../../store/selectors/screensize';
 import { formatDate, formatMoney } from '../../../helpers/utils';
+import { getBedsListingText } from '../../../helpers/filters';
 
 @Component({
   tag: 'booking-details',
@@ -12,16 +15,24 @@ export class BookingDetails {
   @Element() el: HTMLElement;
   @Prop() item!: any;
 
+  isMobile: boolean = true;
   checkinDate: Date;
   checkoutDate: Date;
   guests: number;
+  neighborhoods: any[];
+  bedroomTypes: any[];
+  buildingTypes: any[];
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
+        isMobile: screensizeSelectors.getIsMobile(state),
         checkinDate: bookingSelectors.getCheckinDate(state),
         checkoutDate: bookingSelectors.getCheckoutDate(state),
-        guests: bookingSelectors.getGuests(state)
+        guests: bookingSelectors.getGuests(state),
+        neighborhoods: taxonomySelectors.getNeighborhoods(state),
+        bedroomTypes: taxonomySelectors.getBedroomTypes(state),
+        buildingTypes: taxonomySelectors.getBuildingTypes(state)
       }
     });
   }
@@ -50,7 +61,27 @@ export class BookingDetails {
     tooltips.forEach(t => t.classList.remove('active'));
   }
 
+  shareApartment() {
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'apt212-modal-booking-frame',
+      cssClass: 'share-listing-modal',
+      componentProps: {
+        component: 'share-listing',
+        componentProps: {
+          item: this.item
+        }
+      }
+    });
+
+    document.body.appendChild(modal);
+    return modal.present();
+  }
+
   render() {
+    const neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
+    const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
+    const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
+
     const bookingDetails = [
       {
         tooltip: '',
@@ -268,10 +299,77 @@ export class BookingDetails {
             }
           </div>
 
+          <div class="action-buttons">
+            <button aria-label="Book Now" class="button-dark block">Book Now</button>
+            <button aria-label="Ask a question" class="button-light outline block text-upper">Ask a question</button>
+          </div>
+
         </div>
 
         <div class="right">
-          <div style={{ width: '100%', height: '200px', background: 'green'}} />
+          <div class="card">
+            <img src={this.item.images[0]} class="feature-image" />
+
+            <div class="card-content">
+              <h4>{this.item.cross_streets}</h4>
+              <div class="neighborhood">
+                { neighborhood.name }
+              </div>
+
+              <div class="price">
+                { formatMoney(this.item.rate) } /month
+              </div>
+
+              <div class="bed-bath">
+                <div>
+                  <lazy-image src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {getBedsListingText(bedroomType)}
+                </div>
+                <div class="divider">
+                  |
+                </div>
+                <div>
+                  <lazy-image src="/assets/images/icons/bathroom.svg" class="bathrooms" alt="bathroom icon" /> {this.item.bathrooms} Bathroom
+                </div>
+              </div>
+
+              <div class="rating-amenities">
+                <div class="amenities">
+                  { buildingType.name }
+                </div>
+
+                <star-rating
+                    stars={5}
+                    size={this.isMobile ? 10 : 16}
+                    rating={this.item.rating}
+                    readonly
+                />
+              </div>
+
+              <div class="webid">
+                Web Id #{this.item.id}
+              </div>
+            </div>
+          </div>
+
+          <div class="guarantee">
+            <div class="title">
+              <lazy-image src="/assets/images/icons/shield_guarantee.svg" />APT212 Tenant Guarantee
+            </div>
+
+            <p>
+              APT212 vets each hold and property and guarantees each listing is accurate as described.  No Hidden Fees.
+            </p>
+          </div>
+
+          <div class="share-download">
+            <button class="button-reset" aria-label="Share" onClick={() => this.shareApartment()}>
+              <lazy-image src="/assets/images/icons/share.svg" /> Share
+            </button>
+
+            <button class="button-reset">
+            <lazy-image src="/assets/images/icons/pdf.svg" /> Download
+            </button>
+          </div>
         </div>
       </div>
     )

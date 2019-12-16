@@ -47,6 +47,7 @@ export class PageListingImageSlider {
       gap: 8,
       focusAt: 0,
       startAt: 0,
+      bound: true,
       rewind: false,
       breakpoints: {
         575: {
@@ -78,6 +79,8 @@ export class PageListingImageSlider {
       }
     });
 
+    // this.glide.on('move.after', () => { this.afterSlideChange() });
+
     this.glide.on('resize', () => { this.hideShowArrows() });
 
     this.hideShowArrows();
@@ -87,20 +90,6 @@ export class PageListingImageSlider {
   componentDidUnload() {
     if (this.glide) {
       this.glide.destroy();
-    }
-  }
-
-  slideMove(dir) {
-    const numSlides = document.querySelectorAll('.' + this.sliderClass + ' .glide__slide').length;
-
-    const offsetRight = this.glide.settings.perView - this.glide.settings.focusAt;
-
-    if (dir === '<' && this.glide.index > this.glide.settings.startAt) {
-      this.glide.go('<');
-    }
-
-    if (dir === '>' && this.glide.index < numSlides - offsetRight) {
-      this.glide.go('>');
     }
   }
 
@@ -168,16 +157,6 @@ export class PageListingImageSlider {
               <img src="/assets/images/icons/listing_gallery_slider_arrow.svg" />
             </button>
           </div>
-
-          {/* hidden button overlay to capture the click events going back to prevent over-scroll */}
-          <button aria-label="" role="presentation" class="glide__arrow left-arrow-click-jacker" onClick={() => this.slideMove('<')}>
-            <img src="/assets/images/icons/listing_gallery_slider_arrow.svg" />
-          </button>
-
-          {/* hidden button overlay to capture the click events going back to prevent over-scroll */}
-          <button aria-label="" role="presentation" class="glide__arrow right-arrow-click-jacker" onClick={() => this.slideMove('>')}>
-            <img src="/assets/images/icons/listing_gallery_slider_arrow.svg" />
-          </button>
         </div>
       </div>
     )

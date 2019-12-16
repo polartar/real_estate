@@ -1,3 +1,6 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
 .booking-details-component {
   width: 100%;
   display: flex;
@@ -27,6 +30,7 @@
     align-items: center;
     padding-top: 2px;
     padding-bottom: 2px;
+    height: 26px;
 
     .info {
       width: 15px;
@@ -79,6 +83,134 @@
           margin-left: -4px;
           background: white;
         }
+      }
+    }
+  }
+
+  .action-buttons {
+    padding-top: 20px;
+
+    button {
+      padding-top: 16px;
+      padding-bottom: 16px;
+
+      &:first-child {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  .card {
+    border: 1px solid #969499;
+    font-size: $font-size-sm;
+
+    .card-content {
+      padding: 1rem 0.5rem 1.5rem;
+    }
+
+    h4 {
+      margin: 0;
+      text-transform: none;
+    }
+
+    .neighborhood {
+      padding-bottom: 0.5rem;
+    }
+
+    .price {
+      padding-bottom: 4px;
+    }
+
+    .feature-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .bed-bath {
+      display: flex;
+      align-items: center;
+      font-size: $font-size-sm;
+      padding-bottom: 0.5rem;
+
+      &>div {
+        display: flex;
+        align-items: center;
+      }
+
+      .divider {
+        padding: 0 1rem;
+      }
+    }
+
+    .bedrooms,
+    .bathrooms {
+      width: 0.625rem;
+      height: 0.625rem;
+      margin-right: 0.25rem;
+
+      @include for-size(desktop-up) {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .bedrooms {
+      margin-top: -1px;
+    }
+
+    .bathrooms {
+      margin-top: -3px;
+    }
+
+    .webid {
+      padding-top: 4px;
+    }
+  }
+
+  .rating-amenities {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-sm;
+
+    .amenities {
+      padding-right: 0.5rem;
+      padding-bottom: 4px;
+    }
+  }
+
+  .guarantee {
+    margin-top: 16px;
+    background-color: $color-secondary-light;
+    padding: 1.5rem 1rem 190px;
+    font-size: $font-size-md;
+
+    .title {
+      font-weight: bold;
+
+      lazy-image {
+        width: 14px;
+        vertical-align: middle;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .share-download {
+    padding-top: 1.5rem;
+
+    button {
+      font-size: $font-size;
+      text-align: center;
+      width: 50%;
+
+      lazy-image {
+        height: 16px;
+        max-width: 16px;
+        max-height: 16px;
+        margin-right: 0.5rem;
+        vertical-align: middle;
       }
     }
   }
