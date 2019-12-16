@@ -52,7 +52,7 @@ export class BookingDetails {
 
     if (tooltip) {
       tooltip.classList.toggle('active');
-      tooltip.style.marginTop = `calc(0px - ${Math.round(tooltip.clientHeight / 2)}px + 12px)`;
+      tooltip.style.marginTop = `calc(0px - ${Math.round(tooltip.clientHeight / 2)}px + 8px)`;
     }
   }
 
