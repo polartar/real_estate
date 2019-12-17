@@ -66,7 +66,10 @@ export class ShareListing {
 
         <form onSubmit={e => this.submitForm(e)} class={{ hidden: this.view !== 'email'}}>
           <label htmlFor="share-listing-email">Send To</label>
-          <input id="share-listing-email" type="email" name="email" placeholder="Enter the recipient's email address" />
+          <div class="email-input">
+            <input id="share-listing-email" type="email" name="email" placeholder="Enter the recipient's email address" />
+            <img src="/assets/images/icons/email.svg" role="presentation" alt="" />
+          </div>
 
           <label htmlFor="share-listing-message">Message</label>
           <textarea id="share-listing-message" placeholder="Enter your message"></textarea>

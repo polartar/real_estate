@@ -256,8 +256,6 @@ export class PageListingBody {
                   <img src="/assets/images/icons/heart_icon.svg" class="wishlist-icon" /> { this.wishlist.includes(this.item.id) ? 'Remove from wishlist' : 'Add to wishlist' }
                 </button>
 
-
-
                 <button aria-label="Share listing" class="button-reset has-icon" onClick={() => this.shareApartment()}>
                   <img src="/assets/images/icons/share.svg" class="share-icon" /> Share
                 </button>

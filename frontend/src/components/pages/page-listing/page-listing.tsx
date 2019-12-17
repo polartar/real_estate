@@ -63,6 +63,19 @@ export class PageListing {
     }
   }
 
+  showMobileBookingDetails() {
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'mobile-booking-modal',
+      cssClass: 'mobile-booking-modal',
+      componentProps: {
+        item: this.item
+      }
+    });
+
+    document.body.appendChild(modal);
+    return modal.present();
+  }
+
   render() {
     return [
       <app-header />,
@@ -100,7 +113,7 @@ export class PageListing {
             </div>
 
             <div>
-              <button aria-label="Booking Details" class="button-dark booking-details">
+              <button aria-label="Booking Details" class="button-dark booking-details" onClick={() => this.showMobileBookingDetails()}>
                 Booking Details
               </button>
             </div>

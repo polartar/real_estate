@@ -65,6 +65,9 @@ export namespace Components {
   interface BookingDetails {
     'item': any;
   }
+  interface BookingMobileBody {
+    'item': any;
+  }
   interface BuildingTypeFilter {
     'clearAll': () => Promise<void>;
     'inModal': boolean;
@@ -137,6 +140,9 @@ export namespace Components {
     'markerId': any;
   }
   interface MediaLogos {}
+  interface MobileBookingModal {
+    'item': any;
+  }
   interface MobileFilterMenu {}
   interface MoveInDateFilter {
     'inModal': boolean;
@@ -311,6 +317,12 @@ declare global {
     new (): HTMLBookingDetailsElement;
   };
 
+  interface HTMLBookingMobileBodyElement extends Components.BookingMobileBody, HTMLStencilElement {}
+  var HTMLBookingMobileBodyElement: {
+    prototype: HTMLBookingMobileBodyElement;
+    new (): HTMLBookingMobileBodyElement;
+  };
+
   interface HTMLBuildingTypeFilterElement extends Components.BuildingTypeFilter, HTMLStencilElement {}
   var HTMLBuildingTypeFilterElement: {
     prototype: HTMLBuildingTypeFilterElement;
@@ -441,6 +453,12 @@ declare global {
   var HTMLMediaLogosElement: {
     prototype: HTMLMediaLogosElement;
     new (): HTMLMediaLogosElement;
+  };
+
+  interface HTMLMobileBookingModalElement extends Components.MobileBookingModal, HTMLStencilElement {}
+  var HTMLMobileBookingModalElement: {
+    prototype: HTMLMobileBookingModalElement;
+    new (): HTMLMobileBookingModalElement;
   };
 
   interface HTMLMobileFilterMenuElement extends Components.MobileFilterMenu, HTMLStencilElement {}
@@ -605,6 +623,7 @@ declare global {
     'bathroom-filter': HTMLBathroomFilterElement;
     'bedroom-filter': HTMLBedroomFilterElement;
     'booking-details': HTMLBookingDetailsElement;
+    'booking-mobile-body': HTMLBookingMobileBodyElement;
     'building-type-filter': HTMLBuildingTypeFilterElement;
     'component-prefetch': HTMLComponentPrefetchElement;
     'content-404': HTMLContent404Element;
@@ -627,6 +646,7 @@ declare global {
     'map-listing-details': HTMLMapListingDetailsElement;
     'map-listing-marker': HTMLMapListingMarkerElement;
     'media-logos': HTMLMediaLogosElement;
+    'mobile-booking-modal': HTMLMobileBookingModalElement;
     'mobile-filter-menu': HTMLMobileFilterMenuElement;
     'move-in-date-filter': HTMLMoveInDateFilterElement;
     'neighborhood-card': HTMLNeighborhoodCardElement;
@@ -701,6 +721,9 @@ declare namespace LocalJSX {
   interface BookingDetails extends JSXBase.HTMLAttributes<HTMLBookingDetailsElement> {
     'item': any;
   }
+  interface BookingMobileBody extends JSXBase.HTMLAttributes<HTMLBookingMobileBodyElement> {
+    'item': any;
+  }
   interface BuildingTypeFilter extends JSXBase.HTMLAttributes<HTMLBuildingTypeFilterElement> {
     'inModal'?: boolean;
   }
@@ -767,6 +790,9 @@ declare namespace LocalJSX {
     'markerId': any;
   }
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
+  interface MobileBookingModal extends JSXBase.HTMLAttributes<HTMLMobileBookingModalElement> {
+    'item': any;
+  }
   interface MobileFilterMenu extends JSXBase.HTMLAttributes<HTMLMobileFilterMenuElement> {}
   interface MoveInDateFilter extends JSXBase.HTMLAttributes<HTMLMoveInDateFilterElement> {
     'inModal'?: boolean;
@@ -881,6 +907,7 @@ declare namespace LocalJSX {
     'bathroom-filter': BathroomFilter;
     'bedroom-filter': BedroomFilter;
     'booking-details': BookingDetails;
+    'booking-mobile-body': BookingMobileBody;
     'building-type-filter': BuildingTypeFilter;
     'component-prefetch': ComponentPrefetch;
     'content-404': Content404;
@@ -903,6 +930,7 @@ declare namespace LocalJSX {
     'map-listing-details': MapListingDetails;
     'map-listing-marker': MapListingMarker;
     'media-logos': MediaLogos;
+    'mobile-booking-modal': MobileBookingModal;
     'mobile-filter-menu': MobileFilterMenu;
     'move-in-date-filter': MoveInDateFilter;
     'neighborhood-card': NeighborhoodCard;
