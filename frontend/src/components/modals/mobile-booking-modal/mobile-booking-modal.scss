@@ -1,8 +1,9 @@
+@import '../../../styles/variables';
+
 .mobile-booking-modal-component {
   position: relative;
   padding: 16px;
   width: 100%;
-  height: 100%;
 
   .modal-nav {
     display: flex;
@@ -16,27 +17,45 @@
     }
   }
 
-  .wishlist-share {
-    position: absolute;
-    width: 100%;
-    bottom: 25px;
+  input-booking-date {
+    display: block;
+    margin: -16px;
+  }
+
+  .checkin-input {
+    .title {
+      font-size: $font-size-lg;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 54px;
+      margin-bottom: 32px;
+    }
+  }
+
+  .booking-start {
+    position: relative;
+  }
+}
+
+.mobile-wishlist-share {
+  background-color: white;
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+
+  button {
     display: flex;
-    padding-right: 2rem;
+    justify-content: center;
+    font-size: 20px;
+    white-space: nowrap;
+    cursor: pointer;
 
-    button {
-      display: flex;
-      justify-content: center;
-      font-size: 20px;
-      white-space: nowrap;
-      cursor: pointer;
+    img {
+      margin-right: 1rem;
+      width: 18px;
 
-      img {
-        margin-right: 1rem;
-        width: 18px;
-
-        &.share-icon {
-          width: 15px;
-        }
+      &.share-icon {
+        width: 15px;
       }
     }
   }

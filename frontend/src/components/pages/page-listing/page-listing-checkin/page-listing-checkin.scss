@@ -1,4 +1,5 @@
 @import '../../../../styles/variables';
+@import '../../../../styles/mixins';
 
 .page-listing-checkin-component {
   .check-in-out {
@@ -39,7 +40,11 @@
     height: 56px;
     border: 1px solid black;
     padding: 0 15px;
-    margin-top: 13px;
+    margin-top: 19px;
+
+    @include for-size(desktop-up) {
+      margin-top: 13px;
+    }
 
     .guest-value {
       flex-grow: 1;
@@ -57,8 +62,12 @@
     height: 56px;
     text-transform: uppercase;
     font-size: $font-size-md;
-    margin-top: 16px;
+    margin-top: 19px;
     font-weight: bold;
+
+    @include for-size(desktop-up) {
+      margin-top: 16px;
+    }
   }
 
   .ask-question {
@@ -67,7 +76,11 @@
 
   .seasonal-rating {
     display: flex;
-    margin-top: 16px;
+    margin-top: 23px;
+
+    @include for-size(desktop-up) {
+      margin-top: 16px;
+    }
 
     .min-stay {
       flex-grow: 1;

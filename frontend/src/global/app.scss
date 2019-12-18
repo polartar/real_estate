@@ -327,3 +327,8 @@ ion-checkbox {
   }
 }
 
+ion-footer.no-footer-border {
+  &::before {
+    background-image: none;
+  }
+}

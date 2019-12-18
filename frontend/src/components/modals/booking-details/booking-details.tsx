@@ -316,6 +316,16 @@ export class BookingDetails {
             }
           </div>
 
+          <div class="guarantee mobile-only">
+            <div class="title">
+              <lazy-image src="/assets/images/icons/shield_guarantee.svg" />APT212 Tenant Guarantee
+            </div>
+
+            <p>
+              APT212 vets each hold and property and guarantees each listing is accurate as described.  No Hidden Fees.
+            </p>
+          </div>
+
           <div class="action-buttons">
             <button aria-label="Book Now" class="button-dark block">Book Now</button>
             <button aria-label="Ask a question" class="button-light outline block text-upper">Ask a question</button>
@@ -368,7 +378,7 @@ export class BookingDetails {
             </div>
           </div>
 
-          <div class="guarantee">
+          <div class="guarantee desktop-only">
             <div class="title">
               <lazy-image src="/assets/images/icons/shield_guarantee.svg" />APT212 Tenant Guarantee
             </div>

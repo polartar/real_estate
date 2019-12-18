@@ -14,6 +14,7 @@ export class InputBookingDate {
   @Prop() type: string = 'checkin';
   @Prop() inPopover: boolean = false;
   @Prop() item!: any;
+  @Prop() calendarSize: number = 1.6;
 
   checkinDate: any;
   checkoutDate: any;
@@ -79,7 +80,7 @@ export class InputBookingDate {
 
         <div class="picker">
           <apt212-datepicker
-            size={1.6}
+            size={this.calendarSize}
             onSelected={e => this.dateSelected(e)}
             value={this.type === 'checkin' ? this.checkinDate : this.checkoutDate }
             minDate={this.getMinDate()}

@@ -17,7 +17,7 @@ const bookingSelectors = {
   },
 
   getApartmentId: state => {
-    return state.book
+    return state.booking.apartmentId;
   }
 }
 

@@ -91,6 +91,7 @@ export namespace Components {
     'images': InlineImageInterface[];
   }
   interface InputBookingDate {
+    'calendarSize': number;
     'inPopover': boolean;
     'item': any;
     'type': string;
@@ -723,6 +724,8 @@ declare namespace LocalJSX {
   }
   interface BookingMobileBody extends JSXBase.HTMLAttributes<HTMLBookingMobileBodyElement> {
     'item': any;
+    'onSetViewEvent'?: (event: CustomEvent<any>) => void;
+    'onShowGuestInput'?: (event: CustomEvent<any>) => void;
   }
   interface BuildingTypeFilter extends JSXBase.HTMLAttributes<HTMLBuildingTypeFilterElement> {
     'inModal'?: boolean;
@@ -741,6 +744,7 @@ declare namespace LocalJSX {
     'images': InlineImageInterface[];
   }
   interface InputBookingDate extends JSXBase.HTMLAttributes<HTMLInputBookingDateElement> {
+    'calendarSize'?: number;
     'inPopover'?: boolean;
     'item': any;
     'type'?: string;

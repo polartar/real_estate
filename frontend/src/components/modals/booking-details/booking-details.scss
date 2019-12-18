@@ -3,17 +3,25 @@
 
 .booking-details-component {
   width: 100%;
-  display: flex;
-  padding-top: 20px;
 
-  .left {
-    width: 60%;
-    padding-right: 1.5rem;
+  .left,
+  .right {
+    width: 100%;
   }
 
-  .right {
-    padding-top: 30px;
-    width: 40%;
+  @include for-size(desktop-up) {
+    display: flex;
+    padding-top: 20px;
+
+    .left {
+      width: 60%;
+      padding-right: 1.5rem;
+    }
+
+    .right {
+      padding-top: 30px;
+      width: 40%;
+    }
   }
 
   .details-section {
@@ -98,7 +106,11 @@
   }
 
   .action-buttons {
-    padding-top: 50px;
+    padding-top: 14px;
+
+    @include for-size(desktop-up) {
+      padding-top: 50px;
+    }
 
     button {
       padding-top: 16px;
@@ -111,8 +123,13 @@
   }
 
   .card {
+    display: none;
     border: 1px solid #969499;
     font-size: $font-size-sm;
+
+    @include for-size(desktop-up) {
+      display: block;
+    }
 
     .card-content {
       padding: 1rem 0.5rem 1.5rem;
@@ -191,10 +208,26 @@
   }
 
   .guarantee {
+    display: none;
     margin-top: 16px;
     background-color: $color-secondary-light;
-    padding: 1.5rem 1rem 190px;
+    padding: 1.5rem 1rem 54px;
     font-size: $font-size-md;
+
+    &.desktop-only {
+      @include for-size(desktop-up) {
+        display: block;
+        padding: 1.5rem 1rem 190px;
+      }
+    }
+
+    &.mobile-only {
+      display: block;
+
+      @include for-size(desktop-up) {
+        display: none;
+      }
+    }
 
     .title {
       font-weight: bold;
