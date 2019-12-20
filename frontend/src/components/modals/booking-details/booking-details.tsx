@@ -5,6 +5,9 @@ import taxonomySelectors from '../../../store/selectors/taxonomy';
 import screensizeSelectors from '../../../store/selectors/screensize';
 import { formatDate, formatMoney } from '../../../helpers/utils';
 import { getBedsListingText } from '../../../helpers/filters';
+import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
+
+declare var window: any;
 
 @Component({
   tag: 'booking-details',
@@ -75,6 +78,13 @@ export class BookingDetails {
 
     document.body.appendChild(modal);
     return modal.present();
+  }
+
+  downloadPDF() {
+    const apiURL = EnvironmentConfigService.getInstance().get('API_URL');
+    const downloadURL = `${apiURL}/pdf/booking-details/${this.item.id}?checkin=${formatDate(this.checkinDate, 'm/d/Y')}&checkout=${formatDate(this.checkoutDate, 'm/d/Y')}&guests=${this.guests}`;
+
+    window.location = downloadURL;
   }
 
   render() {
@@ -335,7 +345,9 @@ export class BookingDetails {
 
         <div class="right">
           <div class="card">
-            <img src={this.item.images[0]} class="feature-image" />
+            {
+              this.item.images.length ? <img src={this.item.images[0]} class="feature-image" /> : null
+            }
 
             <div class="card-content">
               <h4>{this.item.cross_streets}</h4>
@@ -393,7 +405,7 @@ export class BookingDetails {
               <lazy-image src="/assets/images/icons/share.svg" /> Share
             </button>
 
-            <button class="button-reset">
+            <button class="button-reset" aria-label="Download PDF" onClick={() => this.downloadPDF()}>
             <lazy-image src="/assets/images/icons/pdf.svg" /> Download
             </button>
           </div>

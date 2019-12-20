@@ -1,6 +1,8 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixins';
 
+$bg-highlight: rgba(5, 115, 101, 0.1);
+
 .booking-details-component {
   width: 100%;
 
@@ -45,7 +47,7 @@
     }
 
     &.bg-highlight {
-      background-color: rgba(5, 115, 101, 0.1);
+      background-color: $bg-highlight;
       height: 33px;
     }
 
@@ -210,7 +212,7 @@
   .guarantee {
     display: none;
     margin-top: 16px;
-    background-color: $color-secondary-light;
+    background-color: $bg-highlight;
     padding: 1.5rem 1rem 54px;
     font-size: $font-size-md;
 

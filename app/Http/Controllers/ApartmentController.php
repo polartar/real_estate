@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Apartment;
 use Illuminate\Http\Request;
+use PDF;
 
 class ApartmentController extends Controller
 {
@@ -66,5 +67,27 @@ class ApartmentController extends Controller
         $ids = request()->ids;
 
         return Apartment::find($ids);
+    }
+
+    /**
+     * Get a pdf of the booking details
+     */
+    public function getBookingDetailsPDF(Apartment $apartment) {
+
+        $pdf = PDF::loadView('pdfs.booking-details', [
+            'checkin' => request()->checkin,
+            'checkout' => request()->checkout,
+            'guests' => request()->guests,
+            'apartment' => $apartment
+        ]);
+
+        return $pdf->download('booking-details-' . $apartment->id . '.pdf');
+
+        // return view('pdfs.booking-details', [
+        //     'checkin' => request()->checkin,
+        //     'checkout' => request()->checkout,
+        //     'guests' => request()->guests,
+        //     'apartment' => $apartment
+        // ]);
     }
 }
