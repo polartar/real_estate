@@ -58,6 +58,7 @@ return array(
          * using the PFDLib back end.
          */
         "temp_dir" => env('DOMPDF_TEMP_DIR', sys_get_temp_dir()),
+        "DOMPDF_LOG_OUTPUT_FILE" => env('DOMPDF_LOG_OUTPUT_FILE', storage_path('logs/dompdf.htm')),
 
         /**
          * ==== IMPORTANT ====
