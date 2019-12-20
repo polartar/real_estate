@@ -98,6 +98,10 @@
     h2 {
       font-size: $font-size-lg;
       font-weight: bold;
+
+      @include for-size(desktop-up) {
+        margin-top: 48px;
+      }
     }
 
     p {
