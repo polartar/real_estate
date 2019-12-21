@@ -94,31 +94,31 @@ export class BookingDetails {
 
     const bookingDetails = [
       {
-        tooltip: '',
+        tooltip: 'Move in date.',
         description: `Check In ${formatDate(this.checkinDate, 'm/d/y')}:`,
         center: <img src="/assets/images/icons/arrow.svg" role="presentation" class="arrow-right" />,
         value: `Check Out ${formatDate(this.checkoutDate, 'm/d/y')}`
       },
       {
-        tooltip: 'Monthly rent is the amortized rent when the duration spans different seasonal rates',
+        tooltip: 'Price of rent, per month.',
         description: 'Monthly Rent:',
         center: '',
         value: formatMoney(this.item.rate) // @TODO - make this amortized...
       },
       {
-        tooltip: 'Night rate is determined as the average rate over the duration when it spans different seasonal rates.  eg. Total cost / number of days',
+        tooltip: 'Price per month, divided by the total amount of days in the month.',
         description: 'Night rate:',
         center: '',
         value: formatMoney(400)
       },
       {
-        tooltip: '',
+        tooltip: 'Length of your stay, from check-in to check-out.',
         description: 'Total Term:',
         center: '',
         value: '3 Months and 14 days'
       },
       {
-        tooltip: '',
+        tooltip: 'Total number of guests staying in the apartment',
         description: 'Number of guests:',
         center: '',
         value: this.guests
@@ -127,25 +127,25 @@ export class BookingDetails {
 
     const breakdownDetails = [
       {
-        tooltip: '',
+        tooltip: 'The cost for a background check, required for all guests to ensure safety.',
         description: 'Background checks:',
         center: '',
         value: formatMoney(300)
       },
       {
-        tooltip: '',
+        tooltip: 'Sum of (monthly rate x months) + (nightly rate x days).',
         description: 'Rent:',
         center: '',
         value: formatMoney(12000)
       },
       {
-        tooltip: '',
+        tooltip: 'New York Occupancy & Hotel tax.',
         description: 'Tax:',
         center: '',
         value: formatMoney(543)
       },
       {
-        tooltip: 'Power, water, heat, etc.',
+        tooltip: 'Sum of your total utilities for the duration of your stay [Utilities includes: Electricity, Gas, Cable TV, Wifi].',
         description: 'Utilities:',
         center: '',
         value: formatMoney(600)
@@ -157,14 +157,14 @@ export class BookingDetails {
         value: formatMoney(2000)
       },
       {
-        tooltip: '',
+        tooltip: 'A refundable deposit protects hosts, and guests, from any accidental damages.',
         description: 'Refundable Deposit:',
         center: '',
         value: formatMoney(3000),
         class: 'highlight'
       },
       {
-        tooltip: '',
+        tooltip: 'The sum of all costs of your rental, from check in to check out.  No hidden fees!',
         description: 'Total:',
         center: '',
         value: formatMoney(19340)
@@ -173,7 +173,7 @@ export class BookingDetails {
 
     const paymentDetails = [
       {
-        tooltip: '',
+        tooltip: 'Portion of the total due now in order to secure your reservation.',
         description: 'Due now to reserve:',
         center: '',
         value: formatMoney(9000),
@@ -186,19 +186,19 @@ export class BookingDetails {
         value: formatMoney(4000)
       },
       {
-        tooltip: '',
+        tooltip: 'Portion of the total due by your check in date.',
         description: `Due by check in (${formatDate(this.checkinDate, 'm/d/y')}):`,
         center: '',
         value: formatMoney(9000)
       },
       {
-        tooltip: '',
+        tooltip: 'Total of all future payments minus the due now and due by check in.  Future payment due dates will be outlined on your lease agreement.',
         description: 'Future Payments:',
         center: '',
         value: formatMoney(-3000)
       },
       {
-        tooltip: '',
+        tooltip: 'The refundable Deposit that will be paid back to you within a maximum of 14 days from your check out date.',
         description: 'Deposit Refund:',
         center: '',
         value: formatMoney(-3000),

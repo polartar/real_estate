@@ -13,6 +13,7 @@ export class ListingCard {
   @Prop({ context: "store" }) store: Store;
   @Prop() contentPadding: boolean = false;
   @State() isMobile: boolean = true;
+  @Prop() mode: '' | 'desktop' = '';
 
   neighborhoods: any[] = [];
   bedroomTypes: any[] = [];
@@ -40,9 +41,14 @@ export class ListingCard {
     const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
 
+    const classObj = { 'listing-card': true };
+    if (this.mode) {
+      classObj[this.mode] = true;
+    }
+
     return [
       <ion-router-link href={'/listing/' + this.item.id}>
-        <div class="listing-card">
+        <div class={classObj}>
             <maintain-ratio width={322} height={182}>
               <lazy-image src={this.getImageURL()} class="list-feature-image" alt={neighborhood.name} />
             </maintain-ratio>
@@ -65,7 +71,7 @@ export class ListingCard {
             <div class="rating-amenities">
               <star-rating
                   stars={5}
-                  size={this.isMobile ? 10 : 16}
+                  size={this.isMobile && this.mode !== 'desktop' ? 10 : 16}
                   rating={this.item.rating}
                   readonly
               />

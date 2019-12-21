@@ -382,7 +382,7 @@ export class PageListingBody {
                   <lazy-image src="/assets/images/icons/add.svg" />
                 </div>
 
-                Make a payment of 1 month's rent
+                Make a payment of 1 month's rent to secure the apartment
               </div>
 
               <div class="booking-process flex-vertical-center">
@@ -429,7 +429,7 @@ export class PageListingBody {
                 </div>
 
                 <div class="nearby-list">
-                  { this.nearbyApts.map(a => <listing-card item={a} />)}
+                  { this.nearbyApts.map(a => <listing-card item={a} mode="desktop" />)}
                 </div>
               </div>
               <div>

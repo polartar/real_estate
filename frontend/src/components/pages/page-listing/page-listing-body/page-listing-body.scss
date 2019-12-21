@@ -15,6 +15,7 @@
 
       @include for-size(desktop-up) {
         display: block;
+        margin-left: 10px;
       }
 
       &.has-slider {
@@ -24,9 +25,11 @@
 
     .listing-left {
       flex-grow: 1;
+    }
 
+    .listing-description {
       @include for-size(desktop-up) {
-        margin-right: 130px;
+        padding-right: 40px;
       }
     }
 
