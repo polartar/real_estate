@@ -74,9 +74,10 @@
       font-size: $font-size;
     }
 
-    &>div {
+    & > div {
       display: flex;
       align-items: center;
+      white-space: nowrap;
     }
 
     .divider {
