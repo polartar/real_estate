@@ -207,6 +207,7 @@ export class BookingDetails {
     ];
 
     return (
+      <ion-content>
       <div class="booking-details-component" onClick={() => this.closeTooltips()}>
         <div class="left">
           <div class="details-section">
@@ -411,6 +412,7 @@ export class BookingDetails {
           </div>
         </div>
       </div>
+      </ion-content>
     )
   }
 }
