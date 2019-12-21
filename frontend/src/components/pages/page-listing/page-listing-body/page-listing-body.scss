@@ -168,7 +168,10 @@
 
     .feature-value {
       text-align: right;
-      padding-right: 2rem;
+
+      @include for-size(desktop-up) {
+        padding-right: 1.5rem;
+      }
 
       star-rating {
         margin-top: 2px;
