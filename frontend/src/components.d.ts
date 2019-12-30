@@ -52,6 +52,7 @@ export namespace Components {
     'styleOverride': any;
     'target': any;
   }
+  interface AskQuestion {}
   interface BathroomFilter {
     'clearAll': () => Promise<void>;
     'inModal': boolean;
@@ -299,6 +300,12 @@ declare global {
   var HTMLApt212PopoverElement: {
     prototype: HTMLApt212PopoverElement;
     new (): HTMLApt212PopoverElement;
+  };
+
+  interface HTMLAskQuestionElement extends Components.AskQuestion, HTMLStencilElement {}
+  var HTMLAskQuestionElement: {
+    prototype: HTMLAskQuestionElement;
+    new (): HTMLAskQuestionElement;
   };
 
   interface HTMLBathroomFilterElement extends Components.BathroomFilter, HTMLStencilElement {}
@@ -622,6 +629,7 @@ declare global {
     'apt212-datepicker': HTMLApt212DatepickerElement;
     'apt212-modal-booking-frame': HTMLApt212ModalBookingFrameElement;
     'apt212-popover': HTMLApt212PopoverElement;
+    'ask-question': HTMLAskQuestionElement;
     'bathroom-filter': HTMLBathroomFilterElement;
     'bedroom-filter': HTMLBedroomFilterElement;
     'booking-details': HTMLBookingDetailsElement;
@@ -714,6 +722,7 @@ declare namespace LocalJSX {
     'styleOverride'?: any;
     'target'?: any;
   }
+  interface AskQuestion extends JSXBase.HTMLAttributes<HTMLAskQuestionElement> {}
   interface BathroomFilter extends JSXBase.HTMLAttributes<HTMLBathroomFilterElement> {
     'inModal'?: boolean;
   }
@@ -910,6 +919,7 @@ declare namespace LocalJSX {
     'apt212-datepicker': Apt212Datepicker;
     'apt212-modal-booking-frame': Apt212ModalBookingFrame;
     'apt212-popover': Apt212Popover;
+    'ask-question': AskQuestion;
     'bathroom-filter': BathroomFilter;
     'bedroom-filter': BedroomFilter;
     'booking-details': BookingDetails;

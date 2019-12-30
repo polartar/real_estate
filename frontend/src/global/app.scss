@@ -332,3 +332,13 @@ ion-footer.no-footer-border {
     background-image: none;
   }
 }
+
+
+.ask-question-modal {
+  .modal-wrapper {
+    --width: 1255px;
+    --height: 694px;
+    --max-height: 100%;
+    --max-width: 100%;
+  }
+}

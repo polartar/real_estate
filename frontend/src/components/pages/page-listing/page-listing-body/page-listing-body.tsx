@@ -220,6 +220,23 @@ export class PageListingBody {
     return modal.present();
   }
 
+  showAskQuestion() {
+    console.log('asking question');
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'apt212-modal-booking-frame',
+      cssClass: 'ask-question-modal',
+      componentProps: {
+        component: 'ask-question',
+        componentProps: {
+          item: this.item
+        }
+      }
+    });
+
+    document.body.appendChild(modal);
+    return modal.present();
+  }
+
   render() {
     return (
       <Host class="page-listing-body-component">
@@ -247,7 +264,7 @@ export class PageListingBody {
                   onShowGuestsInput={() => this.showGuestInput()}
                   onShowSeasonalRates={() => this.showSeasonalRates()}
                   onShowBookingDetails={() => this.showBookingDetails()}
-                  onShowAskQuestionInput={() => console.log('show ask question input')}
+                  onShowAskQuestionInput={() => this.showAskQuestion()}
                 />
               </div>
 
@@ -382,7 +399,7 @@ export class PageListingBody {
                   <lazy-image src="/assets/images/icons/add.svg" />
                 </div>
 
-                Make a payment of 1 month's rent to secure the apartment
+                Make a payment of 1 month's rent
               </div>
 
               <div class="booking-process flex-vertical-center">
