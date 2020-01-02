@@ -1,0 +1,44 @@
+@import '../../styles/variables';
+
+.ask-question-component {
+  position: relative;
+  display: flex;
+  padding: 38px;
+
+  .content-left {
+    width: 42%;
+
+    p {
+      line-height: 1.38;
+    }
+
+    .people {
+      .person {
+        display: inline-block;
+        text-align: center;
+        font-size: 14px;
+        width: 25%;
+        padding-top: 18px;
+      }
+
+      img {
+        display: block;
+        margin: 0 auto;
+        width: 73px;
+        height: 73px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .content-right {
+    flex-grow: 1;
+  }
+
+  .title {
+    font-size: $font-size-lg;
+    font-weight: bold;
+    text-align: center;
+  }
+}

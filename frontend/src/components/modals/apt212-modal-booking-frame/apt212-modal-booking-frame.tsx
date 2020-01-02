@@ -19,18 +19,19 @@ export class Apt212ModalBookingFrame {
 
   componentDidLoad() {
     const injectedComponent: any = Object.assign(document.createElement(this.component), this.componentProps);
-    this.el.querySelector('.apt212-modal-booking-frame-component').appendChild(injectedComponent);
+    this.el.querySelector('.modal-content').appendChild(injectedComponent);
   }
 
   render() {
 
     return (
-      <div class="apt212-modal-booking-frame-component">
+      <ion-content class="apt212-modal-booking-frame-component">
+        <div class="modal-content" />
 
         <button aria-label="close" class="close button-reset" onClick={() => this.closeModal()}>
           <img src="/assets/images/icons/cancel.svg" />
         </button>
-      </div>
+      </ion-content>
     )
   }
 }
