@@ -450,7 +450,7 @@ export class PageListingBody {
                 </div>
               </div>
               <div>
-                <ion-router-link href="/" class="show-all">Show All ></ion-router-link>
+                <ion-router-link href="/search" class="show-all">Show All ></ion-router-link>
               </div>
             </section>
             : null

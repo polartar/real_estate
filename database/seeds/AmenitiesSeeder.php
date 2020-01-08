@@ -130,7 +130,7 @@ class AmenitiesSeeder extends Seeder
                 'icon' => '/assets/images/amenities/elevator.svg'
             ],
             [
-                'name' => 'Door Man',
+                'name' => 'Doorman',
                 'icon' => '/assets/images/amenities/doorman.svg'
             ],
             [
