@@ -18,6 +18,8 @@ Route::get('/listing/{id}', 'SPAController@serve');
 Route::get('/wishlist', 'SPAController@serve');
 Route::get('/404', 'SPAController@serve');
 
+Route::get('/login', ['as' => 'login', 'uses' => 'SPAController@serve']);
+
 Route::get('/profile/{name}', 'SPAController@serve');
 
 Route::get('/api/pdf/booking-details/{apartment}', 'ApartmentController@getBookingDetailsPDF');

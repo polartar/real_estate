@@ -14,6 +14,8 @@ import {
 } from './components/inline-gallery/inline-gallery';
 
 export namespace Components {
+  interface AdminHeader {}
+  interface AdminMenu {}
   interface AppFooter {
     'noMargin': boolean;
   }
@@ -157,6 +159,8 @@ export namespace Components {
     'items': any[];
   }
   interface Page404 {}
+  interface PageAdmin {}
+  interface PageAdminListings {}
   interface PageHome {
     'prefetching': boolean;
   }
@@ -176,6 +180,7 @@ export namespace Components {
   interface PageListingImageSlider {
     'item': any;
   }
+  interface PageLogin {}
   interface PageSearch {
     'location': any;
     'neighborhoods': any;
@@ -248,6 +253,18 @@ export namespace Components {
 
 declare global {
 
+
+  interface HTMLAdminHeaderElement extends Components.AdminHeader, HTMLStencilElement {}
+  var HTMLAdminHeaderElement: {
+    prototype: HTMLAdminHeaderElement;
+    new (): HTMLAdminHeaderElement;
+  };
+
+  interface HTMLAdminMenuElement extends Components.AdminMenu, HTMLStencilElement {}
+  var HTMLAdminMenuElement: {
+    prototype: HTMLAdminMenuElement;
+    new (): HTMLAdminMenuElement;
+  };
 
   interface HTMLAppFooterElement extends Components.AppFooter, HTMLStencilElement {}
   var HTMLAppFooterElement: {
@@ -501,6 +518,18 @@ declare global {
     new (): HTMLPage404Element;
   };
 
+  interface HTMLPageAdminElement extends Components.PageAdmin, HTMLStencilElement {}
+  var HTMLPageAdminElement: {
+    prototype: HTMLPageAdminElement;
+    new (): HTMLPageAdminElement;
+  };
+
+  interface HTMLPageAdminListingsElement extends Components.PageAdminListings, HTMLStencilElement {}
+  var HTMLPageAdminListingsElement: {
+    prototype: HTMLPageAdminListingsElement;
+    new (): HTMLPageAdminListingsElement;
+  };
+
   interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {}
   var HTMLPageHomeElement: {
     prototype: HTMLPageHomeElement;
@@ -535,6 +564,12 @@ declare global {
   var HTMLPageListingImageSliderElement: {
     prototype: HTMLPageListingImageSliderElement;
     new (): HTMLPageListingImageSliderElement;
+  };
+
+  interface HTMLPageLoginElement extends Components.PageLogin, HTMLStencilElement {}
+  var HTMLPageLoginElement: {
+    prototype: HTMLPageLoginElement;
+    new (): HTMLPageLoginElement;
   };
 
   interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
@@ -621,6 +656,8 @@ declare global {
     new (): HTMLYoutubeVideoElement;
   };
   interface HTMLElementTagNameMap {
+    'admin-header': HTMLAdminHeaderElement;
+    'admin-menu': HTMLAdminMenuElement;
     'app-footer': HTMLAppFooterElement;
     'app-header': HTMLAppHeaderElement;
     'app-menu': HTMLAppMenuElement;
@@ -663,12 +700,15 @@ declare global {
     'neighborhood-card': HTMLNeighborhoodCardElement;
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
     'page-404': HTMLPage404Element;
+    'page-admin': HTMLPageAdminElement;
+    'page-admin-listings': HTMLPageAdminListingsElement;
     'page-home': HTMLPageHomeElement;
     'page-listing': HTMLPageListingElement;
     'page-listing-body': HTMLPageListingBodyElement;
     'page-listing-checkin': HTMLPageListingCheckinElement;
     'page-listing-image-modal': HTMLPageListingImageModalElement;
     'page-listing-image-slider': HTMLPageListingImageSliderElement;
+    'page-login': HTMLPageLoginElement;
     'page-search': HTMLPageSearchElement;
     'page-wishlist': HTMLPageWishlistElement;
     'price-filter': HTMLPriceFilterElement;
@@ -687,6 +727,8 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface AdminHeader extends JSXBase.HTMLAttributes<HTMLAdminHeaderElement> {}
+  interface AdminMenu extends JSXBase.HTMLAttributes<HTMLAdminMenuElement> {}
   interface AppFooter extends JSXBase.HTMLAttributes<HTMLAppFooterElement> {
     'noMargin'?: boolean;
   }
@@ -820,6 +862,8 @@ declare namespace LocalJSX {
     'items'?: any[];
   }
   interface Page404 extends JSXBase.HTMLAttributes<HTMLPage404Element> {}
+  interface PageAdmin extends JSXBase.HTMLAttributes<HTMLPageAdminElement> {}
+  interface PageAdminListings extends JSXBase.HTMLAttributes<HTMLPageAdminListingsElement> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {
     'prefetching'?: boolean;
   }
@@ -845,6 +889,7 @@ declare namespace LocalJSX {
   interface PageListingImageSlider extends JSXBase.HTMLAttributes<HTMLPageListingImageSliderElement> {
     'item': any;
   }
+  interface PageLogin extends JSXBase.HTMLAttributes<HTMLPageLoginElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
@@ -912,6 +957,8 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'admin-header': AdminHeader;
+    'admin-menu': AdminMenu;
     'app-footer': AppFooter;
     'app-header': AppHeader;
     'app-menu': AppMenu;
@@ -954,12 +1001,15 @@ declare namespace LocalJSX {
     'neighborhood-card': NeighborhoodCard;
     'neighborhood-slider': NeighborhoodSlider;
     'page-404': Page404;
+    'page-admin': PageAdmin;
+    'page-admin-listings': PageAdminListings;
     'page-home': PageHome;
     'page-listing': PageListing;
     'page-listing-body': PageListingBody;
     'page-listing-checkin': PageListingCheckin;
     'page-listing-image-modal': PageListingImageModal;
     'page-listing-image-slider': PageListingImageSlider;
+    'page-login': PageLogin;
     'page-search': PageSearch;
     'page-wishlist': PageWishlist;
     'price-filter': PriceFilter;

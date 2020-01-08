@@ -22,6 +22,7 @@
     "@stencil/redux": "^0.1.1",
     "chokidar": "^3.2.1",
     "clipboard": "^2.0.4",
+    "isemail": "^3.2.0",
     "js-datepicker": "^5.0.3",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",

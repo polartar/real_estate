@@ -9,8 +9,6 @@ class APIAuthInstance {
           'password': password
       };
 
-      console.log(APIService.getHeaders());
-
       let response = await fetch(APIService.getAPIUrl() + '/auth', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -25,7 +23,7 @@ class APIAuthInstance {
 
       return responseJSON.access_token;
     } catch (err) {
-      throw new Error(err);
+      throw new Error(err.message);
     }
   }
 

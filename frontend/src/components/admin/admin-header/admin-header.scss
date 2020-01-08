@@ -1,0 +1,18 @@
+.admin-header-component {
+  .logo {
+    height: 24px;
+    min-width: 126px;
+  }
+
+  .admin-header {
+    display: flex;
+    align-items: center;
+    padding-top: 34px;
+    padding-bottom: 16px;
+  }
+
+  .menu {
+    font-size: 16px;
+    --padding-end: 0;
+  }
+}

@@ -103,6 +103,33 @@ class SearchServiceProvider extends ServiceProvider
     }
 
     /**
+     * Search listings both active and inactive
+     */
+    public static function adminSearch($filters) {
+        $filter_hash = md5(json_encode($filters));
+
+        return Cache::remember('search-' . $filter_hash, 600, function() use ($filters) {
+
+            // here's the important part
+            $apartments = \App\Apartment::withoutGlobalScope('active');
+
+            $apartments = self::applySearchFilters($apartments, $filters);
+
+            $count = $apartments->count();
+
+            $apartments = self::applySorts($apartments, $filters);
+            $apartments = self::applyLimitOffsets($apartments, $filters);
+
+            $results = [
+                'results' => $apartments->get(),
+                'total' => $count
+            ];
+
+            return $results;
+        });
+    }
+
+    /**
      *  Search for map markers within a bounding box
      *  that have apartments matching filters
      *

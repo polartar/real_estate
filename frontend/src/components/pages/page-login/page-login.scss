@@ -1,0 +1,19 @@
+.page-login {
+  .login-submit {
+    height: 59px;
+    font-size: 16px;
+  }
+
+  .errors {
+    color: red;
+    padding-bottom: 12px;
+  }
+
+  button {
+    ion-spinner {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 1rem;
+    }
+  }
+}

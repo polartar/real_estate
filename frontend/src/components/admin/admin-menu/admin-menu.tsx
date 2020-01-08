@@ -4,10 +4,10 @@ import authSelectors from '../../../store/selectors/auth';
 import { logout } from '../../../store/actions/auth';
 
 @Component({
-  tag: 'app-menu',
-  styleUrl: 'app-menu.scss'
+  tag: 'admin-menu',
+  styleUrl: 'admin-menu.scss'
 })
-export class AppMenu {
+export class AdminMenu {
   @Prop({ context: "store" }) store: Store;
   isLoggedIn: boolean = false;
   logout: Action;
@@ -25,7 +25,7 @@ export class AppMenu {
   }
 
   closeMenu() {
-    const modal: any = document.querySelector('apt212-popover.app-menu');
+    const modal: any = document.querySelector('apt212-popover.admin-menu');
 
     if (modal) {
       modal.dismiss();
@@ -34,7 +34,7 @@ export class AppMenu {
 
   render() {
     return [
-        <header class="app-menu-header">
+        <header class="admin-menu-header">
           <div class="header-inner">
             <div class="app-header section">
               <ion-router-link href="/" class="logo-link">
@@ -52,36 +52,16 @@ export class AppMenu {
         <ion-content class="app-menu-container app-wrapper">
 
           <div class="section main-menu">
-            <ion-router-link href="/search" onClick={() => this.closeMenu()}>
-              Search Apartments
+            <ion-router-link href="/admin" onClick={() => this.closeMenu()}>
+              Admin
             </ion-router-link>
 
-            <ion-router-link href="/">
-              Bookings
+            <ion-router-link href="/" onClick={() => this.closeMenu()}>
+              Home
             </ion-router-link>
 
-            <ion-router-link href="/">
-              List with us
-            </ion-router-link>
-
-            <ion-router-link href="/">
-              Referrals
-            </ion-router-link>
-
-            <ion-router-link href="/">
-              Brokers
-            </ion-router-link>
-
-            <ion-router-link href="/">
-              Corporate
-            </ion-router-link>
-
-            <ion-router-link href="/">
-              About APT212
-            </ion-router-link>
-
-            <ion-router-link href="/">
-              FAQ
+            <ion-router-link href="/admin/listings" onClick={() => this.closeMenu()}>
+              Listings
             </ion-router-link>
 
             {
@@ -92,10 +72,6 @@ export class AppMenu {
               : null
             }
 
-            <ion-button aria-label="Speak to an expert" href="/">
-              <ion-icon name="call" slot="start" />
-              Speak to an expert
-            </ion-button>
           </div>
         </ion-content>
     ]

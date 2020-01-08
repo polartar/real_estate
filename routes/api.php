@@ -44,4 +44,6 @@ Route::group(['middleware' => ['auth:api', 'cors']], function() {
     Route::get('user', function() {
         return response(Auth::user());
     });
+
+    Route::get('admin/dashboard_counts', 'AdminController@dashboardCounts');
 });

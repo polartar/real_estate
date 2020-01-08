@@ -1,0 +1,23 @@
+@import '../../../../styles/variables';
+
+.page-admin {
+
+  .dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .count-block {
+      border: 1px solid black;
+      border-radius: 6px;
+      background-color: #fcfcfc;
+      padding: 16px;
+      margin: 16px;
+      text-align: center;
+
+      .count {
+        font-size: $font-size-xl;
+        color: $color-secondary;
+      }
+    }
+  }
+}

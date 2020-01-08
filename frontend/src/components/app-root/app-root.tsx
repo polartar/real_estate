@@ -84,6 +84,11 @@ export class AppRoot {
             <ion-route url="/listing/:apartmentId" component="page-listing" />
             <ion-route url="/wishlist" component="page-wishlist" />
             <ion-route url="/profile/:name" component="app-profile" />
+
+            <ion-route url="/login" component="page-login" />
+            <ion-route url="/admin" component="page-admin" />
+            <ion-route url="/admin/listings" component="page-admin-listings" />
+
             <ion-route url=":any" component="page-404" />
           </ion-router>
 
