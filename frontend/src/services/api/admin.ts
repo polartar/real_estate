@@ -23,10 +23,10 @@ class APIAdminInstance {
   }
 
 
-  public async getListings(filters, offset) {
+  public async getListings(filters) {
     try {
 
-      const params = encodeURIComponent(JSON.stringify({...filters, offset }));
+      const params = encodeURIComponent(JSON.stringify({...filters}));
 
       let response = await fetch(APIService.getAPIUrl() + '/admin/listings?params=' + params, {
         headers: APIService.getHeaders(),

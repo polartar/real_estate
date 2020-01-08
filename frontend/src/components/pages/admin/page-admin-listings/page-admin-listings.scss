@@ -1,0 +1,38 @@
+@import '../../../../styles/mixins';
+
+.page-admin-listings {
+
+  .listings {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+
+    .search-submit {
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    button {
+      height: 48px;
+    }
+  }
+
+  .add-new {
+    margin-left: 4px;
+    font-size: 18px;
+  }
+
+  .toggle-active {
+    padding-top: 4px;
+
+    @include for-size(desktop-up) {
+      display: none;
+    }
+  }
+}

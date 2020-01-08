@@ -8,11 +8,14 @@ form {
   input,
   input[type="email"],
   input[type="submit"] {
-      width: 100%;
       border: 0;
       height: 47px;
       padding-left: 1rem;
       padding-right: 1rem;
+
+      &.block {
+        width: 100%;
+      }
   }
 
   .help-text {

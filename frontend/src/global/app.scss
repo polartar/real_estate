@@ -342,3 +342,51 @@ ion-footer.no-footer-border {
     --max-width: 100%;
   }
 }
+
+
+table.data-table {
+  width: 100%;
+
+  thead {
+    td {
+      font-weight: bold;
+      padding: 8px;
+      white-space: nowrap;
+    }
+  }
+
+  tbody {
+    tr {
+      border-top: 1px solid #d8d8d8;
+
+      &:hover {
+        background-color: rgba(0,0,0,0.03);
+      }
+    }
+
+    td {
+      padding: 8px;
+
+      button:not(:first-child) {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  td {
+    &.desktop-only {
+      display: none;
+
+      @include for-size(desktop-up) {
+        display: table-cell;
+      }
+    }
+
+    &.mobile-only {
+
+      @include for-size(desktop-up) {
+        display: none;
+      }
+    }
+  }
+}

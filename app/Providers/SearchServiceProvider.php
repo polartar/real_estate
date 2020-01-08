@@ -200,31 +200,41 @@ class SearchServiceProvider extends ServiceProvider
     }
 
     public static function applySearchFilters($apartments, $filters) {
-        if ($filters['beds']) {
+        if (isset($filters['beds']) && $filters['beds']) {
             $apartments->whereIn('bedroom_type_id', $filters['beds']);
         }
 
-        if ($filters['bathrooms']) {
+        if (isset($filters['bathrooms']) && $filters['bathrooms']) {
             $apartments->whereIn('bathrooms', $filters['bathrooms']);
         }
 
-        if ($filters['price']) {
+        if (isset($filters['price']) && $filters['price']) {
             $min = (int) $filters['price']['min'];
             $max = (int) $filters['price']['max'];
             $apartments->whereBetween('rate', [$min, $max]);
         }
 
-        if ($filters['moveInDate']) {
+        if (isset($filters['moveInDate']) && $filters['moveInDate']) {
             $apartments->where('available_date', '<=', $filters['moveInDate']);
         }
 
-        if ($filters['buildingTypes']) {
+        if (isset($filters['buildingTypes']) && $filters['buildingTypes']) {
             $apartments->whereIn('building_type_id', $filters['buildingTypes']);
         }
 
-        if ($filters['location']) {
+        if (isset($filters['location']) && $filters['location']) {
             $apartments->whereHas('neighborhoods', function($query) use ($filters) {
                 $query->whereIn('neighborhoods.id', $filters['location']);
+            });
+        }
+
+        if (isset($filters['text']) && $filters['text']) {
+            $apartments->where(function($query) use ($filters) {
+                $query->where('id', '=', $filters['text'])
+                    ->orWhere('address', 'LIKE', '%' . $filters['text'] . '%')
+                    ->orWhere('cross_streets', 'LIKE', '%' . $filters['text'] . '%')
+                    ->orWhere('title', 'LIKE', '%' . $filters['text'] . '%')
+                    ->orWhere('description', 'LIKE', '%' . $filters['text'] . '%');
             });
         }
 
@@ -232,6 +242,14 @@ class SearchServiceProvider extends ServiceProvider
     }
 
     public static function applySorts($apartments, $filters) {
+        if (!isset($filters['sortBy'])) {
+            return $apartments;
+        }
+
+        if ($filters['sortBy']) {
+            return $apartments;
+        }
+
         switch ($filters['sortBy']) {
             case 'price_asc':
                 $apartments->orderBy('rate', 'ASC');
@@ -247,6 +265,14 @@ class SearchServiceProvider extends ServiceProvider
 
             case 'size_desc':
                 $apartments->orderBy('size', 'DESC');
+            break;
+
+            case 'webid_asc':
+                $apartments->orderBy('id', 'ASC');
+            break;
+
+            case 'webid_desc':
+                $apartments->orderBy('id', 'DESC');
             break;
 
             case 'availability':
