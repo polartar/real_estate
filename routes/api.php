@@ -28,10 +28,7 @@ Route::group(['middleware' => ['api', 'cors']], function () {
 
     // Apartments
     Route::get('apartments/list', 'ApartmentController@getList');
-
-    Route::apiResources([
-        'apartments' => 'ApartmentController'
-    ]);
+    Route::get('apartments/{apartment}', 'ApartmentController@show');
 
 });
 
@@ -45,6 +42,8 @@ Route::group(['middleware' => ['auth:api', 'cors']], function() {
         return response(Auth::user());
     });
 
+    // Apartments
+    Route::patch('apartments/{apartment}', 'ApartmentController@update');
     Route::get('admin/dashboard_counts', 'AdminController@dashboardCounts');
     Route::get('admin/listings', 'AdminController@listings');
 });

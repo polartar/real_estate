@@ -40,6 +40,26 @@ class APIAdminInstance {
       throw new Error(err.message);
     }
   }
+
+  public async updateListing(listing) {
+    try {
+      let response = await fetch(APIService.getAPIUrl() + `/admin/apartments/${listing.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(listing),
+        headers: APIService.getHeaders()
+      });
+
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      let responseJSON = await response.json();
+
+      return responseJSON.access_token;
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
 }
 
 export const APIAdminService = new APIAdminInstance();

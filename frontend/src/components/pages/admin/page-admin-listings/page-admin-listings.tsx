@@ -94,7 +94,13 @@ export class PageAdminListings {
   }
 
   toggleActive(listing) {
-    console.log(listing);
+    APIAdminService.updateListing(listing)
+      .then(r => {
+        console.log(r);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   async infiniteScroll(e) {
