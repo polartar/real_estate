@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 // unauthenticated endpoints
-Route::group(['middleware' => ['api', 'cors']], function () {
+Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
 
     Route::post('auth', 'SPAAuthController@login')->middleware('throttle');
 
@@ -30,6 +30,8 @@ Route::group(['middleware' => ['api', 'cors']], function () {
     Route::get('apartments/list', 'ApartmentController@getList');
     Route::get('apartments/{apartment}', 'ApartmentController@show');
 
+    // Neighborhoods
+    Route::get('neighborhoods/fromPoint/{lng}/{lat}', 'NeighborhoodsController@neighborhoodsFromPoint');
 });
 
 
@@ -41,6 +43,8 @@ Route::group(['middleware' => ['auth:api', 'cors']], function() {
     Route::get('user', function() {
         return response(Auth::user());
     });
+
+    Route::get('neighborhoods/geocode/{address}', 'NeighborhoodsController@geocodeAddress');
 
     // Apartments
     Route::patch('apartments/{apartment}', 'ApartmentController@update');

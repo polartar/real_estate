@@ -2,6 +2,7 @@ import { Component, h, Prop, State } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import authSelectors from '../../../../store/selectors/auth';
 import { APIAdminService } from '../../../../services/api/admin';
+import { ToastService } from '../../../../services/toast.service';
 
 @Component({
   tag: 'page-admin',
@@ -9,6 +10,8 @@ import { APIAdminService } from '../../../../services/api/admin';
 })
 export class PageAdmin {
   @Prop({ context: "store" }) store: Store;
+
+  @State() isAdmin: boolean = false;
   isLoggedIn: boolean = false;
   @State() loaded: boolean = false;
   @State() counts: any[];
@@ -16,13 +19,21 @@ export class PageAdmin {
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
-        isLoggedIn: authSelectors.isLoggedIn(state)
+        isLoggedIn: authSelectors.isLoggedIn(state),
+        isAdmin: authSelectors.isAdmin(state)
       }
     });
 
     if (!this.isLoggedIn) {
       const router: any = document.querySelector('ion-router');
       router.push('/login');
+    }
+    else {
+      // we're logged in, but as admin?
+      if (!this.isAdmin) {
+        const router: any = document.querySelector('ion-router');
+        router.push('/');
+      }
     }
   }
 
@@ -33,15 +44,7 @@ export class PageAdmin {
         this.loaded = true;
       })
       .catch(err => {
-        const toast = document.createElement('ion-toast');
-        toast.message = err.message;
-        toast.duration = 2000;
-        toast.color = 'danger';
-        toast.showCloseButton = true;
-        toast.mode = 'md';
-
-        document.body.appendChild(toast);
-        return toast.present();
+        return ToastService.error(err.message);
       });
   }
 

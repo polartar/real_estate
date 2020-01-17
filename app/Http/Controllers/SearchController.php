@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Neighborhood;
 use App\Providers\SearchServiceProvider;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;

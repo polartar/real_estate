@@ -14,6 +14,7 @@
         "barryvdh/laravel-dompdf": "^0.8.5",
         "brick/money": "^0.4.2",
         "fideloper/proxy": "^4.0",
+        "jeremykenedy/laravel-roles": "^2.5",
         "laravel/framework": "^6.5",
         "laravel/passport": "^7.4",
         "laravel/tinker": "^1.0"

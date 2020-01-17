@@ -7,10 +7,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
+use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, HasRoleAndPermission;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +21,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+
+    protected $with = ['roles'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -46,5 +49,12 @@ class User extends Authenticatable
     public function setPasswordAttribute($value): void
     {
         $this->attributes['password'] = Hash::make($value);
+    }
+
+    /**
+    * Relationships
+    */
+    public function apartments() {
+        return $this->hasMany(Apartment::class);
     }
 }

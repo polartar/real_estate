@@ -56,7 +56,7 @@ class Neighborhood extends Model
             }
         }
 
-        // Check if the point isinside the polygon or on the boundary
+        // Check if the point is inside the polygon or on the boundary
         $intersections = 0;
         $vertices_count = count($vertices);
 
@@ -82,6 +82,11 @@ class Neighborhood extends Model
         }
 
         // If the number of edges we passed through is odd, then it's in the polygon.
+        if (!$intersections) {
+            // no intersections at all? not in the polygon
+            return false;
+        }
+
         if ($intersections % 2 != 0) {
             return true;
         } else {

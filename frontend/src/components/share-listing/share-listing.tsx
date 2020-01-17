@@ -1,6 +1,7 @@
 import { Component, h, Prop, State, Element } from '@stencil/core';
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
 import Clipboard from 'clipboard';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   tag: 'share-listing',
@@ -15,36 +16,17 @@ export class ShareListing {
 
   submitForm(e) {
     e.preventDefault();
-    console.log('submitting');
   }
 
   componentDidLoad() {
     this.clipboard = new Clipboard(this.el.querySelector('.copytext'));
 
     this.clipboard.on('success', () => {
-      // toast success
-      const toast = document.createElement('ion-toast');
-      toast.message = 'The link has been copied to your clipboard';
-      toast.duration = 2000;
-      toast.color = 'secondary';
-      toast.showCloseButton = true;
-      toast.mode = 'md';
-
-      document.body.appendChild(toast);
-      return toast.present();
+      return ToastService.success('The link has been copied to your clipboard');
     });
 
     this.clipboard.on('error', () => {
-      // toast error
-      const toast = document.createElement('ion-toast');
-      toast.message = 'There was an issue copying the link';
-      toast.duration = 2000;
-      toast.color = 'danger';
-      toast.showCloseButton = true;
-      toast.mode = 'md';
-
-      document.body.appendChild(toast);
-      return toast.present();
+      return ToastService.error('There was an issue copying the link');
     });
   }
 

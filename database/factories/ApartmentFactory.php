@@ -67,6 +67,7 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
     $videos = ['https://www.youtube.com/watch?v=C0DPdy98e4c', 'https://www.youtube.com/watch?v=Bey4XXJAqS8', 'https://www.youtube.com/watch?v=HmZKgaHa3Fg'];
 
     $listing = [
+        'user_id' => 1,
         'address' => $faker->address,
         'street_address' => $faker->streetAddress,
         'zip' => $faker->postcode,

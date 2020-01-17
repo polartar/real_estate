@@ -17,7 +17,7 @@ class RegionSeeder extends Seeder
 
         collect(array_map(function($r) {
 
-            $region = Region::create([
+            $region = Region::updateOrCreate([
                 'name' => $r->name,
                 'import_id' => $r->id
             ]);

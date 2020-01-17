@@ -26,7 +26,7 @@ class BuildingTypeSeeder extends Seeder
                 'rating' => 5
             ]
         ])->map(function ($item) {
-            BuildingType::create([
+            BuildingType::updateOrCreate([
                 "name" => $item['name'],
                 "rating" => $item['rating']
             ]);

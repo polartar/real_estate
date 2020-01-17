@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fe96a6661063fe7b44abff611ad9d2f",
+    "content-hash": "c345e303296000361a148adfe2a662f0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -63,12 +63,12 @@
             "version": "v0.11.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/barryvdh/laravel-cors.git",
+                "url": "https://github.com/fruitcake/laravel-cors.git",
                 "reference": "03492f1a3bc74a05de23f93b94ac7cc5c173eec9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-cors/zipball/03492f1a3bc74a05de23f93b94ac7cc5c173eec9",
+                "url": "https://api.github.com/repos/fruitcake/laravel-cors/zipball/03492f1a3bc74a05de23f93b94ac7cc5c173eec9",
                 "reference": "03492f1a3bc74a05de23f93b94ac7cc5c173eec9",
                 "shasum": ""
             },
@@ -669,6 +669,48 @@
             "time": "2019-08-13T17:33:27+00:00"
         },
         {
+            "name": "eklundkristoffer/seedster",
+            "version": "3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eklundkristoffer/seedster.git",
+                "reference": "d5ad35ec2c1937bdce375a0fc6e0eff76c2635f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eklundkristoffer/seedster/zipball/d5ad35ec2c1937bdce375a0fc6e0eff76c2635f5",
+                "reference": "d5ad35ec2c1937bdce375a0fc6e0eff76c2635f5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*|^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Seedster\\SeedsterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Seedster\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kristoffer Eklund",
+                    "email": "kristoffereklund1@gmail.com"
+                }
+            ],
+            "time": "2019-08-31T15:00:39+00:00"
+        },
+        {
             "name": "erusev/parsedown",
             "version": "1.7.3",
             "source": {
@@ -1092,6 +1134,72 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
+            "name": "jeremykenedy/laravel-roles",
+            "version": "v2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeremykenedy/laravel-roles.git",
+                "reference": "c554d36452a6c459f4d45931740899405cfc39c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeremykenedy/laravel-roles/zipball/c554d36452a6c459f4d45931740899405cfc39c6",
+                "reference": "c554d36452a6c459f4d45931740899405cfc39c6",
+                "shasum": ""
+            },
+            "require": {
+                "eklundkristoffer/seedster": "^3.0",
+                "laravel/framework": "5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|6.*",
+                "laravel/helpers": "^1.1",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "illuminate/support": "^5.8",
+                "laravel/laravel": "5.8.*",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "jeremykenedy\\LaravelRoles\\RolesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "jeremykenedy\\LaravelRoles\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Bičan",
+                    "email": "romanbican@seznam.cz"
+                },
+                {
+                    "name": "Jeremy Kenedy",
+                    "email": "jeremykenedy@gmail.com"
+                }
+            ],
+            "description": "Powerful package for handling roles, permissions, and levels in Laravel. Supports Laravel 5.3 and higher",
+            "keywords": [
+                "acl",
+                "laravel",
+                "laravel-levels",
+                "laravel-permissions",
+                "laravel-roles",
+                "levels",
+                "permissions",
+                "roles"
+            ],
+            "time": "2019-12-18T00:31:36+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v6.8.0",
             "source": {
@@ -1236,6 +1344,59 @@
                 "laravel"
             ],
             "time": "2019-12-17T15:13:23+00:00"
+        },
+        {
+            "name": "laravel/helpers",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/helpers.git",
+                "reference": "b8eae9ddd461e89d0296f74fd069c413bf83b6fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/helpers/zipball/b8eae9ddd461e89d0296f74fd069c413bf83b6fa",
+                "reference": "b8eae9ddd461e89d0296f74fd069c413bf83b6fa",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.8.0|^6.0",
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Dries Vints",
+                    "email": "dries.vints@gmail.com"
+                }
+            ],
+            "description": "Provides backwards compatibility for helpers in the latest Laravel release.",
+            "keywords": [
+                "helpers",
+                "laravel"
+            ],
+            "time": "2019-07-30T15:25:31+00:00"
         },
         {
             "name": "laravel/passport",
@@ -4328,6 +4489,7 @@
                 "psr",
                 "psr-7"
             ],
+            "abandoned": "laminas/laminas-diactoros",
             "time": "2019-11-13T19:16:13+00:00"
         }
     ],

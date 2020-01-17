@@ -1,11 +1,12 @@
 import "@stencil/redux";
-import { Component, h, Prop, Listen, Build, Element } from '@stencil/core';
+import { Component, h, Prop, Listen, Build, Element, State } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { updateScreenSize } from "../../store/actions/screensize";
 import { getTaxonomy } from '../../store/actions/taxonomy';
 import { configureStore } from "../../store/index";
 import { loadState } from "../../services/storage";
 import { APIService } from "../../services/api/api.service";
+import AuthSelectors from '../../store/selectors/auth';
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
 import { PrefetchComponentService } from '../../services/prefetch-components.service';
 import Debounce from 'debounce-decorator';
@@ -17,6 +18,8 @@ import Debounce from 'debounce-decorator';
 export class AppRoot {
   @Prop({ context: "store" }) store: Store;
   @Element() el: HTMLElement;
+
+  @State() isAdmin: boolean = false;
 
   loadAuth: Action;
   updateScreenSize: Action;
@@ -39,6 +42,12 @@ export class AppRoot {
     }
 
     this.store.setStore(configureStore(persistedState));
+
+    this.store.mapStateToProps(this, state => {
+      return {
+        isAdmin: AuthSelectors.isAdmin(state)
+      }
+    });
 
     this.store.mapDispatchToProps(this, {
       updateScreenSize,
@@ -86,8 +95,11 @@ export class AppRoot {
             <ion-route url="/profile/:name" component="app-profile" />
 
             <ion-route url="/login" component="page-login" />
-            <ion-route url="/admin" component="page-admin" />
-            <ion-route url="/admin/listings" component="page-admin-listings" />
+
+            <ion-route url="/admin" component={ this.isAdmin ? 'page-admin' : 'page-login' } />
+            <ion-route url="/admin/listings" component={ this.isAdmin ? 'page-admin-listings' : 'page-login' } />
+            <ion-route url="/admin/listing/add" component={ this.isAdmin ? 'page-admin-listing-add' : 'page-login' } />
+            <ion-route url="/admin/listing/edit/:apartmentId" component={ this.isAdmin ? 'page-admin-listing-edit' : 'page-login' } />
 
             <ion-route url=":any" component="page-404" />
           </ion-router>

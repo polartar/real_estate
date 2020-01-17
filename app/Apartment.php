@@ -66,6 +66,14 @@ class Apartment extends Model
         return $this->hasMany(MonthlyRate::class);
     }
 
+    function apartments() {
+        return $this->hasMany(Apartment::class);
+    }
+
+    function owner() {
+        return $this->belongsTo(User::class);
+    }
+
     // accessors
 
     /**

@@ -147,7 +147,7 @@ class AmenitiesSeeder extends Seeder
             ]
         ])
         ->each(function($amenity) {
-            Amenity::create([
+            Amenity::updateOrCreate([
                 'name' => $amenity['name'],
                 'icon' => $amenity['icon']
             ]);

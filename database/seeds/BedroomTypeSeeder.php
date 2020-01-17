@@ -21,7 +21,7 @@ class BedroomTypeSeeder extends Seeder
             "4" => 4,
             "5" => 5,
         ])->map(function ($value, $name) {
-            BedroomType::create([
+            BedroomType::updateOrCreate([
                 "name" => $name,
                 "rooms_count" => $value
             ]);

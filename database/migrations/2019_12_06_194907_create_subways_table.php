@@ -15,7 +15,7 @@ class CreateSubwaysTable extends Migration
     {
         Schema::create('subways', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unqiue();
+            $table->string('name')->unique();
             $table->string('icon')->nullable();
         });
     }

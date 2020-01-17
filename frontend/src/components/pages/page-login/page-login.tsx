@@ -3,6 +3,7 @@ import { Store, Action } from '@stencil/redux';
 import authSelectors from '../../../store/selectors/auth';
 import { login } from '../../../store/actions/auth';
 import Isemail from 'isemail';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   tag: 'page-login',
@@ -43,30 +44,14 @@ export class PageAdmin {
         message = 'Could not log in. Please check your email/password.';
       }
 
-      const toast = document.createElement('ion-toast');
-      toast.message = message;
-      toast.duration = 2000;
-      toast.color = 'danger';
-      toast.showCloseButton = true;
-      toast.mode = 'md';
-
-      document.body.appendChild(toast);
-      return toast.present();
+      return ToastService.error(message);
     }
   }
 
   @Watch('isLoggedIn')
   loginChanged() {
     if (this.isLoggedIn) {
-      const toast = document.createElement('ion-toast');
-      toast.message = 'You have been logged in';
-      toast.duration = 2000;
-      toast.color = 'success';
-      toast.showCloseButton = true;
-      toast.mode = 'md';
-
-      document.body.appendChild(toast);
-      toast.present();
+      ToastService.success('You have been logged in');
 
       const router: any = document.querySelector('ion-router');
       router.push('/admin');

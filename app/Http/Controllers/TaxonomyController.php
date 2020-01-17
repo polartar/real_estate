@@ -6,6 +6,7 @@ use App\BedroomType;
 use App\BuildingType;
 use App\Neighborhood;
 use App\Region;
+use App\Subway;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -18,7 +19,8 @@ class TaxonomyController extends Controller
                 'neighborhoods' => Neighborhood::all(),
                 'regions' => Region::all(),
                 'building_types' => BuildingType::orderBy('id', 'asc')->get(),
-                'bedroom_types' => BedroomType::all()
+                'bedroom_types' => BedroomType::all(),
+                'subways' => Subway::all()
             ];
         });
 

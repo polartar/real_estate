@@ -51,10 +51,9 @@ class APISearchInstance {
 
       return await response.json();
     } catch (err) {
-      throw new Error(err);
+      throw new Error(err.message);
     }
   }
-
 }
 
 export const APISearchService = new APISearchInstance();

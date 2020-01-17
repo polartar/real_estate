@@ -112,6 +112,9 @@ export namespace Components {
     'item': any;
     'mode': '' | 'desktop';
   }
+  interface ListingEditForm {
+    'item': any;
+  }
   interface ListingList {
     'items': any[];
   }
@@ -160,6 +163,10 @@ export namespace Components {
   }
   interface Page404 {}
   interface PageAdmin {}
+  interface PageAdminListingAdd {}
+  interface PageAdminListingEdit {
+    'apartmentId': number;
+  }
   interface PageAdminListings {}
   interface PageHome {
     'prefetching': boolean;
@@ -422,6 +429,12 @@ declare global {
     new (): HTMLListingCardElement;
   };
 
+  interface HTMLListingEditFormElement extends Components.ListingEditForm, HTMLStencilElement {}
+  var HTMLListingEditFormElement: {
+    prototype: HTMLListingEditFormElement;
+    new (): HTMLListingEditFormElement;
+  };
+
   interface HTMLListingListElement extends Components.ListingList, HTMLStencilElement {}
   var HTMLListingListElement: {
     prototype: HTMLListingListElement;
@@ -522,6 +535,18 @@ declare global {
   var HTMLPageAdminElement: {
     prototype: HTMLPageAdminElement;
     new (): HTMLPageAdminElement;
+  };
+
+  interface HTMLPageAdminListingAddElement extends Components.PageAdminListingAdd, HTMLStencilElement {}
+  var HTMLPageAdminListingAddElement: {
+    prototype: HTMLPageAdminListingAddElement;
+    new (): HTMLPageAdminListingAddElement;
+  };
+
+  interface HTMLPageAdminListingEditElement extends Components.PageAdminListingEdit, HTMLStencilElement {}
+  var HTMLPageAdminListingEditElement: {
+    prototype: HTMLPageAdminListingEditElement;
+    new (): HTMLPageAdminListingEditElement;
   };
 
   interface HTMLPageAdminListingsElement extends Components.PageAdminListings, HTMLStencilElement {}
@@ -684,6 +709,7 @@ declare global {
     'input-booking-guests': HTMLInputBookingGuestsElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
+    'listing-edit-form': HTMLListingEditFormElement;
     'listing-list': HTMLListingListElement;
     'listing-map': HTMLListingMapElement;
     'listing-slider': HTMLListingSliderElement;
@@ -701,6 +727,8 @@ declare global {
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
     'page-404': HTMLPage404Element;
     'page-admin': HTMLPageAdminElement;
+    'page-admin-listing-add': HTMLPageAdminListingAddElement;
+    'page-admin-listing-edit': HTMLPageAdminListingEditElement;
     'page-admin-listings': HTMLPageAdminListingsElement;
     'page-home': HTMLPageHomeElement;
     'page-listing': HTMLPageListingElement;
@@ -815,6 +843,9 @@ declare namespace LocalJSX {
     'item'?: any;
     'mode'?: '' | 'desktop';
   }
+  interface ListingEditForm extends JSXBase.HTMLAttributes<HTMLListingEditFormElement> {
+    'item'?: any;
+  }
   interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {
     'items'?: any[];
   }
@@ -863,6 +894,10 @@ declare namespace LocalJSX {
   }
   interface Page404 extends JSXBase.HTMLAttributes<HTMLPage404Element> {}
   interface PageAdmin extends JSXBase.HTMLAttributes<HTMLPageAdminElement> {}
+  interface PageAdminListingAdd extends JSXBase.HTMLAttributes<HTMLPageAdminListingAddElement> {}
+  interface PageAdminListingEdit extends JSXBase.HTMLAttributes<HTMLPageAdminListingEditElement> {
+    'apartmentId': number;
+  }
   interface PageAdminListings extends JSXBase.HTMLAttributes<HTMLPageAdminListingsElement> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {
     'prefetching'?: boolean;
@@ -985,6 +1020,7 @@ declare namespace LocalJSX {
     'input-booking-guests': InputBookingGuests;
     'lazy-image': LazyImage;
     'listing-card': ListingCard;
+    'listing-edit-form': ListingEditForm;
     'listing-list': ListingList;
     'listing-map': ListingMap;
     'listing-slider': ListingSlider;
@@ -1002,6 +1038,8 @@ declare namespace LocalJSX {
     'neighborhood-slider': NeighborhoodSlider;
     'page-404': Page404;
     'page-admin': PageAdmin;
+    'page-admin-listing-add': PageAdminListingAdd;
+    'page-admin-listing-edit': PageAdminListingEdit;
     'page-admin-listings': PageAdminListings;
     'page-home': PageHome;
     'page-listing': PageListing;

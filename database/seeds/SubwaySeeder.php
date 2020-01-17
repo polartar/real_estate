@@ -17,7 +17,7 @@ class SubwaySeeder extends Seeder
             '7', '7d', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'J',
             'L', 'M', 'N', 'Q', 'R', 'S', 'W', 'Z'
         ])->each(function ($name) {
-            Subway::create([
+            Subway::updateOrCreate([
                 "name" => $name,
                 "icon" => "/assets/images/subway/$name.png"
             ]);

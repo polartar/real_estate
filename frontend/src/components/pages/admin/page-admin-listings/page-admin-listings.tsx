@@ -4,6 +4,7 @@ import authSelectors from '../../../../store/selectors/auth';
 import taxonomySelectors from '../../../../store/selectors/taxonomy'
 import { APIAdminService } from '../../../../services/api/admin';
 import { formatDate, formatMoney} from '../../../../helpers/utils';
+import { ToastService } from '../../../../services/toast.service';
 
 @Component({
   tag: 'page-admin-listings',
@@ -16,7 +17,8 @@ export class PageAdminListings {
   @State() bedroomTypes: any[];
   @State() buildingTypes: any[];
 
-  isLoggedIn: boolean = false;
+  @State() isAdmin: boolean = false;
+  @State() isLoggedIn: boolean = false;
   pageSize: number = 40;
   @State() loaded: boolean = false;
   @State() listings: any[];
@@ -33,6 +35,7 @@ export class PageAdminListings {
     this.store.mapStateToProps(this, state => {
       return {
         isLoggedIn: authSelectors.isLoggedIn(state),
+        isAdmin: authSelectors.isAdmin(state),
         bedroomTypes: taxonomySelectors.getBedroomTypes(state),
         buildingTypes: taxonomySelectors.getBuildingTypes(state)
       }
@@ -41,6 +44,13 @@ export class PageAdminListings {
     if (!this.isLoggedIn) {
       const router: any = document.querySelector('ion-router');
       router.push('/login');
+    }
+    else {
+      // we're logged in, but as admin?
+      if (!this.isAdmin) {
+        const router: any = document.querySelector('ion-router');
+        router.push('/');
+      }
     }
   }
 
@@ -68,15 +78,7 @@ export class PageAdminListings {
         return result;
 
       } catch(err) {
-        const toast = document.createElement('ion-toast');
-        toast.message = 'Could not retrieve listings: ' + err.message;
-        toast.duration = 2000;
-        toast.color = 'danger';
-        toast.showCloseButton = true;
-        toast.mode = 'md';
-
-        document.body.appendChild(toast);
-        return toast.present();
+        return ToastService.error(`Could not retrieve listings: ${err.message}`);
       }
   }
 
@@ -113,15 +115,7 @@ export class PageAdminListings {
         this.listings = [...this.listings, ...results.results];
       }
     } catch(err) {
-      const toast = document.createElement('ion-toast');
-        toast.message = 'Could not retrieve listings: ' + err.message;
-        toast.duration = 2000;
-        toast.color = 'danger';
-        toast.showCloseButton = true;
-        toast.mode = 'md';
-
-        document.body.appendChild(toast);
-        toast.present();
+        ToastService.error(`Could not retrieve listings: ${err.message}`);
     }
 
     e.target.complete();

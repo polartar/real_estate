@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Apartment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use PDF;
 
 class ApartmentController extends Controller
@@ -35,8 +38,12 @@ class ApartmentController extends Controller
      * @param  \App\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
-    public function show(Apartment $apartment)
+    public function show($id)
     {
+        $apartment = Apartment::withoutGlobalScope('active')->findOrFail($id);
+
+        $this->authorize('view', $apartment);
+
         return $apartment;
     }
 

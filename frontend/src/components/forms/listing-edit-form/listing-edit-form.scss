@@ -1,0 +1,30 @@
+.listing-edit-form-component {
+  fieldset {
+    margin-bottom: 16px;
+  }
+
+  .action-button {
+    margin-bottom: 16px;
+  }
+
+  .fieldset-inputs {
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    &.address {
+      display: grid;
+      gap: 8px;
+      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    &.features {
+      display: grid;
+      gap: 8px;
+      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+}

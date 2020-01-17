@@ -2,6 +2,10 @@ import { APIService } from './api.service';
 
 class APIApartmentsInstance {
 
+  /**
+   * Get an individual apartment
+   * @param id
+   */
   public async getApartment(id: number) {
     try {
       let response = await fetch(APIService.getAPIUrl() + '/apartments/' + id, {
