@@ -13,9 +13,9 @@ Configure database credentials in `.env` then run migrations
 
 `php artisan dev:refresh`
 
-To seed apartments for development use the `--apts` option:
+To seed apartments for development call:
 
-`php artisan dev:refresh --apts`
+`php artisan db:seed --class=ApartmentSeeder`
 
 Clear caches
 

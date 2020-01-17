@@ -11,8 +11,7 @@ class DevRefresh extends Command
      *
      * @var string
      */
-    protected $signature = 'dev:refresh
-                            {--apts : Seed apartments}';
+    protected $signature = 'dev:refresh';
 
     /**
      * The console command description.
@@ -70,28 +69,13 @@ class DevRefresh extends Command
         $this->info('');
         $this->callSilent('passport:install');
 
-        $bar->advance(17);
+        $bar->advance(33);
 
         $this->info('');
         $this->info('');
         $this->info('Seeding the database');
         $this->info('');
         $this->callSilent('db:seed', ['--force' => true]);
-
-        $bar->advance(20);
-
-        if ($this->option('apts')) {
-            $this->info('');
-            $this->info('');
-            $this->info('Seeding Apartments');
-            $this->info('');
-
-            // seed 1000 apts
-            for ($i = 0; $i < 10; $i++) {
-                $this->callSilent('db:seed', ['--force' => true, '--class' => 'ApartmentSeeder']);
-                $bar->advance(3);
-            }
-        }
 
         $bar->finish();
         $this->info('');
