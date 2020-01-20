@@ -121,6 +121,12 @@ export class PageAdminListings {
     e.target.complete();
   }
 
+  goTo(path) {
+    const router: any = document.querySelector('ion-router');
+
+    router.push(path);
+  }
+
   render() {
     return [
       <admin-header />,
@@ -139,7 +145,7 @@ export class PageAdminListings {
 
             <div class="flex-spacer" />
 
-            <button type="button" class="button-dark add-new" aria-label="Add New"><ion-icon name="add-circle" /></button>
+            <button type="button" class="button-dark add-new" aria-label="Add New" onClick={() => this.goTo('/admin/listing/add')}><ion-icon name="add-circle" /></button>
           </form>
 
         { this.loaded ?
@@ -191,7 +197,7 @@ export class PageAdminListings {
                           <button class="button-dark" onClick={() => console.log('delete')}>
                             <ion-icon name="trash" />
                           </button>
-                          <button class="button-dark" onClick={() => console.log('edit')}>
+                          <button class="button-dark" onClick={() => this.goTo(`/admin/listing/edit/${l.id}`)}>
                             <ion-icon name="settings" />
                           </button>
 
