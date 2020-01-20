@@ -41,6 +41,9 @@ export function formatDate(vdate, format?: string) {
     case 'm.d.y':
       result = (date.getMonth() + 1) + '.' + date.getDate() + '.' + date.getFullYear().toString().slice(-2);
     break;
+    case 'MMM':
+      result = date.toLocaleString('default', { month: 'short' });
+    break;
     case 'MMMM':
       result = date.toLocaleString('default', { month: 'long' });
     break;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Amenity;
 use App\BedroomType;
 use App\BuildingType;
 use App\Neighborhood;
@@ -20,7 +21,8 @@ class TaxonomyController extends Controller
                 'regions' => Region::all(),
                 'building_types' => BuildingType::orderBy('id', 'asc')->get(),
                 'bedroom_types' => BedroomType::all(),
-                'subways' => Subway::all()
+                'subways' => Subway::all(),
+                'amenities' => Amenity::orderBy('name', 'asc')->get()
             ];
         });
 

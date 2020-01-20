@@ -5,6 +5,7 @@ interface taxonomyState {
   regions: any[];
   buildingTypes: any[];
   bedroomTypes: any[];
+  subways: any[];
   loaded: boolean;
 }
 
@@ -14,6 +15,8 @@ const getInitialState = () => {
     neighborhoods: [],
     buildingTypes: [],
     bedroomTypes: [],
+    subways: [],
+    amenities: [],
     loaded: false
   };
 };
@@ -37,6 +40,8 @@ const taxonomyReducer = (
         neighborhoods: action.payload.neighborhoods,
         buildingTypes: action.payload.building_types,
         bedroomTypes: action.payload.bedroom_types,
+        subways: action.payload.subways,
+        amenities: action.payload.amenities,
         loaded: true
       };
     }

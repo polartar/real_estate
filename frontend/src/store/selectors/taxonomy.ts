@@ -25,7 +25,7 @@ const taxonomySelectors = {
   },
 
   getBuildingTypes: state => {
-    return [...state.taxonomy.buildingTypes]
+    return [...state.taxonomy.buildingTypes];
   },
 
   getBuildingTypeById: (id, buildingTypes) => {
@@ -33,11 +33,19 @@ const taxonomySelectors = {
   },
 
   getBedroomTypes: state => {
-    return [...state.taxonomy.bedroomTypes]
+    return [...state.taxonomy.bedroomTypes];
   },
 
   getBedroomTypeById: (id, bedroomTypes) => {
     return bedroomTypes.find(b => b.id === id);
+  },
+
+  getSubways: state => {
+    return [...state.taxonomy.subways];
+  },
+
+  getAmenities: state => {
+    return [...state.taxonomy.amenities];
   }
 }
 
