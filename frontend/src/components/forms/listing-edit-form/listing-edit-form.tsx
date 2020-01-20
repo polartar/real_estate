@@ -208,6 +208,13 @@ export class ListingEditForm {
       }
     ];
 
+    const blockDates = [
+      {
+        start: '12/02/19',
+        end: '03/31/20'
+      }
+    ];
+
     return [
       <div class="listing-edit-form-component">
         <form onSubmit={e => this.onSubmit(e)} ref={el => this.form = el as HTMLFormElement }>
@@ -454,6 +461,55 @@ export class ListingEditForm {
 
           <fieldset>
             <h3>Availability</h3>
+
+            <div class="fieldset-inputs availability">
+              <div class="input">
+                <label htmlFor="next-available-date">Next Available Date</label>
+                <input-date
+                  name="available_date"
+                  label="Next Available Date"
+                  help-text="Select the next day the listing is available"
+                  value={this.item ? this.item.available_date : ''}
+                />
+              </div>
+
+              <div class="block-dates">
+                <div class="flex-vertical-center">
+                  <strong>Blocked Dates</strong> <button class="button-reset" style={{ paddingLeft: '16px' }}><ion-icon name="add-circle" /></button>
+                </div>
+
+                {
+                  blockDates ?
+                    blockDates.map(d =>
+                      <div class="block-date">
+                        { formatDate(d.start, 'm/d/y') } - { formatDate(d.end, 'm/d/y')}
+
+                        <button class="button-reset"
+                          onClick={e => { const p: any = e.currentTarget; p.closest('.block-date').remove() }}
+                        >
+                          <ion-icon name="close" />
+                        </button>
+
+                        <input type="hidden" name="block_dates[start][]" value={d.start} />
+                        <input type="hidden" name="block_dates[end][]" value={d.end} />
+                      </div>
+                    )
+                  : <div class="placeholder">No dates are currently blocked</div>
+                }
+              </div>
+
+              <div class="block-date-input hidden">
+                <input-date
+                  name="block_date_input_start_placeholder"
+                  value=""
+                />
+
+                <input-date
+                  name="block_date_input_end_placeholder"
+                  value=""
+                />
+              </div>
+            </div>
           </fieldset>
 
           <fieldset>
