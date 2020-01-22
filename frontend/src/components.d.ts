@@ -114,6 +114,14 @@ export namespace Components {
     'label': string;
     'value': string;
   }
+  interface InputImage {
+    'accept': string;
+    'hasDescription': boolean;
+    'hasTitle': boolean;
+    'limit': number;
+    'name': string;
+    'value': any[];
+  }
   interface LazyImage {
     'alt': string;
     'expand': boolean;
@@ -441,6 +449,12 @@ declare global {
     new (): HTMLInputDateModalElement;
   };
 
+  interface HTMLInputImageElement extends Components.InputImage, HTMLStencilElement {}
+  var HTMLInputImageElement: {
+    prototype: HTMLInputImageElement;
+    new (): HTMLInputImageElement;
+  };
+
   interface HTMLLazyImageElement extends Components.LazyImage, HTMLStencilElement {}
   var HTMLLazyImageElement: {
     prototype: HTMLLazyImageElement;
@@ -733,6 +747,7 @@ declare global {
     'input-booking-guests': HTMLInputBookingGuestsElement;
     'input-date': HTMLInputDateElement;
     'input-date-modal': HTMLInputDateModalElement;
+    'input-image': HTMLInputImageElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
     'listing-edit-form': HTMLListingEditFormElement;
@@ -870,6 +885,14 @@ declare namespace LocalJSX {
     'helpText'?: string;
     'label'?: string;
     'value'?: string;
+  }
+  interface InputImage extends JSXBase.HTMLAttributes<HTMLInputImageElement> {
+    'accept'?: string;
+    'hasDescription'?: boolean;
+    'hasTitle'?: boolean;
+    'limit'?: number;
+    'name': string;
+    'value'?: any[];
   }
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
@@ -1058,6 +1081,7 @@ declare namespace LocalJSX {
     'input-booking-guests': InputBookingGuests;
     'input-date': InputDate;
     'input-date-modal': InputDateModal;
+    'input-image': InputImage;
     'lazy-image': LazyImage;
     'listing-card': ListingCard;
     'listing-edit-form': ListingEditForm;

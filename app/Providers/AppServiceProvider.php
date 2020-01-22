@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Apartment;
+use App\ImageUpload;
 use App\Observers\ApartmentObserver;
+use App\Observers\ImageUploadObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Apartment::observe(ApartmentObserver::class);
+        ImageUpload::observe(ImageUploadObserver::class);
     }
 }

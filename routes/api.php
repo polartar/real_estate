@@ -50,4 +50,7 @@ Route::group(['middleware' => ['auth:api', 'cors']], function() {
     Route::patch('apartments/{apartment}', 'ApartmentController@update');
     Route::get('admin/dashboard_counts', 'AdminController@dashboardCounts');
     Route::get('admin/listings', 'AdminController@listings');
+
+    Route::post('image-upload', 'FileUploadController@uploadImage');
+    Route::delete('image-upload/{image}', 'FileUploadController@deleteImage');
 });

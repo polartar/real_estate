@@ -58,6 +58,7 @@ class ApartmentPolicy
     public function create(User $user)
     {
         //
+        return true;
     }
 
     /**

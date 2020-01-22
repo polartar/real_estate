@@ -21,8 +21,12 @@ export class ListingEditForm {
   latitudeInput: HTMLInputElement;
   subwayInputs: HTMLElement;
   amenityInputs: HTMLElement;
+  blockDatesWrapper: HTMLElement;
+  blockDateStartInput: HTMLElement;
+  blockDateEndInput: HTMLElement;
 
   @State() geocodingInProgress: boolean = false;
+  @State() blockedDateErrors: string[] = [];
 
   @State() isLoggedIn: boolean = false;
   @State() isAdmin: boolean = false;
@@ -161,6 +165,54 @@ export class ListingEditForm {
     }
   }
 
+  addBlockedDate() {
+    const startDate = this.blockDateStartInput.getAttribute('value');
+    const endDate = this.blockDateEndInput.getAttribute('value');
+
+    if (!startDate || !endDate) {
+      this.blockedDateErrors = ['Please select a start/end date'];
+      return;
+    }
+
+    if (new Date(endDate) <= new Date(startDate)) {
+      this.blockedDateErrors = ['End date must be after the start date'];
+      return;
+    }
+
+    const placeholder: any = this.blockDatesWrapper.querySelector('.placeholder');
+    if (placeholder) {
+      placeholder.remove();
+    }
+
+    const html = `${formatDate(startDate, 'm/d/y')} - ${formatDate(endDate, 'm/d/y')}
+
+    <button type="button" class="button-reset remove-block-date">
+      <ion-icon name="close" class="remove-block-date" />
+    </button>
+
+    <input type="hidden" name="block_dates[start][]" value="${startDate}" />
+    <input type="hidden" name="block_dates[end][]" value="${endDate}" />`;
+
+    const blockDate = document.createElement('div');
+    blockDate.classList.add('block-date');
+
+    blockDate.innerHTML = html;
+
+    this.blockDatesWrapper.appendChild(blockDate);
+
+    this.blockedDateErrors = [];
+    this.blockDateStartInput.setAttribute('value', '');
+    this.blockDateEndInput.setAttribute('value', '');
+  }
+
+  removeBlockedDate(e) {
+    const button = e.target;
+
+    if (button.classList.contains('remove-block-date')) {
+      button.closest('.block-date').remove();
+    }
+  }
+
   render() {
     console.log(this.item);
 
@@ -205,13 +257,6 @@ export class ListingEditForm {
         name: '<span>Service Fee <br /> Client (%)</span>',
         key: 'service_fee_client',
         disabled: false
-      }
-    ];
-
-    const blockDates = [
-      {
-        start: '12/02/19',
-        end: '03/31/20'
       }
     ];
 
@@ -473,21 +518,24 @@ export class ListingEditForm {
                 />
               </div>
 
-              <div class="block-dates">
-                <div class="flex-vertical-center">
-                  <strong>Blocked Dates</strong> <button class="button-reset" style={{ paddingLeft: '16px' }}><ion-icon name="add-circle" /></button>
+              <div
+                class="block-dates"
+                ref={el => this.blockDatesWrapper = el as HTMLElement }
+                onClick={e => this.removeBlockedDate(e)}
+              >
+                <div>
+                  <strong>Blocked Dates</strong>
+                  <div class="help-text">Dates listed here will be unable to be booked</div>
                 </div>
 
                 {
-                  blockDates ?
-                    blockDates.map(d =>
+                  this.item && this.item.block_dates && this.item.block_dates.length ?
+                    this.item.block_dates.map(d =>
                       <div class="block-date">
                         { formatDate(d.start, 'm/d/y') } - { formatDate(d.end, 'm/d/y')}
 
-                        <button class="button-reset"
-                          onClick={e => { const p: any = e.currentTarget; p.closest('.block-date').remove() }}
-                        >
-                          <ion-icon name="close" />
+                        <button type="button" class="button-reset remove-block-date">
+                          <ion-icon name="close" class="remove-block-date" />
                         </button>
 
                         <input type="hidden" name="block_dates[start][]" value={d.start} />
@@ -499,15 +547,39 @@ export class ListingEditForm {
               </div>
 
               <div class="block-date-input hidden">
-                <input-date
-                  name="block_date_input_start_placeholder"
-                  value=""
-                />
+                <div class="input start">
+                  <label htmlFor="block-date-input-start-placeholder">Start</label>
+                  <input-date
+                    id="block-date-input-start-placeholder"
+                    name="block_date_input_start_placeholder"
+                    value=""
+                    label="Start of blocked dates"
+                    ref={el => this.blockDateStartInput = el as HTMLElement }
+                  />
+                </div>
 
-                <input-date
-                  name="block_date_input_end_placeholder"
-                  value=""
-                />
+                <div class="input end">
+                  <label htmlFor="block-date-input-end-placeholder">End</label>
+                  <input-date
+                    name="block_date_input_end_placeholder"
+                    value=""
+                    label="End of blocked dates"
+                    ref={el => this.blockDateEndInput = el as HTMLElement }
+                  />
+                </div>
+
+                <div>
+                  {
+                    this.blockedDateErrors.length ?
+                      <div class="errors">
+                        {
+                          this.blockedDateErrors.map(e => <div>{e}</div>)
+                        }
+                      </div>
+                    : null
+                  }
+                  <button type="button" class="button-dark" onClick={() => this.addBlockedDate() }>Add to blocked dates</button>
+                </div>
               </div>
             </div>
           </fieldset>
@@ -659,10 +731,13 @@ export class ListingEditForm {
 
           <fieldset>
             <h3>Images</h3>
+            <input-image name="images" has-description />
           </fieldset>
 
           <fieldset>
             <h3>Floorplan</h3>
+
+            <input-image name="floor_plan" />
           </fieldset>
 
           <fieldset>
@@ -683,7 +758,7 @@ export class ListingEditForm {
             </div>
           </fieldset>
 
-          <input type="submit" class="button-dark" value="Submit" />
+          <input type="submit" class="button-dark" value="Save" />
         </form>
       </div>
     ]

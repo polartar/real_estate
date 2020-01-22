@@ -138,4 +138,19 @@
       font-size: 18px;
     }
   }
+
+  .block-date-input {
+    padding-top: 16px;
+
+    .input {
+      display: inline-block;
+      padding-right: 16px;
+    }
+  }
+
+  .errors {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: red;
+  }
 }

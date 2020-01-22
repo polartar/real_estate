@@ -38,7 +38,7 @@ export class InputDate {
   render() {
     return (
       <div class="input-date-component">
-        <input type="text" name={this.name} class="apt212-input" value={this.getValue()} onClick={() => this.init() } />
+        <input type="text" name={this.name} class="apt212-input" autocomplete="off" value={this.getValue()} onClick={() => this.init() } />
       </div>
     )
   }
