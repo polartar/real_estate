@@ -13,9 +13,10 @@ class Apartment extends Model
         "building_type_id" => "int",
         "bedroom_type_id" => "int",
         "rating" => "float",
-        "advance_charges" => "array",
         "available_date" => 'date:Y-m-d',
         "available_until" => 'date:Y-m-d',
+        "due_to_reserve" => 'array',
+        "due_by_checkin" => 'array'
     ];
 
     protected $appends = ['neighborhood_ids', 'map_marker_ids', 'monthly_utilities'];

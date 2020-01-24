@@ -38,6 +38,11 @@ class CreateApartmentsTable extends Migration
             $table->float('utility_electricity')->default(0);
             $table->float('utility_cleaning')->default(0);
             $table->float('move_out_fee')->default(0);
+            $table->integer('months_due_on_checkin')->default(0);
+            $table->integer('days_due_on_checkin')->default(0);
+            $table->integer('duci_advance_payment_days')->default(0);
+            $table->json('due_to_reserve');
+            $table->json('due_by_checkin');
             $table->float('rating')->nullable()->index();
             $table->double('lat')->nullable()->index();
             $table->double('lng')->nullable()->index();

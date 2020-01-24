@@ -122,6 +122,11 @@ export namespace Components {
     'name': string;
     'value': any[];
   }
+  interface InputMultiselect {
+    'name': string;
+    'options': any[];
+    'value': any[];
+  }
   interface LazyImage {
     'alt': string;
     'expand': boolean;
@@ -455,6 +460,12 @@ declare global {
     new (): HTMLInputImageElement;
   };
 
+  interface HTMLInputMultiselectElement extends Components.InputMultiselect, HTMLStencilElement {}
+  var HTMLInputMultiselectElement: {
+    prototype: HTMLInputMultiselectElement;
+    new (): HTMLInputMultiselectElement;
+  };
+
   interface HTMLLazyImageElement extends Components.LazyImage, HTMLStencilElement {}
   var HTMLLazyImageElement: {
     prototype: HTMLLazyImageElement;
@@ -748,6 +759,7 @@ declare global {
     'input-date': HTMLInputDateElement;
     'input-date-modal': HTMLInputDateModalElement;
     'input-image': HTMLInputImageElement;
+    'input-multiselect': HTMLInputMultiselectElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
     'listing-edit-form': HTMLListingEditFormElement;
@@ -892,6 +904,11 @@ declare namespace LocalJSX {
     'hasTitle'?: boolean;
     'limit'?: number;
     'name': string;
+    'value'?: any[];
+  }
+  interface InputMultiselect extends JSXBase.HTMLAttributes<HTMLInputMultiselectElement> {
+    'name': string;
+    'options': any[];
     'value'?: any[];
   }
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
@@ -1082,6 +1099,7 @@ declare namespace LocalJSX {
     'input-date': InputDate;
     'input-date-modal': InputDateModal;
     'input-image': InputImage;
+    'input-multiselect': InputMultiselect;
     'lazy-image': LazyImage;
     'listing-card': ListingCard;
     'listing-edit-form': ListingEditForm;

@@ -69,7 +69,7 @@ export class InputImage {
     this.uploadInProgress = false;
   }
 
-  async delete(event, id) {
+  async delete(id) {
 
     if (!await AlertService.confirm('Are you sure?', 'Delete Image')) {
       return;
@@ -159,7 +159,7 @@ export class InputImage {
                 </div>
 
                 <div class="action">
-                  <button type="button" class="button-dark block" onClick={e => this.delete(e, f.id)}>Delete</button>
+                  <button type="button" class="button-dark block" onClick={() => this.delete(f.id)}>Delete</button>
                 </div>
               </div>
             )

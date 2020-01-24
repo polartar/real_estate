@@ -887,6 +887,7 @@ export class ListingEditForm {
                   name="move_out_fee"
                   class="apt212-input block"
                   value={this.item ? this.item.move_out_fee : ''}
+                  step={0.01}
                 />
               </div>
 
@@ -943,6 +944,68 @@ export class ListingEditForm {
                     )
                   }
                 </select>
+              </div>
+
+              <div class="input">
+                <label htmlFor="due-to-reserve">Due Now to Reserve</label>
+                <input-multiselect
+                  id="due-to-reserve"
+                  name="due_to_reserve"
+                  options={[
+                    {
+                      label: 'Background Check',
+                      value: 'background_check'
+                    },
+                    {
+                      label: 'Full Service Fee',
+                      value: 'service_fee'
+                    },
+                    {
+                      label: 'Security Deposit',
+                      value: 'security_deposit'
+                    },
+                    {
+                      label: 'Months Due on Check In',
+                      value: 'months_due_on_checkin'
+                    },
+                    {
+                      label: 'Days Due on Check In',
+                      value: 'days_due_on_checkin'
+                    }
+                  ]}
+                  value={this.item ? this.item.due_to_reserve : []}
+                />
+              </div>
+
+              <div class="input">
+                <label htmlFor="due-by-checkin">Due By Check In</label>
+                <input-multiselect
+                  id="due-by-checkin"
+                  name="due_by_checkin"
+                  options={[
+                    {
+                      label: 'Background Check',
+                      value: 'background_check'
+                    },
+                    {
+                      label: 'Full Service Fee',
+                      value: 'service_fee'
+                    },
+                    {
+                      label: 'Security Deposit',
+                      value: 'security_deposit'
+                    },
+                    {
+                      label: 'Months Due on Check In',
+                      value: 'months_due_on_checkin'
+                    },
+                    {
+                      label: 'Days Due on Check In',
+                      value: 'days_due_on_checkin'
+                    }
+                  ]}
+                  value={this.item ? this.item.due_by_checkin : []}
+                />
               </div>
             </div>
           </fieldset>
