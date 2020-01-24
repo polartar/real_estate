@@ -43,7 +43,8 @@ export class SearchListingCard {
   }
 
   getImageURL() {
-    return this.item.images.length ? this.item.images[0] : '/assets/images/placeholder/apt1.jpeg';
+    console.log(this.item.images);
+    return this.item.images.length ? this.item.images[0].medium : '/assets/images/placeholder/apt1.jpeg';
   }
 
   render() {
@@ -67,7 +68,7 @@ export class SearchListingCard {
       ]
     }
     else {
-      images = this.item.images.map((image, index) => { return { src: image, alt: `${this.item.street_address} image ${index + 1}` } });
+      images = this.item.images.map((image, index) => { return { src: image.small, alt: `${this.item.street_address} image ${index + 1}` } });
     }
 
     return [

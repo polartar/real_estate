@@ -201,7 +201,7 @@ export namespace Components {
     'item': any;
   }
   interface PageListingImageModal {
-    'images': string[];
+    'images': any[];
     'src': string;
   }
   interface PageListingImageSlider {
@@ -979,7 +979,7 @@ declare namespace LocalJSX {
     'onShowSeasonalRates'?: (event: CustomEvent<any>) => void;
   }
   interface PageListingImageModal extends JSXBase.HTMLAttributes<HTMLPageListingImageModalElement> {
-    'images': string[];
+    'images': any[];
     'src': string;
   }
   interface PageListingImageSlider extends JSXBase.HTMLAttributes<HTMLPageListingImageSliderElement> {

@@ -9,7 +9,7 @@ import { generateId } from '../../../../../helpers/utils';
 export class PageListingImageModal {
   @Element() el: HTMLElement;
   @Prop() src!: string;
-  @Prop() images!: string[];
+  @Prop() images!: any[];
 
   sliderClass: string = 'glide';
   glide: any;
@@ -148,7 +148,7 @@ export class PageListingImageModal {
             <ul class="glide__slides">
               {
               this.images.map(img => <li class="glide__slide">
-                    <lazy-image src={img} class="slider__img" />
+                    <lazy-image src={img.original} class="slider__img" />
                 </li>
               )
               }

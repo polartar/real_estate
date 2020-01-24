@@ -53,7 +53,7 @@ export class PageAdminListingEdit {
   render() {
     return [
       <admin-header />,
-      <ion-content class="page-admin-listing-add">
+      <ion-content class="page-admin-listing-edit">
         <section class="section">
 
           {

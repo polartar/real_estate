@@ -16,13 +16,11 @@ class Apartment extends Model
         "advance_charges" => "array",
         "available_date" => 'date:Y-m-d',
         "available_until" => 'date:Y-m-d',
-        "images" => 'array',
-        'floor_plans' => 'array'
     ];
 
-    protected $appends = ['neighborhood_ids', 'map_marker_ids'];
+    protected $appends = ['neighborhood_ids', 'map_marker_ids', 'monthly_utilities'];
     protected $hidden = ['neighborhoods', 'map_markers'];
-    protected $with = ['amenities', 'subways', 'neighborhoods', 'map_markers', 'rates'];
+    protected $with = ['amenities', 'subways', 'neighborhoods', 'map_markers', 'rates', 'images', 'floor_plans', 'block_dates'];
 
 
     protected static function boot() {
@@ -66,12 +64,20 @@ class Apartment extends Model
         return $this->hasMany(MonthlyRate::class);
     }
 
-    function apartments() {
-        return $this->hasMany(Apartment::class);
-    }
-
     function owner() {
         return $this->belongsTo(User::class);
+    }
+
+    function images() {
+        return $this->morphMany(ImageUpload::class, 'attachment')->where('name', '=', 'images');
+    }
+
+    function floor_plans() {
+        return $this->morphMany(ImageUpload::class, 'attachment')->where('name', '=', 'floor_plans');
+    }
+
+    function block_dates() {
+        return $this->hasMany(BlockDates::class);
     }
 
     // accessors
@@ -85,6 +91,19 @@ class Apartment extends Model
 
     public function getMapMarkerIdsAttribute() {
         return $this->map_markers->pluck('id');
+    }
+
+    public function getMonthlyUtilitiesAttribute() {
+        $utilities = [
+            $this->attributes['utility_wifi'],
+            $this->attributes['utility_cable'],
+            $this->attributes['utility_electricity'],
+            $this->attributes['utility_cleaning']
+        ];
+
+        $utilties = array_filter($utilities);
+
+        return round(array_sum($utilities), 2);
     }
 
     /**

@@ -34,7 +34,7 @@ export class MapListingCard {
     return (
       <ion-router-link href={`/listing/${this.item.id}`}>
         <div class="map-listing-card-component">
-          <img src={this.item.images[0]} class="feature-image" />
+          <img src={this.item.images[0].small} class="feature-image" />
 
           <div class="details">
             <h4 class="listing-title">{this.item.street_address}</h4>

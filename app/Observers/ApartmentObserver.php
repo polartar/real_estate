@@ -5,9 +5,8 @@ namespace App\Observers;
 use App\Apartment;
 use App\Providers\AmenitiesServiceProvider;
 use App\Providers\MapMarkerServiceProvider;
-use App\Providers\MonthlyRateServiceProvider;
 use App\Providers\NeighborhoodServiceProvider;
-use App\Providers\SubwayServiceProvider;
+use App\Providers\ApartmentServiceProvider;
 
 class ApartmentObserver
 {
@@ -24,9 +23,11 @@ class ApartmentObserver
         NeighborhoodServiceProvider::assignNeighborhoods($apartment);
 
         // assign stuff for faked apartments
-        SubwayServiceProvider::assignFakedSubways($apartment);
-        AmenitiesServiceProvider::assignFakedAmenities($apartment);
-        MonthlyRateServiceProvider::assignFakeRates($apartment);
+        ApartmentServiceProvider::assignFakedSubways($apartment);
+        ApartmentServiceProvider::assignFakedAmenities($apartment);
+        ApartmentServiceProvider::assignFakeRates($apartment);
+        ApartmentServiceProvider::assignFakedImages($apartment);
+        ApartmentServiceProvider::assignFakedBlockDates($apartment);
     }
 
     /**

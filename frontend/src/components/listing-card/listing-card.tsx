@@ -33,7 +33,7 @@ export class ListingCard {
   }
 
   getImageURL() {
-    return this.item.images.length ? this.item.images[0] : '/assets/images/placeholder/apt1.jpeg';
+    return this.item.images.length ? this.item.images[0].small : '/assets/images/placeholder/apt1.jpeg';
   }
 
   render() {

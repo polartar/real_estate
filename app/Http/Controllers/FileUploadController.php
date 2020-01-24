@@ -18,36 +18,19 @@ class FileUploadController extends Controller
             'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
         ]);
 
-        Storage::makeDirectory('public/images/thumbs');
+        $filesystem = Storage::disk('public');
 
-        $path_original = $request->file('file')->store('public/images');
+        $path_original = $request->file('file')->store('images', ['disk' => 'public']);
+        $fs_path = $filesystem->path($path_original);
 
-        $fs_path = storage_path('app/' . $path_original);
-        $filename = explode('public/images/', $path_original)[1];
-
-        // get url from path_original
-        $url = url(Storage::url($path_original));
-
-        $sizes = ['small' => 300, 'medium' => 600, 'large' => 900];
-        $path_small = $path_medium = $path_large = '';
-        foreach ($sizes as $size => $width) {
-            $img = Image::make($fs_path)->widen($width, function($constraint) {
-                $constraint->upsize();
-            });
-
-            $thumbfile = $size . $filename;
-            $thumbpath = storage_path('app/public/images/thumbs/' . $thumbfile);
-            $img->save($thumbpath);
-
-            ${"path_$size"} = 'public/images/thumbs/' . $thumbfile;
-        }
+        $thumbs = ImageUpload::createThumbnails($fs_path, 'images/');
 
         $imageUpload = new ImageUpload();
         $imageUpload->user_id = Auth::user()->id;
         $imageUpload->size_original = $path_original;
-        $imageUpload->size_small = $path_small;
-        $imageUpload->size_medium = $path_medium;
-        $imageUpload->size_large = $path_large;
+        $imageUpload->size_small = $thumbs['small'];
+        $imageUpload->size_medium = $thumbs['medium'];
+        $imageUpload->size_large = $thumbs['large'];
         $imageUpload->title = $request->title;
         $imageUpload->description = $request->description;
         $imageUpload->name = $request->name;

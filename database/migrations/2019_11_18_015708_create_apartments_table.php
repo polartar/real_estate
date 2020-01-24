@@ -16,6 +16,7 @@ class CreateApartmentsTable extends Migration
         Schema::create('apartments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
+            $table->text('owner_name')->nullable();
             $table->text('address')->nullable();
             $table->text('street_address')->nullable();
             $table->string('zip')->nullable();
@@ -32,20 +33,15 @@ class CreateApartmentsTable extends Migration
             $table->date('available_date')->nullable()->index();
             $table->date('available_until')->nullable()->index();
             $table->float('rate', 10, 2)->nullable()->index();
-            $table->float('tax_rate')->nullable();
-            $table->float('application_charge')->nullable();
-            $table->float('service_charge')->nullable();
-            $table->float('security_deposit')->nullable();
-            $table->integer('min_days_count')->nullable();
-            $table->integer('duci_days_count')->nullable();
-            $table->integer('months_due')->nullable();
+            $table->float('utility_cable')->default(0);
+            $table->float('utility_wifi')->default(0);
+            $table->float('utility_electricity')->default(0);
+            $table->float('utility_cleaning')->default(0);
+            $table->float('move_out_fee')->default(0);
             $table->float('rating')->nullable()->index();
             $table->double('lat')->nullable()->index();
             $table->double('lng')->nullable()->index();
             $table->string('video_url')->nullable();
-            $table->json('images')->nullable();
-            $table->json('floor_plans')->nullable();
-            $table->text('advance_charges')->nullable();
             $table->boolean('is_active')->default(false)->index();
             $table->mediumText('title');
             $table->longText('description');

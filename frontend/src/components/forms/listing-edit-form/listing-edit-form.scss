@@ -92,6 +92,13 @@
       gap: 8px;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
+
+    &.payment-timeline {
+      display: grid;
+      gap: 8px;
+      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
   }
 
   .monthly-rates-wrapper {

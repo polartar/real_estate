@@ -293,7 +293,7 @@ export class PageListingBody {
                   Floor Plan
                 </div>
 
-                { this.item.floor_plans.map(f => <lazy-image src={f} class="full-img" />) }
+                { this.item.floor_plans.map(f => <lazy-image src={f.large} class="full-img" />) }
               </div>
               : null
             }

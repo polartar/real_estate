@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Element } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import taxonomySelectors from '../../../store/selectors/taxonomy'
 import serialize from 'form-serialize';
@@ -6,6 +6,8 @@ import { APINeighborhoodsService } from '../../../services/api/neighborhoods';
 import { ToastService } from '../../../services/toast.service';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 import { formatDate } from '../../../helpers/utils';
+import isNumber from 'is-number';
+import getDaysInMonth from 'date-fns/getDaysInMonth';
 
 @Component({
   tag: 'listing-edit-form',
@@ -13,6 +15,9 @@ import { formatDate } from '../../../helpers/utils';
 })
 export class ListingEditForm {
   @Prop({ context: "store" }) store: Store;
+
+  @Element() el: HTMLElement;
+
   @Prop() item: any;
 
   form: HTMLFormElement;
@@ -21,12 +26,12 @@ export class ListingEditForm {
   latitudeInput: HTMLInputElement;
   subwayInputs: HTMLElement;
   amenityInputs: HTMLElement;
-  blockDatesWrapper: HTMLElement;
   blockDateStartInput: HTMLElement;
   blockDateEndInput: HTMLElement;
 
   @State() geocodingInProgress: boolean = false;
   @State() blockedDateErrors: string[] = [];
+  @State() blockedDates: any[] = [];
 
   @State() isLoggedIn: boolean = false;
   @State() isAdmin: boolean = false;
@@ -46,6 +51,19 @@ export class ListingEditForm {
         subways: taxonomySelectors.getSubways(state),
         amenities: taxonomySelectors.getAmenities(state)
       }
+    });
+
+    this.blockedDates = this.item && this.item.block_dates ? this.item.block_dates : [];
+  }
+
+  componentDidLoad() {
+    // trigger change events on monthly-rates inputs
+    const monthlyRatesInputs: any = this.el.querySelectorAll('input.rate-input.monthly_rate');
+
+    monthlyRatesInputs.forEach(input => {
+      const evt = document.createEvent("HTMLEvents");
+      evt.initEvent("change", false, true);
+      input.dispatchEvent(evt);
     });
   }
 
@@ -179,37 +197,90 @@ export class ListingEditForm {
       return;
     }
 
-    const placeholder: any = this.blockDatesWrapper.querySelector('.placeholder');
-    if (placeholder) {
-      placeholder.remove();
-    }
-
-    const html = `${formatDate(startDate, 'm/d/y')} - ${formatDate(endDate, 'm/d/y')}
-
-    <button type="button" class="button-reset remove-block-date">
-      <ion-icon name="close" class="remove-block-date" />
-    </button>
-
-    <input type="hidden" name="block_dates[start][]" value="${startDate}" />
-    <input type="hidden" name="block_dates[end][]" value="${endDate}" />`;
-
-    const blockDate = document.createElement('div');
-    blockDate.classList.add('block-date');
-
-    blockDate.innerHTML = html;
-
-    this.blockDatesWrapper.appendChild(blockDate);
+    this.blockedDates = [...this.blockedDates, { start: startDate, end: endDate }];
 
     this.blockedDateErrors = [];
     this.blockDateStartInput.setAttribute('value', '');
     this.blockDateEndInput.setAttribute('value', '');
   }
 
-  removeBlockedDate(e) {
-    const button = e.target;
+  removeBlockedDate(index) {
+    const blockedDates = [...this.blockedDates];
 
-    if (button.classList.contains('remove-block-date')) {
-      button.closest('.block-date').remove();
+    blockedDates.splice(index, 1);
+
+    this.blockedDates = blockedDates;
+  }
+
+  changeDefaultMonthRate(event, key) {
+    if (!isNumber(event.target.value)) {
+      ToastService.error('Invalid number entered');
+      return;
+    }
+
+    switch (key) {
+      case 'monthly_rate':
+      case 'security_deposit_percent':
+      case 'service_fee_host':
+      case 'service_fee_client':
+        const inputs: any = this.el.querySelectorAll(`input.rate-input.${key}`);
+
+        if (inputs) {
+          inputs.forEach(i => {
+            if (!i.value.length) {
+              i.value = event.target.value;
+
+              const evt = document.createEvent("HTMLEvents");
+              evt.initEvent("change", false, true);
+              i.dispatchEvent(evt);
+            }
+          });
+        }
+      break;
+      default:
+        // nothing
+      break;
+    }
+  }
+
+  changeMonthRate(event, month, key) {
+    if (!event.target.value.length) {
+      return;
+    }
+
+    if (!isNumber(event.target.value)) {
+      ToastService.error('Invalid number entered');
+      return;
+    }
+
+    if (key === 'monthly_rate') {
+      // set the night rate
+      const today = new Date();
+      const val = parseFloat(event.target.value);
+      const days = getDaysInMonth(today.setMonth(month));
+
+      const nightRate = (val / days).toFixed(2);
+      const input: any = this.el.querySelector(`input[name="rates[${month}][night_rate]"]`);
+
+      if (input) {
+        input.value = nightRate;
+      }
+    }
+  }
+
+  utilitiesChanged() {
+    const inputs: any = this.el.querySelectorAll('input.utility');
+
+    let sum = 0;
+    inputs.forEach(i => {
+      if (i.value && isNumber(i.value)) {
+        sum += parseFloat(i.value);
+      }
+    });
+
+    const utilitiesTotal: any = this.el.querySelector('#listing-monthly-utilities');
+    if (utilitiesTotal) {
+      utilitiesTotal.value = sum.toFixed(2);
     }
   }
 
@@ -518,24 +589,20 @@ export class ListingEditForm {
                 />
               </div>
 
-              <div
-                class="block-dates"
-                ref={el => this.blockDatesWrapper = el as HTMLElement }
-                onClick={e => this.removeBlockedDate(e)}
-              >
+              <div class="block-dates">
                 <div>
                   <strong>Blocked Dates</strong>
                   <div class="help-text">Dates listed here will be unable to be booked</div>
                 </div>
 
                 {
-                  this.item && this.item.block_dates && this.item.block_dates.length ?
-                    this.item.block_dates.map(d =>
+                  this.blockedDates.length ?
+                    this.blockedDates.map((d, index) =>
                       <div class="block-date">
                         { formatDate(d.start, 'm/d/y') } - { formatDate(d.end, 'm/d/y')}
 
-                        <button type="button" class="button-reset remove-block-date">
-                          <ion-icon name="close" class="remove-block-date" />
+                        <button type="button" class="button-reset" onClick={() => this.removeBlockedDate(index)}>
+                          <ion-icon name="close" />
                         </button>
 
                         <input type="hidden" name="block_dates[start][]" value={d.start} />
@@ -561,6 +628,7 @@ export class ListingEditForm {
                 <div class="input end">
                   <label htmlFor="block-date-input-end-placeholder">End</label>
                   <input-date
+                    id="block-date-input-end-placeholder"
                     name="block_date_input_end_placeholder"
                     value=""
                     label="End of blocked dates"
@@ -589,32 +657,74 @@ export class ListingEditForm {
             <div class="fieldset-inputs pricing">
               <div class="input">
                 <label htmlFor="listing-monthly-rate">Monthly Rate</label>
-                <input type="number" id="listing-monthly-rate" name="rates[default][monthly_rate]" class="apt212-input block" value={this.item ? this.item.monthly_rate_default : ''} />
+                <input
+                  type="text"
+                  id="listing-monthly-rate"
+                  name="rates[default][monthly_rate]"
+                  class="apt212-input block"
+                  value={this.item ? this.item.rates.find(r => r.month === 'default').monthly_rate : ''}
+                  onChange={e => this.changeDefaultMonthRate(e, 'monthly_rate')}
+                />
               </div>
 
               <div class="input">
                 <label htmlFor="listing-tax">Tax (%)</label>
-                <input type="number" id="listing-tax" name="rates[default][tax_percent]" class="apt212-input block" value={this.item ? this.item.tax_percent : ''} />
+                <input
+                  type="text"
+                  id="listing-tax"
+                  name="rates[default][tax_percent]"
+                  class="apt212-input block"
+                  value={this.item ? this.item.rates.find(r => r.month === 'default').tax_percent : ''}
+                  onChange={e => this.changeDefaultMonthRate(e, 'tax_percent')}
+                />
               </div>
 
               <div class="input">
                 <label htmlFor="listing-background-check">Background Check</label>
-                <input type="number" id="listing-background-check" name="rates[default][background_check_rate]" class="apt212-input block" value={this.item ? this.item.background_check_rate : ''} />
+                <input
+                  type="text"
+                  id="listing-background-check"
+                  name="rates[default][background_check_rate]"
+                  class="apt212-input block"
+                  value={this.item ? this.item.rates.find(r => r.month === 'default').background_check_rate : ''}
+                  onChange={e => this.changeDefaultMonthRate(e, 'background_check_rate')}
+                />
               </div>
 
               <div class="input">
                 <label htmlFor="listing-service-fee-host">Service Fee Host Side (%)</label>
-                <input type="number" id="listing-service-fee-host" name="rates[default][service_fee_host]" class="apt212-input block" value={this.item ? this.item.service_fee_host : ''} />
+                <input
+                  type="text"
+                  id="listing-service-fee-host"
+                  name="rates[default][service_fee_host]"
+                  class="apt212-input block"
+                  value={this.item ? this.item.rates.find(r => r.month === 'default').service_fee_host : ''}
+                  onChange={e => this.changeDefaultMonthRate(e, 'service_fee_host')}
+                />
               </div>
 
               <div class="input">
                 <label htmlFor="listing-service-fee-client">Service Fee Client Side (%)</label>
-                <input type="number" id="listing-service-fee-client" name="rates[default][service_fee_client]" class="apt212-input block" value={this.item ? this.item.service_fee_client : ''} />
+                <input
+                  type="text"
+                  id="listing-service-fee-client"
+                  name="rates[default][service_fee_client]"
+                  class="apt212-input block"
+                  value={this.item ? this.item.rates.find(r => r.month === 'default').service_fee_client : ''}
+                  onChange={e => this.changeDefaultMonthRate(e, 'service_fee_client')}
+                />
               </div>
 
               <div class="input">
                 <label htmlFor="listing-security-deposit">Security Deposit (%)</label>
-                <input type="number" id="listing-security-deposit" name="rates[default][security_deposit_percent]" class="apt212-input block" value={this.item ? this.item.security_deposit : ''} />
+                <input
+                  type="text"
+                  id="listing-security-deposit"
+                  name="rates[default][security_deposit_percent]"
+                  class="apt212-input block"
+                  value={this.item ? this.item.rates.find(r => r.month === 'default').security_deposit_percent : ''}
+                  onChange={e => this.changeDefaultMonthRate(e, 'security_deposit_percent')}
+                />
                 <div class="help-text">% of monthly rate</div>
               </div>
             </div>
@@ -645,11 +755,23 @@ export class ListingEditForm {
                         <td class="label" innerHTML={p.name}>
                         </td>
 
-                        { [0,1,2,3,4,5].map(m =>
+                        { [0,1,2,3,4,5].map(m => {
+                          const classObj = {'apt212-input': true, block: true, 'rate-input': true };
+                          classObj[p.key] = true;
+
+                          return (
                             <td>
-                              <input type="number" class="apt212-input block monthly-rate" name={`rates[${m}][${p.key}]`} value="" />
+                              <input
+                                type="text"
+                                class={classObj}
+                                name={`rates[${m}][${p.key}]`}
+                                value={this.item ? this.item.rates.find(r => r.month == m)[p.key] : ''}
+                                disabled={p.disabled}
+                                onChange={e => this.changeMonthRate(e, m, p.key)}
+                              />
                             </td>
                           )
+                        })
                         }
                       </tr>
                     )
@@ -680,11 +802,23 @@ export class ListingEditForm {
                         <td class="label" innerHTML={p.name}>
                         </td>
 
-                        { [6,7,8,9,10,11].map(m =>
+                        { [6,7,8,9,10,11].map(m => {
+                          const classObj = {'apt212-input': true, block: true, 'rate-input': true };
+                          classObj[p.key] = true;
+
+                          return (
                             <td>
-                              <input type="number" class="apt212-input block monthly-rate" name={`rates[${m}][${p.key}]`} value="" />
+                              <input
+                                type="text"
+                                class={classObj}
+                                name={`rates[${m}][${p.key}]`}
+                                value={this.item ? this.item.rates.find(r => r.month == m)[p.key] : ''}
+                                disabled={p.disabled}
+                                onChange={e => this.changeMonthRate(e, m, p.key)}
+                              />
                             </td>
                           )
+                          })
                         }
                       </tr>
                     )
@@ -699,45 +833,136 @@ export class ListingEditForm {
             <div class="fieldset-inputs utilities">
               <div class="input">
                 <label htmlFor="listing-cable">Cable</label>
-                <input type="number" id="listing-cable" name="utility_cable" class="apt212-input block" value={this.item ? this.item.utility_cable : ''} />
+                <input
+                  type="text"
+                  id="listing-cable"
+                  name="utility_cable"
+                  class="apt212-input block utility"
+                  value={this.item ? this.item.utility_cable : ''}
+                  onChange={() => this.utilitiesChanged()}
+                />
               </div>
 
               <div class="input">
                 <label htmlFor="listing-wifi">Wifi</label>
-                <input type="number" id="listing-wifi" name="utility_wifi" class="apt212-input block" value={this.item ? this.item.utility_wifi : ''} />
+                <input
+                  type="text"
+                  id="listing-wifi"
+                  name="utility_wifi"
+                  class="apt212-input block utility"
+                  value={this.item ? this.item.utility_wifi : ''}
+                  onChange={() => this.utilitiesChanged()}
+                />
               </div>
 
               <div class="input">
                 <label htmlFor="listing-electricity">Electricity</label>
-                <input type="number" id="listing-electricity" name="utility_electricity" class="apt212-input block" value={this.item ? this.item.utility_electricity : ''} />
+                <input
+                  type="text"
+                  id="listing-electricity"
+                  name="utility_electricity"
+                  class="apt212-input block utility"
+                  value={this.item ? this.item.utility_electricity : ''}
+                  onChange={() => this.utilitiesChanged()}
+                />
               </div>
 
               <div class="input">
                 <label htmlFor="listing-cleaning">Monthly Cleaning</label>
-                <input type="number" id="listing-cleaning" name="utility_cleaning" class="apt212-input block" value={this.item ? this.item.utility_cleaning : ''} />
+                <input
+                  type="text"
+                  id="listing-cleaning"
+                  name="utility_cleaning"
+                  class="apt212-input block utility"
+                  value={this.item ? this.item.utility_cleaning : ''}
+                  onChange={() => this.utilitiesChanged()}
+                />
               </div>
 
               <div class="input">
                 <label htmlFor="listing-moveout-fee">Move out fee</label>
-                <input type="number" id="listing-moveout-fee" name="move_out_fee" class="apt212-input block" value={this.item ? this.item.move_out_fee : ''} />
+                <input
+                  type="number"
+                  id="listing-moveout-fee"
+                  name="move_out_fee"
+                  class="apt212-input block"
+                  value={this.item ? this.item.move_out_fee : ''}
+                />
               </div>
 
               <div class="input">
                 <label htmlFor="listing-monthly-utilities">Total Monthly Utilities</label>
-                <input type="number" id="listing-monthly-utilities" name="monthly_utilities" class="apt212-input block" value={this.item ? this.item.monthly_utilities : ''} disabled />
+                <input
+                  type="number"
+                  id="listing-monthly-utilities"
+                  name="monthly_utilities"
+                  class="apt212-input block"
+                  value={this.item ? this.item.monthly_utilities.toFixed(2) : ''}
+                  disabled
+                />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <h3>Payment Time Line</h3>
+
+            <div class="fieldset-inputs payment-timeline">
+              <div class="input">
+                <label htmlFor="months-due-on-checkin">Months Due on Check In</label>
+                <input
+                  id="months-due-on-checkin"
+                  type="number"
+                  name="months_due_on_checkin"
+                  class="apt212-input block"
+                  value={this.item ? this.item.months_due_on_checkin : ''}
+                />
+              </div>
+
+              <div class="input">
+                <label htmlFor="days-due-on-checkin">Days Due on Check In</label>
+                <input
+                  id="days-due-on-checkin"
+                  type="number"
+                  name="days_due_on_checkin"
+                  class="apt212-input block"
+                  value={this.item ? this.item.days_due_on_checkin : ''}
+                />
+              </div>
+
+              <div class="input">
+                <label htmlFor="duci_advance_payment_days">DUCI Payment Days in Advance</label>
+                <select
+                  id="duci_advance_payment_days"
+                  name="duci_advance_payment_days"
+                  class="apt212-input block"
+                >
+                  {
+                    [1,2,3,4,5,6,7,8,9,10].map(v =>
+                      <option value={v} selected={this.item ? this.item.duci_advance_payment_days === v : false }>{v}</option>
+                    )
+                  }
+                </select>
               </div>
             </div>
           </fieldset>
 
           <fieldset>
             <h3>Images</h3>
-            <input-image name="images" has-description />
+            <input-image
+              name="images"
+              value={this.item ? this.item.images : null }
+              has-description
+            />
           </fieldset>
 
           <fieldset>
             <h3>Floorplan</h3>
-
-            <input-image name="floor_plan" />
+            <input-image
+              name="floor_plans"
+              limit={3}
+              value={this.item ? this.item.floor_plans : null}
+            />
           </fieldset>
 
           <fieldset>
@@ -748,10 +973,10 @@ export class ListingEditForm {
                 <label htmlFor="listing-video" class="sr-only">Video</label>
                 <input
                   id="listing-video"
-                  name="video"
+                  name="video_url"
                   class="apt212-input block"
                   placeholder="https://www.youtube.com/watch?v=xxxxxxxxxxxx"
-                  value={this.item ? this.item.video : ''}
+                  value={this.item ? this.item.video_url : ''}
                 />
                 <div class="help-text">Enter a Youtube video URL</div>
               </div>

@@ -17,7 +17,8 @@ class CreateImageUploadsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable()->index();
             $table->bigInteger('user_id')->index();
-            $table->bigInteger('container_id')->nullable()->index();
+            $table->bigInteger('attachment_id')->nullable()->index();
+            $table->string('attachment_type')->nullable()->index();
             $table->mediumText('title')->nullable();
             $table->longText('description')->nullable();
             $table->longText('size_original');

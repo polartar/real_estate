@@ -79,7 +79,9 @@ export class InputImage {
       const result = await APIFileUploadService.imageDelete(id);
 
       if (result.success) {
-        event.target.closest('.image-value').remove();
+        const newValue = this.internalValue.filter(v => v.id !== id);
+
+        this.internalValue = newValue;
       }
     } catch (err) {
       ToastService.error(err.message);
@@ -89,40 +91,44 @@ export class InputImage {
   render() {
     return (
       <div class="input-image-component">
-        <div class="">
-          <input type="file"
-            accept={this.accept}
-            ref={el => this.fileInput = el as HTMLInputElement }
-          />
+        {
+          !this.limit || this.internalValue.length < this.limit ?
+            <div class="">
+              <input type="file"
+                accept={this.accept}
+                ref={el => this.fileInput = el as HTMLInputElement }
+              />
 
-          <div class="metadata">
-            {
-              this.hasTitle ?
-                <div class="input">
-                  <label htmlFor={`image-title-${this.name}`}>Title</label>
-                  <input id={`image-title-${this.name}`} type="text" class="apt212-input block title" />
+              <div class="metadata">
+                {
+                  this.hasTitle ?
+                    <div class="input">
+                      <label htmlFor={`image-title-${this.name}`}>Title</label>
+                      <input id={`image-title-${this.name}`} type="text" class="apt212-input block title" />
+                    </div>
+                  : null
+                }
+
+                {
+                  this.hasDescription ?
+                    <div class="input">
+                      <label htmlFor={`image-description-${this.name}`}>Description</label>
+                      <textarea id={`image-description-${this.name}`} class="apt212-input description" />
+                    </div>
+                  : null
+                }
+
+                <div class="flex-vertical-center">
+                  <button type="button" class="button-dark" onClick={() => this.uploadHandler()}>Upload</button>
+
+                  {
+                    this.uploadInProgress ? <ion-spinner name="lines" /> : null
+                  }
                 </div>
-              : null
-            }
-
-            {
-              this.hasDescription ?
-                <div class="input">
-                  <label htmlFor={`image-description-${this.name}`}>Description</label>
-                  <textarea id={`image-description-${this.name}`} class="apt212-input description" />
-                </div>
-              : null
-            }
-
-            <div class="flex-vertical-center">
-              <button type="button" class="button-dark" onClick={() => this.uploadHandler()}>Upload</button>
-
-              {
-                this.uploadInProgress ? <ion-spinner name="lines" /> : null
-              }
+              </div>
             </div>
-          </div>
-        </div>
+          : <div>The maximum number of images has been reached.  Delete existing images to add new ones.</div>
+        }
 
         <div class="value">
           {

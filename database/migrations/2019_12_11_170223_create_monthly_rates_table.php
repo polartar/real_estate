@@ -16,8 +16,13 @@ class CreateMonthlyRatesTable extends Migration
         Schema::create('monthly_rates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('apartment_id')->unsigned()->index();
-            $table->integer('month')->index();
-            $table->float('rate')->index();
+            $table->string('month')->index();
+            $table->float('monthly_rate')->index();
+            $table->float('tax_percent')->nullable();
+            $table->float('background_check_rate')->nullable();
+            $table->float('service_fee_host');
+            $table->float('service_fee_client');
+            $table->float('security_deposit_percent');
             $table->timestamps();
             $table->unique(['apartment_id', 'month']);
         });
