@@ -5,9 +5,12 @@ import serialize from 'form-serialize';
 import { APINeighborhoodsService } from '../../../services/api/neighborhoods';
 import { ToastService } from '../../../services/toast.service';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
+import { APIApartmentsService } from '../../../services/api/apartments';
 import { formatDate } from '../../../helpers/utils';
 import isNumber from 'is-number';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
+
+//@ TODO - date input modal close/sizing
 
 @Component({
   tag: 'listing-edit-form',
@@ -70,9 +73,30 @@ export class ListingEditForm {
   async onSubmit(e) {
     e.preventDefault();
 
-    const result = serialize(this.form, { hash: true, empty: true });
+    const formValues = serialize(this.form, { hash: true, empty: true });
+    console.log(formValues);
 
-    console.log(result);
+    try {
+      const result: any = await APIApartmentsService.updateApt(formValues);
+
+      if (!result.success) {
+        if (result.errors && Object.keys(result.errors).length) {
+          const errMessages = [];
+
+          Object.keys(result.errors).forEach(r => errMessages.push(result.errors[r][0]));
+
+          ToastService.error(errMessages.join('\n'), { duration: 8000 });
+          return;
+        }
+
+        throw new Error('Could not save apartment information');
+      }
+
+      console.log(result);
+
+    } catch(err) {
+      ToastService.error(err.message);
+    }
   }
 
   async geocodeListing() {
@@ -340,7 +364,8 @@ export class ListingEditForm {
             <div class="fieldset-inputs address">
               <div class="input">
                 <label htmlFor="listing-webid">Web ID</label>
-                <input id="listing-webid" name="id" class="apt212-input block" value={this.item ? this.item.id : ''} disabled />
+                <input type="text" id="listing-webid" class="apt212-input block" value={this.item ? this.item.id : ''} disabled />
+                <input type="hidden" name="id" value={this.item ? this.item.id : ''} />
               </div>
 
               <div class="input">
@@ -407,7 +432,7 @@ export class ListingEditForm {
                 <label htmlFor="latitude">Latitude</label>
                 <input
                   id="latitude"
-                  name="latitude"
+                  name="lat"
                   value={ this.item ? this.item.lat : '' }
                   class="apt212-input block"
                   ref={el => this.latitudeInput = el as HTMLInputElement }
@@ -419,7 +444,7 @@ export class ListingEditForm {
                 <label htmlFor="longitude">Longitude</label>
                 <input
                   id="longitude"
-                  name="longitude"
+                  name="lng"
                   value={ this.item ? this.item.lng : '' }
                   class="apt212-input block"
                   ref={el => this.longitudeInput = el as HTMLInputElement }
@@ -1014,7 +1039,7 @@ export class ListingEditForm {
             <h3>Images</h3>
             <input-image
               name="images"
-              value={this.item ? this.item.images : null }
+              value={this.item ? this.item.images : [] }
               has-description
             />
           </fieldset>
@@ -1024,7 +1049,7 @@ export class ListingEditForm {
             <input-image
               name="floor_plans"
               limit={3}
-              value={this.item ? this.item.floor_plans : null}
+              value={this.item ? this.item.floor_plans : []}
             />
           </fieldset>
 

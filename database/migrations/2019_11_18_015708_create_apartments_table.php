@@ -33,11 +33,11 @@ class CreateApartmentsTable extends Migration
             $table->date('available_date')->nullable()->index();
             $table->date('available_until')->nullable()->index();
             $table->float('rate', 10, 2)->nullable()->index();
-            $table->float('utility_cable')->default(0);
-            $table->float('utility_wifi')->default(0);
-            $table->float('utility_electricity')->default(0);
-            $table->float('utility_cleaning')->default(0);
-            $table->float('move_out_fee')->default(0);
+            $table->float('utility_cable', 10, 2)->default(0);
+            $table->float('utility_wifi', 10, 2)->default(0);
+            $table->float('utility_electricity', 10, 2)->default(0);
+            $table->float('utility_cleaning', 10, 2)->default(0);
+            $table->float('move_out_fee', 10, 2)->default(0);
             $table->integer('months_due_on_checkin')->default(0);
             $table->integer('days_due_on_checkin')->default(0);
             $table->integer('duci_advance_payment_days')->default(0);

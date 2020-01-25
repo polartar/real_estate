@@ -38,19 +38,22 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
 // authenticated endpoints
 Route::group(['middleware' => ['auth:api', 'cors']], function() {
 
+    // Auth
     Route::post('logout', 'SPAAuthController@logout');
-
     Route::get('user', function() {
         return response(Auth::user());
     });
 
-    Route::get('neighborhoods/geocode/{address}', 'NeighborhoodsController@geocodeAddress');
-
     // Apartments
     Route::patch('apartments/{apartment}', 'ApartmentController@update');
+    Route::post('apartments', 'ApartmentController@store');
     Route::get('admin/dashboard_counts', 'AdminController@dashboardCounts');
     Route::get('admin/listings', 'AdminController@listings');
 
+    // image uploads
     Route::post('image-upload', 'FileUploadController@uploadImage');
     Route::delete('image-upload/{image}', 'FileUploadController@deleteImage');
+
+    // Misc
+    Route::get('neighborhoods/geocode/{address}', 'NeighborhoodsController@geocodeAddress');
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Apartment;
+use App\Http\Requests\StoreApartmentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -27,9 +28,16 @@ class ApartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreApartmentRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $apt_data = Apartment::extractAptAttributes($data);
+        $apt_data['user_id'] = Auth::user()->id;
+
+        $apt = Apartment::create($apt_data);
+
+        return $apt;
     }
 
     /**

@@ -3,8 +3,13 @@ class ToastServiceInstance {
     this.createToast(message, { color: 'secondary' });
   }
 
-  error(message) {
-    this.createToast(message, { color: 'danger' });
+  error(message, options?) {
+    let defaultOpts = { color: 'danger' };
+    if (options) {
+      defaultOpts = {...defaultOpts, ...options};
+    }
+
+    this.createToast(message, defaultOpts);
   }
 
   createToast(message, options: any = {}) {

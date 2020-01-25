@@ -45,7 +45,7 @@ class SetApartmentRates extends Command
         $bar->start();
 
 
-        Apartment::orderBy('id')->chunk(100, function ($apartments) use ($bar) {
+        Apartment::withoutGlobalScope('active')->orderBy('id')->chunk(100, function ($apartments) use ($bar) {
             foreach ($apartments as $apartment) {
                 $apartment->updateRate();
                 $bar->advance();

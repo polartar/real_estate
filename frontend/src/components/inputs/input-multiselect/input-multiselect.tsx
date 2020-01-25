@@ -1,6 +1,8 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import SelectPure from 'select-pure';
 
+//https://github.com/dudyn5ky1/select-pure
+
 @Component({
   tag: 'input-multiselect',
   styleUrl: 'input-multiselect.scss'

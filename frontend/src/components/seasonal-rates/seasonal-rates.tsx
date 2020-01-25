@@ -10,20 +10,20 @@ export class SeasonalRates {
 
   getMonth(monthNum) {
     // js uses 0 indexed months
-    const date = new Date().setMonth(monthNum - 1);
+    const date = new Date().setMonth(monthNum);
 
     return formatDate(date, 'MMMM');
   }
 
   render() {
-    const sortedRates = [...this.item.rates];
+    const sortedRates = this.item.rates.filter(r => r.month !== 'default');
 
     sortedRates.sort((a, b) => {
       if (a.month === b.month) {
         return 0;
       }
 
-      return a.month > b.month ? 1 : -1;
+      return parseInt(a.month) > parseInt(b.month) ? 1 : -1;
     });
 
     return (
@@ -36,7 +36,7 @@ export class SeasonalRates {
         </p>
 
         {
-          sortedRates.map(r => <div class="rate"><span class="month">{ this.getMonth(r.month)}</span><span class="value">{ formatMoney(r.rate) }</span></div>)
+          sortedRates.map(r => <div class="rate"><span class="month">{ this.getMonth(r.month)}</span><span class="value">{ formatMoney(r.display_rate) }</span></div>)
         }
 
       </div>

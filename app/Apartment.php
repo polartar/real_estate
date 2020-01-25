@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Apartment extends Model
 {
+    protected $guarded = [];
+
     //
     protected $casts = [
         "building_type_id" => "int",
@@ -22,6 +24,38 @@ class Apartment extends Model
     protected $appends = ['neighborhood_ids', 'map_marker_ids', 'monthly_utilities'];
     protected $hidden = ['neighborhoods', 'map_markers'];
     protected $with = ['amenities', 'subways', 'neighborhoods', 'map_markers', 'rates', 'images', 'floor_plans', 'block_dates'];
+
+    protected static $structure = [
+        'id',
+        'owner_name',
+        'address',
+        'city',
+        'state',
+        'zip',
+        'cross_streets',
+        'lat',
+        'lng',
+        'title',
+        'description',
+        'bedroom_type_id',
+        'bathrooms',
+        'building_type_id',
+        'floor',
+        'floors',
+        'size',
+        'available_date',
+        'utility_cable',
+        'utility_wifi',
+        'utility_electricity',
+        'utility_cleaning',
+        'move_out_fee',
+        'months_due_on_checkin',
+        'days_due_on_checkin',
+        'duci_advance_payment_days',
+        'due_to_reserve',
+        'due_by_checkin',
+        'video_url'
+    ];
 
 
     protected static function boot() {
@@ -121,9 +155,11 @@ class Apartment extends Model
             $date = $date->greaterThan($this->available_date) ? $date : $this->available_date;
         }
 
-        $rate = $this->rates->firstWhere('month', $date->month);
+        // Note: rate month numbers stored in js format, starting from jan = 0
+        // subtract 1 from Carbon month num
+        $rate = $this->rates->firstWhere('month', $date->month - 1);
 
-        return $rate ? $rate->rate : null;
+        return $rate ? $rate->display_rate : null;
     }
 
     public function updateRate() {
@@ -133,5 +169,20 @@ class Apartment extends Model
             $this->rate = $new_rate;
             $this->save();
         }
+    }
+
+    public static function extractAptAttributes($array) {
+        $result = [];
+        foreach (self::$structure as $key) {
+            if (isset($array[$key])) {
+                $result[$key] = $array[$key];
+
+                if ($key === 'available_date') {
+                    $result[$key] = new Carbon($array[$key]);
+                }
+            }
+        }
+
+        return $result;
     }
 }
