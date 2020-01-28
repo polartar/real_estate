@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth:api', 'cors']], function() {
     });
 
     // Apartments
-    Route::patch('apartments/{apartment}', 'ApartmentController@update');
+    Route::patch('apartments/{apartment_id}', 'ApartmentController@update');
     Route::post('apartments', 'ApartmentController@store');
     Route::get('admin/dashboard_counts', 'AdminController@dashboardCounts');
     Route::get('admin/listings', 'AdminController@listings');

@@ -6,7 +6,7 @@ import { formatDate } from '../../../helpers/utils';
   styleUrl: 'input-date.scss'
 })
 export class InputDate {
-  @Prop({ reflect: true }) name!: string;
+  @Prop({ reflect: true }) name: string;
   @Prop({ mutable: true, reflect: true }) value: string = "";
   @Prop() label: string;
   @Prop() helpText: string;

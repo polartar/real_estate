@@ -8,7 +8,7 @@ import { generateId } from '../../../../../helpers/utils';
 })
 export class PageListingImageModal {
   @Element() el: HTMLElement;
-  @Prop() src!: string;
+  @Prop() selected!: any;
   @Prop() images!: any[];
 
   sliderClass: string = 'glide';
@@ -125,6 +125,8 @@ export class PageListingImageModal {
   }
 
   render() {
+    console.log(this.selected, this.images);
+
     return (
       <div class="page-listing-image-modal-component">
         <ion-button aria-label="close" fill="clear" class="close reset" onClick={() => this.close()}>
@@ -132,7 +134,7 @@ export class PageListingImageModal {
         </ion-button>
 
         <div class="image-view">
-          <img src={this.src} class="display-image" />
+          <img src={this.selected.original} class="display-image" />
 
           <button aria-label="Previous image" class="button-reset arrow-left" onClick={() => this.changeImage('<')}>
             <img src="/assets/images/icons/listing_gallery_slider_arrow.svg" />
@@ -142,6 +144,8 @@ export class PageListingImageModal {
             <img src="/assets/images/icons/listing_gallery_slider_arrow.svg" />
           </button>
         </div>
+
+        <div class="description">{this.selected.description}</div>
 
         <div class={'glide ' + this.sliderClass} onClick={e => this.slideClick(e)}>
           <div class="glide__track" data-glide-el="track">

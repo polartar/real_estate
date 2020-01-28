@@ -1,3 +1,4 @@
+@import '../../../styles/mixins';
 @import '../../../styles/variables';
 
 .listing-edit-form-component {
@@ -97,7 +98,11 @@
       display: grid;
       gap: 8px;
       align-items: center;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+      @include for-size(desktop-up) {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      }
     }
   }
 

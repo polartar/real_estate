@@ -60,6 +60,10 @@ class APIApartmentsInstance {
           };
         }
 
+        if (r && r.message) {
+          throw new Error(r.message);
+        }
+
         throw new Error(response.statusText);
       }
 

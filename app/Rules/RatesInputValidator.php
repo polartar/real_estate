@@ -70,6 +70,6 @@ class RatesInputValidator implements Rule
      */
     public function message()
     {
-        return 'Please fill out all rates, values must be greater than 0';
+        return 'Please fill out all rates, values must not be less than 0';
     }
 }

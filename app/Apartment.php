@@ -21,6 +21,10 @@ class Apartment extends Model
         "due_by_checkin" => 'array'
     ];
 
+    protected $attributes = [
+        'is_active' => true
+    ];
+
     protected $appends = ['neighborhood_ids', 'map_marker_ids', 'monthly_utilities'];
     protected $hidden = ['neighborhoods', 'map_markers'];
     protected $with = ['amenities', 'subways', 'neighborhoods', 'map_markers', 'rates', 'images', 'floor_plans', 'block_dates'];
@@ -144,6 +148,15 @@ class Apartment extends Model
     /**
      * Custom methods
      */
+    public function setRates($rates) {
+        foreach ($rates as $month => $rate) {
+            $this->rates()->where('month', $month)->updateOrCreate([
+                'month' => $month
+            ],
+            array_merge($rate, ['apartment_id' => $this->id])
+            );
+        }
+    }
 
      /**
       * Gets the current rate based on the current month and seasonal rates

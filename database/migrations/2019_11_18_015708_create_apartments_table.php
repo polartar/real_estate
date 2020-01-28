@@ -31,7 +31,6 @@ class CreateApartmentsTable extends Migration
             $table->float('bathrooms')->nullable();
             $table->text('cross_streets')->nullable();
             $table->date('available_date')->nullable()->index();
-            $table->date('available_until')->nullable()->index();
             $table->float('rate', 10, 2)->nullable()->index();
             $table->float('utility_cable', 10, 2)->default(0);
             $table->float('utility_wifi', 10, 2)->default(0);

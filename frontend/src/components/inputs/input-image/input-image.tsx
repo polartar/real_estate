@@ -141,7 +141,8 @@ export class InputImage {
                     this.hasTitle ?
                       <div class="input">
                         <label htmlFor={`image-title-${f.id}`}>Title</label>
-                        <input type="text" class="apt212-input block title" value={f.title} name={`${this.name}_titles[${f.id}]`}/>
+                        <input type="text" class="apt212-input block title" value={f.title} name={`${this.name}_titles[]`}/>
+                        <input type="hidden" name={`${this.name}_titles_ids[]`} value={f.id} />
                       </div>
                     : null
                   }
@@ -150,7 +151,7 @@ export class InputImage {
                     this.hasDescription ?
                       <div class="input">
                         <label htmlFor={`image-description-${f.id}`}>Description</label>
-                        <textarea class="apt212-input block description" name={`${this.name}_descriptions[${f.id}]`}>{f.description}</textarea>
+                        <textarea class="apt212-input block description" name={`${this.name}_descriptions[]`}>{f.description}</textarea>
                       </div>
                     : null
                   }

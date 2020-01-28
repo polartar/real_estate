@@ -32,6 +32,33 @@ class ApartmentServiceProvider extends ServiceProvider
         //
     }
 
+    /**
+     * Assign uploaded images to the apartment
+     * @param $apt: Apartment
+     * @param $images: Array of ImageUpload ids
+     * @param $name: string
+     */
+    public static function claimImages(Apartment $apt, $images, $name) {
+        if ($images && is_array($images)) {
+            foreach ($images as $imgID) {
+                $img = ImageUpload::find($imgID);
+                if ($img) {
+                    $img->attachment_id = $apt->id;
+                    $img->attachment_type = Apartment::class;
+                    $img->name = $name;
+                    $img->save();
+                }
+            }
+        }
+    }
+
+
+    /**
+     *
+     *  Assign relationships for faked apts below
+     *
+     *
+     */
     public static function assignFakeRates(Apartment $apartment) {
         if (!$apartment->faked) {
             return;

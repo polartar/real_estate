@@ -636,6 +636,7 @@ export class ListingEditForm {
                     )
                   : <div class="placeholder">No dates are currently blocked</div>
                 }
+                <input type="hidden" name="block_dates_update" value={1} />
               </div>
 
               <div class="block-date-input hidden">
@@ -643,7 +644,6 @@ export class ListingEditForm {
                   <label htmlFor="block-date-input-start-placeholder">Start</label>
                   <input-date
                     id="block-date-input-start-placeholder"
-                    name="block_date_input_start_placeholder"
                     value=""
                     label="Start of blocked dates"
                     ref={el => this.blockDateStartInput = el as HTMLElement }
@@ -654,7 +654,6 @@ export class ListingEditForm {
                   <label htmlFor="block-date-input-end-placeholder">End</label>
                   <input-date
                     id="block-date-input-end-placeholder"
-                    name="block_date_input_end_placeholder"
                     value=""
                     label="End of blocked dates"
                     ref={el => this.blockDateEndInput = el as HTMLElement }

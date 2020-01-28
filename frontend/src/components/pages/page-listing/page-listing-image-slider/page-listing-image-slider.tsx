@@ -97,7 +97,7 @@ export class PageListingImageSlider {
     const modal = document.createElement('ion-modal');
     modal.component = 'page-listing-image-modal';
     modal.componentProps = {
-      src: img.original,
+      selected: img,
       images: this.images
     }
 

@@ -207,7 +207,7 @@ export namespace Components {
   }
   interface PageListingImageModal {
     'images': any[];
-    'src': string;
+    'selected': any;
   }
   interface PageListingImageSlider {
     'item': any;
@@ -890,7 +890,7 @@ declare namespace LocalJSX {
     'format'?: string;
     'helpText'?: string;
     'label'?: string;
-    'name': string;
+    'name'?: string;
     'value'?: string;
   }
   interface InputDateModal extends JSXBase.HTMLAttributes<HTMLInputDateModalElement> {
@@ -997,7 +997,7 @@ declare namespace LocalJSX {
   }
   interface PageListingImageModal extends JSXBase.HTMLAttributes<HTMLPageListingImageModalElement> {
     'images': any[];
-    'src': string;
+    'selected': any;
   }
   interface PageListingImageSlider extends JSXBase.HTMLAttributes<HTMLPageListingImageSliderElement> {
     'item': any;

@@ -10,7 +10,7 @@ use Intervention\Image\Facades\Image;
 class ImageUpload extends Model
 {
     protected $appends = ['original', 'large', 'medium', 'small'];
-    protected $hidden = ['size_original', 'size_large', 'size_medium', 'size_small'];
+    protected $hidden = ['attachment_id', 'user_id', 'attachment_type', 'size_original', 'size_large', 'size_medium', 'size_small'];
 
     // Relationships
     public function attachment() {

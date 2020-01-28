@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MonthlyRate extends Model
 {
+    protected $guarded = [];
     protected $appends = ['display_rate'];
 
     //
