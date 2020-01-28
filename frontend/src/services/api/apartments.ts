@@ -39,8 +39,9 @@ class APIApartmentsInstance {
   }
 
   public async updateApt(formValues) {
-    const method = formValues.id.length ? 'PATCH' : 'POST'
-    const endpoint = formValues.id.length ? `${APIService.getAPIUrl()}/apartments/${formValues.id}` : `${APIService.getAPIUrl()}/apartments`;
+
+    const method = formValues.hasOwnProperty('id') ? 'PATCH' : 'POST'
+    const endpoint = formValues.hasOwnProperty('id') ? `${APIService.getAPIUrl()}/apartments/${formValues.id}` : `${APIService.getAPIUrl()}/apartments`;
 
     try {
       let response = await fetch(endpoint, {
@@ -70,6 +71,40 @@ class APIApartmentsInstance {
       return {
         success: true,
         apartment: r
+      };
+
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
+  public async deleteApt(id) {
+    try {
+      let response = await fetch(`${APIService.getAPIUrl()}/apartments/${id}`, {
+        headers: APIService.getHeaders(),
+        method: 'DELETE'
+      });
+
+      const r = await response.json();
+
+      if (!response.ok) {
+        if (r && r.errors) {
+          // caller will need to check success
+          return {
+            success: false,
+            errors: r.errors
+          };
+        }
+
+        if (r && r.message) {
+          throw new Error(r.message);
+        }
+
+        throw new Error(response.statusText);
+      }
+
+      return {
+        success: true
       };
 
     } catch (err) {

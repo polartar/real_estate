@@ -1,7 +1,7 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import authSelectors from '../../../../store/selectors/auth';
-
+import { RouterService } from '../../../../services/router.service';
 
 @Component({
   tag: 'page-admin-listing-add',
@@ -22,16 +22,18 @@ export class PageAdminListingAdd {
     });
 
     if (!this.isLoggedIn) {
-      const router: any = document.querySelector('ion-router');
-      router.push('/login');
+      RouterService.forward('/login');
     }
     else {
       // we're logged in, but as admin?
       if (!this.isAdmin) {
-        const router: any = document.querySelector('ion-router');
-        router.push('/');
+        RouterService.forward('/');
       }
     }
+  }
+
+  onFormSuccess(e) {
+    RouterService.forward(`/listing/${e.detail.id}`);
   }
 
   render() {
@@ -39,7 +41,7 @@ export class PageAdminListingAdd {
       <admin-header />,
       <ion-content class="page-admin-listing-add">
         <section class="section">
-          <listing-edit-form />
+          <listing-edit-form onSuccess={e => this.onFormSuccess(e)} />
         </section>
       </ion-content>
     ]

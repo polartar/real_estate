@@ -4,6 +4,7 @@ import authSelectors from '../../../store/selectors/auth';
 import { login } from '../../../store/actions/auth';
 import Isemail from 'isemail';
 import { ToastService } from '../../../services/toast.service';
+import { RouterService } from '../../../services/router.service';
 
 @Component({
   tag: 'page-login',
@@ -53,8 +54,7 @@ export class PageAdmin {
     if (this.isLoggedIn) {
       ToastService.success('You have been logged in');
 
-      const router: any = document.querySelector('ion-router');
-      router.push('/admin');
+      RouterService.forward('/admin');
     }
   }
 

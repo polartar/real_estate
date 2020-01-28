@@ -58,7 +58,8 @@ class Apartment extends Model
         'duci_advance_payment_days',
         'due_to_reserve',
         'due_by_checkin',
-        'video_url'
+        'video_url',
+        'is_active'
     ];
 
 

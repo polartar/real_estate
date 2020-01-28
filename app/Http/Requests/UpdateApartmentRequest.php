@@ -36,9 +36,9 @@ class UpdateApartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'owner_name' => ['string'],
-            'address' => ['string'],
-            'city' => ['string'],
+            'owner_name' => ['nullable', 'string'],
+            'address' => ['nullable', 'string'],
+            'city' => ['nullable', 'string'],
             'state' => ['string'],
             'zip' => ['string'],
             'cross_streets' => ['string'],
@@ -69,7 +69,8 @@ class UpdateApartmentRequest extends FormRequest
             'images_descriptions' => [new UnKeyedOptionalStringArray, new ImageDescriptionsValidator],
             'images' => [new UploadedImageInputValidator],
             'floor_plans' => [new UploadedImageInputValidator],
-            'video_url' => ['string', new YoutubeURL]
+            'video_url' => ['string', new YoutubeURL],
+            'is_active' => ['nullable', 'boolean']
         ];
     }
 }

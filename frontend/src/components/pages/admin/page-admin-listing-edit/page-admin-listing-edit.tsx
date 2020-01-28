@@ -2,7 +2,7 @@ import { Component, h, Prop, State } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import authSelectors from '../../../../store/selectors/auth';
 import { APIApartmentsService } from '../../../../services/api/apartments';
-
+import { RouterService } from '../../../../services/router.service';
 
 @Component({
   tag: 'page-admin-listing-edit',
@@ -26,14 +26,12 @@ export class PageAdminListingEdit {
     });
 
     if (!this.isLoggedIn) {
-      const router: any = document.querySelector('ion-router');
-      router.push('/login');
+      RouterService.forward('/login');
     }
     else {
       // we're logged in, but as admin?
       if (!this.isAdmin) {
-        const router: any = document.querySelector('ion-router');
-        router.push('/');
+        RouterService.forward('/');
       }
     }
 
@@ -50,6 +48,10 @@ export class PageAdminListingEdit {
     }
   }
 
+  onFormSuccess(e) {
+    RouterService.forward(`/listing/${e.detail.id}`);
+  }
+
   render() {
     return [
       <admin-header />,
@@ -58,7 +60,7 @@ export class PageAdminListingEdit {
 
           {
             this.loaded && this.item ?
-              <listing-edit-form item={this.item}/>
+              <listing-edit-form item={this.item} onSuccess={e => this.onFormSuccess(e)} />
             : null
           }
 

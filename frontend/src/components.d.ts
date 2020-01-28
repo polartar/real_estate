@@ -923,6 +923,7 @@ declare namespace LocalJSX {
   }
   interface ListingEditForm extends JSXBase.HTMLAttributes<HTMLListingEditFormElement> {
     'item'?: any;
+    'onSuccess'?: (event: CustomEvent<any>) => void;
   }
   interface ListingList extends JSXBase.HTMLAttributes<HTMLListingListElement> {
     'items'?: any[];

@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateApartmentRequest;
 use App\ImageUpload;
 use App\Providers\ApartmentServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
@@ -163,6 +164,9 @@ class ApartmentController extends Controller
             $apt->amenities()->sync($data['amenities']);
         }
 
+        // necessary to update listings on refresh
+        Artisan::call('cache:clear');
+
         return $apt->fresh();
     }
 
@@ -172,9 +176,19 @@ class ApartmentController extends Controller
      * @param  \App\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Apartment $apartment)
+    public function destroy($apartment_id)
     {
-        //
+        $apt = Apartment::withoutGlobalScope('active')->findOrFail($apartment_id);
+        $this->authorize('delete', $apt);
+
+        $apt->delete();
+
+        // necessary to update listings on refresh
+        Artisan::call('cache:clear');
+
+        return [
+            'success' => true
+        ];
     }
 
     public function getList() {

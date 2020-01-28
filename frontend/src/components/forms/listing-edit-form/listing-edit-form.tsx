@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Element } from '@stencil/core';
+import { Component, h, Prop, State, Element, Event, EventEmitter } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import taxonomySelectors from '../../../store/selectors/taxonomy'
 import serialize from 'form-serialize';
@@ -22,6 +22,8 @@ export class ListingEditForm {
   @Element() el: HTMLElement;
 
   @Prop() item: any;
+
+  @Event() success: EventEmitter;
 
   form: HTMLFormElement;
   neighborhoodsInput: HTMLInputElement;
@@ -74,7 +76,6 @@ export class ListingEditForm {
     e.preventDefault();
 
     const formValues = serialize(this.form, { hash: true, empty: true });
-    console.log(formValues);
 
     try {
       const result: any = await APIApartmentsService.updateApt(formValues);
@@ -92,7 +93,8 @@ export class ListingEditForm {
         throw new Error('Could not save apartment information');
       }
 
-      console.log(result);
+      ToastService.success('Apartment has been saved');
+      this.success.emit(result.apartment);
 
     } catch(err) {
       ToastService.error(err.message);
@@ -309,8 +311,6 @@ export class ListingEditForm {
   }
 
   render() {
-    console.log(this.item);
-
     let neighborhoodsValue = '';
     if (this.item) {
       neighborhoodsValue = this.item.neighborhood_ids.reduce((acc, id) => {

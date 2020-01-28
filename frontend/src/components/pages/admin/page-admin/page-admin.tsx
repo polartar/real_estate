@@ -3,6 +3,7 @@ import { Store } from '@stencil/redux';
 import authSelectors from '../../../../store/selectors/auth';
 import { APIAdminService } from '../../../../services/api/admin';
 import { ToastService } from '../../../../services/toast.service';
+import { RouterService } from '../../../../services/router.service';
 
 @Component({
   tag: 'page-admin',
@@ -25,14 +26,12 @@ export class PageAdmin {
     });
 
     if (!this.isLoggedIn) {
-      const router: any = document.querySelector('ion-router');
-      router.push('/login');
+      RouterService.forward('/login');
     }
     else {
       // we're logged in, but as admin?
       if (!this.isAdmin) {
-        const router: any = document.querySelector('ion-router');
-        router.push('/');
+        RouterService.forward('/');
       }
     }
   }

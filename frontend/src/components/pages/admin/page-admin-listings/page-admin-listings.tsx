@@ -3,8 +3,11 @@ import { Store } from '@stencil/redux';
 import authSelectors from '../../../../store/selectors/auth';
 import taxonomySelectors from '../../../../store/selectors/taxonomy'
 import { APIAdminService } from '../../../../services/api/admin';
+import { APIApartmentsService } from '../../../../services/api/apartments';
 import { formatDate, formatMoney} from '../../../../helpers/utils';
 import { ToastService } from '../../../../services/toast.service';
+import { RouterService } from '../../../../services/router.service';
+import { AlertService } from '../../../../services/alerts.service';
 
 @Component({
   tag: 'page-admin-listings',
@@ -42,14 +45,12 @@ export class PageAdminListings {
     });
 
     if (!this.isLoggedIn) {
-      const router: any = document.querySelector('ion-router');
-      router.push('/login');
+      RouterService.forward('/login');
     }
     else {
       // we're logged in, but as admin?
       if (!this.isAdmin) {
-        const router: any = document.querySelector('ion-router');
-        router.push('/');
+        RouterService.forward('/');
       }
     }
   }
@@ -68,6 +69,7 @@ export class PageAdminListings {
       this.loaded = true;
     } catch(err) {
       // alright...
+      ToastService.error(err.message);
     }
   }
 
@@ -95,14 +97,39 @@ export class PageAdminListings {
     }
   }
 
-  toggleActive(listing) {
-    APIAdminService.updateListing(listing)
-      .then(r => {
-        console.log(r);
-      })
-      .catch(err => {
-        console.log(err);
+  async toggleActive(listing) {
+    const data = { id: listing.id, is_active: !listing.is_active };
+
+    try {
+      const result: any = await APIApartmentsService.updateApt(data);
+      console.log(result);
+
+      if (!result.success) {
+        if (result.errors && Object.keys(result.errors).length) {
+          const errMessages = [];
+
+          Object.keys(result.errors).forEach(r => errMessages.push(result.errors[r][0]));
+
+          ToastService.error(errMessages.join('\n'), { duration: 8000 });
+          return;
+        }
+
+        throw new Error('Could not save apartment information');
+      }
+
+      const listings = this.listings.map(l => {
+        if (l.id === result.apartment.id) {
+          return result.apartment;
+        }
+
+        return l;
       });
+
+      this.listings = listings;
+
+    } catch (err) {
+      ToastService.error(err.message);
+    }
   }
 
   async infiniteScroll(e) {
@@ -122,9 +149,38 @@ export class PageAdminListings {
   }
 
   goTo(path) {
-    const router: any = document.querySelector('ion-router');
+    RouterService.forward(path);
+  }
 
-    router.push(path);
+  async deleteListing(id) {
+    try {
+      if (!await AlertService.confirm('Deleting this is a permanent action, are you sure you want to delete the apartment?', 'Are you sure?')) {
+        return;
+      }
+
+      const result: any = await APIApartmentsService.deleteApt(id);
+      console.log(result);
+
+      if (result.success) {
+        const listings = this.listings.filter(l => l.id !== id);
+
+        this.listings = listings;
+
+        ToastService.success('Apartment has been deleted');
+      }
+      else {
+        if (result.errors) {
+          ToastService.error(result.errors.join('\n'));
+          return;
+        }
+
+        if (result.message) {
+          ToastService.error(result.message);
+        }
+      }
+    } catch (err) {
+      ToastService.error(err.message);
+    }
   }
 
   render() {
@@ -194,7 +250,7 @@ export class PageAdminListings {
                           <button class="button-dark" onClick={() => this.toggleActive(l)}>{ l.is_active ? 'Active' : 'Inactive' }</button>
                         </td>
                         <td class="no-wrap">
-                          <button class="button-dark" onClick={() => console.log('delete')}>
+                          <button class="button-dark" onClick={() => this.deleteListing(l.id)}>
                             <ion-icon name="trash" />
                           </button>
                           <button class="button-dark" onClick={() => this.goTo(`/admin/listing/edit/${l.id}`)}>
