@@ -56,4 +56,8 @@ class AdminController extends Controller
 
         return SearchServiceProvider::adminSearch($filters);
     }
+
+    public function aptOwners() {
+        return Apartment::distinct('owner_name')->orderBy('owner_name', 'asc')->pluck('owner_name');
+    }
 }

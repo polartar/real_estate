@@ -2,11 +2,6 @@
 @import '../../../styles/variables';
 
 .listing-edit-form-component {
-  fieldset {
-    margin-bottom: 16px;
-    min-width: 0;
-  }
-
   .action-button {
     margin-bottom: 16px;
   }
@@ -86,12 +81,6 @@
       gap: 8px;
       align-items: center;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    &.pricing {
-      display: grid;
-      gap: 8px;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
 
     &.payment-timeline {

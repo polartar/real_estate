@@ -40,8 +40,8 @@ class APIApartmentsInstance {
 
   public async updateApt(formValues) {
 
-    const method = formValues.hasOwnProperty('id') ? 'PATCH' : 'POST'
-    const endpoint = formValues.hasOwnProperty('id') ? `${APIService.getAPIUrl()}/apartments/${formValues.id}` : `${APIService.getAPIUrl()}/apartments`;
+    const method = formValues.hasOwnProperty('id') && formValues.id ? 'PATCH' : 'POST'
+    const endpoint = formValues.hasOwnProperty('id') && formValues.id ? `${APIService.getAPIUrl()}/apartments/${formValues.id}` : `${APIService.getAPIUrl()}/apartments`;
 
     try {
       let response = await fetch(endpoint, {
@@ -55,10 +55,11 @@ class APIApartmentsInstance {
       if (!response.ok) {
         if (r && r.errors) {
           // caller will need to check success
-          return {
-            success: false,
-            errors: r.errors
-          };
+          const errMessages = [];
+
+          Object.keys(r.errors).forEach(re => errMessages.push(r.errors[re][0]));
+
+         throw new Error(errMessages.join('\n'));
         }
 
         if (r && r.message) {
@@ -68,10 +69,7 @@ class APIApartmentsInstance {
         throw new Error(response.statusText);
       }
 
-      return {
-        success: true,
-        apartment: r
-      };
+      return r;
 
     } catch (err) {
       throw new Error(err.message);

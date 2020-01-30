@@ -101,25 +101,11 @@ export class PageAdminListings {
     const data = { id: listing.id, is_active: !listing.is_active };
 
     try {
-      const result: any = await APIApartmentsService.updateApt(data);
-      console.log(result);
-
-      if (!result.success) {
-        if (result.errors && Object.keys(result.errors).length) {
-          const errMessages = [];
-
-          Object.keys(result.errors).forEach(r => errMessages.push(result.errors[r][0]));
-
-          ToastService.error(errMessages.join('\n'), { duration: 8000 });
-          return;
-        }
-
-        throw new Error('Could not save apartment information');
-      }
+      const apartment: any = await APIApartmentsService.updateApt(data);
 
       const listings = this.listings.map(l => {
-        if (l.id === result.apartment.id) {
-          return result.apartment;
+        if (l.id === apartment.id) {
+          return apartment;
         }
 
         return l;
@@ -159,7 +145,6 @@ export class PageAdminListings {
       }
 
       const result: any = await APIApartmentsService.deleteApt(id);
-      console.log(result);
 
       if (result.success) {
         const listings = this.listings.filter(l => l.id !== id);

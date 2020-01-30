@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth:api', 'cors']], function() {
     Route::post('apartments', 'ApartmentController@store');
     Route::get('admin/dashboard_counts', 'AdminController@dashboardCounts');
     Route::get('admin/listings', 'AdminController@listings');
+    Route::get('admin/apt-owners', 'AdminController@aptOwners');
 
     // image uploads
     Route::post('image-upload', 'FileUploadController@uploadImage');

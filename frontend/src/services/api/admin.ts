@@ -60,6 +60,22 @@ class APIAdminInstance {
       throw new Error(err.message);
     }
   }
+
+  public async getAptOwners() {
+    try {
+      let response = await fetch(APIService.getAPIUrl() + `/admin/apt-owners`, {
+        headers: APIService.getHeaders()
+      });
+
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      return await response.json();
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
 }
 
 export const APIAdminService = new APIAdminInstance();

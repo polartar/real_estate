@@ -122,10 +122,22 @@ export namespace Components {
     'name': string;
     'value': any[];
   }
+  interface InputMonthRates {
+    'name': string;
+    'rates': any[];
+    'updateDefault': (key: any, value: any) => Promise<void>;
+  }
   interface InputMultiselect {
     'name': string;
     'options': any[];
     'value': any[];
+  }
+  interface InputPricing {
+    'name': string;
+    'rate': any;
+  }
+  interface InputUtilities {
+    'item': any;
   }
   interface LazyImage {
     'alt': string;
@@ -186,6 +198,9 @@ export namespace Components {
   interface NeighborhoodSlider {
     'items': any[];
   }
+  interface OwnerGlobalForm {
+    'owners': any[];
+  }
   interface Page404 {}
   interface PageAdmin {}
   interface PageAdminListingAdd {}
@@ -193,6 +208,7 @@ export namespace Components {
     'apartmentId': number;
   }
   interface PageAdminListings {}
+  interface PageAdminOwner {}
   interface PageHome {
     'prefetching': boolean;
   }
@@ -460,10 +476,28 @@ declare global {
     new (): HTMLInputImageElement;
   };
 
+  interface HTMLInputMonthRatesElement extends Components.InputMonthRates, HTMLStencilElement {}
+  var HTMLInputMonthRatesElement: {
+    prototype: HTMLInputMonthRatesElement;
+    new (): HTMLInputMonthRatesElement;
+  };
+
   interface HTMLInputMultiselectElement extends Components.InputMultiselect, HTMLStencilElement {}
   var HTMLInputMultiselectElement: {
     prototype: HTMLInputMultiselectElement;
     new (): HTMLInputMultiselectElement;
+  };
+
+  interface HTMLInputPricingElement extends Components.InputPricing, HTMLStencilElement {}
+  var HTMLInputPricingElement: {
+    prototype: HTMLInputPricingElement;
+    new (): HTMLInputPricingElement;
+  };
+
+  interface HTMLInputUtilitiesElement extends Components.InputUtilities, HTMLStencilElement {}
+  var HTMLInputUtilitiesElement: {
+    prototype: HTMLInputUtilitiesElement;
+    new (): HTMLInputUtilitiesElement;
   };
 
   interface HTMLLazyImageElement extends Components.LazyImage, HTMLStencilElement {}
@@ -574,6 +608,12 @@ declare global {
     new (): HTMLNeighborhoodSliderElement;
   };
 
+  interface HTMLOwnerGlobalFormElement extends Components.OwnerGlobalForm, HTMLStencilElement {}
+  var HTMLOwnerGlobalFormElement: {
+    prototype: HTMLOwnerGlobalFormElement;
+    new (): HTMLOwnerGlobalFormElement;
+  };
+
   interface HTMLPage404Element extends Components.Page404, HTMLStencilElement {}
   var HTMLPage404Element: {
     prototype: HTMLPage404Element;
@@ -602,6 +642,12 @@ declare global {
   var HTMLPageAdminListingsElement: {
     prototype: HTMLPageAdminListingsElement;
     new (): HTMLPageAdminListingsElement;
+  };
+
+  interface HTMLPageAdminOwnerElement extends Components.PageAdminOwner, HTMLStencilElement {}
+  var HTMLPageAdminOwnerElement: {
+    prototype: HTMLPageAdminOwnerElement;
+    new (): HTMLPageAdminOwnerElement;
   };
 
   interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {}
@@ -759,7 +805,10 @@ declare global {
     'input-date': HTMLInputDateElement;
     'input-date-modal': HTMLInputDateModalElement;
     'input-image': HTMLInputImageElement;
+    'input-month-rates': HTMLInputMonthRatesElement;
     'input-multiselect': HTMLInputMultiselectElement;
+    'input-pricing': HTMLInputPricingElement;
+    'input-utilities': HTMLInputUtilitiesElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-card': HTMLListingCardElement;
     'listing-edit-form': HTMLListingEditFormElement;
@@ -778,11 +827,13 @@ declare global {
     'move-in-date-filter': HTMLMoveInDateFilterElement;
     'neighborhood-card': HTMLNeighborhoodCardElement;
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
+    'owner-global-form': HTMLOwnerGlobalFormElement;
     'page-404': HTMLPage404Element;
     'page-admin': HTMLPageAdminElement;
     'page-admin-listing-add': HTMLPageAdminListingAddElement;
     'page-admin-listing-edit': HTMLPageAdminListingEditElement;
     'page-admin-listings': HTMLPageAdminListingsElement;
+    'page-admin-owner': HTMLPageAdminOwnerElement;
     'page-home': HTMLPageHomeElement;
     'page-listing': HTMLPageListingElement;
     'page-listing-body': HTMLPageListingBodyElement;
@@ -906,10 +957,22 @@ declare namespace LocalJSX {
     'name': string;
     'value'?: any[];
   }
+  interface InputMonthRates extends JSXBase.HTMLAttributes<HTMLInputMonthRatesElement> {
+    'name'?: string;
+    'rates'?: any[];
+  }
   interface InputMultiselect extends JSXBase.HTMLAttributes<HTMLInputMultiselectElement> {
     'name': string;
     'options': any[];
     'value'?: any[];
+  }
+  interface InputPricing extends JSXBase.HTMLAttributes<HTMLInputPricingElement> {
+    'name': string;
+    'onRateChanged'?: (event: CustomEvent<any>) => void;
+    'rate'?: any;
+  }
+  interface InputUtilities extends JSXBase.HTMLAttributes<HTMLInputUtilitiesElement> {
+    'item'?: any;
   }
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
@@ -971,6 +1034,9 @@ declare namespace LocalJSX {
   interface NeighborhoodSlider extends JSXBase.HTMLAttributes<HTMLNeighborhoodSliderElement> {
     'items'?: any[];
   }
+  interface OwnerGlobalForm extends JSXBase.HTMLAttributes<HTMLOwnerGlobalFormElement> {
+    'owners': any[];
+  }
   interface Page404 extends JSXBase.HTMLAttributes<HTMLPage404Element> {}
   interface PageAdmin extends JSXBase.HTMLAttributes<HTMLPageAdminElement> {}
   interface PageAdminListingAdd extends JSXBase.HTMLAttributes<HTMLPageAdminListingAddElement> {}
@@ -978,6 +1044,7 @@ declare namespace LocalJSX {
     'apartmentId': number;
   }
   interface PageAdminListings extends JSXBase.HTMLAttributes<HTMLPageAdminListingsElement> {}
+  interface PageAdminOwner extends JSXBase.HTMLAttributes<HTMLPageAdminOwnerElement> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {
     'prefetching'?: boolean;
   }
@@ -1100,7 +1167,10 @@ declare namespace LocalJSX {
     'input-date': InputDate;
     'input-date-modal': InputDateModal;
     'input-image': InputImage;
+    'input-month-rates': InputMonthRates;
     'input-multiselect': InputMultiselect;
+    'input-pricing': InputPricing;
+    'input-utilities': InputUtilities;
     'lazy-image': LazyImage;
     'listing-card': ListingCard;
     'listing-edit-form': ListingEditForm;
@@ -1119,11 +1189,13 @@ declare namespace LocalJSX {
     'move-in-date-filter': MoveInDateFilter;
     'neighborhood-card': NeighborhoodCard;
     'neighborhood-slider': NeighborhoodSlider;
+    'owner-global-form': OwnerGlobalForm;
     'page-404': Page404;
     'page-admin': PageAdmin;
     'page-admin-listing-add': PageAdminListingAdd;
     'page-admin-listing-edit': PageAdminListingEdit;
     'page-admin-listings': PageAdminListings;
+    'page-admin-owner': PageAdminOwner;
     'page-home': PageHome;
     'page-listing': PageListing;
     'page-listing-body': PageListingBody;

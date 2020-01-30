@@ -40,9 +40,9 @@ class SearchServiceProvider extends ServiceProvider
             case 'homePageInit':
                 $results = Cache::remember('search-homePageInit', 600, function() {
                     return [
-                        'uniqueList' => \App\Apartment::inRandomOrder()->take(8)->get(),
-                        'privateRoomList' => \App\Apartment::inRandomOrder()->take(8)->get(),
-                        'luxuryList' => \App\Apartment::inRandomOrder()->take(8)->get()
+                        'uniqueList' => \App\Apartment::where('feature_1', true)->inRandomOrder()->take(8)->get(),
+                        'privateRoomList' => \App\Apartment::where('feature_2', true)->inRandomOrder()->take(8)->get(),
+                        'luxuryList' => \App\Apartment::where('feature_3', true)->inRandomOrder()->take(8)->get()
                     ];
                 });
             break;

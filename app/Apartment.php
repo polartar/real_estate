@@ -59,7 +59,10 @@ class Apartment extends Model
         'due_to_reserve',
         'due_by_checkin',
         'video_url',
-        'is_active'
+        'is_active',
+        'feature_1',
+        'feature_2',
+        'feature_3'
     ];
 
 

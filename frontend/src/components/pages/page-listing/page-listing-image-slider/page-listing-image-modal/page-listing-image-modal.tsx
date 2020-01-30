@@ -93,7 +93,7 @@ export class PageListingImageModal {
 
     const currentURL = currentImage.getAttribute('src');
 
-    const currentIndex = this.images.findIndex(src => src === currentURL);
+    const currentIndex = this.images.findIndex(img => img.original === currentURL);
 
     let newIndex = 0;
 
@@ -113,7 +113,7 @@ export class PageListingImageModal {
 
     this.glide.go('=' + newIndex);
 
-    currentImage.setAttribute('src', this.images[newIndex]);
+    currentImage.setAttribute('src', this.images[newIndex].original);
   }
 
   close() {

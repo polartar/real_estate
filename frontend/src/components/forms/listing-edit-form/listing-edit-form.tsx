@@ -7,8 +7,6 @@ import { ToastService } from '../../../services/toast.service';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 import { APIApartmentsService } from '../../../services/api/apartments';
 import { formatDate } from '../../../helpers/utils';
-import isNumber from 'is-number';
-import getDaysInMonth from 'date-fns/getDaysInMonth';
 
 //@ TODO - date input modal close/sizing
 
@@ -33,6 +31,7 @@ export class ListingEditForm {
   amenityInputs: HTMLElement;
   blockDateStartInput: HTMLElement;
   blockDateEndInput: HTMLElement;
+  monthRatesInput: HTMLInputMonthRatesElement;
 
   @State() geocodingInProgress: boolean = false;
   @State() blockedDateErrors: string[] = [];
@@ -46,6 +45,8 @@ export class ListingEditForm {
   @State() neighborhoods: any[];
   @State() subways: any[];
   @State() amenities: any[];
+
+  @State() submitting: boolean = false;
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
@@ -75,29 +76,22 @@ export class ListingEditForm {
   async onSubmit(e) {
     e.preventDefault();
 
+    this.submitting = true;
+
     const formValues = serialize(this.form, { hash: true, empty: true });
 
     try {
-      const result: any = await APIApartmentsService.updateApt(formValues);
+      const apt: any = await APIApartmentsService.updateApt(formValues);
 
-      if (!result.success) {
-        if (result.errors && Object.keys(result.errors).length) {
-          const errMessages = [];
-
-          Object.keys(result.errors).forEach(r => errMessages.push(result.errors[r][0]));
-
-          ToastService.error(errMessages.join('\n'), { duration: 8000 });
-          return;
-        }
-
-        throw new Error('Could not save apartment information');
-      }
+      this.submitting = false;
 
       ToastService.success('Apartment has been saved');
-      this.success.emit(result.apartment);
+      this.success.emit(apt);
 
     } catch(err) {
       ToastService.error(err.message);
+
+      this.submitting = false;
     }
   }
 
@@ -238,78 +232,6 @@ export class ListingEditForm {
     this.blockedDates = blockedDates;
   }
 
-  changeDefaultMonthRate(event, key) {
-    if (!isNumber(event.target.value)) {
-      ToastService.error('Invalid number entered');
-      return;
-    }
-
-    switch (key) {
-      case 'monthly_rate':
-      case 'security_deposit_percent':
-      case 'service_fee_host':
-      case 'service_fee_client':
-        const inputs: any = this.el.querySelectorAll(`input.rate-input.${key}`);
-
-        if (inputs) {
-          inputs.forEach(i => {
-            if (!i.value.length) {
-              i.value = event.target.value;
-
-              const evt = document.createEvent("HTMLEvents");
-              evt.initEvent("change", false, true);
-              i.dispatchEvent(evt);
-            }
-          });
-        }
-      break;
-      default:
-        // nothing
-      break;
-    }
-  }
-
-  changeMonthRate(event, month, key) {
-    if (!event.target.value.length) {
-      return;
-    }
-
-    if (!isNumber(event.target.value)) {
-      ToastService.error('Invalid number entered');
-      return;
-    }
-
-    if (key === 'monthly_rate') {
-      // set the night rate
-      const today = new Date();
-      const val = parseFloat(event.target.value);
-      const days = getDaysInMonth(today.setMonth(month));
-
-      const nightRate = (val / days).toFixed(2);
-      const input: any = this.el.querySelector(`input[name="rates[${month}][night_rate]"]`);
-
-      if (input) {
-        input.value = nightRate;
-      }
-    }
-  }
-
-  utilitiesChanged() {
-    const inputs: any = this.el.querySelectorAll('input.utility');
-
-    let sum = 0;
-    inputs.forEach(i => {
-      if (i.value && isNumber(i.value)) {
-        sum += parseFloat(i.value);
-      }
-    });
-
-    const utilitiesTotal: any = this.el.querySelector('#listing-monthly-utilities');
-    if (utilitiesTotal) {
-      utilitiesTotal.value = sum.toFixed(2);
-    }
-  }
-
   render() {
     let neighborhoodsValue = '';
     if (this.item) {
@@ -327,39 +249,11 @@ export class ListingEditForm {
 
     const bathroomOptions = [1, 1.5, 2, 2.5, 3, 3.5, 4];
 
-    const pricemodel = [
-      {
-        name: '<span>Monthly Rate</span>',
-        key: 'monthly_rate',
-        disabled: false,
-      },
-      {
-        name: '<span>Night Rate</span>',
-        key: 'night_rate',
-        disabled: true,
-      },
-      {
-        name: '<span>Security %</span>',
-        key: 'security_deposit_percent',
-        disabled: false
-      },
-      {
-        name: '<span>Service Fee <br /> Host (%)</span>',
-        key: 'service_fee_host',
-        disabled: false
-      },
-      {
-        name: '<span>Service Fee <br /> Client (%)</span>',
-        key: 'service_fee_client',
-        disabled: false
-      }
-    ];
-
     return [
       <div class="listing-edit-form-component">
         <form onSubmit={e => this.onSubmit(e)} ref={el => this.form = el as HTMLFormElement }>
           <fieldset>
-            <h3>Address</h3>
+            <h3>1. Address</h3>
 
             <div class="fieldset-inputs address">
               <div class="input">
@@ -455,7 +349,7 @@ export class ListingEditForm {
           </fieldset>
 
           <fieldset>
-            <h3>Description</h3>
+            <h3>2. Description</h3>
 
             <div class="fieldset-inputs description">
               <div class="input">
@@ -482,7 +376,7 @@ export class ListingEditForm {
           </fieldset>
 
           <fieldset>
-            <h3>Features</h3>
+            <h3>3. Features</h3>
 
             <div class="fieldset-inputs features">
               <div class="input">
@@ -545,7 +439,7 @@ export class ListingEditForm {
           </fieldset>
 
           <fieldset>
-            <h3>Subways</h3>
+            <h3>4. Subways</h3>
 
             <div class="fieldset-inputs subways">
               {
@@ -573,7 +467,7 @@ export class ListingEditForm {
           </fieldset>
 
           <fieldset>
-            <h3>Amenities</h3>
+            <h3>5. Amenities</h3>
 
             <div class="fieldset-inputs amenities">
               {
@@ -601,7 +495,7 @@ export class ListingEditForm {
           </fieldset>
 
           <fieldset>
-            <h3>Availability</h3>
+            <h3>6. Availability</h3>
 
             <div class="fieldset-inputs availability">
               <div class="input">
@@ -677,260 +571,30 @@ export class ListingEditForm {
           </fieldset>
 
           <fieldset>
-            <h3>Pricing</h3>
-            <div class="fieldset-inputs pricing">
-              <div class="input">
-                <label htmlFor="listing-monthly-rate">Monthly Rate</label>
-                <input
-                  type="text"
-                  id="listing-monthly-rate"
-                  name="rates[default][monthly_rate]"
-                  class="apt212-input block"
-                  value={this.item ? this.item.rates.find(r => r.month === 'default').monthly_rate : ''}
-                  onChange={e => this.changeDefaultMonthRate(e, 'monthly_rate')}
-                />
-              </div>
-
-              <div class="input">
-                <label htmlFor="listing-tax">Tax (%)</label>
-                <input
-                  type="text"
-                  id="listing-tax"
-                  name="rates[default][tax_percent]"
-                  class="apt212-input block"
-                  value={this.item ? this.item.rates.find(r => r.month === 'default').tax_percent : ''}
-                  onChange={e => this.changeDefaultMonthRate(e, 'tax_percent')}
-                />
-              </div>
-
-              <div class="input">
-                <label htmlFor="listing-background-check">Background Check</label>
-                <input
-                  type="text"
-                  id="listing-background-check"
-                  name="rates[default][background_check_rate]"
-                  class="apt212-input block"
-                  value={this.item ? this.item.rates.find(r => r.month === 'default').background_check_rate : ''}
-                  onChange={e => this.changeDefaultMonthRate(e, 'background_check_rate')}
-                />
-              </div>
-
-              <div class="input">
-                <label htmlFor="listing-service-fee-host">Service Fee Host Side (%)</label>
-                <input
-                  type="text"
-                  id="listing-service-fee-host"
-                  name="rates[default][service_fee_host]"
-                  class="apt212-input block"
-                  value={this.item ? this.item.rates.find(r => r.month === 'default').service_fee_host : ''}
-                  onChange={e => this.changeDefaultMonthRate(e, 'service_fee_host')}
-                />
-              </div>
-
-              <div class="input">
-                <label htmlFor="listing-service-fee-client">Service Fee Client Side (%)</label>
-                <input
-                  type="text"
-                  id="listing-service-fee-client"
-                  name="rates[default][service_fee_client]"
-                  class="apt212-input block"
-                  value={this.item ? this.item.rates.find(r => r.month === 'default').service_fee_client : ''}
-                  onChange={e => this.changeDefaultMonthRate(e, 'service_fee_client')}
-                />
-              </div>
-
-              <div class="input">
-                <label htmlFor="listing-security-deposit">Security Deposit (%)</label>
-                <input
-                  type="text"
-                  id="listing-security-deposit"
-                  name="rates[default][security_deposit_percent]"
-                  class="apt212-input block"
-                  value={this.item ? this.item.rates.find(r => r.month === 'default').security_deposit_percent : ''}
-                  onChange={e => this.changeDefaultMonthRate(e, 'security_deposit_percent')}
-                />
-                <div class="help-text">% of monthly rate</div>
-              </div>
-            </div>
+            <h3>7. Pricing</h3>
+            <input-pricing
+              name="rates"
+              rate={this.item ? this.item.rates.find(r => r.month === 'default') : null }
+              onRateChanged={e => this.monthRatesInput.updateDefault(e.detail.key, e.detail.value)}
+            />
           </fieldset>
 
           <fieldset>
-            <h3>Month Specific Rates</h3>
-
-            <div class="monthly-rates-wrapper">
-              <table class="monthly-rates">
-                <thead>
-                  <tr>
-                    <td></td>
-                    {
-                      [0,1,2,3,4,5].map(m => {
-                        const date = new Date().setMonth(m);
-                        return (
-                          <td>{ formatDate(date, 'MMM') }</td>
-                        )
-                      })
-                    }
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    pricemodel.map(p =>
-                      <tr>
-                        <td class="label" innerHTML={p.name}>
-                        </td>
-
-                        { [0,1,2,3,4,5].map(m => {
-                          const classObj = {'apt212-input': true, block: true, 'rate-input': true };
-                          classObj[p.key] = true;
-
-                          return (
-                            <td>
-                              <input
-                                type="text"
-                                class={classObj}
-                                name={`rates[${m}][${p.key}]`}
-                                value={this.item ? this.item.rates.find(r => r.month == m)[p.key] : ''}
-                                disabled={p.disabled}
-                                onChange={e => this.changeMonthRate(e, m, p.key)}
-                              />
-                            </td>
-                          )
-                        })
-                        }
-                      </tr>
-                    )
-                  }
-                </tbody>
-              </table>
-            </div>
-
-            <div class="monthly-rates-wrapper">
-              <table class="monthly-rates">
-                <thead>
-                  <tr>
-                    <td></td>
-                    {
-                      [6,7,8,9,10,11].map(m => {
-                        const date = new Date().setMonth(m);
-                        return (
-                          <td>{ formatDate(date, 'MMM') }</td>
-                        )
-                      })
-                    }
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    pricemodel.map(p =>
-                      <tr>
-                        <td class="label" innerHTML={p.name}>
-                        </td>
-
-                        { [6,7,8,9,10,11].map(m => {
-                          const classObj = {'apt212-input': true, block: true, 'rate-input': true };
-                          classObj[p.key] = true;
-
-                          return (
-                            <td>
-                              <input
-                                type="text"
-                                class={classObj}
-                                name={`rates[${m}][${p.key}]`}
-                                value={this.item ? this.item.rates.find(r => r.month == m)[p.key] : ''}
-                                disabled={p.disabled}
-                                onChange={e => this.changeMonthRate(e, m, p.key)}
-                              />
-                            </td>
-                          )
-                          })
-                        }
-                      </tr>
-                    )
-                  }
-                </tbody>
-              </table>
-            </div>
+            <h3>8. Month Specific Rates</h3>
+            <input-month-rates
+              name="rates"
+              rates={this.item ? this.item.rates : []}
+              ref={el => this.monthRatesInput = el as HTMLInputMonthRatesElement}
+            />
           </fieldset>
 
           <fieldset>
-            <h3>Utilities/Move out fee</h3>
-            <div class="fieldset-inputs utilities">
-              <div class="input">
-                <label htmlFor="listing-cable">Cable</label>
-                <input
-                  type="text"
-                  id="listing-cable"
-                  name="utility_cable"
-                  class="apt212-input block utility"
-                  value={this.item ? this.item.utility_cable : ''}
-                  onChange={() => this.utilitiesChanged()}
-                />
-              </div>
-
-              <div class="input">
-                <label htmlFor="listing-wifi">Wifi</label>
-                <input
-                  type="text"
-                  id="listing-wifi"
-                  name="utility_wifi"
-                  class="apt212-input block utility"
-                  value={this.item ? this.item.utility_wifi : ''}
-                  onChange={() => this.utilitiesChanged()}
-                />
-              </div>
-
-              <div class="input">
-                <label htmlFor="listing-electricity">Electricity</label>
-                <input
-                  type="text"
-                  id="listing-electricity"
-                  name="utility_electricity"
-                  class="apt212-input block utility"
-                  value={this.item ? this.item.utility_electricity : ''}
-                  onChange={() => this.utilitiesChanged()}
-                />
-              </div>
-
-              <div class="input">
-                <label htmlFor="listing-cleaning">Monthly Cleaning</label>
-                <input
-                  type="text"
-                  id="listing-cleaning"
-                  name="utility_cleaning"
-                  class="apt212-input block utility"
-                  value={this.item ? this.item.utility_cleaning : ''}
-                  onChange={() => this.utilitiesChanged()}
-                />
-              </div>
-
-              <div class="input">
-                <label htmlFor="listing-moveout-fee">Move out fee</label>
-                <input
-                  type="number"
-                  id="listing-moveout-fee"
-                  name="move_out_fee"
-                  class="apt212-input block"
-                  value={this.item ? this.item.move_out_fee : ''}
-                  step={0.01}
-                />
-              </div>
-
-              <div class="input">
-                <label htmlFor="listing-monthly-utilities">Total Monthly Utilities</label>
-                <input
-                  type="number"
-                  id="listing-monthly-utilities"
-                  name="monthly_utilities"
-                  class="apt212-input block"
-                  value={this.item ? this.item.monthly_utilities.toFixed(2) : ''}
-                  disabled
-                />
-              </div>
-            </div>
+            <h3>9. Utilities/Move out fee</h3>
+            <input-utilities item={this.item ? this.item : null } />
           </fieldset>
 
           <fieldset>
-            <h3>Payment Time Line</h3>
+            <h3>10. Payment Time Line</h3>
 
             <div class="fieldset-inputs payment-timeline">
               <div class="input">
@@ -956,14 +620,14 @@ export class ListingEditForm {
               </div>
 
               <div class="input">
-                <label htmlFor="duci_advance_payment_days">DUCI Payment Days in Advance</label>
+                <label htmlFor="doci_advance_payment_days">DOCI Payment Days in Advance</label>
                 <select
-                  id="duci_advance_payment_days"
-                  name="duci_advance_payment_days"
+                  id="doci_advance_payment_days"
+                  name="doci_advance_payment_days"
                   class="apt212-input block"
                 >
                   {
-                    [1,2,3,4,5,6,7,8,9,10].map(v =>
+                    [...Array(31).keys()].map(v =>
                       <option value={v} selected={this.item ? this.item.duci_advance_payment_days === v : false }>{v}</option>
                     )
                   }
@@ -1035,7 +699,7 @@ export class ListingEditForm {
           </fieldset>
 
           <fieldset>
-            <h3>Images</h3>
+            <h3>11. Images</h3>
             <input-image
               name="images"
               value={this.item ? this.item.images : [] }
@@ -1044,7 +708,7 @@ export class ListingEditForm {
           </fieldset>
 
           <fieldset>
-            <h3>Floorplan</h3>
+            <h3>12. Floorplan</h3>
             <input-image
               name="floor_plans"
               limit={3}
@@ -1053,7 +717,7 @@ export class ListingEditForm {
           </fieldset>
 
           <fieldset>
-            <h3>Video</h3>
+            <h3>13. Video</h3>
 
             <div class="fieldset-inputs video">
               <div class="input">
@@ -1070,7 +734,7 @@ export class ListingEditForm {
             </div>
           </fieldset>
 
-          <input type="submit" class="button-dark" value="Save" />
+          <input type="submit" class="button-dark" value="Save" disabled={this.submitting} />
         </form>
       </div>
     ]

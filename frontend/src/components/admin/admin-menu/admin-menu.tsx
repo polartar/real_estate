@@ -64,6 +64,10 @@ export class AdminMenu {
               Listings
             </ion-router-link>
 
+            <ion-router-link href="/admin/owner-global" onClick={() => this.closeMenu()}>
+              Owner Global Updates
+            </ion-router-link>
+
             {
               this.isLoggedIn ?
                 <ion-router-link href="/" onClick={() => { this.logout(); this.closeMenu(); }}>

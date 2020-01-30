@@ -313,7 +313,7 @@
             <div class="content-right">
                 <div class="card">
                     @if(count($apartment->images))
-                        <img src="{{ $apartment->images[0] }}" class="feature-image" />
+                        <img src="{{ $apartment->images[0]->medium }}" class="feature-image" />
                     @endif
 
                     <div class="card-content">

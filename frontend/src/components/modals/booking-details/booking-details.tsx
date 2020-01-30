@@ -346,7 +346,7 @@ export class BookingDetails {
         <div class="right">
           <div class="card">
             {
-              this.item.images.length ? <img src={this.item.images[0]} class="feature-image" /> : null
+              this.item.images.length ? <img src={this.item.images[0].small} class="feature-image" /> : null
             }
 
             <div class="card-content">

@@ -70,7 +70,7 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         'move_out_fee' => $faker->randomFloat(2, 0, 500),
         'months_due_on_checkin' => $faker->numberBetween(0, 4),
         'days_due_on_checkin' => $faker->numberBetween(0, 30),
-        'duci_advance_payment_days' => $faker->numberBetween(0, 10),
+        'doci_advance_payment_days' => $faker->numberBetween(0, 10),
         'due_to_reserve' => ['security_deposit', 'service_fee'],
         'due_by_checkin' => ['background_check', 'months_due_on_checkin'],
         'rating' => $faker->numberBetween(1, 5),
@@ -80,6 +80,9 @@ $factory->define(Apartment::class, function (Faker $faker, $params) {
         'title' => $faker->sentence(),
         'description' => $faker->paragraph($faker->numberBetween(3, 8)),
         'is_active' => 1, // $faker->numberBetween(1, 100) > 15, // 85% active
+        'feature_1' => $faker->numberBetween(1, 100) > 85,
+        'feature_2' => $faker->numberBetween(1, 100) > 85,
+        'feature_3' => $faker->numberBetween(1, 100) > 85,
         'faked' => true
     ];
 

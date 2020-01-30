@@ -11,19 +11,24 @@
 |
 */
 
-
-Route::get('/', 'SPAController@serve');
-Route::get('/search', 'SPAController@serve');
-Route::get('/listing/{id}', 'SPAController@serve');
-Route::get('/wishlist', 'SPAController@serve');
-Route::get('/404', 'SPAController@serve');
-
 Route::get('/login', ['as' => 'login', 'uses' => 'SPAController@serve']);
-Route::get('/admin', 'SPAController@serve');
-Route::get('/admin/listings', 'SPAController@serve');
-Route::get('/admin/listing/add', 'SPAController@serve');
-Route::get('/admin/listing/edit/{id}', 'SPAController@serve');
-
-Route::get('/profile/{name}', 'SPAController@serve');
 
 Route::get('/api/pdf/booking-details/{apartment}', 'ApartmentController@getBookingDetailsPDF');
+
+$front_end_routes = [
+    '/',
+    '/search',
+    '/listing/{id}',
+    '/wishlist',
+    '/404',
+
+    '/admin',
+    '/admin/listings',
+    '/admin/listing/add',
+    '/admin/listing/edit/{id}',
+    '/admin/owner-global'
+];
+
+foreach ($front_end_routes as $route) {
+    Route::get($route, 'SPAController@serve');
+}

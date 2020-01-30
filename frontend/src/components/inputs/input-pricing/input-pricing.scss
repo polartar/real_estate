@@ -1,0 +1,5 @@
+.input-pricing-component {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
