@@ -55,7 +55,7 @@ class Apartment extends Model
         'move_out_fee',
         'months_due_on_checkin',
         'days_due_on_checkin',
-        'duci_advance_payment_days',
+        'doci_advance_payment_days',
         'due_to_reserve',
         'due_by_checkin',
         'video_url',
@@ -154,6 +154,10 @@ class Apartment extends Model
      */
     public function setRates($rates) {
         foreach ($rates as $month => $rate) {
+            if (!$rate) {
+                continue;
+            }
+
             $this->rates()->where('month', $month)->updateOrCreate([
                 'month' => $month
             ],

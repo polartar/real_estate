@@ -132,6 +132,9 @@ export namespace Components {
     'options': any[];
     'value': any[];
   }
+  interface InputPaymentTimeline {
+    'item': any;
+  }
   interface InputPricing {
     'name': string;
     'rate': any;
@@ -488,6 +491,12 @@ declare global {
     new (): HTMLInputMultiselectElement;
   };
 
+  interface HTMLInputPaymentTimelineElement extends Components.InputPaymentTimeline, HTMLStencilElement {}
+  var HTMLInputPaymentTimelineElement: {
+    prototype: HTMLInputPaymentTimelineElement;
+    new (): HTMLInputPaymentTimelineElement;
+  };
+
   interface HTMLInputPricingElement extends Components.InputPricing, HTMLStencilElement {}
   var HTMLInputPricingElement: {
     prototype: HTMLInputPricingElement;
@@ -807,6 +816,7 @@ declare global {
     'input-image': HTMLInputImageElement;
     'input-month-rates': HTMLInputMonthRatesElement;
     'input-multiselect': HTMLInputMultiselectElement;
+    'input-payment-timeline': HTMLInputPaymentTimelineElement;
     'input-pricing': HTMLInputPricingElement;
     'input-utilities': HTMLInputUtilitiesElement;
     'lazy-image': HTMLLazyImageElement;
@@ -965,6 +975,9 @@ declare namespace LocalJSX {
     'name': string;
     'options': any[];
     'value'?: any[];
+  }
+  interface InputPaymentTimeline extends JSXBase.HTMLAttributes<HTMLInputPaymentTimelineElement> {
+    'item'?: any;
   }
   interface InputPricing extends JSXBase.HTMLAttributes<HTMLInputPricingElement> {
     'name': string;
@@ -1169,6 +1182,7 @@ declare namespace LocalJSX {
     'input-image': InputImage;
     'input-month-rates': InputMonthRates;
     'input-multiselect': InputMultiselect;
+    'input-payment-timeline': InputPaymentTimeline;
     'input-pricing': InputPricing;
     'input-utilities': InputUtilities;
     'lazy-image': LazyImage;

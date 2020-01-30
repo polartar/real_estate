@@ -76,6 +76,29 @@ class APIAdminInstance {
       throw new Error(err.message);
     }
   }
+
+  public async updateOwnerGlobal(data) {
+    try {
+      if (!data.owner_name) {
+        throw new Error('Owner Name is required');
+      }
+
+      const ownerName = encodeURIComponent(data.owner_name);
+      let response = await fetch(APIService.getAPIUrl() + `/admin/owner-global/${ownerName}`, {
+        method: 'POST',
+        headers: APIService.getHeaders(),
+        body: JSON.stringify(data)
+      });
+
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      return await response.json();
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
 }
 
 export const APIAdminService = new APIAdminInstance();

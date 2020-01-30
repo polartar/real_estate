@@ -1,5 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
+import { APIAdminService } from '../../../services/api/admin';
 import serialize from 'form-serialize';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   tag: 'owner-global-form',
@@ -10,11 +12,17 @@ export class OwnerGlobalForm {
 
   monthRatesInput: HTMLInputMonthRatesElement;
 
-  onSubmit(e) {
+  async onSubmit(e) {
     e.preventDefault();
     const formValues = serialize(e.target, { hash: true });
 
-    console.log(formValues);
+    try {
+      await APIAdminService.updateOwnerGlobal(formValues);
+
+      ToastService.success('Owner listings have been updated');
+    } catch(err) {
+      ToastService.error(err.message);
+    }
   }
 
   render() {
@@ -28,7 +36,7 @@ export class OwnerGlobalForm {
 
           <div class="input">
             <label htmlFor="owners-input">Owner</label>
-            <select name="owner" id="owners-input" class="apt212-input block">
+            <select name="owner_name" id="owners-input" class="apt212-input block">
               <option value=""></option>
               {
                 this.owners.map(o => <option value={o}>{o}</option>)
@@ -55,6 +63,11 @@ export class OwnerGlobalForm {
         <fieldset>
           <h3>Utilities</h3>
           <input-utilities />
+        </fieldset>
+
+        <fieldset>
+          <h3>Payment Timeline</h3>
+          <input-payment-timeline />
         </fieldset>
 
         <input type="submit" class="button-dark" value="Save" />

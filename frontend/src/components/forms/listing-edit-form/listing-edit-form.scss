@@ -75,24 +75,6 @@
         }
       }
     }
-
-    &.utilities {
-      display: grid;
-      gap: 8px;
-      align-items: center;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    &.payment-timeline {
-      display: grid;
-      gap: 8px;
-      align-items: center;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-
-      @include for-size(desktop-up) {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      }
-    }
   }
 
   .monthly-rates-wrapper {

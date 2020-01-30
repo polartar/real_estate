@@ -1,0 +1,12 @@
+@import '../../../styles/mixins';
+
+.input-payment-timeline-component {
+  display: grid;
+  gap: 8px;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+  @include for-size(desktop-up) {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}

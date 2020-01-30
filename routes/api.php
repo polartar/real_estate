@@ -48,9 +48,12 @@ Route::group(['middleware' => ['auth:api', 'cors']], function() {
     Route::patch('apartments/{apartment_id}', 'ApartmentController@update');
     Route::delete('apartments/{apartment_id}', 'ApartmentController@destroy');
     Route::post('apartments', 'ApartmentController@store');
+
+    // Admin
     Route::get('admin/dashboard_counts', 'AdminController@dashboardCounts');
     Route::get('admin/listings', 'AdminController@listings');
     Route::get('admin/apt-owners', 'AdminController@aptOwners');
+    Route::post('admin/owner-global/{owner_name}', 'AdminController@ownerGlobal');
 
     // image uploads
     Route::post('image-upload', 'FileUploadController@uploadImage');
