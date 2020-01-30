@@ -6,7 +6,7 @@ import getDaysInMonth from 'date-fns/getDaysInMonth';
 
 @Component({
   tag: 'input-month-rates',
-  styleUrl: 'input-month-rate.scss'
+  styleUrl: 'input-month-rates.scss'
 })
 export class InputMonthRates {
   @Element() el: HTMLElement;
@@ -14,7 +14,7 @@ export class InputMonthRates {
   @Prop() name: string;
 
   @Method()
-  updateDefault(key, value) {
+  async updateDefault(key, value) {
     switch (key) {
       case 'monthly_rate':
       case 'security_deposit_percent':
