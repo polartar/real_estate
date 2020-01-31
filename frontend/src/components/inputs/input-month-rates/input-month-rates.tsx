@@ -12,6 +12,7 @@ export class InputMonthRates {
   @Element() el: HTMLElement;
   @Prop() rates: any[] = [];
   @Prop() name: string;
+  @Prop() disableKeys: string[] = [];
 
   @Method()
   async updateDefault(key, value) {
@@ -66,7 +67,7 @@ export class InputMonthRates {
   }
 
   render() {
-    const pricemodel = [
+    let pricemodel = [
       {
         name: '<span>Monthly Rate</span>',
         key: 'monthly_rate',
@@ -93,6 +94,8 @@ export class InputMonthRates {
         disabled: false
       }
     ];
+
+    pricemodel = pricemodel.filter(m => !this.disableKeys.find(k => m.key === k));
 
     return [
       <div class="monthly-rates-wrapper">

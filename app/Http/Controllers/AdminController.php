@@ -59,7 +59,19 @@ class AdminController extends Controller
     }
 
     public function aptOwners() {
-        return Apartment::distinct('owner_name')->orderBy('owner_name', 'asc')->pluck('owner_name');
+        return Apartment::withoutGlobalScope('active')->distinct('owner_name')->orderBy('owner_name', 'asc')->pluck('owner_name');
+    }
+
+    public function ownerStats($owner_name) {
+        if (!is_string($owner_name) || !strlen($owner_name)) {
+            abort(404);
+        }
+
+        return [
+            'total' => Apartment::withoutGlobalScope('active')->where('owner_name', $owner_name)->count(),
+            'active' => Apartment::where('owner_name', $owner_name)->count(),
+            'inactive' => Apartment::withoutGlobalScope('active')->where('owner_name', $owner_name)->where('is_active', 0)->count()
+        ];
     }
 
     public function ownerGlobal(UpdateOwnerGlobal $request, $owner_name) {

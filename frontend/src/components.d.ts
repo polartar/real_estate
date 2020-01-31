@@ -123,6 +123,7 @@ export namespace Components {
     'value': any[];
   }
   interface InputMonthRates {
+    'disableKeys': string[];
     'name': string;
     'rates': any[];
     'updateDefault': (key: any, value: any) => Promise<void>;
@@ -136,6 +137,7 @@ export namespace Components {
     'item': any;
   }
   interface InputPricing {
+    'disableKeys': string[];
     'name': string;
     'rate': any;
   }
@@ -201,9 +203,7 @@ export namespace Components {
   interface NeighborhoodSlider {
     'items': any[];
   }
-  interface OwnerGlobalForm {
-    'owners': any[];
-  }
+  interface OwnerGlobalForm {}
   interface Page404 {}
   interface PageAdmin {}
   interface PageAdminListingAdd {}
@@ -968,6 +968,7 @@ declare namespace LocalJSX {
     'value'?: any[];
   }
   interface InputMonthRates extends JSXBase.HTMLAttributes<HTMLInputMonthRatesElement> {
+    'disableKeys'?: string[];
     'name'?: string;
     'rates'?: any[];
   }
@@ -980,6 +981,7 @@ declare namespace LocalJSX {
     'item'?: any;
   }
   interface InputPricing extends JSXBase.HTMLAttributes<HTMLInputPricingElement> {
+    'disableKeys'?: string[];
     'name': string;
     'onRateChanged'?: (event: CustomEvent<any>) => void;
     'rate'?: any;
@@ -1047,9 +1049,7 @@ declare namespace LocalJSX {
   interface NeighborhoodSlider extends JSXBase.HTMLAttributes<HTMLNeighborhoodSliderElement> {
     'items'?: any[];
   }
-  interface OwnerGlobalForm extends JSXBase.HTMLAttributes<HTMLOwnerGlobalFormElement> {
-    'owners': any[];
-  }
+  interface OwnerGlobalForm extends JSXBase.HTMLAttributes<HTMLOwnerGlobalFormElement> {}
   interface Page404 extends JSXBase.HTMLAttributes<HTMLPage404Element> {}
   interface PageAdmin extends JSXBase.HTMLAttributes<HTMLPageAdminElement> {}
   interface PageAdminListingAdd extends JSXBase.HTMLAttributes<HTMLPageAdminListingAddElement> {}

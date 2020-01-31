@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth:api', 'cors']], function() {
     Route::get('admin/dashboard_counts', 'AdminController@dashboardCounts');
     Route::get('admin/listings', 'AdminController@listings');
     Route::get('admin/apt-owners', 'AdminController@aptOwners');
+
+    Route::get('admin/owner-global/{owner_name}', 'AdminController@ownerStats');
     Route::post('admin/owner-global/{owner_name}', 'AdminController@ownerGlobal');
 
     // image uploads

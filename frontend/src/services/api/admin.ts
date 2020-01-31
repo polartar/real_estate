@@ -99,6 +99,24 @@ class APIAdminInstance {
       throw new Error(err.message);
     }
   }
+
+  public async getOwnerStats(owner: string) {
+    const ownerName = encodeURIComponent(owner);
+
+    try {
+      let response = await fetch(APIService.getAPIUrl() + `/admin/owner-global/${ownerName}`, {
+        headers: APIService.getHeaders()
+      });
+
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      return await response.json();
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
 }
 
 export const APIAdminService = new APIAdminInstance();
