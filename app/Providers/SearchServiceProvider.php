@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Apartment;
+use App\Neighborhood;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class SearchServiceProvider extends ServiceProvider
 {
@@ -42,9 +44,25 @@ class SearchServiceProvider extends ServiceProvider
                     return [
                         'uniqueList' => \App\Apartment::where('feature_1', true)->inRandomOrder()->take(8)->get(),
                         'privateRoomList' => \App\Apartment::where('feature_2', true)->inRandomOrder()->take(8)->get(),
-                        'luxuryList' => \App\Apartment::where('feature_3', true)->inRandomOrder()->take(8)->get()
+                        'luxuryList' => \App\Apartment::where('feature_3', true)->inRandomOrder()->take(8)->get(),
                     ];
                 });
+            break;
+
+            case 'apartmentsByNeighborhood':
+                $results = Cache::remember('search-apartmentsByNeighborhood-' . $params['id'], 1, function() use ($params) {
+
+                    $neighborhood = Neighborhood::findOrFail($params['id']);
+                    $nid = $neighborhood->id;
+                
+                    $apartmentList = \App\Apartment::join('apartment_neighborhood', function($join) use ($nid) {
+                        $join->on('apartments.id', '=', 'apartment_neighborhood.apartment_id')
+                             ->where('apartment_neighborhood.neighborhood_id', '=', $nid);
+                    })
+                    ->get();
+                
+                    return $apartmentList;
+                }); 
             break;
 
             case 'nearbyApts':

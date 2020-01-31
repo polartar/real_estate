@@ -1,0 +1,271 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.page-neighborhood {
+
+  .title {
+    font-size: 21px;
+  }
+
+  h2 {
+    font-size: $font-size-xl;
+    padding-bottom: 1rem;
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 900;
+  }
+
+  .hero {
+    position: relative;
+    background-image: url('/assets/images/neighborhoods/noho.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #ccc;
+    background-blend-mode: multiply;
+    width: 100%;
+    height: 271px;
+
+    @include for-size(tablet-portrait-up) {
+      height: 320px;
+    }
+
+    @include for-size(desktop-up) {
+      height: 640px;
+    }
+
+    .cta {
+      position: absolute;
+      bottom: 4rem;
+      left: 3rem;
+      max-width: 740px;
+
+      h1 {
+        color: white;
+        font-size: $font-size * 2;
+
+        @include for-size(desktop-up) {
+          font-size: $font-size-lg * 2;
+        }
+      }
+
+      .subtitle {
+        color: white;
+        line-height: 1.5;
+        font-size: $font-size;
+        margin-top: 0;
+      }
+
+      .light {
+        background-color: white;
+        height: 40px;
+        color: $color-primary;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+  }
+
+  .search-dark {
+    background-color: $color-primary;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    height: 3rem;
+    border-radius: 0;
+    margin-top: 3rem;
+  }
+
+  .neighborhood-about-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 48px;
+
+    @include for-size('desktop-up') {
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+
+    .experience {
+      position: relative;
+      width: 100%;
+      margin-bottom: 200px;
+
+      @include for-size(desktop-up) {
+        width: 720px;
+        height: 632px;
+        margin-bottom: 0;
+      }
+    }
+
+    .about {
+      display: flex;
+      flex-grow: 1;
+      align-items: right;
+      justify-content: right;
+      text-align: right;
+    
+      &> div {
+        @include for-size(desktop-up) {
+          max-width: 550px;
+          margin-left: auto;
+        }
+      }
+
+    }
+  }
+
+  .highlights {
+    padding-top: 159px;
+    padding-bottom: 28px;
+    text-align: center;
+
+    h2, p {
+      margin: 0;
+      padding: 0;
+    }
+
+    p {
+      padding-top: 14px;
+    }
+
+  }
+
+  $min-width: 15rem;
+
+  .find-more {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: 100px;
+    width: 100%;
+
+
+    h2, p {
+      max-width: 315px;
+   
+      @include for-size(desktop-up) {
+        max-width: 540px;
+      }
+    }
+
+    &__item {
+      
+      &--body {
+        flex-grow: 9999; 
+        flex-basis: $min-width; 
+        text-align: center;
+
+        @include for-size(desktop-up) {
+          text-align: left;
+          padding-left: 119px;
+        }
+      }
+      
+      &--figure {
+        margin-right: auto; 
+        flex-grow: 1; 
+        box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+
+        @include for-size(desktop-up) {
+          margin-right: 118px;
+        }
+  
+        @supports (max-width: max-content) {
+          min-width: $min-width; 
+          max-width: max-content;
+          flex-basis: $min-width; 
+          flex-grow: 99999;
+        }
+      }
+    }
+  }
+
+  .layout {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -1em; 
+    margin-left: -3.5em; 
+    align-items: center;
+    
+    &:not(:first-of-type) {
+      margin-top: 3em; 
+    }
+    
+    &:nth-child(even) {
+      flex-direction: row-reverse; 
+    }
+    
+    &__item {
+      padding-top: 1em; 
+      padding-left: 3.5em; 
+      
+      &--body {
+        flex-grow: 9999; 
+        flex-basis: $min-width; 
+
+        @include for-size(desktop-up) {
+          padding-left: 120px;
+        }
+         
+        p {
+          @include for-size(desktop-up) {
+            width: 469px;
+          }
+        }
+      }
+      
+      &--figure {
+        margin-right: auto; 
+        flex-grow: 1; 
+
+       
+        img {
+          width: 375px;
+          height: 255px;
+
+          @include for-size(desktop-up) {
+            width: 672px;
+            height: 590px;
+          }
+        }
+  
+        @supports (max-width: max-content) {
+          min-width: $min-width; 
+          max-width: max-content;
+          flex-basis: $min-width; 
+          flex-grow: 99999;
+        }
+      }
+    }
+  }
+  
+
+  .predefined-search {
+    padding-top: 0;
+    text-align: center;
+
+    @include for-size(desktop-up) {
+      padding-top: 119px;
+    }
+
+    p {
+      margin: 0;
+
+      @include for-size(desktop-up) {
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  .mt-24 {
+    margin-top: 24px;
+  }
+
+}

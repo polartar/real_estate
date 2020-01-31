@@ -237,6 +237,12 @@ export namespace Components {
     'item': any;
   }
   interface PageLogin {}
+  interface PageNeighborhood {
+    'neighborhoodId': number;
+    'neighborhoodName': string;
+    'prefetching': boolean;
+  }
+  interface PageNeighborhoods {}
   interface PageSearch {
     'location': any;
     'neighborhoods': any;
@@ -712,6 +718,18 @@ declare global {
     new (): HTMLPageLoginElement;
   };
 
+  interface HTMLPageNeighborhoodElement extends Components.PageNeighborhood, HTMLStencilElement {}
+  var HTMLPageNeighborhoodElement: {
+    prototype: HTMLPageNeighborhoodElement;
+    new (): HTMLPageNeighborhoodElement;
+  };
+
+  interface HTMLPageNeighborhoodsElement extends Components.PageNeighborhoods, HTMLStencilElement {}
+  var HTMLPageNeighborhoodsElement: {
+    prototype: HTMLPageNeighborhoodsElement;
+    new (): HTMLPageNeighborhoodsElement;
+  };
+
   interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
   var HTMLPageSearchElement: {
     prototype: HTMLPageSearchElement;
@@ -863,6 +881,8 @@ declare global {
     'page-listing-image-modal': HTMLPageListingImageModalElement;
     'page-listing-image-slider': HTMLPageListingImageSliderElement;
     'page-login': HTMLPageLoginElement;
+    'page-neighborhood': HTMLPageNeighborhoodElement;
+    'page-neighborhoods': HTMLPageNeighborhoodsElement;
     'page-search': HTMLPageSearchElement;
     'page-wishlist': HTMLPageWishlistElement;
     'price-filter': HTMLPriceFilterElement;
@@ -1101,6 +1121,12 @@ declare namespace LocalJSX {
     'item': any;
   }
   interface PageLogin extends JSXBase.HTMLAttributes<HTMLPageLoginElement> {}
+  interface PageNeighborhood extends JSXBase.HTMLAttributes<HTMLPageNeighborhoodElement> {
+    'neighborhoodId'?: number;
+    'neighborhoodName'?: string;
+    'prefetching'?: boolean;
+  }
+  interface PageNeighborhoods extends JSXBase.HTMLAttributes<HTMLPageNeighborhoodsElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
@@ -1235,6 +1261,8 @@ declare namespace LocalJSX {
     'page-listing-image-modal': PageListingImageModal;
     'page-listing-image-slider': PageListingImageSlider;
     'page-login': PageLogin;
+    'page-neighborhood': PageNeighborhood;
+    'page-neighborhoods': PageNeighborhoods;
     'page-search': PageSearch;
     'page-wishlist': PageWishlist;
     'price-filter': PriceFilter;

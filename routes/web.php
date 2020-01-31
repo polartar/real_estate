@@ -26,7 +26,10 @@ $front_end_routes = [
     '/admin/listings',
     '/admin/listing/add',
     '/admin/listing/edit/{id}',
-    '/admin/owner-global'
+    '/admin/owner-global',
+
+    '/neighborhoods',
+    '/neighborhood/{id}'
 ];
 
 foreach ($front_end_routes as $route) {

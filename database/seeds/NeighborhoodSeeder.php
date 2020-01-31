@@ -23,6 +23,7 @@ class NeighborhoodSeeder extends Seeder
             })->first();
 
             $lipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis pellentesque scelerisque. Ut nec leo nunc. Duis eu erat ac libero ultricies congue. Donec sit amet tempor magna. Pellentesque ut odio eget tortor suscipit ornare. In nec maximus sem. Maecenas egestas arcu ut urna eleifend, nec dapibus quam iaculis. Maecenas eget condimentum quam, et luctus odio. Curabitur et quam et augue bibendum elementum sodales non ante. Nunc sed sodales purus. Donec quis erat nulla. Etiam congue libero euismod, efficitur nibh quis, mattis est. Suspendisse potenti. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.';
+            $tags = 'great transit, great people watching, trendy, lofts, hip, nyc staple, walkups, shopper\'s paradise, bohemian, sophisticated, pricey';
 
             $neighborhood = Neighborhood::updateOrCreate([
                 'name' => $n->name,
@@ -30,7 +31,17 @@ class NeighborhoodSeeder extends Seeder
                 'slug' => Str::slug($n->slug),
                 'region_id' => $region->id,
                 'perimeter_coordinates' => json_encode($n->coordinates),
-                'image' => $n->image
+                'is_featured' => 1,
+                'image' => $n->image,
+                'eat' => $lipsum ,
+                'drink' => $lipsum ,
+                'shop' => $lipsum,
+                'experience' => $lipsum,
+                'play' => $lipsum,
+                'explore' => $lipsum,
+                'life' => $lipsum,
+                'tags' => $tags
+
             ]);
 
             return $neighborhood;
