@@ -205,6 +205,9 @@ export namespace Components {
   interface NeighborhoodCard {
     'item': any;
   }
+  interface NeighborhoodMap {
+    'item': any;
+  }
   interface NeighborhoodSlider {
     'items': any[];
   }
@@ -628,6 +631,12 @@ declare global {
     new (): HTMLNeighborhoodCardElement;
   };
 
+  interface HTMLNeighborhoodMapElement extends Components.NeighborhoodMap, HTMLStencilElement {}
+  var HTMLNeighborhoodMapElement: {
+    prototype: HTMLNeighborhoodMapElement;
+    new (): HTMLNeighborhoodMapElement;
+  };
+
   interface HTMLNeighborhoodSliderElement extends Components.NeighborhoodSlider, HTMLStencilElement {}
   var HTMLNeighborhoodSliderElement: {
     prototype: HTMLNeighborhoodSliderElement;
@@ -866,6 +875,7 @@ declare global {
     'mobile-filter-menu': HTMLMobileFilterMenuElement;
     'move-in-date-filter': HTMLMoveInDateFilterElement;
     'neighborhood-card': HTMLNeighborhoodCardElement;
+    'neighborhood-map': HTMLNeighborhoodMapElement;
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
     'owner-global-form': HTMLOwnerGlobalFormElement;
     'page-404': HTMLPage404Element;
@@ -1083,6 +1093,9 @@ declare namespace LocalJSX {
   interface NeighborhoodCard extends JSXBase.HTMLAttributes<HTMLNeighborhoodCardElement> {
     'item'?: any;
   }
+  interface NeighborhoodMap extends JSXBase.HTMLAttributes<HTMLNeighborhoodMapElement> {
+    'item': any;
+  }
   interface NeighborhoodSlider extends JSXBase.HTMLAttributes<HTMLNeighborhoodSliderElement> {
     'items'?: any[];
   }
@@ -1246,6 +1259,7 @@ declare namespace LocalJSX {
     'mobile-filter-menu': MobileFilterMenu;
     'move-in-date-filter': MoveInDateFilter;
     'neighborhood-card': NeighborhoodCard;
+    'neighborhood-map': NeighborhoodMap;
     'neighborhood-slider': NeighborhoodSlider;
     'owner-global-form': OwnerGlobalForm;
     'page-404': Page404;

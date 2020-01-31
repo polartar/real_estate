@@ -75,9 +75,6 @@ export class PageNeighborhood {
 
     try {
       this.apartmentsList = await APISearchService.getNamedSearch('apartmentsByNeighborhood', {id: this.item.id});
-
-      console.log(this.apartmentsList)
-      console.log(this.apartmentsList.length)
      } catch (e) {
        console.log('failed to load nearby apartments');
      }
@@ -103,6 +100,7 @@ export class PageNeighborhood {
 
     return this.neighborhoods.slice(splitIndex + 1);
   }
+
 
   render() {
     if (this.prefetching) {
@@ -154,7 +152,6 @@ export class PageNeighborhood {
 
           {phoneSearch}
 
-
           <div class="neighborhood-about-wrapper">
             <div class="about">
               <div>
@@ -172,6 +169,10 @@ export class PageNeighborhood {
             </div>
           </div>
 
+          <div class="map-wrapper">
+            <neighborhood-map item={this.item} />
+          </div>
+
           {
             this.apartmentsList.length ?
             <div class="predefined-search">
@@ -181,118 +182,77 @@ export class PageNeighborhood {
             : null
           }
 
-        <div class="find-more">
-            <div class="find-more__item find-more__item--body">
-              <div>
-                <h2>Find More Apartment Options</h2>
-                <p>
-                  Browse all our furnished apartments for rent in New York City and select<br /> the right apartment you are looking for, whether it's a room for rent, or a<br/> privated furnished rental.
-                </p>
+          <div class="find-more">
+              <div class="find-more__item find-more__item--body">
+                <div>
+                  <h2>Find More Apartment Options</h2>
+                  <p>
+                    Browse all our furnished apartments for rent in New York City and select<br /> the right apartment you are looking for, whether it's a room for rent, or a<br/> privated furnished rental.
+                  </p>
+                </div>
               </div>
-            </div>
+              <div class="find-more__item find-more__item--figure">
+                  <img src ="/assets/images/neighborhoods/findmore.jpg" />
+              </div>
+          </div>
 
-            <div class="find-more__item find-more__item--figure">
-                <img src ="/assets/images/neighborhoods/findmore.jpg" />
-            </div>
-        </div>
-
-        <div class="highlights">
-            <h2>
-                Highlights of {this.item.name} NYC
-            </h2>
-            <p>
-                Here are a few great things about {this.item.name}
-            </p>
-        </div>
+          <div class="highlights">
+              <h2>
+                  Highlights of {this.item.name} NYC
+              </h2>
+              <p>
+                  Here are a few great things about {this.item.name}
+              </p>
+          </div>
 
           <div class="layout">
-
             <div class="layout__item layout__item--body">
-        
                 <h2>Eat in {this.item.name}</h2>
-
-                <p>
-                    {this.item.eat}
-                </p>
-
+                <p>{this.item.eat}</p>
             </div>
-
             <div class="layout__item layout__item--figure">
                 <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
             </div>
-
           </div>
 
           <div class="layout">
-
             <div class="layout__item layout__item--body">
-           
                 <h2>Drink in {this.item.name}</h2>
-
-                <p>
-                    {this.item.drink}
-                </p>
-
+                <p>{this.item.drink}</p>
             </div>
-
             <div class="layout__item layout__item--figure">
                 <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
             </div>
-
           </div>
 
           <div class="layout">
-
             <div class="layout__item layout__item--body">
-           
                 <h2>Shop in {this.item.name}</h2>
-
-                <p>
-                    {this.item.shop}
-                </p>
-
+                <p>{this.item.shop}</p>
             </div>
-
             <div class="layout__item layout__item--figure">
                 <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
             </div>
-
           </div>
 
           <div class="layout">
-
             <div class="layout__item layout__item--body">
-           
                 <h2>Play in {this.item.name}</h2>
-
-                <p>
-                    {this.item.play}
-                </p>
-
+                <p>{this.item.play}</p>
             </div>
-
             <div class="layout__item layout__item--figure">
                 <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
             </div>
-            </div>
+          </div>
 
             <div class="layout">
-
             <div class="layout__item layout__item--body">
-           
                 <h2>Explore in {this.item.name}</h2>
-
-                <p>
-                    {this.item.explore}
-                </p>
-
+                <p>{this.item.explore}</p>
             </div>
-
             <div class="layout__item layout__item--figure">
                 <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
             </div>
-
-        
           </div>
 
           {
@@ -300,11 +260,9 @@ export class PageNeighborhood {
             <div class="predefined-search">
               <h2>{neighborhoodTitle}</h2>
               <p>{neighborhoodSubTitle}</p>
-
               <div>
                 <neighborhood-slider items={this.neighborhoodsSlider(1)} />
               </div>
-
               <div class="mt-24">
                 <neighborhood-slider items={this.neighborhoodsSlider(2)} />
               </div>
