@@ -9,10 +9,13 @@
 
   h2 {
     font-size: $font-size-xl;
-    padding-bottom: 1rem;
     text-transform: uppercase;
     margin: 0;
     font-weight: 900;
+
+    @include for-size(tablet-portrait-up) {
+      padding-bottom: 1rem;
+    }
   }
 
   .map-wrapper {
@@ -29,7 +32,7 @@
     background-color: #ccc;
     background-blend-mode: multiply;
     width: 100%;
-    height: 271px;
+    height: 713px;
 
     @include for-size(tablet-portrait-up) {
       height: 320px;
@@ -41,9 +44,14 @@
 
     .cta {
       position: absolute;
-      bottom: 4rem;
-      left: 3rem;
+      bottom: 129px;
+      left: 22px;
       max-width: 740px;
+
+      @include for-size(desktop-up) {
+        bottom: 4rem;
+        left: 3rem;
+      }
 
       h1 {
         color: white;
@@ -99,8 +107,10 @@
     .experience {
       position: relative;
       width: 100%;
-      margin-bottom: 200px;
-
+      @include for-size('desktop-up') {
+        margin-bottom: 200px;
+      }
+      
       @include for-size(desktop-up) {
         width: 720px;
         height: 632px;
@@ -111,9 +121,12 @@
     .about {
       display: flex;
       flex-grow: 1;
-      align-items: right;
-      justify-content: right;
-      text-align: right;
+
+      @include for-size('desktop-up') {
+        align-items: right;
+        justify-content: right;
+        text-align: right;
+      }
     
       &> div {
         @include for-size(desktop-up) {
@@ -126,9 +139,13 @@
   }
 
   .highlights {
-    padding-top: 159px;
-    padding-bottom: 28px;
+    padding-top: 24px;
     text-align: center;
+
+    @include for-size('desktop-up') {
+      padding-top: 159px;
+      padding-bottom: 28px;
+    }
 
     h2, p {
       margin: 0;
@@ -138,19 +155,22 @@
     p {
       padding-top: 14px;
     }
-
   }
 
   $min-width: 15rem;
-
   .find-more {
 
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding-top: 100px;
     width: 100%;
+    padding-top: 24px;
+    flex-direction: column-reverse;
 
+    @include for-size(desktop-up) {
+      flex-direction: row;
+      padding-top: 100px;
+    }
 
     h2, p {
       max-width: 315px;
@@ -161,7 +181,13 @@
     }
 
     &__item {
-      
+
+      padding-top: 52px;
+
+      @include for-size(desktop-up) {
+          padding-top: 0px;
+      }
+
       &--body {
         flex-grow: 9999; 
         flex-basis: $min-width; 
@@ -198,9 +224,13 @@
     margin-top: -1em; 
     margin-left: -3.5em; 
     align-items: center;
+
+    @include for-size(desktop-up) {
+      padding-left: 120px;
+    }
     
     &:not(:first-of-type) {
-      margin-top: 3em; 
+        margin-top: 3em;
     }
     
     &:nth-child(even) {
@@ -251,10 +281,10 @@
     }
   }
   
-
   .predefined-search {
     padding-top: 0;
     text-align: center;
+    padding-top: 60px;
 
     @include for-size(desktop-up) {
       padding-top: 119px;
@@ -262,6 +292,7 @@
 
     p {
       margin: 0;
+      padding: 15px 0px 15px;
 
       @include for-size(desktop-up) {
         margin-bottom: 40px;

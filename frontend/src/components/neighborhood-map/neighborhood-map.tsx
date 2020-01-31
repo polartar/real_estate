@@ -17,14 +17,13 @@ export class NeighborhoodMap {
   @Prop() item!: any;
 
   private mapId: string = `map-instance-${generateId(8)}`;
-
   private map: any = null;
   private mapRendered: boolean = false;
 
   neighborhoods: any = [];
 
   componentDidLoad() {
-      console.log('loading...')
+ 
     this.store.mapStateToProps(this, state => {
 
       return {
@@ -59,11 +58,10 @@ export class NeighborhoodMap {
         this.map = new mapboxgl.Map({
           container: this.mapId,
           style: 'mapbox://styles/mapbox/streets-v11',
-          center: [-73.9926, 40.7287],
-          zoom: 14,
+          center: this.item.perimeter_coordinates[0][1],
+          zoom: 12,
           minZoom: 10,
           maxZoom: 17,
-          //maxBounds: this.item.perimeter_coordinates
         });
 
         this.map.addControl(new mapboxgl.NavigationControl());

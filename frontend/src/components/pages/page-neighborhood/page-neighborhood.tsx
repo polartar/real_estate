@@ -120,15 +120,7 @@ export class PageNeighborhood {
     let neighborhoodTitle = 'Other New York City Neighborhoods';
     let neighborhoodSubTitle = 'Experience some other neighborhoods';
 
-    if (this.size === 'phone-only') {
-      phoneTitle = title;
-      phoneSubtitle = subtitle;
-      phoneSearch = <button aria-label="Search" class="search-dark" onClick={() => { this.launchMobileFilterMenu() }}>
-                      Search
-                    </button>
-
-      neighborhoodTitle = 'Neighborhoods';
-    }
+   
 
     return [
       <app-header />,
@@ -140,13 +132,13 @@ export class PageNeighborhood {
 
           <div class="hero">
 
-            { (this.size !== 'phone-only') ?
+      
             <div class="cta">
               {title}
               {subtitle}
               {search}
             </div> : ''
-            }
+          
 
           </div>
 
