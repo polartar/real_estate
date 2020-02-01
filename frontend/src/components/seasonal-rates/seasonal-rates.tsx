@@ -10,7 +10,7 @@ export class SeasonalRates {
 
   getMonth(monthNum) {
     // js uses 0 indexed months
-    const date = new Date().setMonth(monthNum);
+    const date = new Date(new Date().setDate(1)).setMonth(monthNum);
 
     return formatDate(date, 'MMMM');
   }

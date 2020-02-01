@@ -55,7 +55,12 @@ class AdminController extends Controller
 
         $filters = json_decode($params, true);
 
-        return SearchServiceProvider::adminSearch($filters);
+        $results = SearchServiceProvider::adminSearch($filters);
+
+        $results['total_active'] = Apartment::count();
+        $results['total_inactive'] = Apartment::withoutGlobalScope('active')->where('is_active', false)->count();
+
+        return $results;
     }
 
     public function aptOwners() {

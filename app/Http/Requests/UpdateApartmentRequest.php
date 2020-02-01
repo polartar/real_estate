@@ -8,7 +8,7 @@ use App\Rules\BedroomTypeIDValidator;
 use App\Rules\BlockDatesInputValidator;
 use App\Rules\BuildingTypeIDValidator;
 use App\Rules\ImageDescriptionsValidator;
-use App\Rules\RatesInputValidator;
+use App\Rules\PartialRatesValidator;
 use App\Rules\ReservationFeeTypesValidator;
 use App\Rules\SubwayIDValidator;
 use App\Rules\UnKeyedOptionalStringArray;
@@ -55,7 +55,7 @@ class UpdateApartmentRequest extends FormRequest
             'amenities' => ['sometimes', new AmenityIDValidator],
             'available_date' => ['sometimes', 'required', 'date'],
             'block_dates' => ['sometimes', new BlockDatesInputValidator],
-            'rates' => ['sometimes', new RatesInputValidator],
+            'rates' => ['sometimes', new PartialRatesValidator],
             'utility_cable' => ['sometimes', 'required', 'numeric'],
             'utility_wifi' => ['sometimes', 'required', 'numeric'],
             'utility_electricity' => ['sometimes', 'required', 'numeric'],

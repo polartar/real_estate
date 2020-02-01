@@ -212,6 +212,12 @@ h2, h3, h4 {
   @include for-size(phone-only) {
     padding: 0 1rem;
   }
+
+  &.full {
+    max-width: none;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 
 app-header, app-menu {
@@ -373,7 +379,7 @@ table.data-table {
     }
   }
 
-  td {
+  td, th {
     &.desktop-only {
       display: none;
 

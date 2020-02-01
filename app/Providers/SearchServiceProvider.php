@@ -238,6 +238,34 @@ class SearchServiceProvider extends ServiceProvider
             });
         }
 
+        if (isset($filters['search_type']) && $filters['search_type'] && isset($filters['search_query']) && $filters['search_query']) {
+            $apartments->where(function($query) use ($filters) {
+                switch ($filters['search_type']) {
+                    case 'webid':
+                        $query->where('id', '=', $filters['search_query']);
+                    break;
+                    case 'owner':
+                        $query->where('owner_name', 'LIKE', '%' . $filters['search_query'] . '%');
+                    break;
+                    case 'address':
+                        $query->where('address', 'LIKE', '%' . $filters['search_query'] . '%');
+                    break;
+                }
+            });
+        }
+
+        // note - only effective if withoutGlobalScope('active') was used as in admin search
+        if (isset($filters['active']) && $filters['active']) {
+            switch ($filters['active']) {
+                case 'active':
+                    $apartments->where('is_active', true);
+                break;
+                case 'inactive':
+                    $apartments->where('is_active', false);
+                break;
+            }
+        }
+
         return $apartments;
     }
 

@@ -3,8 +3,37 @@
 .page-admin-listings {
 
   .listings {
-    padding-top: 32px;
+    margin-top: 32px;
     padding-bottom: 32px;
+    max-height: 500px;
+    overflow: auto;
+
+    .data-table thead th {
+      position: sticky;
+      top: 0;
+      background-color: white;
+      white-space: nowrap;
+      padding-right: 8px;
+    }
+
+    .data-table td {
+      white-space: nowrap;
+    }
+  }
+
+  button.button-dark {
+    &.inactive {
+      background-color: #888888;
+    }
+
+    &.active-filter {
+      margin-right: 8px;
+    }
+  }
+
+  .listings-totals {
+    margin-top: -40px;
+    padding-bottom: 8px;
   }
 
   .search {

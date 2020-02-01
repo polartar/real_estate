@@ -149,6 +149,11 @@ export namespace Components {
     'expand': boolean;
     'src': string;
   }
+  interface ListingAttributeUpdateModal {
+    'attribute': string;
+    'item': any;
+    'month': number|null;
+  }
   interface ListingCard {
     'contentPadding': boolean;
     'item': any;
@@ -515,6 +520,12 @@ declare global {
     new (): HTMLLazyImageElement;
   };
 
+  interface HTMLListingAttributeUpdateModalElement extends Components.ListingAttributeUpdateModal, HTMLStencilElement {}
+  var HTMLListingAttributeUpdateModalElement: {
+    prototype: HTMLListingAttributeUpdateModalElement;
+    new (): HTMLListingAttributeUpdateModalElement;
+  };
+
   interface HTMLListingCardElement extends Components.ListingCard, HTMLStencilElement {}
   var HTMLListingCardElement: {
     prototype: HTMLListingCardElement;
@@ -820,6 +831,7 @@ declare global {
     'input-pricing': HTMLInputPricingElement;
     'input-utilities': HTMLInputUtilitiesElement;
     'lazy-image': HTMLLazyImageElement;
+    'listing-attribute-update-modal': HTMLListingAttributeUpdateModalElement;
     'listing-card': HTMLListingCardElement;
     'listing-edit-form': HTMLListingEditFormElement;
     'listing-list': HTMLListingListElement;
@@ -993,6 +1005,11 @@ declare namespace LocalJSX {
     'alt'?: string;
     'expand'?: boolean;
     'src'?: string;
+  }
+  interface ListingAttributeUpdateModal extends JSXBase.HTMLAttributes<HTMLListingAttributeUpdateModalElement> {
+    'attribute': string;
+    'item': any;
+    'month'?: number|null;
   }
   interface ListingCard extends JSXBase.HTMLAttributes<HTMLListingCardElement> {
     'contentPadding'?: boolean;
@@ -1186,6 +1203,7 @@ declare namespace LocalJSX {
     'input-pricing': InputPricing;
     'input-utilities': InputUtilities;
     'lazy-image': LazyImage;
+    'listing-attribute-update-modal': ListingAttributeUpdateModal;
     'listing-card': ListingCard;
     'listing-edit-form': ListingEditForm;
     'listing-list': ListingList;

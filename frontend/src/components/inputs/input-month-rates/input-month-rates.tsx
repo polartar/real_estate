@@ -53,7 +53,7 @@ export class InputMonthRates {
 
     if (key === 'monthly_rate') {
       // set the night rate
-      const today = new Date();
+      const today = new Date(new Date().setDate(1));
       const val = parseFloat(event.target.value);
       const days = getDaysInMonth(today.setMonth(month));
 
@@ -105,7 +105,7 @@ export class InputMonthRates {
               <td></td>
               {
                 [0,1,2,3,4,5].map(m => {
-                  const date = new Date().setMonth(m);
+                  const date = new Date(new Date().setDate(1)).setMonth(m);
                   return (
                     <td>{ formatDate(date, 'MMM') }</td>
                   )
@@ -152,7 +152,7 @@ export class InputMonthRates {
               <td></td>
               {
                 [6,7,8,9,10,11].map(m => {
-                  const date = new Date().setMonth(m);
+                  const date = new Date(new Date().setDate(1)).setMonth(m);
                   return (
                     <td>{ formatDate(date, 'MMM') }</td>
                   )
