@@ -3,7 +3,7 @@ import { Store } from "@stencil/redux";
 import taxonomySelectors from '../../store/selectors/taxonomy';
 import { ScriptLoaderService } from '../../services/script-loader.service';
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
-import { generateId, formatMoney } from '../../helpers/utils';
+import { generateId } from '../../helpers/utils';
 
 declare var mapboxgl: any;
 
@@ -33,13 +33,11 @@ export class NeighborhoodMap {
   }
 
   componentDidRender() {
-      console.log(Build.isBrowser),
-      console.log(this.mapRendered)
+
     if (Build.isBrowser && !this.mapRendered) {
-      console.log('initializing map')
       this.initializeMap();
     }
-  }
+}
 
   initializeMap() {
     if (!Build.isBrowser) {

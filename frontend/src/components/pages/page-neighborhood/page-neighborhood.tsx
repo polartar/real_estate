@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Build } from '@stencil/core';
+import { Component, h, Prop, State } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../../store/actions/search";
 import { searchFilterSelectors } from '../../../store/selectors/search';
@@ -76,7 +76,7 @@ export class PageNeighborhood {
     try {
       this.apartmentsList = await APISearchService.getNamedSearch('apartmentsByNeighborhood', {id: this.item.id});
      } catch (e) {
-       console.log('failed to load nearby apartments');
+      // Fail silently. The nearby apartments aren't critical for the UX here.
      }
     
   }

@@ -51,17 +51,8 @@ class SearchServiceProvider extends ServiceProvider
 
             case 'apartmentsByNeighborhood':
                 $results = Cache::remember('search-apartmentsByNeighborhood-' . $params['id'], 1, function() use ($params) {
-
                     $neighborhood = Neighborhood::findOrFail($params['id']);
-                    $nid = $neighborhood->id;
-                
-                    $apartmentList = \App\Apartment::join('apartment_neighborhood', function($join) use ($nid) {
-                        $join->on('apartments.id', '=', 'apartment_neighborhood.apartment_id')
-                             ->where('apartment_neighborhood.neighborhood_id', '=', $nid);
-                    })
-                    ->get();
-                
-                    return $apartmentList;
+                    return $neighborhood->apartments()->take(16)->get();
                 }); 
             break;
 
