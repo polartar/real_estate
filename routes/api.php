@@ -36,7 +36,7 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
 
 
 // authenticated endpoints
-Route::group(['middleware' => ['auth:api', 'cors']], function() {
+Route::group(['middleware' => ['cors', 'auth:api']], function() {
 
     // Auth
     Route::post('logout', 'SPAAuthController@logout');

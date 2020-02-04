@@ -33,15 +33,15 @@ export class InputPaymentTimeline {
         </div>
 
         <div class="input">
-          <label htmlFor="doci_advance_payment_days">DOCI Payment Days in Advance</label>
+          <label htmlFor="duci_advance_payment_days">DUCI Payment Days in Advance</label>
           <select
-            id="doci_advance_payment_days"
-            name="doci_advance_payment_days"
+            id="duci_advance_payment_days"
+            name="duci_advance_payment_days"
             class="apt212-input block"
           >
             {
               [...[''], ...Array(31).keys()].map(v =>
-                <option value={v} selected={this.item ? this.item.doci_advance_payment_days === v : false }>{v}</option>
+                <option value={v} selected={this.item ? this.item.duci_advance_payment_days === v : false }>{v}</option>
               )
             }
           </select>

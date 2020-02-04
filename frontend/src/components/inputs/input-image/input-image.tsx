@@ -132,9 +132,12 @@ export class InputImage {
 
         <div class="value">
           {
-            this.internalValue.map(f =>
+            this.internalValue.map((f, i) =>
               <div class="image-value flex-vertical-center">
-                <img src={f.small} class="preview" />
+                <div class="image-preview">
+                  <h4 style={{margin: '0'}}>({ i + 1 })</h4>
+                  <img src={f.small} class="preview" />
+                </div>
 
                 <div class="metadata">
                   {

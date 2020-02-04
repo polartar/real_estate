@@ -53,7 +53,7 @@ export class PageAdmin {
   loginChanged() {
     if (this.isLoggedIn) {
       ToastService.success('You have been logged in');
-
+console.log('back to admin');
       RouterService.forward('/admin');
     }
   }

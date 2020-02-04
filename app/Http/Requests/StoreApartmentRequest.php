@@ -63,7 +63,7 @@ class StoreApartmentRequest extends FormRequest
             'move_out_fee' => ['required', 'numeric'],
             'months_due_on_checkin' => ['required', 'numeric'],
             'days_due_on_checkin' => ['required', 'numeric'],
-            'doci_advance_payment_days' => ['required', 'numeric'],
+            'duci_advance_payment_days' => ['required', 'numeric'],
             'due_to_reserve' => ['nullable', new ReservationFeeTypesValidator],
             'due_by_checkin' => ['nullable', new ReservationFeeTypesValidator],
             'images_descriptions' => ['nullable', new UnKeyedOptionalStringArray, new ImageDescriptionsValidator],

@@ -63,7 +63,7 @@ class UpdateApartmentRequest extends FormRequest
             'move_out_fee' => ['sometimes', 'required', 'numeric'],
             'months_due_on_checkin' => ['sometimes', 'required', 'numeric'],
             'days_due_on_checkin' => ['sometimes', 'required', 'numeric'],
-            'doci_advance_payment_days' => ['sometimes', 'required', 'numeric'],
+            'duci_advance_payment_days' => ['sometimes', 'required', 'numeric'],
             'due_to_reserve' => ['sometimes', new ReservationFeeTypesValidator],
             'due_by_checkin' => ['sometimes', new ReservationFeeTypesValidator],
             'images_descriptions' => ['sometimes', new UnKeyedOptionalStringArray, new ImageDescriptionsValidator],

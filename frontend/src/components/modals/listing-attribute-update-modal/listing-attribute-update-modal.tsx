@@ -67,7 +67,7 @@ export class ListingAttributeUpdateModal {
 
     const numberTypes = [
       'size', 'utility_cable', 'utility_wifi', 'utility_electricity', 'utility_cleaning', 'move_out_fee', 'months_due_on_checkin', 'days_due_on_checkin',
-      'doci_advance_payment_days', 'rating', 'lat', 'lng', 'monthly_rate', 'tax_percent', 'background_check_rate', 'service_fee_host', 'service_fee_client',
+      'duci_advance_payment_days', 'rating', 'lat', 'lng', 'monthly_rate', 'tax_percent', 'background_check_rate', 'service_fee_host', 'service_fee_client',
       'security_deposit_percent'
     ];
 

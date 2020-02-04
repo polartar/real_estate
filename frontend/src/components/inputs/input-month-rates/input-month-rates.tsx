@@ -74,7 +74,7 @@ export class InputMonthRates {
         disabled: false,
       },
       {
-        name: '<span>Night Rate</span>',
+        name: '<span>Day Rate</span>',
         key: 'night_rate',
         disabled: true,
       },

@@ -39,7 +39,7 @@ class CreateApartmentsTable extends Migration
             $table->float('move_out_fee', 10, 2)->default(0);
             $table->integer('months_due_on_checkin')->default(0);
             $table->integer('days_due_on_checkin')->default(0);
-            $table->integer('doci_advance_payment_days')->default(0);
+            $table->integer('duci_advance_payment_days')->default(0);
             $table->json('due_to_reserve');
             $table->json('due_by_checkin');
             $table->float('rating')->nullable()->index();

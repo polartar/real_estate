@@ -1,7 +1,7 @@
 class RouterServiceInstance {
-  forward(path) {
+  forward(path, params?) {
     const router: any = document.querySelector('ion-router');
-    router.push(path);
+    router.push(path, params);
   }
 }
 

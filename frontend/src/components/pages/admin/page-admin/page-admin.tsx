@@ -26,7 +26,7 @@ export class PageAdmin {
     });
 
     if (!this.isLoggedIn) {
-      RouterService.forward('/login');
+      RouterService.forward('/login', {logout: true});
     }
     else {
       // we're logged in, but as admin?
@@ -43,7 +43,7 @@ export class PageAdmin {
         this.loaded = true;
       })
       .catch(err => {
-        return ToastService.error(err.message);
+        ToastService.error(err.message);
       });
   }
 

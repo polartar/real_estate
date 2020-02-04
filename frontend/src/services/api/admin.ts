@@ -4,12 +4,15 @@ class APIAdminInstance {
 
   public async getDashboardCounts() {
     try {
-
       let response = await fetch(APIService.getAPIUrl() + '/admin/dashboard_counts', {
         headers: APIService.getHeaders()
       });
 
       if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error(`You have been logged out.  Please log in an try again`);
+        }
+
         throw new Error(response.statusText);
       }
 
@@ -32,6 +35,10 @@ class APIAdminInstance {
         headers: APIService.getHeaders(),
       });
       if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error(`You have been logged out.  Please log in an try again`);
+        }
+
         throw new Error(response.statusText);
       }
 
@@ -50,6 +57,10 @@ class APIAdminInstance {
       });
 
       if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error(`You have been logged out.  Please log in an try again`);
+        }
+
         throw new Error(response.statusText);
       }
 
@@ -68,6 +79,10 @@ class APIAdminInstance {
       });
 
       if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error(`You have been logged out.  Please log in an try again`);
+        }
+
         throw new Error(response.statusText);
       }
 
@@ -91,6 +106,10 @@ class APIAdminInstance {
       });
 
       if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error(`You have been logged out.  Please log in an try again`);
+        }
+
         throw new Error(response.statusText);
       }
 
@@ -109,6 +128,10 @@ class APIAdminInstance {
       });
 
       if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error(`You have been logged out.  Please log in an try again`);
+        }
+
         throw new Error(response.statusText);
       }
 

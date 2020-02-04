@@ -106,8 +106,10 @@ export class PageAdminListings {
       }
   }
 
-  search(e) {
-    e.preventDefault();
+  search(e?) {
+    if (e) {
+      e.preventDefault();
+    }
 
     const searchInput: any = this.el.querySelector('#admin-listing-search');
 
@@ -136,6 +138,16 @@ export class PageAdminListings {
       });
 
       this.listings = listings;
+
+      if (attribute === 'is_active') {
+        if (apartment.is_active) {
+          this.activeCount++;
+          this.inactiveCount--;
+        } else {
+          this.activeCount--;
+          this.inactiveCount++;
+        }
+      }
 
     } catch (err) {
       ToastService.error(err.message);
@@ -242,6 +254,11 @@ export class PageAdminListings {
     this.searchParams = {...this.searchParams, search_type: this.searchTypeInput.value };
   }
 
+  setActiveFilter(val) {
+    this.searchParams = {...this.searchParams, active: val};
+    this.search();
+  }
+
   render() {
     this.listings.length ? console.log(this.listings[0]) : '';
     return [
@@ -283,7 +300,7 @@ export class PageAdminListings {
             <button
               type="button"
               class={{ 'button-dark': true, 'active-filter': true, 'inactive': this.searchParams.active !== 'all' }}
-              onClick={() => this.searchParams = {...this.searchParams, active: 'all'}}
+              onClick={() => this.setActiveFilter('all')}
             >
               All
             </button>
@@ -291,7 +308,7 @@ export class PageAdminListings {
             <button
               type="button"
               class={{ 'button-dark': true, 'active-filter': true, 'inactive': this.searchParams.active !== 'active' }}
-              onClick={() => this.searchParams = {...this.searchParams, active: 'active'}}
+              onClick={() => this.setActiveFilter('active')}
             >
               Active
             </button>
@@ -299,7 +316,7 @@ export class PageAdminListings {
             <button
               type="button"
               class={{ 'button-dark': true, 'active-filter': true, 'inactive': this.searchParams.active !== 'inactive' }}
-              onClick={() => this.searchParams = {...this.searchParams, active: 'inactive'}}
+              onClick={() => this.setActiveFilter('inactive')}
             >
               Inactive
             </button>

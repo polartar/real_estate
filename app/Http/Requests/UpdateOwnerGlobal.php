@@ -34,7 +34,7 @@ class UpdateOwnerGlobal extends FormRequest
             'move_out_fee' => ['sometimes', 'numeric'],
             'months_due_on_checkin' => ['sometimes', 'numeric'],
             'days_due_on_checkin' => ['sometimes', 'numeric'],
-            'doci_advance_payment_days' => ['sometimes', 'numeric'],
+            'duci_advance_payment_days' => ['sometimes', 'numeric'],
             'due_to_reserve' => ['sometimes', new ReservationFeeTypesValidator],
             'due_by_checkin' => ['sometimes', new ReservationFeeTypesValidator],
         ];

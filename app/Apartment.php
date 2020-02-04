@@ -55,7 +55,7 @@ class Apartment extends Model
         'move_out_fee',
         'months_due_on_checkin',
         'days_due_on_checkin',
-        'doci_advance_payment_days',
+        'duci_advance_payment_days',
         'due_to_reserve',
         'due_by_checkin',
         'video_url',
