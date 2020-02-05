@@ -14,6 +14,10 @@ class Neighborhood extends Model
         'tags' => 'array'
     ];
 
+    protected $appends = [
+        'center'
+    ];
+
 
     /**
      * Relationships
@@ -26,8 +30,32 @@ class Neighborhood extends Model
         return $this->belongsToMany(Apartment::class);
     }
 
-    public function getPerimeterCoordinatesAttribute($val) {
-        return json_decode(json_decode($val)); // not sure why it's double-encoded;
+    /**
+     * Custom attributes
+     */
+    public function getCenterAttribute() {
+        $points = $this->perimeter_coordinates;
+
+        $maxlng = $minlng = $maxlat = $minlat = null;
+
+        foreach ($points[0] as $point) {
+            if ($maxlng === null) {
+                $maxlng = $minlng = $point[0];
+                $maxlat = $minlat = $point[1];
+
+                continue;
+            }
+
+            $maxlng = max($maxlng, $point[0]);
+            $minlng = min($minlng, $point[0]);
+            $maxlat = max($maxlat, $point[1]);
+            $minlat = min($minlat, $point[1]);
+        }
+
+        return [
+            round(($maxlng + $minlng) / 2, 7),
+            round(($maxlat + $minlat) / 2, 7)
+        ];
     }
 
     /**

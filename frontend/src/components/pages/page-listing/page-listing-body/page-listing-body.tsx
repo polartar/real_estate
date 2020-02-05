@@ -25,6 +25,7 @@ export class PageListingBody {
   bedroomTypes: any;
   buildingTypes: any;
   neighborhoods: any;
+  itemNeighborhoods: any;
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
@@ -33,7 +34,8 @@ export class PageListingBody {
       return {
         bedroomTypes: taxonomySelectors.getBedroomTypes(state),
         buildingTypes: taxonomySelectors.getBuildingTypes(state),
-        neighborhoods: neighborhoods.filter(n => this.item.neighborhood_ids.includes(n.id)),
+        itemNeighborhoods: neighborhoods.filter(n => this.item.neighborhood_ids.includes(n.id)),
+        neighborhoods,
         wishlist: wishlistSelectors.getWishlist(state)
       }
     });
@@ -89,7 +91,7 @@ export class PageListingBody {
 
     features.push({
       'name': 'Neighborhood',
-      'value': this.neighborhoods.reduce((acc, curr) => {
+      'value': this.itemNeighborhoods.reduce((acc, curr) => {
         if (acc.length) {
           acc += '/';
         }
@@ -221,7 +223,6 @@ export class PageListingBody {
   }
 
   showAskQuestion() {
-    console.log('asking question');
     const modal = Object.assign(document.createElement('ion-modal'), {
       component: 'apt212-modal-booking-frame',
       cssClass: 'ask-question-modal',
@@ -238,6 +239,19 @@ export class PageListingBody {
   }
 
   render() {
+    const marketingNeighborhoods = this.neighborhoods.filter(n => {
+      if (this.item.neighborhood_ids.includes(n.id) && !n.marketing_neighborhood) {
+        return true;
+      }
+
+      if (n.marketing_neighborhood) {
+        return false;
+      }
+
+      // only keep if we are a marketing neighborhood for the apt
+      return !!this.itemNeighborhoods.find(nn => nn.marketing_neighborhood === n.slug);
+    });
+
     return (
       <Host class="page-listing-body-component">
         <section class="section no-padding">
@@ -369,7 +383,7 @@ export class PageListingBody {
             </div>
 
             {
-              this.neighborhoods.map(n => <div class="listing-section">
+              marketingNeighborhoods.map(n => <div class="listing-section">
                   <div class="title">
                     { n.name }
                   </div>

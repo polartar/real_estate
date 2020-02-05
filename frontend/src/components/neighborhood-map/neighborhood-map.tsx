@@ -23,7 +23,7 @@ export class NeighborhoodMap {
   neighborhoods: any = [];
 
   componentDidLoad() {
- 
+
     this.store.mapStateToProps(this, state => {
 
       return {
@@ -56,8 +56,8 @@ export class NeighborhoodMap {
         this.map = new mapboxgl.Map({
           container: this.mapId,
           style: 'mapbox://styles/mapbox/streets-v11',
-          center: this.item.perimeter_coordinates[0][1],
-          zoom: 12,
+          center: this.item.center,
+          zoom: 13,
           minZoom: 10,
           maxZoom: 17,
         });
@@ -68,7 +68,7 @@ export class NeighborhoodMap {
           this.mapRendered = true;
 
           // add neighborhoods
-          
+
             this.map.addLayer({
               'id': `neighborhood-outline-${this.item.id}`,
               'type': 'line',

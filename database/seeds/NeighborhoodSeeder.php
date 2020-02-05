@@ -30,8 +30,9 @@ class NeighborhoodSeeder extends Seeder
                 'description' => property_exists($n, 'description') ? $n->description : $lipsum,
                 'slug' => Str::slug($n->slug),
                 'region_id' => $region->id,
-                'perimeter_coordinates' => json_encode($n->coordinates),
-                'is_featured' => 1,
+                'perimeter_coordinates' => $n->coordinates,
+                'is_featured' => !property_exists($n, 'marketing_neighborhood'),
+                'marketing_neighborhood' => property_exists($n, 'marketing_neighborhood') ? Str::slug($n->marketing_neighborhood) : null,
                 'image' => $n->image,
                 'eat' => $lipsum ,
                 'drink' => $lipsum ,
@@ -40,7 +41,7 @@ class NeighborhoodSeeder extends Seeder
                 'play' => $lipsum,
                 'explore' => $lipsum,
                 'life' => $lipsum,
-                'tags' => json_encode(["great transit", "great people watching", "trendy", "lofts", "hip", "nyc staple", "walkups", "shopper's paradise", "bohemian", "sophisticated", "pricey"]),
+                'tags' => ["great transit", "great people watching", "trendy", "lofts", "hip", "nyc staple", "walkups", "shopper's paradise", "bohemian", "sophisticated", "pricey"],
             ]);
 
             return $neighborhood;
