@@ -204,11 +204,12 @@ export class PagePrivateRooms {
                     <p>Utilities costs such as cable, wifi, and electricity will be divided by the number of bedrooms</p>
                     <div class="rectangle" />
                 </div>
+
+                <ion-button aria-label="Speak to an expert" class="call">
+                    Frequently Asked Questions
+                </ion-button>
             </div>
 
-            
-  
-           
           </section>
   
           <app-footer />
