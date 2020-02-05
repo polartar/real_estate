@@ -18,7 +18,8 @@ class CreateNeighborhoodsTable extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->bigInteger('region_id');
-            $table->integer('is_featured');
+            $table->boolean('is_featured')->default(false);
+            $table->string('marketing_neighborhood')->nullable();
             $table->longText('description')->nullable();
             $table->string('image')->nullable();
             $table->longText('experience')->nullable();

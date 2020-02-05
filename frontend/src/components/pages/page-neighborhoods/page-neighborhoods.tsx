@@ -13,17 +13,17 @@ import taxonomySelectors from '../../../store/selectors/taxonomy';
     @State() loaded: boolean = false;
 
     neighborhoods: any = [];
-  
+
     hasLoaded: boolean = false;
-  
+
     componentWillLoad() {
         this.store.mapStateToProps(this, state => {
             return {
-              neighborhoods: taxonomySelectors.getNeighborhoods(state)
+              neighborhoods: taxonomySelectors.getFeaturedNeighborhoods(state)
             }
           });
     }
-  
+
     async componentDidLoad() {
       this.loaded = true;
     }
@@ -34,12 +34,12 @@ import taxonomySelectors from '../../../store/selectors/taxonomy';
       let subtitle = <p class="subtitle">Explore Manhattan's most prestigious<br></br> neighborhoods.</p>
 
       return [
-          
+
         <app-header />,
         <ion-content class="page-neighborhoods">
 
           <section class="section">
-           
+
             <div class="hero">
 
                 <div class="cta">
@@ -52,29 +52,28 @@ import taxonomySelectors from '../../../store/selectors/taxonomy';
             <section class="neighborhood-list">
 
                 <div class="neighborhoods-grid">
-                    
+
                     {
                         this.neighborhoods.map(neighborhood =>
                         <div class="module">
                             <ion-router-link href={`/neighborhood/${neighborhood.slug}`}>
                                 <div class="neighborhood-card">
-                                <lazy-image src={neighborhood.image} alt="title" class="neighborhood-feature-image"/>
+                                <lazy-image src={neighborhood.image} alt={neighborhood.name} class="neighborhood-feature-image"/>
                                 <h4 class="neighborhood-title">{neighborhood.name}</h4>
                                 </div>
                             </ion-router-link>
                         </div>
                         )
                     }
-                   
+
                 </div>
 
             </section>
 
           </section>
-  
+
           <app-footer />
         </ion-content>
       ];
     }
   }
-  

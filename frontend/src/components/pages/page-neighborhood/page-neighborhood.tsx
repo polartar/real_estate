@@ -6,6 +6,7 @@ import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 import { getNamedSearch } from '../../../store/actions/search';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import { APISearchService } from '../../../services/api/search';
+import taxonomySelectors from '../../../store/selectors/taxonomy';
 
 @Component({
   tag: 'page-neighborhood',
@@ -24,9 +25,9 @@ export class PageNeighborhood {
   @State() apartmentsList: any[] = [];
   getNamedSearch: Action;
 
-  neighborhoods: any[] = [];
-  item: any = null;
+  @State() neighborhoods: any[] = [];
   @State() neighborhoodsLoaded: boolean = false;
+  @State() neighborhoodsFeatured: any[] = [];
 
   @State() nearbyApts: any[] = [];
 
@@ -46,6 +47,7 @@ export class PageNeighborhood {
         isMobile,
         displayFilter: searchFilterSelectors.getDisplayFilter(state),
         neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
+        neighborhoodsFeatured: taxonomySelectors.getFeaturedNeighborhoods(state),
         neighborhoodsLoaded: neighborhoodSelectors.getNeighborhoodsLoaded(state),
       };
     });
@@ -57,16 +59,8 @@ export class PageNeighborhood {
 
     const rel: any = document.querySelector('link[rel="canonical"]');
     if (rel) {
-      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL'));
+      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL') + '/neighborhood/' + this.neighborhoodName);
     }
-    
-    const item = this.neighborhoods.find(v => v.slug === this.neighborhoodName);
-
-    if (item) {
-        this.item = item;
-    }
-    
-    this.item.tags = JSON.parse(this.item.tags);
   }
 
   async componentDidLoad() {
@@ -75,11 +69,11 @@ export class PageNeighborhood {
     }
 
     try {
-      this.apartmentsList = await APISearchService.getNamedSearch('apartmentsByNeighborhood', {id: this.item.id});
+      const item = this.neighborhoods.find(v => v.slug === this.neighborhoodName);
+      this.apartmentsList = await APISearchService.getNamedSearch('apartmentsByNeighborhood', {id: item.id});
      } catch (e) {
       // Fail silently. The nearby apartments aren't critical for the UX here.
      }
-    
   }
 
   async launchMobileFilterMenu() {
@@ -93,13 +87,13 @@ export class PageNeighborhood {
   }
 
   neighborhoodsSlider(num) {
-    const splitIndex = Math.round(this.neighborhoods.length / 2);
+    const splitIndex = Math.round(this.neighborhoodsFeatured.length / 2);
 
     if (num === 1) {
-      return this.neighborhoods.slice(0, splitIndex);
+      return this.neighborhoodsFeatured.slice(0, splitIndex);
     }
 
-    return this.neighborhoods.slice(splitIndex + 1);
+    return this.neighborhoodsFeatured.slice(splitIndex + 1);
   }
 
 
@@ -108,11 +102,15 @@ export class PageNeighborhood {
       return null;
     }
 
-    let phoneTitle, phoneSubtitle, phoneSearch;
+    const item = this.neighborhoods.find(v => v.slug === this.neighborhoodName);
 
-    let title = <h1 class="title">{this.item.name}</h1>
+    if (!item) {
+      return null;
+    }
 
-    let subtitle = <p class="subtitle">Find the best short term apartment rentals in {this.item.name}.</p>
+    let title = <h1 class="title">{item.name}</h1>
+
+    let subtitle = <p class="subtitle">Find the best short term apartment rentals in {item.name}.</p>
 
     let search = <button class="light" onClick={() => { this.toggleSearchFilterDisplay(!this.displayFilter) }}>
                     Search
@@ -121,42 +119,33 @@ export class PageNeighborhood {
     let neighborhoodTitle = 'Other New York City Neighborhoods';
     let neighborhoodSubTitle = 'Experience some other neighborhoods';
 
-   
+
 
     return [
       <app-header />,
       <ion-content class="page-neighborhood">
 
         <section class="section">
-          {phoneTitle}
-          {phoneSubtitle}
-
           <div class="hero">
-
-      
             <div class="cta">
               {title}
               {subtitle}
               {search}
-            </div> : ''
-          
-
+            </div>
           </div>
-
-          {phoneSearch}
 
           <div class="neighborhood-about-wrapper">
             <div class="about">
               <div>
-                <h2>Experience {this.item.name}</h2>
+                <h2>Experience {item.name}</h2>
 
                 <p>
-                  {this.item.experience}
+                  {item.experience}
                 </p>
 
                 <h2 class="tag-title">Neighborhood tags</h2>
 
-                <neighborhood-tags items={this.item.tags} />
+                <neighborhood-tags items={item.tags} />
 
               </div>
             </div>
@@ -167,13 +156,13 @@ export class PageNeighborhood {
           </div>
 
           <div class="map-wrapper">
-            <neighborhood-map item={this.item} />
+            <neighborhood-map item={item} />
           </div>
 
           {
             this.apartmentsList.length ?
             <div class="predefined-search">
-            
+
               {(this.isMobile) ? <listing-slider items={this.apartmentsList} /> : <listing-list items={this.apartmentsList} />}
             </div>
             : null
@@ -195,17 +184,17 @@ export class PageNeighborhood {
 
           <div class="highlights">
               <h2>
-                  Highlights of {this.item.name} NYC
+                  Highlights of {item.name} NYC
               </h2>
               <p>
-                  Here are a few great things about {this.item.name}
+                  Here are a few great things about {item.name}
               </p>
           </div>
 
           <div class="layout">
             <div class="layout__item layout__item--body">
-                <h2>Eat in {this.item.name}</h2>
-                <p>{this.item.eat}</p>
+                <h2>Eat in {item.name}</h2>
+                <p>{item.eat}</p>
             </div>
             <div class="layout__item layout__item--figure">
                 <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
@@ -214,8 +203,8 @@ export class PageNeighborhood {
 
           <div class="layout">
             <div class="layout__item layout__item--body">
-                <h2>Drink in {this.item.name}</h2>
-                <p>{this.item.drink}</p>
+                <h2>Drink in {item.name}</h2>
+                <p>{item.drink}</p>
             </div>
             <div class="layout__item layout__item--figure">
                 <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
@@ -224,8 +213,8 @@ export class PageNeighborhood {
 
           <div class="layout">
             <div class="layout__item layout__item--body">
-                <h2>Shop in {this.item.name}</h2>
-                <p>{this.item.shop}</p>
+                <h2>Shop in {item.name}</h2>
+                <p>{item.shop}</p>
             </div>
             <div class="layout__item layout__item--figure">
                 <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
@@ -234,8 +223,8 @@ export class PageNeighborhood {
 
           <div class="layout">
             <div class="layout__item layout__item--body">
-                <h2>Play in {this.item.name}</h2>
-                <p>{this.item.play}</p>
+                <h2>Play in {item.name}</h2>
+                <p>{item.play}</p>
             </div>
             <div class="layout__item layout__item--figure">
                 <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
@@ -244,8 +233,8 @@ export class PageNeighborhood {
 
             <div class="layout">
             <div class="layout__item layout__item--body">
-                <h2>Explore in {this.item.name}</h2>
-                <p>{this.item.explore}</p>
+                <h2>Explore in {item.name}</h2>
+                <p>{item.explore}</p>
             </div>
             <div class="layout__item layout__item--figure">
                 <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
