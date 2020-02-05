@@ -243,12 +243,9 @@ export namespace Components {
     'item': any;
   }
   interface PageLogin {}
-  interface PageNeighborhood {
-    'neighborhoodId': number;
-    'neighborhoodName': string;
+  interface PagePrivateRooms {
     'prefetching': boolean;
   }
-  interface PageNeighborhoods {}
   interface PageSearch {
     'location': any;
     'neighborhoods': any;

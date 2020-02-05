@@ -21,6 +21,7 @@ $front_end_routes = [
     '/listing/{id}',
     '/wishlist',
     '/404',
+    '/private-rooms',
 
     '/admin',
     '/admin/listings',
