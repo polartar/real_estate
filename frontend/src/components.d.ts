@@ -211,6 +211,9 @@ export namespace Components {
   interface NeighborhoodSlider {
     'items': any[];
   }
+  interface NeighborhoodTags {
+    'items': any[];
+  }
   interface OwnerGlobalForm {}
   interface Page404 {}
   interface PageAdmin {}
@@ -643,6 +646,12 @@ declare global {
     new (): HTMLNeighborhoodSliderElement;
   };
 
+  interface HTMLNeighborhoodTagsElement extends Components.NeighborhoodTags, HTMLStencilElement {}
+  var HTMLNeighborhoodTagsElement: {
+    prototype: HTMLNeighborhoodTagsElement;
+    new (): HTMLNeighborhoodTagsElement;
+  };
+
   interface HTMLOwnerGlobalFormElement extends Components.OwnerGlobalForm, HTMLStencilElement {}
   var HTMLOwnerGlobalFormElement: {
     prototype: HTMLOwnerGlobalFormElement;
@@ -877,6 +886,7 @@ declare global {
     'neighborhood-card': HTMLNeighborhoodCardElement;
     'neighborhood-map': HTMLNeighborhoodMapElement;
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
+    'neighborhood-tags': HTMLNeighborhoodTagsElement;
     'owner-global-form': HTMLOwnerGlobalFormElement;
     'page-404': HTMLPage404Element;
     'page-admin': HTMLPageAdminElement;
@@ -1099,6 +1109,9 @@ declare namespace LocalJSX {
   interface NeighborhoodSlider extends JSXBase.HTMLAttributes<HTMLNeighborhoodSliderElement> {
     'items'?: any[];
   }
+  interface NeighborhoodTags extends JSXBase.HTMLAttributes<HTMLNeighborhoodTagsElement> {
+    'items'?: any[];
+  }
   interface OwnerGlobalForm extends JSXBase.HTMLAttributes<HTMLOwnerGlobalFormElement> {}
   interface Page404 extends JSXBase.HTMLAttributes<HTMLPage404Element> {}
   interface PageAdmin extends JSXBase.HTMLAttributes<HTMLPageAdminElement> {}
@@ -1261,6 +1274,7 @@ declare namespace LocalJSX {
     'neighborhood-card': NeighborhoodCard;
     'neighborhood-map': NeighborhoodMap;
     'neighborhood-slider': NeighborhoodSlider;
+    'neighborhood-tags': NeighborhoodTags;
     'owner-global-form': OwnerGlobalForm;
     'page-404': Page404;
     'page-admin': PageAdmin;

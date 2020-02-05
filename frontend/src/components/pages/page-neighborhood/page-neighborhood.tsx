@@ -66,6 +66,7 @@ export class PageNeighborhood {
         this.item = item;
     }
     
+    this.item.tags = JSON.parse(this.item.tags);
   }
 
   async componentDidLoad() {
@@ -152,6 +153,10 @@ export class PageNeighborhood {
                 <p>
                   {this.item.experience}
                 </p>
+
+                <h2 class="tag-title">Neighborhood tags</h2>
+
+                <neighborhood-tags items={this.item.tags} />
 
               </div>
             </div>

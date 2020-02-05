@@ -1,0 +1,42 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.neighborhood-tag-list  {
+
+    display: flex;
+    flex-wrap: no-wrap;
+    flex-direction: row;
+    justify-content: space-around;
+ 
+    .tags {
+        flex-grow: 1;
+        flex-shrink: 1;
+        display: flex;
+        justify-content: left;
+        flex-wrap: wrap;
+
+        @include for-size('desktop-up') {
+            justify-content: flex-end;
+        }
+
+    }
+    
+    .tag {
+        display:inline-block;
+        background-color: #eaebf0;
+        text-align: center;
+        margin-right: 16px;
+        margin-bottom: 16px;
+        padding: 7px 12px 7px 13px;
+        font-size: 16px;
+        text-transform: uppercase;
+
+        @include for-size('desktop-up') {
+            margin-right: 0px;
+            margin-left: 16px;
+            margin-bottom: 16px;
+        }
+    }
+
+}
+  

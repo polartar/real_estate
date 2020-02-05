@@ -10,7 +10,8 @@ class Neighborhood extends Model
 
     //
     protected $casts = [
-        'perimeter_coordinates' => 'array'
+        'perimeter_coordinates' => 'array',
+        'tags' => 'array'
     ];
 
 

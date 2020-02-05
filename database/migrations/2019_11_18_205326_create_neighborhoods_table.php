@@ -28,7 +28,7 @@ class CreateNeighborhoodsTable extends Migration
             $table->longText('play')->nullable();
             $table->longText('explore')->nullable();
             $table->longText('life')->nullable();
-            $table->longText('tags')->nullable();
+            $table->json('tags')->nullable();
             $table->json('perimeter_coordinates');
         });
     }
