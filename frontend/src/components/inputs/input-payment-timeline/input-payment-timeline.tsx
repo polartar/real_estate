@@ -11,7 +11,7 @@ export class InputPaymentTimeline {
     return (
       <div class="input-payment-timeline-component fieldset-inputs payment-timeline">
         <div class="input">
-          <label htmlFor="months-due-on-checkin">Months Due on Check In</label>
+          <label htmlFor="months-due-on-checkin">Months Due upon Check In</label>
           <input
             id="months-due-on-checkin"
             type="number"
@@ -22,7 +22,7 @@ export class InputPaymentTimeline {
         </div>
 
         <div class="input">
-          <label htmlFor="days-due-on-checkin">Days Due on Check In</label>
+          <label htmlFor="days-due-on-checkin">Days Due upon Check In</label>
           <input
             id="days-due-on-checkin"
             type="number"

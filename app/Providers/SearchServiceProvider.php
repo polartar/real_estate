@@ -6,6 +6,7 @@ use App\Apartment;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class SearchServiceProvider extends ServiceProvider
@@ -108,7 +109,7 @@ class SearchServiceProvider extends ServiceProvider
     public static function adminSearch($filters) {
         $filter_hash = md5(json_encode($filters));
 
-        return Cache::remember('search-' . $filter_hash, 600, function() use ($filters) {
+        // return Cache::remember('search-' . $filter_hash, 600, function() use ($filters) {
 
             // here's the important part
             $apartments = \App\Apartment::withoutGlobalScope('active');
@@ -126,7 +127,7 @@ class SearchServiceProvider extends ServiceProvider
             ];
 
             return $results;
-        });
+        //});
     }
 
     /**
@@ -274,10 +275,6 @@ class SearchServiceProvider extends ServiceProvider
             return $apartments;
         }
 
-        if ($filters['sortBy']) {
-            return $apartments;
-        }
-
         switch ($filters['sortBy']) {
             case 'price_asc':
                 $apartments->orderBy('rate', 'ASC');
@@ -303,7 +300,55 @@ class SearchServiceProvider extends ServiceProvider
                 $apartments->orderBy('id', 'DESC');
             break;
 
+            case 'last_updated_asc':
+                $apartments->orderBy('updated_at', 'ASC');
+            break;
+
+            case 'last_updated_desc':
+                $apartments->orderBy('updated_at', 'DESC');
+            break;
+
+            case 'owner_asc':
+                $apartments->orderBy('owner_name', 'ASC');
+            break;
+
+            case 'owner_desc':
+                $apartments->orderBy('owner_name', 'DESC');
+            break;
+
+            case 'bathrooms_asc':
+                $apartments->orderBy('bathrooms', 'ASC');
+            break;
+
+            case 'bathrooms_desc':
+                $apartments->orderBy('bathrooms', 'DESC');
+            break;
+
+            // @TODO - is there a better way to sort these relationships?
+            case 'bedrooms_asc':
+                $apartments->select('apartments.*', DB::raw('(SELECT rooms_count from bedroom_types where bedroom_types.id = apartments.bedroom_type_id) as sort'))->orderBy('sort', 'ASC');
+            break;
+
+            case 'bedrooms_desc':
+                $apartments->select('apartments.*', DB::raw('(SELECT rooms_count from bedroom_types where bedroom_types.id = apartments.bedroom_type_id) as sort'))->orderBy('sort', 'DESC');
+            break;
+
+            case 'price_month_asc':
+                $month = (int) $filters['price_month'];
+                $apartments->select('apartments.*', DB::raw('(SELECT monthly_rate from monthly_rates where monthly_rates.apartment_id = apartments.id and monthly_rates.month = \'' . $month . '\' limit 1) as sort'))->orderBy('sort', 'ASC');
+            break;
+
+            case 'price_month_desc':
+                $month = (int) $filters['price_month'];
+                $apartments->select('apartments.*', DB::raw('(SELECT monthly_rate from monthly_rates where monthly_rates.apartment_id = apartments.id and monthly_rates.month = \'' . $month . '\') as sort'))->orderBy('sort', 'DESC');
+            break;
+
+            case 'availability_desc':
+                $apartments->orderBy('available_date', 'DESC');
+            break;
+
             case 'availability':
+            case 'availability_asc':
             default:
                 $apartments->orderBy('available_date', 'ASC');
             break;

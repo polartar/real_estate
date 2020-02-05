@@ -12,6 +12,7 @@ use App\Subway;
 use App\User;
 use App\Providers\SearchServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -55,10 +56,13 @@ class AdminController extends Controller
 
         $filters = json_decode($params, true);
 
+        //DB::enableQueryLog();
         $results = SearchServiceProvider::adminSearch($filters);
 
         $results['total_active'] = Apartment::count();
         $results['total_inactive'] = Apartment::withoutGlobalScope('active')->where('is_active', false)->count();
+        //$results['filters'] = $filters;
+        //$results['log'] = DB::getQueryLog();
 
         return $results;
     }

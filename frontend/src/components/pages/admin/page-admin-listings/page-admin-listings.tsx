@@ -29,6 +29,7 @@ export class PageAdminListings {
   @State() listings: any[] = [];
   @State() searchParams: any = {
     sortBy: 'webid_asc',
+    price_month: 0,
     active: 'all',
     search_type: 'webid',
     search_query: '',
@@ -259,6 +260,16 @@ export class PageAdminListings {
     this.search();
   }
 
+  setSort(sort, month = null) {
+    this.searchParams = {...this.searchParams, sortBy: sort};
+
+    if (month !== null) {
+      this.searchParams = {...this.searchParams, price_month: month};
+    }
+
+    this.search();
+  }
+
   render() {
     this.listings.length ? console.log(this.listings[0]) : '';
     return [
@@ -334,24 +345,85 @@ export class PageAdminListings {
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>Web Id</th>
+                  <th>
+                    <button
+                      class={{'button-reset': true, 'desc': this.searchParams.sortBy === 'webid_desc'}}
+                      onClick={() => this.setSort(this.searchParams.sortBy === 'webid_desc' ? 'webid_asc' : 'webid_desc')}
+                    >
+                      Web Id <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
+                    </button>
+                  </th>
                   <th class="mobile-only">Info</th>
-                  <th class="desktop-only">Last Updated</th>
+                  <th class="desktop-only">
+                    <button
+                      class={{'button-reset': true, 'desc': this.searchParams.sortBy === 'last_updated_desc'}}
+                      onClick={() => this.setSort(this.searchParams.sortBy === 'last_updated_desc' ? 'last_updated_asc' : 'last_updated_desc')}
+                    >
+                      Last Updated
+                      <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
+                    </button>
+                  </th>
                   <th class="desktop-only">Status</th>
-                  <th class="desktop-only">Owner</th>
+                  <th class="desktop-only">
+                    <button
+                      class={{'button-reset': true, 'desc': this.searchParams.sortBy === 'owner_desc'}}
+                      onClick={() => this.setSort(this.searchParams.sortBy === 'owner_desc' ? 'owner_asc' : 'owner_desc')}
+                    >
+                      Owner
+                      <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
+                    </button>
+                  </th>
                   <th class="desktop-only">Address</th>
                   <th class="desktop-only">APT#</th>
-                  <th class="desktop-only">BR</th>
-                  <th class="desktop-only">Bath</th>
-                  <th class="desktop-only">Available</th>
-                  <th class="desktop-only">Price</th>
+                  <th class="desktop-only">
+                    <button
+                      class={{'button-reset': true, 'desc': this.searchParams.sortBy === 'bedrooms_desc'}}
+                      onClick={() => this.setSort(this.searchParams.sortBy === 'bedrooms_desc' ? 'bedrooms_asc' : 'bedrooms_desc')}
+                    >
+                      BR
+                      <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
+                    </button>
+                  </th>
+                  <th class="desktop-only">
+                    <button
+                      class={{'button-reset': true, 'desc': this.searchParams.sortBy === 'bathrooms_desc'}}
+                      onClick={() => this.setSort(this.searchParams.sortBy === 'bathrooms_desc' ? 'bathrooms_asc' : 'bathrooms_desc')}
+                    >
+                      Bath
+                      <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
+                    </button>
+                  </th>
+                  <th class="desktop-only">
+                    <button
+                      class={{'button-reset': true, 'desc': this.searchParams.sortBy === 'availability_desc'}}
+                      onClick={() => this.setSort(this.searchParams.sortBy === 'availability_desc' ? 'availability_asc' : 'availability_desc')}
+                    >
+                      Availability
+                      <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
+                    </button>
+                  </th>
+                  <th class="desktop-only">
+                    <button
+                      class={{'button-reset': true, 'desc': this.searchParams.sortBy === 'price_desc'}}
+                      onClick={() => this.setSort(this.searchParams.sortBy === 'price_desc' ? 'price_asc' : 'price_desc')}
+                    >
+                      Price
+                      <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
+                    </button>
+                  </th>
 
                   {
                     [...Array(12).keys()].map(m => {
                       const date = new Date(new Date().setDate(1)).setMonth(m);
                       return(
                         <th class="desktop-only">
-                          { formatDate(date, 'MMM') }
+                          <button
+                            class={{'button-reset': true, 'desc': (this.searchParams.sortBy === 'price_month_desc' && this.searchParams.price_month === m)}}
+                            onClick={() => this.setSort(this.searchParams.sortBy === 'price_month_desc' ? 'price_month_asc' : 'price_month_desc', m)}
+                          >
+                            { formatDate(date, 'MMM') }
+                            <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
+                          </button>
                         </th>
                       )
                     })
