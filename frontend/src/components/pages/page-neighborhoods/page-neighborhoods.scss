@@ -1,0 +1,171 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.page-neighborhoods {
+    .hero {
+    position: relative;
+    background-image: url('/assets/images/home-hero.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #ccc;
+    background-blend-mode: multiply;
+    width: 100%;
+    height: 653px;
+
+    @include for-size(tablet-portrait-up) {
+      height: 320px;
+    }
+
+    @include for-size(desktop-up) {
+      height: 640px;
+    }
+
+    .cta {
+      position: absolute;
+      top: 390px;
+      left: 12px;
+      max-width: 740px;
+
+      @include for-size(tablet-portrait-up) {
+        top: 150px;
+        left: 24px;
+      }
+
+      @include for-size(desktop-up) {
+        top: 455px;
+        left: 48px;
+      }
+
+      h1 {
+        color: white;
+        font-size: $font-size * 2;
+
+        @include for-size(desktop-up) {
+          font-size: $font-size-lg * 2;
+        }
+      }
+
+      .subtitle {
+        color: white;
+        line-height: 1.25;
+        font-family: "Source Sans Pro";
+        font-size: 16px;
+        margin-top: 0;
+      }
+
+      .light {
+        background-color: white;
+        height: 40px;
+        color: $color-primary;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+  }
+
+ /* neighborhoods styles */
+
+  .neighborhoods {
+    --auto-grid-min-size: 16rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    grid-gap: 1rem;
+    padding-left: 0px;
+  }
+  
+  li {
+    padding: 5rem 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+    background: #eb4d4b;
+    color: #ffffff;
+
+  }
+
+  .neighborhood-list {
+    padding-top: 56px;
+  }
+
+  .neighborhoods-grid {
+    /* Grid Fallback */
+    display: flex;
+    flex-wrap: wrap;
+    
+    /* Supports Grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(304px, 1fr));
+    grid-auto-rows: minmax(304px, auto);
+    grid-gap: 40px;
+    justify-items: center;
+ 
+  }
+
+  .module {
+    background: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 368px;
+    width: 304px;
+    
+    /* Flex Fallback */
+    margin-left: 5px;
+    margin-right: 5px;
+    flex: 1 1 304px;
+  
+}
+
+.neighborhood-card {
+  position: relative;
+  overflow: hidden;
+  height: 368px;
+
+  @include for-size(tablet-portrait-up) {
+    max-width: 304px;
+    height: 368px;
+  }
+
+  .neighborhood-title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 5px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+
+    @include for-size(desktop-up) {
+      font-size: 22px;
+      font-weight: bold;
+      bottom: 20px;
+    }
+  }
+
+  .neighborhood-feature-image {
+    max-width: 304px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: all 0.3s ease-in-out;
+  }
+
+}
+
+  .mobile-only {
+    @include for-size(desktop-up) {
+      display: none;
+    }
+  }
+
+  .desktop-only {
+    display: none;
+
+    @include for-size(desktop-up) {
+      display: block;
+    }
+  }
+}

@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Apartment;
+use App\Neighborhood;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class SearchServiceProvider extends ServiceProvider
 {
@@ -43,13 +45,20 @@ class SearchServiceProvider extends ServiceProvider
                     return [
                         'uniqueList' => \App\Apartment::where('feature_1', true)->inRandomOrder()->take(8)->get(),
                         'privateRoomList' => \App\Apartment::where('feature_2', true)->inRandomOrder()->take(8)->get(),
-                        'luxuryList' => \App\Apartment::where('feature_3', true)->inRandomOrder()->take(8)->get()
+                        'luxuryList' => \App\Apartment::where('feature_3', true)->inRandomOrder()->take(8)->get(),
                     ];
                 });
             break;
 
+            case 'apartmentsByNeighborhood':
+                $results = Cache::remember('search-apartmentsByNeighborhood-' . $params['id'], 600, function() use ($params) {
+                    $neighborhood = Neighborhood::findOrFail($params['id']);
+                    return $neighborhood->apartments()->take(16)->get();
+                });
+            break;
+
             case 'nearbyApts':
-                $results = Cache::remember('search-nearbyApts-' . $params['id'], 1, function() use ($params) {
+                $results = Cache::remember('search-nearbyApts-' . $params['id'], 600, function() use ($params) {
                     $apt = Apartment::findOrFail($params['id']);
                     $distance = 5;
 

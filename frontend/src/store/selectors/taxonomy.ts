@@ -8,6 +8,10 @@ const taxonomySelectors = {
     return [ ...state.taxonomy.neighborhoods ];
   },
 
+  getFeaturedNeighborhoods: state => {
+    return [...state.taxonomy.neighborhoods.filter(n => !!n.is_featured)];
+  },
+
   getNeighborhoodById: (id, neighborhoods) => {
     return neighborhoods.find(n => n.id === id);
   },

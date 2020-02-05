@@ -17,6 +17,7 @@ class NeighborhoodSeeder extends Seeder
         $neighborhoods = json_decode(file_get_contents(base_path('database/assets/neighborhoods.json')));
         $regions = Region::all();
 
+
         collect(array_map(function($n) use ($regions) {
             $region = $regions->filter(function($r) use ($n) {
                 return $r->import_id === $n->region_id;
@@ -29,8 +30,18 @@ class NeighborhoodSeeder extends Seeder
                 'description' => property_exists($n, 'description') ? $n->description : $lipsum,
                 'slug' => Str::slug($n->slug),
                 'region_id' => $region->id,
-                'perimeter_coordinates' => json_encode($n->coordinates),
-                'image' => $n->image
+                'perimeter_coordinates' => $n->coordinates,
+                'is_featured' => !property_exists($n, 'marketing_neighborhood'),
+                'marketing_neighborhood' => property_exists($n, 'marketing_neighborhood') ? Str::slug($n->marketing_neighborhood) : null,
+                'image' => $n->image,
+                'eat' => $lipsum ,
+                'drink' => $lipsum ,
+                'shop' => $lipsum,
+                'experience' => $lipsum,
+                'play' => $lipsum,
+                'explore' => $lipsum,
+                'life' => $lipsum,
+                'tags' => ["great transit", "great people watching", "trendy", "lofts", "hip", "nyc staple", "walkups", "shopper's paradise", "bohemian", "sophisticated", "pricey"],
             ]);
 
             return $neighborhood;

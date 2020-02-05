@@ -205,7 +205,13 @@ export namespace Components {
   interface NeighborhoodCard {
     'item': any;
   }
+  interface NeighborhoodMap {
+    'item': any;
+  }
   interface NeighborhoodSlider {
+    'items': any[];
+  }
+  interface NeighborhoodTags {
     'items': any[];
   }
   interface OwnerGlobalForm {}
@@ -237,6 +243,12 @@ export namespace Components {
     'item': any;
   }
   interface PageLogin {}
+  interface PageNeighborhood {
+    'neighborhoodId': number;
+    'neighborhoodName': string;
+    'prefetching': boolean;
+  }
+  interface PageNeighborhoods {}
   interface PageSearch {
     'location': any;
     'neighborhoods': any;
@@ -622,10 +634,22 @@ declare global {
     new (): HTMLNeighborhoodCardElement;
   };
 
+  interface HTMLNeighborhoodMapElement extends Components.NeighborhoodMap, HTMLStencilElement {}
+  var HTMLNeighborhoodMapElement: {
+    prototype: HTMLNeighborhoodMapElement;
+    new (): HTMLNeighborhoodMapElement;
+  };
+
   interface HTMLNeighborhoodSliderElement extends Components.NeighborhoodSlider, HTMLStencilElement {}
   var HTMLNeighborhoodSliderElement: {
     prototype: HTMLNeighborhoodSliderElement;
     new (): HTMLNeighborhoodSliderElement;
+  };
+
+  interface HTMLNeighborhoodTagsElement extends Components.NeighborhoodTags, HTMLStencilElement {}
+  var HTMLNeighborhoodTagsElement: {
+    prototype: HTMLNeighborhoodTagsElement;
+    new (): HTMLNeighborhoodTagsElement;
   };
 
   interface HTMLOwnerGlobalFormElement extends Components.OwnerGlobalForm, HTMLStencilElement {}
@@ -710,6 +734,18 @@ declare global {
   var HTMLPageLoginElement: {
     prototype: HTMLPageLoginElement;
     new (): HTMLPageLoginElement;
+  };
+
+  interface HTMLPageNeighborhoodElement extends Components.PageNeighborhood, HTMLStencilElement {}
+  var HTMLPageNeighborhoodElement: {
+    prototype: HTMLPageNeighborhoodElement;
+    new (): HTMLPageNeighborhoodElement;
+  };
+
+  interface HTMLPageNeighborhoodsElement extends Components.PageNeighborhoods, HTMLStencilElement {}
+  var HTMLPageNeighborhoodsElement: {
+    prototype: HTMLPageNeighborhoodsElement;
+    new (): HTMLPageNeighborhoodsElement;
   };
 
   interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
@@ -848,7 +884,9 @@ declare global {
     'mobile-filter-menu': HTMLMobileFilterMenuElement;
     'move-in-date-filter': HTMLMoveInDateFilterElement;
     'neighborhood-card': HTMLNeighborhoodCardElement;
+    'neighborhood-map': HTMLNeighborhoodMapElement;
     'neighborhood-slider': HTMLNeighborhoodSliderElement;
+    'neighborhood-tags': HTMLNeighborhoodTagsElement;
     'owner-global-form': HTMLOwnerGlobalFormElement;
     'page-404': HTMLPage404Element;
     'page-admin': HTMLPageAdminElement;
@@ -863,6 +901,8 @@ declare global {
     'page-listing-image-modal': HTMLPageListingImageModalElement;
     'page-listing-image-slider': HTMLPageListingImageSliderElement;
     'page-login': HTMLPageLoginElement;
+    'page-neighborhood': HTMLPageNeighborhoodElement;
+    'page-neighborhoods': HTMLPageNeighborhoodsElement;
     'page-search': HTMLPageSearchElement;
     'page-wishlist': HTMLPageWishlistElement;
     'price-filter': HTMLPriceFilterElement;
@@ -1063,7 +1103,13 @@ declare namespace LocalJSX {
   interface NeighborhoodCard extends JSXBase.HTMLAttributes<HTMLNeighborhoodCardElement> {
     'item'?: any;
   }
+  interface NeighborhoodMap extends JSXBase.HTMLAttributes<HTMLNeighborhoodMapElement> {
+    'item': any;
+  }
   interface NeighborhoodSlider extends JSXBase.HTMLAttributes<HTMLNeighborhoodSliderElement> {
+    'items'?: any[];
+  }
+  interface NeighborhoodTags extends JSXBase.HTMLAttributes<HTMLNeighborhoodTagsElement> {
     'items'?: any[];
   }
   interface OwnerGlobalForm extends JSXBase.HTMLAttributes<HTMLOwnerGlobalFormElement> {}
@@ -1101,6 +1147,12 @@ declare namespace LocalJSX {
     'item': any;
   }
   interface PageLogin extends JSXBase.HTMLAttributes<HTMLPageLoginElement> {}
+  interface PageNeighborhood extends JSXBase.HTMLAttributes<HTMLPageNeighborhoodElement> {
+    'neighborhoodId'?: number;
+    'neighborhoodName'?: string;
+    'prefetching'?: boolean;
+  }
+  interface PageNeighborhoods extends JSXBase.HTMLAttributes<HTMLPageNeighborhoodsElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
@@ -1220,7 +1272,9 @@ declare namespace LocalJSX {
     'mobile-filter-menu': MobileFilterMenu;
     'move-in-date-filter': MoveInDateFilter;
     'neighborhood-card': NeighborhoodCard;
+    'neighborhood-map': NeighborhoodMap;
     'neighborhood-slider': NeighborhoodSlider;
+    'neighborhood-tags': NeighborhoodTags;
     'owner-global-form': OwnerGlobalForm;
     'page-404': Page404;
     'page-admin': PageAdmin;
@@ -1235,6 +1289,8 @@ declare namespace LocalJSX {
     'page-listing-image-modal': PageListingImageModal;
     'page-listing-image-slider': PageListingImageSlider;
     'page-login': PageLogin;
+    'page-neighborhood': PageNeighborhood;
+    'page-neighborhoods': PageNeighborhoods;
     'page-search': PageSearch;
     'page-wishlist': PageWishlist;
     'price-filter': PriceFilter;

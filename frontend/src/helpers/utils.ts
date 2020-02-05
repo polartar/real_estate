@@ -67,3 +67,11 @@ export function arrayShuffle(array) {
 
     return array;
 }
+
+export function round(value, decimals) {
+  const exponentNum: any = (value + 'e' + decimals);
+
+  // eg. Number(Math.round(1.005+'e2')+'e-2');
+  // round(1.005, 2) = 1.01
+  return Number(Math.round(exponentNum) + 'e-' + decimals);
+}

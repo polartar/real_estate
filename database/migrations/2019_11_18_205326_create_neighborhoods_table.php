@@ -18,11 +18,18 @@ class CreateNeighborhoodsTable extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->bigInteger('region_id');
+            $table->boolean('is_featured')->default(false);
+            $table->string('marketing_neighborhood')->nullable();
             $table->longText('description')->nullable();
             $table->string('image')->nullable();
-            $table->longText('live')->nullable();
-            $table->longText('play')->nullable();
+            $table->longText('experience')->nullable();
+            $table->longText('eat')->nullable();
+            $table->longText('drink')->nullable();
             $table->longText('shop')->nullable();
+            $table->longText('play')->nullable();
+            $table->longText('explore')->nullable();
+            $table->longText('life')->nullable();
+            $table->json('tags')->nullable();
             $table->json('perimeter_coordinates');
         });
     }
