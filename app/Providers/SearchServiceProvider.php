@@ -50,14 +50,14 @@ class SearchServiceProvider extends ServiceProvider
             break;
 
             case 'apartmentsByNeighborhood':
-                $results = Cache::remember('search-apartmentsByNeighborhood-' . $params['id'], 1, function() use ($params) {
+                $results = Cache::remember('search-apartmentsByNeighborhood-' . $params['id'], 600, function() use ($params) {
                     $neighborhood = Neighborhood::findOrFail($params['id']);
                     return $neighborhood->apartments()->take(16)->get();
-                }); 
+                });
             break;
 
             case 'nearbyApts':
-                $results = Cache::remember('search-nearbyApts-' . $params['id'], 1, function() use ($params) {
+                $results = Cache::remember('search-nearbyApts-' . $params['id'], 600, function() use ($params) {
                     $apt = Apartment::findOrFail($params['id']);
                     $distance = 5;
 
