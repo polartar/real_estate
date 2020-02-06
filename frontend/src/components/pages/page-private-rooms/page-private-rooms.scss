@@ -40,7 +40,7 @@
       height: 320px;
     }
 
-    @include for-size(desktop-up) {
+    @include for-size(tablet-portrait-up) {
       height: 640px;
     }
 
@@ -50,7 +50,7 @@
       left: 22px;
       max-width: 740px;
 
-      @include for-size(desktop-up) {
+      @include for-size(tablet-portrait-up) {
         bottom: 4rem;
         left: 3rem;
       }
@@ -59,7 +59,7 @@
         color: white;
         font-size: $font-size * 2;
 
-        @include for-size(desktop-up) {
+        @include for-size(tablet-portrait-up) {
           font-size: $font-size-lg * 2;
         }
       }
@@ -89,11 +89,14 @@
     flex-direction: column;
     padding-top: 52px;
 
-    @include for-size('desktop-up') {
+    @include for-size('tablet-portrait-up') {
       flex-direction: row-reverse;
       align-items: top;
+      padding-top: 60px;
+    }
+
+    @include for-size('desktop-up') {
       padding-top: 124px;
-      
     }
 
     .rooms {
@@ -103,6 +106,11 @@
       width: 100%;
 
       &> div {
+        @include for-size(tablet-portrait-up) {
+          max-width: 500px;
+          margin-left: auto;
+        }
+
         @include for-size(desktop-up) {
           max-width: 655px;
           margin-left: auto;
@@ -125,11 +133,15 @@
         position: relative;
         width: 100%;
         
+        @include for-size(tablet-portrait-up) {
+          margin-bottom: 0;
+          padding-right: 40px;
+        
+        }
+
         @include for-size(desktop-up) {
-          
           margin-bottom: 0;
           padding-left: 108px;
-  
         }
         
       }
@@ -138,9 +150,13 @@
     .room-stats-wrapper {
         padding-top: 92px;
 
-        @include for-size(desktop-up) {
-           padding-top: 90px;
+        @include for-size(tablet-portrait-up) {
+           padding-top: 60px;
         }
+
+        @include for-size(desktop-up) {
+          padding-top: 181px;
+       }
     }
 
     .room-stats {
@@ -148,24 +164,37 @@
         justify-content: space-between;
         
 
-        @include for-size('desktop-up') {
+        @include for-size('tablet-portrait-up') {
             display: flex;
-            padding-left: 108px;
+            padding-left: 20px;
         }
+
+        @include for-size('desktop-up') {
+          display: flex;
+          padding-left: 108px;
+      }
 
         h3 {
             font-size: 24px;
             text-transform: none;
             font-weight: bold;
         }
+
+        &.bottom {
+            
+            @include for-size('tablet-portrait-up') {
+              padding-top: 90px;
+              padding-bottom: 124px;
+          }
+        }
     }
 
     .room-stats .col {
         width: 307px;
-        height: 222px;
 
-        @include for-size('desktop-up') {
+        @include for-size('tablet-portrait-up') {
             width: 32%;
+            height: 200px;
         }
 
         img {
@@ -174,6 +203,8 @@
         }
     }
 
+  
+
     .testimonials {
         width: 100%;
         height: 825px;
@@ -181,7 +212,7 @@
         color: white;
         text-align: center;
 
-        @include for-size('desktop-up') {
+        @include for-size('tablet-portrait-up') {
             height: 632px;
         }
 
@@ -193,15 +224,24 @@
             line-height: 1.67;
             width: 312px;
 
-            @include for-size('desktop-up') {
-                padding-left: 224px;
-                padding-right: 223px;
-                padding-top: 221px;
+            @include for-size('tablet-portrait-up') {
+                padding-top: 120px;
+                margin: auto;
                 font-size: 32px;
                 font-weight: 600;
                 line-height: 1.25;
-                width: 100%;
+                width: 400px;
             }
+
+            @include for-size('desktop-up') {
+              padding-left: 224px;
+              padding-right: 223px;
+              padding-top: 221px;
+              font-size: 32px;
+              font-weight: 600;
+              line-height: 1.25;
+              width: 100%;
+          }
         }
 
         .author {
@@ -209,7 +249,7 @@
             font-size: 20px;
             font-weight: normal;
 
-            @include for-size('desktop-up') {
+            @include for-size('tablet-portrait-up') {
                padding-top: 24px;
             }
         }
@@ -219,9 +259,13 @@
             padding-top: 76px;
             display: inline-block;
 
-            @include for-size('desktop-up') {
-                padding-top: 148px;
+            @include for-size('tablet-portrait-up') {
+                padding-top: 80px;
             }
+
+            @include for-size('desktop-up') {
+              padding-top: 148px;
+          }
             
         }
     
@@ -240,8 +284,13 @@
         margin: auto;
         text-align: center;
 
-        @include for-size('desktop-up') {
+        @include for-size('tablet-portrait-up') {
             max-width: 676px;
+            padding-top: 60px;
+         }
+
+         @include for-size('desktop-up') {
+            padding-top: 80px;
          }
         
 
@@ -257,7 +306,7 @@
         .question {
             padding-bottom: 32px;
 
-            @include for-size('desktop-up') {
+            @include for-size('tablet-portrait-up') {
                 margin: auto;
                 width: 506px;
              }
@@ -285,11 +334,154 @@
     
     }
 
+      
+  .find-more-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+
+    @include for-size(tablet-portrait-up) {
+      margin: 60px 20px 90px;
+      flex-direction: row;
+    }
+
+    @include for-size(desktop-up) {
+      margin: 177px 118px 183px;
+      flex-direction: row;
+    }
+    
+    .col {
+      flex: 1;
+      text-align: center;
+
+
+      @include for-size(tablet-portrait-up) {
+        text-align: left;
+        margin-bottom: 0px;
+      }
+
+      img {
+        float: right;
+        margin-bottom: 52px;
+
+        @include for-size(tablet-portrait-up) {
+            margin-bottom: 0px;
+            width: 90%;
+        }
+
+        @include for-size(desktop-up) {
+          width: 100%;
+      }
+      }
+    }
+
+    .last {
+      margin-bottom: 96px;
+
+      @include for-size(tablet-portrait-up) {
+        margin-bottom: 0px;
+      }
+    }
+
+  }
+
+  .listing-list .show-all  {
+    display: none;
+  }
+
+  .reasons-about-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    padding-bottom: 48px;
+    
+    @include for-size('desktop-up') {
+      flex-direction: row-reverse;
+      align-items: top; 
+      padding-left: 108px;
+      padding-right: 101px;     
+    }
+
+
+    .reasons {
+      display: flex;
+      flex-grow: 1;
+      width: 100%;
+
+      &> div {
+        @include for-size(desktop-up) {
+          max-width: 655px;
+          margin-left: auto;
+        }
+      }
+
+      h2 {
+        margin: 0;
+        padding-bottom: 16px;
+        font-family: 'Montserrat-Bold', sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      p {
+        margin: 0;
+        padding-bottom: 16px;
+        line-height: 24px;
+
+        @include for-size(tablet-desktop-up) {
+          width: 100%;
+        }
+      }
+
+    }
+
+    .image {
+        position: relative;
+        margin-bottom: 27px;
+
+        @include for-size('tablet-desktop-up') {
+          margin-bottom: 0;
+        }
+
+        img {
+          max-width: 424px;
+        }
+        
+        
+      }
+  }
+
+  .learn-more {
+    display: block;
+    overflow: hidden;
+    margin: 1em 0;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center;
+
+    @include for-size('desktop-up') {
+      display: flex;
+      text-align: left;
+      padding-left: 108px;
+      padding-right: 101px;
+    }
+
+  }
+
+  #learn-more-wrapper {
+    > div {
+        flex: 1;
+    }
+  }
 
   .predefined-search {
     padding-top: 0;
     text-align: center;
     padding-top: 60px;
+
+    @include for-size(tablet-portrait-up) {
+      padding-top: 60px;
+    }
 
     @include for-size(desktop-up) {
       padding-top: 119px;
@@ -299,7 +491,7 @@
       margin: 0;
       padding: 15px 0px 15px;
 
-      @include for-size(desktop-up) {
+      @include for-size(tablet-portrait-up) {
         margin-bottom: 40px;
       }
     }

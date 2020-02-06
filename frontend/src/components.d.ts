@@ -243,6 +243,12 @@ export namespace Components {
     'item': any;
   }
   interface PageLogin {}
+  interface PageNeighborhood {
+    'neighborhoodId': number;
+    'neighborhoodName': string;
+    'prefetching': boolean;
+  }
+  interface PageNeighborhoods {}
   interface PagePrivateRooms {
     'prefetching': boolean;
   }
@@ -745,6 +751,12 @@ declare global {
     new (): HTMLPageNeighborhoodsElement;
   };
 
+  interface HTMLPagePrivateRoomsElement extends Components.PagePrivateRooms, HTMLStencilElement {}
+  var HTMLPagePrivateRoomsElement: {
+    prototype: HTMLPagePrivateRoomsElement;
+    new (): HTMLPagePrivateRoomsElement;
+  };
+
   interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
   var HTMLPageSearchElement: {
     prototype: HTMLPageSearchElement;
@@ -900,6 +912,7 @@ declare global {
     'page-login': HTMLPageLoginElement;
     'page-neighborhood': HTMLPageNeighborhoodElement;
     'page-neighborhoods': HTMLPageNeighborhoodsElement;
+    'page-private-rooms': HTMLPagePrivateRoomsElement;
     'page-search': HTMLPageSearchElement;
     'page-wishlist': HTMLPageWishlistElement;
     'price-filter': HTMLPriceFilterElement;
@@ -1150,6 +1163,9 @@ declare namespace LocalJSX {
     'prefetching'?: boolean;
   }
   interface PageNeighborhoods extends JSXBase.HTMLAttributes<HTMLPageNeighborhoodsElement> {}
+  interface PagePrivateRooms extends JSXBase.HTMLAttributes<HTMLPagePrivateRoomsElement> {
+    'prefetching'?: boolean;
+  }
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
@@ -1288,6 +1304,7 @@ declare namespace LocalJSX {
     'page-login': PageLogin;
     'page-neighborhood': PageNeighborhood;
     'page-neighborhoods': PageNeighborhoods;
+    'page-private-rooms': PagePrivateRooms;
     'page-search': PageSearch;
     'page-wishlist': PageWishlist;
     'price-filter': PriceFilter;

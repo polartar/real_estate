@@ -1,11 +1,10 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Build } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../../store/actions/search";
 import { searchFilterSelectors } from '../../../store/selectors/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 import { getNamedSearch } from '../../../store/actions/search';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
-
 
 @Component({
   tag: 'page-private-rooms',
@@ -19,15 +18,28 @@ export class PagePrivateRooms {
     @State() isMobile: boolean = true;
     @State() displayFilter: boolean;
     @State() apartmentsList: any[] = [];
+    @State() privateRoomList: any[] = [];
+    @State() neighborhoodsLoaded: boolean = false;
+    @State() nearbyApts: any[] = [];
+    
     toggleSearchFilterDisplay: Action;
     getNamedSearch: Action;
-
-  
     neighborhoods: any[] = [];
     item: any = null;
-    @State() neighborhoodsLoaded: boolean = false;
+    
+    componentDidLoad() {
+      if (this.prefetching) {
+        return;
+      }
   
-    @State() nearbyApts: any[] = [];
+      if (Build.isBrowser) {
+        this.getNamedSearch('homePageInit')
+          .then(result => {
+            this.privateRoomList = result.privateRoomList;
+          })
+          .catch(e => console.log(e));
+      }
+    }
   
     componentWillLoad() {
       if (this.prefetching) {
@@ -153,7 +165,7 @@ export class PagePrivateRooms {
                     </div>
                     <div class="col">
                         <img src ="/assets/images/private-rooms/wifi.svg" />
-                        <h3>Wifi &nbsp; Cable Access</h3>
+                        <h3>Wifi &amp; Cable Access</h3>
                         <p>HD cable TV, high-speed Internet and general utilities are included at a low-cost.</p>
                     </div>
                 </div>
@@ -209,6 +221,241 @@ export class PagePrivateRooms {
                     Frequently Asked Questions
                 </ion-button>
             </div>
+
+            {
+            this.privateRoomList.length && this.neighborhoodsLoaded ?
+            <div class="predefined-search">
+
+              {(this.isMobile) ? <listing-slider items={this.privateRoomList} /> : <listing-list items={this.privateRoomList} />}
+            </div>
+            : null
+          }
+
+          <div class="find-more-wrapper">
+            <div class="col">
+              <h2>Find More Options</h2>
+              <p>
+                Browse all our furnished apartments for rent in New York City and select<br /> the right apartment you are looking for, whether it's a room for rent, or a<br/> privated furnished rental.
+              </p>
+
+              <ion-button aria-label="Speak to an expert" class="call last">
+                    Search Now
+              </ion-button>
+            </div>
+            <div class="col">
+              <img src ="/assets/images/neighborhoods/findmore.jpg" />
+            </div>
+          </div>
+
+          <div class="reasons-about-wrapper">
+                <div class="reasons">
+                    <div>
+                        <h2>Rent a Room in New York City</h2>
+                        <p>
+                          You may be one of many who are looking for a New York sublet instead of a long term apartment. The price of your short term rental will depend on the neighborhood you choose to dwell in. The average rent in Manhattan will cost you around $4041 vs. other boroughs like Brooklyn and Queens whose averages range from $2194-2675.
+                        </p>
+        
+                        <p>
+                          To lower your budget, you may also want to room share in New York. Finding a room for rent with fellow professionals may be your best bet for temporary living in the concrete jungle.
+                        </p>
+                    </div>
+                </div>
+  
+                <div class="image">
+                    <img src ="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+                </div>
+            </div>
+
+            <div class="reasons-about-wrapper">
+                <div class="reasons">
+                    <div>
+                        <h2>It is more affordable to rent private rooms in New York.</h2>
+                        <p>
+                          You need somewhere to call home but you might not spend that much time there.   Why pay thousands of dollars a month for somewhere to store your wardrobe, sleep and shower? As a roommate, you'll split the cost of the apartment with others, bringing down the amount you spend on rent and leaving you with more dollars in your pocket to spend on actually living. Not only will your monthly outgoings be lower, but you'll also have less to lay out in the first place in the shape of a security deposit, which makes it easier to secure a room for rent in nyc  than an apartment rental. Utilities are generally cheaper when you split the cost with roommates too.
+                        </p>
+                    </div>
+                </div>
+  
+                <div class="image">
+                    <img src ="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+                </div>
+            </div>
+
+            <div class="reasons-about-wrapper">
+                <div class="reasons">
+                    <div>
+                        <h2>Renting a room is the best option when you just move to New York.</h2>
+                        <p>
+                        If you're new to New York  city, or don't have a ready-made network of friends to socialize with, finding a room for rent  is the way to go.   Living with roommates gives you an instant connection, plugging you into the life of the city. Not everybody socializes with their roommates but many do and carry on being friends for years afterwards.
+Even if you've already got a social life you might not want to come home to a silent and empty apartment. If you've got roommates you've got people to share problems, news, recipes, cool hangouts and the latest movies with. And, if you want some space, you still have your own room to retreat to.
+                        </p>
+        
+        
+                    </div>
+                </div>
+  
+                <div class="image">
+                    <img src ="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+                </div>
+            </div>
+
+            <div class="reasons-about-wrapper">
+                <div class="reasons">
+                    <div>
+                        <h2>Co-living, the new lifestyle </h2>
+                        <p>
+                        It used to be the case that sharing was only something students and kids fresh out of college would contemplate. Nowadays the world has changed and professionals into their forties and above are happily renting together. Going into debt to buy or rent on your own isn't a sensible lifestyle choice; more and more people are choosing to share resources, from cars to jobs, so why not housing too?
+                        </p>
+                    </div>
+                </div>
+  
+                <div class="image">
+                    <img src ="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+                </div>
+            </div>
+
+            <div class="reasons-about-wrapper">
+                <div class="reasons">
+                    <div>
+                        <h2>Avoiding arguments with your roommates</h2>
+                        <p>
+                        APT212 New York City  Corporate Housing offers fully furnished apartments which are move-in ready, affordable and convenient.  As one of the largest furnished corporate housing providers, we are positioned to assist your company needs nationwide. Each apartment has a full array of furniture, housewares, linens and appliances, technology, and all utilities are included in our low daily rates.
+                        </p>
+                    </div>
+                </div>
+  
+                <div class="image">
+                    <img src ="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+                </div>
+            </div>
+
+            <div class="reasons-about-wrapper">
+                <div class="reasons">
+                    <div>
+                        <h2>3 main reasons roommates argue and how to avoid them</h2>
+                        <p>
+                        Here's a quick guide to avoiding arguments before they happen and dealing with them when they do
+The three main areas for disagreement are space, noise and money, so it pays to discuss these things in advance and work out if you can really live together.
+
+                        </p>
+      
+                    </div>
+                </div>
+  
+                <div class="image">
+                    <img src ="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+                </div>
+            </div>
+
+            <div class="reasons-about-wrapper">
+                <div class="reasons">
+                    <div>
+                        <h2>Space</h2>
+                        <p>
+                        You may have very little space to call your own in a shared apartment. Respecting other people's space is therefore key to getting along with your roommates. Don't go into your roommate's room without asking and be considerate and respectful in shared areas. Don't take up more space than you're entitled to - if there are three shelves in the refrigerator and three people sharing the apartment then the math is pretty simple!
+                        </p>
+        
+                        <p>
+                        Where you're sharing space you'll also have to come to an agreement over how clean you intend to keep your living areas, kitchen, bathroom etc. If you can't agree between you on how often to vacuum and whose responsibility it is to take out the trash, maybe you shouldn't be living together (or maybe you just need to hire a cleaner!)
+                        </p>
+                    </div>
+                </div>
+  
+                <div class="image">
+                    <img src ="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+                </div>
+            </div>
+
+            <div class="reasons-about-wrapper">
+                <div class="reasons">
+                    <div>
+                        <h2>Noise</h2>
+                        <p>
+                          Another major reason why roommates fall out with each other is noise. Check each other's schedules and try to work around them. If your roommate needs to get up early, they won't appreciate you having the TV turned way up loud into the early hours. And if you're up early on a weekend, full of energy from your jog, your snoozing roommate might not appreciate it if you decide to start vacuuming the apartment - however much it needed it.
+                        </p>
+        
+                        <p>
+                          We're not saying you need to be super quiet every minute of the day, but do think before crashing around and waking up your roommates.
+                        </p>
+                    </div>
+                </div>
+  
+                <div class="image">
+                    <img src ="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+                </div>
+            </div>
+
+            <div class="reasons-about-wrapper">
+                <div class="reasons">
+                    <div>
+                        <h2>Money</h2>
+                        <p>
+                        Everything else seems to boil down to money. Not dealing with money issues before they escalate causes major headaches between roommates, so it's best to let people know if you've got a problem paying your share of the utilities or rent. If you can, pay up promptly - it's uncomfortable for your roommates to keep reminding you to hand over the cash you owe them.
+                        </p>
+      
+                    </div>
+                </div>
+  
+                <div class="image">
+                    <img src ="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+                </div>
+            </div>
+
+            <div class="reasons-about-wrapper">
+                <div class="reasons">
+                    <div>
+                        <h2>Communication is key</h2>
+                        <p>
+                        Most problems you'll run into when renting a room for rent and  sharing with people can be avoided by communicating. If someone is annoying you by cranking up the volume, failing to do their share of the chores or not paying their bills then it's always best to bring it up before you reach boiling point. Sit down for a coffee and talk through things calmly rather than wait till the last minute and lose your temper. As soon as you start shouting or swearing at someone you've lost all hope of resolving whatever the original problem was.
+                        </p>
+                    </div>
+                </div>
+  
+                <div class="image">
+                    <img src ="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+                </div>
+            </div>
+
+            <div class="reasons-about-wrapper">
+                <div class="reasons">
+                    <div>
+                        <h2>Make yourself at home</h2>
+                        <p>
+                          Having a fully furnished apartment means that you don’t have to buy new furniture and you don’t have to move your belongings from one city to another. If you are staying in the apartment for a longer period of time, you might want to redecorate your new home to really feel at home -- there are a few tricks you can use to make quick changes without having to do any serious shopping.
+                          Bedding: buy yourself a generous set of bedding. Nice, cozy sheets and an extra pillow can achieve wonders when trying to make the apartment homey.
+                          Plants: small house plants are a great and inexpensive way to add a splash of color to your surroundings and an easy way to provide extra oxygen to increase productivity.
+                          Scents: Use room sprays, candles, or your favorite laundry detergent to make your apartment smell like home. Adding familiar scents will people feel more at ease in a new place.
+                          </p>
+                    </div>
+                </div>
+  
+                <div class="image">
+                    <img src ="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+                </div>
+            </div>
+
+            <div id='learn-more-wrapper' class="learn-more">
+              <div class="left">
+                <div class="image">
+                  <img src ="/assets/images/private-rooms/learn-more-about-apt-212.jpg" />
+                </div>
+              </div>
+              <div class="right">
+              <h2>LEARN MORE ABOUT APT212</h2>
+                <p>
+                  APT212 is a marketplace for furnished apartments , sublets and legal short term rentals located across New York City's most prestigious neighborhoods 
+                </p>
+                <p>
+                  We offer a fresh solution to finding the perfect New York temporary home away from home.
+                </p>
+                <ion-button aria-label="Speak to an expert" class="call">
+                    What is APT212?
+              </ion-button>
+              </div>
+            </div>
+
+          
+
 
           </section>
   
