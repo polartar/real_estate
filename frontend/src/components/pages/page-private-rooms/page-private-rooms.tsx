@@ -112,7 +112,7 @@ export class PagePrivateRooms {
               {subtitle}
               {search}
             </div> : ''
-            
+
           </div>
 
           <div class="rooms-about-wrapper">
@@ -150,6 +150,7 @@ export class PagePrivateRooms {
                 <img src="/assets/images/private-rooms/moveinready.svg" />
                 <h3>Move in Ready</h3>
                 <p>All apartments and bedrooms are fully furnished. Communal space has dining and lounging areas, laptop-friendly workspace, and an equipped kitchen.</p>
+                <div class="green-rectangle" />
               </div>
               <div class="col">
                 <img src="/assets/images/private-rooms/desirable-locations.png" />

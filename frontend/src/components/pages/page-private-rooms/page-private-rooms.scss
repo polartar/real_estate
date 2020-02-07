@@ -187,6 +187,17 @@
               padding-bottom: 124px;
           }
         }
+
+        .green-rectangle {
+          width:298px;
+          height:4px;
+          background:#057365;
+          margin-bottom: 20px;
+
+          @include for-size('tablet-portrait-up') {
+            margin-bottom: 0;
+        }
+      }
     }
 
     .room-stats .col {
@@ -326,10 +337,10 @@
                 width:172px;
                 height:2px;
                 background:#d8d8d8;
-                
                 margin: auto;
-                
             }
+
+           
         }
     
     }
