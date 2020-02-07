@@ -184,15 +184,7 @@ export class PagePrivateRooms {
             </div>
           </div>
 
-          <div class="testimonials">
-            <div class="quote">"I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU."</div>
-            <div class="author">-Chris W.</div>
-            <div class="nav">
-              <div class="circle" />
-              <div class="circle" />
-              <div class="circle" />
-            </div>
-          </div>
+          <testimonials-slider />
 
           <div class="faq">
             <h1>Frequently Asked Questions about rooms for rent in nyc</h1>

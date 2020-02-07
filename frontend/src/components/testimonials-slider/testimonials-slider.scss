@@ -1,0 +1,158 @@
+@import '../../styles/mixins';
+@import "../../../node_modules/@glidejs/glide/src/assets/sass/glide.core";
+
+// Optional Theme Stylesheet
+@import "../../../node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+
+@mixin glideArrow {
+  display: block;
+  position: absolute;
+  background-color: rgba(0,0,0,0.7);
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  width: 20px;
+  height: 24px;
+  padding: 0;
+  z-index: 20;
+
+  top: 50%;
+
+  @include for-size(tablet-landscape-up) {
+    width: 40px;
+    height: 56px;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+$arrow-left-left: -10px;
+$arrow-right-right: -10px;
+
+.testimonials-slider.glide {
+
+  .glide__track {
+    transform: translateZ(0px);
+    transform: translate3d(0,0,0);
+    perspective: 1000;
+  }
+
+  .glide__arrow {
+    @include glideArrow();
+  }
+
+  .glide__arrow--right {
+    right: $arrow-right-right;
+
+    @include for-size(tablet-landscape-up) {
+      right: $arrow-right-right * 2;
+    }
+  }
+
+  .glide__arrow--left {
+    left: $arrow-left-left;
+
+    @include for-size(tablet-landscape-up) {
+      left: $arrow-left-left * 2;
+    }
+  }
+
+  .left-arrow-click-jacker {
+    @include glideArrow();
+
+    left: $arrow-left-left;
+    opacity: 0;
+
+    @include for-size(tablet-landscape-up) {
+      left: $arrow-left-left * 2;
+    }
+  }
+
+  .right-arrow-click-jacker {
+    @include glideArrow();
+
+    right: $arrow-right-right;
+    opacity: 0;
+
+    @include for-size(tablet-landscape-up) {
+      right: $arrow-right-right * 2;
+    }
+  }
+
+  
+    width: 100%;
+    height: 825px;
+    background-color: black;
+    color: white;
+    text-align: center;
+
+        @include for-size('tablet-portrait-up') {
+            height: 632px;
+        }
+
+        .quote {
+            padding-top: 264px;
+            padding-left: 32px;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.67;
+            width: 312px;
+
+            @include for-size('tablet-portrait-up') {
+                padding-top: 120px;
+                margin: auto;
+                font-size: 32px;
+                font-weight: 600;
+                line-height: 1.25;
+                width: 400px;
+            }
+
+            @include for-size('desktop-up') {
+            padding-left: 224px;
+            padding-right: 223px;
+            padding-top: 221px;
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 1.25;
+            width: 100%;
+        }
+        }
+
+        .author {
+            padding-top: 39px;
+            font-size: 20px;
+            font-weight: normal;
+
+            @include for-size('tablet-portrait-up') {
+            padding-top: 24px;
+            }
+        }
+
+        .nav {
+
+            padding-top: 76px;
+            display: inline-block;
+
+            @include for-size('tablet-portrait-up') {
+                padding-top: 80px;
+            }
+
+            @include for-size('desktop-up') {
+            padding-top: 148px;
+        }
+            
+        }
+
+        .circle {
+            background: #585858;
+            clip-path: circle(50%);
+            height: 12px;
+            width: 12px;
+            float: left;
+            margin-left: 12px;
+        }
+    
+}
