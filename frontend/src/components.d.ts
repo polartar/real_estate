@@ -299,6 +299,9 @@ export namespace Components {
     'size': number;
     'stars': number;
   }
+  interface TestimonialsSlider {
+    'items': any[];
+  }
   interface WishlistCard {
     'item': any;
   }
@@ -829,6 +832,12 @@ declare global {
     new (): HTMLStarRatingElement;
   };
 
+  interface HTMLTestimonialsSliderElement extends Components.TestimonialsSlider, HTMLStencilElement {}
+  var HTMLTestimonialsSliderElement: {
+    prototype: HTMLTestimonialsSliderElement;
+    new (): HTMLTestimonialsSliderElement;
+  };
+
   interface HTMLWishlistCardElement extends Components.WishlistCard, HTMLStencilElement {}
   var HTMLWishlistCardElement: {
     prototype: HTMLWishlistCardElement;
@@ -925,6 +934,7 @@ declare global {
     'seasonal-rates': HTMLSeasonalRatesElement;
     'share-listing': HTMLShareListingElement;
     'star-rating': HTMLStarRatingElement;
+    'testimonials-slider': HTMLTestimonialsSliderElement;
     'wishlist-card': HTMLWishlistCardElement;
     'youtube-video': HTMLYoutubeVideoElement;
   }
@@ -1210,6 +1220,9 @@ declare namespace LocalJSX {
     'size'?: number;
     'stars'?: number;
   }
+  interface TestimonialsSlider extends JSXBase.HTMLAttributes<HTMLTestimonialsSliderElement> {
+    'items'?: any[];
+  }
   interface WishlistCard extends JSXBase.HTMLAttributes<HTMLWishlistCardElement> {
     'item': any;
   }
@@ -1317,6 +1330,7 @@ declare namespace LocalJSX {
     'seasonal-rates': SeasonalRates;
     'share-listing': ShareListing;
     'star-rating': StarRating;
+    'testimonials-slider': TestimonialsSlider;
     'wishlist-card': WishlistCard;
     'youtube-video': YoutubeVideo;
   }

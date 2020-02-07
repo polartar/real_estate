@@ -111,7 +111,7 @@ export class PagePrivateRooms {
               {title}
               {subtitle}
               {search}
-            </div> : ''
+            </div>
 
           </div>
 

@@ -2,7 +2,6 @@ import { Component, h, Prop } from '@stencil/core';
 import { generateId } from '../../helpers/utils';
 import Glide from '@glidejs/glide';
 
-
 @Component({
   tag: 'testimonials-slider',
   styleUrl: 'testimonials-slider.scss'
@@ -33,22 +32,7 @@ export class TestimonialsSlider {
     this.glide = new Glide('.' + this.sliderClass, {
       type: 'slider',
       perView: 1,
-      gap:40,
       rewind: false,
-      breakpoints: {
-        1024: {
-          gap: 30
-        },
-        768: {
-          gap: 10
-        },
-        600: {
-          gap: 10
-        },
-        420: {
-          gap: 10
-        }
-      }
     });
 
     this.glide.mount();
@@ -71,10 +55,10 @@ export class TestimonialsSlider {
             </li>
             <li class="glide__slide second">
                 <div class="quote">"I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU."</div>
-                <div class="author">-Chris W.</div></li>
+                <div class="author">-Mike H.</div></li>
             <li class="glide__slide third">
                 <div class="quote">"I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU."</div>
-                <div class="author">-Chris W.</div>
+                <div class="author">-Hester K.</div>
             </li>
           </ul>
         </div>
