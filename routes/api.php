@@ -29,6 +29,7 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
     // Apartments
     Route::get('apartments/list', 'ApartmentController@getList');
     Route::get('apartments/{apartment}', 'ApartmentController@show');
+    Route::get('apartments/booking_details/{apartment}', 'ApartmentController@bookingDetails');
 
     // Neighborhoods
     Route::get('neighborhoods/fromPoint/{lng}/{lat}', 'NeighborhoodsController@neighborhoodsFromPoint');
@@ -63,4 +64,9 @@ Route::group(['middleware' => ['cors', 'auth:api']], function() {
 
     // Misc
     Route::get('neighborhoods/geocode/{address}', 'NeighborhoodsController@geocodeAddress');
+});
+
+Route::fallback(function(){
+    return response()->json([
+        'message' => 'Page Not Found'], 404);
 });

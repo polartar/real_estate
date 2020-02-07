@@ -197,6 +197,15 @@ class ApartmentController extends Controller
         return Apartment::find($ids);
     }
 
+    public function bookingDetails(Request $request, Apartment $apartment) {
+        return $apartment->getBookingDetails($request->checkindate, $request->checkoutdate, $request->guests);
+        try {
+            return $apartment->getBookingDetails($request->checkindate, $request->checkoutdate, $request->guests);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
     /**
      * Get a pdf of the booking details
      */

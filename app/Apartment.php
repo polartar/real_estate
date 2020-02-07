@@ -2,7 +2,10 @@
 
 namespace App;
 
+use App\Providers\ApartmentServiceProvider;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -190,6 +193,230 @@ class Apartment extends Model
             $this->rate = $new_rate;
             $this->save();
         }
+    }
+
+    /**
+     * @return Array - booking details
+     * @throws \Exception
+     */
+    public function getBookingDetails($checkindate, $checkoutdate, $guests) {
+        $date_output_format = 'n/j/Y';
+
+        // validate params
+        try {
+            $checkin = new Carbon($checkindate);
+            $checkout = new Carbon($checkoutdate);
+        }
+        catch (\Exception $e) {
+            throw new Exception('Invalid checkin/checkout date');
+        }
+
+        $total_days = $checkin->diffInDays($checkout) + 1;
+
+        if ($total_days < 30) {
+            throw new Exception('Minimum stay is 30 days');
+        }
+
+        if ($checkin->lessThan($this->available_date)) {
+            throw new Exception("Apartment is not available until {$this->available_date->format($date_output_format)}");
+        }
+
+        $guests = (int) $guests;
+        if ($guests <= 0) {
+            throw new Exception('There must be at least 1 guest');
+        }
+
+        // rates stored with months indexed at 0, js style
+        $currentRate = $this->rates->firstWhere('month', $checkin->format('n') - 1);
+        $defaultRate = $this->rates->firstWhere('month', 'default');
+        if (!$currentRate || !$defaultRate) {
+            throw new Exception('Rates not set for this apartment');
+        }
+
+        $stay_period = new CarbonPeriod($checkin, $checkout);
+
+        // make sure the term doesn't overlap any blocked dates
+        if ($this->block_dates->count()) {
+            $this->block_dates->each(function($block) use ($stay_period, $date_output_format) {
+                $start = new Carbon($block->start);
+                $end = new Carbon($block->end);
+
+                $period = new CarbonPeriod($start, $end);
+
+                if ($period->overlaps($stay_period)) {
+                    throw new Exception("Apartment is unavailable between {$period->getStartDate()->format($date_output_format)} and {$period->getEndDate()->format($date_output_format)}");
+                }
+            });
+        }
+
+
+        // create a structure of years/months of the stay and the number of days stayed in that month
+        // eg.
+        // [
+        //     2021 => [
+        //         7 => 15,
+        //         8 => 31,
+        //         9 => 30,
+        //         10 => 8
+        //     ]
+        // ]
+
+        $billingPeriods = [];
+        foreach ($stay_period as $day) {
+            if (!isset($billingPeriods[$day->format('Y')][$day->format('n')])) {
+                $billingPeriods[$day->format('Y')][$day->format('n')] = 0;
+            }
+
+            $billingPeriods[$day->format('Y')][$day->format('n')]++;
+        }
+
+        // now go through and get the cost for each month
+        // as well as some counts
+        $rent = $months_count = $whole_months = $remainder_days = 0;
+
+        foreach ($billingPeriods as $year => $months) {
+            foreach ($months as $month => $days) {
+                $date = new Carbon("$year-$month-1");
+
+                // note - month stored indexed at 0
+                $month_rate = $this->rates->firstWhere('month', $month - 1)->monthly_rate;
+
+                // find the ratio of days/month
+                // eg if only staying 10/30 days then the rent is 0.33333 of the monthly rent
+                $month_ratio = $days / $date->daysInMonth;
+
+                $months_count += $month_ratio;
+
+                $rent += $month_rate * $month_ratio;
+
+                if ($month_ratio === 1) {
+                    $whole_months++;
+                }
+                else {
+                    $remainder_days += $days;
+                }
+            }
+        }
+
+        // if remainder days is more than 31, move that to a whole month
+        // prevents weird things like a stay of "3 months 34 days"
+        // when check in and check out are both mid-month
+        // change to "4 months 4 days"
+        if ($remainder_days > 30) {
+            $whole_months++;
+            $remainder_days -= 30;
+        }
+
+        $rent = round($rent, 2);
+        $total_tax = round($rent * ($defaultRate->tax_percent / 100), 2);
+        $service_fee_host = round($rent * ($currentRate->service_fee_host / 100), 2);
+        $service_fee_client = round($rent * ($currentRate->service_fee_client / 100), 2);
+
+        $total_rent = $rent + $service_fee_host;
+
+        $amortized_monthly_rent = round(($total_rent + $service_fee_host) / $months_count, 2);
+        $night_rate = round(($total_rent + $service_fee_host) / $total_days, 2);
+        $deposit = round($amortized_monthly_rent * ($currentRate->security_deposit_percent / 100), 2);
+
+        $background_checks = $this->getBackgroundCheckPrice($guests);
+
+        $utilities = round($this->monthly_utilities * $months_count, 2);
+
+        $total_cost = round($background_checks + $total_rent + $total_tax + $service_fee_client + $deposit + $utilities + $this->move_out_fee, 2);
+
+        // separate costs into the timeline
+        $due_to_reserve = $due_by_checkin = $future_payments = 0;
+        $due_to_reserve_settings = is_array($this->due_to_reserve) ? $this->due_to_reserve : [];
+        $due_by_checkin_settings = is_array($this->due_by_checkin) ? $this->due_by_checkin : [];
+
+        foreach ($due_to_reserve_settings as $setting) {
+            switch ($setting) {
+                case 'security_deposit':
+                    $due_to_reserve += $deposit;
+                break;
+
+                case 'service_fee':
+                    $due_to_reserve += $service_fee_client;
+                break;
+
+                case 'background_check':
+                    $due_to_reserve += $background_checks;
+                break;
+
+                case 'months_due_on_checkin':
+                    $due_to_reserve += $amortized_monthly_rent * $this->months_due_on_checkin;
+                break;
+
+                case 'days_due_on_checkin':
+                    $due_to_reserve += $night_rate * $this->days_due_on_checkin;
+                break;
+            }
+        }
+
+        foreach ($due_by_checkin_settings as $setting) {
+            // only count it if it wasn't previously added to reservation fee
+            if (in_array($setting, $due_to_reserve_settings)) {
+                continue;
+            }
+
+            switch ($setting) {
+                case 'security_deposit':
+                    $due_by_checkin += $deposit;
+                break;
+
+                case 'service_fee':
+                    $due_by_checkin += $service_fee_client;
+                break;
+
+                case 'background_check':
+                    $due_by_checkin += $background_checks;
+                break;
+
+                case 'months_due_on_checkin':
+                    $due_by_checkin += $amortized_monthly_rent * $this->months_due_on_checkin;
+                break;
+
+                case 'days_due_on_checkin':
+                    $due_by_checkin += $night_rate * $this->days_due_on_checkin;
+                break;
+            }
+        }
+
+        return [
+            'checkindate' => $checkindate,
+            'checkoutdate' => $checkoutdate,
+            'monthly_rent' => $amortized_monthly_rent,
+            'night_rate' => $night_rate,
+            'term' => [
+                'months' => $whole_months,
+                'days' => $remainder_days
+            ],
+            'guests' => $guests,
+            'background_checks' => $background_checks,
+            'rent' => $total_rent,
+            'tax' => $total_tax,
+            'utilities' => $utilities,
+            'service_fee' => $service_fee_client,
+            'deposit' => $deposit,
+            'move_out_fee' => $this->move_out_fee,
+            'total' => $total_cost,
+            'timeline' => [
+                'due_to_reserve' => $due_to_reserve,
+                'due_by_checkin' => $due_by_checkin,
+                'future_payments' => round($total_cost - $due_to_reserve - $due_by_checkin, 2),
+                'deposit_refund' => $deposit * -1
+            ]
+        ];
+    }
+
+    public function getBackgroundCheckPrice($guests) {
+        $rate = $this->rates->firstWhere('month', 'default');
+
+        if (!$rate) {
+            throw new Exception('No rates set for this apartment');
+        }
+
+        return round($rate->background_check_rate * (int) $guests, 2);
     }
 
     public static function extractAptAttributes($array) {

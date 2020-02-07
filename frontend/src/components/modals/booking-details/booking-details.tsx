@@ -87,7 +87,24 @@ export class BookingDetails {
     window.location = downloadURL;
   }
 
+  showAskQuestion() {
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'apt212-modal-booking-frame',
+      cssClass: 'ask-question-modal',
+      componentProps: {
+        component: 'ask-question',
+        componentProps: {
+          item: this.item
+        }
+      }
+    });
+
+    document.body.appendChild(modal);
+    return modal.present();
+  }
+
   render() {
+    console.log(formatDate(this.checkinDate, 'm/d/Y'), formatDate(this.checkoutDate, 'm/d/Y'));
     const neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
     const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
@@ -338,7 +355,7 @@ export class BookingDetails {
 
           <div class="action-buttons">
             <button aria-label="Book Now" class="button-dark block">Book Now</button>
-            <button aria-label="Ask a question" class="button-light outline block text-upper">Ask a question</button>
+            <button aria-label="Ask a question" class="button-light outline block text-upper" onClick={() => this.showAskQuestion()}>Ask a question</button>
           </div>
 
         </div>
