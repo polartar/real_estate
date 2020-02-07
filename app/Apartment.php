@@ -196,6 +196,10 @@ class Apartment extends Model
     }
 
     /**
+     * @param $checkindate - date: 'n/j/Y'
+     * @param $checkoutdate - date: 'n/j/Y'
+     * @param $guests int
+     *
      * @return Array - booking details
      * @throws \Exception
      */
@@ -383,6 +387,7 @@ class Apartment extends Model
         }
 
         return [
+            'id' => $this->id,
             'checkindate' => $checkindate,
             'checkoutdate' => $checkoutdate,
             'monthly_rent' => $amortized_monthly_rent,
@@ -403,6 +408,7 @@ class Apartment extends Model
             'timeline' => [
                 'due_to_reserve' => $due_to_reserve,
                 'due_by_checkin' => $due_by_checkin,
+                'due_by_checkin_date' => $checkin->sub('days', $this->duci_advance_payment_days)->format($date_output_format),
                 'future_payments' => round($total_cost - $due_to_reserve - $due_by_checkin, 2),
                 'deposit_refund' => $deposit * -1
             ]

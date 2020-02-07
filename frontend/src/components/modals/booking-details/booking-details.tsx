@@ -17,6 +17,7 @@ export class BookingDetails {
   @Prop({ context: "store" }) store: Store;
   @Element() el: HTMLElement;
   @Prop() item!: any;
+  @Prop() details: any;
 
   isMobile: boolean = true;
   checkinDate: Date;
@@ -82,7 +83,7 @@ export class BookingDetails {
 
   downloadPDF() {
     const apiURL = EnvironmentConfigService.getInstance().get('API_URL');
-    const downloadURL = `${apiURL}/pdf/booking-details/${this.item.id}?checkin=${formatDate(this.checkinDate, 'm/d/Y')}&checkout=${formatDate(this.checkoutDate, 'm/d/Y')}&guests=${this.guests}`;
+    const downloadURL = `${apiURL}/pdf/booking-details/${this.item.id}?checkindate=${formatDate(this.checkinDate, 'm/d/Y')}&checkoutdate=${formatDate(this.checkoutDate, 'm/d/Y')}&guests=${this.guests}`;
 
     window.location = downloadURL;
   }
@@ -104,7 +105,7 @@ export class BookingDetails {
   }
 
   render() {
-    console.log(formatDate(this.checkinDate, 'm/d/Y'), formatDate(this.checkoutDate, 'm/d/Y'));
+    console.log(this.details);
     const neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
     const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
@@ -112,21 +113,21 @@ export class BookingDetails {
     const bookingDetails = [
       {
         tooltip: 'Move in date.',
-        description: `Check In ${formatDate(this.checkinDate, 'm/d/y')}:`,
+        description: `Check In ${this.details.checkindate}:`,
         center: <img src="/assets/images/icons/arrow.svg" role="presentation" class="arrow-right" />,
-        value: `Check Out ${formatDate(this.checkoutDate, 'm/d/y')}`
+        value: `Check Out ${this.details.checkoutdate}`
       },
       {
         tooltip: 'Price of rent, per month.',
         description: 'Monthly Rent:',
         center: '',
-        value: formatMoney(this.item.rate) // @TODO - make this amortized...
+        value: formatMoney(this.details.monthly_rent)
       },
       {
         tooltip: 'Price per month, divided by the total amount of days in the month.',
         description: 'Night rate:',
         center: '',
-        value: formatMoney(400)
+        value: formatMoney(this.details.night_rate)
       },
       {
         tooltip: 'Length of your stay, from check-in to check-out.',
@@ -138,7 +139,7 @@ export class BookingDetails {
         tooltip: 'Total number of guests staying in the apartment',
         description: 'Number of guests:',
         center: '',
-        value: this.guests
+        value: this.details.guests
       }
     ];
 

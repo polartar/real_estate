@@ -206,14 +206,15 @@ export class PageListingBody {
     this.el.querySelector('.checkin-form').appendChild(popover);
   }
 
-  showBookingDetails() {
+  showBookingDetails(e) {
     const modal = Object.assign(document.createElement('ion-modal'), {
       component: 'apt212-modal-booking-frame',
       cssClass: 'booking-details-modal',
       componentProps: {
         component: 'booking-details',
         componentProps: {
-          item: this.item
+          item: this.item,
+          details: e.detail
         }
       }
     });
@@ -277,7 +278,7 @@ export class PageListingBody {
                   onShowCheckOutInput={() => this.showBookingDateInput('checkout')}
                   onShowGuestsInput={() => this.showGuestInput()}
                   onShowSeasonalRates={() => this.showSeasonalRates()}
-                  onShowBookingDetails={() => this.showBookingDetails()}
+                  onShowBookingDetails={e => this.showBookingDetails(e)}
                   onShowAskQuestionInput={() => this.showAskQuestion()}
                 />
               </div>

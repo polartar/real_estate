@@ -1,4 +1,5 @@
 import { APIService } from './api.service';
+import { formatDate } from '../../helpers/utils';
 
 class APIApartmentsInstance {
 
@@ -105,6 +106,28 @@ class APIApartmentsInstance {
         success: true
       };
 
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
+  public async getBookingDetails(id, checkindate, checkoutdate, guests) {
+    const queryString = 'checkindate=' + encodeURIComponent(formatDate(checkindate, 'm/d/Y')) + '&checkoutdate=' + encodeURIComponent(formatDate(checkoutdate, 'm/d/Y')) + '&guests=' + encodeURIComponent(guests);
+
+    try {
+      let response = await fetch(APIService.getAPIUrl() + `/apartments/booking_details/${id}?` + queryString, {
+        headers: APIService.getHeaders()
+      });
+      if (!response.ok) {
+        const r = await response.json();
+        if (r && r.error) {
+          throw new Error(r.error);
+        }
+
+        throw new Error(response.statusText);
+      }
+
+      return await response.json();
     } catch (err) {
       throw new Error(err.message);
     }

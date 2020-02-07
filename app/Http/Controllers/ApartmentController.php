@@ -8,6 +8,7 @@ use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\ImageUpload;
 use App\Providers\ApartmentServiceProvider;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -198,7 +199,6 @@ class ApartmentController extends Controller
     }
 
     public function bookingDetails(Request $request, Apartment $apartment) {
-        return $apartment->getBookingDetails($request->checkindate, $request->checkoutdate, $request->guests);
         try {
             return $apartment->getBookingDetails($request->checkindate, $request->checkoutdate, $request->guests);
         } catch (\Exception $e) {
@@ -210,21 +210,22 @@ class ApartmentController extends Controller
      * Get a pdf of the booking details
      */
     public function getBookingDetailsPDF(Apartment $apartment) {
+        try {
+            $booking_details = $apartment->getBookingDetails(request()->checkindate, request()->checkoutdate, request()->guests);
 
-        $pdf = PDF::loadView('pdfs.booking-details', [
-            'checkin' => request()->checkin,
-            'checkout' => request()->checkout,
-            'guests' => request()->guests,
-            'apartment' => $apartment
-        ]);
+            $pdf = PDF::loadView('pdfs.booking-details', [
+                'booking_details' => $booking_details,
+                'apartment' => $apartment
+            ]);
 
-        return $pdf->download('booking-details-' . $apartment->id . '.pdf');
+            return $pdf->download('booking-details-' . $apartment->id . '.pdf');
 
-        // return view('pdfs.booking-details', [
-        //     'checkin' => request()->checkin,
-        //     'checkout' => request()->checkout,
-        //     'guests' => request()->guests,
-        //     'apartment' => $apartment
-        // ]);
+            // return view('pdfs.booking-details', [
+            //     'booking_details' => $booking_details,
+            //     'apartment' => $apartment
+            // ]);
+        } catch (Exception $e) {
+            abort(response($e->getMessage(), 400));
+        }
     }
 }

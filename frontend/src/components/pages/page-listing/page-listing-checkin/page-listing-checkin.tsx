@@ -3,6 +3,8 @@ import { Store, Action } from '@stencil/redux';
 import { bookingReset } from '../../../../store/actions/booking';
 import bookingSelectors from '../../../../store/selectors/booking';
 import { formatDate } from '../../../../helpers/utils';
+import { LoadingService } from '../../../../services/loading.service';
+import { APIApartmentsService } from '../../../../services/api/apartments';
 
 @Component({
   tag: 'page-listing-checkin',
@@ -19,6 +21,7 @@ export class PageListingCheckin {
   @State() checkoutDate: Date | null = null;
   @State() submitAttempt: number = 0;
   @State() apartmentId: number | null = null;
+  @State() errors: string[] = [];
 
   @Event() showSeasonalRates: EventEmitter;
   @Event() showCheckInInput: EventEmitter;
@@ -47,7 +50,7 @@ export class PageListingCheckin {
     }
   }
 
-  getErrors() {
+  checkErrors() {
     const errors = [];
 
     if (!this.checkinDate || !this.checkoutDate || !this.guests) {
@@ -69,15 +72,30 @@ export class PageListingCheckin {
       }
     }
 
-    return errors;
+    this.errors = errors;
   }
 
-  submit(e) {
-    const errors = this.getErrors();
+  async submit(e) {
     this.submitAttempt++;
 
-    if (!errors.length) {
-      this.showBookingDetails.emit({ target: e.currentTarget });
+    this.checkErrors();
+
+    if (this.errors.length) {
+      return;
+    }
+
+    await LoadingService.showLoading();
+
+    try {
+      const details = await APIApartmentsService.getBookingDetails(this.item.id, this.checkinDate, this.checkoutDate, this.guests);
+
+      await LoadingService.hideLoading();
+
+      this.showBookingDetails.emit(details);
+    } catch (err) {
+      this.errors = [err.message];
+
+      await LoadingService.hideLoading();
     }
   }
 
@@ -104,7 +122,7 @@ export class PageListingCheckin {
           this.submitAttempt ?
             <div class="errors">
               {
-                this.getErrors().map(e => <div>{e}</div>)
+                this.errors.map(e => <div>{e}</div>)
               }
             </div>
           : null

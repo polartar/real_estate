@@ -201,29 +201,41 @@
                     </div>
 
                     <div class="detail-item">
-                        <div class="description">Check In {{$checkin}}</div>
+                        <div class="description">Check In {{$booking_details['checkindate']}}</div>
                         <div class="center"><img src="{{env('APP_URL')}}/assets/images/icons/arrow.svg" class="arrow-right" ></div>
-                        <div class="value">Check Out {{$checkout}}</div>
+                        <div class="value">Check Out {{$booking_details['checkoutdate']}}</div>
                     </div>
                     <div class="detail-item">
                         <div class="description">Monthly Rent:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney($apartment->rate) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['monthly_rent']) }}</div>
                     </div>
                     <div class="detail-item">
                         <div class="description">Night Rate:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(400) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['night_rate']) }}</div>
                     </div>
                     <div class="detail-item">
                         <div class="description">Total Term:</div>
                         <div class="center"></div>
-                        <div class="value">3 Months and 14 days</div>
+                        <div class="value">
+                            @if ($booking_details['term']['months'])
+                                {{ $booking_details['term']['months']}} Months
+                            @endif
+
+                            @if ($booking_details['term']['months'] && $booking_details['term']['days'])
+                                and
+                            @endif
+
+                            @if ($booking_details['term']['days'])
+                                {{ $booking_details['term']['days'] }} days
+                            @endif
+                        </div>
                     </div>
                     <div class="detail-item">
                         <div class="description">Number of guests:</div>
                         <div class="center"></div>
-                        <div class="value">{{$guests}}</div>
+                        <div class="value">{{ $booking_details['guests'] }}</div>
                     </div>
                 </div>
 
@@ -231,46 +243,65 @@
                     <div class="title">
                         Total Breakdown
                     </div>
+
+                    @if ($booking_details['background_checks'])
                     <div class="detail-item">
                         <div class="description">Background Checks:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(300) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['background_checks']) }}</div>
                     </div>
+                    @endif
 
                     <div class="detail-item">
                         <div class="description">Rent:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(12000) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['rent']) }}</div>
                     </div>
 
+                    @if ($booking_details['tax'])
                     <div class="detail-item">
                         <div class="description">Tax:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(543) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['tax']) }}</div>
                     </div>
+                    @endif
 
+                    @if ($booking_details['utilities'])
                     <div class="detail-item">
                         <div class="description">Utilities:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(600) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['utilities']) }}</div>
                     </div>
+                    @endif
 
+                    @if ($booking_details['move_out_fee'])
+                    <div class="detail-item">
+                        <div class="description">Move Out Cleaning:</div>
+                        <div class="center"></div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['move_out_fee']) }}</div>
+                    </div>
+                    @endif
+
+                    @if ($booking_details['service_fee'])
                     <div class="detail-item">
                         <div class="description">Service fee:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(2000) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['service_fee']) }}</div>
                     </div>
+                    @endif
 
+                    @if ($booking_details['deposit'])
                     <div class="detail-item highlight">
                         <div class="description">Refundable deposit:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(3000) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['deposit']) }}</div>
                     </div>
+                    @endif
 
                     <div class="detail-item">
                         <div class="description">Total:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(19340) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['total']) }}</div>
                     </div>
                 </div>
 
@@ -281,32 +312,30 @@
                     <div class="detail-item bg-highlight">
                         <div class="description">Due now to reserve:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(9000) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['timeline']['due_to_reserve']) }}</div>
                     </div>
 
                     <div class="detail-item">
-                        <div class="description">Due upon lease signing:</div>
+                        <div class="description">Due by check in ({{ $booking_details['timeline']['due_by_checkin_date'] }}):</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(4000) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['timeline']['due_by_checkin']) }}</div>
                     </div>
 
-                    <div class="detail-item">
-                        <div class="description">Due by check in ({{ $checkin }}):</div>
-                        <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(9000) }}</div>
-                    </div>
-
+                    @if ($booking_details['timeline']['future_payments'])
                     <div class="detail-item">
                         <div class="description">Future Payments:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(-3000) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['timeline']['future_payments']) }}</div>
                     </div>
+                    @endif
 
+                    @if ($booking_details['timeline']['deposit_refund'])
                     <div class="detail-item highlight">
                         <div class="description">Deposit Refund:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney(-3000) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['timeline']['deposit_refund']) }}</div>
                     </div>
+                    @endif
                 </div>
             </div>
 
