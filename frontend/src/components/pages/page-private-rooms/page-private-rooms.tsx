@@ -204,9 +204,9 @@ export class PagePrivateRooms {
               <div class="rectangle" />
             </div>
 
-            <ion-button aria-label="Speak to an expert" class="call">
+            <ion-button aria-label="Speak to an expert" class="call" onClick={() => {window.open('/faq', '_self') }}>
               Frequently Asked Questions
-                </ion-button>
+            </ion-button>
           </div>
 
           {
@@ -225,7 +225,7 @@ export class PagePrivateRooms {
                 Browse all our furnished apartments for rent in New York City and select<br /> the right apartment you are looking for, whether it's a room for rent, or a<br /> privated furnished rental.
               </p>
 
-              <ion-button aria-label="Speak to an expert" class="call last">
+              <ion-button aria-label="Speak to an expert" class="call last" onClick={() => {window.open('/search', '_self') }}>
                 Search Now
               </ion-button>
             </div>
