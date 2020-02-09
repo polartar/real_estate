@@ -1,7 +1,7 @@
 @import '../../../styles/mixins';
 @import '../../../styles/variables';
 
-.page-private-rooms {
+.page-corporate-rooms {
 
   .static-page-wrapper {
     margin: 0px 19px;
@@ -15,6 +15,14 @@
     font-size: 21px;
   }
 
+  .section {
+    padding: 0px;
+  }
+
+  .footer-wrapper {
+    padding: 0 1rem;
+  }
+
   h2 {
     font-size: $font-size-xl;
     text-transform: uppercase;
@@ -24,14 +32,6 @@
     @include for-size(tablet-portrait-up) {
       padding-bottom: 1rem;
     }
-  }
-
-  .section {
-    padding: 0px;
-  }
-
-  .footer-wrapper {
-    padding: 0 1rem;
   }
 
   .tag-title {
@@ -99,6 +99,73 @@
     }
   }
 
+  .what-is-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 52px 0 0 0;
+    
+
+    @include for-size('tablet-portrait-up') {
+      flex-direction: row;
+      align-items: center;
+      padding: 102px 108px 0px;
+    }
+
+    @include for-size('desktop-up') {
+      
+    }
+
+    .rooms {
+      display: flex;
+      flex-grow: 1;
+      width: 100%;
+
+      &> div {
+       
+        @include for-size(tablet-portrait-up) {
+         
+        }
+
+        @include for-size(desktop-up) {
+         
+        }
+      }
+
+      h2, p {
+        margin: 0;
+        padding-bottom: 16px;
+      }
+
+      p {
+        line-height: 24px;
+        float: left;
+      }
+
+    }
+
+    .image {
+        position: relative;
+        width: 100%;
+        
+        @include for-size(tablet-portrait-up) {
+          margin-bottom: 0;
+          
+        
+        }
+
+        @include for-size(desktop-up) {
+          margin-bottom: 0;
+          
+        }
+
+        img {
+          float: right;
+        }
+        
+      }
+  }
+
   .corporate-housing-wrapper {
     width: 100%;
     display: flex;
@@ -108,7 +175,7 @@
     @include for-size('tablet-portrait-up') {
       flex-direction: row;
       align-items: center;
-      padding: 124px 108px 0px;
+      padding: 158px 108px 0px;
     }
 
     @include for-size('desktop-up') {
@@ -163,74 +230,182 @@
       }
   }
 
-  .room-stats-wrapper {
-      padding-top: 92px;
+  .callout {
 
-      @include for-size(tablet-portrait-up) {
-          padding-top: 60px;
-      }
-
-      @include for-size(desktop-up) {
-        padding-top: 181px;
-      }
-  }
-
-  .room-stats {
-      display: block;
-      justify-content: space-between;
-      
-
-      @include for-size('tablet-portrait-up') {
-          display: flex;
-          padding-left: 20px;
-      }
-
-      @include for-size('desktop-up') {
-        display: flex;
-        padding-left: 108px;
+    padding-top: 60px;
+    padding-bottom: 42px;
+    text-align: left;
+    
+    @include for-size(tablet-portrait-up) {
+      margin: 0px 5px;
+      padding-top: 0px;
+      padding-bottom: 20px;
+      text-align: center;
     }
 
-      h3 {
-          font-size: 24px;
-          text-transform: none;
-          font-weight: bold;
-      }
+    @include for-size(desktop-up) {
+      margin: 0px 178px;
+    }
+    
+    
+  }
 
-      &.bottom {
-          
-          @include for-size('tablet-portrait-up') {
-            padding-top: 90px;
-            padding-bottom: 124px;
+
+  .grid-wrapper {
+    @include for-size(tablet-portrait-up) {
+      margin: 0px 5px;
+    }
+
+    @include for-size(desktop-up) {
+      margin: 0px 108px;
+    }
+  }
+
+  .grid {
+    display: flex;                       
+    flex-wrap: wrap;                     
+    justify-content: space-between;
+    overflow: hidden;
+
+  }
+
+  .heading {
+    position: absolute;
+    left: 28px;                        
+    top: 17px;                      
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #ffffff;
+    height: 40px;
+
+    @include for-size(tablet-portrait-up) {
+      font-size: 32px;
+    }
+    
+  }
+
+  .copy {
+    position: absolute;
+    left: 28px;                        
+    top: 80px;                      
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #ffffff;
+    text-align: left;
+    max-width: 289px;
+
+    @include for-size(tablet-portrait-up) {
+      max-width: 336px;
+    }
+    
+  }
+
+  .cell {
+    flex: 100%;       
+    text-align: center;
+    position: relative;
+    padding-bottom: 28px;
+    max-width: 387px;
+
+    @include for-size(tablet-portrait-up) {
+      flex: 0 0 32%;  
+    }
+
+    h2 {
+      position:absolute;
+    }
+
+    img {
+      max-width: 387px;
+      position: relative;
+    }
+
+  }
+
+  .cell:nth-child(3n) {
+    // something
+  }
+  
+ 
+
+    .room-stats-wrapper {
+        padding-top: 8px;
+
+        @include for-size(tablet-portrait-up) {
+           padding-top: 60px;
         }
-      }
 
-      .green-rectangle {
-        width:298px;
-        height:4px;
-        background:#057365;
-        margin-bottom: 20px;
+        @include for-size(desktop-up) {
+          padding-top: 178px;
+       }
+    }
+
+    .room-stats {
+        display: block;
+        justify-content: space-between;
+        
 
         @include for-size('tablet-portrait-up') {
-          margin-bottom: 0;
+            display: flex;
+            padding-left: 20px;
+        }
+
+        @include for-size('desktop-up') {
+          display: flex;
+          padding-left: 108px;
+          padding-right: 108px;
+      }
+
+        h3 {
+            font-size: 24px;
+            text-transform: none;
+            font-weight: bold;
+        }
+
+        &.bottom {
+            
+            @include for-size('tablet-portrait-up') {
+              padding-top: 90px;
+              padding-bottom: 186px;
+          }
+        }
+
+        .green-rectangle {
+          width:298px;
+          height:4px;
+          background:#057365;
+          margin-bottom: 20px;
+
+          @include for-size('tablet-portrait-up') {
+            margin-bottom: 0;
+        }
       }
     }
-  }
 
-  .room-stats .col {
-      width: 307px;
+    .room-stats .col {
+        width: 307px;
 
-      @include for-size('tablet-portrait-up') {
-          width: 307px;
-          height: 200px;
+        @include for-size('tablet-portrait-up') {
+            width: 307px;
+            height: 200px;
+        }
+
+        img {
+            height: 51px;
+            width: 56px;
+        }
+    }
+
+    .mission {
+      text-align: center;
+      padding: 60px 0;
+      p {
+        font-size: 24px;
+        line-height: 1.42;
       }
-
-      img {
-          height: 51px;
-          width: 56px;
-      }
-  }
-
-  
+    }
 
     .testimonials {
         width: 100%;
@@ -365,8 +540,10 @@
   .find-more-wrapper {
     display: flex;
     flex-direction: column-reverse;
+    padding-top: 80px;
 
     @include for-size(tablet-portrait-up) {
+      padding-top: 0px;
       margin: 60px 20px 90px;
       flex-direction: row;
     }
@@ -415,6 +592,30 @@
     display: none;
   }
 
+  .reasons-heading {
+
+    padding-bottom: 40px;
+
+    @include for-size(tablet-portrait-up) {
+      max-width: 746px;
+      text-align: center;
+      margin: auto;
+      padding-bottom: 70px;
+    }
+
+    h2 {
+      margin: 0;
+      padding-bottom: 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      font-weight: bold;
+      line-height: 1.43;
+      text-align: center;
+    }
+
+
+  }
+
   .reasons-about-wrapper {
     width: 100%;
     display: flex;
@@ -433,6 +634,7 @@
       display: flex;
       flex-grow: 1;
       width: 100%;
+      
 
       @include for-size('tablet-portrait-up') {
         max-width: 655px;
@@ -441,8 +643,10 @@
         max-height: 266px;
       }
 
+
+
       &> div {
-        @include for-size(desktop-up) {
+        @include for-size('desktop-up') {
           max-width: 655px;
           margin-left: auto;
         }
@@ -478,7 +682,6 @@
 
         img {
           max-width: 337px; 
-          
           @include for-size('tablet-portrait-up') {
             max-width: 424px;
           }
@@ -490,6 +693,7 @@
   .learn-more {
     display: block;
     overflow: hidden;
+    margin: 1em 0;
     align-items: center;
     padding-left: 40px;
     padding-right: 40px;
@@ -499,7 +703,7 @@
       display: flex;
       text-align: left;
       padding-left: 108px;
-      padding-right: 101px;
+      padding-right: 108px;
       margin-top: 131px;
     }
 
@@ -512,9 +716,9 @@
   }
 
   .predefined-search {
-    padding-top: 0;
+    padding-top: 80px;
     text-align: center;
-    padding-top: 60px;
+    
 
     @include for-size(tablet-portrait-up) {
       padding-top: 60px;

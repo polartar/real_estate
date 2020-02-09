@@ -97,6 +97,7 @@ export class AppRoot {
             <ion-route url="/profile/:name" component="app-profile" />
 
             <ion-route url="/private-rooms" component="page-private-rooms" />
+            <ion-route url="/corporate-rooms" component="page-corporate-rooms" />
 
             <ion-route url="/login" component="page-login" />
 

@@ -114,11 +114,14 @@ export class PagePrivateRooms {
             </div>
 
           </div>
-
-          <div class="rooms-about-wrapper">
+          <div class="static-page-wrapper">
+          <div class="corporate-housing-wrapper">
+            <div class="image">
+                <img src="/assets/images/private-rooms/private-rooms.png" />
+            </div>
             <div class="rooms">
               <div>
-                <h2>New York City Rooms for Rent </h2>
+                <h2>New York Rooms for rent</h2>
                 <p>
                   Finding a room for rent in NYC is a dream for many. The big apple has been one of the most
                   popular cities in the world and because of the high demand prices can get really high.
@@ -137,11 +140,7 @@ export class PagePrivateRooms {
                 </p>
               </div>
             </div>
-
-            <div class="image">
-              <img src="/assets/images/private-rooms/private-rooms.png" />
-            </div>
-
+            
           </div>
 
           <div class="room-stats-wrapper">
@@ -263,7 +262,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <img src="/assets/images/private-rooms/make-payment-one-month-rent.jpg" />
             </div>
           </div>
 
@@ -279,7 +278,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <img src="/assets/images/private-rooms/worth-the-money.jpg" />
             </div>
           </div>
 
@@ -294,7 +293,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <img src="/assets/images/private-rooms/less-maintenance.jpg" />
             </div>
           </div>
 
@@ -309,7 +308,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <img src="/assets/images/private-rooms/easy-mobility.jpg" />
             </div>
           </div>
 
@@ -325,7 +324,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <img src="/assets/images/private-rooms/why-corporate-housing.jpg" />
             </div>
           </div>
 
@@ -343,7 +342,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <img src="/assets/images/private-rooms/business-travelers.jpg" />
             </div>
           </div>
 
@@ -361,7 +360,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <img src="/assets/images/private-rooms/corporate-housing-solution.jpg" />
             </div>
           </div>
 
@@ -376,7 +375,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <img src="/assets/images/private-rooms/corporate-housing-solution-copy.jpg" />
             </div>
           </div>
 
@@ -391,7 +390,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <img src="/assets/images/private-rooms/communication.jpg" />
             </div>
           </div>
 
@@ -409,7 +408,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <img src="/assets/images/private-rooms/money.jpg" />
             </div>
           </div>
 
@@ -433,10 +432,7 @@ export class PagePrivateRooms {
               </ion-button>
             </div>
           </div>
-
-
-
-
+          </div>
         </section>
 
         <app-footer />
