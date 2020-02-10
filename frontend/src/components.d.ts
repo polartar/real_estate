@@ -222,6 +222,9 @@ export namespace Components {
   interface PageAdminListings {}
   interface PageAdminOwner {}
   interface PageBooking {}
+  interface PageCorporateRooms {
+    'prefetching': boolean;
+  }
   interface PageHome {
     'prefetching': boolean;
   }
@@ -248,6 +251,9 @@ export namespace Components {
     'prefetching': boolean;
   }
   interface PageNeighborhoods {}
+  interface PagePrivateRooms {
+    'prefetching': boolean;
+  }
   interface PageSearch {
     'location': any;
     'neighborhoods': any;
@@ -294,6 +300,9 @@ export namespace Components {
     'readonly': boolean;
     'size': number;
     'stars': number;
+  }
+  interface TestimonialsSlider {
+    'items': any[];
   }
   interface WishlistCard {
     'item': any;
@@ -693,6 +702,12 @@ declare global {
     new (): HTMLPageBookingElement;
   };
 
+  interface HTMLPageCorporateRoomsElement extends Components.PageCorporateRooms, HTMLStencilElement {}
+  var HTMLPageCorporateRoomsElement: {
+    prototype: HTMLPageCorporateRoomsElement;
+    new (): HTMLPageCorporateRoomsElement;
+  };
+
   interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {}
   var HTMLPageHomeElement: {
     prototype: HTMLPageHomeElement;
@@ -745,6 +760,12 @@ declare global {
   var HTMLPageNeighborhoodsElement: {
     prototype: HTMLPageNeighborhoodsElement;
     new (): HTMLPageNeighborhoodsElement;
+  };
+
+  interface HTMLPagePrivateRoomsElement extends Components.PagePrivateRooms, HTMLStencilElement {}
+  var HTMLPagePrivateRoomsElement: {
+    prototype: HTMLPagePrivateRoomsElement;
+    new (): HTMLPagePrivateRoomsElement;
   };
 
   interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
@@ -817,6 +838,12 @@ declare global {
   var HTMLStarRatingElement: {
     prototype: HTMLStarRatingElement;
     new (): HTMLStarRatingElement;
+  };
+
+  interface HTMLTestimonialsSliderElement extends Components.TestimonialsSlider, HTMLStencilElement {}
+  var HTMLTestimonialsSliderElement: {
+    prototype: HTMLTestimonialsSliderElement;
+    new (): HTMLTestimonialsSliderElement;
   };
 
   interface HTMLWishlistCardElement extends Components.WishlistCard, HTMLStencilElement {}
@@ -893,6 +920,7 @@ declare global {
     'page-admin-listings': HTMLPageAdminListingsElement;
     'page-admin-owner': HTMLPageAdminOwnerElement;
     'page-booking': HTMLPageBookingElement;
+    'page-corporate-rooms': HTMLPageCorporateRoomsElement;
     'page-home': HTMLPageHomeElement;
     'page-listing': HTMLPageListingElement;
     'page-listing-body': HTMLPageListingBodyElement;
@@ -902,6 +930,7 @@ declare global {
     'page-login': HTMLPageLoginElement;
     'page-neighborhood': HTMLPageNeighborhoodElement;
     'page-neighborhoods': HTMLPageNeighborhoodsElement;
+    'page-private-rooms': HTMLPagePrivateRoomsElement;
     'page-search': HTMLPageSearchElement;
     'page-wishlist': HTMLPageWishlistElement;
     'price-filter': HTMLPriceFilterElement;
@@ -914,6 +943,7 @@ declare global {
     'seasonal-rates': HTMLSeasonalRatesElement;
     'share-listing': HTMLShareListingElement;
     'star-rating': HTMLStarRatingElement;
+    'testimonials-slider': HTMLTestimonialsSliderElement;
     'wishlist-card': HTMLWishlistCardElement;
     'youtube-video': HTMLYoutubeVideoElement;
   }
@@ -1119,6 +1149,9 @@ declare namespace LocalJSX {
   interface PageAdminListings extends JSXBase.HTMLAttributes<HTMLPageAdminListingsElement> {}
   interface PageAdminOwner extends JSXBase.HTMLAttributes<HTMLPageAdminOwnerElement> {}
   interface PageBooking extends JSXBase.HTMLAttributes<HTMLPageBookingElement> {}
+  interface PageCorporateRooms extends JSXBase.HTMLAttributes<HTMLPageCorporateRoomsElement> {
+    'prefetching'?: boolean;
+  }
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {
     'prefetching'?: boolean;
   }
@@ -1151,6 +1184,9 @@ declare namespace LocalJSX {
     'prefetching'?: boolean;
   }
   interface PageNeighborhoods extends JSXBase.HTMLAttributes<HTMLPageNeighborhoodsElement> {}
+  interface PagePrivateRooms extends JSXBase.HTMLAttributes<HTMLPagePrivateRoomsElement> {
+    'prefetching'?: boolean;
+  }
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
@@ -1194,6 +1230,9 @@ declare namespace LocalJSX {
     'readonly'?: boolean;
     'size'?: number;
     'stars'?: number;
+  }
+  interface TestimonialsSlider extends JSXBase.HTMLAttributes<HTMLTestimonialsSliderElement> {
+    'items'?: any[];
   }
   interface WishlistCard extends JSXBase.HTMLAttributes<HTMLWishlistCardElement> {
     'item': any;
@@ -1280,6 +1319,7 @@ declare namespace LocalJSX {
     'page-admin-listings': PageAdminListings;
     'page-admin-owner': PageAdminOwner;
     'page-booking': PageBooking;
+    'page-corporate-rooms': PageCorporateRooms;
     'page-home': PageHome;
     'page-listing': PageListing;
     'page-listing-body': PageListingBody;
@@ -1289,6 +1329,7 @@ declare namespace LocalJSX {
     'page-login': PageLogin;
     'page-neighborhood': PageNeighborhood;
     'page-neighborhoods': PageNeighborhoods;
+    'page-private-rooms': PagePrivateRooms;
     'page-search': PageSearch;
     'page-wishlist': PageWishlist;
     'price-filter': PriceFilter;
@@ -1301,6 +1342,7 @@ declare namespace LocalJSX {
     'seasonal-rates': SeasonalRates;
     'share-listing': ShareListing;
     'star-rating': StarRating;
+    'testimonials-slider': TestimonialsSlider;
     'wishlist-card': WishlistCard;
     'youtube-video': YoutubeVideo;
   }
