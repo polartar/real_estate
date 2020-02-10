@@ -20,12 +20,10 @@ export namespace Components {
     'noMargin': boolean;
   }
   interface AppHeader {
+    'hideSearch': boolean;
     'hideSearchButton': boolean;
   }
   interface AppMenu {}
-  interface AppProfile {
-    'name': string;
-  }
   interface AppRoot {}
   interface Apt212Checkbox {
     'check': () => Promise<void>;
@@ -223,6 +221,7 @@ export namespace Components {
   }
   interface PageAdminListings {}
   interface PageAdminOwner {}
+  interface PageBooking {}
   interface PageHome {
     'prefetching': boolean;
   }
@@ -350,12 +349,6 @@ declare global {
   var HTMLAppMenuElement: {
     prototype: HTMLAppMenuElement;
     new (): HTMLAppMenuElement;
-  };
-
-  interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {}
-  var HTMLAppProfileElement: {
-    prototype: HTMLAppProfileElement;
-    new (): HTMLAppProfileElement;
   };
 
   interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {}
@@ -694,6 +687,12 @@ declare global {
     new (): HTMLPageAdminOwnerElement;
   };
 
+  interface HTMLPageBookingElement extends Components.PageBooking, HTMLStencilElement {}
+  var HTMLPageBookingElement: {
+    prototype: HTMLPageBookingElement;
+    new (): HTMLPageBookingElement;
+  };
+
   interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {}
   var HTMLPageHomeElement: {
     prototype: HTMLPageHomeElement;
@@ -837,7 +836,6 @@ declare global {
     'app-footer': HTMLAppFooterElement;
     'app-header': HTMLAppHeaderElement;
     'app-menu': HTMLAppMenuElement;
-    'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'apt212-checkbox': HTMLApt212CheckboxElement;
     'apt212-datepicker': HTMLApt212DatepickerElement;
@@ -894,6 +892,7 @@ declare global {
     'page-admin-listing-edit': HTMLPageAdminListingEditElement;
     'page-admin-listings': HTMLPageAdminListingsElement;
     'page-admin-owner': HTMLPageAdminOwnerElement;
+    'page-booking': HTMLPageBookingElement;
     'page-home': HTMLPageHomeElement;
     'page-listing': HTMLPageListingElement;
     'page-listing-body': HTMLPageListingBodyElement;
@@ -927,12 +926,10 @@ declare namespace LocalJSX {
     'noMargin'?: boolean;
   }
   interface AppHeader extends JSXBase.HTMLAttributes<HTMLAppHeaderElement> {
+    'hideSearch'?: boolean;
     'hideSearchButton'?: boolean;
   }
   interface AppMenu extends JSXBase.HTMLAttributes<HTMLAppMenuElement> {}
-  interface AppProfile extends JSXBase.HTMLAttributes<HTMLAppProfileElement> {
-    'name'?: string;
-  }
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface Apt212Checkbox extends JSXBase.HTMLAttributes<HTMLApt212CheckboxElement> {
     'checked'?: boolean;
@@ -1121,6 +1118,7 @@ declare namespace LocalJSX {
   }
   interface PageAdminListings extends JSXBase.HTMLAttributes<HTMLPageAdminListingsElement> {}
   interface PageAdminOwner extends JSXBase.HTMLAttributes<HTMLPageAdminOwnerElement> {}
+  interface PageBooking extends JSXBase.HTMLAttributes<HTMLPageBookingElement> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {
     'prefetching'?: boolean;
   }
@@ -1225,7 +1223,6 @@ declare namespace LocalJSX {
     'app-footer': AppFooter;
     'app-header': AppHeader;
     'app-menu': AppMenu;
-    'app-profile': AppProfile;
     'app-root': AppRoot;
     'apt212-checkbox': Apt212Checkbox;
     'apt212-datepicker': Apt212Datepicker;
@@ -1282,6 +1279,7 @@ declare namespace LocalJSX {
     'page-admin-listing-edit': PageAdminListingEdit;
     'page-admin-listings': PageAdminListings;
     'page-admin-owner': PageAdminOwner;
+    'page-booking': PageBooking;
     'page-home': PageHome;
     'page-listing': PageListing;
     'page-listing-body': PageListingBody;

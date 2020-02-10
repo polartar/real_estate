@@ -13,6 +13,7 @@ import { FilterTagsService } from '../../services/search-filters/filter-tags.ser
 export class AppHeader {
   @Prop({ context: "store" }) store: Store;
   @Prop() hideSearchButton: boolean = false;
+  @Prop() hideSearch: boolean = false;
   @State() displayFilter: boolean;
   @State() isMobile: boolean;
   @Element() el: HTMLElement;
@@ -94,6 +95,10 @@ export class AppHeader {
   }
 
   showSearchFilters() {
+    if (this.hideSearch) {
+      return false;
+    }
+
     return this.displayFilter || this.hideSearchButton || (this.isMobile && this.filterTags.length);
   }
 

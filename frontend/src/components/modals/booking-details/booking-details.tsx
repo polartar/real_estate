@@ -6,6 +6,7 @@ import screensizeSelectors from '../../../store/selectors/screensize';
 import { formatDate, formatMoney } from '../../../helpers/utils';
 import { getBedsListingText } from '../../../helpers/filters';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
+import { RouterService } from '../../../services/router.service';
 
 declare var window: any;
 
@@ -104,6 +105,15 @@ export class BookingDetails {
 
     document.body.appendChild(modal);
     return modal.present();
+  }
+
+  bookNow() {
+    RouterService.forward('booking');
+
+    const modal: any = this.el.closest('ion-modal');
+    if (modal) {
+      modal.dismiss();
+    }
   }
 
   render() {
@@ -371,7 +381,7 @@ export class BookingDetails {
           </div>
 
           <div class="action-buttons">
-            <button aria-label="Book Now" class="button-dark block">Book Now</button>
+            <button aria-label="Book Now" class="button-dark block" onClick={() => this.bookNow()}>Book Now</button>
             <button aria-label="Ask a question" class="button-light outline block text-upper" onClick={() => this.showAskQuestion()}>Ask a question</button>
           </div>
 
