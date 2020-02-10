@@ -105,8 +105,13 @@
     flex-direction: column;
     padding: 52px 0 0 0;
     
-
     @include for-size('tablet-portrait-up') {
+      
+      align-items: center;
+      padding: 50px 50px 0px;
+    }
+
+    @include for-size('desktop-up') {
       flex-direction: row;
       align-items: center;
       padding: 102px 108px 0px;
@@ -150,8 +155,6 @@
         
         @include for-size(tablet-portrait-up) {
           margin-bottom: 0;
-          
-        
         }
 
         @include for-size(desktop-up) {
@@ -161,6 +164,14 @@
 
         img {
           float: right;
+
+          @include for-size(tablet-portrait-up) {
+            float: left;
+          }
+
+          @include for-size(desktop-up) {
+            float: right;
+          }
         }
         
       }
@@ -173,13 +184,14 @@
     padding: 52px 0;
     
     @include for-size('tablet-portrait-up') {
-      flex-direction: row;
-      align-items: center;
-      padding: 158px 108px 0px;
+      align-items: left;
+      padding: 50px 50px 0px;
     }
 
     @include for-size('desktop-up') {
-      
+      flex-direction: row;
+      align-items: center;
+      padding: 158px 108px 0px;
     }
 
     .rooms {
@@ -328,7 +340,6 @@
     // something
   }
   
- 
 
     .room-stats-wrapper {
         padding-top: 8px;
@@ -367,9 +378,14 @@
         &.bottom {
             
             @include for-size('tablet-portrait-up') {
+              padding-top: 140px;
+              padding-bottom: 186px;
+            }
+
+            @include for-size('desktop-up') {
               padding-top: 90px;
               padding-bottom: 186px;
-          }
+            }
         }
 
         .green-rectangle {
@@ -379,8 +395,14 @@
           margin-bottom: 20px;
 
           @include for-size('tablet-portrait-up') {
+            width:240px;
             margin-bottom: 0;
-        }
+          }
+
+          @include for-size('desktop-up') {
+            width:298px;
+            margin-bottom: 0;
+          }
       }
     }
 
@@ -388,9 +410,14 @@
         width: 307px;
 
         @include for-size('tablet-portrait-up') {
-            width: 307px;
+            width: 240px;
             height: 200px;
         }
+
+        @include for-size('desktop-up') {
+          width: 307px;
+          height: 200px;
+      }
 
         img {
             height: 51px;
