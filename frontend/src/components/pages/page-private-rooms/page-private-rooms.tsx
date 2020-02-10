@@ -190,7 +190,7 @@ export class PagePrivateRooms {
             </div>
           </div>
 
-          <testimonials-slider />
+          <testimonials-slider items={this.testimonials} />
 
           <div class="faq">
             <h1>Frequently Asked Questions about rooms for rent in nyc</h1>
