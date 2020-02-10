@@ -50,15 +50,15 @@ export class TestimonialsSlider {
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">
             <li class="glide__slide first">
-                <div class="quote">"I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU."</div>
-                <div class="author">-Chris W.</div>
+                <div class="quote">{this.items[0][0]}</div>
+                <div class="author">{this.items[0][1]}</div>
             </li>
             <li class="glide__slide second">
-                <div class="quote">"I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU."</div>
-                <div class="author">-Mike H.</div></li>
+                <div class="quote">{this.items[1][0]}</div>
+                <div class="author">{this.items[1][1]}</div></li>
             <li class="glide__slide third">
-                <div class="quote">"I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU."</div>
-                <div class="author">-Hester K.</div>
+                <div class="quote">{this.items[2][0]}</div>
+                <div class="author">{this.items[2][1]}</div>
             </li>
           </ul>
         </div>

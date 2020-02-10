@@ -26,6 +26,7 @@ export class PagePrivateRooms {
   getNamedSearch: Action;
   neighborhoods: any[] = [];
   item: any = null;
+  testimonials: any[] = [];
 
   componentDidLoad() {
     if (this.prefetching) {
@@ -73,6 +74,12 @@ export class PagePrivateRooms {
     if (rel) {
       rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL'));
     }
+
+    this.testimonials = [
+      ["I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU.", "-Chris W."],
+      ["I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU.", "-Mike H."],
+      ["I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU.", "-Hester K."]
+    ];
   }
 
   async launchMobileFilterMenu() {

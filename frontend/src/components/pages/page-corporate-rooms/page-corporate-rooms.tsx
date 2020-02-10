@@ -26,7 +26,8 @@ export class PageCorporateRooms {
   getNamedSearch: Action;
   neighborhoods: any[] = [];
   item: any = null;
-
+  testimonials: any[] = [];
+  
   componentDidLoad() {
     if (this.prefetching) {
       return;
@@ -73,6 +74,12 @@ export class PageCorporateRooms {
     if (rel) {
       rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL'));
     }
+
+    this.testimonials = [
+      ["We had two employees in Italy that needed to be in New York for a 3 months construction project. My APT212 booking agent  was very efficient and professional and help me secure my our corporate housing.", "- Vanessa H."],
+      ["APT212 really saved us a lot of time to find corporate housing in NYC. The apartments from APT212 are gorgeous in safeneighbourhoods.third price of hotels with doorman and versatile amenities, our sales team likes them a lot!", "- Dan T. - All Bright Services"],
+      ["Each semester we have numbers of visiting/ exchange students. Working with APT212 was a good experience. When our dorms can’t accommodate a large number of student’s demand, we chose APT212, because the apartments are reasonably priced. Good for frugal students!", "- Cathrine H.  - Gateway College "]
+    ];
   }
 
   async launchMobileFilterMenu() {
@@ -292,7 +299,7 @@ We offer apartments in accessible buildings with full amenities close to medical
           </p>
           </div>
 
-          <testimonials-slider />
+          <testimonials-slider items={this.testimonials} />
 
           {
             this.privateRoomList.length && this.neighborhoodsLoaded ?

@@ -99,11 +99,11 @@ $arrow-right-right: -10px;
   
         .quote {
             padding-top: 264px;
-            padding-left: 32px;
+            padding-left: 10px;
+            padding-right: 10px;
             font-size: 24px;
             font-weight: 600;
             line-height: 1.67;
-            width: 312px;
   
             @include for-size('tablet-portrait-up') {
                 padding-top: 120px;

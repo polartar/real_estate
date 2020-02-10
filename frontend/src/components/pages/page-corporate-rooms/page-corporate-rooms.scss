@@ -108,7 +108,7 @@
     @include for-size('tablet-portrait-up') {
       
       align-items: center;
-      padding: 50px 50px 0px;
+      padding: 25px 25px 0px;
     }
 
     @include for-size('desktop-up') {
@@ -185,7 +185,7 @@
     
     @include for-size('tablet-portrait-up') {
       align-items: left;
-      padding: 50px 50px 0px;
+      padding: 25px 25px 0px;
     }
 
     @include for-size('desktop-up') {
@@ -273,11 +273,21 @@
     }
   }
 
+ 
+
   .grid {
     display: flex;                       
     flex-wrap: wrap;                     
     justify-content: space-between;
     overflow: hidden;
+
+    @include for-size(tablet-portrait-up) {
+      justify-content: center;
+    }
+
+    @include for-size(desktop-up) {
+      justify-content: space-between; 
+    }
 
   }
 
@@ -310,6 +320,12 @@
 
     @include for-size(tablet-portrait-up) {
       max-width: 336px;
+      font-size: 14px;
+    }
+
+    @include for-size(desktop-up) {
+      max-width: 336px;
+      font-size: 16px;
     }
     
   }
@@ -318,11 +334,20 @@
     flex: 100%;       
     text-align: center;
     position: relative;
-    padding-bottom: 28px;
+    margin-bottom: 28px;
     max-width: 387px;
+    height: 288px;
 
-    @include for-size(tablet-portrait-up) {
+    @include for-size(tablet-landscape-up) {
+      flex: 0 0 50%;  
+      padding-bottom: 20px;
+      margin-left: 20px;
+    }
+
+    @include for-size(desktop-up) {
       flex: 0 0 32%;  
+      padding-bottom: 28px;
+      margin-left: 0px;
     }
 
     h2 {
@@ -330,8 +355,9 @@
     }
 
     img {
-      max-width: 387px;
+      //max-width: 387px;
       position: relative;
+      height: 288px;
     }
 
   }
@@ -388,6 +414,7 @@
             }
         }
 
+
         .green-rectangle {
           width:298px;
           height:4px;
@@ -407,7 +434,6 @@
     }
 
     .room-stats .col {
-        width: 307px;
 
         @include for-size('tablet-portrait-up') {
             width: 240px;
@@ -432,6 +458,15 @@
         font-size: 24px;
         line-height: 1.42;
       }
+
+    @include for-size('tablet-portrait-up') {
+        padding: 60px 25px 0;
+        }
+
+    @include for-size('desktop-up') {
+      padding: 60px 0;
+     
+      }
     }
 
     .testimonials {
@@ -447,16 +482,16 @@
 
         .quote {
             padding-top: 264px;
-            padding-left: 32px;
+            padding-left: 10px;
+            padding-right: 10px;
             font-size: 24px;
             font-weight: 600;
             line-height: 1.67;
-            width: 312px;
-
+            
             @include for-size('tablet-portrait-up') {
                 padding-top: 120px;
                 margin: auto;
-                font-size: 32px;
+                font-size: 33px;
                 font-weight: 600;
                 line-height: 1.25;
                 width: 400px;
@@ -648,12 +683,21 @@
     display: flex;
     flex-direction: column-reverse;
     padding-bottom: 48px;
+
+    @include for-size('tablet-portrait-up') {
+      flex-direction: column;
+      align-items: top; 
+      padding-left: 25px;
+      padding-right: 25px;   
+      padding-bottom: 0px;  
+    }
     
     @include for-size('desktop-up') {
       flex-direction: row-reverse;
       align-items: top; 
       padding-left: 108px;
-      padding-right: 150px;     
+      padding-right: 150px;
+      padding-bottom: 48px;     
     }
 
 
@@ -665,10 +709,17 @@
 
       @include for-size('tablet-portrait-up') {
         max-width: 655px;
+        align-items: center;
+        max-height: 266px;
+      }
+
+      @include for-size('desktop-up') {
+        max-width: 655px;
         margin-left: auto;
         align-items: center;
         max-height: 266px;
       }
+
 
 
 
@@ -703,14 +754,12 @@
         position: relative;
         margin-bottom: 27px;
 
-        @include for-size('tablet-desktop-up') {
-          margin-bottom: 0;
-        }
 
         img {
-          max-width: 337px; 
+          
           @include for-size('tablet-portrait-up') {
             max-width: 424px;
+            margin-bottom: 0;
           }
         }
 
