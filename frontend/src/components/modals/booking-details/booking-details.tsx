@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element } from '@stencil/core';
+import { Component, h, Prop, Element, State } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import bookingSelectors from '../../../store/selectors/booking';
 import taxonomySelectors from '../../../store/selectors/taxonomy';
@@ -17,7 +17,8 @@ export class BookingDetails {
   @Prop({ context: "store" }) store: Store;
   @Element() el: HTMLElement;
   @Prop() item!: any;
-  @Prop() details: any;
+
+  @State() details: any = null;
 
   isMobile: boolean = true;
   checkinDate: Date;
@@ -34,9 +35,10 @@ export class BookingDetails {
         checkinDate: bookingSelectors.getCheckinDate(state),
         checkoutDate: bookingSelectors.getCheckoutDate(state),
         guests: bookingSelectors.getGuests(state),
+        details: bookingSelectors.getBookingDetails(state),
         neighborhoods: taxonomySelectors.getNeighborhoods(state),
         bedroomTypes: taxonomySelectors.getBedroomTypes(state),
-        buildingTypes: taxonomySelectors.getBuildingTypes(state)
+        buildingTypes: taxonomySelectors.getBuildingTypes(state),
       }
     });
   }
@@ -105,6 +107,10 @@ export class BookingDetails {
   }
 
   render() {
+    if (!this.details) {
+      return <ion-spinner name="lines" />
+    }
+
     const neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
     const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);

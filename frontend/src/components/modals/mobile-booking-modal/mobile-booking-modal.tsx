@@ -17,8 +17,6 @@ export class MobileBookingModal {
   addToWishlist: Action;
   removeFromWishlist: Action;
 
-  bookingDetails = {};
-
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
@@ -43,7 +41,7 @@ export class MobileBookingModal {
 
   closeModal() {
     if (this.view !== 'booking') {
-      this.setView({ view: 'booking' });
+      this.setView('booking');
       return;
     }
 
@@ -53,13 +51,8 @@ export class MobileBookingModal {
     }
   }
 
-  setView(params) {
-
-    if (params.view === 'bookingDetails') {
-      this.bookingDetails = params.data;
-    }
-
-    this.view = params.view;
+  setView(view) {
+    this.view = view;
   }
 
   showGuestInput() {
@@ -138,7 +131,7 @@ export class MobileBookingModal {
           {
             this.view === 'bookingDetails' ?
               <div class="booking-details">
-                <booking-details item={this.item} details={this.bookingDetails} />
+                <booking-details item={this.item} />
               </div>
               : null
           }
@@ -160,7 +153,7 @@ export class MobileBookingModal {
 
                   <div class="flex-spacer" />
 
-                  <button aria-label="Share listing" class="button-reset has-icon" onClick={() => this.setView({ view: 'share' }) }>
+                  <button aria-label="Share listing" class="button-reset has-icon" onClick={() => this.setView('share') }>
                     <img src="/assets/images/icons/share.svg" class="share-icon" /> Share
                   </button>
                   </div>

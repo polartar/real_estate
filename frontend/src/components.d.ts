@@ -66,7 +66,6 @@ export namespace Components {
     'selectAll': () => Promise<void>;
   }
   interface BookingDetails {
-    'details': any;
     'item': any;
   }
   interface BookingMobileBody {
@@ -968,7 +967,6 @@ declare namespace LocalJSX {
     'inModal'?: boolean;
   }
   interface BookingDetails extends JSXBase.HTMLAttributes<HTMLBookingDetailsElement> {
-    'details'?: any;
     'item': any;
   }
   interface BookingMobileBody extends JSXBase.HTMLAttributes<HTMLBookingMobileBodyElement> {

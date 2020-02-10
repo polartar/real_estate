@@ -18,6 +18,14 @@ const bookingSelectors = {
 
   getApartmentId: state => {
     return state.booking.apartmentId;
+  },
+
+  getBookingDetails: state => {
+    if (!state.booking.bookingDetails) {
+      return null;
+    }
+
+    return {...state.booking.bookingDetails};
   }
 }
 

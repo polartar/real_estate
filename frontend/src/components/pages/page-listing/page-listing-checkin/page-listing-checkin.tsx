@@ -1,6 +1,6 @@
 import { Component, h, Event, EventEmitter, Prop, State } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
-import { bookingReset } from '../../../../store/actions/booking';
+import { bookingReset, bookingSetDetails } from '../../../../store/actions/booking';
 import bookingSelectors from '../../../../store/selectors/booking';
 import { formatDate } from '../../../../helpers/utils';
 import { LoadingService } from '../../../../services/loading.service';
@@ -15,6 +15,7 @@ export class PageListingCheckin {
   @Prop() item!: any;
 
   bookingReset: Action;
+  bookingSetDetails: Action;
 
   @State() guests: number = 0;
   @State() checkinDate: Date | null = null;
@@ -41,7 +42,8 @@ export class PageListingCheckin {
     });
 
     this.store.mapDispatchToProps(this, {
-      bookingReset
+      bookingReset,
+      bookingSetDetails
     });
 
     if (this.apartmentId !== this.item.id) {
@@ -89,6 +91,8 @@ export class PageListingCheckin {
     try {
       const details = await APIApartmentsService.getBookingDetails(this.item.id, this.checkinDate, this.checkoutDate, this.guests);
 
+      this.bookingSetDetails(details);
+
       await LoadingService.hideLoading();
 
       this.showBookingDetails.emit(details);
@@ -128,7 +132,7 @@ export class PageListingCheckin {
           : null
         }
 
-        <button class="button-dark booking-details" onClick={e => this.submit(e)}>
+        <button class="button-dark booking-details" onClick={() => this.submit()}>
           Booking Details
         </button>
 

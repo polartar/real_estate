@@ -71,3 +71,17 @@ export interface BookingSetGuests {
     num: number
   };
 }
+
+export function bookingSetDetails(details) {
+  return async dispatch => {
+    dispatch({
+      type: Actions.BOOKING_SET_DETAILS,
+      payload: details
+    })
+  };
+}
+
+export interface BookingSetDetails {
+  type: Actions.BOOKING_SET_DETAILS,
+  payload: any
+}

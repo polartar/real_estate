@@ -10,7 +10,8 @@ import {
   BookingReset,
   BookingSetCheckin,
   BookingSetCheckout,
-  BookingSetGuests
+  BookingSetGuests,
+  BookingSetDetails
 } from "./booking";
 
 import {
@@ -80,6 +81,7 @@ export type ActionTypes =
   | BookingSetCheckin
   | BookingSetCheckout
   | BookingSetGuests
+  | BookingSetDetails
 ;
 
 export enum Actions {
@@ -113,5 +115,6 @@ export enum Actions {
   BOOKING_SET_CHECKIN_DATE = "BOOKING_SET_CHECKIN_DATE",
   BOOKING_SET_CHECKOUT_DATE = "BOOKING_SET_CHECKOUT_DATE",
   BOOKING_SET_GUESTS = "BOOKING_SET_GUESTS",
-  BOOKING_RESET = "BOOKING_RESET"
+  BOOKING_RESET = "BOOKING_RESET",
+  BOOKING_SET_DETAILS = "BOOKING_SET_DETAILS"
 }
