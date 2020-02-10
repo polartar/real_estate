@@ -21,11 +21,11 @@ export class BookingMobileBody {
 
         <page-listing-checkin
           item={this.item}
-          onShowCheckInInput={() => this.setViewEvent.emit('checkinInput')}
-          onShowCheckOutInput={() => this.setViewEvent.emit('checkoutInput')}
+          onShowCheckInInput={() => this.setViewEvent.emit({ view: 'checkinInput'})}
+          onShowCheckOutInput={() => this.setViewEvent.emit({ view: 'checkoutInput'})}
           onShowGuestsInput={() => this.showGuestInput.emit()}
-          onShowSeasonalRates={() => this.setViewEvent.emit('seasonalRates')}
-          onShowBookingDetails={() => this.setViewEvent.emit('bookingDetails')}
+          onShowSeasonalRates={() => this.setViewEvent.emit({ view: 'seasonalRates'})}
+          onShowBookingDetails={e => this.setViewEvent.emit({view: 'bookingDetails', data: e.detail})}
         />
       </div>
     )

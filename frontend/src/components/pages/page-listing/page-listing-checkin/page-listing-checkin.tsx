@@ -75,7 +75,7 @@ export class PageListingCheckin {
     this.errors = errors;
   }
 
-  async submit(e) {
+  async submit() {
     this.submitAttempt++;
 
     this.checkErrors();

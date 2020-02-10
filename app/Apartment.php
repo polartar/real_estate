@@ -318,8 +318,9 @@ class Apartment extends Model
 
         $total_rent = $rent + $service_fee_host;
 
-        $amortized_monthly_rent = round(($total_rent + $service_fee_host) / $months_count, 2);
-        $night_rate = round(($total_rent + $service_fee_host) / $total_days, 2);
+        $amortized_monthly_rent = round($total_rent / $months_count, 2);
+
+        $night_rate = round($total_rent / $total_days, 2);
         $deposit = round($amortized_monthly_rent * ($currentRate->security_deposit_percent / 100), 2);
 
         $background_checks = $this->getBackgroundCheckPrice($guests);

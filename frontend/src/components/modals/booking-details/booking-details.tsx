@@ -105,10 +105,18 @@ export class BookingDetails {
   }
 
   render() {
-    console.log(this.details);
     const neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
     const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
+
+    let termString = this.details.term.months ? `${this.details.term.months} months` : '';
+    if (this.details.term.months && this.details.term.days) {
+      termString += ' and ';
+    }
+
+    if (this.details.term.days) {
+      termString += `${this.details.term.days} days`
+    }
 
     const bookingDetails = [
       {
@@ -121,19 +129,19 @@ export class BookingDetails {
         tooltip: 'Price of rent, per month.',
         description: 'Monthly Rent:',
         center: '',
-        value: formatMoney(this.details.monthly_rent)
+        value: this.details.monthly_rent ? formatMoney(this.details.monthly_rent) : null
       },
       {
         tooltip: 'Price per month, divided by the total amount of days in the month.',
         description: 'Night rate:',
         center: '',
-        value: formatMoney(this.details.night_rate)
+        value: this.details.night_rate ? formatMoney(this.details.night_rate) : null
       },
       {
         tooltip: 'Length of your stay, from check-in to check-out.',
         description: 'Total Term:',
         center: '',
-        value: '3 Months and 14 days'
+        value: termString
       },
       {
         tooltip: 'Total number of guests staying in the apartment',
@@ -148,44 +156,44 @@ export class BookingDetails {
         tooltip: 'The cost for a background check, required for all guests to ensure safety.',
         description: 'Background checks:',
         center: '',
-        value: formatMoney(300)
+        value: this.details.background_checks ? formatMoney(this.details.background_checks) : null
       },
       {
         tooltip: 'Sum of (monthly rate x months) + (nightly rate x days).',
         description: 'Rent:',
         center: '',
-        value: formatMoney(12000)
+        value: this.details.rent ? formatMoney(this.details.rent) : null
       },
       {
         tooltip: 'New York Occupancy & Hotel tax.',
         description: 'Tax:',
         center: '',
-        value: formatMoney(543)
+        value: this.details.tax ? formatMoney(this.details.tax) : null
       },
       {
         tooltip: 'Sum of your total utilities for the duration of your stay [Utilities includes: Electricity, Gas, Cable TV, Wifi].',
         description: 'Utilities:',
         center: '',
-        value: formatMoney(600)
+        value: this.details.utilities ? formatMoney(this.details.utilities) : null
       },
       {
         tooltip: 'Fees help cover Apt212 service costs, including access to a personal agent to assist with the entire rental process, showing units, and processing paperwork.',
         description: 'Service Fee:',
         center: '',
-        value: formatMoney(2000)
+        value: this.details.service_fee ? formatMoney(this.details.service_fee) : null
       },
       {
         tooltip: 'A refundable deposit protects hosts, and guests, from any accidental damages.',
         description: 'Refundable Deposit:',
         center: '',
-        value: formatMoney(3000),
+        value: this.details.deposit ? formatMoney(this.details.deposit) : null,
         class: 'highlight'
       },
       {
         tooltip: 'The sum of all costs of your rental, from check in to check out.  No hidden fees!',
         description: 'Total:',
         center: '',
-        value: formatMoney(19340)
+        value: this.details.total ? formatMoney(this.details.total) : null
       }
     ];
 
@@ -194,32 +202,26 @@ export class BookingDetails {
         tooltip: 'Portion of the total due now in order to secure your reservation.',
         description: 'Due now to reserve:',
         center: '',
-        value: formatMoney(9000),
+        value: this.details.timeline.due_to_reserve ? formatMoney(this.details.timeline.due_to_reserve) : null,
         class: 'bg-highlight'
       },
       {
-        tooltip: '',
-        description: 'Due upon lease signing:',
-        center: '',
-        value: formatMoney(4000)
-      },
-      {
         tooltip: 'Portion of the total due by your check in date.',
-        description: `Due by check in (${formatDate(this.checkinDate, 'm/d/y')}):`,
+        description: `Due by check in (${this.details.timeline.due_by_checkin_date}):`,
         center: '',
-        value: formatMoney(9000)
+        value: this.details.timeline.due_by_checkin ? formatMoney(this.details.timeline.due_by_checkin) : null
       },
       {
         tooltip: 'Total of all future payments minus the due now and due by check in.  Future payment due dates will be outlined on your lease agreement.',
         description: 'Future Payments:',
         center: '',
-        value: formatMoney(-3000)
+        value: this.details.timeline.future_payments ? formatMoney(this.details.timeline.future_payments) : null
       },
       {
         tooltip: 'The refundable Deposit that will be paid back to you within a maximum of 14 days from your check out date.',
         description: 'Deposit Refund:',
         center: '',
-        value: formatMoney(-3000),
+        value: this.details.timeline.deposit_refund ? formatMoney(this.details.timeline.deposit_refund) : null,
         class: 'highlight'
       }
     ];
@@ -266,6 +268,10 @@ export class BookingDetails {
             <h3>Total Breakdown</h3>
             {
               breakdownDetails.map(b => {
+                if (!b.value) {
+                  return;
+                }
+
                 let classObj = { 'detail-item': true };
                 if (b.hasOwnProperty('class')) {
                   classObj[b.class] = true;
@@ -307,6 +313,10 @@ export class BookingDetails {
             <h3>Payment Timeline</h3>
             {
               paymentDetails.map(b => {
+                if (!b.value) {
+                  return;
+                }
+
                 let classObj = { 'detail-item': true };
                 if (b.hasOwnProperty('class')) {
                   classObj[b.class] = true;
