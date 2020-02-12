@@ -358,6 +358,8 @@ class Apartment extends Model
             }
         }
 
+        $due_to_reserve = round($due_to_reserve, 2);
+
         foreach ($due_by_checkin_settings as $setting) {
             // only count it if it wasn't previously added to reservation fee
             if (in_array($setting, $due_to_reserve_settings)) {

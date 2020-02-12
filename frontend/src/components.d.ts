@@ -66,6 +66,7 @@ export namespace Components {
   interface BookingDetails {
     'item': any;
   }
+  interface BookingForm {}
   interface BookingMobileBody {
     'item': any;
   }
@@ -412,6 +413,12 @@ declare global {
   var HTMLBookingDetailsElement: {
     prototype: HTMLBookingDetailsElement;
     new (): HTMLBookingDetailsElement;
+  };
+
+  interface HTMLBookingFormElement extends Components.BookingForm, HTMLStencilElement {}
+  var HTMLBookingFormElement: {
+    prototype: HTMLBookingFormElement;
+    new (): HTMLBookingFormElement;
   };
 
   interface HTMLBookingMobileBodyElement extends Components.BookingMobileBody, HTMLStencilElement {}
@@ -872,6 +879,7 @@ declare global {
     'bathroom-filter': HTMLBathroomFilterElement;
     'bedroom-filter': HTMLBedroomFilterElement;
     'booking-details': HTMLBookingDetailsElement;
+    'booking-form': HTMLBookingFormElement;
     'booking-mobile-body': HTMLBookingMobileBodyElement;
     'building-type-filter': HTMLBuildingTypeFilterElement;
     'component-prefetch': HTMLComponentPrefetchElement;
@@ -996,6 +1004,7 @@ declare namespace LocalJSX {
   interface BookingDetails extends JSXBase.HTMLAttributes<HTMLBookingDetailsElement> {
     'item': any;
   }
+  interface BookingForm extends JSXBase.HTMLAttributes<HTMLBookingFormElement> {}
   interface BookingMobileBody extends JSXBase.HTMLAttributes<HTMLBookingMobileBodyElement> {
     'item': any;
     'onSetViewEvent'?: (event: CustomEvent<any>) => void;
@@ -1271,6 +1280,7 @@ declare namespace LocalJSX {
     'bathroom-filter': BathroomFilter;
     'bedroom-filter': BedroomFilter;
     'booking-details': BookingDetails;
+    'booking-form': BookingForm;
     'booking-mobile-body': BookingMobileBody;
     'building-type-filter': BuildingTypeFilter;
     'component-prefetch': ComponentPrefetch;

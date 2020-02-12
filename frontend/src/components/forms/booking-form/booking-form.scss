@@ -1,0 +1,141 @@
+@import '../../../styles/mixins';
+
+.booking-form-component {
+  .title {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  button {
+    border-radius: 6px;
+    font-size: 12px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .payment-method {
+    padding-top: 16px;
+    display: flex;
+    justify-content: center;
+
+    & > div:not(:first-child) {
+      margin-left: 12px;
+    }
+
+    .subtext {
+      padding-top: 5px;
+      font-size: 8px;
+      font-weight: 600;
+    }
+  }
+
+  .button-toggles {
+    button {
+      border: 1px solid black;
+      height: 44px;
+      background-color: white;
+      color: black;
+      width: 123px;
+      padding: 0;
+
+      @include for-size(desktop-up) {
+        width: 157px;
+        font-size: 14px;
+      }
+
+      &.active {
+        background-color: black;
+        color: white;
+      }
+    }
+  }
+
+  .agent {
+    button {
+      height: 32px;
+      width: auto;
+      padding: 0;
+      width: 50%;
+
+      &:first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &:last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  label {
+    font-size: 10px;
+    opacity: 0.8;
+    font-weight: 600;
+    display: block;
+    padding-bottom: 6px;
+
+    &.inline {
+      display: inline;
+    }
+  }
+
+  .error {
+    label {
+      color: red;
+    }
+  }
+
+  input,
+  input[type="email"],
+  input[type="number"],
+  select {
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.5);
+    background-color: #ffffff;
+    width: 100%;
+  }
+
+  .error {
+    input,
+    input[type="email"],
+    input[type="number"],
+    select {
+      border: 1px solid red;
+    }
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    & > :nth-child(odd) {
+      margin-right: 5px;
+    }
+
+    & > :nth-child(even) {
+      margin-left: 5px;
+    }
+  }
+
+  .tos {
+    display: inline-block;
+    margin-left: 10px;
+    --apt212-checkbox-border: 1px solid black;
+    --apt212-checkbox-border-radius: 2px;
+
+    label {
+      padding: 0;
+    }
+  }
+
+  .tos-view {
+    font-size: 10px;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+}

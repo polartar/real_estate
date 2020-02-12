@@ -26,7 +26,7 @@ export class AppFooter {
             <div class="footer-col footer-left">
               <div class="footer-links">
                 <div class="links-left">
-                  <ion-router-link href="/bookings">Bookings</ion-router-link>
+                  <ion-router-link href="/booking">Bookings</ion-router-link>
                   <ion-router-link href="/faq">FAQ</ion-router-link>
                   <ion-router-link href="/about">About</ion-router-link>
                   <ion-router-link href="/neighborhoods">Neighborhoods</ion-router-link>
