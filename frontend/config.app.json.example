@@ -12,5 +12,8 @@
   "APP_ENVIRONMENT": "development",
 
   "//MAPBOX_PUBLIC_TOKEN": "The public API token for mapbox integration",
-  "MAPBOX_PUBLIC_TOKEN": "pk.lkasjfljfljsdlfjsdalfjsdalkfjasljasldk"
+  "MAPBOX_PUBLIC_TOKEN": "pk.lkasjfljfljsdlfjsdalfjsdalkfjasljasldk",
+
+  "//STRIPE_PUBLIC_KEY": "The public API key for stripe integration",
+  "STRIPE_PUBLIC_KEY": "pk_test_ueTcimG0c82FSjGWAWVwdk9n003ryYO6iV"
 }

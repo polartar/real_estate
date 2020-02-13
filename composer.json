@@ -18,7 +18,8 @@
         "jeremykenedy/laravel-roles": "^2.5",
         "laravel/framework": "^6.5",
         "laravel/passport": "^7.4",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "stripe/stripe-php": "^7.24"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

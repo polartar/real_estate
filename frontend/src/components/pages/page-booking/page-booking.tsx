@@ -44,27 +44,27 @@ export class PageBooking {
       },
       {
         question: 'Is there a cost for paying via debit card?',
-        answer: 'No'
+        answer: 'Debit cards have a $3.00 service charge per transaction.'
       },
       {
         question: 'Is there a cost for paying via credit card?',
-        answer: 'No'
+        answer: 'Credit cards have a 3% service charge per transaction to cover the fees that are incurred to process your payment.'
       },
       {
         question: 'Is there a cost for ACH/Wire payment?',
-        answer: 'No'
+        answer: 'No! All ACH/Wire Payments are 100% free.'
       },
       {
         question: 'If I have a roommate, can we split our rent or deposit payments?',
-        answer: 'Yes'
+        answer: 'Yes! Roommates can pay their individual portion of the rent/deposit instead of having to send the full amount in one payment!'
       },
       {
         question: 'If my application is not approved, is my deposit refundable?',
-        answer: 'Yes'
+        answer: 'Yes! All deposits are 100% refundable if your application is denied or rejected.'
       },
       {
         question: 'Do you store my credit card / wire information after my payment is made?',
-        answer: 'No'
+        answer: 'No! All payments are made through either Plaid or Stripes Secure gateways. No payment information is stored by APT212 or any of its affiliates!'
       }
     ];
 
@@ -74,7 +74,7 @@ export class PageBooking {
 
         <section class="section page-booking-body">
           <div class="payment-section-wrapper">
-            <lazy-image src="/assets/images/payment-hero.jpg" class="payment-bg" alt="background-image" aria-label="" />
+            <lazy-image src="/assets/images/booking_hero1.png" class="payment-bg" alt="background-image" aria-label="" />
 
             <div class="payment-bg-mask" />
 
@@ -158,7 +158,7 @@ export class PageBooking {
           </div>
 
           <div class="payment-section-wrapper payment-faq">
-            <lazy-image src="/assets/images/payment-hero.jpg" class="payment-bg" alt="background-image" aria-label="" />
+            <lazy-image src="/assets/images/booking_hero2.png" class="payment-bg" alt="background-image" aria-label="" />
 
             <div class="payment-bg-mask" />
 
@@ -168,7 +168,7 @@ export class PageBooking {
                 faqQuestions.map((q, index) =>
                   <div class="faq-item">
                     <div class="item">
-                      <div class="question">
+                      <div class="question" onClick={() => this.toggleFAQ(index + 1)}>
                         {q.question}
                       </div>
 

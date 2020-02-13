@@ -48,7 +48,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0, 0.5);
+    // background-color: rgba(0,0,0, 0.5);
   }
 
   .payment-hero {
@@ -124,7 +124,7 @@
       height: 100%;
       width: calc(475px + 81px);
       right: 0;
-      top: 20px;
+      top: 0;
     }
 
     .payment-form {
@@ -140,7 +140,7 @@
 
       @include for-size(desktop-up) {
         position: sticky;
-        top: 40px;
+        top: 20px;
         max-width: 475px;
       }
     }
@@ -274,7 +274,7 @@
 
     @include for-size(desktop-up) {
       padding-left: 48px;
-      padding-right: 0;
+      padding-right: 50px;
       padding-top: 81px;
     }
   }
@@ -296,6 +296,11 @@
         font-weight: 900;
         text-transform: uppercase;
         font-family: 'Montserrat', sans-serif;
+        padding-right: 70px;
+      }
+
+      .answer {
+        padding-right: 70px;
       }
     }
 

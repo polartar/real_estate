@@ -4,6 +4,7 @@ export interface EnvironmentConfig {
   BASE_URL: string;
   APP_ENVIRONMENT: string;
   MAPBOX_PUBLIC_TOKEN: string;
+  STRIPE_PUBLIC_KEY: string;
 }
 
 export function setupConfig(config: EnvironmentConfig) {

@@ -33,6 +33,8 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
 
     // Neighborhoods
     Route::get('neighborhoods/fromPoint/{lng}/{lat}', 'NeighborhoodsController@neighborhoodsFromPoint');
+
+    Route::get('booking/payment_intent', 'BookingController@paymentIntent');
 });
 
 

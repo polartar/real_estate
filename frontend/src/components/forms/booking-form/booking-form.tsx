@@ -2,6 +2,16 @@ import { Component, h, State, Prop } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import bookingSelectors from '../../../store/selectors/booking';
 import { generateId } from '../../../helpers/utils';
+import serialize from 'form-serialize';
+import isNumber from 'is-number';
+import Isemail from 'isemail';
+import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
+import { ScriptLoaderService } from '../../../services/script-loader.service';
+import { LoadingService } from '../../../services/loading.service';
+import { APIBookingService } from '../../../services/api/booking';
+import { ToastService } from '../../../services/toast.service';
+
+declare var Stripe: any;
 
 @Component({
   tag: 'booking-form',
@@ -10,11 +20,20 @@ import { generateId } from '../../../helpers/utils';
 export class BookingForm {
   @Prop({ context: "store" }) store: Store;
   @State() method: string = 'ach';
-  @State() agent: string = 'yes';
+  @State() agent: string = 'no';
   @State() bookingDetails: any = null;
   @State() errors: any = [];
 
   @State() idSuffix: string = generateId(5);
+
+  form: HTMLFormElement;
+
+  stripe: any;
+  stripeLoaded: boolean = false;
+  stripeElements: any;
+  cardNumber: any;
+  cardExpiry: any;
+  cardCvc: any;
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
@@ -24,11 +43,166 @@ export class BookingForm {
     });
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-    console.log('submitted');
+  componentDidLoad() {
+    ScriptLoaderService.loadScript('Stripe', 'https://js.stripe.com/v3/')
+      .then(() => {
+        this.stripe = Stripe(EnvironmentConfigService.getInstance().get('STRIPE_PUBLIC_KEY'));
 
-    this.errors = ['amount'];
+        this.stripeElements = this.stripe.elements({
+          fonts: [
+            {
+              cssSrc: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro',
+            },
+          ],
+        });
+
+        this.stripeLoaded = true;
+
+        this.stripeInit();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  stripeInit() {
+    if (!this.stripeLoaded) {
+      return;
+    }
+
+    const stripeStyles = {
+      base: {
+        fontFamily: 'Source sans pro',
+      }
+    };
+
+    try {
+      // this.card.mount(`#card-element-${this.idSuffix}`);
+      if (!this.cardNumber) {
+        this.cardNumber = this.stripeElements.create('cardNumber', { style: stripeStyles });
+        this.cardNumber.addEventListener('change', ev => {
+          if (ev.error) {
+            ToastService.error(ev.error.message);
+          }
+        });
+      }
+
+      if (!this.cardExpiry) {
+        this.cardExpiry = this.stripeElements.create('cardExpiry', { style: stripeStyles });
+        this.cardExpiry.addEventListener('change', ev => {
+          if (ev.error) {
+            ToastService.error(ev.error.message);
+          }
+        });
+      }
+
+      if (!this.cardCvc) {
+        this.cardCvc = this.stripeElements.create('cardCvc', { style: stripeStyles });
+        this.cardCvc.addEventListener('change', ev => {
+          if (ev.error) {
+            ToastService.error(ev.error.message);
+          }
+        });
+      }
+
+
+      this.cardNumber.mount(`#cardNumber-${this.idSuffix}`);
+      this.cardNumber.clear();
+      this.cardExpiry.mount(`#cardExpiry-${this.idSuffix}`);
+      this.cardCvc.mount(`#cardCvc-${this.idSuffix}`);
+
+    } catch (err) {
+      console.log(err);
+      // ignore since the element may not exist
+    }
+  }
+
+  async onSubmit(e) {
+    e.preventDefault();
+
+    const results = serialize(this.form, { hash: true, empty: true });
+
+    console.log(results);
+
+    this.checkErrors(results);
+
+    if (this.errors.length) {
+      return;
+    }
+
+    await LoadingService.showLoading();
+
+    try {
+      const intent = await APIBookingService.getPaymentIntent(results);
+
+      const stripeResult = await this.stripe.confirmCardPayment(intent, {
+        payment_method: {
+          card: this.cardNumber,
+          billing_details: {
+            name: `${results.firstname} ${results.lastname}`,
+            email: results.email,
+            address: {
+              postal_code: results.zipcode
+            }
+          }
+        }
+      });
+
+      if (stripeResult.error) {
+        throw new Error(stripeResult.error.message);
+      }
+
+      ToastService.success('Your payment has been processed, please check your email for your receipt.');
+
+    } catch (err) {
+      ToastService.error(err.message, { duration: 10000 });
+    }
+
+    await LoadingService.hideLoading();
+  }
+
+  checkErrors(results) {
+    const errors = [];
+
+    let required = ['amount', 'webid', 'firstname', 'lastname', 'email', 'phone', 'tos'];
+
+    if (results.payment_method === 'credit') {
+      required = [...required, 'zipcode'];
+    }
+
+    if (this.agent === 'yes') {
+      required = [...required, 'agent'];
+    }
+
+    required.forEach(r => {
+      if (!results[r]) {
+        errors.push(r);
+      }
+    });
+
+    if (!isNumber(results.amount)) {
+      errors.push('amount');
+    }
+
+    if (!Isemail.validate(results.email)) {
+      errors.push('email');
+    }
+
+    if (results.payment_method === 'credit') {
+      if (this.cardNumber._empty || this.cardNumber._invalid) {
+        errors.push('cardNumber');
+      }
+
+      if (this.cardExpiry._empty || this.cardExpiry._invalid) {
+        errors.push('cardExpiry');
+      }
+
+      if (this.cardCvc._empty || this.cardExpiry._invalid) {
+        errors.push('cardCvc');
+      }
+    }
+
+    this.errors = errors;
   }
 
   render() {
@@ -48,7 +222,7 @@ export class BookingForm {
     ];
 
     return (
-      <form onSubmit={e => this.onSubmit(e)} class="booking-form-component">
+      <form onSubmit={e => this.onSubmit(e)} class="booking-form-component" ref={el => this.form = el as HTMLFormElement }>
         <div class="title text-center">Select a payment method</div>
 
         <div class="payment-method text-center">
@@ -58,6 +232,7 @@ export class BookingForm {
               class={{ 'button-dark': true,  active: this.method === 'ach'}}
               onClick={() => this.method = 'ach'}
             >
+              <img src={`/assets/images/icons/bank_transfer_${this.method === 'ach' ? 'white' : 'black'}.svg`} alt="" class="payment-method-icon"/>
               Bank Transfer
             </button>
           </div>
@@ -68,6 +243,7 @@ export class BookingForm {
               class={{ 'button-dark': true,  active: this.method === 'credit'}}
               onClick={() => this.method = 'credit'}
             >
+              <img src={`/assets/images/icons/credit_card_${this.method === 'credit' ? 'white' : 'black'}.svg`} alt="" class="payment-method-icon" />
               Credit Card
             </button>
 
@@ -85,10 +261,11 @@ export class BookingForm {
               type="number"
               name="amount"
               value={this.bookingDetails ? this.bookingDetails.timeline.due_to_reserve : null }
+              step="0.01"
             />
           </div>
 
-          <div class="input">
+          <div class={{ input: true, error: this.errors.includes('webid') }}>
             <label htmlFor={`webid-${this.idSuffix}`}>Address or Web ID</label>
             <input
               id={`webid-${this.idSuffix}`}
@@ -123,21 +300,27 @@ export class BookingForm {
               <input type="hidden" name="using_agent" value={this.agent} />
             </div>
 
-            <div class="input">
-              <label htmlFor={`agent-${this.idSuffix}`}>Agent Name</label>
-              <select
-                id={`agent-${this.idSuffix}`}
-                name="agent"
-              >
-                <option value=""></option>
+            <div class={{ input: true, error: this.errors.includes('agent')}}>
+              {
+                this.agent === 'yes' ?
+                  <div>
+                    <label htmlFor={`agent-${this.idSuffix}`}>Agent Name</label>
+                      <select
+                        id={`agent-${this.idSuffix}`}
+                        name="agent"
+                      >
+                        <option value=""></option>
 
-                {
-                  agents.map(a => <option value={a.id}>{a.name}</option>)
-                }
-              </select>
+                        {
+                          agents.map(a => <option value={a.id}>{a.name}</option>)
+                        }
+                      </select>
+                  </div>
+                : null
+              }
             </div>
 
-            <div class="input">
+            <div class={{ input: true, error: this.errors.includes('firstname') }}>
               <label htmlFor={`firstname-${this.idSuffix}`}>First Name</label>
               <input
                 id={`firstname-${this.idSuffix}`}
@@ -146,7 +329,7 @@ export class BookingForm {
               />
             </div>
 
-            <div class="input">
+            <div class={{ input: true, error: this.errors.includes('lastname') }}>
               <label htmlFor={`lastname-${this.idSuffix}`}>Last Name</label>
               <input
                 id={`lastname-${this.idSuffix}`}
@@ -155,7 +338,7 @@ export class BookingForm {
               />
             </div>
 
-            <div class="input">
+            <div class={{ input: true, error: this.errors.includes('email') }}>
               <label htmlFor={`email-${this.idSuffix}`}>Email</label>
               <input
                 id={`email-${this.idSuffix}`}
@@ -164,7 +347,7 @@ export class BookingForm {
               />
             </div>
 
-            <div class="input">
+            <div class={{ input: true, error: this.errors.includes('phone') }}>
               <label htmlFor={`phone-${this.idSuffix}`}>Phone</label>
               <input
                 id={`phone-${this.idSuffix}`}
@@ -175,8 +358,34 @@ export class BookingForm {
           </div>
         </div>
 
-        <div class="input">
-          <div class="flex-vertical-align">
+        <div class={{ 'credit-inputs': true, visible: this.method === 'credit' }}>
+          <div class={{ input: true, error: this.errors.includes('cardNumber')}}>
+            <label>Credit Card Number</label>
+            <div id={`cardNumber-${this.idSuffix}`} class="stripe-input" />
+          </div>
+
+          <div class="columns">
+            <div class={{ input: true, error: this.errors.includes('zipcode')}}>
+              <label>Zip/Postal Code</label>
+              <input id={`zipcode-${this.idSuffix}`} type="text" name="zipcode" />
+            </div>
+
+            <div class="columns">
+              <div class={{ input: true, error: this.errors.includes('cardExpiry')}}>
+                <label>Exp Date</label>
+                <div id={`cardExpiry-${this.idSuffix}`} class="stripe-input" />
+              </div>
+
+              <div class={{ input: true, error: this.errors.includes('cardCvc')}}>
+                <label>CVC</label>
+                <div id={`cardCvc-${this.idSuffix}`} class="stripe-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class={{ input: true, error: this.errors.includes('tos') }}>
+          <div class="flex-vertical-center">
               <label class="inline">
                 Do you agree to terms of service? <button class="button-reset tos-view">View</button>
               </label>
@@ -185,7 +394,9 @@ export class BookingForm {
         </div>
 
         <div class="input">
-          <button type="submit" class="button button-dark block active">Proceed to payment gateway</button>
+          <button type="submit" class="button button-dark block active">
+            Proceed to payment gateway
+          </button>
         </div>
       </form>
     )
