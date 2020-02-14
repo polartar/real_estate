@@ -59,17 +59,17 @@ class BookingController extends Controller
         return response()->json(['message' => 'received']);
     }
 
-    public function stripeWebhookProcess(Request $request) {
-        $metadata = new stdClass();
-        $metadata->firstname = 'Matt';
-        $metadata->lastname = 'Beckett';
-        $metadata->amount = 123;
-        $metadata->email = 'matt@arckinteractive.com';
-        $metadata->webid = 1;
-        $metadata->phone = '2506670871';
-        $metadata->using_agent = 'no';
-        $metadata->agent = 'Boston Rob';
+    // public function previewMail(Request $request) {
+    //     $metadata = new stdClass();
+    //     $metadata->firstname = 'Matt';
+    //     $metadata->lastname = 'Beckett';
+    //     $metadata->amount = 123;
+    //     $metadata->email = 'matt@arckinteractive.com';
+    //     $metadata->webid = 1;
+    //     $metadata->phone = '2506670871';
+    //     $metadata->using_agent = 'no';
+    //     $metadata->agent = 'Boston Rob';
 
-        return new ClientCheckoutComplete($metadata);
-    }
+    //     return new ClientCheckoutComplete($metadata);
+    // }
 }

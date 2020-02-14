@@ -37,7 +37,6 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
     Route::get('booking/payment_intent', 'BookingController@paymentIntent');
     Route::post('booking/stripe_webhook', 'BookingController@stripeWebhook');
     Route::get('booking/stripe_webhook', 'BookingController@stripeWebhook');
-    Route::get('booking/stripe_webhook_process', 'BookingController@stripeWebhookProcess');
 });
 
 
