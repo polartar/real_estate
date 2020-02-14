@@ -23,6 +23,7 @@ $front_end_routes = [
     '/404',
     '/private-rooms',
     '/corporate-rooms',
+    '/about',
 
     '/admin',
     '/admin/listings',

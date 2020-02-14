@@ -215,6 +215,9 @@ export namespace Components {
   }
   interface OwnerGlobalForm {}
   interface Page404 {}
+  interface PageAbout {
+    'prefetching': boolean;
+  }
   interface PageAdmin {}
   interface PageAdminListingAdd {}
   interface PageAdminListingEdit {
@@ -673,6 +676,12 @@ declare global {
     new (): HTMLPage404Element;
   };
 
+  interface HTMLPageAboutElement extends Components.PageAbout, HTMLStencilElement {}
+  var HTMLPageAboutElement: {
+    prototype: HTMLPageAboutElement;
+    new (): HTMLPageAboutElement;
+  };
+
   interface HTMLPageAdminElement extends Components.PageAdmin, HTMLStencilElement {}
   var HTMLPageAdminElement: {
     prototype: HTMLPageAdminElement;
@@ -922,6 +931,7 @@ declare global {
     'neighborhood-tags': HTMLNeighborhoodTagsElement;
     'owner-global-form': HTMLOwnerGlobalFormElement;
     'page-404': HTMLPage404Element;
+    'page-about': HTMLPageAboutElement;
     'page-admin': HTMLPageAdminElement;
     'page-admin-listing-add': HTMLPageAdminListingAddElement;
     'page-admin-listing-edit': HTMLPageAdminListingEditElement;
@@ -1150,6 +1160,9 @@ declare namespace LocalJSX {
   }
   interface OwnerGlobalForm extends JSXBase.HTMLAttributes<HTMLOwnerGlobalFormElement> {}
   interface Page404 extends JSXBase.HTMLAttributes<HTMLPage404Element> {}
+  interface PageAbout extends JSXBase.HTMLAttributes<HTMLPageAboutElement> {
+    'prefetching'?: boolean;
+  }
   interface PageAdmin extends JSXBase.HTMLAttributes<HTMLPageAdminElement> {}
   interface PageAdminListingAdd extends JSXBase.HTMLAttributes<HTMLPageAdminListingAddElement> {}
   interface PageAdminListingEdit extends JSXBase.HTMLAttributes<HTMLPageAdminListingEditElement> {
@@ -1323,6 +1336,7 @@ declare namespace LocalJSX {
     'neighborhood-tags': NeighborhoodTags;
     'owner-global-form': OwnerGlobalForm;
     'page-404': Page404;
+    'page-about': PageAbout;
     'page-admin': PageAdmin;
     'page-admin-listing-add': PageAdminListingAdd;
     'page-admin-listing-edit': PageAdminListingEdit;
