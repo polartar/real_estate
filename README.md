@@ -46,6 +46,7 @@ Copy the `/frontend/config.app.json.example` to `/frontend/config.app.json` and 
 ## Production Build
 
     cd frontend
+    npm install
     npm run prod
 
 ## Development Serve
