@@ -21,6 +21,14 @@ Clear caches
 
 `php artisan cache:clear`
 
+# Stripe integration
+
+Add a webhook in stripe for [url]/api/booking/stripe_webhook for the `charge.succeeded` event type
+
+Add the webhook signing secret key to the .env file
+
+Ensure cron is set: `* * * * * cd /path/to/docroot && php artisan schedule:run >> /dev/null 2>&1`
+
 # PWA (front end)
 
 ## Installation

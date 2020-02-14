@@ -10,6 +10,8 @@ import { ScriptLoaderService } from '../../../services/script-loader.service';
 import { LoadingService } from '../../../services/loading.service';
 import { APIBookingService } from '../../../services/api/booking';
 import { ToastService } from '../../../services/toast.service';
+import { AlertService } from '../../../services/alerts.service';
+import { RouterService } from '../../../services/router.service';
 
 declare var Stripe: any;
 
@@ -152,7 +154,11 @@ export class BookingForm {
         throw new Error(stripeResult.error.message);
       }
 
-      ToastService.success('Your payment has been processed, please check your email for your receipt.');
+      await LoadingService.hideLoading();
+
+      await AlertService.alert('Your payment has been received, an administrator will contact you regarding your booking. Please check your email for your receipt.', 'Success');
+
+      RouterService.forward('/');
 
     } catch (err) {
       ToastService.error(err.message, { duration: 10000 });
