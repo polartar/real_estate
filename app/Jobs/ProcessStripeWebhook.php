@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\ClientCheckoutComplete;
+use App\Mail\OfficeCheckoutComplete;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -55,6 +56,7 @@ class ProcessStripeWebhook implements ShouldQueue
                 //     [amount] => 123
                 //     [webid] => Matt J Beckett
                 //     [using_agent] => no
+                //     [agent] => agent@apt212.com
                 //     [firstname] => Matt
                 //     [lastname] => Beckett
                 //     [email] => matt+test@arckinteractive.com
@@ -63,8 +65,18 @@ class ProcessStripeWebhook implements ShouldQueue
                 //     [tos] => 1
                 // )
 
+                $metadata->transaction_id = $this->event->data->object->id;
+
                 // send emails
                 Mail::to($metadata->email)->send(new ClientCheckoutComplete($metadata));
+
+                if (config('apt212.office_email')) {
+                    Mail::to(config('apt212.office_email'))->send(new OfficeCheckoutComplete($metadata));
+                }
+
+                if ($metadata->using_agent === 'yes') {
+                    Mail::to($metadata->agent)->send(new OfficeCheckoutComplete($metadata));
+                }
             break;
         }
     }

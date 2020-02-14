@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ClientCheckoutComplete extends Mailable
+class OfficeCheckoutComplete extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,6 +31,6 @@ class ClientCheckoutComplete extends Mailable
      */
     public function build()
     {
-        return $this->subject('APT212 booking processing')->view('emails.client_checkout_complete');
+        return $this->subject('Booking Payment Received')->view('emails.office_checkout_complete');
     }
 }

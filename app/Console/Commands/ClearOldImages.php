@@ -40,12 +40,12 @@ class ClearOldImages extends Command
     public function handle()
     {
         //
-        $count = ImageUpload::whereNull('container_id')->where('created_at', '<', now()->sub('1 day'))->count();
+        $count = ImageUpload::whereNull('attachment_id')->where('created_at', '<', now()->sub('1 day'))->count();
 
         $bar = $this->output->createProgressBar($count);
         $bar->start();
 
-        $imageUploads = ImageUpload::whereNull('container_id')->where('created_at', '<', now()->sub('1 day'))->get();
+        $imageUploads = ImageUpload::whereNull('attachment_id')->where('created_at', '<', now()->sub('1 day'))->get();
 
         foreach ($imageUploads as $image) {
             $image->delete();

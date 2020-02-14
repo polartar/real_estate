@@ -156,7 +156,7 @@ export class BookingForm {
 
       await LoadingService.hideLoading();
 
-      await AlertService.alert('Your payment has been received, an administrator will contact you regarding your booking. Please check your email for your receipt.', 'Success');
+      await AlertService.alert('Thank you for making a payment. We are processing your booking and will get back with you shortly.  Please check your email for your receipt.', 'Success');
 
       RouterService.forward('/');
 
@@ -214,16 +214,68 @@ export class BookingForm {
   render() {
     const agents = [
       {
-        id: 1,
-        name: 'Office'
+        name: 'Office',
+        email: 'office@apt212.com'
       },
       {
-        id: 2,
-        name: 'Adi'
+        name: 'Adi',
+        email: 'adi@apt212.com'
       },
       {
-        id: 3,
-        name: 'Margaret'
+        name: 'Margaret',
+        email: 'margaret@apt212.com'
+      },
+      {
+        name: 'Rivka',
+        email: 'rivka@apt212.com'
+      },
+      {
+        name: 'Jane',
+        email: 'jane@apt212.com'
+      },
+      {
+        name: 'Dustin',
+        email: 'dustin@apt212.com'
+      },
+      {
+        name: 'Milena',
+        email: 'milena@apt212.com'
+      },
+      {
+        name: 'Dana',
+        email: 'dana@apt212.com'
+      },
+      {
+        name: 'Sara',
+        email: 'sara@apt212.com'
+      },
+      {
+        name: 'Katherine',
+        email: 'katie@apt212.com'
+      },
+      {
+        name: 'Karishma',
+        email: 'karishma@apt212.com'
+      },
+      {
+        name: 'Georgeann',
+        email: 'georgeann@apt212.com'
+      },
+      {
+        name: 'Esther',
+        email: 'esther@apt212.com'
+      },
+      {
+        name: 'Pritha',
+        email: 'pritha@apt212.com'
+      },
+      {
+        name: 'Francois',
+        email: 'francois@apt212.com'
+      },
+      {
+        name: 'Gloria',
+        email: 'gloria@apt212.com'
       }
     ];
 
@@ -318,7 +370,7 @@ export class BookingForm {
                         <option value=""></option>
 
                         {
-                          agents.map(a => <option value={a.id}>{a.name}</option>)
+                          agents.map(a => <option value={a.email}>{a.name}</option>)
                         }
                       </select>
                   </div>
