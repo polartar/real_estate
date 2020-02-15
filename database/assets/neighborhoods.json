@@ -1166,6 +1166,7 @@
         "slug": "civic-center",
         "image": "/assets/images/neighborhoods/tribeca.jpg",
         "region_id": 1,
+        "marketing_neighborhood": "chinatown",
         "coordinates": [
             [
               [
@@ -8100,6 +8101,7 @@
         "slug": "fort-george",
         "image": "/assets/images/neighborhoods/financial-district.jpg",
         "region_id": 5,
+        "marketing_neighborhood": "harlem",
         "coordinates": [
             [
                 [-73.9392436, 40.8583344],
@@ -8229,6 +8231,7 @@
         "slug": "hudson-heights",
         "image": "/assets/images/neighborhoods/financial-district.jpg",
         "region_id": 5,
+        "marketing_neighborhood": "harlem",
         "coordinates": [
             [
                 [-73.946971, 40.8480911],
