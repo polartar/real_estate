@@ -1,0 +1,109 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.page-faq {
+    
+    .hero {
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color:#02a59c;
+    background-blend-mode: multiply;
+    width: 100%;
+    height: calc(100vh / 0.85);
+    display: flex;
+   
+
+
+    .cta {
+      margin: auto;
+      text-align: center;
+
+      h1 {
+        color: white;
+        font-size: $font-size * 2;
+
+        @include for-size(desktop-up) {
+          font-size: $font-size-lg * 2;
+        }
+      }
+
+      .subtitle {
+        color: white;
+        line-height: 1.5;
+        font-size: $font-size;
+        margin-top: 0;
+      }
+
+      .light {
+        background-color: white;
+        height: 40px;
+        color: $color-primary;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    margin: -2px 0 0 0;
+    padding: 0 1rem;
+    text-transform: uppercase;
+    font-size: 0;
+    width: auto;
+    background-color: white;
+
+    .feather {
+      width: 22px;
+      height: 22px;
+
+      @include for-size(desktop-up) {
+        width: 1rem;
+        margin-right: 0.5rem;
+      }
+    }
+
+    @include for-size(desktop-up) {
+      width: 600px;
+      max-width: 365px;
+     
+      font-size: $font-size-md;
+      font-weight: normal;
+      height: $app-header-button-height;
+      box-shadow: 0 0 11px 0 rgba(134, 134, 134, 0.22);
+    }
+  }
+
+  .faq-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 24px;
+
+    @include for-size('desktop-up') {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .questions {
+      position: relative;
+      width: 40%;
+      
+    }
+
+    .answers {
+      display: flex;
+      width: 60%;
+
+    }
+  }
+
+}

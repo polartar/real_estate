@@ -93,6 +93,7 @@ export class AppRoot {
             <ion-route url="/listing/:apartmentId" component="page-listing" />
             <ion-route url="/wishlist" component="page-wishlist" />
             <ion-route url="/neighborhoods" component="page-neighborhoods" />
+            <ion-route url="/faq" component="page-faq" />
             <ion-route url="/neighborhood/:neighborhoodName" component="page-neighborhood" />
             <ion-route url="/booking" component="page-booking" />
 

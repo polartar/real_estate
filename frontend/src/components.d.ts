@@ -229,6 +229,7 @@ export namespace Components {
   interface PageCorporateRooms {
     'prefetching': boolean;
   }
+  interface PageFaq {}
   interface PageHome {
     'prefetching': boolean;
   }
@@ -724,6 +725,12 @@ declare global {
     new (): HTMLPageCorporateRoomsElement;
   };
 
+  interface HTMLPageFaqElement extends Components.PageFaq, HTMLStencilElement {}
+  var HTMLPageFaqElement: {
+    prototype: HTMLPageFaqElement;
+    new (): HTMLPageFaqElement;
+  };
+
   interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {}
   var HTMLPageHomeElement: {
     prototype: HTMLPageHomeElement;
@@ -939,6 +946,7 @@ declare global {
     'page-admin-owner': HTMLPageAdminOwnerElement;
     'page-booking': HTMLPageBookingElement;
     'page-corporate-rooms': HTMLPageCorporateRoomsElement;
+    'page-faq': HTMLPageFaqElement;
     'page-home': HTMLPageHomeElement;
     'page-listing': HTMLPageListingElement;
     'page-listing-body': HTMLPageListingBodyElement;
@@ -1174,6 +1182,7 @@ declare namespace LocalJSX {
   interface PageCorporateRooms extends JSXBase.HTMLAttributes<HTMLPageCorporateRoomsElement> {
     'prefetching'?: boolean;
   }
+  interface PageFaq extends JSXBase.HTMLAttributes<HTMLPageFaqElement> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {
     'prefetching'?: boolean;
   }
@@ -1344,6 +1353,7 @@ declare namespace LocalJSX {
     'page-admin-owner': PageAdminOwner;
     'page-booking': PageBooking;
     'page-corporate-rooms': PageCorporateRooms;
+    'page-faq': PageFaq;
     'page-home': PageHome;
     'page-listing': PageListing;
     'page-listing-body': PageListingBody;
