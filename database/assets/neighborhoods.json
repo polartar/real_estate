@@ -3,7 +3,7 @@
         "id": 1,
         "name": "Battery Park City",
         "slug": "battery-park-city",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/battery-park-city.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -290,7 +290,7 @@
         "id": 2,
         "name": "Tribeca",
         "slug": "tribeca",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/tribeca.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -529,7 +529,7 @@
         "id": 3,
         "name": "Financial District",
         "slug": "financial-district",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -1164,8 +1164,9 @@
         "id": 5,
         "name": "Civic/Center",
         "slug": "civic-center",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/tribeca.png",
         "region_id": 1,
+        "marketing_neighborhood": "chinatown",
         "coordinates": [
             [
               [
@@ -1439,7 +1440,7 @@
         "id": 46,
         "name": "Nomad",
         "slug": "nomad",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/nomad.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -1470,7 +1471,7 @@
         "id": 6,
         "name": "Chinatown",
         "slug": "chinatown",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/chinatown.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -1693,7 +1694,7 @@
         "id": 7,
         "name": "Two Bridges",
         "slug": "two-bridges",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/lower-east-side.png",
         "region_id": 1,
         "marketing_neighborhood": "lower-east-side",
         "coordinates": [
@@ -1845,7 +1846,7 @@
         "id": 8,
         "name": "Lower East Side",
         "slug": "lower-east-side",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/lower-east-side.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -1972,7 +1973,7 @@
         "id": 9,
         "name": "Little Italy",
         "slug": "little-italy",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/little-italy.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -2075,7 +2076,7 @@
         "id": 10,
         "name": "Nolita",
         "slug": "nolita",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/battery-park-city.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -2122,7 +2123,7 @@
         "id": 11,
         "name": "Soho",
         "slug": "soho",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/soho.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -2245,7 +2246,7 @@
         "id": 12,
         "name": "Noho",
         "slug": "noho",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/noho.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -2348,7 +2349,7 @@
         "id": 13,
         "name": "Greenwich Village",
         "slug": "greenwich-village",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/battery-park-city.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -2427,7 +2428,7 @@
         "id": 14,
         "name": "East Village",
         "slug": "east-village",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/east-village.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -2554,7 +2555,7 @@
         "id": 15,
         "name": "West Village",
         "slug": "west-village",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/west-village.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -2725,7 +2726,7 @@
       "id": 65,
       "name": "Hudson Square",
       "slug": "hudson-square",
-      "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+      "image": "/assets/images/neighborhoods/battery-park-city.png",
       "region_id": 1,
       "marketing_neighborhood": "west-village",
       "coordinates": [
@@ -2897,7 +2898,7 @@
     "id": 66,
     "name": "Meatpacking District",
     "slug": "meatpacking-district",
-    "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+    "image": "/assets/images/neighborhoods/battery-park-city.png",
     "region_id": 1,
     "marketing_neighborhood": "west-village",
     "coordinates": [
@@ -3069,7 +3070,7 @@
         "id": 16,
         "name": "Bowery",
         "slug": "bowery",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 1,
         "marketing_neighborhood": "nolita",
         "coordinates": [
@@ -3321,7 +3322,7 @@
         "id": 17,
         "name": "Stuyvesant Town",
         "slug": "stuyvesant-town",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/battery-park-city.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -3386,7 +3387,7 @@
       "id": 64,
       "name": "Union Square",
       "slug": "union-square",
-      "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+      "image": "/assets/images/neighborhoods/battery-park-city.png",
       "region_id": 1,
       "marketing_neighborhood": "east-village",
       "coordinates": [
@@ -3426,7 +3427,7 @@
         "id": 18,
         "name": "Gramercy ",
         "slug": "gramercy",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/tribeca.png",
         "region_id": 1,
         "marketing_neighborhood": "east-village",
         "coordinates": [
@@ -3494,7 +3495,7 @@
         "id": 19,
         "name": "Chelsea",
         "slug": "chelsea",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -3933,7 +3934,7 @@
         "id": 21,
         "name": "Flatiron",
         "slug": "flatiron",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/flatiron.png",
         "region_id": 1,
         "coordinates": [
             [
@@ -3984,7 +3985,7 @@
         "id": 22,
         "name": "Midtown East",
         "slug": "midtown-east",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/midtown-east.png",
         "region_id": 2,
         "coordinates": [
             [
@@ -4006,7 +4007,7 @@
         "id": 23,
         "name": "Midtown West / Hell's Kitchen",
         "slug": "midtown-west",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/midtown-west.png",
         "region_id": 2,
         "coordinates": [
             [
@@ -4353,7 +4354,7 @@
       "id": 63,
       "name": "Hudson Yards",
       "slug": "hudson-yards",
-      "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+      "image": "/assets/images/neighborhoods/hudson-yards.png",
       "region_id": 2,
       "marketing_neighborhood": "midtown-west",
       "coordinates": [
@@ -4514,7 +4515,7 @@
         "id": 24,
         "name": "Theater District",
         "slug": "theater-district",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/theater-district.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown-west",
         "coordinates": [
@@ -4531,7 +4532,7 @@
         "id": 59,
         "name": "Garment District",
         "slug": "garment-district",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/garment-district.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown",
         "coordinates": [
@@ -4584,7 +4585,7 @@
         "id": 57,
         "name": "Koreatown",
         "slug": "korea-town",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/koreatown.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown",
         "coordinates": [
@@ -4632,7 +4633,7 @@
         "id": 58,
         "name": "Herald Square",
         "slug": "herald-square",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/herald-square.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown",
         "coordinates": [
@@ -4708,7 +4709,7 @@
         "id": 56,
         "name": "Rose Hill",
         "slug": "rose-hill",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/rose-hill.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown",
         "coordinates": [
@@ -4744,7 +4745,7 @@
         "id": 25,
         "name": "Kips Bay",
         "slug": "kips-bay",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/tribeca.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown-east",
         "coordinates": [
@@ -4872,7 +4873,7 @@
         "id": 26,
         "name": "Murray Hill",
         "slug": "murray-hill",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown-east",
         "coordinates": [
@@ -4941,7 +4942,7 @@
         "id": 27,
         "name": "Turtle Bay",
         "slug": "turtle-bay",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/battery-park-city.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown-east",
         "coordinates": [
@@ -4962,7 +4963,7 @@
         "id": 60,
         "name": "Tudor City",
         "slug": "tudor-city",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/battery-park-city.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown-east",
         "coordinates": [
@@ -5010,7 +5011,7 @@
         "id": 29,
         "name": "Sutton Place",
         "slug": "sutton-place",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown-east",
         "coordinates": [
@@ -5090,7 +5091,7 @@
         "id": 30,
         "name": "Midtown",
         "slug": "midtown",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 2,
         "coordinates": [
             [
@@ -5137,7 +5138,7 @@
         "id": 61,
         "name": "Columbus Circle",
         "slug": "columbus-circle",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown-west",
         "coordinates": [
@@ -5225,7 +5226,7 @@
         "id": 31,
         "name": "Central Park South",
         "slug": "central-park-south",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown",
         "coordinates": [
@@ -5301,7 +5302,7 @@
         "id": 32,
         "name": "Midtown South",
         "slug": "midtown-south",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown",
         "coordinates": [
@@ -5340,7 +5341,7 @@
         "id": 34,
         "name": "Roosevelt Island",
         "slug": "roosevelt-island",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 2,
         "marketing_neighborhood": "midtown-east",
         "coordinates": [
@@ -5454,7 +5455,7 @@
         "id": 35,
         "name": "Upper East Side",
         "slug": "upper-east-side",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/upper-east-side.png",
         "region_id": 3,
         "coordinates": [
             [
@@ -5725,7 +5726,7 @@
         "id": 36,
         "name": "Lenox Hill",
         "slug": "lenox-hill",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/tribeca.png",
         "region_id": 3,
         "marketing_neighborhood": "upper-east-side",
         "coordinates": [
@@ -5743,7 +5744,7 @@
         "id": 37,
         "name": "Yorkville",
         "slug": "yorkville",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 3,
         "marketing_neighborhood": "upper-east-side",
         "coordinates": [
@@ -5785,7 +5786,7 @@
         "id": 38,
         "name": "Carnegie Hill",
         "slug": "carnegie-hill",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 3,
         "marketing_neighborhood": "upper-east-side",
         "coordinates": [
@@ -5829,7 +5830,7 @@
         "id": 40,
         "name": "Upper West Side",
         "slug": "upper-west-side",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/upper-west.png",
         "region_id": 4,
         "coordinates": [
             [
@@ -6344,7 +6345,7 @@
         "id": 41,
         "name": "Lincoln Square",
         "slug": "lincoln-square",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/tribeca.png",
         "region_id": 4,
         "marketing_neighborhood": "upper-west-side",
         "coordinates": [
@@ -6375,7 +6376,7 @@
         "id": 42,
         "name": "Manhattan Valley",
         "slug": "manhattan-valley",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 4,
         "marketing_neighborhood": "upper-west-side",
         "coordinates": [
@@ -6399,7 +6400,7 @@
         "id": 43,
         "name": "Morningside Heights",
         "slug": "morningside-heights",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 4,
         "marketing_neighborhood": "upper-west-side",
         "coordinates": [
@@ -6675,7 +6676,7 @@
         "id": 44,
         "name": "Harlem",
         "slug": "harlem",
-        "image": "/assets/images/neighborhoods/battery-park-city.jpg",
+        "image": "/assets/images/neighborhoods/harlem.png",
         "region_id": 5,
         "coordinates": [
             [
@@ -7239,7 +7240,7 @@
         "id": 45,
         "name": "East Harlem",
         "slug": "east-harlem",
-        "image": "/assets/images/neighborhoods/tribeca.jpg",
+        "image": "/assets/images/neighborhoods/tribeca.png",
         "region_id": 5,
         "marketing_neighborhood": "harlem",
         "coordinates": [
@@ -7539,7 +7540,7 @@
         "id": 49,
         "name": "Manhattanville",
         "slug": "manhattanville",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 5,
         "marketing_neighborhood": "harlem",
         "coordinates": [
@@ -7791,7 +7792,7 @@
       "id": 62,
       "name": "Sugar Hill",
       "slug": "sugar-hill",
-      "image": "/assets/images/neighborhoods/financial-district.jpg",
+      "image": "/assets/images/neighborhoods/financial-district.png",
       "region_id": 5,
       "marketing_neighborhood": "harlem",
       "coordinates": [
@@ -7871,7 +7872,7 @@
         "id": 50,
         "name": "Hamilton Heights",
         "slug": "hamilton-heights",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 5,
         "marketing_neighborhood": "harlem",
         "coordinates": [
@@ -7926,7 +7927,7 @@
         "id": 500,
         "name": "Washington Heights",
         "slug": "washington-heights",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 5,
         "marketing_neighborhood": "harlem",
         "coordinates": [
@@ -8098,8 +8099,9 @@
         "id": 52,
         "name": "Fort George",
         "slug": "fort-george",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 5,
+        "marketing_neighborhood": "harlem",
         "coordinates": [
             [
                 [-73.9392436, 40.8583344],
@@ -8227,8 +8229,9 @@
         "id": 53,
         "name": "Hudson Heights",
         "slug": "hudson-heights",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 5,
+        "marketing_neighborhood": "harlem",
         "coordinates": [
             [
                 [-73.946971, 40.8480911],
@@ -8293,7 +8296,7 @@
         "id": 54,
         "name": "Inwood",
         "slug": "inwood",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 5,
         "marketing_neighborhood": "harlem",
         "coordinates": [
@@ -8713,7 +8716,7 @@
         "id": 55,
         "name": "Marble Hill",
         "slug": "marble-hill",
-        "image": "/assets/images/neighborhoods/financial-district.jpg",
+        "image": "/assets/images/neighborhoods/financial-district.png",
         "region_id": 5,
         "marketing_neighborhood": "harlem",
         "coordinates": [
