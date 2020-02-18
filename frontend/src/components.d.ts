@@ -52,6 +52,13 @@ export namespace Components {
     'styleOverride': any;
     'target': any;
   }
+  interface Apt212Toast {
+    'color': 'error' | 'success' | 'neutral';
+    'dismiss': () => Promise<void>;
+    'duration': number;
+    'message': string;
+    'present': () => Promise<void>;
+  }
   interface AskQuestion {}
   interface BathroomFilter {
     'clearAll': () => Promise<void>;
@@ -392,6 +399,12 @@ declare global {
   var HTMLApt212PopoverElement: {
     prototype: HTMLApt212PopoverElement;
     new (): HTMLApt212PopoverElement;
+  };
+
+  interface HTMLApt212ToastElement extends Components.Apt212Toast, HTMLStencilElement {}
+  var HTMLApt212ToastElement: {
+    prototype: HTMLApt212ToastElement;
+    new (): HTMLApt212ToastElement;
   };
 
   interface HTMLAskQuestionElement extends Components.AskQuestion, HTMLStencilElement {}
@@ -884,6 +897,7 @@ declare global {
     'apt212-datepicker': HTMLApt212DatepickerElement;
     'apt212-modal-booking-frame': HTMLApt212ModalBookingFrameElement;
     'apt212-popover': HTMLApt212PopoverElement;
+    'apt212-toast': HTMLApt212ToastElement;
     'ask-question': HTMLAskQuestionElement;
     'bathroom-filter': HTMLBathroomFilterElement;
     'bedroom-filter': HTMLBedroomFilterElement;
@@ -1003,6 +1017,11 @@ declare namespace LocalJSX {
     'componentProps'?: any;
     'styleOverride'?: any;
     'target'?: any;
+  }
+  interface Apt212Toast extends JSXBase.HTMLAttributes<HTMLApt212ToastElement> {
+    'color'?: 'error' | 'success' | 'neutral';
+    'duration'?: number;
+    'message'?: string;
   }
   interface AskQuestion extends JSXBase.HTMLAttributes<HTMLAskQuestionElement> {}
   interface BathroomFilter extends JSXBase.HTMLAttributes<HTMLBathroomFilterElement> {
@@ -1289,6 +1308,7 @@ declare namespace LocalJSX {
     'apt212-datepicker': Apt212Datepicker;
     'apt212-modal-booking-frame': Apt212ModalBookingFrame;
     'apt212-popover': Apt212Popover;
+    'apt212-toast': Apt212Toast;
     'ask-question': AskQuestion;
     'bathroom-filter': BathroomFilter;
     'bedroom-filter': BedroomFilter;

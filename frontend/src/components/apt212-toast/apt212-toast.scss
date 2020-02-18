@@ -1,0 +1,40 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.apt212-toast-component {
+  display: none;
+
+  position: absolute;
+  bottom: 20px;
+  background-color: #444444;
+  left: 50%;
+  min-height: 20px;
+  transform: translateX(-50%);
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 14px 4px rgba(0,0,0,0.25);
+  color: white;
+  min-width: 80%;
+  max-width: 96%;
+
+  @include for-size(desktop-up) {
+    min-width: 40%;
+    max-width: 90%;
+  }
+
+  .message {
+    flex-grow: 1;
+  }
+
+  &.error {
+    background-color: $color-danger;
+  }
+
+  &.success {
+    background-color: $color-secondary;
+  }
+
+  &.present {
+    display: flex;
+  }
+}

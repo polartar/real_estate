@@ -124,8 +124,6 @@ export class BookingForm {
 
     const results = serialize(this.form, { hash: true, empty: true });
 
-    console.log(results);
-
     this.checkErrors(results);
 
     if (this.errors.length) {

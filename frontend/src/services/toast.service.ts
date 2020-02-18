@@ -1,10 +1,10 @@
 class ToastServiceInstance {
   success(message) {
-    this.createToast(message, { color: 'secondary' });
+    this.createToast(message, { color: 'success' });
   }
 
   error(message, options?) {
-    let defaultOpts = { color: 'danger' };
+    let defaultOpts = { color: 'error' };
     if (options) {
       defaultOpts = {...defaultOpts, ...options};
     }
@@ -13,12 +13,10 @@ class ToastServiceInstance {
   }
 
   createToast(message, options: any = {}) {
-    const toast = document.createElement('ion-toast');
+    const toast: any = document.createElement('apt212-toast');
     toast.message = message;
-    toast.duration = options.hasOwnProperty('duration') ? options.duration : 2000;
-    toast.color = options.hasOwnProperty('color') ? options.color : 'medium';
-    toast.showCloseButton = options.hasOwnProperty('showCloseButton') ? options.showCloseButton : true;
-    toast.mode = 'md';
+    toast.duration = options.hasOwnProperty('duration') ? options.duration : 5000;
+    toast.color = options.hasOwnProperty('color') ? options.color : 'neutral';
 
     document.body.appendChild(toast);
     return toast.present();
