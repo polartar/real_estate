@@ -125,8 +125,6 @@ export class PageListingImageModal {
   }
 
   render() {
-    console.log(this.selected, this.images);
-
     return (
       <div class="page-listing-image-modal-component">
         <ion-button aria-label="close" fill="clear" class="close reset" onClick={() => this.close()}>

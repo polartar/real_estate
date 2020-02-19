@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class DevRefresh extends Command
 {
@@ -57,11 +58,32 @@ class DevRefresh extends Command
 
         $this->info('');
         $this->info('');
+        $this->info('Nuking image storage');
+        $this->info('');
+        $bar->advance(20);
+
+        $filesystem = Storage::disk('public');
+
+        gc_collect_cycles();
+        try {
+            $filesystem->deleteDirectory('images');
+        } catch (\Exception $e) {
+            // whatever
+        }
+
+        sleep(4);
+
+        $filesystem->makeDirectory('images/images-faked');
+
+        $bar->advance(20);
+
+        $this->info('');
+        $this->info('');
         $this->info('Refreshing Database');
         $this->info('');
         $this->callSilent('migrate:refresh', ['--force' => true]);
 
-        $bar->advance(33);
+        $bar->advance(20);
 
         $this->info('');
         $this->info('');
@@ -69,7 +91,7 @@ class DevRefresh extends Command
         $this->info('');
         $this->callSilent('passport:install');
 
-        $bar->advance(33);
+        $bar->advance(20);
 
         $this->info('');
         $this->info('');

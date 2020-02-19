@@ -3,7 +3,7 @@ import { Store, Action } from '@stencil/redux';
 import { addToWishlist, removeFromWishlist } from '../../../../store/actions/wishlist';
 import wishlistSelectors from '../../../../store/selectors/wishlist';
 import taxonomySelectors from '../../../../store/selectors/taxonomy';
-import { formatMoney, formatDate } from '../../../../helpers/utils';
+import { formatMoney, formatDate, nl2br, xssFilter } from '../../../../helpers/utils';
 import { getBedsListingText } from '../../../../helpers/filters';
 import { APISearchService } from '../../../../services/api/search';
 
@@ -298,7 +298,7 @@ export class PageListingBody {
             <div class="listing-description">
               <h2>{this.item.title}</h2>
 
-              <p>{this.item.description}</p>
+              <p innerHTML={xssFilter(nl2br(this.item.description))} />
             </div>
 
             { this.item.floor_plans.length ?

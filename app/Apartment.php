@@ -437,6 +437,10 @@ class Apartment extends Model
                 if ($key === 'available_date') {
                     $result[$key] = new Carbon($array[$key]);
                 }
+
+                if ($key === 'size' && !$array[$key]) {
+                    $result[$key] = null;
+                }
             }
         }
 

@@ -1,3 +1,5 @@
+import xss from 'xss';
+
 export function generateId(length) {
   const dec2hex = dec => ('0' + dec.toString(16)).substr(-2);
 
@@ -74,4 +76,16 @@ export function round(value, decimals) {
   // eg. Number(Math.round(1.005+'e2')+'e-2');
   // round(1.005, 2) = 1.01
   return Number(Math.round(exponentNum) + 'e-' + decimals);
+}
+
+export function nl2br(str, is_xhtml = true) {
+  if (typeof str === 'undefined' || str === null) {
+    return '';
+  }
+  var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+  return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+}
+
+export function xssFilter(html, options = {}) {
+  return xss.filterXSS(html, options);
 }
