@@ -49,16 +49,10 @@ import { APISearchService } from '../../../services/api/search';
     }
 
     async getQuestionsByCategory () {
-      let general = this.faq.filter(o => o.category === "General")
-      let booking = this.faq.filter(o => o.category === "Booking")
-      let privaterooms = this.faq.filter(o => o.category === "Private Rooms")
-      let stay = this.faq.filter(o => o.category === "Your Stay")
-      
-      this.general = general
-      this.booking = booking
-      this.privaterooms = privaterooms
-      this.stay = stay
-      
+      this.general = this.faq.filter(o => o.category === "General")
+      this.booking = this.faq.filter(o => o.category === "Booking")
+      this.privaterooms = this.faq.filter(o => o.category === "Private Rooms")
+      this.stay = this.faq.filter(o => o.category === "Your Stay")
     }
 
     render() {
