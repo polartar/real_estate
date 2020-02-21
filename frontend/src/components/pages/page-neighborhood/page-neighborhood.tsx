@@ -151,7 +151,7 @@ export class PageNeighborhood {
             </div>
 
             <div class="experience">
-              <img src ="/assets/images/neighborhoods/noho-experience.jpg" />
+              <lazy-image src="/assets/images/neighborhoods/noho-experience.jpg"  alt="Experience" />
             </div>
           </div>
 
@@ -178,7 +178,7 @@ export class PageNeighborhood {
                 </div>
               </div>
               <div class="find-more__item find-more__item--figure">
-                  <img src ="/assets/images/neighborhoods/findmore.jpg" />
+                <lazy-image src="/assets/images/neighborhoods/findmore.jpg"  alt="Find More" />
               </div>
           </div>
 
@@ -197,7 +197,7 @@ export class PageNeighborhood {
                 <p>{item.eat}</p>
             </div>
             <div class="layout__item layout__item--figure">
-                <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
+                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
             </div>
           </div>
 
@@ -207,7 +207,7 @@ export class PageNeighborhood {
                 <p>{item.drink}</p>
             </div>
             <div class="layout__item layout__item--figure">
-                <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
+                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Drink in" />
             </div>
           </div>
 
@@ -217,7 +217,7 @@ export class PageNeighborhood {
                 <p>{item.shop}</p>
             </div>
             <div class="layout__item layout__item--figure">
-                <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
+                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Shop in" />
             </div>
           </div>
 
@@ -227,7 +227,7 @@ export class PageNeighborhood {
                 <p>{item.play}</p>
             </div>
             <div class="layout__item layout__item--figure">
-                <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
+                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Play in" />
             </div>
           </div>
 
@@ -237,7 +237,7 @@ export class PageNeighborhood {
                 <p>{item.explore}</p>
             </div>
             <div class="layout__item layout__item--figure">
-                <img src ="/assets/images/neighborhoods/neighborhood-alternating.jpg" />
+                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Explore" />
             </div>
           </div>
 
