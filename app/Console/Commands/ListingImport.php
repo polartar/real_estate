@@ -22,7 +22,10 @@ class ListingImport extends Command
      *
      * @var string
      */
-    protected $signature = 'apt212:listing_import {file=[/path/to/app]/database/assets/existingListings.json}';
+    protected $signature = 'apt212:listing_import
+                                {--file=[/path/to/app]/database/assets/existingListings.json : The absolute path to the file containing the export json}
+                                {--images=[/path/to/app]/storage/app/import : The absolute path to the directory containing the images for exported listings}
+                                {--limit=0 : The number of listings to import, 0 = all}';
 
     /**
      * The console command description.
@@ -30,6 +33,9 @@ class ListingImport extends Command
      * @var string
      */
     protected $description = 'Import listings from the old mongodb dump';
+
+    protected $file = '';
+    protected $images = '';
 
     /**
      * Create a new command instance.
@@ -51,10 +57,13 @@ class ListingImport extends Command
         $time_start = microtime(true);
 
         //
-        $file = $this->argument('file');
-        $file = str_replace('[/path/to/app]', base_path(), $file);
+        $file = $this->option('file');
+        $this->file = str_replace('[/path/to/app]', base_path(), $file);
 
-        if (!is_file($file)) {
+        $images = $this->option('images');
+        $this->images = str_replace('[/path/to/app]', base_path(), $images);
+
+        if (!is_file($this->file)) {
             $this->error('Invalid file path');
             return;
         }
@@ -68,7 +77,7 @@ class ListingImport extends Command
 
         // get the number of lines first
         $linecount = 0;
-        $handle = fopen($file, "r");
+        $handle = fopen($this->file, "r");
         while(!feof($handle)){
             $line = fgets($handle);
             $linecount++;
@@ -79,7 +88,7 @@ class ListingImport extends Command
         $bar = $this->output->createProgressBar($linecount);
         $bar->start();
 
-        $handle = fopen($file, 'r');
+        $handle = fopen($this->file, 'r');
         if ($handle) {
             while (($line = fgets($handle)) !== false) {
                 $import_num++;
@@ -96,16 +105,29 @@ class ListingImport extends Command
                         return true;
                     }
 
+                    if (strtolower($bt->name) === 'room' && strtolower($data['bedRooms']) === 'private room') {
+                        return true;
+                    }
+
                     return false;
                 });
 
-                $bedroomType = $bedroomTypes->get($bedTypeIndex);
+                if ($bedTypeIndex === false) {
+                    $bedroomType = $bedroomTypes->last();
+                }
+                else {
+                    $bedroomType = $bedroomTypes->get($bedTypeIndex);
+                }
 
                 $buildingTypeIndex = $buildingTypes->search(function($bt, $key) use ($data) {
                     return strtolower($bt->name) === strtolower($data['buildingType']);
                 });
 
-                $buildingType = $buildingTypes->get($buildingTypeIndex);
+                if ($buildingTypeIndex === false) {
+                    $buildingType = $buildingTypes->last();
+                } else {
+                    $buildingType = $buildingTypes->get($buildingTypeIndex);
+                }
 
                 $available_date = isset($data['availableDate']['$date']) ? new Carbon($data['availableDate']['$date']) : new Carbon();
 
@@ -143,14 +165,18 @@ class ListingImport extends Command
 
                 $apt->setRates($this->formatRates($data));
 
-                $subway_ids = $subways->filter(function($v) use ($data) { return in_array(strtolower($v->name), $data['subway']); })->pluck('id');
-                $apt->subways()->sync($subway_ids);
+                if (isset($data['subway'])) {
+                    $subway_ids = $subways->filter(function($v) use ($data) { return in_array(strtolower($v->name), $data['subway']); })->pluck('id');
+                    $apt->subways()->sync($subway_ids);
+                }
 
                 $amentity_ids = $this->parseAmenities($data, $amenities);
                 $apt->amenities()->sync($amentity_ids);
 
-                $images = $this->getImages($data['listingImages']);
-                ApartmentServiceProvider::claimImages($apt, $images, 'images');
+                if (isset($data['listingImages']) && is_array($data['listingImages'])) {
+                    $images = $this->getImages($data['listingImages']);
+                    ApartmentServiceProvider::claimImages($apt, $images, 'images');
+                }
 
                 if (isset($data['floorPlan']) && $data['floorPlan']) {
                     $floor_plans = $this->getImages([$data['floorPlan']], 'floor_plan');
@@ -159,8 +185,10 @@ class ListingImport extends Command
 
                 $bar->advance();
 
-                if ($import_num >= 10) {
-                    break;
+                if (is_numeric($this->option('limit')) && $this->option('limit') > 0) {
+                    if ($import_num >= $this->option('limit')) {
+                        break;
+                    }
                 }
             }
 
@@ -216,17 +244,17 @@ class ListingImport extends Command
         foreach ($months as $month) {
             $rates[$month] = [];
             $rates[$month]['month'] = $month;
-            $rates[$month]['monthly_rate'] = $data['rate'];
+            $rates[$month]['monthly_rate'] = is_numeric($data['rate']) ? $data['rate'] : 0;
 
-            if ($month !== 'default' && isset($data['monthRates'][$month + 1])) {
+            if ($month !== 'default' && isset($data['monthRates'][$month + 1]) && is_numeric($data['monthRates'][$month + 1])) {
                 $rates[$month]['monthly_rate'] = $data['monthRates'][$month + 1];
             }
 
-            $rates[$month]['tax_percent'] = $data['tax'];
-            $rates[$month]['security_deposit_percent'] = $data['securityDeposit'];
+            $rates[$month]['tax_percent'] = isset($data['tax']) && is_numeric($data['tax']) ? $data['tax'] : 0;
+            $rates[$month]['security_deposit_percent'] = isset($data['securityDeposit']) && is_numeric($data['securityDeposit']) ? $data['securityDeposit'] : 0;
             $rates[$month]['service_fee_host'] = 0;
-            $rates[$month]['service_fee_client'] = $data['serviceFee'];
-            $rates[$month]['background_check_rate'] = $data['applicationFee'];
+            $rates[$month]['service_fee_client'] = isset($data['serviceFee']) && is_numeric($data['serviceFee']) ? $data['serviceFee'] : 0;
+            $rates[$month]['background_check_rate'] = isset($data['applicationFee']) && is_numeric($data['applicationFee']) ? $data['applicationFee'] : 0;
         }
 
         return $rates;
@@ -248,14 +276,15 @@ class ListingImport extends Command
 
         $filesystem = Storage::disk('public');
 
-        $base_url = 'https://apt212resized1.s3.amazonaws.com/1200_';
+        $base_path = $this->images . '/1200_';
         if ($type === 'floor_plan') {
-            $base_url = 'https://apt212resized1.s3.amazonaws.com/629x439_';
+            $base_path = $this->images . '/629x439_';
         }
 
         foreach ($images as $filename) {
             try {
-                $img = Image::make($base_url . $filename);
+                $filename = random_int(1, 10) . '.jpg';
+                $img = Image::make($base_path . $filename);
 
                 $thumbfile = 'images/' . $filename;
                 $filepath = $filesystem->path($thumbfile);
