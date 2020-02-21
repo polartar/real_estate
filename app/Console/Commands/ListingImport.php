@@ -24,7 +24,8 @@ class ListingImport extends Command
      */
     protected $signature = 'apt212:listing_import
                                 {--file=[/path/to/app]/database/assets/existingListings.json : The absolute path to the file containing the export json}
-                                {--images=[/path/to/app]/storage/app/import : The absolute path to the directory containing the images for exported listings}
+                                {--images=[/path/to/app]/storage/app/import_images : The absolute path to the directory containing the images for exported listings}
+                                {--fake_images : For dev usage, use random images [1-10].jpg}
                                 {--limit=0 : The number of listings to import, 0 = all}';
 
     /**
@@ -283,7 +284,11 @@ class ListingImport extends Command
 
         foreach ($images as $filename) {
             try {
-                $filename = random_int(1, 10) . '.jpg';
+
+                if ($this->option('fake_images')) {
+                    $filename = random_int(1, 10) . '.jpg';
+                }
+
                 $img = Image::make($base_path . $filename);
 
                 $thumbfile = 'images/' . $filename;
