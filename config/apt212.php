@@ -9,6 +9,8 @@ return [
 
     'plaid_client_id' => env('PLAID_CLIENT_ID', ''),
 
+    'plaid_public_key' => env('PLAID_PUBLIC_KEY', ''),
+
     'plaid_production_secret' => env('PLAID_PRODUCTION_SECRET'),
 
     'plaid_sandbox_secret' => env('PLAID_SANDBOX_SECRET'),

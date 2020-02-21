@@ -238,6 +238,7 @@ export class BookingForm {
         // Send the public_token and account ID to your app server.
         console.log('public_token: ' + public_token);
         console.log('account ID: ' + metadata.account_id);
+
         await LoadingService.showLoading();
 
         try {

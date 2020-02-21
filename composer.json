@@ -19,7 +19,8 @@
         "laravel/framework": "^6.5",
         "laravel/passport": "^7.4",
         "laravel/tinker": "^1.0",
-        "stripe/stripe-php": "^7.24"
+        "stripe/stripe-php": "^7.24",
+        "tomorrow-ideas/plaid-sdk-php": "^0.6.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

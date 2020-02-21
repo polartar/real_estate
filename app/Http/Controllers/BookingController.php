@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use stdClass;
 use Stripe\Exception\SignatureVerificationException;
+use TomorrowIdeas\Plaid\Plaid;
 
 class BookingController extends Controller
 {
@@ -67,6 +68,9 @@ class BookingController extends Controller
         return response()->json(['message' => 'received']);
     }
 
+    /**
+     * Validate bank account with Stripe
+     */
     public function checkoutACH(Request $request)
     {
         if (!is_numeric($request->amount) || $request->amount < 0) {
@@ -75,6 +79,14 @@ class BookingController extends Controller
 
         $plaid_secret = config('apt212.plaid_environment') === 'production' ? config('apt212.plaid_production_secret') : config('apt212.plaid_sandbox_secret');
         $plaid_client_id = config('apt212.plaid_client_id');
+        // $plaid_public_key = config('apt212.plaid_public_key');
+
+        // $client = new Plaid($plaid_client_id, $plaid_secret, $plaid_public_key);
+        // $client->setEnvironment('sandbox');
+
+        // $auth = $client->getAuth($request->token);
+
+        // return response()->json($auth);
 
         $plaid_api = 'https://sandbox.plaid.com';
         if (config('apt212.plaid_environment') === 'production') {
@@ -132,8 +144,8 @@ class BookingController extends Controller
         // capture the charge
         $metadata = $request->all();
         $metadata['api'] = config('app.url');
-
-        sleep(5);
+        unset($metadata['token']);
+        unset($metadata['account_id']);
 
         try {
             \Stripe\Stripe::setApiKey(config('apt212.stripe_api_key'));
@@ -151,7 +163,7 @@ class BookingController extends Controller
             abort(response()->json(['errors' => [$e->getMessage()]], 400));
         }
 
-        return response()->json($charge);
+        return response()->json(['success' => true]);
     }
 
     // public function previewMail(Request $request) {
