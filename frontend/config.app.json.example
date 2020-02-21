@@ -15,5 +15,11 @@
   "MAPBOX_PUBLIC_TOKEN": "pk.lkasjfljfljsdlfjsdalfjsdalkfjasljasldk",
 
   "//STRIPE_PUBLIC_KEY": "The public API key for stripe integration",
-  "STRIPE_PUBLIC_KEY": "pk_test_ueTcimG0c82FSjGWAWVwdk9n003ryYO6iV"
+  "STRIPE_PUBLIC_KEY": "pk_test_ueTcimG0c82FSjGWAWVwdk9n003ryYO6iV",
+
+  "//PLAID_PUBLIC_KEY": "The public API key for Plaid integration",
+  "PLAID_PUBLIC_KEY": "abcde12345",
+
+  "//PLAID_ENVIRONMENT": "Plaid api environment: 'sandbox' | 'production'",
+  "PLAID_ENVIRONMENT": "sandbox"
 }

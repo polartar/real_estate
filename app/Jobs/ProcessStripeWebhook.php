@@ -50,6 +50,10 @@ class ProcessStripeWebhook implements ShouldQueue
 
                 $metadata = $this->event->data->object->metadata;
 
+                if ($metadata['api'] !== config('app.url')) {
+                    return;
+                }
+
                 // Stripe\StripeObject Object
                 // (
                 //     [payment_method] => credit

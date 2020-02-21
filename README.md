@@ -29,6 +29,10 @@ Add the webhook signing secret key to the .env file
 
 Ensure cron is set: `* * * * * cd /path/to/docroot && php artisan schedule:run >> /dev/null 2>&1`
 
+# Plaid integration
+
+Test credentials: user_good / pass_good
+
 # PWA (front end)
 
 ## Installation

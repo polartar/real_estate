@@ -7,5 +7,13 @@ return [
 
     'stripe_webhook_secret' => env('STRIPE_WEBHOOK_SECRET', ''),
 
+    'plaid_client_id' => env('PLAID_CLIENT_ID', ''),
+
+    'plaid_production_secret' => env('PLAID_PRODUCTION_SECRET'),
+
+    'plaid_sandbox_secret' => env('PLAID_SANDBOX_SECRET'),
+
+    'plaid_environment' => env('PLAID_ENVIRONMENT', 'sandbox'),
+
     'office_email' => env('OFFICE_EMAIL', 'office@apt212.com')
 ];

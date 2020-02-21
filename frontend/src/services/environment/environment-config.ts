@@ -5,6 +5,8 @@ export interface EnvironmentConfig {
   APP_ENVIRONMENT: string;
   MAPBOX_PUBLIC_TOKEN: string;
   STRIPE_PUBLIC_KEY: string;
+  PLAID_PUBLIC_KEY: string;
+  PLAID_ENVIRONMENT: string;
 }
 
 export function setupConfig(config: EnvironmentConfig) {

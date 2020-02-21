@@ -35,8 +35,8 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
     Route::get('neighborhoods/fromPoint/{lng}/{lat}', 'NeighborhoodsController@neighborhoodsFromPoint');
 
     Route::get('booking/payment_intent', 'BookingController@paymentIntent');
+    Route::post('booking/checkout_ach', 'BookingController@checkoutACH');
     Route::post('booking/stripe_webhook', 'BookingController@stripeWebhook');
-    Route::get('booking/stripe_webhook', 'BookingController@stripeWebhook');
 });
 
 

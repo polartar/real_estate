@@ -41,7 +41,41 @@ class APIBookingInstance {
     }
   }
 
+  public async checkoutACH(data, token, account_id) {
+    try {
+      const payload = {...data, token, account_id};
 
+      let response = await fetch(`${APIService.getAPIUrl()}/booking/checkout_ach`, {
+        method: 'POST',
+        headers: APIService.getHeaders(),
+        body: JSON.stringify(payload)
+      });
+
+      const r = await response.json();
+
+      if (!response.ok) {
+        if (r && r.errors) {
+          // caller will need to check success
+          const errMessages = [];
+
+          Object.keys(r.errors).forEach(re => errMessages.push(r.errors[re]));
+
+         throw new Error(errMessages.join('\n'));
+        }
+
+        if (r && r.message) {
+          throw new Error(r.message);
+        }
+
+        throw new Error(response.statusText);
+      }
+
+      return r;
+
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
 }
 
 export const APIBookingService = new APIBookingInstance();

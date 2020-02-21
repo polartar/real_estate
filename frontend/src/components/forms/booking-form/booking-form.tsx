@@ -14,6 +14,7 @@ import { AlertService } from '../../../services/alerts.service';
 import { RouterService } from '../../../services/router.service';
 
 declare var Stripe: any;
+declare var Plaid: any;
 
 @Component({
   tag: 'booking-form',
@@ -31,7 +32,7 @@ export class BookingForm {
   form: HTMLFormElement;
 
   stripe: any;
-  stripeLoaded: boolean = false;
+  plaidLoaded: boolean = false;
   stripeElements: any;
   cardNumber: any;
   cardExpiry: any;
@@ -58,9 +59,15 @@ export class BookingForm {
           ],
         });
 
-        this.stripeLoaded = true;
-
         this.stripeInit();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    ScriptLoaderService.loadScript('Plaid', 'https://cdn.plaid.com/link/v2/stable/link-initialize.js')
+      .then(() => {
+        this.plaidLoaded = true;
       })
       .catch(err => {
         console.log(err);
@@ -68,9 +75,6 @@ export class BookingForm {
   }
 
   stripeInit() {
-    if (!this.stripeLoaded) {
-      return;
-    }
 
     const stripeStyles = {
       base: {
@@ -130,39 +134,12 @@ export class BookingForm {
       return;
     }
 
-    await LoadingService.showLoading();
-
-    try {
-      const intent = await APIBookingService.getPaymentIntent(results);
-
-      const stripeResult = await this.stripe.confirmCardPayment(intent, {
-        payment_method: {
-          card: this.cardNumber,
-          billing_details: {
-            name: `${results.firstname} ${results.lastname}`,
-            email: results.email,
-            address: {
-              postal_code: results.zipcode
-            }
-          }
-        }
-      });
-
-      if (stripeResult.error) {
-        throw new Error(stripeResult.error.message);
-      }
-
-      await LoadingService.hideLoading();
-
-      await AlertService.alert('Thank you for making a payment. We are processing your booking and will get back with you shortly.  Please check your email for your receipt.', 'Success');
-
-      RouterService.forward('/');
-
-    } catch (err) {
-      ToastService.error(err.message, { duration: 10000 });
+    if (results.payment_method == 'credit') {
+      this.processCreditCard(results);
     }
-
-    await LoadingService.hideLoading();
+    else {
+      this.processACH(results);
+    }
   }
 
   checkErrors(results) {
@@ -207,6 +184,95 @@ export class BookingForm {
     }
 
     this.errors = errors;
+  }
+
+  async processCreditCard(results) {
+    await LoadingService.showLoading();
+
+    try {
+      const intent = await APIBookingService.getPaymentIntent(results);
+
+      const stripeResult = await this.stripe.confirmCardPayment(intent, {
+        payment_method: {
+          card: this.cardNumber,
+          billing_details: {
+            name: `${results.firstname} ${results.lastname}`,
+            email: results.email,
+            address: {
+              postal_code: results.zipcode
+            }
+          }
+        }
+      });
+
+      if (stripeResult.error) {
+        throw new Error(stripeResult.error.message);
+      }
+
+      await LoadingService.hideLoading();
+
+      await AlertService.alert('Thank you for making a payment. We are processing your booking and will get back with you shortly.  Please check your email for your receipt.', 'Success');
+
+      RouterService.forward('/');
+
+    } catch (err) {
+      ToastService.error(err.message, { duration: 10000 });
+    }
+
+    await LoadingService.hideLoading();
+  }
+
+  async processACH(results) {
+    if (!this.plaidLoaded) {
+      ToastService.error('Could not contact Plaid');
+      return;
+    }
+
+    const plaidFlow = Plaid.create({
+      env: EnvironmentConfigService.getInstance().get('PLAID_ENVIRONMENT'),
+      clientName: 'APT212',
+      key: EnvironmentConfigService.getInstance().get('PLAID_PUBLIC_KEY'),
+      product: ['auth'],
+      selectAccount: true,
+      onSuccess: async (public_token, metadata) => {
+        // Send the public_token and account ID to your app server.
+        console.log('public_token: ' + public_token);
+        console.log('account ID: ' + metadata.account_id);
+        await LoadingService.showLoading();
+
+        try {
+          const stripeResult = await APIBookingService.checkoutACH(results, public_token, metadata.account_id);
+          console.log(stripeResult);
+
+          if (stripeResult.error) {
+            throw new Error(stripeResult.error.message);
+          }
+
+          await LoadingService.hideLoading();
+
+          await AlertService.alert('Thank you for making a payment. We are processing your booking and will get back with you shortly.  Please check your email for your receipt.', 'Success');
+
+          RouterService.forward('/');
+
+        } catch (err) {
+          ToastService.error(err.message, { duration: 10000 });
+        }
+
+        await LoadingService.hideLoading();
+      },
+      onExit: (err, _metadata) => {
+        if (err != null) {
+          // The user encountered a Plaid API error prior to exiting.
+          ToastService.error('Could not establish ACH authorization, please try again');
+          return;
+        }
+
+        // The user exited the Link flow.
+        ToastService.error('ACH authorization has been cancelled');
+      },
+    });
+
+    plaidFlow.open();
   }
 
   render() {
