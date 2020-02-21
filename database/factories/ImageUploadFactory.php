@@ -7,17 +7,17 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Facades\Storage;
 
 $factory->define(ImageUpload::class, function (Faker $faker, $params) {
-    Storage::disk('public')->makeDirectory('images-faked');
+    Storage::disk('public')->makeDirectory('images/images-faked');
 
     $imagenum = $faker->numberBetween(1, 10);
 
     $filename = $faker->uuid() . '.jpg';
     $source = resource_path('images/faker/' . $imagenum . '.jpg');
-    $target = Storage::disk('public')->path('images-faked/' . $filename);
+    $target = Storage::disk('public')->path('images/images-faked/' . $filename);
 
     copy($source, $target);
 
-    $thumbs = ImageUpload::createThumbnails($target, 'images-faked/');
+    $thumbs = ImageUpload::createThumbnails($target, 'images/images-faked/');
 
     return [
         'name' => $params['name'],
