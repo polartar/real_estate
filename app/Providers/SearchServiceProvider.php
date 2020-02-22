@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Apartment;
 use App\Neighborhood;
+use App\FAQ;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -75,6 +76,14 @@ class SearchServiceProvider extends ServiceProvider
                     return $nearbyApts;
                 });
             break;
+
+            case 'FAQPageInit':
+                $results = Cache::remember('search-FAQPageInit', 600, function() {
+                    $faq = FAQ::All();
+                    return $faq;
+                });
+            break;
+
         }
 
         return $results;
