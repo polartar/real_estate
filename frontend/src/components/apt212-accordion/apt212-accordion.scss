@@ -1,0 +1,30 @@
+button {
+    border: none;
+}
+
+.accordion {
+    cursor: pointer;
+    padding: 22px 0px;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    outline: 0;
+    background-color: white;
+    font-size: 16px;
+    font-family: "Source Sans Pro", sans-serif;
+    
+    .chevron {
+        float: right;
+
+    } 
+}
+ 
+ .open {
+    display: block;
+    height: auto;
+    padding: 22px 0px;
+ }
+
+ .close {
+    display: none;
+ }
