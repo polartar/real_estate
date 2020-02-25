@@ -1,11 +1,14 @@
-import { Component, h, State } from '@stencil/core';
+import { Store } from "@stencil/redux";
+import { Component, h, State, Prop } from '@stencil/core';
 import { APISearchService } from '../../../services/api/search';
+
 
 @Component({
     tag: 'page-faq',
     styleUrl: 'page.faq.scss'
   })
   export class PageFAQ {
+    @Prop({ context: "store" }) store: Store;
     @State() size: string = 'phone-only';
     @State() isMobile: boolean = true;
     @State() loaded: boolean = false;
@@ -19,11 +22,35 @@ import { APISearchService } from '../../../services/api/search';
     @State() question : any = [];
     @State() value: string;
     @State() matches : any = [];
+    @State() accordionlist : any = [];
+    @State() id: any = [];
+    @State() link: any = [];
+
 
     hasLoaded: boolean = false;
 
+    componentWillLoad() {
+
+      this.store.mapStateToProps(this, state => {
+  
+        const {
+          screenSize: { size, isMobile },
+        } = state;
+  
+        return {
+          size,
+          isMobile
+        };
+      });
+      
+    }
+
     handleSubmit(e) {
       e.preventDefault()
+      if (this.value.length < 2) {
+        return;
+      }
+      
       this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.value))
     }
 
@@ -33,6 +60,7 @@ import { APISearchService } from '../../../services/api/search';
 
     async componentDidLoad() {
       this.loaded = true;
+      
 
       try {
         this.faq = await APISearchService.getNamedSearch('FAQPageInit');
@@ -42,10 +70,22 @@ import { APISearchService } from '../../../services/api/search';
        }
     }
 
+    async scrollTo(hash) {
+      location.hash = "#" + hash;
+    }
+
     async showAnswer(question) {
-      let obj = this.faq.find(o => o.question === question)
-      this.answer = obj.answer
-      this.question = question
+
+      let obj = this.faq.find(o => o.question === question) 
+
+      if (this.isMobile) {
+        document.getElementById(obj.id).click()
+        this.scrollTo(1)
+      } else {
+        this.answer = obj.answer
+        this.question = question
+      }
+      
     }
 
     async getQuestionsByCategory () {
@@ -72,14 +112,15 @@ import { APISearchService } from '../../../services/api/search';
 
                   <form onSubmit={(e) => this.handleSubmit(e)}>
                   
-                  <input type="text" class="search" placeholder="Ask a question or search by keyword" value={this.value} onInput={(event) => this.handleChange(event)} />
+                  <input type="text" class="search" placeholder="Ask a question" value={this.value} onInput={(event) => this.handleChange(event)} />
 
                   <ul class="matches">
 
                   {this.matches.map(faq => {
+                    this.link = "#" + faq.id
                     return (
                       <li>
-                        <a href="#answers" onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
+                        <a href={this.isMobile ? this.link : "#answers"} onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                       </li>
                     );
                   })}   
@@ -95,44 +136,71 @@ import { APISearchService } from '../../../services/api/search';
               <div class="questions-wrapper">
                   <div class="questions">
                     <h2>General</h2>
-                  
-                    {this.general.map(faq => {
-                      return (
-                        <div>
-                          <a href="#" onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
-                        </div>
-                      );
-                    })}   
+
+                      {this.general.map(faq => {
+                        return (
+                          <apt212-accordion questionID={faq.id} class={this.isMobile ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
+                        );
+                      })}
+
+                      {this.general.map(faq => {
+                        return (
+                          <div class={this.isMobile ? "hide" : "show"}>
+                            <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
+                          </div>
+                        );
+                      })} 
 
                     <h2>Booking</h2>
                     
-                    {this.booking.map(faq => {
-                      return (
-                        <div>
-                          <a href="#" onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
-                        </div>
-                      );
-                    })}  
+                      {this.booking.map(faq => {
+                          return (
+                            <apt212-accordion questionID={faq.id} class={this.isMobile ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
+                          );
+                        })}
+
+                        {this.booking.map(faq => {
+                          return (
+                            <div class={this.isMobile ? "hide" : "show"}>
+                              <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
+                            </div>
+                          );
+                        })} 
+
+                    
 
                     <h2>Private Rooms</h2>
                     
-                    {this.privaterooms.map(faq => {
-                      return (
-                        <div>
-                          <a href="#" onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
-                        </div>
-                      );
-                    })}  
+                        {this.privaterooms.map(faq => {
+                          return (
+                            <apt212-accordion questionID={faq.id} class={this.isMobile ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
+                          );
+                        })}
+
+                        {this.privaterooms.map(faq => {
+                          return (
+                            <div class={this.isMobile ? "hide" : "show" }>
+                              <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
+                            </div>
+                          );
+                        })} 
 
                     <h2>Your Stay</h2>
                     
-                    {this.stay.map(faq => {
-                      return (
-                        <div>
-                          <a href="#" onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
-                        </div>
-                      );
-                    })}  
+                        {this.stay.map(faq => {
+                          return (
+                            <apt212-accordion questionID={faq.id} class={this.isMobile ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
+                          );
+                        })}
+
+                        {this.stay.map(faq => {
+                          return (
+                            <div class={this.isMobile ? "hide" : "show"}>
+                              <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
+                            </div>
+                          );
+                        })} 
+
                 </div>
               </div>
 

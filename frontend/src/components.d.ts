@@ -25,6 +25,11 @@ export namespace Components {
   }
   interface AppMenu {}
   interface AppRoot {}
+  interface Apt212Accordion {
+    'description': string;
+    'label': string;
+    'questionID': string;
+  }
   interface Apt212Checkbox {
     'check': () => Promise<void>;
     'checked': boolean;
@@ -377,6 +382,12 @@ declare global {
   var HTMLAppRootElement: {
     prototype: HTMLAppRootElement;
     new (): HTMLAppRootElement;
+  };
+
+  interface HTMLApt212AccordionElement extends Components.Apt212Accordion, HTMLStencilElement {}
+  var HTMLApt212AccordionElement: {
+    prototype: HTMLApt212AccordionElement;
+    new (): HTMLApt212AccordionElement;
   };
 
   interface HTMLApt212CheckboxElement extends Components.Apt212Checkbox, HTMLStencilElement {}
@@ -907,6 +918,7 @@ declare global {
     'app-header': HTMLAppHeaderElement;
     'app-menu': HTMLAppMenuElement;
     'app-root': HTMLAppRootElement;
+    'apt212-accordion': HTMLApt212AccordionElement;
     'apt212-checkbox': HTMLApt212CheckboxElement;
     'apt212-datepicker': HTMLApt212DatepickerElement;
     'apt212-modal-booking-frame': HTMLApt212ModalBookingFrameElement;
@@ -1009,6 +1021,12 @@ declare namespace LocalJSX {
   }
   interface AppMenu extends JSXBase.HTMLAttributes<HTMLAppMenuElement> {}
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
+  interface Apt212Accordion extends JSXBase.HTMLAttributes<HTMLApt212AccordionElement> {
+    'description'?: string;
+    'label'?: string;
+    'onOnToggle'?: (event: CustomEvent<any>) => void;
+    'questionID'?: string;
+  }
   interface Apt212Checkbox extends JSXBase.HTMLAttributes<HTMLApt212CheckboxElement> {
     'checked'?: boolean;
     'name'?: string;
@@ -1322,6 +1340,7 @@ declare namespace LocalJSX {
     'app-header': AppHeader;
     'app-menu': AppMenu;
     'app-root': AppRoot;
+    'apt212-accordion': Apt212Accordion;
     'apt212-checkbox': Apt212Checkbox;
     'apt212-datepicker': Apt212Datepicker;
     'apt212-modal-booking-frame': Apt212ModalBookingFrame;

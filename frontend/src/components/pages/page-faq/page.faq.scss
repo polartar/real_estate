@@ -8,6 +8,7 @@
       text-transform: uppercase;
       margin: 0;
       font-weight: 900;
+      padding-top: 40px;
 
       @include for-size(tablet-portrait-up) {
         padding: 1rem 0;
@@ -15,18 +16,20 @@
     }
     
     .hero {
-    position: relative;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color:#02a59c;
-    background-blend-mode: multiply;
-    width: 100%;
-    height: calc(100vh / 0.85);
-    display: flex;
+      position: relative;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-color:#02a59c;
+      background-blend-mode: multiply;
+      width: 100%;
+      height: calc(100vh / 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
    
     .cta {
-      margin: auto;
+      //margin: auto;
       text-align: center;
 
       h1 {
@@ -84,7 +87,7 @@
     padding: 0 1rem;
     text-transform: uppercase;
     flex-direction: column;
-    width: 600px;
+    width: 270px;
     max-width: 633px;
     border-radius: 3px;
     padding-left: 40px;
@@ -95,9 +98,9 @@
     background-color: white;
     margin-top: 40px;
 
-    @include for-size(desktop-up) {
+    @include for-size(tablet-portrait-up) {
       width: 600px;
-      max-width: 633px;;
+      max-width: 633px;
      
       font-size: $font-size-md;
       font-weight: normal;
@@ -113,8 +116,13 @@
     text-align: left;
     list-style-type:none;
     padding-left: 0;
-    
+    width: 270px;
 
+    @include for-size(tablet-portrait-up) {
+      width: 600px;
+      max-width: 633px;
+    }
+    
     li {
     
       a {
@@ -133,10 +141,11 @@
   .faq-wrapper {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding-top: 100px;
 
     @include for-size(tablet-portrait-up) {
+      flex-direction: row;
       padding-top: 50px;
     }
 
@@ -146,16 +155,23 @@
 
 
     .questions-wrapper {
-      position: relative;
-      width: auto;
-      padding: 0 100px;
-      border-right: 2px solid #6b6b6b;
-      overflow: scroll;
-      height: calc(100vh - 100px);
-      overflow-x: hidden;
-      direction: rtl;
+
+      a {
+        text-decoration: none;
+      }
+
+      .chevron {
+        width: 16px;
+      }
 
       @include for-size(tablet-portrait-up) {
+        position: relative;
+        padding: 0 100px;
+        border-right: 2px solid #6b6b6b;
+        overflow: scroll;
+        height: calc(100vh - 100px);
+        overflow-x: hidden;
+        direction: rtl;
         width: 50%;
         padding: 0 20px;
       }
@@ -169,7 +185,14 @@
         direction: ltr;
 
         &> div {
-          padding-bottom: 10px;
+          padding: 22px 0px;
+          width: 100%;
+          border-bottom: 1px solid #ddd;
+          
+          @include for-size(tablet-portrait-up) {
+            padding-bottom: 10px;
+            border-bottom: none;
+          }
         }
       }
 
@@ -182,6 +205,7 @@
       height: auto;
       width: 40%;
       direction: ltr;
+      display: block;
 
       @include for-size(tablet-portrait-up) {
         margin-left: 20px;
@@ -191,6 +215,10 @@
         margin-left: 100px;
       }
     }
+  }
+
+  .hide {
+    display: none;
   }
 
 }
