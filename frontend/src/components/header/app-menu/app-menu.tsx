@@ -56,7 +56,7 @@ export class AppMenu {
               Search Apartments
             </ion-router-link>
 
-            <ion-router-link href="/">
+            <ion-router-link href="/booking">
               Bookings
             </ion-router-link>
 
@@ -72,15 +72,15 @@ export class AppMenu {
               Brokers
             </ion-router-link>
 
-            <ion-router-link href="/">
+            <ion-router-link href="/corporate-rooms">
               Corporate
             </ion-router-link>
 
-            <ion-router-link href="/">
+            <ion-router-link href="/about">
               About APT212
             </ion-router-link>
 
-            <ion-router-link href="/">
+            <ion-router-link href="/faq">
               FAQ
             </ion-router-link>
 

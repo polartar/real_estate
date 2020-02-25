@@ -134,7 +134,7 @@ export class AppHeader {
                 Wishlist{ this.wishlist.length ? ` | ${this.wishlist.length}` : null }
               </ion-router-link>
 
-              <ion-router-link href="/" class="nav">
+              <ion-router-link href="/faq" class="nav">
                 FAQ
               </ion-router-link>
 

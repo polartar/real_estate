@@ -1,0 +1,62 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.page-referral {
+  .hero {
+    width: 100%;
+    min-height: 1000px;
+
+    background-image: url('/assets/images/referral_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    padding-top: 140px;
+    padding-bottom: 300px;
+    color: white;
+
+    @include for-size(desktop-up) {
+      display: grid;
+      grid-template-columns:  60% 40%;
+    }
+
+    .cta {
+      max-width: 470px;
+      margin: 0 auto;
+
+      h1 {
+        font-size: $font-size-xl;
+        margin-top: 0;
+
+        @include for-size(desktop-up) {
+          font-size: $font-size-xl * 1.5;
+        }
+      }
+
+      h2 {
+        font-size: $font-size-xl;
+      }
+
+      p {
+        line-height: 1.29;
+        letter-spacing: 0.6px;
+      }
+
+      .subtitle {
+        line-height: 1.15;
+        font-size: $font-size-lg;
+        padding-bottom: 190px;
+      }
+    }
+
+    .form {
+      max-width: 410px;
+      padding: 30px;
+      background-color: white;
+      color: black;
+
+      h3 {
+        padding-bottom: 16px;
+      }
+    }
+  }
+}
