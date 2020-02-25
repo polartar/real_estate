@@ -1,0 +1,41 @@
+@import '../../../styles/variables';
+
+.referral-form-component {
+  position: relative;
+
+  h3 {
+    padding-bottom: 16px;
+  }
+
+  .form-content {
+    &.submitted {
+      visibility: hidden;
+    }
+  }
+
+  .thank-you-msg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+
+    p {
+      font-size: $font-size-xl;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    ion-icon {
+      font-size: 120px;
+      color: $color-secondary;
+    }
+  }
+
+  .error {
+    label {
+      color: red;
+    }
+  }
+}

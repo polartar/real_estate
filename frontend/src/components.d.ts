@@ -237,6 +237,7 @@ export namespace Components {
   }
   interface PageAdminListings {}
   interface PageAdminOwner {}
+  interface PageAdminReferrals {}
   interface PageBooking {}
   interface PageCorporateRooms {
     'prefetching': boolean;
@@ -283,6 +284,7 @@ export namespace Components {
   interface PriceFilter {
     'inModal': boolean;
   }
+  interface ReferralForm {}
   interface SearchFilters {
     'closeable': boolean;
   }
@@ -738,6 +740,12 @@ declare global {
     new (): HTMLPageAdminOwnerElement;
   };
 
+  interface HTMLPageAdminReferralsElement extends Components.PageAdminReferrals, HTMLStencilElement {}
+  var HTMLPageAdminReferralsElement: {
+    prototype: HTMLPageAdminReferralsElement;
+    new (): HTMLPageAdminReferralsElement;
+  };
+
   interface HTMLPageBookingElement extends Components.PageBooking, HTMLStencilElement {}
   var HTMLPageBookingElement: {
     prototype: HTMLPageBookingElement;
@@ -838,6 +846,12 @@ declare global {
   var HTMLPriceFilterElement: {
     prototype: HTMLPriceFilterElement;
     new (): HTMLPriceFilterElement;
+  };
+
+  interface HTMLReferralFormElement extends Components.ReferralForm, HTMLStencilElement {}
+  var HTMLReferralFormElement: {
+    prototype: HTMLReferralFormElement;
+    new (): HTMLReferralFormElement;
   };
 
   interface HTMLSearchFiltersElement extends Components.SearchFilters, HTMLStencilElement {}
@@ -977,6 +991,7 @@ declare global {
     'page-admin-listing-edit': HTMLPageAdminListingEditElement;
     'page-admin-listings': HTMLPageAdminListingsElement;
     'page-admin-owner': HTMLPageAdminOwnerElement;
+    'page-admin-referrals': HTMLPageAdminReferralsElement;
     'page-booking': HTMLPageBookingElement;
     'page-corporate-rooms': HTMLPageCorporateRoomsElement;
     'page-faq': HTMLPageFaqElement;
@@ -994,6 +1009,7 @@ declare global {
     'page-search': HTMLPageSearchElement;
     'page-wishlist': HTMLPageWishlistElement;
     'price-filter': HTMLPriceFilterElement;
+    'referral-form': HTMLReferralFormElement;
     'search-filters': HTMLSearchFiltersElement;
     'search-listing-card': HTMLSearchListingCardElement;
     'search-map': HTMLSearchMapElement;
@@ -1223,6 +1239,7 @@ declare namespace LocalJSX {
   }
   interface PageAdminListings extends JSXBase.HTMLAttributes<HTMLPageAdminListingsElement> {}
   interface PageAdminOwner extends JSXBase.HTMLAttributes<HTMLPageAdminOwnerElement> {}
+  interface PageAdminReferrals extends JSXBase.HTMLAttributes<HTMLPageAdminReferralsElement> {}
   interface PageBooking extends JSXBase.HTMLAttributes<HTMLPageBookingElement> {}
   interface PageCorporateRooms extends JSXBase.HTMLAttributes<HTMLPageCorporateRoomsElement> {
     'prefetching'?: boolean;
@@ -1275,6 +1292,7 @@ declare namespace LocalJSX {
   interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {
     'inModal'?: boolean;
   }
+  interface ReferralForm extends JSXBase.HTMLAttributes<HTMLReferralFormElement> {}
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {
     'closeable'?: boolean;
   }
@@ -1399,6 +1417,7 @@ declare namespace LocalJSX {
     'page-admin-listing-edit': PageAdminListingEdit;
     'page-admin-listings': PageAdminListings;
     'page-admin-owner': PageAdminOwner;
+    'page-admin-referrals': PageAdminReferrals;
     'page-booking': PageBooking;
     'page-corporate-rooms': PageCorporateRooms;
     'page-faq': PageFaq;
@@ -1416,6 +1435,7 @@ declare namespace LocalJSX {
     'page-search': PageSearch;
     'page-wishlist': PageWishlist;
     'price-filter': PriceFilter;
+    'referral-form': ReferralForm;
     'search-filters': SearchFilters;
     'search-listing-card': SearchListingCard;
     'search-map': SearchMap;

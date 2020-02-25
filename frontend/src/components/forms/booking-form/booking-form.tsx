@@ -83,7 +83,6 @@ export class BookingForm {
     };
 
     try {
-      // this.card.mount(`#card-element-${this.idSuffix}`);
       if (!this.cardNumber) {
         this.cardNumber = this.stripeElements.create('cardNumber', { style: stripeStyles });
         this.cardNumber.addEventListener('change', ev => {
@@ -235,10 +234,6 @@ export class BookingForm {
       product: ['auth'],
       selectAccount: true,
       onSuccess: async (public_token, metadata) => {
-        // Send the public_token and account ID to your app server.
-        console.log('public_token: ' + public_token);
-        console.log('account ID: ' + metadata.account_id);
-
         await LoadingService.showLoading();
 
         try {

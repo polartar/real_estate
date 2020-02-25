@@ -37,51 +37,7 @@ export class PageReferral {
 
                 <div>
                   <div class="form">
-                    <form onSubmit={(e) => this.handleSubmit(e)}>
-                      <h3>YOUR INFORMATION</h3>
-
-                      <div class="input">
-                        <label htmlFor="referrer-name" class="sr-only">Name</label>
-
-                        <input id="referrer-name" type="text" class="apt212-input block" placeholder="Name" name="referrer_name" />
-                      </div>
-
-                      <div class="input">
-                        <label htmlFor="referrer-phone" class="sr-only">Phone Number (Optional)</label>
-
-                        <input id="referrer-phone" type="text" class="apt212-input block" placeholder="Phone Number (Optional)" name="referrer_phone" />
-                      </div>
-
-                      <div class="input">
-                        <label htmlFor="referrer-email" class="sr-only">Email Address</label>
-
-                        <input id="referrer-email" type="text" class="apt212-input block" placeholder="Email Address" name="referrer_email" />
-                      </div>
-
-                      <h3>REFERRAL's INFORMATION</h3>
-
-                      <div class="input">
-                        <label htmlFor="referral-name" class="sr-only">Referral Name</label>
-
-                        <input id="referral-name" type="text" class="apt212-input block" placeholder="Referral Name" name="referral_name" />
-                      </div>
-
-                      <div class="input">
-                        <label htmlFor="referral-phone" class="sr-only">Referral Phone Number (Optional)</label>
-
-                        <input id="referral-phone" type="text" class="apt212-input block" placeholder="Referral Phone Number (Optional)" name="referral_phone" />
-                      </div>
-
-                      <div class="input">
-                        <label htmlFor="referral-email" class="sr-only">Referral Email Address</label>
-
-                        <input id="referral-email" type="text" class="apt212-input block" placeholder="Referral Email Address" name="referral_email" />
-                      </div>
-
-                      <div class="input">
-                        <input type="submit" class="button-dark block" value="SUBMIT" />
-                      </div>
-                    </form>
+                    <referral-form />
                   </div>
                 </div>
 

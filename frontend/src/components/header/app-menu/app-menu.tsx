@@ -56,31 +56,31 @@ export class AppMenu {
               Search Apartments
             </ion-router-link>
 
-            <ion-router-link href="/booking">
+            <ion-router-link href="/booking" onClick={() => this.closeMenu()}>
               Bookings
             </ion-router-link>
 
-            <ion-router-link href="/">
+            <ion-router-link href="/" onClick={() => this.closeMenu()}>
               List with us
             </ion-router-link>
 
-            <ion-router-link href="/">
+            <ion-router-link href="/referral" onClick={() => this.closeMenu()}>
               Referrals
             </ion-router-link>
 
-            <ion-router-link href="/">
+            <ion-router-link href="/" onClick={() => this.closeMenu()}>
               Brokers
             </ion-router-link>
 
-            <ion-router-link href="/corporate-rooms">
+            <ion-router-link href="/corporate-rooms" onClick={() => this.closeMenu()}>
               Corporate
             </ion-router-link>
 
-            <ion-router-link href="/about">
+            <ion-router-link href="/about" onClick={() => this.closeMenu()}>
               About APT212
             </ion-router-link>
 
-            <ion-router-link href="/faq">
+            <ion-router-link href="/faq" onClick={() => this.closeMenu()}>
               FAQ
             </ion-router-link>
 
@@ -92,7 +92,7 @@ export class AppMenu {
               : null
             }
 
-            <ion-button aria-label="Speak to an expert" href="/">
+            <ion-button aria-label="Speak to an expert" href="/" onClick={() => this.closeMenu()}>
               <ion-icon name="call" slot="start" />
               Speak to an expert
             </ion-button>

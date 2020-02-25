@@ -68,6 +68,10 @@ export class AdminMenu {
               Owner Global Updates
             </ion-router-link>
 
+            <ion-router-link href="/admin/referrals" onClick={() => this.closeMenu()}>
+              Referrals
+            </ion-router-link>
+
             {
               this.isLoggedIn ?
                 <ion-router-link href="/" onClick={() => { this.logout(); this.closeMenu(); }}>

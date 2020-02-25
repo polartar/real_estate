@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReferralSubmission;
 use App\Jobs\ProcessStripeWebhook;
 use App\Mail\ClientCheckoutComplete;
+use App\Referral;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
@@ -14,6 +16,11 @@ use TomorrowIdeas\Plaid\Plaid;
 
 class BookingController extends Controller
 {
+
+    public function referral(ReferralSubmission $request) {
+        return Referral::create($request->all());
+    }
+
     //
     public function paymentIntent(Request $request)
     {

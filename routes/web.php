@@ -33,6 +33,7 @@ $front_end_routes = [
     '/admin/listing/add',
     '/admin/listing/edit/{id}',
     '/admin/owner-global',
+    '/admin/referrals',
 
     '/neighborhoods',
     '/neighborhood/{id}'

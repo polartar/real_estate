@@ -90,4 +90,12 @@ form {
       margin-bottom: 14px;
     }
   }
+
+  .error {
+    textarea.apt212-input,
+    input.apt212-input,
+    select.apt212-input {
+      border-color: red;
+    }
+  }
 }

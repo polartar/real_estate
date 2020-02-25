@@ -37,6 +37,7 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
     Route::get('booking/payment_intent', 'BookingController@paymentIntent');
     Route::post('booking/checkout_ach', 'BookingController@checkoutACH');
     Route::post('booking/stripe_webhook', 'BookingController@stripeWebhook');
+    Route::post('booking/referral', 'BookingController@referral');
 });
 
 

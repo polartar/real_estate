@@ -271,7 +271,6 @@ export class PageAdminListings {
   }
 
   render() {
-    this.listings.length ? console.log(this.listings[0]) : '';
     return [
       <admin-header />,
       <ion-content class="page-admin-listings">
