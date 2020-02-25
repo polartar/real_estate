@@ -1,5 +1,5 @@
 import { Store } from "@stencil/redux";
-import { Component, h, State, Prop } from '@stencil/core';
+import { Component, h, State, Prop, Listen  } from '@stencil/core';
 import { APISearchService } from '../../../services/api/search';
 
 
@@ -26,8 +26,21 @@ import { APISearchService } from '../../../services/api/search';
     @State() id: any = [];
     @State() link: any = [];
 
+    textInput!: HTMLInputElement;
 
     hasLoaded: boolean = false;
+
+    @Listen('keypress')
+    handleKeyPress(){
+
+      //console.log(this.textInput.value);
+      
+      //if (this.textInput.value.length < 3) {
+      //  return;
+      //}
+      
+      //this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.textInput.value))
+    }
 
     componentWillLoad() {
 
@@ -47,27 +60,32 @@ import { APISearchService } from '../../../services/api/search';
 
     handleSubmit(e) {
       e.preventDefault()
+    }
+
+    handleChange() {
+
+      this.value = this.textInput.value
+
       if (this.value.length < 2) {
         return;
       }
-      
-      this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.value))
-    }
 
-    handleChange(event) {
-      this.value = event.target.value;
+      //@TODO we get this far on mobile browsers but the matches don't display on the screen. i'm not sure if it's a css issue, or something with the binding. 
+      this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.value))
     }
 
     async componentDidLoad() {
       this.loaded = true;
       
-
       try {
         this.faq = await APISearchService.getNamedSearch('FAQPageInit');
         this.getQuestionsByCategory();
        } catch (e) {
         // Fail silently. 
        }
+
+      
+       
     }
 
     async scrollTo(hash) {
@@ -112,7 +130,7 @@ import { APISearchService } from '../../../services/api/search';
 
                   <form onSubmit={(e) => this.handleSubmit(e)}>
                   
-                  <input type="text" class="search" placeholder="Ask a question" value={this.value} onInput={(event) => this.handleChange(event)} />
+                  <input id="search" type="text" class="search" ref={(el) => this.textInput = el as HTMLInputElement} placeholder="Ask a question" value={this.value} onInput={() => this.handleChange()} onTouchStart={() => this.handleChange()}/>
 
                   <ul class="matches">
 
@@ -204,7 +222,7 @@ import { APISearchService } from '../../../services/api/search';
                 </div>
               </div>
 
-              <div class="answers" id="answers">
+              <div class={this.isMobile ? "answers hide" : "answers show"} id="answers">
                   <h1>{this.question}</h1>
                   <p class="answer">{this.answer}</p>
               </div>
