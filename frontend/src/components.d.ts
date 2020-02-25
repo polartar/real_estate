@@ -271,6 +271,7 @@ export namespace Components {
   interface PagePrivateRooms {
     'prefetching': boolean;
   }
+  interface PageReferral {}
   interface PageSearch {
     'location': any;
     'neighborhoods': any;
@@ -815,6 +816,12 @@ declare global {
     new (): HTMLPagePrivateRoomsElement;
   };
 
+  interface HTMLPageReferralElement extends Components.PageReferral, HTMLStencilElement {}
+  var HTMLPageReferralElement: {
+    prototype: HTMLPageReferralElement;
+    new (): HTMLPageReferralElement;
+  };
+
   interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
   var HTMLPageSearchElement: {
     prototype: HTMLPageSearchElement;
@@ -983,6 +990,7 @@ declare global {
     'page-neighborhood': HTMLPageNeighborhoodElement;
     'page-neighborhoods': HTMLPageNeighborhoodsElement;
     'page-private-rooms': HTMLPagePrivateRoomsElement;
+    'page-referral': HTMLPageReferralElement;
     'page-search': HTMLPageSearchElement;
     'page-wishlist': HTMLPageWishlistElement;
     'price-filter': HTMLPriceFilterElement;
@@ -1255,6 +1263,7 @@ declare namespace LocalJSX {
   interface PagePrivateRooms extends JSXBase.HTMLAttributes<HTMLPagePrivateRoomsElement> {
     'prefetching'?: boolean;
   }
+  interface PageReferral extends JSXBase.HTMLAttributes<HTMLPageReferralElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
@@ -1403,6 +1412,7 @@ declare namespace LocalJSX {
     'page-neighborhood': PageNeighborhood;
     'page-neighborhoods': PageNeighborhoods;
     'page-private-rooms': PagePrivateRooms;
+    'page-referral': PageReferral;
     'page-search': PageSearch;
     'page-wishlist': PageWishlist;
     'price-filter': PriceFilter;
