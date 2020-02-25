@@ -26,7 +26,6 @@ import { APISearchService } from '../../../services/api/search';
     @State() id: any = [];
     @State() link: any = [];
 
-
     hasLoaded: boolean = false;
 
     componentWillLoad() {
@@ -47,15 +46,16 @@ import { APISearchService } from '../../../services/api/search';
 
     handleSubmit(e) {
       e.preventDefault()
+    }
+
+    handleChange(event) {
+      this.value = event.target.value;
+
       if (this.value.length < 2) {
         return;
       }
       
       this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.value))
-    }
-
-    handleChange(event) {
-      this.value = event.target.value;
     }
 
     async componentDidLoad() {
@@ -204,7 +204,7 @@ import { APISearchService } from '../../../services/api/search';
                 </div>
               </div>
 
-              <div class="answers" id="answers">
+              <div class={this.isMobile ? "answers hide" : "answers show"} id="answers">
                   <h1>{this.question}</h1>
                   <p class="answer">{this.answer}</p>
               </div>
