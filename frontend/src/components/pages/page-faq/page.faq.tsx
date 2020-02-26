@@ -44,25 +44,41 @@ import { APISearchService } from '../../../services/api/search';
 
     }
 
-    handleSubmit(e) {
-      e.preventDefault();
-    }
+    toggleMatchesVisibility(value = null, force = false) {
 
-    handleChange() {
-      this.value = this.textInput.value
       const el = document.getElementById("matches");
 
-      if (this.value.length < 1) {
+      console.log(force)
+
+      if (force) {
+        el.style.display = "none";
+        return
+      }
+
+      if (value.length < 1) {
         el.style.display = "none";
       } else {
         el.style.display = "block";
       }
 
+    }
+
+    handleSubmit(e) {
+      e.preventDefault();
+    }
+
+    handleChange() {
+
+      this.value = this.textInput.value
+
+      this.toggleMatchesVisibility(this.value)
+      
       if (this.value.length < 2) {
         return;
       }
 
       this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.value.toLowerCase()));
+
     }
 
     async componentDidLoad() {
@@ -74,9 +90,6 @@ import { APISearchService } from '../../../services/api/search';
        } catch (e) {
         // Fail silently.
        }
-
-
-
     }
 
     async scrollTo(hash) {
@@ -84,6 +97,8 @@ import { APISearchService } from '../../../services/api/search';
     }
 
     async showAnswer(question) {
+
+      this.toggleMatchesVisibility(null, true)
 
       let obj = this.faq.find(o => o.question === question)
 
@@ -125,7 +140,7 @@ import { APISearchService } from '../../../services/api/search';
                     type="text"
                     class="search"
                     ref={(el) => this.textInput = el as HTMLInputElement}
-                    placeholder="Ask a question"
+                    placeholder= "Ask a question"
                     value={this.value} onInput={() => this.handleChange()}
                     onTouchStart={() => this.handleChange()}
                     autoComplete="off"
