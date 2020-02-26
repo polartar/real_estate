@@ -183,7 +183,7 @@ class Apartment extends Model
         $date = Carbon::now();
 
         if ($this->available_date) {
-            $date = $date->greaterThan($this->available_date) ? $date : $this->available_date;
+            $date = $date->greaterThan($this->available_date) ? $date : new Carbon($this->available_date);
         }
 
         // Note: rate month numbers stored in js format, starting from jan = 0
