@@ -44,7 +44,6 @@ export class PageAdminListings {
 
   listingsWrapper: HTMLElement;
   searchTypeInput: HTMLSelectElement;
-  rerendered: boolean = false;
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {

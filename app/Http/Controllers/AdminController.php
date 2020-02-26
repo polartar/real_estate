@@ -11,6 +11,7 @@ use App\Neighborhood;
 use App\Subway;
 use App\User;
 use App\Providers\SearchServiceProvider;
+use App\Referral;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -102,5 +103,76 @@ class AdminController extends Controller
             'data' => $data,
             'owner' => $owner_name
         ];
+    }
+
+    public function referrals() {
+        $params = request()->params;
+
+        $filters = json_decode($params, true);
+
+        $limit = isset($filters['limit']) && is_numeric($filters['limit']) && (int) $filters['limit'] > 0 ? (int) $filters['limit'] : 40;
+        $offset = isset($filters['offset']) && is_numeric($filters['limit']) && (int) $filters['offset'] >= 0 ? (int) $filters['offset'] : 0;
+
+        $referrals = Referral::skip($offset)->take($limit);
+        if (isset($filters['query']) && $filters['query']) {
+            $referrals->where(function($query) use ($filters) {
+                $query->where('id', '=', $filters['query'])
+                    ->orWhere('referrer_name', 'LIKE', '%' . $filters['query'] . '%')
+                    ->orWhere('referrer_email', 'LIKE', '%' . $filters['query'] . '%')
+                    ->orWhere('referrer_phone', 'LIKE', '%' . $filters['query'] . '%')
+                    ->orWhere('referral_name', 'LIKE', '%' . $filters['query'] . '%')
+                    ->orWhere('referral_email', 'LIKE', '%' . $filters['query'] . '%')
+                    ->orWhere('referral_phone', 'LIKE', '%' . $filters['query'] . '%');
+            });
+        }
+
+        if (isset($filters['sortBy']) && $filters['sortBy']) {
+            switch ($filters['sortBy']) {
+                case 'referrer_name_asc':
+                    $referrals->orderBy('referrer_name', 'ASC');
+                break;
+                case 'referrer_name_desc':
+                    $referrals->orderBy('referrer_name', 'desc');
+                break;
+                case 'referrer_email_asc':
+                    $referrals->orderBy('referrer_email', 'asc');
+                break;
+                case 'referrer_email_desc':
+                    $referrals->orderBy('referrer_email', 'desc');
+                break;
+                case 'referral_name_asc':
+                    $referrals->orderBy('referral_name', 'asc');
+                break;
+                case 'referral_name_desc':
+                    $referrals->orderBy('referral_name', 'desc');
+                break;
+                case 'referral_email_asc':
+                    $referrals->orderBy('referral_email', 'asc');
+                break;
+                case 'referral_email_desc':
+                    $referrals->orderBy('referral_email', 'desc');
+                break;
+                case 'created_at_asc':
+                    $referrals->orderBy('created_at', 'asc');
+                break;
+                case 'created_at_desc':
+                    $referrals->orderBy('created_at', 'desc');
+                break;
+            }
+        }
+
+        return [
+            'total' => $referrals->count(),
+            'results' => $referrals->get()
+        ];
+    }
+
+    public function deleteReferral(Referral $referral) {
+        try {
+            $referral->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false], 400);
+        }
     }
 }

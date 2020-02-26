@@ -140,6 +140,62 @@ class APIAdminInstance {
       throw new Error(err.message);
     }
   }
+
+  public async getReferrals(filters) {
+    try {
+
+      const params = encodeURIComponent(JSON.stringify({...filters}));
+
+      let response = await fetch(APIService.getAPIUrl() + '/admin/referrals?params=' + params, {
+        headers: APIService.getHeaders(),
+      });
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error(`You have been logged out.  Please log in an try again`);
+        }
+
+        throw new Error(response.statusText);
+      }
+
+      return await response.json();
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
+  public async deleteReferral(id) {
+    try {
+      let response = await fetch(`${APIService.getAPIUrl()}/admin/referral/${id}`, {
+        headers: APIService.getHeaders(),
+        method: 'DELETE'
+      });
+
+      const r = await response.json();
+
+      if (!response.ok) {
+        if (r && r.errors) {
+          // caller will need to check success
+          return {
+            success: false,
+            errors: r.errors
+          };
+        }
+
+        if (r && r.message) {
+          throw new Error(r.message);
+        }
+
+        throw new Error(response.statusText);
+      }
+
+      return {
+        success: true
+      };
+
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
 }
 
 export const APIAdminService = new APIAdminInstance();

@@ -34,28 +34,28 @@ import { APISearchService } from '../../../services/api/search';
     handleKeyPress(){
 
       //console.log(this.textInput.value);
-      
+
       //if (this.textInput.value.length < 3) {
       //  return;
       //}
-      
+
       //this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.textInput.value))
     }
 
     componentWillLoad() {
 
       this.store.mapStateToProps(this, state => {
-  
+
         const {
           screenSize: { size, isMobile },
         } = state;
-  
+
         return {
           size,
           isMobile
         };
       });
-      
+
     }
 
     handleSubmit(e) {
@@ -70,22 +70,22 @@ import { APISearchService } from '../../../services/api/search';
         return;
       }
 
-      //@TODO we get this far on mobile browsers but the matches don't display on the screen. i'm not sure if it's a css issue, or something with the binding. 
+      //@TODO we get this far on mobile browsers but the matches don't display on the screen. i'm not sure if it's a css issue, or something with the binding.
       this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.value))
     }
 
     async componentDidLoad() {
       this.loaded = true;
-      
+
       try {
         this.faq = await APISearchService.getNamedSearch('FAQPageInit');
         this.getQuestionsByCategory();
        } catch (e) {
-        // Fail silently. 
+        // Fail silently.
        }
 
-      
-       
+
+
     }
 
     async scrollTo(hash) {
@@ -94,7 +94,7 @@ import { APISearchService } from '../../../services/api/search';
 
     async showAnswer(question) {
 
-      let obj = this.faq.find(o => o.question === question) 
+      let obj = this.faq.find(o => o.question === question)
 
       if (this.isMobile) {
         document.getElementById(obj.id).click()
@@ -103,7 +103,7 @@ import { APISearchService } from '../../../services/api/search';
         this.answer = obj.answer
         this.question = question
       }
-      
+
     }
 
     async getQuestionsByCategory () {
@@ -129,7 +129,7 @@ import { APISearchService } from '../../../services/api/search';
                   <h1>FAQ</h1>
 
                   <form onSubmit={(e) => this.handleSubmit(e)}>
-                  
+
                   <input id="search" type="text" class="search" ref={(el) => this.textInput = el as HTMLInputElement} placeholder="Ask a question" value={this.value} onInput={() => this.handleChange()} onTouchStart={() => this.handleChange()}/>
 
                   <ul class="matches">
@@ -141,12 +141,12 @@ import { APISearchService } from '../../../services/api/search';
                         <a href={this.isMobile ? this.link : "#answers"} onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                       </li>
                     );
-                  })}   
+                  })}
 
                   </ul>
 
                   </form>
-               
+
                 </div>
             </div>
 
@@ -167,10 +167,10 @@ import { APISearchService } from '../../../services/api/search';
                             <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                           </div>
                         );
-                      })} 
+                      })}
 
                     <h2>Booking</h2>
-                    
+
                       {this.booking.map(faq => {
                           return (
                             <apt212-accordion questionID={faq.id} class={this.isMobile ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
@@ -183,12 +183,12 @@ import { APISearchService } from '../../../services/api/search';
                               <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                             </div>
                           );
-                        })} 
+                        })}
 
-                    
+
 
                     <h2>Private Rooms</h2>
-                    
+
                         {this.privaterooms.map(faq => {
                           return (
                             <apt212-accordion questionID={faq.id} class={this.isMobile ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
@@ -201,10 +201,10 @@ import { APISearchService } from '../../../services/api/search';
                               <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                             </div>
                           );
-                        })} 
+                        })}
 
                     <h2>Your Stay</h2>
-                    
+
                         {this.stay.map(faq => {
                           return (
                             <apt212-accordion questionID={faq.id} class={this.isMobile ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
@@ -217,7 +217,7 @@ import { APISearchService } from '../../../services/api/search';
                               <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                             </div>
                           );
-                        })} 
+                        })}
 
                 </div>
               </div>
@@ -226,7 +226,7 @@ import { APISearchService } from '../../../services/api/search';
                   <h1>{this.question}</h1>
                   <p class="answer">{this.answer}</p>
               </div>
-              
+
             </div>
 
           </section>

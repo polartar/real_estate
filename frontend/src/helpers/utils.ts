@@ -1,4 +1,5 @@
 import xss from 'xss';
+import format from 'date-fns/format';
 
 export function generateId(length) {
   const dec2hex = dec => ('0' + dec.toString(16)).substr(-2);
@@ -29,12 +30,16 @@ export function getDate(vdate) {
   return date;
 }
 
-export function formatDate(vdate, format?: string) {
+export function formatDate(vdate, struct?: string) {
   const date = getDate(vdate); new Date(vdate);
 
   let result = '';
 
-  switch (format) {
+  if (!struct) {
+    struct = 'm.d.Y';
+  }
+
+  switch (struct) {
     case 'm/d/Y':
       result = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
     break;
@@ -53,9 +58,10 @@ export function formatDate(vdate, format?: string) {
 
     case 'm.d.Y':
     case 'short':
-    default:
-      // m.d.Y
       result = (date.getMonth() + 1) + '.' + date.getDate() + '.' + date.getFullYear();
+    break;
+    default:
+      result = format(date, struct);
     break;
   }
   return result;

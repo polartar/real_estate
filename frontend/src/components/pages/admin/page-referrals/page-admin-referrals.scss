@@ -1,6 +1,6 @@
 @import '../../../../styles/mixins';
 
-.page-admin-listings {
+.page-admin-referrals {
 
   .listings {
     margin-top: 32px;
@@ -14,6 +14,7 @@
       background-color: white;
       white-space: nowrap;
       padding-right: 8px;
+      z-index: 1;
 
       button {
         font-weight: inherit;
@@ -33,6 +34,7 @@
 
     .data-table td {
       white-space: nowrap;
+      border-left: 1px solid #d8d8d8;
       background-color: white;
     }
   }
@@ -65,19 +67,6 @@
 
     button {
       height: 48px;
-    }
-  }
-
-  .add-new {
-    margin-left: 4px;
-    font-size: 18px;
-  }
-
-  .toggle-active {
-    padding-top: 4px;
-
-    @include for-size(desktop-up) {
-      display: none;
     }
   }
 }

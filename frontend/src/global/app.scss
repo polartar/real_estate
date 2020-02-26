@@ -351,7 +351,7 @@ ion-footer.no-footer-border {
 
 
 table.data-table {
-  width: 100%;
+  width: 99%;
 
   thead {
     td {
@@ -368,10 +368,19 @@ table.data-table {
       &:hover {
         background-color: rgba(0,0,0,0.03);
       }
+
+      &:last-child {
+        border-bottom: 1px solid #d8d8d8;
+      }
     }
 
     td {
       padding: 8px;
+      border-left: 1px solid #d8d8d8;
+
+      &:last-child {
+        border-right: 1px solid #d8d8d8 !important;
+      }
 
       button:not(:first-child) {
         margin-left: 4px;
