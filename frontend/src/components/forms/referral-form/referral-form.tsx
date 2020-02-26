@@ -29,8 +29,7 @@ export class ReferralForm {
     await LoadingService.showLoading();
 
     try {
-      const result = await APIBookingService.sendReferral(results);
-      console.log(result);
+      await APIBookingService.sendReferral(results);
 
       this.submitted = true;
     } catch (err) {

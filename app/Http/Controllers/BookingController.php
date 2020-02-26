@@ -5,15 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReferralSubmission;
 use App\Jobs\ProcessReferral;
 use App\Jobs\ProcessStripeWebhook;
-use App\Mail\ClientCheckoutComplete;
 use App\Referral;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use stdClass;
 use Stripe\Exception\SignatureVerificationException;
-use TomorrowIdeas\Plaid\Plaid;
 
 class BookingController extends Controller
 {
