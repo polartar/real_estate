@@ -55,7 +55,7 @@ import { APISearchService } from '../../../services/api/search';
         return;
       }
 
-      this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.value.toLocaleLowerCase()));
+      this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.value.toLowerCase()));
     }
 
     async componentDidLoad() {
