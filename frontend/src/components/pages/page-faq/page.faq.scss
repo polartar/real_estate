@@ -20,13 +20,18 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
-      background-color:#02a59c;
+      background-color:black;
       background-blend-mode: multiply;
       width: 100%;
-      height: calc(100vh / 0.85);
+      height: 713px;
       display: flex;
       justify-content: center;
-      align-items: center;
+      padding-top: 200px;
+      align-items: top;
+
+      @include for-size(tablet-portrait-up) {
+        height: 640px;
+      }
    
     .cta {
       //margin: auto;
@@ -130,6 +135,7 @@
         padding-top: 10px;
         padding-left: 15px;
         padding-bottom: 15px;
+        text-decoration: none;
       }
 
       :hover {

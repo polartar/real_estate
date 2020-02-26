@@ -50,6 +50,13 @@ import { APISearchService } from '../../../services/api/search';
 
     handleChange() {
       this.value = this.textInput.value
+      const el = document.getElementById("matches");
+
+      if (this.value.length < 1) {
+        el.style.display = "none";
+      } else {
+        el.style.display = "block";
+      }
 
       if (this.value.length < 2) {
         return;
@@ -124,7 +131,7 @@ import { APISearchService } from '../../../services/api/search';
                     autoComplete="off"
                   />
 
-                  <ul class="matches">
+                  <ul id="matches" class="matches">
 
                   {this.matches.map(faq => {
                     const link = "#" + faq.id
