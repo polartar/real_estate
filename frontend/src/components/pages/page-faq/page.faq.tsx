@@ -1,5 +1,5 @@
 import { Store } from "@stencil/redux";
-import { Component, h, State, Prop, Listen  } from '@stencil/core';
+import { Component, h, State, Prop } from '@stencil/core';
 import { APISearchService } from '../../../services/api/search';
 
 
@@ -23,24 +23,10 @@ import { APISearchService } from '../../../services/api/search';
     @State() value: string;
     @State() matches : any = [];
     @State() accordionlist : any = [];
-    @State() id: any = [];
-    @State() link: any = [];
 
     textInput!: HTMLInputElement;
 
     hasLoaded: boolean = false;
-
-    @Listen('keypress')
-    handleKeyPress(){
-
-      //console.log(this.textInput.value);
-
-      //if (this.textInput.value.length < 3) {
-      //  return;
-      //}
-
-      //this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.textInput.value))
-    }
 
     componentWillLoad() {
 
@@ -59,19 +45,17 @@ import { APISearchService } from '../../../services/api/search';
     }
 
     handleSubmit(e) {
-      e.preventDefault()
+      e.preventDefault();
     }
 
     handleChange() {
-
       this.value = this.textInput.value
 
       if (this.value.length < 2) {
         return;
       }
 
-      //@TODO we get this far on mobile browsers but the matches don't display on the screen. i'm not sure if it's a css issue, or something with the binding.
-      this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.value))
+      this.matches = this.faq.filter(o => o.question.toLowerCase().includes(this.value.toLocaleLowerCase()));
     }
 
     async componentDidLoad() {
@@ -114,7 +98,6 @@ import { APISearchService } from '../../../services/api/search';
     }
 
     render() {
-
       return [
 
         <app-header />,
@@ -130,15 +113,24 @@ import { APISearchService } from '../../../services/api/search';
 
                   <form onSubmit={(e) => this.handleSubmit(e)}>
 
-                  <input id="search" type="text" class="search" ref={(el) => this.textInput = el as HTMLInputElement} placeholder="Ask a question" value={this.value} onInput={() => this.handleChange()} onTouchStart={() => this.handleChange()}/>
+                  <input
+                    id="search"
+                    type="text"
+                    class="search"
+                    ref={(el) => this.textInput = el as HTMLInputElement}
+                    placeholder="Ask a question"
+                    value={this.value} onInput={() => this.handleChange()}
+                    onTouchStart={() => this.handleChange()}
+                    autoComplete="off"
+                  />
 
                   <ul class="matches">
 
                   {this.matches.map(faq => {
-                    this.link = "#" + faq.id
+                    const link = "#" + faq.id
                     return (
                       <li>
-                        <a href={this.isMobile ? this.link : "#answers"} onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
+                        <a href={this.isMobile ? link : "#answers"} onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                       </li>
                     );
                   })}
