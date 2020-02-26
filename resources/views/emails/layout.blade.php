@@ -25,6 +25,10 @@
             padding-top: 30px;
         }
 
+        .signature {
+            padding-top: 30px;
+        }
+
         .footer {
             background-color: black;
             color: white;
@@ -110,7 +114,7 @@
             </a>
         </div>
 
-        <div class="app-links">
+        {{-- <div class="app-links">
             <a href="https://apt212.com">
                 <img src="{{ asset('assets/images/google_play.png') }}">
             </a>
@@ -121,7 +125,7 @@
             <a href="https://apt212.com">
                 <img src="{{ asset('assets/images/app_store.svg') }}">
             </a>
-        </div>
+        </div> --}}
     </div>
 </div>
 <body>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReferralSubmission;
+use App\Jobs\ProcessReferral;
 use App\Jobs\ProcessStripeWebhook;
 use App\Mail\ClientCheckoutComplete;
 use App\Referral;
@@ -18,7 +19,10 @@ class BookingController extends Controller
 {
 
     public function referral(ReferralSubmission $request) {
-        return Referral::create($request->all());
+        $referral = Referral::create($request->all());
+
+        dispatch(new ProcessReferral($referral));
+        return $referral;
     }
 
     //
@@ -65,9 +69,11 @@ class BookingController extends Controller
         try {
             $event = \Stripe\Webhook::constructEvent($payload, $sig_header, $endpoint_secret);
         } catch (\UnexpectedValueException $e) {
-            return response()->json(['error' => 'Failed webhook validation'], 400);
+            // return 200 even though it's an error due to multiple test envs
+            return response()->json(['error' => 'Failed webhook validation']);
         } catch (SignatureVerificationException $e) {
-            return response()->json(['error' => 'Failed webhook validation'], 400);
+            // return 200 even though it's an error due to multiple test envs
+            return response()->json(['error' => 'Failed webhook validation']);
         }
 
         dispatch(new ProcessStripeWebhook($event));
@@ -86,14 +92,6 @@ class BookingController extends Controller
 
         $plaid_secret = config('apt212.plaid_environment') === 'production' ? config('apt212.plaid_production_secret') : config('apt212.plaid_sandbox_secret');
         $plaid_client_id = config('apt212.plaid_client_id');
-        // $plaid_public_key = config('apt212.plaid_public_key');
-
-        // $client = new Plaid($plaid_client_id, $plaid_secret, $plaid_public_key);
-        // $client->setEnvironment('sandbox');
-
-        // $auth = $client->getAuth($request->token);
-
-        // return response()->json($auth);
 
         $plaid_api = 'https://sandbox.plaid.com';
         if (config('apt212.plaid_environment') === 'production') {
@@ -174,16 +172,8 @@ class BookingController extends Controller
     }
 
     // public function previewMail(Request $request) {
-    //     $metadata = new stdClass();
-    //     $metadata->firstname = 'Matt';
-    //     $metadata->lastname = 'Beckett';
-    //     $metadata->amount = 123;
-    //     $metadata->email = 'matt@arckinteractive.com';
-    //     $metadata->webid = 1;
-    //     $metadata->phone = '2506670871';
-    //     $metadata->using_agent = 'no';
-    //     $metadata->agent = 'Boston Rob';
+    //     $referral = \App\Referral::first();
 
-    //     return new ClientCheckoutComplete($metadata);
+    //     return new \App\Mail\ReferralMailReferral($referral);
     // }
 }
