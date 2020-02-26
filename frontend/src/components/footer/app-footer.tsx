@@ -36,7 +36,7 @@ export class AppFooter {
                   <ion-router-link href="/brokers">Brokers</ion-router-link>
                   <ion-router-link href="/careers">Careers</ion-router-link>
                   <ion-router-link href="/blog">APT212 blog</ion-router-link>
-                  <ion-router-link href="/referrals">Referrals</ion-router-link>
+                  <ion-router-link href="/referral">Referrals</ion-router-link>
                 </div>
               </div>
             </div>

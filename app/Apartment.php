@@ -19,7 +19,6 @@ class Apartment extends Model
         "bedroom_type_id" => "int",
         "rating" => "float",
         "available_date" => 'date:Y-m-d',
-        "available_until" => 'date:Y-m-d',
         "due_to_reserve" => 'array',
         "due_by_checkin" => 'array'
     ];
@@ -150,6 +149,14 @@ class Apartment extends Model
         $utilties = array_filter($utilities);
 
         return round(array_sum($utilities), 2);
+    }
+
+    // if available date is in the past
+    public function getAvailableDateAttribute() {
+        $now = Carbon::now();
+        $available = new Carbon($this->attributes['available_date']);
+
+        return $now->greaterThan($available) ? $now->format('Y-m-d') : $available->format('Y-m-d');
     }
 
     /**
