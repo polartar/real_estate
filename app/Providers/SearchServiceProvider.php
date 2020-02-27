@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Apartment;
 use App\Neighborhood;
 use App\FAQ;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -75,7 +77,32 @@ class SearchServiceProvider extends ServiceProvider
                     // ->take(4)
                     // ->get();
 
+                    // same bedroom count
+                    // same neighborhoods
+                    // available within 30 days of listing available date
                     $nearbyApts = Apartment::where('bedroom_type_id', $apt->bedroom_type_id)
+                                    ->where(function(Builder $query) use ($apt) {
+                                        // date within 30 days
+                                        // so 30 days in past or future
+                                        // but if available date is already in the past, then it can be any time in the past
+                                        $now = Carbon::now();
+                                        $now->addDays(30);
+                                        $available = new Carbon($apt->available_date);
+                                        $upper_limit = $available->copy()->addDays(30);
+                                        $lower_limit = $available->copy()->subDays(30);
+
+                                        if ($now->greaterThanOrEqualTo($available)) {
+                                            // any available date in the past is fine
+                                            $query->where('available_date', '<', $upper_limit);
+                                        }
+                                        else {
+                                            $query->whereBetween('available_date', [$lower_limit, $upper_limit]);
+                                        }
+
+                                    })
+                                    ->whereHas('neighborhoods', function(Builder $query) use ($apt) {
+                                        $query->whereIn('id', $apt->neighborhood_ids);
+                                    })
                                     ->take(4)
                                     ->get();
 
