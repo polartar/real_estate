@@ -85,7 +85,7 @@
         </div>
 
         <div>
-            <a href="{{ url('search') }}">SEARCH APARTMENTS &nbsp;<img src="{{ asset('assets/images/icons/search-icon-white.svg') }}" style="display: inline-block; margin-top: -2px; height: 11px; vertical-align: middle;"></a>
+            <a href="{{ url('search') }}">SEARCH APARTMENTS &nbsp;<img src="{{ asset('assets/images/icons/search-icon-white.png') }}" style="display: inline-block; margin-top: -2px; height: 11px; vertical-align: middle;"></a>
 
             &nbsp;&nbsp;&bull;&nbsp;&nbsp;
 
