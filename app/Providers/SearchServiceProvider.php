@@ -58,20 +58,26 @@ class SearchServiceProvider extends ServiceProvider
             case 'nearbyApts':
                 $results = Cache::remember('search-nearbyApts-' . $params['id'], 600, function() use ($params) {
                     $apt = Apartment::findOrFail($params['id']);
-                    $distance = 5;
 
-                    // $nearbyApts = Apartment::inRandomOrder()->take(4)->get();
+                    /**
+                     * For true geospatial search
+                     */
+                    // $distance = 5;
 
-                    // to use km use 6371 instead of 3959
-                    $nearbyApts = Apartment::select()->addSelect(\DB::raw('( 3959 * acos( cos( radians(' . $apt->lat . ') )
-                        * cos( radians( apartments.lat ) )
-                        * cos( radians( apartments.lng ) - radians(' . $apt->lng . ') )
-                        + sin( radians(' . $apt->lat . ') )
-                        * sin( radians( apartments.lat ) ) ) ) AS distance'))
-                    ->having('distance', '<', $distance)
-                    ->orderBy('distance', 'ASC')
-                    ->take(4)
-                    ->get();
+                    // // to use km use 6371 instead of 3959
+                    // $nearbyApts = Apartment::select()->addSelect(\DB::raw('( 3959 * acos( cos( radians(' . $apt->lat . ') )
+                    //     * cos( radians( apartments.lat ) )
+                    //     * cos( radians( apartments.lng ) - radians(' . $apt->lng . ') )
+                    //     + sin( radians(' . $apt->lat . ') )
+                    //     * sin( radians( apartments.lat ) ) ) ) AS distance'))
+                    // ->having('distance', '<', $distance)
+                    // ->orderBy('distance', 'ASC')
+                    // ->take(4)
+                    // ->get();
+
+                    $nearbyApts = Apartment::where('bedroom_type_id', $apt->bedroom_type_id)
+                                    ->take(4)
+                                    ->get();
 
                     return $nearbyApts;
                 });

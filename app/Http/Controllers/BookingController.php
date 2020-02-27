@@ -167,6 +167,7 @@ class BookingController extends Controller
 
     // public function previewMail(Request $request) {
     //     $referral = \App\Referral::first();
+    //     \Illuminate\Support\Facades\Mail::to('matt@arckinteractive.com')->send(new \App\Mail\ReferralMailReferral($referral));
 
     //     return new \App\Mail\ReferralMailReferral($referral);
     // }
