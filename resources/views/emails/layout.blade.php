@@ -70,14 +70,14 @@
 <body>
 <div class="wrapper">
     <div class="header">
-        <img src="{{ asset('assets/images/logo.svg')}}" class="logo">
+        <img src="{{ asset('assets/images/logo.png')}}" class="logo">
     </div>
 
     @yield('content')
 
     <div class="footer">
         <div style="margin-bottom: 16px">
-            <img src="{{ asset('assets/images/logo-icon-white.svg') }}" style="max-width: 30px">
+            <img src="{{ asset('assets/images/logo-icon-white.png') }}" style="max-width: 30px">
         </div>
 
         <div style="margin-bottom: 21px;">
@@ -98,19 +98,19 @@
 
         <div class="social-media">
             <a href="https://www.facebook.com/Apt212/" target="_blank" rel="noopener">
-              <img src="{{ asset('assets/images/icons/social-media/facebook-square.svg') }}" alt="Facebook" />
+              <img src="{{ asset('assets/images/icons/social-media/facebook-square.png') }}" alt="Facebook" />
             </a>
 
             <a href="https://twitter.com/apt212" target="_blank" rel="noopener">
-              <img src="{{ asset('assets/images/icons/social-media/twitter.svg') }}" alt="Twitter" />
+              <img src="{{ asset('assets/images/icons/social-media/twitter.png') }}" alt="Twitter" />
             </a>
 
             <a href="https://google.com/+APT212NewYork" target="_blank" rel="noopener">
-              <img src="{{ asset('assets/images/icons/social-media/instagram.svg') }}" alt="Instagram" />
+              <img src="{{ asset('assets/images/icons/social-media/instagram.png') }}" alt="Instagram" />
             </a>
 
             <a href="https://youtube.com/c/APT212NewYork" target="_blank" rel="noopener">
-              <img src="{{ asset('assets/images/icons/social-media/youtube.svg') }}" alt="Youtube" />
+              <img src="{{ asset('assets/images/icons/social-media/youtube.png') }}" alt="Youtube" />
             </a>
         </div>
 
