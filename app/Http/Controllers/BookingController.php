@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReferralSubmission;
+use App\Http\Requests\ShareApartment;
 use App\Jobs\ProcessReferral;
 use App\Jobs\ProcessStripeWebhook;
+use App\Mail\ShareApartment as MailShareApartment;
 use App\Referral;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Stripe\Exception\SignatureVerificationException;
 
 class BookingController extends Controller
@@ -17,6 +20,14 @@ class BookingController extends Controller
 
         dispatch(new ProcessReferral($referral));
         return $referral;
+    }
+
+    public function shareApartment(ShareApartment $request) {
+        $data = $request->validated();
+
+        Mail::to($data['email'])->send(new MailShareApartment($data));
+
+        return response()->json($data);
     }
 
     //

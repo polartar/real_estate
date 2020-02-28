@@ -312,7 +312,7 @@ export namespace Components {
     'item': any;
   }
   interface ShareListing {
-    'item': any;
+    'items': any[];
   }
   interface StarRating {
     'color': string;
@@ -1316,7 +1316,7 @@ declare namespace LocalJSX {
     'item': any;
   }
   interface ShareListing extends JSXBase.HTMLAttributes<HTMLShareListingElement> {
-    'item': any;
+    'items': any[];
   }
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
     'color'?: string;

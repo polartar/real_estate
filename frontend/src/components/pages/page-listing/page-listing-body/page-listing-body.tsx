@@ -155,7 +155,7 @@ export class PageListingBody {
       componentProps: {
         component: 'share-listing',
         componentProps: {
-          item: this.item
+          items: [this.item]
         }
       }
     });

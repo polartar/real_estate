@@ -16,12 +16,14 @@ export class SearchShareSelectedDropdown {
   setSortbyFilter: Action;
   addToWishlistAction: Action;
   selectedItems: any[] = [];
+  listings: any[] = [];
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
         sortBy: searchFilterSelectors.getSortBy(state),
-        selectedItems: searchSelectors.getSelectedListings(state)
+        selectedItems: searchSelectors.getSelectedListings(state),
+        listings: searchSelectors.getListings(state)
       };
     });
 
@@ -43,11 +45,33 @@ export class SearchShareSelectedDropdown {
     }
   }
 
+  shareApartments() {
+    const apts = this.listings.filter(l => this.selectedItems.includes(l.id));
+
+    if (!apts.length) {
+      return;
+    }
+
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'apt212-modal-booking-frame',
+      cssClass: 'share-listing-modal',
+      componentProps: {
+        component: 'share-listing',
+        componentProps: {
+          items: apts
+        }
+      }
+    });
+
+    document.body.appendChild(modal);
+    return modal.present();
+  }
+
   render() {
 
     return (
       <div class="search-shareselected-dropdown-component">
-        <button class="button-reset share-button has-icon">
+        <button class="button-reset share-button has-icon" onClick={() => this.shareApartments() }>
         <svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1">
             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g transform="translate(-406.000000, -231.000000)" fill="#000000">

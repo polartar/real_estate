@@ -1,10 +1,11 @@
 import { Component, h, Prop, State } from '@stencil/core';
-import { Store } from '@stencil/redux';
+import { Store, Action } from '@stencil/redux';
 import { searchSelectors } from '../../../store/selectors/search';
+import { bookingSetCheckin, bookingSetCheckout, bookingSetGuests } from '../../../store/actions/booking';
 import taxonomySelectors from '../../../store/selectors/taxonomy';
 import { APIApartmentsService } from '../../../services/api/apartments';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
-import { formatMoney, formatDate } from '../../../helpers/utils';
+import { formatMoney, formatDate, getUrlParameter, getDate } from '../../../helpers/utils';
 
 @Component({
   tag: 'page-listing',
@@ -13,12 +14,16 @@ import { formatMoney, formatDate } from '../../../helpers/utils';
 export class PageListing {
   @Prop({ context: "store" }) store: Store;
   @Prop() apartmentId: number;
-  @State() loaded: boolean = false;
 
+  @State() loaded: boolean = false;
   @State() taxonomyLoaded: boolean = false;
 
   searchResults: any[] = [];
   item: any = null;
+
+  bookingSetCheckin: Action;
+  bookingSetCheckout: Action;
+  bookingSetGuests: Action;
 
   async componentWillLoad() {
     this.store.mapStateToProps(this, state => {
@@ -26,6 +31,12 @@ export class PageListing {
         searchResults: searchSelectors.getListings(state),
         taxonomyLoaded: taxonomySelectors.getTaxonomyLoaded(state)
       }
+    });
+
+    this.store.mapDispatchToProps(this, {
+      bookingSetCheckin: bookingSetCheckin,
+      bookingSetCheckout: bookingSetCheckout,
+      bookingSetGuests: bookingSetGuests
     });
 
     let canonicalURL = EnvironmentConfigService.getInstance().get('BASE_URL') + '/404';
@@ -60,6 +71,18 @@ export class PageListing {
     const rel: any = document.querySelector('link[rel="canonical"]');
     if (rel) {
       rel.setAttribute('href', canonicalURL);
+    }
+
+    if (getUrlParameter('checkin')) {
+      this.bookingSetCheckin(this.apartmentId, getDate(getUrlParameter('checkin')));
+    }
+
+    if (getUrlParameter('checkout')) {
+      this.bookingSetCheckout(this.apartmentId, getDate(getUrlParameter('checkout')) );
+    }
+
+    if (getUrlParameter('guests')) {
+      this.bookingSetGuests(this.apartmentId, getUrlParameter('guests'));
     }
   }
 

@@ -75,7 +75,7 @@ export class BookingDetails {
       componentProps: {
         component: 'share-listing',
         componentProps: {
-          item: this.item
+          items: [this.item]
         }
       }
     });

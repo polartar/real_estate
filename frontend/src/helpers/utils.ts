@@ -31,7 +31,7 @@ export function getDate(vdate) {
 }
 
 export function formatDate(vdate, struct?: string) {
-  const date = getDate(vdate); new Date(vdate);
+  const date = getDate(vdate);
 
   let result = '';
 
@@ -95,3 +95,10 @@ export function nl2br(str, is_xhtml = true) {
 export function xssFilter(html, options = {}) {
   return xss.filterXSS(html, options);
 }
+
+export function getUrlParameter(name) {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  var results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
