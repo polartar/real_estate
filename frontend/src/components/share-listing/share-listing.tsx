@@ -8,6 +8,7 @@ import Isemail from 'isemail';
 import { ToastService } from '../../services/toast.service';
 import { formatDate } from '../../helpers/utils';
 import { APIBookingService } from '../../services/api/booking';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   tag: 'share-listing',
@@ -85,6 +86,8 @@ export class ShareListing {
     };
 
     try {
+      await LoadingService.showLoading();
+
       await APIBookingService.shareListing(data);
 
       ToastService.success('Thank you, your message has been sent');
@@ -93,6 +96,8 @@ export class ShareListing {
     } catch (err) {
       ToastService.error(err.message);
     }
+
+    await LoadingService.hideLoading();
   }
 
   checkErrors(results) {

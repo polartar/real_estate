@@ -1,0 +1,26 @@
+.inquiry-form-component {
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding-top: 25px;
+  }
+
+  .input {
+    padding-bottom: 0;
+
+    &.submit {
+      margin-top: 8px;
+    }
+  }
+
+  .right {
+    .input {
+      height: 100%;
+
+      textarea.apt212-input {
+        height: calc(100% - 14px);
+      }
+    }
+  }
+}

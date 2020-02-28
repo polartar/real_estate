@@ -118,6 +118,7 @@ export namespace Components {
     'helpText': string;
     'label': string;
     'name': string;
+    'placeholder': string;
     'value': string;
   }
   interface InputDateModal {
@@ -155,6 +156,7 @@ export namespace Components {
   interface InputUtilities {
     'item': any;
   }
+  interface InquiryForm {}
   interface LazyImage {
     'alt': string;
     'expand': boolean;
@@ -566,6 +568,12 @@ declare global {
     new (): HTMLInputUtilitiesElement;
   };
 
+  interface HTMLInquiryFormElement extends Components.InquiryForm, HTMLStencilElement {}
+  var HTMLInquiryFormElement: {
+    prototype: HTMLInquiryFormElement;
+    new (): HTMLInquiryFormElement;
+  };
+
   interface HTMLLazyImageElement extends Components.LazyImage, HTMLStencilElement {}
   var HTMLLazyImageElement: {
     prototype: HTMLLazyImageElement;
@@ -962,6 +970,7 @@ declare global {
     'input-payment-timeline': HTMLInputPaymentTimelineElement;
     'input-pricing': HTMLInputPricingElement;
     'input-utilities': HTMLInputUtilitiesElement;
+    'inquiry-form': HTMLInquiryFormElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-attribute-update-modal': HTMLListingAttributeUpdateModalElement;
     'listing-card': HTMLListingCardElement;
@@ -1119,6 +1128,7 @@ declare namespace LocalJSX {
     'helpText'?: string;
     'label'?: string;
     'name'?: string;
+    'placeholder'?: string;
     'value'?: string;
   }
   interface InputDateModal extends JSXBase.HTMLAttributes<HTMLInputDateModalElement> {
@@ -1156,6 +1166,7 @@ declare namespace LocalJSX {
   interface InputUtilities extends JSXBase.HTMLAttributes<HTMLInputUtilitiesElement> {
     'item'?: any;
   }
+  interface InquiryForm extends JSXBase.HTMLAttributes<HTMLInquiryFormElement> {}
   interface LazyImage extends JSXBase.HTMLAttributes<HTMLLazyImageElement> {
     'alt'?: string;
     'expand'?: boolean;
@@ -1388,6 +1399,7 @@ declare namespace LocalJSX {
     'input-payment-timeline': InputPaymentTimeline;
     'input-pricing': InputPricing;
     'input-utilities': InputUtilities;
+    'inquiry-form': InquiryForm;
     'lazy-image': LazyImage;
     'listing-attribute-update-modal': ListingAttributeUpdateModal;
     'listing-card': ListingCard;

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Inquiry;
 use App\Http\Requests\ReferralSubmission;
 use App\Http\Requests\ShareApartment;
 use App\Jobs\ProcessReferral;
 use App\Jobs\ProcessStripeWebhook;
+use App\Mail\Inquiry as MailInquiry;
 use App\Mail\ShareApartment as MailShareApartment;
 use App\Referral;
 use Illuminate\Http\Request;
@@ -26,6 +28,16 @@ class BookingController extends Controller
         $data = $request->validated();
 
         Mail::to($data['email'])->send(new MailShareApartment($data));
+
+        return response()->json($data);
+    }
+
+    public function inquiry(Inquiry $request) {
+        $data = $request->validated();
+
+        if (config('apt212.office_email')) {
+            Mail::to(config('apt212.office_email'))->send(new MailInquiry($data));
+        }
 
         return response()->json($data);
     }

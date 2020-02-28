@@ -11,6 +11,7 @@ export class InputDate {
   @Prop() label: string;
   @Prop() helpText: string;
   @Prop() format: string = 'm/d/y';
+  @Prop() placeholder: string = '';
 
   async init() {
     const modal: any = document.createElement('ion-modal');
@@ -38,7 +39,15 @@ export class InputDate {
   render() {
     return (
       <div class="input-date-component">
-        <input type="text" name={this.name} class="apt212-input block" autocomplete="off" value={this.getValue()} onClick={() => this.init() } />
+        <input
+          type="text"
+          name={this.name}
+          class="apt212-input block"
+          autocomplete="off"
+          value={this.getValue()}
+          onClick={() => this.init() }
+          placeholder={this.placeholder}
+        />
       </div>
     )
   }

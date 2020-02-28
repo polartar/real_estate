@@ -5,6 +5,7 @@ import { Component, h } from '@stencil/core';
   styleUrl: 'ask-question.scss'
 })
 export class AskQuestion {
+
   render() {
 
     const people = [
@@ -69,7 +70,7 @@ export class AskQuestion {
 
         </div>
         <div class="content-right">
-          <div class="title">Make An Inquiry</div>
+          <inquiry-form />
         </div>
       </div>
     )
