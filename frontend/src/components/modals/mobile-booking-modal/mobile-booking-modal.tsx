@@ -109,7 +109,7 @@ export class MobileBookingModal {
           }
 
           {
-            this.view === 'share' ? <share-listing item={this.item} /> : null
+            this.view === 'share' ? <share-listing items={[this.item]} /> : null
           }
 
           {
