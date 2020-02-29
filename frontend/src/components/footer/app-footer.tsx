@@ -94,7 +94,7 @@ export class AppFooter {
                   <lazy-image src="/assets/images/icons/social-media/twitter.svg" alt="Twitter" />
                 </a>
 
-                <a href="https://google.com/+APT212NewYork" target="_blank" rel="noopener">
+                <a href="https://www.instagram.com/apt212/" target="_blank" rel="noopener">
                   <lazy-image src="/assets/images/icons/social-media/instagram.svg" alt="Instagram" />
                 </a>
 

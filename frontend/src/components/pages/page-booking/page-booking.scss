@@ -330,4 +330,30 @@
       text-align: left;
     }
   }
+
+  .mobile-booking-cta {
+    display: none;
+    position: sticky;
+    bottom: 0;
+    height: 81px;
+    width: 100%;
+
+    box-shadow: 0 0 48px -11px rgba(0, 0, 0, 0.33);
+    background-color: white;
+    padding: 0 22px;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      height: 48px;
+    }
+
+    &.active {
+      display: flex;
+
+      @include for-size(desktop-up) {
+        display: none;
+      }
+    }
+  }
 }

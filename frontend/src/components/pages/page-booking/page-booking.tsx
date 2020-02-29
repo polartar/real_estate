@@ -2,6 +2,7 @@ import { Component, h, Prop, State } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import bookingSelectors from '../../../store/selectors/booking';
+import Debounce from 'debounce-decorator';
 
 @Component({
   tag: 'page-booking',
@@ -12,6 +13,9 @@ export class PageBooking {
 
   @State() details: any = null;
   @State() faqItem: number = 1;
+
+  scrollContent: HTMLIonContentElement;
+  mobileBookingCTA: HTMLElement;
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
@@ -32,6 +36,15 @@ export class PageBooking {
     }
     else {
       this.faqItem = num;
+    }
+  }
+
+  @Debounce(100)
+  bookingScroll(e) {
+    if (e.detail.scrollTop > 400) {
+      this.mobileBookingCTA.classList.add('active');
+    } else {
+      this.mobileBookingCTA.classList.remove('active');
     }
   }
 
@@ -70,7 +83,12 @@ export class PageBooking {
 
     return [
       <app-header hide-search />,
-      <ion-content class="page-booking">
+      <ion-content
+        class="page-booking"
+        scrollEvents
+        onIonScroll={e => this.bookingScroll(e)}
+        ref={ el => this.scrollContent = el as HTMLIonContentElement }
+      >
 
         <section class="section page-booking-body">
           <div class="payment-section-wrapper">
@@ -256,6 +274,12 @@ export class PageBooking {
         </section>
 
         <app-footer />
+
+        <div class="mobile-booking-cta" ref={ el => this.mobileBookingCTA = el as HTMLElement }>
+          <button class="button-dark block" onClick={() => this.scrollContent.scrollToTop(1500)}>
+              BOOK NOW
+          </button>
+        </div>
       </ion-content>
     ];
   }

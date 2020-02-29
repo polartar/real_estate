@@ -89,7 +89,7 @@
 
             &nbsp;&nbsp;&bull;&nbsp;&nbsp;
 
-            <a href="{{ url('refer') }}">REFER US</a>
+            <a href="{{ url('referral') }}">REFER US</a>
 
             &nbsp;&nbsp;&bull;&nbsp;&nbsp;
 
@@ -105,7 +105,7 @@
               <img src="{{ asset('assets/images/icons/social-media/twitter.png') }}" alt="Twitter" />
             </a>
 
-            <a href="https://google.com/+APT212NewYork" target="_blank" rel="noopener">
+            <a href="https://www.instagram.com/apt212/" target="_blank" rel="noopener">
               <img src="{{ asset('assets/images/icons/social-media/instagram.png') }}" alt="Instagram" />
             </a>
 
