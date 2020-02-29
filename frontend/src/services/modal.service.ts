@@ -14,6 +14,18 @@ class ModalServiceInstance {
     document.body.appendChild(modal);
     return modal.present();
   }
+
+  bookingTOS() {
+    const modal = Object.assign(document.createElement('ion-modal'), {
+      component: 'apt212-modal-booking-frame',
+      componentProps: {
+        component: 'booking-tos',
+      }
+    });
+
+    document.body.appendChild(modal);
+    return modal.present();
+  }
 }
 
 export const ModalService = new ModalServiceInstance();

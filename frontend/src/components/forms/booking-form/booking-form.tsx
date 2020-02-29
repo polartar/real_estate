@@ -12,6 +12,7 @@ import { APIBookingService } from '../../../services/api/booking';
 import { ToastService } from '../../../services/toast.service';
 import { AlertService } from '../../../services/alerts.service';
 import { RouterService } from '../../../services/router.service';
+import { ModalService } from '../../../services/modal.service';
 
 declare var Stripe: any;
 declare var Plaid: any;
@@ -238,7 +239,6 @@ export class BookingForm {
 
         try {
           const stripeResult = await APIBookingService.checkoutACH(results, public_token, metadata.account_id);
-          console.log(stripeResult);
 
           if (stripeResult.error) {
             throw new Error(stripeResult.error.message);
@@ -505,7 +505,7 @@ export class BookingForm {
         <div class={{ input: true, error: this.errors.includes('tos') }}>
           <div class="flex-vertical-center">
               <label class="inline">
-                Do you agree to terms of service? <button class="button-reset tos-view">View</button>
+                Do you agree to terms of service? <button type="button" class="button-reset tos-view" onClick={() => ModalService.bookingTOS()}>View</button>
               </label>
               <apt212-checkbox name="tos" value="1" class="tos" />
           </div>

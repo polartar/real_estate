@@ -88,6 +88,7 @@ export namespace Components {
   interface BookingMobileBody {
     'item': any;
   }
+  interface BookingTos {}
   interface BuildingTypeFilter {
     'clearAll': () => Promise<void>;
     'inModal': boolean;
@@ -470,6 +471,12 @@ declare global {
   var HTMLBookingMobileBodyElement: {
     prototype: HTMLBookingMobileBodyElement;
     new (): HTMLBookingMobileBodyElement;
+  };
+
+  interface HTMLBookingTosElement extends Components.BookingTos, HTMLStencilElement {}
+  var HTMLBookingTosElement: {
+    prototype: HTMLBookingTosElement;
+    new (): HTMLBookingTosElement;
   };
 
   interface HTMLBuildingTypeFilterElement extends Components.BuildingTypeFilter, HTMLStencilElement {}
@@ -965,6 +972,7 @@ declare global {
     'booking-details': HTMLBookingDetailsElement;
     'booking-form': HTMLBookingFormElement;
     'booking-mobile-body': HTMLBookingMobileBodyElement;
+    'booking-tos': HTMLBookingTosElement;
     'building-type-filter': HTMLBuildingTypeFilterElement;
     'component-prefetch': HTMLComponentPrefetchElement;
     'content-404': HTMLContent404Element;
@@ -1117,6 +1125,7 @@ declare namespace LocalJSX {
     'onSetViewEvent'?: (event: CustomEvent<any>) => void;
     'onShowGuestInput'?: (event: CustomEvent<any>) => void;
   }
+  interface BookingTos extends JSXBase.HTMLAttributes<HTMLBookingTosElement> {}
   interface BuildingTypeFilter extends JSXBase.HTMLAttributes<HTMLBuildingTypeFilterElement> {
     'inModal'?: boolean;
   }
@@ -1401,6 +1410,7 @@ declare namespace LocalJSX {
     'booking-details': BookingDetails;
     'booking-form': BookingForm;
     'booking-mobile-body': BookingMobileBody;
+    'booking-tos': BookingTos;
     'building-type-filter': BuildingTypeFilter;
     'component-prefetch': ComponentPrefetch;
     'content-404': Content404;
