@@ -1,5 +1,6 @@
 import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
 import { formatDate, formatMoney } from '../../../../helpers/utils';
+import { ModalService } from '../../../../services/modal.service';
 
 @Component({
   tag: 'booking-mobile-body',
@@ -26,6 +27,7 @@ export class BookingMobileBody {
           onShowGuestsInput={() => this.showGuestInput.emit()}
           onShowSeasonalRates={() => this.setViewEvent.emit('seasonalRates')}
           onShowBookingDetails={() => this.setViewEvent.emit('bookingDetails')}
+          onShowAskQuestionInput={() => ModalService.contactUs()}
         />
       </div>
     )

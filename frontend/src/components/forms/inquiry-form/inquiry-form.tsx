@@ -85,10 +85,10 @@ export class InquiryForm {
   render() {
     return (
       <form class="inquiry-form-component" onSubmit={e => this.handleSubmit(e)} ref={el => this.form = el as HTMLFormElement }>
-        <div class="title">Make An Inquiry</div>
+        <div class="title desktop-center">Make An Inquiry</div>
 
-        <p class="text-center">We are here to help 24/7</p>
-        <p class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;212.380.1375 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; info@apt212.com</p>
+        <p class="desktop-center">We are here to help 24/7</p>
+        <p class="desktop-center">212.380.1375 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; info@apt212.com</p>
 
         <div class="columns">
           <div class="left">
@@ -116,9 +116,11 @@ export class InquiryForm {
           </div>
         </div>
 
-        Tell us more about your search
+        <div class="tell-more">
+          Tell us more about your search
+        </div>
 
-        <div class="columns">
+        <div class="columns columns-mobile">
           <div class="left">
             <div class="input">
               <input-date name="arrival" placeholder="Arrival" />

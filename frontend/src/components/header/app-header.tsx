@@ -5,6 +5,7 @@ import { searchFilterSelectors } from '../../store/selectors/search';
 import wishlistSelectors from '../../store/selectors/wishlist';
 import taxonomySelectors from '../../store/selectors/taxonomy';
 import { FilterTagsService } from '../../services/search-filters/filter-tags.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   tag: 'app-header',
@@ -138,7 +139,7 @@ export class AppHeader {
                 FAQ
               </ion-router-link>
 
-              <ion-button aria-label="Speak to an expert" class="call">
+              <ion-button aria-label="Speak to an expert" class="call" onClick={() => ModalService.contactUs()}>
                 <ion-icon name="call"></ion-icon>
                 Speak to an expert
               </ion-button>

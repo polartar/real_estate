@@ -1,9 +1,20 @@
+@import '../../../styles/mixins';
+
 .inquiry-form-component {
   .columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    padding-top: 25px;
+
+    @include for-size(desktop-up) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      padding-top: 25px;
+    }
+
+    &.columns-mobile {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
   }
 
   .input {
@@ -14,12 +25,36 @@
     }
   }
 
+  .desktop-center {
+    text-align: left;
+
+    &p {
+      margin-top: 4px;
+    }
+
+    @include for-size(desktop-up) {
+      text-align: center;
+    }
+  }
+
+  .tell-more {
+    padding: 20px 0 25px;
+
+    @include for-size(desktop-up) {
+      padding: 0;
+    }
+  }
+
   .right {
     .input {
       height: 100%;
 
       textarea.apt212-input {
-        height: calc(100% - 14px);
+        height: 172px;
+
+        @include for-size(desktop-up) {
+          height: calc(100% - 14px);
+        }
       }
     }
   }

@@ -7,6 +7,7 @@ import { formatDate, formatMoney } from '../../../helpers/utils';
 import { getBedsListingText } from '../../../helpers/filters';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import { RouterService } from '../../../services/router.service';
+import { ModalService } from '../../../services/modal.service';
 
 declare var window: any;
 
@@ -92,19 +93,7 @@ export class BookingDetails {
   }
 
   showAskQuestion() {
-    const modal = Object.assign(document.createElement('ion-modal'), {
-      component: 'apt212-modal-booking-frame',
-      cssClass: 'ask-question-modal',
-      componentProps: {
-        component: 'ask-question',
-        componentProps: {
-          item: this.item
-        }
-      }
-    });
-
-    document.body.appendChild(modal);
-    return modal.present();
+    return ModalService.contactUs(this.item);
   }
 
   bookNow() {

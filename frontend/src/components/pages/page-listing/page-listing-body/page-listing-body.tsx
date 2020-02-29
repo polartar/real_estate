@@ -6,6 +6,7 @@ import taxonomySelectors from '../../../../store/selectors/taxonomy';
 import { formatMoney, formatDate, nl2br, xssFilter } from '../../../../helpers/utils';
 import { getBedsListingText } from '../../../../helpers/filters';
 import { APISearchService } from '../../../../services/api/search';
+import { ModalService } from '../../../../services/modal.service';
 
 @Component({
   tag: 'page-listing-body',
@@ -223,19 +224,7 @@ export class PageListingBody {
   }
 
   showAskQuestion() {
-    const modal = Object.assign(document.createElement('ion-modal'), {
-      component: 'apt212-modal-booking-frame',
-      cssClass: 'ask-question-modal',
-      componentProps: {
-        component: 'ask-question',
-        componentProps: {
-          item: this.item
-        }
-      }
-    });
-
-    document.body.appendChild(modal);
-    return modal.present();
+    return ModalService.contactUs(this.item);
   }
 
   render() {
