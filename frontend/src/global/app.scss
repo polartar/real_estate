@@ -351,6 +351,15 @@ ion-footer.no-footer-border {
   }
 }
 
+.apt212-alert {
+  .modal-wrapper {
+    --width: 280px;
+    --height: 195px;
+    --max-height: 100%;
+    --max-width: 100%;
+  }
+}
+
 
 table.data-table {
   width: 99%;

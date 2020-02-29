@@ -1,0 +1,41 @@
+.apt212-alert-component {
+  max-width: 280px;
+
+  .alert-head {
+    padding: 23px;
+  }
+
+  .header {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .subheader {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+
+  .message {
+    padding: 0 24px 20px;
+    color: lighten(#000000, 30%);
+  }
+
+  .buttons {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px;
+
+    .button {
+      height: 40px;
+      padding: 0 16px;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+  }
+}

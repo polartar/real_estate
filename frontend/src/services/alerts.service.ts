@@ -1,19 +1,7 @@
 class AlertServiceInstance {
   confirm(message: string, header?: string, subheader?: string) {
-    return new Promise(resolve => {
-      const alert = document.createElement('ion-alert');
-
-      if (header) {
-        alert.header = header;
-      }
-
-      if (subheader) {
-        alert.subHeader = subheader;
-      }
-
-      alert.message = message;
-
-      alert.buttons = [
+    return new Promise(async resolve => {
+      const buttons = [
         {
           text: 'Cancel',
           role: 'cancel',
@@ -29,26 +17,27 @@ class AlertServiceInstance {
         }
       ];
 
-      document.body.appendChild(alert);
-      return alert.present();
+      const modal = Object.assign(document.createElement('ion-modal'), {
+        component: 'apt212-alert',
+        cssClass: 'apt212-alert',
+        componentProps: {
+          header,
+          subheader,
+          message,
+          buttons
+        }
+      });
+
+      document.body.appendChild(modal);
+
+      modal.present();
     });
   }
 
   alert(message: string, header?: string, subheader?: string) {
     return new Promise(resolve => {
-      const alert = document.createElement('ion-alert');
 
-      if (header) {
-        alert.header = header;
-      }
-
-      if (subheader) {
-        alert.subHeader = subheader;
-      }
-
-      alert.message = message;
-
-      alert.buttons = [
+      const buttons = [
         {
           text: 'Okay',
           handler: () => {
@@ -57,8 +46,20 @@ class AlertServiceInstance {
         }
       ];
 
-      document.body.appendChild(alert);
-      return alert.present();
+      const modal = Object.assign(document.createElement('ion-modal'), {
+        component: 'apt212-alert',
+        cssClass: 'apt212-alert',
+        componentProps: {
+          header,
+          subheader,
+          message,
+          buttons
+        }
+      });
+
+      document.body.appendChild(modal);
+
+      return modal.present();
     });
   }
 }

@@ -30,6 +30,12 @@ export namespace Components {
     'label': string;
     'questionID': string;
   }
+  interface Apt212Alert {
+    'buttons': any[];
+    'header'?: string;
+    'message': string;
+    'subheader'?: string;
+  }
   interface Apt212Checkbox {
     'check': () => Promise<void>;
     'checked': boolean;
@@ -392,6 +398,12 @@ declare global {
   var HTMLApt212AccordionElement: {
     prototype: HTMLApt212AccordionElement;
     new (): HTMLApt212AccordionElement;
+  };
+
+  interface HTMLApt212AlertElement extends Components.Apt212Alert, HTMLStencilElement {}
+  var HTMLApt212AlertElement: {
+    prototype: HTMLApt212AlertElement;
+    new (): HTMLApt212AlertElement;
   };
 
   interface HTMLApt212CheckboxElement extends Components.Apt212Checkbox, HTMLStencilElement {}
@@ -941,6 +953,7 @@ declare global {
     'app-menu': HTMLAppMenuElement;
     'app-root': HTMLAppRootElement;
     'apt212-accordion': HTMLApt212AccordionElement;
+    'apt212-alert': HTMLApt212AlertElement;
     'apt212-checkbox': HTMLApt212CheckboxElement;
     'apt212-datepicker': HTMLApt212DatepickerElement;
     'apt212-modal-booking-frame': HTMLApt212ModalBookingFrameElement;
@@ -1051,6 +1064,12 @@ declare namespace LocalJSX {
     'label'?: string;
     'onOnToggle'?: (event: CustomEvent<any>) => void;
     'questionID'?: string;
+  }
+  interface Apt212Alert extends JSXBase.HTMLAttributes<HTMLApt212AlertElement> {
+    'buttons'?: any[];
+    'header'?: string;
+    'message'?: string;
+    'subheader'?: string;
   }
   interface Apt212Checkbox extends JSXBase.HTMLAttributes<HTMLApt212CheckboxElement> {
     'checked'?: boolean;
@@ -1370,6 +1389,7 @@ declare namespace LocalJSX {
     'app-menu': AppMenu;
     'app-root': AppRoot;
     'apt212-accordion': Apt212Accordion;
+    'apt212-alert': Apt212Alert;
     'apt212-checkbox': Apt212Checkbox;
     'apt212-datepicker': Apt212Datepicker;
     'apt212-modal-booking-frame': Apt212ModalBookingFrame;
