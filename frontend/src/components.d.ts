@@ -278,6 +278,7 @@ export namespace Components {
     'prefetching': boolean;
   }
   interface PageNeighborhoods {}
+  interface PagePrivacy {}
   interface PagePrivateRooms {
     'prefetching': boolean;
   }
@@ -845,6 +846,12 @@ declare global {
     new (): HTMLPageNeighborhoodsElement;
   };
 
+  interface HTMLPagePrivacyElement extends Components.PagePrivacy, HTMLStencilElement {}
+  var HTMLPagePrivacyElement: {
+    prototype: HTMLPagePrivacyElement;
+    new (): HTMLPagePrivacyElement;
+  };
+
   interface HTMLPagePrivateRoomsElement extends Components.PagePrivateRooms, HTMLStencilElement {}
   var HTMLPagePrivateRoomsElement: {
     prototype: HTMLPagePrivateRoomsElement;
@@ -1034,6 +1041,7 @@ declare global {
     'page-login': HTMLPageLoginElement;
     'page-neighborhood': HTMLPageNeighborhoodElement;
     'page-neighborhoods': HTMLPageNeighborhoodsElement;
+    'page-privacy': HTMLPagePrivacyElement;
     'page-private-rooms': HTMLPagePrivateRoomsElement;
     'page-referral': HTMLPageReferralElement;
     'page-search': HTMLPageSearchElement;
@@ -1316,6 +1324,7 @@ declare namespace LocalJSX {
     'prefetching'?: boolean;
   }
   interface PageNeighborhoods extends JSXBase.HTMLAttributes<HTMLPageNeighborhoodsElement> {}
+  interface PagePrivacy extends JSXBase.HTMLAttributes<HTMLPagePrivacyElement> {}
   interface PagePrivateRooms extends JSXBase.HTMLAttributes<HTMLPagePrivateRoomsElement> {
     'prefetching'?: boolean;
   }
@@ -1472,6 +1481,7 @@ declare namespace LocalJSX {
     'page-login': PageLogin;
     'page-neighborhood': PageNeighborhood;
     'page-neighborhoods': PageNeighborhoods;
+    'page-privacy': PagePrivacy;
     'page-private-rooms': PagePrivateRooms;
     'page-referral': PageReferral;
     'page-search': PageSearch;

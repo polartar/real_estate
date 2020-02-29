@@ -18,14 +18,17 @@ Route::get('/api/pdf/booking-details/{apartment}', 'ApartmentController@getBooki
 $front_end_routes = [
     '/',
     '/search',
-    '/booking',
     '/listing/{id}',
     '/wishlist',
-    '/404',
+    '/neighborhoods',
+    '/neighborhood/{id}',
+    '/faq',
+    '/booking',
+    '/privacy',
+
     '/private-rooms',
     '/corporate-rooms',
     '/about',
-    '/faq',
     '/referral',
 
     '/admin',
@@ -35,8 +38,7 @@ $front_end_routes = [
     '/admin/owner-global',
     '/admin/referrals',
 
-    '/neighborhoods',
-    '/neighborhood/{id}'
+    '/404'
 ];
 
 foreach ($front_end_routes as $route) {
