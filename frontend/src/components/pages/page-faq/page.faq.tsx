@@ -24,6 +24,8 @@ import { APISearchService } from '../../../services/api/search';
     @State() matches : any = [];
     @State() accordionlist : any = [];
 
+    @State() footerOpen: boolean = false;
+
     textInput!: HTMLInputElement;
 
     hasLoaded: boolean = false;
@@ -243,9 +245,27 @@ import { APISearchService } from '../../../services/api/search';
 
             </div>
 
+
           </section>
 
-          <app-footer />
+          <div class={{'search-footer': true, 'footer-open': this.footerOpen, 'footer-closed': !this.footerOpen }}>
+          <div class="section toggle-footer-wrapper">
+            <button class="button-reset toggle-footer" aria-label="Open/Close Footer" onClick={() => this.footerOpen = !this.footerOpen }>
+              <span class="closed">Open Footer</span>
+              <ion-icon mode="md" name="md-arrow-dropup" class="closed"></ion-icon>
+
+              <span class="open">Close Footer</span>
+              <ion-icon mode="md" name="md-arrow-dropdown" class="open"></ion-icon>
+            </button>
+          </div>
+
+          <div class="footer-wrapper">
+            <app-footer no-margin />
+          </div>
+        </div>
+
+          
+
         </ion-content>
       ];
     }
