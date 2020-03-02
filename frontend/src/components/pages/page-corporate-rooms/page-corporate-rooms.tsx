@@ -147,13 +147,13 @@ export class PageCorporateRooms {
               </div>
             </div>
             <div class="image">
-              <img src="/assets/images/private-rooms/private-rooms.png" />
+              <lazy-image src="/assets/images/corporate-rooms/nyc-corporate-housing.jpg" alt="NYC Corporate Housing" class="neighborhood-feature-image"/>
             </div>
           </div>
 
           <div class="corporate-housing-wrapper">
             <div class="image">
-                <img src="/assets/images/private-rooms/private-rooms.png" />
+                <lazy-image src="/assets/images/corporate-rooms/what-is-corporate-housing.jpg" alt="What is Corporate Housing?" class="neighborhood-feature-image"/>
             </div>
             <div class="rooms">
               <div>
@@ -186,18 +186,18 @@ export class PageCorporateRooms {
           <div class="room-stats-wrapper">
             <div class="room-stats">
               <div class="col">
-                <img src="/assets/images/private-rooms/moveinready.svg" />
+                <lazy-image src="/assets/images/private-rooms/moveinready.svg" />
                 <h3>Wide-Range of Inventory</h3>
                 <p>The properties range from affordable, private rooms in a shared apartment to luxury apartments. With multiple residences available in the same buildings, we are able to keep large groups together.</p>
                 <div class="green-rectangle" />
               </div>
               <div class="col">
-                <img src="/assets/images/private-rooms/desirable-locations.png" />
+                <lazy-image src="/assets/images/private-rooms/desirable-locations.png" />
                 <h3>Move-In Ready</h3>
                 <p>All properties are fully furnished, equipped, and offer extensive amenities such as Wifi, Cable TV and cleaning services,  concierge service, and more.</p>
               </div>
               <div class="col">
-                <img src="/assets/images/private-rooms/wifi.svg" />
+                <lazy-image src="/assets/images/private-rooms/wifi.svg" />
                 <h3>Convenient Locations</h3>
                 <p>The apartments are located in Manhattan’s most prestigious neighborhoods and are close to major subway lines as well as local attractions.</p>
               </div>
@@ -205,17 +205,17 @@ export class PageCorporateRooms {
             
             <div class="room-stats bottom">
               <div class="col">
-                <img src="/assets/images/private-rooms/budget-friendly.svg" />
+                <lazy-image src="/assets/images/private-rooms/budget-friendly.svg" />
                 <h3>Financing</h3>
                 <p>All financing options based on the institution’s requirements are acceptable. </p>
               </div>
               <div class="col">
-                <img src="/assets/images/private-rooms/flexibility.svg" />
+                <lazy-image src="/assets/images/private-rooms/flexibility.svg" />
                 <h3>Competitive Pricing</h3>
                 <p>Our rates are unbeatable and meet all of our business travelers’ needs – as well as company budgets. Discounts available for group bookings. </p>
               </div>
               <div class="col">
-                <img src="/assets/images/private-rooms/minimal-paperwork.svg" />
+                <lazy-image src="/assets/images/private-rooms/minimal-paperwork.svg" />
                 <h3>Flexible Lease Terms</h3>
                 <p>Unlike Manhattan’s strict rental requirements, no US credit checks, tax returns or guarantors required. Only basic information and a copy of ID is needed. Rent as long you need with a minimum of 30 days. </p>
               </div>
@@ -233,7 +233,7 @@ export class PageCorporateRooms {
          
           <div class='grid'>
             <div class='cell'>
-              <lazy-image src="/assets/images/corporate-rooms/educational-institutions.png" alt="test" class="neighborhood-feature-image"/>
+              <lazy-image src="/assets/images/corporate-rooms/educational.png" alt="test" class="neighborhood-feature-image"/>
               <div class="heading">Educational Institutions</div>
               <div class="copy">We offer accommodation for students, interns, and professors close to universities on a rental basis that corresponds with the school year.</div>
             </div>
@@ -330,7 +330,7 @@ We offer apartments in accessible buildings with full amenities close to medical
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <lazy-image src="/assets/images/corporate-rooms/what-defines.png" alt="" />
             </div>
           </div>
 
@@ -345,7 +345,7 @@ We offer apartments in accessible buildings with full amenities close to medical
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/make-payment-one-month-rent.jpg" />
+              <lazy-image src="/assets/images/corporate-rooms/one-month-rent.png" alt="" />
             </div>
           </div>
 
@@ -360,7 +360,7 @@ We offer apartments in accessible buildings with full amenities close to medical
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/worth-the-money.jpg" />
+              <lazy-image src="/assets/images/corporate-rooms/worth-money.png" alt="" />
             </div>
           </div>
 
@@ -375,7 +375,7 @@ We offer apartments in accessible buildings with full amenities close to medical
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/less-maintenance.jpg" />
+              <lazy-image src="/assets/images/corporate-rooms/less-maintenance.png" alt="" />
             </div>
           </div>
 
@@ -390,7 +390,7 @@ We offer apartments in accessible buildings with full amenities close to medical
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/easy-mobility.jpg" />
+              <lazy-image src="/assets/images/corporate-rooms/easy-mobility.png" alt="" />
             </div>
           </div>
 
@@ -405,7 +405,7 @@ We offer apartments in accessible buildings with full amenities close to medical
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/why-corporate-housing.jpg" />
+              <lazy-image src="/assets/images/corporate-rooms/why-corporate.png" alt="" />
             </div>
           </div>
 
@@ -420,7 +420,7 @@ We offer apartments in accessible buildings with full amenities close to medical
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/business-travelers.jpg" />
+              <lazy-image src="/assets/images/corporate-rooms/business.png" alt="" />
             </div>
           </div>
 
@@ -435,62 +435,15 @@ We offer apartments in accessible buildings with full amenities close to medical
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/corporate-housing-solution.jpg" />
+              <lazy-image src="/assets/images/corporate-rooms/corporate-solution.png" alt="" />
             </div>
           </div>
 
-          <div class="reasons-about-wrapper">
-            <div class="reasons">
-              <div>
-                <h2>Money</h2>
-                <p>
-                  Everything else seems to boil down to money. Not dealing with money issues before they escalate causes major headaches between roommates, so it's best to let people know if you've got a problem paying your share of the utilities or rent. If you can, pay up promptly - it's uncomfortable for your roommates to keep reminding you to hand over the cash you owe them.
-                </p>
-              </div>
-            </div>
-
-            <div class="image">
-              <img src="/assets/images/private-rooms/corporate-housing-solution-copy.jpg" />
-            </div>
-          </div>
-
-          <div class="reasons-about-wrapper">
-            <div class="reasons">
-              <div>
-                <h2>Communication is key</h2>
-                <p>
-                  Most problems you'll run into when renting a room for rent and  sharing with people can be avoided by communicating. If someone is annoying you by cranking up the volume, failing to do their share of the chores or not paying their bills then it's always best to bring it up before you reach boiling point. Sit down for a coffee and talk through things calmly rather than wait till the last minute and lose your temper. As soon as you start shouting or swearing at someone you've lost all hope of resolving whatever the original problem was.
-                </p>
-              </div>
-            </div>
-
-            <div class="image">
-              <img src="/assets/images/private-rooms/communication.jpg" />
-            </div>
-          </div>
-
-          <div class="reasons-about-wrapper">
-            <div class="reasons">
-              <div>
-                <h2>Make yourself at home</h2>
-                <p>
-                  Having a fully furnished apartment means that you don’t have to buy new furniture and you don’t have to move your belongings from one city to another. If you are staying in the apartment for a longer period of time, you might want to redecorate your new home to really feel at home -- there are a few tricks you can use to make quick changes without having to do any serious shopping.
-                  Bedding: buy yourself a generous set of bedding. Nice, cozy sheets and an extra pillow can achieve wonders when trying to make the apartment homey.
-                  Plants: small house plants are a great and inexpensive way to add a splash of color to your surroundings and an easy way to provide extra oxygen to increase productivity.
-                  Scents: Use room sprays, candles, or your favorite laundry detergent to make your apartment smell like home. Adding familiar scents will people feel more at ease in a new place.
-                </p>
-              </div>
-            </div>
-
-            <div class="image">
-              <img src="/assets/images/private-rooms/money.jpg" />
-            </div>
-          </div>
 
           <div id='learn-more-wrapper' class="learn-more">
             <div class="left">
               <div class="image">
-                <img src="/assets/images/private-rooms/learn-more-about-apt-212.jpg" />
+              <lazy-image src="/assets/images/private-rooms/learn-more-about-apt-212.jpg" alt="" />
               </div>
             </div>
             <div class="right">
