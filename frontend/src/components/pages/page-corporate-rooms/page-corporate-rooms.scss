@@ -604,6 +604,20 @@
     flex-direction: column-reverse;
     padding-top: 80px;
 
+    h2 {
+      padding-bottom: 0;
+    }
+
+    p {
+      margin-top: 6px;
+      line-height: 24px;
+    }
+
+    a {
+      color: #057365;
+      text-decoration: none;
+    }
+
     @include for-size(tablet-portrait-up) {
       padding-top: 0px;
       margin: 60px 20px 90px;
@@ -623,6 +637,10 @@
       @include for-size(tablet-portrait-up) {
         text-align: left;
         margin-bottom: 0px;
+
+        &:nth-child(1) {
+          padding-top: 76px;
+        }
       }
 
       img {
@@ -631,12 +649,10 @@
 
         @include for-size(tablet-portrait-up) {
             margin-bottom: 0px;
-            width: 90%;
+            width: 497px;
         }
 
-        @include for-size(desktop-up) {
-          width: 100%;
-      }
+        
       }
     }
 

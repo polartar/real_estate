@@ -434,7 +434,7 @@ export class PagePrivateRooms {
                 We offer a fresh solution to finding the perfect New York temporary home away from home.
               </p>
 
-              <ion-button aria-label="Speak to an expert" class="call">
+              <ion-button aria-label="Speak to an expert" class="call" href="/about">
                 What is APT212?
               </ion-button>
             </div>
