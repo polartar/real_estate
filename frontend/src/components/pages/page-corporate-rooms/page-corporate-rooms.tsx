@@ -186,18 +186,18 @@ export class PageCorporateRooms {
           <div class="room-stats-wrapper">
             <div class="room-stats">
               <div class="col">
-                <lazy-image src="/assets/images/private-rooms/moveinready.svg" />
+                <lazy-image src="/assets/images/corporate-rooms/inventory.svg" />
                 <h3>Wide-Range of Inventory</h3>
                 <p>The properties range from affordable, private rooms in a shared apartment to luxury apartments. With multiple residences available in the same buildings, we are able to keep large groups together.</p>
                 <div class="green-rectangle" />
               </div>
               <div class="col">
-                <lazy-image src="/assets/images/private-rooms/desirable-locations.png" />
+                <lazy-image src="/assets/images/corporate-rooms/move-in-ready.svg" />
                 <h3>Move-In Ready</h3>
                 <p>All properties are fully furnished, equipped, and offer extensive amenities such as Wifi, Cable TV and cleaning services,  concierge service, and more.</p>
               </div>
               <div class="col">
-                <lazy-image src="/assets/images/private-rooms/wifi.svg" />
+                <lazy-image src="/assets/images/corporate-rooms/convenient-locations.svg" />
                 <h3>Convenient Locations</h3>
                 <p>The apartments are located in Manhattan’s most prestigious neighborhoods and are close to major subway lines as well as local attractions.</p>
               </div>
@@ -205,17 +205,17 @@ export class PageCorporateRooms {
             
             <div class="room-stats bottom">
               <div class="col">
-                <lazy-image src="/assets/images/private-rooms/budget-friendly.svg" />
+                <lazy-image src="/assets/images/corporate-rooms/minimal-paperwork.svg" />
                 <h3>Financing</h3>
                 <p>All financing options based on the institution’s requirements are acceptable. </p>
               </div>
               <div class="col">
-                <lazy-image src="/assets/images/private-rooms/flexibility.svg" />
+                <lazy-image src="/assets/images/corporate-rooms/competitive-pricing.svg" />
                 <h3>Competitive Pricing</h3>
                 <p>Our rates are unbeatable and meet all of our business travelers’ needs – as well as company budgets. Discounts available for group bookings. </p>
               </div>
               <div class="col">
-                <lazy-image src="/assets/images/private-rooms/minimal-paperwork.svg" />
+                <lazy-image src="/assets/images/corporate-rooms/flexible-terms.svg" />
                 <h3>Flexible Lease Terms</h3>
                 <p>Unlike Manhattan’s strict rental requirements, no US credit checks, tax returns or guarantors required. Only basic information and a copy of ID is needed. Rent as long you need with a minimum of 30 days. </p>
               </div>
