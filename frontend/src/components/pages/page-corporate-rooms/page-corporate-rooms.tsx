@@ -310,21 +310,7 @@ We offer apartments in accessible buildings with full amenities close to medical
               : null
           }
 
-          <div class="find-more-wrapper">
-            <div class="col">
-              <h2>Find More Options</h2>
-              <p>
-                Browse all our <a href="#" onClick={() => {window.open('/search', '_self') }}>furnished apartments</a> for rent in New York City and select<br /> the right apartment you are looking for, whether it's a room for rent, or a<br /> <a href="#" onClick={() => {window.open('/search', '_self') }}>private furnished rental</a>.
-              </p>
-
-              <ion-button aria-label="Speak to an expert" class="call last" onClick={() => {window.open('/search', '_self') }}>
-                Search Now
-              </ion-button>
-            </div>
-            <div class="col">
-              <img src="/assets/images/neighborhoods/findmore.jpg" />
-            </div>
-          </div>
+          <find-more />
 
           <div class="reasons-heading">
             <h2>Some more information about our New York corporate housing solutions</h2>
@@ -516,7 +502,7 @@ We offer apartments in accessible buildings with full amenities close to medical
                 We offer a fresh solution to finding the perfect New York temporary home away from home.
               </p>
 
-              <ion-button aria-label="Speak to an expert" class="call" href="/about">
+              <ion-button aria-label="Speak to an expert" class="static-button" href="/about">
                 What is APT212?
               </ion-button>
             </div>

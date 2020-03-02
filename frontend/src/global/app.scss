@@ -45,7 +45,7 @@ html.md {
   --ion-default-font: 'Source Sans Pro', sans-serif;
   letter-spacing: 0;
 
-  page-home {
+  page-home, page-neighborhood {
     .header-inner {
       @include for-size(desktop-up) {
         .search-filters-wrapper {

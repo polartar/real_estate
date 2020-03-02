@@ -3,6 +3,17 @@
 
 .page-corporate-rooms {
 
+  .static-button {
+    font-size: 12px;
+    width: 247px;
+    height: 40px;
+
+    @include for-size(tablet-portrait-up) { 
+      width: 144px;
+      height: 40px;
+    }
+  }
+
   .static-page-wrapper {
     margin: 0px 19px;
 
@@ -362,11 +373,6 @@
 
   }
 
-  .cell:nth-child(3n) {
-    // something
-  }
-  
-
     .room-stats-wrapper {
         padding-top: 8px;
 
@@ -598,76 +604,14 @@
     
     }
 
-      
-  .find-more-wrapper {
-    display: flex;
-    flex-direction: column-reverse;
-    padding-top: 80px;
-
-    h2 {
-      padding-bottom: 0;
-    }
-
-    p {
-      margin-top: 6px;
-      line-height: 24px;
-    }
-
-    a {
-      color: #057365;
-      text-decoration: none;
-    }
-
-    @include for-size(tablet-portrait-up) {
-      padding-top: 0px;
-      margin: 60px 20px 90px;
-      flex-direction: row;
-    }
-
-    @include for-size(desktop-up) {
-      margin: 177px 118px 183px;
-      flex-direction: row;
-    }
-    
-    .col {
-      flex: 1;
-      text-align: center;
-
-
-      @include for-size(tablet-portrait-up) {
-        text-align: left;
-        margin-bottom: 0px;
-
-        &:nth-child(1) {
-          padding-top: 76px;
-        }
-      }
-
-      img {
-        float: right;
-        margin-bottom: 52px;
-
-        @include for-size(tablet-portrait-up) {
-            margin-bottom: 0px;
-            width: 497px;
-        }
-
-        
-      }
-    }
-
-    .last {
-      margin-bottom: 96px;
-
-      @include for-size(tablet-portrait-up) {
-        margin-bottom: 0px;
-      }
-    }
-
-  }
-
   .listing-list .show-all  {
     display: none;
+  }
+
+  .list-wrapper {
+    @include for-size(tablet-portrait-up) {
+      margin: 0 40px;
+    }
   }
 
   .reasons-heading {
@@ -809,7 +753,7 @@
 
   .predefined-search {
     padding-top: 80px;
-    text-align: center;
+    text-align: left;
     
 
     @include for-size(tablet-portrait-up) {

@@ -3,6 +3,22 @@
 
 .page-private-rooms {
 
+  .static-button {
+    font-size: 12px;
+    width: 247px;
+    height: 40px;
+
+    @include for-size(tablet-portrait-up) { 
+      width: 144px;
+      height: 40px;
+    }
+  }
+
+  .faq-button {
+    width: 247px;
+    height: 40px;
+  }
+
   .static-page-wrapper {
     margin: 0px 19px;
 
@@ -39,7 +55,6 @@
       font-weight: bold;
       padding-top: 9px;
   }
-
 
   .hero {
     position: relative;
@@ -165,75 +180,88 @@
   }
 
   .room-stats-wrapper {
-      padding-top: 92px;
+    padding-top: 8px;
 
-      @include for-size(tablet-portrait-up) {
-          padding-top: 60px;
-          padding-left: 40px;
-          padding-right: 40px;
-      }
+    @include for-size(tablet-portrait-up) {
+       padding-top: 60px;
+    }
 
-      @include for-size(desktop-up) {
-        padding-top: 181px;
-        padding-left: 0px;
-        padding-right: 0px;
+    @include for-size(desktop-up) {
+      padding-top: 178px;
+   }
+}
 
-      }
+.room-stats {
+    display: block;
+    justify-content: space-between;
+    
+
+    @include for-size('tablet-portrait-up') {
+        display: flex;
+        padding-left: 20px;
+    }
+
+    @include for-size('desktop-up') {
+      display: flex;
+      padding-left: 108px;
+      padding-right: 108px;
   }
 
-  .room-stats {
-      display: block;
-      justify-content: space-between;
-      
+    h3 {
+        font-size: 24px;
+        text-transform: none;
+        font-weight: bold;
+    }
+
+    &.bottom {
+        
+        @include for-size('tablet-portrait-up') {
+          padding-top: 140px;
+          padding-bottom: 186px;
+        }
+
+        @include for-size('desktop-up') {
+          padding-top: 90px;
+          padding-bottom: 186px;
+        }
+    }
+
+
+    .green-rectangle {
+      width:298px;
+      height:4px;
+      background:#057365;
+      margin-bottom: 20px;
 
       @include for-size('tablet-portrait-up') {
-          display: flex;
-          padding-left: 20px;
+        width:240px;
+        margin-bottom: 0;
       }
 
       @include for-size('desktop-up') {
-        display: flex;
-        padding-left: 108px;
-    }
-
-      h3 {
-          font-size: 24px;
-          text-transform: none;
-          font-weight: bold;
-      }
-
-      &.bottom {
-          
-          @include for-size('tablet-portrait-up') {
-            padding-top: 90px;
-            padding-bottom: 124px;
-        }
-      }
-
-      .green-rectangle {
         width:298px;
-        height:4px;
-        background:#057365;
-        margin-bottom: 20px;
-
-        @include for-size('tablet-portrait-up') {
-          margin-bottom: 0;
+        margin-bottom: 0;
       }
+  }
+}
+
+.room-stats .col {
+
+    @include for-size('tablet-portrait-up') {
+        width: 240px;
+        height: 200px;
     }
+
+    @include for-size('desktop-up') {
+      width: 307px;
+      height: 200px;
   }
 
-  .room-stats .col {
-
-      @include for-size('tablet-portrait-up') {
-          width: 307px;
-          height: 200px;
-      }
-
-      img {
-          height: 51px;
-          width: 56px;
-      }
-  }
+    img {
+        height: 51px;
+        width: 56px;
+    }
+}
 
   
 
@@ -366,58 +394,14 @@
     
     }
 
-      
-  .find-more-wrapper {
-    display: flex;
-    flex-direction: column-reverse;
-
-    @include for-size(tablet-portrait-up) {
-      margin: 60px 20px 90px;
-      flex-direction: row;
-    }
-
-    @include for-size(desktop-up) {
-      margin: 177px 118px 183px;
-      flex-direction: row;
-    }
-    
-    .col {
-      flex: 1;
-      text-align: center;
-
-
-      @include for-size(tablet-portrait-up) {
-        text-align: left;
-        margin-bottom: 0px;
-      }
-
-      img {
-        float: right;
-        margin-bottom: 52px;
-
-        @include for-size(tablet-portrait-up) {
-            margin-bottom: 0px;
-            width: 90%;
-        }
-
-        @include for-size(desktop-up) {
-          width: 100%;
-      }
-      }
-    }
-
-    .last {
-      margin-bottom: 96px;
-
-      @include for-size(tablet-portrait-up) {
-        margin-bottom: 0px;
-      }
-    }
-
-  }
-
   .listing-list .show-all  {
     display: none;
+  }
+
+  .list-wrapper {
+    @include for-size(tablet-portrait-up) {
+      margin: 0 40px;
+    }
   }
 
   .reasons-about-wrapper {
@@ -524,7 +508,7 @@
 
   .predefined-search {
     padding-top: 0;
-    text-align: center;
+    text-align: left;
     padding-top: 60px;
 
     @include for-size(tablet-portrait-up) {

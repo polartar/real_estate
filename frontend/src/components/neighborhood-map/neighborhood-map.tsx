@@ -57,7 +57,7 @@ export class NeighborhoodMap {
           container: this.mapId,
           style: 'mapbox://styles/mapbox/streets-v11',
           center: this.item.center,
-          zoom: 13,
+          zoom: 15,
           minZoom: 10,
           maxZoom: 17,
         });

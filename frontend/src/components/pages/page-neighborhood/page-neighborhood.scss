@@ -171,65 +171,7 @@
   }
 
   $min-width: 15rem;
-  .find-more {
 
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
-    padding-top: 24px;
-    flex-direction: column-reverse;
-
-    @include for-size(desktop-up) {
-      flex-direction: row;
-      padding-top: 100px;
-    }
-
-    h2, p {
-      max-width: 315px;
-   
-      @include for-size(desktop-up) {
-        max-width: 540px;
-      }
-    }
-
-    &__item {
-
-      padding-top: 52px;
-
-      @include for-size(desktop-up) {
-          padding-top: 0px;
-      }
-
-      &--body {
-        flex-grow: 9999; 
-        flex-basis: $min-width; 
-        text-align: center;
-
-        @include for-size(desktop-up) {
-          text-align: left;
-          padding-left: 119px;
-        }
-      }
-      
-      &--figure {
-        margin-right: auto; 
-        flex-grow: 1; 
-        box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
-
-        @include for-size(desktop-up) {
-          margin-right: 118px;
-        }
-  
-        @supports (max-width: max-content) {
-          min-width: $min-width; 
-          max-width: max-content;
-          flex-basis: $min-width; 
-          flex-grow: 99999;
-        }
-      }
-    }
-  }
 
   .layout {
     display: flex;

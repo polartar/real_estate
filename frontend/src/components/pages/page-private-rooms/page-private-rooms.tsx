@@ -210,7 +210,7 @@ export class PagePrivateRooms {
               <div class="rectangle" />
             </div>
 
-            <ion-button aria-label="Speak to an expert" class="call" onClick={() => {window.open('/faq', '_self') }}>
+            <ion-button aria-label="Speak to an expert" class="static-button faq-button" onClick={() => {window.open('/faq', '_self') }}>
               Frequently Asked Questions
             </ion-button>
           </div>
@@ -224,21 +224,7 @@ export class PagePrivateRooms {
               : null
           }
 
-          <div class="find-more-wrapper">
-            <div class="col">
-              <h2>Find More Options</h2>
-              <p>
-                Browse all our furnished apartments for rent in New York City and select<br /> the right apartment you are looking for, whether it's a room for rent, or a<br /> privated furnished rental.
-              </p>
-
-              <ion-button aria-label="Speak to an expert" class="call last" onClick={() => {window.open('/search', '_self') }}>
-                Search Now
-              </ion-button>
-            </div>
-            <div class="col">
-              <img src="/assets/images/neighborhoods/findmore.jpg" />
-            </div>
-          </div>
+          <find-more />
 
           <div class="reasons-about-wrapper">
             <div class="reasons">
@@ -434,7 +420,7 @@ export class PagePrivateRooms {
                 We offer a fresh solution to finding the perfect New York temporary home away from home.
               </p>
 
-              <ion-button aria-label="Speak to an expert" class="call" href="/about">
+              <ion-button aria-label="Speak to an expert" class="static-button" href="/about">
                 What is APT212?
               </ion-button>
             </div>

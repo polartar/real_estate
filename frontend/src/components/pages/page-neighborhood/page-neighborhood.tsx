@@ -168,19 +168,7 @@ export class PageNeighborhood {
             : null
           }
 
-          <div class="find-more">
-              <div class="find-more__item find-more__item--body">
-                <div>
-                  <h2>Find More Apartment Options</h2>
-                  <p>
-                    Browse all our furnished apartments for rent in New York City and select<br /> the right apartment you are looking for, whether it's a room for rent, or a<br/> privated furnished rental.
-                  </p>
-                </div>
-              </div>
-              <div class="find-more__item find-more__item--figure">
-                <lazy-image src="/assets/images/neighborhoods/findmore.jpg"  alt="Find More" />
-              </div>
-          </div>
+          <find-more />
 
           <div class="highlights">
               <h2>
@@ -231,10 +219,20 @@ export class PageNeighborhood {
             </div>
           </div>
 
-            <div class="layout">
+          <div class="layout">
             <div class="layout__item layout__item--body">
                 <h2>Explore in {item.name}</h2>
                 <p>{item.explore}</p>
+            </div>
+            <div class="layout__item layout__item--figure">
+                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Explore" />
+            </div>
+          </div>
+
+          <div class="layout">
+            <div class="layout__item layout__item--body">
+                <h2>Life in {item.name}</h2>
+                <p>{item.life}</p>
             </div>
             <div class="layout__item layout__item--figure">
                 <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Explore" />

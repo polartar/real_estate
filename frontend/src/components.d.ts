@@ -108,6 +108,7 @@ export namespace Components {
   }
   interface FilterTags {}
   interface FilterTagsAll {}
+  interface FindMore {}
   interface InlineGallery {
     'images': InlineImageInterface[];
   }
@@ -520,6 +521,12 @@ declare global {
   var HTMLFilterTagsAllElement: {
     prototype: HTMLFilterTagsAllElement;
     new (): HTMLFilterTagsAllElement;
+  };
+
+  interface HTMLFindMoreElement extends Components.FindMore, HTMLStencilElement {}
+  var HTMLFindMoreElement: {
+    prototype: HTMLFindMoreElement;
+    new (): HTMLFindMoreElement;
   };
 
   interface HTMLInlineGalleryElement extends Components.InlineGallery, HTMLStencilElement {}
@@ -987,6 +994,7 @@ declare global {
     'filter-tag': HTMLFilterTagElement;
     'filter-tags': HTMLFilterTagsElement;
     'filter-tags-all': HTMLFilterTagsAllElement;
+    'find-more': HTMLFindMoreElement;
     'inline-gallery': HTMLInlineGalleryElement;
     'input-booking-date': HTMLInputBookingDateElement;
     'input-booking-guests': HTMLInputBookingGuestsElement;
@@ -1147,6 +1155,7 @@ declare namespace LocalJSX {
     'onShowAllTags'?: (event: CustomEvent<void>) => void;
   }
   interface FilterTagsAll extends JSXBase.HTMLAttributes<HTMLFilterTagsAllElement> {}
+  interface FindMore extends JSXBase.HTMLAttributes<HTMLFindMoreElement> {}
   interface InlineGallery extends JSXBase.HTMLAttributes<HTMLInlineGalleryElement> {
     'images': InlineImageInterface[];
   }
@@ -1427,6 +1436,7 @@ declare namespace LocalJSX {
     'filter-tag': FilterTag;
     'filter-tags': FilterTags;
     'filter-tags-all': FilterTagsAll;
+    'find-more': FindMore;
     'inline-gallery': InlineGallery;
     'input-booking-date': InputBookingDate;
     'input-booking-guests': InputBookingGuests;
