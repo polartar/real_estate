@@ -1,6 +1,8 @@
 import { Component, h, Prop } from '@stencil/core';
 import { generateId } from '../../helpers/utils';
 import Glide from '@glidejs/glide';
+import { Autoplay } from '@glidejs/glide/dist/glide.modular.esm'
+
 
 @Component({
   tag: 'testimonials-slider',
@@ -32,10 +34,11 @@ export class TestimonialsSlider {
     this.glide = new Glide('.' + this.sliderClass, {
       type: 'slider',
       perView: 1,
-      rewind: false,
+      rewind: true,
+      autoplay: 5000
     });
 
-    this.glide.mount();
+    this.glide.mount({ Autoplay });
   }
 
   componentDidUnload() {
