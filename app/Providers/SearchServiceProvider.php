@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SearchServiceProvider extends ServiceProvider
 {
@@ -39,13 +40,16 @@ class SearchServiceProvider extends ServiceProvider
      */
     public static function getNamedSearch($name, $params) {
         $results = [];
+      
+        Log::error(date_default_timezone_get($params));
+      
         switch ($name) {
             case 'homePageInit':
-                $results = Cache::remember('search-homePageInit', 600, function() {
+                $results = Cache::remember('search-homePageInit', 600, function() use ($params) {
                     return [
-                        'uniqueList' => \App\Apartment::where('feature_1', true)->inRandomOrder()->take(8)->get(),
-                        'privateRoomList' => \App\Apartment::where('feature_2', true)->inRandomOrder()->take(8)->get(),
-                        'luxuryList' => \App\Apartment::where('feature_3', true)->inRandomOrder()->take(8)->get(),
+                        'uniqueList' => \App\Apartment::where('feature_1', true)->inRandomOrder()->take($params['count'])->get(),
+                        'privateRoomList' => \App\Apartment::where('feature_2', true)->inRandomOrder()->take($params['count'])->get(),
+                        'luxuryList' => \App\Apartment::where('feature_3', true)->inRandomOrder()->take($params['count'])->get(),
                     ];
                 });
             break;

@@ -34,7 +34,7 @@ export class PageCorporateRooms {
     }
 
     if (Build.isBrowser) {
-      this.getNamedSearch('homePageInit')
+      this.getNamedSearch('homePageInit', {count: 16})
         .then(result => {
           this.privateRoomList = result.privateRoomList;
         })
