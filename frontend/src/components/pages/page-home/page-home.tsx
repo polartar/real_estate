@@ -63,7 +63,7 @@ export class PageHome {
     }
 
     if (Build.isBrowser) {
-      this.getNamedSearch('homePageInit')
+      this.getNamedSearch('homePageInit', {count: 8})
         .then(result => {
           this.uniqueList = result.uniqueList;
           this.privateRoomList = result.privateRoomList;

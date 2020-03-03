@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SearchServiceProvider extends ServiceProvider
 {
@@ -39,13 +40,24 @@ class SearchServiceProvider extends ServiceProvider
      */
     public static function getNamedSearch($name, $params) {
         $results = [];
+
+        $filter_hash = md5(json_encode($params));
+
+        
+
         switch ($name) {
             case 'homePageInit':
-                $results = Cache::remember('search-homePageInit', 600, function() {
+                
+                $count = $params['count'];
+                if (!is_int($count) || $count < 1 ) {
+                    $count = 8;
+                }
+
+                $results = Cache::remember('search-homePageInit'. $filter_hash, 600, function() use ($count) {
                     return [
-                        'uniqueList' => \App\Apartment::where('feature_1', true)->inRandomOrder()->take(8)->get(),
-                        'privateRoomList' => \App\Apartment::where('feature_2', true)->inRandomOrder()->take(8)->get(),
-                        'luxuryList' => \App\Apartment::where('feature_3', true)->inRandomOrder()->take(8)->get(),
+                        'uniqueList' => \App\Apartment::where('feature_1', true)->inRandomOrder()->take($count)->get(),
+                        'privateRoomList' => \App\Apartment::where('feature_2', true)->inRandomOrder()->take($count)->get(),
+                        'luxuryList' => \App\Apartment::where('feature_3', true)->inRandomOrder()->take($count)->get(),
                     ];
                 });
             break;
