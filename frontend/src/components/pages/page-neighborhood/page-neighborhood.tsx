@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { Store, Action } from "@stencil/redux";
 import { toggleSearchFilterDisplay } from "../../../store/actions/search";
 import { searchFilterSelectors } from '../../../store/selectors/search';
@@ -30,6 +30,7 @@ export class PageNeighborhood {
   @State() neighborhoodsFeatured: any[] = [];
 
   @State() nearbyApts: any[] = [];
+  @State() taxonomyLoaded: boolean = false;
 
   componentWillLoad() {
     if (this.prefetching) {
@@ -49,6 +50,7 @@ export class PageNeighborhood {
         neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
         neighborhoodsFeatured: taxonomySelectors.getFeaturedNeighborhoods(state),
         neighborhoodsLoaded: neighborhoodSelectors.getNeighborhoodsLoaded(state),
+        taxonomyLoaded: taxonomySelectors.getTaxonomyLoaded(state)
       };
     });
 
@@ -63,17 +65,16 @@ export class PageNeighborhood {
     }
   }
 
-  async componentDidLoad() {
-    if (this.prefetching) {
-      return;
+  @Watch('taxonomyLoaded')
+  async taxonomyLoadedChanged(newval, oldval) {
+    if (newval !== oldval && newval && !this.prefetching) {
+      try {
+        const item = this.neighborhoods.find(v => v.slug === this.neighborhoodName);
+        this.apartmentsList = await APISearchService.getNamedSearch('apartmentsByNeighborhood', {id: item.id});
+      } catch (err) {
+        console.log(err);
+      }
     }
-
-    try {
-      const item = this.neighborhoods.find(v => v.slug === this.neighborhoodName);
-      this.apartmentsList = await APISearchService.getNamedSearch('apartmentsByNeighborhood', {id: item.id});
-     } catch (e) {
-      // Fail silently. The nearby apartments aren't critical for the UX here.
-     }
   }
 
   async launchMobileFilterMenu() {
