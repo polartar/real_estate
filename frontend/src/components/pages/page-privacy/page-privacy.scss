@@ -1,0 +1,14 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.page-privacy {
+
+    li {
+        padding-bottom: 20px;
+    }
+
+    p {
+        padding: 0;
+        margin: 0;
+    }
+}
