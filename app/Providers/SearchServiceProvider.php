@@ -42,14 +42,22 @@ class SearchServiceProvider extends ServiceProvider
         $results = [];
 
         $filter_hash = md5(json_encode($params));
-      
+
+        
+
         switch ($name) {
             case 'homePageInit':
-                $results = Cache::remember('search-homePageInit'. $filter_hash, 600, function() use ($params) {
+                
+                $count = $params['count'];
+                if (!is_int($count) || $count < 1 ) {
+                    $count = 8;
+                }
+
+                $results = Cache::remember('search-homePageInit'. $filter_hash, 600, function() use ($count) {
                     return [
-                        'uniqueList' => \App\Apartment::where('feature_1', true)->inRandomOrder()->take($params['count'])->get(),
-                        'privateRoomList' => \App\Apartment::where('feature_2', true)->inRandomOrder()->take($params['count'])->get(),
-                        'luxuryList' => \App\Apartment::where('feature_3', true)->inRandomOrder()->take($params['count'])->get(),
+                        'uniqueList' => \App\Apartment::where('feature_1', true)->inRandomOrder()->take($count)->get(),
+                        'privateRoomList' => \App\Apartment::where('feature_2', true)->inRandomOrder()->take($count)->get(),
+                        'luxuryList' => \App\Apartment::where('feature_3', true)->inRandomOrder()->take($count)->get(),
                     ];
                 });
             break;
