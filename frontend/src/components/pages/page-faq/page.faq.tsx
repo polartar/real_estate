@@ -23,6 +23,7 @@ import { APISearchService } from '../../../services/api/search';
     @State() value: string;
     @State() matches : any = [];
     @State() accordionlist : any = [];
+    @State() guest: string = 'yes';
 
     @State() footerOpen: boolean = false;
 
@@ -88,14 +89,24 @@ import { APISearchService } from '../../../services/api/search';
 
       try {
         this.faq = await APISearchService.getNamedSearch('FAQPageInit');
-        this.getQuestionsByCategory();
+        this.getQuestionsByCategory("guest");
        } catch (e) {
-        // Fail silently.
+         // Fail silently
        }
     }
 
     async scrollTo(hash) {
       location.hash = "#" + hash;
+    }
+
+    async showQuestions(guest) {
+      if (guest == "yes") {
+        this.guest = "yes"
+        this.getQuestionsByCategory("guest")
+      } else {
+        this.guest = "no"
+        this.getQuestionsByCategory("host")
+      }
     }
 
     async showAnswer(question) {
@@ -114,11 +125,11 @@ import { APISearchService } from '../../../services/api/search';
 
     }
 
-    async getQuestionsByCategory () {
-      this.general = this.faq.filter(o => o.category === "General")
-      this.booking = this.faq.filter(o => o.category === "Booking")
-      this.privaterooms = this.faq.filter(o => o.category === "Private Rooms")
-      this.stay = this.faq.filter(o => o.category === "Your Stay")
+    async getQuestionsByCategory (role) {
+      this.general = this.faq.filter(o => o.category === "General" && o.role === role)
+      this.booking = this.faq.filter(o => o.category === "Booking" && o.role === role)
+      this.privaterooms = this.faq.filter(o => o.category === "Private Rooms" && o.role === role)
+      this.stay = this.faq.filter(o => o.category === "Your Stay" && o.role === role)
     }
 
     render() {
@@ -169,6 +180,25 @@ import { APISearchService } from '../../../services/api/search';
             <div class="faq-wrapper">
               <div class="questions-wrapper">
                   <div class="questions">
+                    <div class="nav">
+                      <div class="button-toggles">
+                        <button
+                          type="button"
+                          class={{ 'button-dark': true,  active: this.guest === 'yes'}}
+                          onClick={() => this.showQuestions("yes")}
+                        >
+                          Guest
+                        </button>
+
+                        <button
+                          type="button"
+                          class={{ 'button-dark': true,  active: this.guest === 'no'}}
+                          onClick={() => this.showQuestions("no")}
+                        >
+                          Host
+                        </button>
+                      </div>
+                    </div>
                     <h2>General</h2>
 
                       {this.general.map(faq => {
@@ -200,8 +230,6 @@ import { APISearchService } from '../../../services/api/search';
                             </div>
                           );
                         })}
-
-
 
                     <h2>Private Rooms</h2>
 
