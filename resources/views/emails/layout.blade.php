@@ -97,16 +97,20 @@
         </div>
 
         <div class="social-media">
+            <a href="https://apt212.com" target="_blank" rel="noopener">
+              <img src="{{ asset('assets/images/logo-icon-white.png') }}" alt="Apt212" />
+            </a>
+
             <a href="https://www.facebook.com/Apt212/" target="_blank" rel="noopener">
               <img src="{{ asset('assets/images/icons/social-media/facebook-square.png') }}" alt="Facebook" />
             </a>
 
-            <a href="https://twitter.com/apt212" target="_blank" rel="noopener">
-              <img src="{{ asset('assets/images/icons/social-media/twitter.png') }}" alt="Twitter" />
-            </a>
-
             <a href="https://www.instagram.com/apt212/" target="_blank" rel="noopener">
               <img src="{{ asset('assets/images/icons/social-media/instagram.png') }}" alt="Instagram" />
+            </a>
+
+            <a href="https://twitter.com/apt212" target="_blank" rel="noopener">
+              <img src="{{ asset('assets/images/icons/social-media/twitter.png') }}" alt="Twitter" />
             </a>
 
             <a href="https://youtube.com/c/APT212NewYork" target="_blank" rel="noopener">
