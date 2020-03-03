@@ -186,7 +186,7 @@
 
       @include for-size(desktop-up) {
         padding: 0 100px;
-        width: auto;
+        width: 50%;
       }
 
       .questions {
@@ -286,6 +286,30 @@
     &.footer-closed {
       .open {
         display: none;
+      }
+    }
+  }
+
+  .button-toggles {
+    button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      height: 44px;
+      background-color: white;
+      color: black;
+      width: 123px;
+      padding: 0;
+
+      @include for-size(desktop-up) {
+        width: 157px;
+        font-size: 14px;
+      }
+
+      &.active {
+        background-color: black;
+        color: white;
       }
     }
   }

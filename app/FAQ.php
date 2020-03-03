@@ -8,5 +8,7 @@ class FAQ extends Model
 {
     public $timestamps = false;
 
+    protected $fillable = ['question', 'answer', 'category', 'role'];
+
     protected $table = 'faq';
 }
