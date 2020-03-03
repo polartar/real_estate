@@ -76,9 +76,9 @@ export class PagePrivateRooms {
     }
 
     this.testimonials = [
-      ["I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU.", "-Chris W."],
-      ["I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU.", "-Mike H."],
-      ["I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU.", "-Hester K."]
+      ["\"I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU.\"", "-Chris W."],
+      ["\"I lived in an awesome shared apartment in Nolita during my study abroad semester. Loved the neighborhood and the people! Thanks for a great experience.\"", "-Mike H."],
+      ["\"Was traveling solo and in NY for a little over a month. I found APT212 and rented a private room and the interior and furnishings were much nicer than what I expected. Saved a ton of money in comparison to staying in a hotel!\"", "-Hester K."]
     ];
   }
 
@@ -124,7 +124,7 @@ export class PagePrivateRooms {
           <div class="static-page-wrapper">
           <div class="corporate-housing-wrapper">
             <div class="image">
-                <img src="/assets/images/private-rooms/private-rooms.png" />
+                <lazy-image src="/assets/images/private-rooms/private-rooms.png" class="boxshadow"/>
             </div>
             <div class="rooms">
               <div>
@@ -153,18 +153,18 @@ export class PagePrivateRooms {
           <div class="room-stats-wrapper">
             <div class="room-stats">
               <div class="col">
-                <img src="/assets/images/private-rooms/moveinready.svg" />
+                <lazy-image src="/assets/images/private-rooms/moveinready.svg" />
                 <h3>Move in Ready</h3>
                 <p>All apartments and bedrooms are fully furnished. Communal space has dining and lounging areas, laptop-friendly workspace, and an equipped kitchen.</p>
                 <div class="green-rectangle" />
               </div>
               <div class="col">
-                <img src="/assets/images/private-rooms/desirable-locations.png" />
+                <lazy-image src="/assets/images/private-rooms/desirable-locations.png" />
                 <h3>Desirable Locations</h3>
                 <p>Residences are located in Manhattan's most exciting - and safe - neighborhoods including Soho, Nolita and the East Village. Apartments are close to major subway lines and local attractions.</p>
               </div>
               <div class="col">
-                <img src="/assets/images/private-rooms/wifi.svg" />
+                <lazy-image src="/assets/images/private-rooms/wifi.svg" />
                 <h3>Wifi &amp; Cable Access</h3>
                 <p>HD cable TV, high-speed Internet and general utilities are included at a low-cost.</p>
               </div>
@@ -172,17 +172,17 @@ export class PagePrivateRooms {
             
             <div class="room-stats bottom">
               <div class="col">
-                <img src="/assets/images/private-rooms/budget-friendly.svg" />
+                <lazy-image src="/assets/images/private-rooms/budget-friendly.svg" />
                 <h3>Budget Friendly</h3>
                 <p>Rooms start as low as $1400 a month with studio-sized options available for $2100. Utility costs are divided per room and deducted from the security deposit to keep living expenses down.</p>
               </div>
               <div class="col">
-                <img src="/assets/images/private-rooms/flexibility.svg" />
+                <lazy-image src="/assets/images/private-rooms/flexibility.svg" />
                 <h3>Flexible Lease Terms</h3>
                 <p>Whether you're brand new to New York, in between leases, or need a spot of your own during a school semester, all rooms are available for a minimum of 30 days or as long as you need.</p>
               </div>
               <div class="col">
-                <img src="/assets/images/private-rooms/minimal-paperwork.svg" />
+                <lazy-image src="/assets/images/private-rooms/minimal-paperwork.svg" />
                 <h3>Minimal Paperwork</h3>
                 <p>No US credit checks, tax returns or guarantors required. Guests fill out just a simple application, background check and copy of ID.</p>
               </div>
@@ -240,7 +240,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
+              <lazy-image src="/assets/images/private-rooms/what-defines-furnished-apartment.jpg" />
             </div>
           </div>
 
@@ -255,7 +255,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/make-payment-one-month-rent.jpg" />
+              <lazy-image src="/assets/images/private-rooms/make-payment-one-month-rent.jpg" />
             </div>
           </div>
 
@@ -271,7 +271,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/worth-the-money.jpg" />
+              <lazy-image src="/assets/images/private-rooms/worth-the-money.jpg" />
             </div>
           </div>
 
@@ -286,7 +286,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/less-maintenance.jpg" />
+              <lazy-image src="/assets/images/private-rooms/less-maintenance.jpg" />
             </div>
           </div>
 
@@ -301,7 +301,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/easy-mobility.jpg" />
+              <lazy-image src="/assets/images/private-rooms/easy-mobility.jpg" />
             </div>
           </div>
 
@@ -317,7 +317,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/why-corporate-housing.jpg" />
+              <lazy-image src="/assets/images/private-rooms/why-corporate-housing.jpg" />
             </div>
           </div>
 
@@ -335,7 +335,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/business-travelers.jpg" />
+              <lazy-image src="/assets/images/private-rooms/business-travelers.jpg" />
             </div>
           </div>
 
@@ -353,7 +353,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/corporate-housing-solution.jpg" />
+              <lazy-image src="/assets/images/private-rooms/corporate-housing-solution.jpg" />
             </div>
           </div>
 
@@ -368,7 +368,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/corporate-housing-solution-copy.jpg" />
+              <lazy-image src="/assets/images/private-rooms/corporate-housing-solution-copy.jpg" />
             </div>
           </div>
 
@@ -383,7 +383,7 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/communication.jpg" />
+              <lazy-image src="/assets/images/private-rooms/communication.jpg" />
             </div>
           </div>
 
@@ -401,14 +401,14 @@ export class PagePrivateRooms {
             </div>
 
             <div class="image">
-              <img src="/assets/images/private-rooms/money.jpg" />
+              <lazy-image src="/assets/images/private-rooms/money.jpg" />
             </div>
           </div>
 
           <div id='learn-more-wrapper' class="learn-more">
             <div class="left">
               <div class="image">
-                <img src="/assets/images/private-rooms/learn-more-about-apt-212.jpg" />
+                <lazy-image src="/assets/images/private-rooms/learn-more-about-apt-212.jpg" />
               </div>
             </div>
             <div class="right">

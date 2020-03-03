@@ -147,13 +147,13 @@ export class PageCorporateRooms {
               </div>
             </div>
             <div class="image">
-              <lazy-image src="/assets/images/corporate-rooms/nyc-corporate-housing.jpg" alt="NYC Corporate Housing" class="neighborhood-feature-image"/>
+              <lazy-image src="/assets/images/corporate-rooms/nyc-corporate-housing.jpg" alt="NYC Corporate Housing" class="boxshadow neighborhood-feature-image"/>
             </div>
           </div>
 
           <div class="corporate-housing-wrapper">
             <div class="image">
-                <lazy-image src="/assets/images/corporate-rooms/what-is-corporate-housing.jpg" alt="What is Corporate Housing?" class="neighborhood-feature-image"/>
+                <lazy-image src="/assets/images/corporate-rooms/what-is-corporate-housing.jpg" alt="What is Corporate Housing?" class="boxshadow neighborhood-feature-image"/>
             </div>
             <div class="rooms">
               <div>

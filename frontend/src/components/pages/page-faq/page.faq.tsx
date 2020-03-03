@@ -91,7 +91,7 @@ import { APISearchService } from '../../../services/api/search';
         this.faq = await APISearchService.getNamedSearch('FAQPageInit');
         this.getQuestionsByCategory("guest");
        } catch (e) {
-        console.log(e)
+         // Fail silently
        }
     }
 

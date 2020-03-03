@@ -57,6 +57,7 @@ html.md {
   }
 }
 
+
 /* visible to screen readers only - from bootstrap */
 .sr-only {
 	border: 0 !important;
@@ -217,6 +218,12 @@ h2, h3, h4 {
     max-width: none;
     padding-left: 3rem;
     padding-right: 3rem;
+  }
+}
+
+.boxshadow {
+  img {
+    box-shadow: 0 22px 40px 0 rgba(0, 0, 0, 0.28);
   }
 }
 
@@ -415,4 +422,7 @@ table.data-table {
       }
     }
   }
+
+  
+
 }

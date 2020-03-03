@@ -22,7 +22,7 @@ export class FindMore {
                 Search Now
               </ion-button>
             </div>
-            <div class="col">
+            <div class="col" class="boxshadow">
               <img src="/assets/images/neighborhoods/findmore.jpg" />
             </div>
           </div>
