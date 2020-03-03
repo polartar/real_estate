@@ -297,20 +297,24 @@
         text-transform: uppercase;
         font-family: 'Montserrat', sans-serif;
         padding-right: 70px;
+        padding-top: 20px; // mobile only
+        line-height: 1.5; // mobile only
+
       }
 
       .answer {
-        padding-right: 70px;
+        line-height: 1.5;
+        padding: 10px 70px 10px 0px;
+
+        @include for-size(desktop-up) {
+          padding: 0px 70px 0px 0px;
+        }
       }
     }
 
     .icon {
-      padding-top: 8px;
+      padding-top: 20px;
       font-size: 24px;
-
-      @include for-size(desktop-up) {
-        padding-top: 0;
-      }
     }
   }
 
