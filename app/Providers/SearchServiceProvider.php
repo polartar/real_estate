@@ -40,12 +40,12 @@ class SearchServiceProvider extends ServiceProvider
      */
     public static function getNamedSearch($name, $params) {
         $results = [];
-      
-        Log::error(date_default_timezone_get($params));
+
+        $filter_hash = md5(json_encode($params));
       
         switch ($name) {
             case 'homePageInit':
-                $results = Cache::remember('search-homePageInit', 600, function() use ($params) {
+                $results = Cache::remember('search-homePageInit'. $filter_hash, 600, function() use ($params) {
                     return [
                         'uniqueList' => \App\Apartment::where('feature_1', true)->inRandomOrder()->take($params['count'])->get(),
                         'privateRoomList' => \App\Apartment::where('feature_2', true)->inRandomOrder()->take($params['count'])->get(),

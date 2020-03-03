@@ -50,6 +50,7 @@ export class PageNeighborhood {
         neighborhoodsFeatured: taxonomySelectors.getFeaturedNeighborhoods(state),
         neighborhoodsLoaded: neighborhoodSelectors.getNeighborhoodsLoaded(state),
       };
+
     });
 
     this.store.mapDispatchToProps(this, {
