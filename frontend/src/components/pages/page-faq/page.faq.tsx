@@ -45,7 +45,7 @@ import { APISearchService } from '../../../services/api/search';
         };
       });
 
-
+      console.log(this.size)
       //this.showAnswer("Why choose APT212?");
 
     }
@@ -177,29 +177,39 @@ import { APISearchService } from '../../../services/api/search';
 
                 </div>
             </div>
+            
+            <div class="nav-wrapper">
+            <div class="nav">
+                  <div class="button-toggles">
+                    <button
+                      type="button"
+                      class={{ 'button-dark': true,  active: this.guest === 'yes'}}
+                      onClick={() => this.showQuestions("yes")}
+                    >
+                      Guest
+                    </button>
+
+                    <button
+                      type="button"
+                      class={{ 'button-dark': true,  active: this.guest === 'no'}}
+                      onClick={() => this.showQuestions("no")}
+                    >
+                      Host
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            
 
             <div class="faq-wrapper">
-              <div class="questions-wrapper">
-                  <div class="questions">
-                    <div class="nav">
-                      <div class="button-toggles">
-                        <button
-                          type="button"
-                          class={{ 'button-dark': true,  active: this.guest === 'yes'}}
-                          onClick={() => this.showQuestions("yes")}
-                        >
-                          Guest
-                        </button>
 
-                        <button
-                          type="button"
-                          class={{ 'button-dark': true,  active: this.guest === 'no'}}
-                          onClick={() => this.showQuestions("no")}
-                        >
-                          Host
-                        </button>
-                      </div>
-                    </div>
+            
+        
+              <div class="questions-wrapper">
+              
+                  <div class="questions">
+                    
                     <h2>General</h2>
 
                       {this.general.map(faq => {

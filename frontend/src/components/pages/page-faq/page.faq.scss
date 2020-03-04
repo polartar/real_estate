@@ -176,7 +176,8 @@
         position: relative;
         padding: 0 100px;
         border-right: 2px solid #6b6b6b;
-        overflow: scroll;
+        overflow-y: scroll;
+        overflow-x: hidden;
         height: 600px;
         direction: rtl;
         width: 50%;
@@ -184,7 +185,7 @@
         display: block;
       }
 
-      @include for-size(desktop-up) {
+      @include for-size(big-desktop-up) {
         padding: 0 100px;
         width: 50%;
         height: 900px;
@@ -313,6 +314,22 @@
         color: white;
       }
     }
+  }
+
+  .nav-wrapper {
+
+    position: relative;
+    width: 100%;
+    text-align: center;
+    top: 50px; 
+
+    @include for-size(tablet-portrait-up) {
+      width: 50%
+    }
+  }
+
+  .nav {
+    position: relative;
   }
 
 }
