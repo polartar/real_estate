@@ -407,7 +407,7 @@ class SearchServiceProvider extends ServiceProvider
 
     public static function applyLimitOffsets($apartments, $filters) {
         $offset = isset($filters['offset']) ? (int) $filters['offset'] : 0;
-        $limit = isset($filters['limit']) ? (int) $filters['limit'] : 40;
+        $limit = isset($filters['limit']) ? (int) $filters['limit'] : 20;
 
         return $apartments->skip($offset)->take($limit);
     }
