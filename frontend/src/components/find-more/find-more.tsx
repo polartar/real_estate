@@ -23,7 +23,7 @@ export class FindMore {
               </ion-button>
             </div>
             <div class="col boxshadow">
-              <img src="/assets/images/neighborhoods/findmore.jpg" />
+              <lazy-image src="/assets/images/neighborhoods/findmore.jpg" />
             </div>
           </div>
     )

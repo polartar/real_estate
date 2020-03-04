@@ -54,7 +54,7 @@ export class PageAbout {
                     </div>
 
                     <div class="image">
-                        <img src="/assets/images/about/iphone.png" />
+                        <lazy-image src="/assets/images/about/iphone.png" />
                     </div>
 
                   
@@ -64,7 +64,7 @@ export class PageAbout {
 
                 <div class="story-wrapper">
                 <div class="image">
-                        <img src="/assets/images/about/shape.png" />
+                        <lazy-image src="/assets/images/about/shape.png" />
                     </div>
                     <div class="about">
                         <div>
@@ -103,46 +103,46 @@ export class PageAbout {
                     
                     <div class="people">
                         <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
                         </div>
                         <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
                         </div>
                         <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
                         </div>
                         <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
-                        </div>
-                    </div>
-
-                    <div class="people">
-                        <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
-                        </div>
-                        <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
-                        </div>
-                        <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
-                        </div>
-                        <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
                         </div>
                     </div>
 
                     <div class="people">
                         <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
                         </div>
                         <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
                         </div>
                         <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
                         </div>
                         <div class="person">
-                            <img src="/assets/images/about/adrian.jpg" />
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
+                        </div>
+                    </div>
+
+                    <div class="people">
+                        <div class="person">
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
+                        </div>
+                        <div class="person">
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
+                        </div>
+                        <div class="person">
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
+                        </div>
+                        <div class="person">
+                            <lazy-image src="/assets/images/about/adrian.jpg" />
                         </div>
                     </div>
                 </div>
@@ -153,14 +153,14 @@ export class PageAbout {
                             
                             <div class="row">
                                    
-                                <img src="/assets/images/about/flexibility.png" />
+                                <lazy-image src="/assets/images/about/flexibility.png" />
                                 <h3>Flexible Lease Terms</h3>
                                 <p>
                                     No need to commit to a long-term lease. APT212 offers 30-day minimum lease term for furnished units - a rare find in New York City.
                                 </p>
                             </div>
                             <div class="row">
-                                <img src="/assets/images/about/flexibility.png" />
+                                <lazy-image src="/assets/images/about/flexibility.png" />
                                 <h3>Accuracy</h3>
                                     <p>
                                         No need to commit to a long-term lease. APT212 offers 30-day minimum lease term for furnished units - a rare find in New York City.
@@ -170,14 +170,14 @@ export class PageAbout {
                         </div>
                         <div class="edge">
                             <div class="row">
-                                <img src="/assets/images/about/flexibility.png" />
+                                <lazy-image src="/assets/images/about/flexibility.png" />
                                 <h3>Flexible Lease Terms</h3>
                                 <p>
                                     No need to commit to a long-term lease. APT212 offers 30-day minimum lease term for furnished units - a rare find in New York City.
                                 </p>
                             </div>
                             <div class="row">
-                            <img src="/assets/images/about/flexibility.png" />
+                            <lazy-image src="/assets/images/about/flexibility.png" />
                                 <h3>Accuracy</h3>
                                 <p>
                                     No need to commit to a long-term lease. APT212 offers 30-day minimum lease term for furnished units - a rare find in New York City.
@@ -187,14 +187,14 @@ export class PageAbout {
                         </div>
                         <div class="edge">
                             <div class="row">
-                                <img src="/assets/images/about/flexibility.png" />
+                                <lazy-image src="/assets/images/about/flexibility.png" />
                                 <h3>Flexible Lease Terms</h3>
                                 <p>
                                     No need to commit to a long-term lease. APT212 offers 30-day minimum lease term for furnished units - a rare find in New York City.
                                 </p>
                             </div>
                             <div class="row">
-                                <img src="/assets/images/about/flexibility.png" />
+                                <lazy-image src="/assets/images/about/flexibility.png" />
                                 <h3>Accuracy</h3>
                                 <p>
                                     No need to commit to a long-term lease. APT212 offers 30-day minimum lease term for furnished units - a rare find in New York City.
