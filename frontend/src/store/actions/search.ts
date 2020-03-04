@@ -225,7 +225,7 @@ export interface SetMapMarkers {
   }
 }
 
-export function getNamedSearch(name) {
+export function getNamedSearch(name, params) {
   // call some API that gets results for named search
   // like unique homes in new york = 'unique'
   // used for home page sliders
@@ -234,7 +234,7 @@ export function getNamedSearch(name) {
   return async () => {
     // perform our search
     try {
-      return await APISearchService.getNamedSearch(name);
+      return await APISearchService.getNamedSearch(name, params);
     }
     catch (e) {
       return [];

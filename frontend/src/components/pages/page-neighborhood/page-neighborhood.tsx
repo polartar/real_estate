@@ -52,6 +52,7 @@ export class PageNeighborhood {
         neighborhoodsLoaded: neighborhoodSelectors.getNeighborhoodsLoaded(state),
         taxonomyLoaded: taxonomySelectors.getTaxonomyLoaded(state)
       };
+
     });
 
     this.store.mapDispatchToProps(this, {
