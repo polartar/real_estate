@@ -170,8 +170,7 @@
     max-width: 750px;
 
     @include for-size(desktop-up) {
-      padding-top: 75px;
-      padding: 0;
+      padding: 75px 0px 0px 41px;
     }
 
     h2 {
