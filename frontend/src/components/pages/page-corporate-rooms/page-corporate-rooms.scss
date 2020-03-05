@@ -51,15 +51,65 @@
       padding-top: 9px;
   }
 
+  .faq {
+    position: relative;
+    margin-top: 5rem;
+    height: 544px;
+    color: white;
 
+    .faq-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .faq-mask {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0, 0.5);
+    }
+
+    .faq-content-wrapper {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .faq-content {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 33px 0px;
+
+      & > :first-child {
+        display: none;
+      }
+
+      @include for-size(desktop-up) {
+        display: flex;
+        padding: 50px 0px;
+
+        & > :first-child {
+          display: initial;
+        }
+      }
+    }
+
+    .button-light {
+      font-size: $font-size-sm;
+    }
+
+    .title {
+      font-size: $font-size * 3;
+    }
+  }
+
+  
   .hero {
     position: relative;
-    background-image: url('/assets/images/corporate-rooms/corporate-hero.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color: #ccc;
-    background-blend-mode: multiply;
     width: 100%;
     height: 713px;
 
@@ -71,15 +121,19 @@
       height: 640px;
     }
 
+    .hero-bg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     .cta {
-      position: absolute;
+      padding: 0 3rem 0 3rem;
       bottom: 129px;
-      left: 22px;
-      max-width: 740px;
+      position: absolute;
 
       @include for-size(tablet-portrait-up) {
-        bottom: 4rem;
-        left: 3rem;
+        bottom: 80px;
       }
 
       h1 {

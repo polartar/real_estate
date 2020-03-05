@@ -109,18 +109,21 @@ export class PageCorporateRooms {
 
     return [
       <app-header />,
+
       <ion-content class="page-corporate-rooms">
-
+      
+        <div class="hero">
+        <lazy-image src="/assets/images/corporate-rooms/corporate-hero-full.png" class="hero-bg" alt="background image" />
         <section class="section">
-          <div class="hero">
-
-            <div class="cta">
-              {title}
-              {subtitle}
-              {search}
-            </div>
-
+          <div class="cta">
+            {title}
+            {subtitle}
+            {search}
           </div>
+          </section>
+        </div>
+        
+        <section class="section">
         <div class="static-page-wrapper">
           <div class="what-is-wrapper">
             <div class="rooms">

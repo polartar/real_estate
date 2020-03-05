@@ -45,13 +45,14 @@ import { APISearchService } from '../../../services/api/search';
         };
       });
 
+      console.log(this.size)
+      //this.showAnswer("Why choose APT212?");
+
     }
 
     toggleMatchesVisibility(value = null, force = false) {
 
       const el = document.getElementById("matches");
-
-      console.log(force)
 
       if (force) {
         el.style.display = "none";
@@ -115,7 +116,7 @@ import { APISearchService } from '../../../services/api/search';
 
       let obj = this.faq.find(o => o.question === question)
 
-      if (this.isMobile) {
+      if ( this.size == "phone-only" ) {
         document.getElementById(obj.id).click()
         this.scrollTo(1)
       } else {
@@ -165,7 +166,7 @@ import { APISearchService } from '../../../services/api/search';
                     const link = "#" + faq.id
                     return (
                       <li>
-                        <a href={this.isMobile ? link : "#answers"} onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
+                        <a href={this.size == "phone-only" ? link : "#answers"} onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                       </li>
                     );
                   })}
@@ -176,40 +177,50 @@ import { APISearchService } from '../../../services/api/search';
 
                 </div>
             </div>
+            
+            <div class="nav-wrapper">
+            <div class="nav">
+                  <div class="button-toggles">
+                    <button
+                      type="button"
+                      class={{ 'button-dark': true,  active: this.guest === 'yes'}}
+                      onClick={() => this.showQuestions("yes")}
+                    >
+                      Guest
+                    </button>
+
+                    <button
+                      type="button"
+                      class={{ 'button-dark': true,  active: this.guest === 'no'}}
+                      onClick={() => this.showQuestions("no")}
+                    >
+                      Host
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            
 
             <div class="faq-wrapper">
-              <div class="questions-wrapper">
-                  <div class="questions">
-                    <div class="nav">
-                      <div class="button-toggles">
-                        <button
-                          type="button"
-                          class={{ 'button-dark': true,  active: this.guest === 'yes'}}
-                          onClick={() => this.showQuestions("yes")}
-                        >
-                          Guest
-                        </button>
 
-                        <button
-                          type="button"
-                          class={{ 'button-dark': true,  active: this.guest === 'no'}}
-                          onClick={() => this.showQuestions("no")}
-                        >
-                          Host
-                        </button>
-                      </div>
-                    </div>
+            
+        
+              <div class="questions-wrapper">
+              
+                  <div class="questions">
+                    
                     <h2>General</h2>
 
                       {this.general.map(faq => {
                         return (
-                          <apt212-accordion questionID={faq.id} class={this.isMobile ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
+                          <apt212-accordion questionID={faq.id} class={this.size == "phone-only" ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
                         );
                       })}
 
                       {this.general.map(faq => {
                         return (
-                          <div class={this.isMobile ? "hide" : "show"}>
+                          <div class={this.size == "phone-only" ? "hide" : "show"}>
                             <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                           </div>
                         );
@@ -219,13 +230,13 @@ import { APISearchService } from '../../../services/api/search';
 
                       {this.booking.map(faq => {
                           return (
-                            <apt212-accordion questionID={faq.id} class={this.isMobile ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
+                            <apt212-accordion questionID={faq.id} class={this.size == "phone-only" ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
                           );
                         })}
 
                         {this.booking.map(faq => {
                           return (
-                            <div class={this.isMobile ? "hide" : "show"}>
+                            <div class={this.size == "phone-only" ? "hide" : "show"}>
                               <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                             </div>
                           );
@@ -235,13 +246,13 @@ import { APISearchService } from '../../../services/api/search';
 
                         {this.privaterooms.map(faq => {
                           return (
-                            <apt212-accordion questionID={faq.id} class={this.isMobile ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
+                            <apt212-accordion questionID={faq.id} class={this.size == "phone-only" ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
                           );
                         })}
 
                         {this.privaterooms.map(faq => {
                           return (
-                            <div class={this.isMobile ? "hide" : "show" }>
+                            <div class={this.size == "phone-only" ? "hide" : "show" }>
                               <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                             </div>
                           );
@@ -251,13 +262,13 @@ import { APISearchService } from '../../../services/api/search';
 
                         {this.stay.map(faq => {
                           return (
-                            <apt212-accordion questionID={faq.id} class={this.isMobile ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
+                            <apt212-accordion questionID={faq.id} class={this.size == "phone-only" ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
                           );
                         })}
 
                         {this.stay.map(faq => {
                           return (
-                            <div class={this.isMobile ? "hide" : "show"}>
+                            <div class={this.size == "phone-only" ? "hide" : "show"}>
                               <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                             </div>
                           );
@@ -266,7 +277,7 @@ import { APISearchService } from '../../../services/api/search';
                 </div>
               </div>
 
-              <div class={this.isMobile ? "answers hide" : "answers show"} id="answers">
+              <div class={this.size == "phone-only" ? "answers hide" : "answers show"} id="answers">
                   <h1>{this.question}</h1>
                   <p class="answer">{this.answer}</p>
               </div>

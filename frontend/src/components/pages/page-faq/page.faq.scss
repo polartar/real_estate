@@ -176,17 +176,19 @@
         position: relative;
         padding: 0 100px;
         border-right: 2px solid #6b6b6b;
-        overflow: scroll;
-        height: calc(100vh - 100px);
+        overflow-y: scroll;
         overflow-x: hidden;
+        height: 600px;
         direction: rtl;
         width: 50%;
         padding: 0 20px;
+        display: block;
       }
 
-      @include for-size(desktop-up) {
+      @include for-size(big-desktop-up) {
         padding: 0 100px;
         width: 50%;
+        height: 900px;
       }
 
       .questions {
@@ -209,7 +211,7 @@
     .answers {
       flex-grow: 1;
       margin-left: 100px;
-      padding-top: 50px;
+      padding-top: 100px;
       height: auto;
       width: 40%;
       direction: ltr;
@@ -312,6 +314,22 @@
         color: white;
       }
     }
+  }
+
+  .nav-wrapper {
+
+    position: relative;
+    width: 100%;
+    text-align: center;
+    top: 50px; 
+
+    @include for-size(tablet-portrait-up) {
+      width: 50%
+    }
+  }
+
+  .nav {
+    position: relative;
   }
 
 }
