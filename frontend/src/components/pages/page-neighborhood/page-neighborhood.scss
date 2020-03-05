@@ -3,6 +3,12 @@
 
 .page-neighborhood {
 
+  .section {
+    @include for-size(desktop-up) {
+      padding: 0;
+    }
+  }
+
   .title {
     font-size: 21px;
   }
@@ -134,6 +140,7 @@
         align-items: right;
         justify-content: right;
         text-align: right;
+        padding-right: 56px;
       }
     
       &> div {

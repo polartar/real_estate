@@ -14,9 +14,6 @@
     position: relative;
     padding: 0;
 
-    @include for-size(desktop-up) {
-      padding: 0 1rem;
-    }
   }
 
   .payment-section-wrapper {
