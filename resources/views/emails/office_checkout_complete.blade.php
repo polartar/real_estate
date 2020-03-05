@@ -5,18 +5,21 @@
         <p>
             Payment as been received for a booking:<br><br>
 
-            Transaction ID: {{ $data->transaction_id}}<br><br>
-
-            Name: {{ $data->firstname }} {{ $data->lastname }}<br>
+            First Name: {{ $data->firstname }}<br>
+            Last Name:  {{ $data->lastname }}<br>
             Email: {{ $data->email }}<br>
             Phone: {{ $data->phone }}<br><br>
 
-            WebId: {{ $data->webid }}<br><br>
-            Amount: {{ Apt212::formatMoney($data->amount) }}
-
+            Agent: {{ $data->using_agent }}<br>
             @if($data->using_agent === 'yes')
-                Agent: {{ $data->agent}}
+                Agent: {{ $data->agent }}<br>
             @endif
+
+            WebId: {{ $data->webid }}<br><br>
+            Amount Paid: {{ Apt212::formatMoney($data->amount) }}<br><br>
+
+            Transaction ID: {{ $data->transaction_id }}
+
         <p>
     </div>
 

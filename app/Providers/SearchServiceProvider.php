@@ -43,11 +43,11 @@ class SearchServiceProvider extends ServiceProvider
 
         $filter_hash = md5(json_encode($params));
 
-        
+
 
         switch ($name) {
             case 'homePageInit':
-                
+
                 $count = $params['count'];
                 if (!is_int($count) || $count < 1 ) {
                     $count = 8;
@@ -167,27 +167,23 @@ class SearchServiceProvider extends ServiceProvider
      * Search listings both active and inactive
      */
     public static function adminSearch($filters) {
-        $filter_hash = md5(json_encode($filters));
 
-        // return Cache::remember('search-' . $filter_hash, 600, function() use ($filters) {
+        // here's the important part
+        $apartments = \App\Apartment::withoutGlobalScope('active');
 
-            // here's the important part
-            $apartments = \App\Apartment::withoutGlobalScope('active');
+        $apartments = self::applySearchFilters($apartments, $filters);
 
-            $apartments = self::applySearchFilters($apartments, $filters);
+        $count = $apartments->count();
 
-            $count = $apartments->count();
+        $apartments = self::applySorts($apartments, $filters);
+        $apartments = self::applyLimitOffsets($apartments, $filters);
 
-            $apartments = self::applySorts($apartments, $filters);
-            $apartments = self::applyLimitOffsets($apartments, $filters);
+        $results = [
+            'results' => $apartments->get(),
+            'total' => $count
+        ];
 
-            $results = [
-                'results' => $apartments->get(),
-                'total' => $count
-            ];
-
-            return $results;
-        //});
+        return $results;
     }
 
     /**

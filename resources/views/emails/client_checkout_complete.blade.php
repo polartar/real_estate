@@ -7,7 +7,18 @@
 
     <div class="message">
         <p>
-            Thank you for your payment of {{ Apt212::formatMoney($data->amount)}} for listing {{ $data->webid }}
+            First Name: {{ $data->firstname }}<br>
+            Last Name:  {{ $data->lastname }}<br>
+            Email: {{ $data->email }}<br>
+            Phone: {{ $data->phone }}<br><br>
+
+            Agent: {{ $data->using_agent }}<br>
+            @if($data->using_agent === 'yes')
+                Agent: {{ $data->agent }}<br>
+            @endif
+
+            WebId: {{ $data->webid }}<br><br>
+            Amount Paid: {{ Apt212::formatMoney($data->amount) }}<br><br>
         <p>
     </div>
 
