@@ -163,7 +163,6 @@
     text-align: center;
 
     @include for-size('desktop-up') {
-      padding-top: 159px;
       padding-bottom: 28px;
     }
 
@@ -268,6 +267,14 @@
 
   .listing-card {
     text-align: left;
+  }
+
+  .find-more-wrapper {
+
+    @include for-size(desktop-up) {
+      margin-bottom: 159px;
+    }
+
   }
 
 }
