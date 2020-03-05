@@ -107,15 +107,9 @@
     }
   }
 
-
+  
   .hero {
     position: relative;
-    background-image: url('/assets/images/corporate-rooms/corporate-hero-full.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color: #ccc;
-    background-blend-mode: multiply;
     width: 100%;
     height: 713px;
 
@@ -127,9 +121,13 @@
       height: 640px;
     }
 
+    .hero-bg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     .cta {
-      max-width: 1440px;
-      margin: 0 auto;
       padding: 0 3rem 0 3rem;
       bottom: 129px;
       position: absolute;
