@@ -111,16 +111,18 @@ export class PagePrivateRooms {
       <app-header />,
       <ion-content class="page-private-rooms">
 
+        <div class="hero">
+        <lazy-image src="/assets/images/private-rooms/private-rooms-full.jpg" class="hero-bg" alt="background image" />
         <section class="section">
-          <div class="hero">
-
-            <div class="cta">
-              {title}
-              {subtitle}
-              {search}
-            </div>
-
+          <div class="cta">
+            {title}
+            {subtitle}
+            {search}
           </div>
+          </section>
+        </div>
+        
+        <section class="section">
           <div class="static-page-wrapper">
           <div class="corporate-housing-wrapper">
             <div class="image">

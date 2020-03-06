@@ -127,15 +127,19 @@ export class PageNeighborhood {
       <app-header />,
       <ion-content class="page-neighborhood">
 
-        <section class="section">
-          <div class="hero">
-            <div class="cta">
-              {title}
-              {subtitle}
-              {search}
-            </div>
-          </div>
 
+       <div class="hero">
+        <lazy-image src={item.image} class="hero-bg" alt="background image" />
+        <section class="section">
+          <div class="cta">
+            {title}
+            {subtitle}
+            {search}
+          </div>
+          </section>
+        </div>
+        
+        <section class="section">
           <div class="neighborhood-about-wrapper">
             <div class="about">
               <div>
@@ -161,16 +165,22 @@ export class PageNeighborhood {
             <neighborhood-map item={item} />
           </div>
 
+          <div class="listings-wrapper">
           {
             this.apartmentsList.length ?
+            
             <div class="predefined-search">
 
               {(this.isMobile) ? <listing-slider items={this.apartmentsList} /> : <listing-list items={this.apartmentsList} />}
             </div>
+            
             : null
           }
+          </div>
 
           <find-more />
+
+          
 
           <div class="highlights">
               <h2>
@@ -181,64 +191,92 @@ export class PageNeighborhood {
               </p>
           </div>
 
-          <div class="layout">
-            <div class="layout__item layout__item--body">
+          <div class="highlights-wrapper">
+       
+            <div class='row'>
+              <div class='column'>
+                <div class='image-column'>
+                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+                </div>
+              </div>
+              <div class='column'>
+                <div class='text-column'>
                 <h2>Eat in {item.name}</h2>
                 <p>{item.eat}</p>
+                </div>
+              </div>
             </div>
-            <div class="layout__item layout__item--figure">
-                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
-            </div>
-          </div>
 
-          <div class="layout">
-            <div class="layout__item layout__item--body">
+            <div class='row reverse'>
+              <div class='column'>
+                <div class='image-column reverse'>
+                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+                </div>
+              </div>
+              <div class='column'>
+                <div class='text-column'>
                 <h2>Drink in {item.name}</h2>
                 <p>{item.drink}</p>
+                </div>
+              </div>
             </div>
-            <div class="layout__item layout__item--figure">
-                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Drink in" />
-            </div>
-          </div>
 
-          <div class="layout">
-            <div class="layout__item layout__item--body">
+            <div class='row'>
+              <div class='column'>
+                <div class='image-column'>
+                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+                </div>
+              </div>
+              <div class='column'>
+                <div class='text-column'>
                 <h2>Shop in {item.name}</h2>
                 <p>{item.shop}</p>
+                </div>
+              </div>
             </div>
-            <div class="layout__item layout__item--figure">
-                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Shop in" />
-            </div>
-          </div>
 
-          <div class="layout">
-            <div class="layout__item layout__item--body">
+            <div class='row reverse'>
+              <div class='column'>
+                <div class='image-column reverse'>
+                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+                </div>
+              </div>
+              <div class='column'>
+                <div class='text-column'>
                 <h2>Play in {item.name}</h2>
                 <p>{item.play}</p>
+                </div>
+              </div>
             </div>
-            <div class="layout__item layout__item--figure">
-                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Play in" />
-            </div>
-          </div>
 
-          <div class="layout">
-            <div class="layout__item layout__item--body">
+            <div class='row'>
+              <div class='column'>
+                <div class='image-column'>
+                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+                </div>
+              </div>
+              <div class='column'>
+                <div class='text-column'>
                 <h2>Explore in {item.name}</h2>
                 <p>{item.explore}</p>
+                </div>
+              </div>
             </div>
-            <div class="layout__item layout__item--figure">
-                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Explore" />
-            </div>
-          </div>
 
-          <div class="layout">
-            <div class="layout__item layout__item--body">
+            <div class='row reverse'>
+              <div class='column'>
+                <div class='image-column reverse'>
+                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+                </div>
+              </div>
+              <div class='column'>
+                <div class='text-column'>
                 <h2>Life in {item.name}</h2>
                 <p>{item.life}</p>
+                </div>
+              </div>
             </div>
-            <div class="layout__item layout__item--figure">
-                <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Explore" />
-            </div>
+
           </div>
 
           {
