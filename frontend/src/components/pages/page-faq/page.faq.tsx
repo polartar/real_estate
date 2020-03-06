@@ -139,45 +139,45 @@ import { APISearchService } from '../../../services/api/search';
         <app-header />,
         <ion-content class="page-faq">
 
-          <section class="section">
-
             <div class="hero">
+                <div class="section">
+                  <div class="cta">
 
-                <div class="cta">
+                    <h1>FAQ</h1>
 
-                  <h1>FAQ</h1>
+                    <form onSubmit={(e) => this.handleSubmit(e)}>
 
-                  <form onSubmit={(e) => this.handleSubmit(e)}>
+                    <input
+                      id="search"
+                      type="text"
+                      class="search"
+                      ref={(el) => this.textInput = el as HTMLInputElement}
+                      placeholder= "Ask a question"
+                      value={this.value} onInput={() => this.handleChange()}
+                      onTouchStart={() => this.handleChange()}
+                      autoComplete="off"
+                    />
 
-                  <input
-                    id="search"
-                    type="text"
-                    class="search"
-                    ref={(el) => this.textInput = el as HTMLInputElement}
-                    placeholder= "Ask a question"
-                    value={this.value} onInput={() => this.handleChange()}
-                    onTouchStart={() => this.handleChange()}
-                    autoComplete="off"
-                  />
+                    <ul id="matches" class="matches">
 
-                  <ul id="matches" class="matches">
+                    {this.matches.map(faq => {
+                      const link = "#" + faq.id
+                      return (
+                        <li>
+                          <a href={this.size == "phone-only" ? link : "#answers"} onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
+                        </li>
+                      );
+                    })}
 
-                  {this.matches.map(faq => {
-                    const link = "#" + faq.id
-                    return (
-                      <li>
-                        <a href={this.size == "phone-only" ? link : "#answers"} onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
-                      </li>
-                    );
-                  })}
+                    </ul>
 
-                  </ul>
+                    </form>
 
-                  </form>
-
+                  </div>
                 </div>
             </div>
             
+            <section class="section">
             <div class="nav-wrapper">
             <div class="nav">
                   <div class="button-toggles">
@@ -198,7 +198,7 @@ import { APISearchService } from '../../../services/api/search';
                     </button>
                   </div>
                 </div>
-              </div>
+            </div>
 
             
 
@@ -298,7 +298,7 @@ import { APISearchService } from '../../../services/api/search';
             </button>
           </div>
 
-          <div class="footer-wrapper">
+          <div class={{'footer-wrapper': true, 'footer-open': this.footerOpen, 'footer-closed': !this.footerOpen }}>
             <app-footer no-margin />
           </div>
         </div>

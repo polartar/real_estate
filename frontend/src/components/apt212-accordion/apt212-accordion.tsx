@@ -28,7 +28,7 @@ export class Apt212Accordion {
       {this.label}
       {this.toggle ? <ion-icon class="chevron" src="assets/images/icons/chevron_down.svg" />  : <ion-icon class="chevron" src="assets/images/icons/chevron_up.svg" /> }
       </button>
-      <div class={`content-box ${this.toggle ? 'open' : 'close'}`}
+      <div class={`content-box ${this.toggle ? 'open-question' : 'close-question'}`}
 >
       <p>{this.description}</p>
       </div>

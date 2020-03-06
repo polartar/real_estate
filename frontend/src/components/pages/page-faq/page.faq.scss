@@ -216,6 +216,7 @@
       width: 40%;
       direction: ltr;
       display: block;
+      position: sticky;
 
       @include for-size(tablet-portrait-up) {
         margin-left: 20px;
@@ -270,6 +271,10 @@
       .footer-wrapper {
         max-height: 0;
         transition: all 0.2s ease-in;
+
+        &.footer-closed {
+          display: none;
+        }
       }
     }
 
