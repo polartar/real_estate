@@ -161,9 +161,13 @@ export class PageNeighborhood {
             </div>
           </div>
 
+          </section>
+
           <div class="map-wrapper">
             <neighborhood-map item={item} />
           </div>
+
+          <section class="section">
 
           <div class="listings-wrapper">
           {

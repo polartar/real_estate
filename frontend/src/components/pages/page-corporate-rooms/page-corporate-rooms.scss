@@ -679,92 +679,75 @@
 
   }
 
-  .reasons-about-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column-reverse;
-    padding-bottom: 48px;
+  .reasons-wrapper {
 
-    @include for-size('tablet-portrait-up') {
-      flex-direction: column;
-      align-items: top; 
-      padding-left: 25px;
-      padding-right: 25px;   
-      padding-bottom: 0px;  
+    text-align: center;
+
+    @include for-size(tablet-landscape-up) {
+      text-align: left;
+    }
+
+    h2 {
+      margin: 0;
+      padding-bottom: 16px;
+      font-family: 'Montserrat-Bold', sans-serif;
+      font-size: 28px;
+      font-weight: bold;
+      padding-top: 27px; 
+
+      @include for-size(tablet-landscape-up) {
+        padding-top: 0px;
+      }
+    }
+
+    p {
+      margin: 0;
+      padding-bottom: 16px;
+      line-height: 24px;
+    }
+
+
+    @include for-size(tablet-landscape-up) {
+        margin: 20px;
+      }
+
+      @include for-size(desktop-up) {
+        margin: 100px;
+      }
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 48px;
+
+    @include for-size(tablet-landscape-up) {
+      flex-direction: row;
+    }
+
+  }
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    
+    &.image {
+      max-width: 424px;
+      margin: 0 auto;
+    }
+  }
+  
+  .text-column {
+    padding: 0;
+
+    @include for-size(tablet-landscape-up) {
+      padding-left: 85px;
     }
     
-    @include for-size('desktop-up') {
-      flex-direction: row-reverse;
-      align-items: top; 
-      padding-left: 108px;
-      padding-right: 150px;
-      padding-bottom: 48px;     
-    }
-
-
-    .reasons {
-      display: flex;
-      flex-grow: 1;
-      width: 100%;
-      
-
-      @include for-size('tablet-portrait-up') {
-        max-width: 655px;
-        align-items: center;
-        max-height: 266px;
-      }
-
-      @include for-size('desktop-up') {
-        max-width: 655px;
-        margin-left: auto;
-        align-items: center;
-        max-height: 266px;
-      }
-
-
-
-
-      &> div {
-        @include for-size('desktop-up') {
-          max-width: 655px;
-          margin-left: auto;
-        }
-      }
-
-      h2 {
-        margin: 0;
-        padding-bottom: 16px;
-        font-family: 'Montserrat-Bold', sans-serif;
-        font-size: 28px;
-        font-weight: bold;
-      }
-
-      p {
-        margin: 0;
-        padding-bottom: 16px;
-        line-height: 24px;
-
-        @include for-size(tablet-desktop-up) {
-          width: 100%;
-        }
-      }
-
-    }
-
-    .image {
-        position: relative;
-        margin-bottom: 27px;
-
-
-        img {
-          
-          @include for-size('tablet-portrait-up') {
-            max-width: 424px;
-            margin-bottom: 0;
-          }
-        }
-
-      }
   }
 
   .learn-more {

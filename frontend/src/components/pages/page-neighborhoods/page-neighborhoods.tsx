@@ -3,78 +3,78 @@ import { Store } from '@stencil/redux';
 import taxonomySelectors from '../../../store/selectors/taxonomy';
 
 @Component({
-    tag: 'page-neighborhoods',
-    styleUrl: 'page-neighborhoods.scss'
-  })
-  export class PageNeighborhoods {
-    @Prop({ context: "store" }) store: Store;
-    @State() size: string = 'phone-only';
-    @State() isMobile: boolean = true;
-    @State() loaded: boolean = false;
+  tag: 'page-neighborhoods',
+  styleUrl: 'page-neighborhoods.scss'
+})
+export class PageNeighborhoods {
+  @Prop({ context: "store" }) store: Store;
+  @State() size: string = 'phone-only';
+  @State() isMobile: boolean = true;
+  @State() loaded: boolean = false;
 
-    neighborhoods: any = [];
+  neighborhoods: any = [];
 
-    hasLoaded: boolean = false;
+  hasLoaded: boolean = false;
 
-    componentWillLoad() {
-        this.store.mapStateToProps(this, state => {
-            return {
-              neighborhoods: taxonomySelectors.getFeaturedNeighborhoods(state)
-            }
-          });
-    }
+  componentWillLoad() {
+    this.store.mapStateToProps(this, state => {
+      return {
+        neighborhoods: taxonomySelectors.getFeaturedNeighborhoods(state)
+      }
+    });
+  }
 
-    async componentDidLoad() {
-      this.loaded = true;
-    }
+  async componentDidLoad() {
+    this.loaded = true;
+  }
 
-    render() {
+  render() {
 
-      let title = <h1 class="title">NEIGHBORHOODS</h1>
-      let subtitle = <p class="subtitle">Explore Manhattan's most prestigious<br></br> neighborhoods.</p>
+    let title = <h1 class="title">NEIGHBORHOODS</h1>
+    let subtitle = <p class="subtitle">Explore Manhattan's most prestigious<br></br> neighborhoods.</p>
 
-      return [
+    return [
 
-        <app-header />,
-        <ion-content class="page-neighborhoods">
+      <app-header />,
+      <ion-content class="page-neighborhoods">
 
-          
-            <div class="hero">
-              <lazy-image src="/assets/images/neighborhoods/neighborhood-full.jpg" class="hero-bg" alt="background image" />
-                <section class="section">
-                  <div class="cta">
-                      {title}
-                      {subtitle}
-                  </div>
-                </section>
+
+        <div class="hero">
+          <lazy-image src="/assets/images/neighborhoods/neighborhood-full.jpg" class="hero-bg" alt="background image" />
+          <section class="section">
+            <div class="cta">
+              {title}
+              {subtitle}
             </div>
+          </section>
+        </div>
 
-            <section class="section">
-            <section class="neighborhood-list">
+        <section class="section">
+          <section class="neighborhood-list">
 
-                <div class="neighborhoods-grid">
+            <div class="neighborhoods-grid">
 
-                    {
-                        this.neighborhoods.map(neighborhood =>
-                        <div class="module">
-                            <ion-router-link href={`/neighborhood/${neighborhood.slug}`}>
-                                <div class="neighborhood-card">
-                                <lazy-image src={neighborhood.image} alt={neighborhood.name} class="neighborhood-feature-image"/>
-                                <h4 class="neighborhood-title">{neighborhood.name}</h4>
-                                </div>
-                            </ion-router-link>
-                        </div>
-                        )
-                    }
+              {
+                this.neighborhoods.map(neighborhood =>
+                  <div class="module">
+                    <ion-router-link href={`/neighborhood/${neighborhood.slug}`}>
+                      <div class="neighborhood-card">
+                        <lazy-image src={neighborhood.image} alt={neighborhood.name} class="neighborhood-feature-image" />
+                        <h4 class="neighborhood-title">{neighborhood.name}</h4>
+                      </div>
+                    </ion-router-link>
+                  </div>
+                )
+              }
 
-                </div>
-
-            </section>
+            </div>
 
           </section>
 
-          <app-footer />
-        </ion-content>
-      ];
-    }
+        </section>
+
+        <app-footer />
+      </ion-content>
+    ];
   }
+}

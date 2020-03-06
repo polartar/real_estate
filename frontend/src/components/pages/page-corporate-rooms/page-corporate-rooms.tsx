@@ -27,14 +27,14 @@ export class PageCorporateRooms {
   neighborhoods: any[] = [];
   item: any = null;
   testimonials: any[] = [];
-  
+
   componentDidLoad() {
     if (this.prefetching) {
       return;
     }
 
     if (Build.isBrowser) {
-      this.getNamedSearch('homePageInit', {count: 16})
+      this.getNamedSearch('homePageInit', { count: 16 })
         .then(result => {
           this.privateRoomList = result.privateRoomList;
         })
@@ -111,20 +111,20 @@ export class PageCorporateRooms {
       <app-header />,
 
       <ion-content class="page-corporate-rooms">
-      
+
         <div class="hero">
-        <lazy-image src="/assets/images/corporate-rooms/corporate-hero-full.jpg" class="hero-bg" alt="background image" />
-        <section class="section">
-          <div class="cta">
-            {title}
-            {subtitle}
-            {search}
-          </div>
+          <lazy-image src="/assets/images/corporate-rooms/corporate-hero-full.jpg" class="hero-bg" alt="background image" />
+          <section class="section">
+            <div class="cta">
+              {title}
+              {subtitle}
+              {search}
+            </div>
           </section>
         </div>
-        
+
         <section class="section">
-        
+
           <div class="what-is-wrapper">
             <div class="rooms">
               <div>
@@ -150,13 +150,13 @@ export class PageCorporateRooms {
               </div>
             </div>
             <div class="image">
-              <lazy-image src="/assets/images/corporate-rooms/nyc-corporate-housing.jpg" alt="NYC Corporate Housing" class="boxshadow neighborhood-feature-image"/>
+              <lazy-image src="/assets/images/corporate-rooms/nyc-corporate-housing.jpg" alt="NYC Corporate Housing" class="boxshadow neighborhood-feature-image" />
             </div>
           </div>
 
           <div class="corporate-housing-wrapper">
             <div class="image">
-                <lazy-image src="/assets/images/corporate-rooms/what-is-corporate-housing.jpg" alt="What is Corporate Housing?" class="boxshadow neighborhood-feature-image"/>
+              <lazy-image src="/assets/images/corporate-rooms/what-is-corporate-housing.jpg" alt="What is Corporate Housing?" class="boxshadow neighborhood-feature-image" />
             </div>
             <div class="rooms">
               <div>
@@ -183,7 +183,7 @@ export class PageCorporateRooms {
                 </p>
               </div>
             </div>
-            
+
           </div>
 
           <div class="room-stats-wrapper">
@@ -205,7 +205,7 @@ export class PageCorporateRooms {
                 <p>The apartments are located in Manhattan’s most prestigious neighborhoods and are close to major subway lines as well as local attractions.</p>
               </div>
             </div>
-            
+
             <div class="room-stats bottom">
               <div class="col">
                 <lazy-image src="/assets/images/corporate-rooms/minimal-paperwork.svg" />
@@ -228,85 +228,85 @@ export class PageCorporateRooms {
 
           <div class="callout">
             <h2>
-            No matter the industry, we have the professional corporate housing solution in NYC for you
+              No matter the industry, we have the professional corporate housing solution in NYC for you
             </h2>
           </div>
           <div class="grid-wrapper">
 
-         
-          <div class='grid'>
-            <div class='cell'>
-              <lazy-image src="/assets/images/corporate-rooms/educational.png" alt="test" class="neighborhood-feature-image"/>
-              <div class="heading">Educational Institutions</div>
-              <div class="copy">We offer accommodation for students, interns, and professors close to universities on a rental basis that corresponds with the school year.</div>
-            </div>
 
-            <div class='cell'>
-              <lazy-image src="/assets/images/corporate-rooms/fashion.png" alt="test" class="neighborhood-feature-image"/>
-              <div class="heading">Fashion &amp; Modeling</div>
-              <div class="copy">Many of our exclusive properties are located in Manhattan’s most trendy neighborhoods such as Soho, Nolita and the Flatiron District.</div>
-            </div>
+            <div class='grid'>
+              <div class='cell'>
+                <lazy-image src="/assets/images/corporate-rooms/educational.png" alt="test" class="neighborhood-feature-image" />
+                <div class="heading">Educational Institutions</div>
+                <div class="copy">We offer accommodation for students, interns, and professors close to universities on a rental basis that corresponds with the school year.</div>
+              </div>
 
-            <div class='cell'>
-              <lazy-image src="/assets/images/corporate-rooms/startups.png" alt="test" class="neighborhood-feature-image"/>
-              <div class="heading">Startups</div>
-              <div class="copy">Perfect housing solution for startups seeking temporary or long term accomadation for employees.</div>
-            </div>
+              <div class='cell'>
+                <lazy-image src="/assets/images/corporate-rooms/fashion.png" alt="test" class="neighborhood-feature-image" />
+                <div class="heading">Fashion &amp; Modeling</div>
+                <div class="copy">Many of our exclusive properties are located in Manhattan’s most trendy neighborhoods such as Soho, Nolita and the Flatiron District.</div>
+              </div>
 
-            <div class='cell'>
-              <lazy-image src="/assets/images/corporate-rooms/entertainment.png" alt="test" class="neighborhood-feature-image"/>
-              <div class="heading">Entertainment</div>
-              <div class="copy">We have experience working with cast and crew to find housing that can accommodate hectic schedules, tight budget,s and unparalleled discretion while on location.</div>
-            </div>
+              <div class='cell'>
+                <lazy-image src="/assets/images/corporate-rooms/startups.png" alt="test" class="neighborhood-feature-image" />
+                <div class="heading">Startups</div>
+                <div class="copy">Perfect housing solution for startups seeking temporary or long term accomadation for employees.</div>
+              </div>
 
-            <div class='cell'>
-              <lazy-image src="/assets/images/corporate-rooms/healthcare.png" alt="test" class="neighborhood-feature-image"/>
-              <div class="heading">Healthcare</div>
-              <div class="copy">We offer apartments in accessible buildings with full amenities close to medical centers including Lenox Hill, Mount Sinai and Memorial Sloan Kettering.<br/>
-We offer apartments in accessible buildings with full amenities close to medical centers including Lenox Hill, Mount Sinai and Memorial Sloan Kettering.
-</div>
-            </div>
+              <div class='cell'>
+                <lazy-image src="/assets/images/corporate-rooms/entertainment.png" alt="test" class="neighborhood-feature-image" />
+                <div class="heading">Entertainment</div>
+                <div class="copy">We have experience working with cast and crew to find housing that can accommodate hectic schedules, tight budget,s and unparalleled discretion while on location.</div>
+              </div>
 
-            <div class='cell'>
-              <lazy-image src="/assets/images/corporate-rooms/financial.png" alt="test" class="neighborhood-feature-image"/>
-              <div class="heading">Financial Services</div>
-              <div class="copy">With clientele ranging from summer interns to executives, we offer housing within walking distance of firms such as JPMorgan Chase, Goldman Sachs, Barclays and Credit Suisse.</div>
-            </div>
+              <div class='cell'>
+                <lazy-image src="/assets/images/corporate-rooms/healthcare.png" alt="test" class="neighborhood-feature-image" />
+                <div class="heading">Healthcare</div>
+                <div class="copy">We offer apartments in accessible buildings with full amenities close to medical centers including Lenox Hill, Mount Sinai and Memorial Sloan Kettering.<br />
+                  We offer apartments in accessible buildings with full amenities close to medical centers including Lenox Hill, Mount Sinai and Memorial Sloan Kettering.
+                </div>
+              </div>
 
-            <div class='cell'>
-              <lazy-image src="/assets/images/corporate-rooms/consulates.png" alt="test" class="neighborhood-feature-image"/>
-              <div class="heading">Consulates &amp; Embassies</div>
-              <div class="copy">We have superior properties within walking distance of the United Nations as well as major embassies and diplomatic missions.</div>
-            </div>
+              <div class='cell'>
+                <lazy-image src="/assets/images/corporate-rooms/financial.png" alt="test" class="neighborhood-feature-image" />
+                <div class="heading">Financial Services</div>
+                <div class="copy">With clientele ranging from summer interns to executives, we offer housing within walking distance of firms such as JPMorgan Chase, Goldman Sachs, Barclays and Credit Suisse.</div>
+              </div>
 
-            <div class='cell'>
-              <lazy-image src="/assets/images/corporate-rooms/legal.png" alt="test" class="neighborhood-feature-image"/>
-              <div class="heading">Legal</div>
-              <div class="copy">Many residences come with laundry and housekeeping services, meeting rooms and plenty of space that make it easy for family to visit.</div>
-            </div>
+              <div class='cell'>
+                <lazy-image src="/assets/images/corporate-rooms/consulates.png" alt="test" class="neighborhood-feature-image" />
+                <div class="heading">Consulates &amp; Embassies</div>
+                <div class="copy">We have superior properties within walking distance of the United Nations as well as major embassies and diplomatic missions.</div>
+              </div>
 
-            <div class='cell'>
-              <lazy-image src="/assets/images/corporate-rooms/other.png" alt="test" class="neighborhood-feature-image"/>
-              <div class="heading">Other Industries</div>
-              <div class="copy">Accounting &amp; Consulting, Advertising &amp; Public Relations, Information Technology, Insurance, Leisure &amp; Hospitality, Nonprofits &amp; Cultural Institutions.</div>
+              <div class='cell'>
+                <lazy-image src="/assets/images/corporate-rooms/legal.png" alt="test" class="neighborhood-feature-image" />
+                <div class="heading">Legal</div>
+                <div class="copy">Many residences come with laundry and housekeeping services, meeting rooms and plenty of space that make it easy for family to visit.</div>
+              </div>
+
+              <div class='cell'>
+                <lazy-image src="/assets/images/corporate-rooms/other.png" alt="test" class="neighborhood-feature-image" />
+                <div class="heading">Other Industries</div>
+                <div class="copy">Accounting &amp; Consulting, Advertising &amp; Public Relations, Information Technology, Insurance, Leisure &amp; Hospitality, Nonprofits &amp; Cultural Institutions.</div>
+              </div>
+
             </div>
-            
-          </div>
           </div>
 
           <div class="mission">
             <h2>APT 212 MISSION</h2>
             <p>
-              To deliver corporate housing that doesn't sacrifice comfort or style. We at APT212 understand that today's business man doesn't just want a place to sleep while he's in town. 
+              To deliver corporate housing that doesn't sacrifice comfort or style. We at APT212 understand that today's business man doesn't just want a place to sleep while he's in town.
               He wants a place to call home, keeping the level of housing that he is used to while on business trips or short term relocations.
           </p>
           </div>
 
-          </section>
-          
-          <testimonials-slider items={this.testimonials} />
-        
-          <section class="section">
+        </section>
+
+        <testimonials-slider items={this.testimonials} />
+
+        <section class="section">
 
           {
             this.privateRoomList.length && this.neighborhoodsLoaded ?
@@ -323,153 +323,163 @@ We offer apartments in accessible buildings with full amenities close to medical
             <h2>Some more information about our New York corporate housing solutions</h2>
           </div>
 
-          <div class="reasons-about-wrapper">
-            <div class="reasons">
-              <div>
-                <h2>What defines a furnished apartment?</h2>
-                <p>
-                  A furnished home is said so if a house is well-equipped with almost all utilities that you need for a comfortable lifestyle like sofa, cupboards, beds & closets in the bedroom to the dining table and other accessories in a kitchen.
+
+          <div class='reasons-wrapper'>
+
+            <div class='row'>
+              <div class='column image'>
+                <div class='image-column'>
+                  <div class="reasons-image">
+                    <lazy-image src="/assets/images/corporate-rooms/one-month-rent.png" alt="" />
+                  </div>
+                </div>
+
+              </div>
+              <div class='column'>
+                <div class='text-column'>
+                  <h2>Make a payment of 1 month’s rent</h2>
+                  <p>
+                    Rooms start as low as $1400 a month with studio-sized options available for $2100. Utility costs are divided per room and deducted from the security deposit to keep living expenses downHere are some benefits of renting a furnished apartment/flat.
                 </p>
-                <p>
-                  Here are some benefits of renting a furnished apartment/flat.
-                </p>
+                </div>
               </div>
             </div>
 
-            <div class="image">
-              <lazy-image src="/assets/images/corporate-rooms/what-defines.png" alt="" />
-            </div>
-          </div>
+            <div class='row'>
+              <div class='column image'>
+                <div class='image-column'>
+                  <div class="reasons-image">
+                    <lazy-image src="/assets/images/corporate-rooms/worth-money.png" alt="" />
+                  </div>
+                </div>
 
-          <div class="reasons-about-wrapper">
-            <div class="reasons">
-              <div>
-                <h2>Make a payment of 1 month’s rent</h2>
-                <p>
-                  Rooms start as low as $1400 a month with studio-sized options available for $2100. Utility costs are divided per room and deducted from the security deposit to keep living expenses downHere are some benefits of renting a furnished apartment/flat.
+              </div>
+              <div class='column'>
+                <div class='text-column'>
+                  <h2>Worth the money</h2>
+                  <p>
+                    Rooms start as low as $1400 a month with studio-sized options available for $2100. Utility costs are divided per room and deducted from the security deposit to keep living expenses downHere are some benefits of renting a furnished apartment/flat.
                 </p>
+                </div>
               </div>
             </div>
 
-            <div class="image">
-              <lazy-image src="/assets/images/corporate-rooms/one-month-rent.png" alt="" />
-            </div>
-          </div>
+            <div class='row'>
+              <div class='column image'>
+                <div class='image-column'>
+                  <div class="reasons-image">
+                    <lazy-image src="/assets/images/corporate-rooms/less-maintenance.png" alt="" />
+                  </div>
+                </div>
 
-          <div class="reasons-about-wrapper">
-            <div class="reasons">
-              <div>
-                <h2>Worth the money</h2>
-                <p>
-                Rooms start as low as $1400 a month with studio-sized options available for $2100. Utility costs are divided per room and deducted from the security deposit to keep living expenses downHere are some benefits of renting a furnished apartment/flat.
+              </div>
+              <div class='column'>
+                <div class='text-column'>
+                  <h2>Less maintenance &amp; hassle-free living</h2>
+                  <p>
+                    Renting a furnished apartment, you don’t have to be much concerned about breakage, maintenance and repairs as they would all be taken care of by the property management and owners. They support and assist to fix up any domestic services that you need. By moving to a furnished apartment for rent, you can just walk in and start living your life without any hassles of shifting old furniture sets, fixing them up and fitting in the available space. Stop hunting for an apartment that fits your old furniture with the furnished flats for rent.
                 </p>
+                </div>
               </div>
             </div>
 
-            <div class="image">
-              <lazy-image src="/assets/images/corporate-rooms/worth-money.png" alt="" />
+            <div class='row'>
+              <div class='column image'>
+                <div class='image-column'>
+                  <div class="reasons-image">
+                    <lazy-image src="/assets/images/corporate-rooms/easy-mobility.png" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class='column'>
+                <div class='text-column'>
+                  <h2>Easy mobility &amp; fewer obligations</h2>
+                  <p>
+                    APT212 New York City  Corporate Housing offers fully furnished apartments which are move-in ready, affordable and convenient.  As one of the largest furnished corporate housing providers, we are positioned to assist your company needs nationwide. Each apartment has a full array of furniture, housewares, linens and appliances, technology, and all utilities are included in our low daily rates.
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="reasons-about-wrapper">
-            <div class="reasons">
-              <div>
-                <h2>Less maintenance &amp; hassle-free living</h2>
-                <p>
-                Renting a furnished apartment, you don’t have to be much concerned about breakage, maintenance and repairs as they would all be taken care of by the property management and owners. They support and assist to fix up any domestic services that you need. By moving to a furnished apartment for rent, you can just walk in and start living your life without any hassles of shifting old furniture sets, fixing them up and fitting in the available space. Stop hunting for an apartment that fits your old furniture with the furnished flats for rent.
+            <div class='row'>
+              <div class='column image'>
+                <div class='image-column'>
+                  <div class="reasons-image">
+                    <lazy-image src="/assets/images/corporate-rooms/why-corporate.png" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class='column'>
+                <div class='text-column'>
+                  <h2>WHY APT212 CORPORATE HOUSING</h2>
+                  <p>
+                    APT212 New York City  Corporate Housing offers fully furnished apartments which are move-in ready, affordable and convenient.  As one of the largest furnished corporate housing providers, we are positioned to assist your company needs nationwide. Each apartment has a full array of furniture, housewares, linens and appliances, technology, and all utilities are included in our low daily rates.
                 </p>
+                </div>
               </div>
             </div>
 
-            <div class="image">
-              <lazy-image src="/assets/images/corporate-rooms/less-maintenance.png" alt="" />
-            </div>
-          </div>
-
-          <div class="reasons-about-wrapper">
-            <div class="reasons">
-              <div>
-                <h2>Easy mobility &amp; fewer obligations</h2>
-                <p>
-                APT212 New York City  Corporate Housing offers fully furnished apartments which are move-in ready, affordable and convenient.  As one of the largest furnished corporate housing providers, we are positioned to assist your company needs nationwide. Each apartment has a full array of furniture, housewares, linens and appliances, technology, and all utilities are included in our low daily rates.
+            <div class='row'>
+              <div class='column image'>
+                <div class='image-column'>
+                  <div class="reasons-image">
+                    <lazy-image src="/assets/images/corporate-rooms/business.png" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class='column'>
+                <div class='text-column'>
+                  <h2>Business Travelers</h2>
+                  <p>
+                    Business people travel to remote cities to manage or participate in company projects that can take weeks or even months to complete. When stays get lengthy, hotel/motel living can get old quickly. Furnished corporate apartments allow business people who are away for extended periods to live with some sense of normalcy. Having access to full kitchens also allows them to better control their food and dining expenses, savings companies usually appreciate.
                 </p>
+                </div>
               </div>
             </div>
 
-            <div class="image">
-              <lazy-image src="/assets/images/corporate-rooms/easy-mobility.png" alt="" />
-            </div>
-          </div>
-
-          <div class="reasons-about-wrapper">
-            <div class="reasons">
-              <div>
-                <h2>WHY APT212 CORPORATE HOUSING</h2>
-                <p>
-                APT212 New York City  Corporate Housing offers fully furnished apartments which are move-in ready, affordable and convenient.  As one of the largest furnished corporate housing providers, we are positioned to assist your company needs nationwide. Each apartment has a full array of furniture, housewares, linens and appliances, technology, and all utilities are included in our low daily rates.
+            <div class='row'>
+              <div class='column image'>
+                <div class='image-column'>
+                  <div class="reasons-image">
+                    <lazy-image src="/assets/images/corporate-rooms/corporate-solution.png" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class='column'>
+                <div class='text-column'>
+                  <h2>Our corporate housing solution</h2>
+                  <p>
+                    APT212 offers short-term housing solutions that can be more advantageous than those offered by hotels, motels and vacation rentals. Furnished apartments provide the space, comfort, privacy and independence of traditional rental housing along with such basic household items as beds, sofas, chairs, tables — and, in many cases, even TVs and kitchenware — but at a much lower cost than hotel and motel rooms that are usually a fraction of the size. Leases are often month-to-month, and may even cover some major utilities.
                 </p>
+                </div>
               </div>
             </div>
 
-            <div class="image">
-              <lazy-image src="/assets/images/corporate-rooms/why-corporate.png" alt="" />
-            </div>
-          </div>
-
-          <div class="reasons-about-wrapper">
-            <div class="reasons">
-              <div>
-                <h2>Business Travelers</h2>
+            <div id='learn-more-wrapper' class="learn-more">
+              <div class="left">
+                <div class="image">
+                  <lazy-image src="/assets/images/private-rooms/learn-more-about-apt-212.jpg" alt="" />
+                </div>
+              </div>
+              <div class="right">
+                <h2>LEARN MORE ABOUT APT212</h2>
                 <p>
-                  Business people travel to remote cities to manage or participate in company projects that can take weeks or even months to complete. When stays get lengthy, hotel/motel living can get old quickly. Furnished corporate apartments allow business people who are away for extended periods to live with some sense of normalcy. Having access to full kitchens also allows them to better control their food and dining expenses, savings companies usually appreciate.
-                </p>
-              </div>
-            </div>
-
-            <div class="image">
-              <lazy-image src="/assets/images/corporate-rooms/business.png" alt="" />
-            </div>
-          </div>
-
-          <div class="reasons-about-wrapper">
-            <div class="reasons">
-              <div>
-                <h2>Our corporate housing solution</h2>
-                <p>
-                  APT212 offers short-term housing solutions that can be more advantageous than those offered by hotels, motels and vacation rentals. Furnished apartments provide the space, comfort, privacy and independence of traditional rental housing along with such basic household items as beds, sofas, chairs, tables — and, in many cases, even TVs and kitchenware — but at a much lower cost than hotel and motel rooms that are usually a fraction of the size. Leases are often month-to-month, and may even cover some major utilities.
-                </p>
-              </div>
-            </div>
-
-            <div class="image">
-              <lazy-image src="/assets/images/corporate-rooms/corporate-solution.png" alt="" />
-            </div>
-          </div>
-
-
-          <div id='learn-more-wrapper' class="learn-more">
-            <div class="left">
-              <div class="image">
-              <lazy-image src="/assets/images/private-rooms/learn-more-about-apt-212.jpg" alt="" />
-              </div>
-            </div>
-            <div class="right">
-              <h2>LEARN MORE ABOUT APT212</h2>
-              <p>
-                APT212 is a marketplace for furnished apartments , sublets and legal short term rentals located across New York City's most prestigious neighborhoods
+                  APT212 is a marketplace for furnished apartments , sublets and legal short term rentals located across New York City's most prestigious neighborhoods
               </p>
-              <p>
-                We offer a fresh solution to finding the perfect New York temporary home away from home.
+                <p>
+                  We offer a fresh solution to finding the perfect New York temporary home away from home.
               </p>
 
-              <ion-button aria-label="Speak to an expert" class="static-button" href="/about">
-                What is APT212?
+                <ion-button aria-label="Speak to an expert" class="static-button" href="/about">
+                  What is APT212?
               </ion-button>
+              </div>
             </div>
+
           </div>
-         
+
         </section>
-        
+
 
         <app-footer />
 
