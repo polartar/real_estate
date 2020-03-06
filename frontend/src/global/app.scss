@@ -219,6 +219,10 @@ h2, h3, h4 {
     padding-left: 3rem;
     padding-right: 3rem;
   }
+
+  &.no-margin {
+    padding: 0;
+  }
 }
 
 .boxshadow {

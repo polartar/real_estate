@@ -139,7 +139,7 @@ export class PageNeighborhood {
           </section>
         </div>
         
-        <section class="section">
+        <section class="section no-margin">
           <div class="neighborhood-about-wrapper">
             <div class="about">
               <div>
