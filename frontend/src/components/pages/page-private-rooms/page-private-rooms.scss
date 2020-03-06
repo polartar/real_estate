@@ -58,12 +58,6 @@
 
   .hero {
     position: relative;
-    background-image: url('/assets/images/neighborhoods/noho.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color: #ccc;
-    background-blend-mode: multiply;
     width: 100%;
     height: 713px;
 
@@ -75,15 +69,19 @@
       height: 640px;
     }
 
+    .hero-bg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     .cta {
-      position: absolute;
+      padding: 0 3rem 0 3rem;
       bottom: 129px;
-      left: 22px;
-      max-width: 740px;
+      position: absolute;
 
       @include for-size(tablet-portrait-up) {
-        bottom: 4rem;
-        left: 3rem;
+        bottom: 80px;
       }
 
       h1 {

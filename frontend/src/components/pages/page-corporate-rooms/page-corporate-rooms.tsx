@@ -113,7 +113,7 @@ export class PageCorporateRooms {
       <ion-content class="page-corporate-rooms">
       
         <div class="hero">
-        <lazy-image src="/assets/images/corporate-rooms/corporate-hero-full.png" class="hero-bg" alt="background image" />
+        <lazy-image src="/assets/images/corporate-rooms/corporate-hero-full.jpg" class="hero-bg" alt="background image" />
         <section class="section">
           <div class="cta">
             {title}
