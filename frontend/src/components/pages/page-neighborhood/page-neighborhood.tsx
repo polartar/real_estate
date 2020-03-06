@@ -130,12 +130,12 @@ export class PageNeighborhood {
 
        <div class="hero">
         <lazy-image src={item.image} class="hero-bg" alt="background image" />
-        <section class="section">
-          <div class="cta">
-            {title}
-            {subtitle}
-            {search}
-          </div>
+          <section class="section">
+            <div class="cta">
+              {title}
+              {subtitle}
+              {search}
+            </div>
           </section>
         </div>
         

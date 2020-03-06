@@ -19,14 +19,6 @@
     height: 40px;
   }
 
-  .static-page-wrapper {
-    margin: 0px 19px;
-
-    @include for-size(tablet-portrait-up) { 
-      margin: 0px;
-    }
-  }
-
   .title {
     font-size: 21px;
   }

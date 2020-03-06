@@ -124,7 +124,7 @@ export class PageCorporateRooms {
         </div>
         
         <section class="section">
-        <div class="static-page-wrapper">
+        
           <div class="what-is-wrapper">
             <div class="rooms">
               <div>
@@ -302,7 +302,11 @@ We offer apartments in accessible buildings with full amenities close to medical
           </p>
           </div>
 
+          </section>
+          
           <testimonials-slider items={this.testimonials} />
+        
+          <section class="section">
 
           {
             this.privateRoomList.length && this.neighborhoodsLoaded ?
@@ -463,7 +467,7 @@ We offer apartments in accessible buildings with full amenities close to medical
               </ion-button>
             </div>
           </div>
-          </div>
+         
         </section>
         
 

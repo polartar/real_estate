@@ -20,54 +20,51 @@
           font-weight: bold;
           padding-top: 9px;
       }
-
-    .hero {
+      .hero {
         position: relative;
-        background-image: url('/assets/images/about/Hero.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-color: #ccc;
-        background-blend-mode: multiply;
         width: 100%;
         height: 713px;
-
+    
         @include for-size(tablet-portrait-up) {
-        height: 320px;
+          height: 320px;
         }
-
+    
         @include for-size(tablet-portrait-up) {
-        height: 640px;
+          height: 640px;
         }
-
+    
+        .hero-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    
         .cta {
-        position: absolute;
-        bottom: 129px;
-        left: 22px;
-        max-width: 740px;
-
-        @include for-size(tablet-portrait-up) {
-            bottom: 4rem;
-            left: 3rem;
-        }
-
-        h1 {
+          
+          bottom: 129px;
+          position: absolute;
+    
+          @include for-size(tablet-portrait-up) {
+            bottom: 80px;
+          }
+    
+          h1 {
             color: white;
             font-size: $font-size * 2;
-
+    
             @include for-size(tablet-portrait-up) {
-            font-size: $font-size-lg * 2;
+              font-size: $font-size-lg * 2;
             }
-        }
-
-        .subtitle {
+          }
+    
+          .subtitle {
             color: white;
             line-height: 1.5;
             font-size: $font-size;
             margin-top: 0;
-        }
-
-        .light {
+          }
+    
+          .light {
             background-color: white;
             height: 40px;
             color: $color-primary;
@@ -75,9 +72,9 @@
             text-transform: uppercase;
             padding-left: 1.25rem;
             padding-right: 1.25rem;
+          }
         }
-        }
-    }
+      }
 
     .home-about-wrapper {
         width: 100%;

@@ -123,7 +123,7 @@ export class PagePrivateRooms {
         </div>
         
         <section class="section">
-          <div class="static-page-wrapper">
+         
           <div class="corporate-housing-wrapper">
             <div class="image">
                 <lazy-image src="/assets/images/private-rooms/private-rooms.png" class="boxshadow"/>
@@ -192,8 +192,12 @@ export class PagePrivateRooms {
             </div>
           </div>
 
+          </section>
+
           <testimonials-slider items={this.testimonials} />
 
+          <section class="section">
+      
           <div class="faq">
             <h1>Frequently Asked Questions about rooms for rent in nyc</h1>
             <div class="question">
@@ -427,7 +431,7 @@ export class PagePrivateRooms {
               </ion-button>
             </div>
           </div>
-          </div>
+        
         </section>
 
         <app-footer />

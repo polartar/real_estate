@@ -25,16 +25,18 @@ export class PageAbout {
             <app-header />,
             <ion-content class="page-about">
     
-            <section class="section">
+            
                 <div class="hero">
-    
-                <div class="cta">
-                    <h1 class="title">ABOUT APT212</h1>
-                    <p class="subtitle">#1 Source for New York furnished apartments.</p>
+                    <lazy-image src="/assets/images/about/about-full.jpg" class="hero-bg" alt="background image" />
+                    <section class="section">
+                        <div class="cta">
+                            <h1 class="title">ABOUT APT212</h1>
+                            <p class="subtitle">#1 Source for New York furnished apartments.</p>
+                        </div>
+                    </section>
                 </div>
-    
-                </div>
-            <div class="static-page-wrapper">
+
+                <section class="section">
                 <div class="home-about-wrapper">
                     <div class="about">
                         <div>
@@ -204,8 +206,6 @@ export class PageAbout {
                         </div>
                     </div>
                 
-         
-                </div>
             </section>
             <app-footer />
     

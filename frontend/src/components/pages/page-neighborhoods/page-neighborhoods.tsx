@@ -38,17 +38,18 @@ import taxonomySelectors from '../../../store/selectors/taxonomy';
         <app-header />,
         <ion-content class="page-neighborhoods">
 
-          <section class="section">
-
+          
             <div class="hero">
-
-                <div class="cta">
-                    {title}
-                    {subtitle}
-                </div>
-
+              <lazy-image src="/assets/images/neighborhoods/neighborhood-full.jpg" class="hero-bg" alt="background image" />
+                <section class="section">
+                  <div class="cta">
+                      {title}
+                      {subtitle}
+                  </div>
+                </section>
             </div>
 
+            <section class="section">
             <section class="neighborhood-list">
 
                 <div class="neighborhoods-grid">
