@@ -31,6 +31,6 @@ class OfficeCheckoutComplete extends Mailable
      */
     public function build()
     {
-        return $this->subject('Booking Payment Received')->view('emails.office_checkout_complete');
+        return $this->subject('APT212 ONLINE PAYMENT')->view('emails.office_checkout_complete');
     }
 }

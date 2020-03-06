@@ -39,6 +39,73 @@ export class BookingForm {
   cardExpiry: any;
   cardCvc: any;
 
+  agents: any[] = [
+    {
+      name: 'Office',
+      email: 'office@apt212.com'
+    },
+    {
+      name: 'Adi',
+      email: 'adi@apt212.com'
+    },
+    {
+      name: 'Margaret',
+      email: 'margaret@apt212.com'
+    },
+    {
+      name: 'Rivka',
+      email: 'rivka@apt212.com'
+    },
+    {
+      name: 'Jane',
+      email: 'jane@apt212.com'
+    },
+    {
+      name: 'Dustin',
+      email: 'dustin@apt212.com'
+    },
+    {
+      name: 'Milena',
+      email: 'milena@apt212.com'
+    },
+    {
+      name: 'Dana',
+      email: 'dana@apt212.com'
+    },
+    {
+      name: 'Sara',
+      email: 'sara@apt212.com'
+    },
+    {
+      name: 'Katherine',
+      email: 'katie@apt212.com'
+    },
+    {
+      name: 'Karishma',
+      email: 'karishma@apt212.com'
+    },
+    {
+      name: 'Georgeann',
+      email: 'georgeann@apt212.com'
+    },
+    {
+      name: 'Esther',
+      email: 'esther@apt212.com'
+    },
+    {
+      name: 'Pritha',
+      email: 'pritha@apt212.com'
+    },
+    {
+      name: 'Francois',
+      email: 'francois@apt212.com'
+    },
+    {
+      name: 'Gloria',
+      email: 'gloria@apt212.com'
+    }
+  ];
+
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
@@ -126,12 +193,19 @@ export class BookingForm {
   async onSubmit(e) {
     e.preventDefault();
 
-    const results = serialize(this.form, { hash: true, empty: true });
+    let results = serialize(this.form, { hash: true, empty: true });
 
     this.checkErrors(results);
 
     if (this.errors.length) {
       return;
+    }
+
+    // add in some additional info
+    results.bookingDetails = JSON.stringify(this.bookingDetails);
+
+    if (results.using_agent === 'yes') {
+      results.agentName = this.agents.filter(a => a.email === results.agent).map(a => a.name)[0];
     }
 
     if (results.payment_method == 'credit') {
@@ -272,73 +346,6 @@ export class BookingForm {
   }
 
   render() {
-    const agents = [
-      {
-        name: 'Office',
-        email: 'office@apt212.com'
-      },
-      {
-        name: 'Adi',
-        email: 'adi@apt212.com'
-      },
-      {
-        name: 'Margaret',
-        email: 'margaret@apt212.com'
-      },
-      {
-        name: 'Rivka',
-        email: 'rivka@apt212.com'
-      },
-      {
-        name: 'Jane',
-        email: 'jane@apt212.com'
-      },
-      {
-        name: 'Dustin',
-        email: 'dustin@apt212.com'
-      },
-      {
-        name: 'Milena',
-        email: 'milena@apt212.com'
-      },
-      {
-        name: 'Dana',
-        email: 'dana@apt212.com'
-      },
-      {
-        name: 'Sara',
-        email: 'sara@apt212.com'
-      },
-      {
-        name: 'Katherine',
-        email: 'katie@apt212.com'
-      },
-      {
-        name: 'Karishma',
-        email: 'karishma@apt212.com'
-      },
-      {
-        name: 'Georgeann',
-        email: 'georgeann@apt212.com'
-      },
-      {
-        name: 'Esther',
-        email: 'esther@apt212.com'
-      },
-      {
-        name: 'Pritha',
-        email: 'pritha@apt212.com'
-      },
-      {
-        name: 'Francois',
-        email: 'francois@apt212.com'
-      },
-      {
-        name: 'Gloria',
-        email: 'gloria@apt212.com'
-      }
-    ];
-
     return (
       <form onSubmit={e => this.onSubmit(e)} class="booking-form-component" ref={el => this.form = el as HTMLFormElement }>
         <div class="title text-center">Select a payment method</div>
@@ -430,7 +437,7 @@ export class BookingForm {
                         <option value=""></option>
 
                         {
-                          agents.map(a => <option value={a.email}>{a.name}</option>)
+                          this.agents.map(a => <option value={a.email}>{a.name}</option>)
                         }
                       </select>
                   </div>

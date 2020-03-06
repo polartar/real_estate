@@ -31,6 +31,6 @@ class ClientCheckoutComplete extends Mailable
      */
     public function build()
     {
-        return $this->subject('APT212 booking processing')->view('emails.client_checkout_complete');
+        return $this->subject('APT212 ONLINE PAYMENT')->view('emails.client_checkout_complete');
     }
 }
