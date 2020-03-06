@@ -202,7 +202,9 @@ export class BookingForm {
     }
 
     // add in some additional info
-    results.bookingDetails = JSON.stringify(this.bookingDetails);
+    if (this.bookingDetails) {
+      results.bookingDetails = JSON.stringify(this.bookingDetails);
+    }
 
     if (results.using_agent === 'yes') {
       results.agentName = this.agents.filter(a => a.email === results.agent).map(a => a.name)[0];
@@ -434,8 +436,6 @@ export class BookingForm {
                         id={`agent-${this.idSuffix}`}
                         name="agent"
                       >
-                        <option value=""></option>
-
                         {
                           this.agents.map(a => <option value={a.email}>{a.name}</option>)
                         }

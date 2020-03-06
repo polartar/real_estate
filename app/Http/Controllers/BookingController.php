@@ -189,9 +189,27 @@ class BookingController extends Controller
     }
 
     // public function previewMail(Request $request) {
-    //     $referral = \App\Referral::first();
-    //     \Illuminate\Support\Facades\Mail::to('matt@arckinteractive.com')->send(new \App\Mail\ReferralMailReferral($referral));
+    //     $data = [
+    //         'payment_method' => 'credit',
+    //         'amount' => 5461.61,
+    //         'webid' => 14,
+    //         'using_agent' => 'no',
+    //         'firstname' => 'Matt',
+    //         'lastname' => 'Beckett',
+    //         'email' => 'matt@arckinteractive.com',
+    //         'phone' => '555-555-5555',
+    //         'zipcode' => 'V9T 5M6',
+    //         'tos' => 1,
+    //         'bookingDetails' => '{"id":14,"checkindate":"3/9/2020","checkoutdate":"4/30/2020","monthly_rent":10212.9,"night_rate":335.66,"term":{"months":1,"days":23},"guests":1,"background_checks":279,"rent":17790.21,"tax":0,"utilities":1009.12,"service_fee":452.29,"deposit":5004.32,"move_out_fee":433.5,"total":24968.44,"timeline":{"due_to_reserve":5456.61,"due_by_checkin":41130.6,"due_by_checkin_date":"3/5/2020","future_payments":-21618.77,"deposit_refund":-5004.32}}',
+    //         'api' => 'http://24.68.85.59:8080/'
+    //     ];
 
-    //     return new \App\Mail\ReferralMailReferral($referral);
+    //     $data = (object) $data;
+
+    //     \Illuminate\Support\Facades\Mail::to('matt@arckinteractive.com')->send(new \App\Mail\ClientCheckoutComplete($data));
+
+    //     unset($data->bookingDetails);
+
+    //     return new \App\Mail\ClientCheckoutComplete($data);
     // }
 }
