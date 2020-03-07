@@ -120,7 +120,7 @@
     @include for-size(desktop-up) {
       height: 100%;
       width: calc(475px + 81px);
-      right: 0;
+      right: max(0px, calc(100% - 1440px) / 2);
       top: 0;
     }
 

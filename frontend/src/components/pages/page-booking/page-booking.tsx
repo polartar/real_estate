@@ -2,6 +2,7 @@ import { Component, h, Prop, State } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import bookingSelectors from '../../../store/selectors/booking';
+import sizeSelectors from '../../../store/selectors/screensize';
 import Debounce from 'debounce-decorator';
 
 @Component({
@@ -13,6 +14,7 @@ export class PageBooking {
 
   @State() details: any = null;
   @State() faqItem: number = 1;
+  @State() isMobile: boolean = true;
 
   scrollContent: HTMLIonContentElement;
   mobileBookingCTA: HTMLElement;
@@ -20,7 +22,8 @@ export class PageBooking {
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
       return {
-        details: bookingSelectors.getBookingDetails(state)
+        details: bookingSelectors.getBookingDetails(state),
+        isMobile: sizeSelectors.getIsMobile(state)
       }
     });
 
@@ -90,12 +93,13 @@ export class PageBooking {
         ref={ el => this.scrollContent = el as HTMLIonContentElement }
       >
 
-        <section class="section page-booking-body">
+        <section class="page-booking-body">
           <div class="payment-section-wrapper">
             <lazy-image src="/assets/images/booking_hero1.png" class="payment-bg" alt="background-image" aria-label="" />
 
             <div class="payment-bg-mask" />
 
+            <div class={{ section: !this.isMobile }}>
             <div class="payment-hero flex">
               <div class="payment-content-wrapper">
 
@@ -124,55 +128,58 @@ export class PageBooking {
                 </div>
               </div>
             </div>
+            </div>
           </div>
 
-          <div class="payment-content-wrapper payment-info">
-            <h2>Stripe Online Payments</h2>
+          <div class="section">
+            <div class="payment-content-wrapper payment-info">
+              <h2>Stripe Online Payments</h2>
 
-            <p class="sub-title">Stripe is a leading cloud payment platform designed to accept and manage your online transactions and is 100% safe and secure</p>
+              <p class="sub-title">Stripe is a leading cloud payment platform designed to accept and manage your online transactions and is 100% safe and secure</p>
 
-            <div class="payment-info-items">
-              <div class="payment-info-item">
-                <h3>Secure Processing</h3>
+              <div class="payment-info-items">
+                <div class="payment-info-item">
+                  <h3>Secure Processing</h3>
 
-                <p>Stripe meets all Payment Card Industry Data Security Standards (PCI DSS)</p>
+                  <p>Stripe meets all Payment Card Industry Data Security Standards (PCI DSS)</p>
+                </div>
+
+                <div class="payment-info-item">
+                  <h3>Data Security</h3>
+
+                  <p>All information submitted through stripe is encrypted and will never be sold to third parties!</p>
+                </div>
+
+                <div class="payment-info-item">
+                  <h3>A Name Brand You Can Trust</h3>
+
+                  <p>Stripe processes for Lyft, Doordash, Under Armour, Docusign, Booking.com, and many more!</p>
+                </div>
+
+                <div class="payment-info-item">
+                  <h3>Plaid- Wire/ACH Transfer</h3>
+
+                  <p>Plaid is a trusted brand leader in software that allows consumers to make direct ACH and wire payments through their financial tech applications</p>
+                </div>
+
+                <div class="payment-info-item">
+                  <h3>Plaid Security</h3>
+
+                  <p>The Plaid API only allows client requests using strong TLS protocols and ciphers.<br />
+                  Communication between Plaid infrastructure and financial institutions is transmitted over encrypted tunnels.</p>
+                </div>
+
+                <div class="payment-info-item">
+                  <h3>Use Plaid for free!</h3>
+
+                  <p>All wire and ACH transfers are 100% free</p>
+                </div>
               </div>
 
-              <div class="payment-info-item">
-                <h3>Data Security</h3>
-
-                <p>All information submitted through stripe is encrypted and will never be sold to third parties!</p>
-              </div>
-
-              <div class="payment-info-item">
-                <h3>A Name Brand You Can Trust</h3>
-
-                <p>Stripe processes for Lyft, Doordash, Under Armour, Docusign, Booking.com, and many more!</p>
-              </div>
-
-              <div class="payment-info-item">
-                <h3>Plaid- Wire/ACH Transfer</h3>
-
-                <p>Plaid is a trusted brand leader in software that allows consumers to make direct ACH and wire payments through their financial tech applications</p>
-              </div>
-
-              <div class="payment-info-item">
-                <h3>Plaid Security</h3>
-
-                <p>The Plaid API only allows client requests using strong TLS protocols and ciphers.<br />
-                Communication between Plaid infrastructure and financial institutions is transmitted over encrypted tunnels.</p>
-              </div>
-
-              <div class="payment-info-item">
-                <h3>Use Plaid for free!</h3>
-
-                <p>All wire and ACH transfers are 100% free</p>
-              </div>
+              <lazy-image src="/assets/images/bank_cards.png" class="card-logos" />
+              <lazy-image src="/assets/images/stripe_black.png" class="card-logos" />
+              <lazy-image src="/assets/images/plaid_logo.png" class="card-logos" />
             </div>
-
-            <lazy-image src="/assets/images/bank_cards.png" class="card-logos" />
-            <lazy-image src="/assets/images/stripe_black.png" class="card-logos" />
-            <lazy-image src="/assets/images/plaid_logo.png" class="card-logos" />
           </div>
 
           <div class="payment-section-wrapper payment-faq">
@@ -181,6 +188,7 @@ export class PageBooking {
             <div class="payment-bg-mask" />
 
             <div class="payment-hero">
+              <div class="section">
               <div class="payment-content-wrapper payment-faq-wrapper">
               {
                 faqQuestions.map((q, index) =>
@@ -218,8 +226,10 @@ export class PageBooking {
                 </div>
               </div>
             </div>
+            </div>
           </div>
 
+          <div class="section">
           <div class="payment-content-wrapper payment-booking">
               <div class="title">
                 The booking process
@@ -264,6 +274,7 @@ export class PageBooking {
 
                 Pick up a key and check in
               </div>
+          </div>
           </div>
 
           <div class="payment-form-wrapper desktop">
