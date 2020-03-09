@@ -127,7 +127,6 @@ export class PageNeighborhood {
       <app-header />,
       <ion-content class="page-neighborhood">
 
-
        <div class="hero">
         <lazy-image src={item.image} class="hero-bg" alt="background image" />
           <section class="section">
@@ -139,7 +138,7 @@ export class PageNeighborhood {
           </section>
         </div>
         
-        <section class="section no-margin">
+        <section class={this.size == "phone-only" ? "section" : "section no-margin"}>
           <div class="neighborhood-about-wrapper">
             <div class="about">
               <div>
@@ -156,9 +155,11 @@ export class PageNeighborhood {
               </div>
             </div>
 
-            <div class="experience">
-              <lazy-image src="/assets/images/neighborhoods/noho-experience.jpg"  alt="Experience" />
+            <div class="experience no-margin">
+              <lazy-image src="/assets/images/neighborhoods/noho-experience.jpg"  alt="Experience"/>
             </div>
+
+            
           </div>
 
           </section>
@@ -167,7 +168,7 @@ export class PageNeighborhood {
             <neighborhood-map item={item} />
           </div>
 
-          <section class="section">
+          <section class={this.size == "phone-only" ? "section" : "section no-margin"}>
 
           <div class="listings-wrapper">
           {
@@ -199,8 +200,8 @@ export class PageNeighborhood {
        
             <div class='row'>
               <div class='column'>
-                <div class='image-column'>
-                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+                <div class={this.size == "phone-only" ? "image-column no-margin" : "image-column"}>
+                      <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
                 </div>
               </div>
               <div class='column'>
@@ -213,7 +214,7 @@ export class PageNeighborhood {
 
             <div class='row reverse'>
               <div class='column'>
-                <div class='image-column reverse'>
+                <div class={this.size == "phone-only" ? "image-column reverse no-margin" : "image-column reverse"}>
                     <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
                 </div>
               </div>
@@ -227,7 +228,7 @@ export class PageNeighborhood {
 
             <div class='row'>
               <div class='column'>
-                <div class='image-column'>
+                <div class={this.size == "phone-only" ? "image-column no-margin" : "image-column"}>
                     <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
                 </div>
               </div>
@@ -241,7 +242,7 @@ export class PageNeighborhood {
 
             <div class='row reverse'>
               <div class='column'>
-                <div class='image-column reverse'>
+                <div class={this.size == "phone-only" ? "image-column reverse no-margin" : "image-column reverse"}>
                     <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
                 </div>
               </div>
@@ -255,7 +256,7 @@ export class PageNeighborhood {
 
             <div class='row'>
               <div class='column'>
-                <div class='image-column'>
+                <div class={this.size == "phone-only" ? "image-column no-margin" : "image-column"}>
                     <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
                 </div>
               </div>
@@ -269,7 +270,7 @@ export class PageNeighborhood {
 
             <div class='row reverse'>
               <div class='column'>
-                <div class='image-column reverse'>
+                <div class={this.size == "phone-only" ? "image-column reverse no-margin" : "image-column reverse"}>
                     <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
                 </div>
               </div>
