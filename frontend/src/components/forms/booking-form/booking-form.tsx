@@ -344,7 +344,7 @@ export class BookingForm {
   render() {
     return (
       <form onSubmit={e => this.onSubmit(e)} class="booking-form-component" ref={el => this.form = el as HTMLFormElement }>
-        <div class={{ 'form-content': true, submitted: this.submitted }}>
+       
         <div class="title text-center">Select a payment method</div>
 
         <div class="payment-method text-center">
@@ -518,24 +518,15 @@ export class BookingForm {
             Proceed to payment gateway
           </button>
         </div>
-        </div>
+       
 
-        {
-        this.submitted ?      
-          <div class="thank-you-msg flex-vertical-center text-center">
-            <div>
-              <p>
-              Your payment has been processed successfully! <br /><br />
-              We are now processing your booking and will email you shortly with the next steps.
-
-              </p>
-
-              <ion-icon name="md-checkmark" />
-            </div>
-          </div> : null
-        }
-
+     
+  
+      
       </form>
+      
+        
+
     )
   }
 }

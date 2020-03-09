@@ -1,6 +1,7 @@
 @import '../../../styles/mixins';
 
 .booking-form-component {
+
   .title {
     font-size: 14px;
     font-weight: 600;
@@ -197,5 +198,14 @@
 
   button {
     padding-bottom: 6px;
+  }
+
+  .main-content {
+    position: relative;
+    //display: flex;
+
+    &.hide {
+      visibility: hidden;
+    }
   }
 }
