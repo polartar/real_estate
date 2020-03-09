@@ -54,6 +54,10 @@ class ProcessStripeWebhook implements ShouldQueue
                     return;
                 }
 
+                if ($this->event->livemode && config('apt212.stripe_environment') !== 'production') {
+                    return;
+                }
+
                 // Stripe\StripeObject Object
                 // (
                 //     [payment_method] => credit
