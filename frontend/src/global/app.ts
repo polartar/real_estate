@@ -3,8 +3,6 @@ import '@ionic/core';
 // import { setupConfig } from '@ionic/core';
 import { setupConfig } from '../services/environment/environment-config';
 
-console.log('<@AGENTS@>');
-
 setupConfig({
     API_URL: '<@API_URL@>',
     BASE_URL: '<@BASE_URL@>',
