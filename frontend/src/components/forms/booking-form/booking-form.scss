@@ -1,6 +1,7 @@
 @import '../../../styles/mixins';
 
 .booking-form-component {
+
   .title {
     font-size: 14px;
     font-weight: 600;
@@ -12,6 +13,12 @@
 
     &:focus {
       outline: none;
+    }
+  }
+
+  .form-content {
+    &.submitted {
+      visibility: hidden;
     }
   }
 
@@ -165,6 +172,39 @@
 
     &.visible {
       display: block;
+    }
+  }
+
+  .thank-you-msg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+
+    p {
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.5;
+      padding: 0 40px;
+    }
+
+    ion-icon {
+      font-size: 120px;
+      color: #057365;
+    }
+  }
+
+  .tos-view {
+    padding-bottom: 6px;
+  }
+
+  .main-content {
+    position: relative;
+
+    &.hide {
+      visibility: hidden;
     }
   }
 }

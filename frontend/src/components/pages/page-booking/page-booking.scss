@@ -2,6 +2,8 @@
 @import '../../../styles/variables';
 
 .page-booking {
+  position: relative;
+
   .payment-content-wrapper {
     width: 100%;
 
@@ -120,7 +122,7 @@
     @include for-size(desktop-up) {
       height: 100%;
       width: calc(475px + 81px);
-      right: max(0px, calc(100% - 1440px) / 2);
+      right: max(1px, calc(100% - 1440px) / 2);
       top: 0;
     }
 

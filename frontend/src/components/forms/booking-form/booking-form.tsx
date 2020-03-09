@@ -10,8 +10,6 @@ import { ScriptLoaderService } from '../../../services/script-loader.service';
 import { LoadingService } from '../../../services/loading.service';
 import { APIBookingService } from '../../../services/api/booking';
 import { ToastService } from '../../../services/toast.service';
-import { AlertService } from '../../../services/alerts.service';
-import { RouterService } from '../../../services/router.service';
 import { ModalService } from '../../../services/modal.service';
 
 declare var Stripe: any;
@@ -24,9 +22,10 @@ declare var Plaid: any;
 export class BookingForm {
   @Prop({ context: "store" }) store: Store;
   @State() method: string = 'ach';
-  @State() agent: string = 'no';
+  @State() agent: string = 'yes';
   @State() bookingDetails: any = null;
   @State() errors: any = [];
+  @State() submitted: boolean = false;
 
   @State() idSuffix: string = generateId(5);
 
@@ -287,9 +286,7 @@ export class BookingForm {
 
       await LoadingService.hideLoading();
 
-      await AlertService.alert('Thank you for making a payment. We are processing your booking and will get back with you shortly.  Please check your email for your receipt.', 'Success');
-
-      RouterService.forward('/');
+      this.submitted = true;
 
     } catch (err) {
       ToastService.error(err.message, { duration: 10000 });
@@ -322,9 +319,7 @@ export class BookingForm {
 
           await LoadingService.hideLoading();
 
-          await AlertService.alert('Thank you for making a payment. We are processing your booking and will get back with you shortly.  Please check your email for your receipt.', 'Success');
-
-          RouterService.forward('/');
+          this.submitted = true;
 
         } catch (err) {
           ToastService.error(err.message, { duration: 10000 });
@@ -350,6 +345,7 @@ export class BookingForm {
   render() {
     return (
       <form onSubmit={e => this.onSubmit(e)} class="booking-form-component" ref={el => this.form = el as HTMLFormElement }>
+        <div class={{ 'form-content': true, submitted: this.submitted }}>
         <div class="title text-center">Select a payment method</div>
 
         <div class="payment-method text-center">
@@ -512,9 +508,10 @@ export class BookingForm {
         <div class={{ input: true, error: this.errors.includes('tos') }}>
           <div class="flex-vertical-center">
               <label class="inline">
-                Do you agree to terms of service? <button type="button" class="button-reset tos-view" onClick={() => ModalService.bookingTOS()}>View</button>
+              I have read and agree to the terms &amp; conditions of service  
               </label>
               <apt212-checkbox name="tos" value="1" class="tos" />
+              <button type="button" class="button-reset tos-view" onClick={() => ModalService.bookingTOS()}>View</button>
           </div>
         </div>
 
@@ -523,6 +520,23 @@ export class BookingForm {
             Proceed to payment gateway
           </button>
         </div>
+        </div>
+
+        {
+        this.submitted ?      
+          <div class="thank-you-msg flex-vertical-center text-center">
+            <div>
+              <p>
+              Your payment has been processed successfully! <br /><br />
+              We are now processing your booking and will email you shortly with the next steps.
+
+              </p>
+
+              <ion-icon name="md-checkmark" />
+            </div>
+          </div> : null
+        }
+
       </form>
     )
   }

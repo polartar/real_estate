@@ -64,7 +64,7 @@ class BookingController extends Controller
 
             return response()->json($intent->client_secret);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->message], 500);
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
