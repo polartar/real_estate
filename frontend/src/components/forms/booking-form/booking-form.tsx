@@ -10,7 +10,6 @@ import { ScriptLoaderService } from '../../../services/script-loader.service';
 import { LoadingService } from '../../../services/loading.service';
 import { APIBookingService } from '../../../services/api/booking';
 import { ToastService } from '../../../services/toast.service';
-import { ModalService } from '../../../services/modal.service';
 
 declare var Stripe: any;
 declare var Plaid: any;
