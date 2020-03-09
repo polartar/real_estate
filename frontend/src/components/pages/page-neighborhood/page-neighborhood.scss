@@ -100,10 +100,10 @@
   .neighborhood-about-wrapper {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    padding-top: 24px;
+    flex-direction: column-reverse;
+    padding-top: 40px;
 
-    @include for-size('desktop-up') {
+    @include for-size('tablet-portrait-up') {
       flex-direction: row-reverse;
       align-items: center;
     }
@@ -111,6 +111,7 @@
     .experience {
       position: relative;
       width: 100%;
+      margin-bottom: 30px;
       @include for-size('desktop-up') {
         margin-bottom: 200px;
       }
@@ -120,6 +121,16 @@
         height: 632px;
         margin-bottom: 0;
       }
+
+      .lazy-image {
+        margin-left: -20px;
+        max-width: 380px;
+
+        @include for-size('tablet-portrait-up') {
+          margin-left: 0px;
+          max-width: 100%;
+        }        
+      }
       
    
     }
@@ -128,7 +139,7 @@
       display: flex;
       flex-grow: 1;
 
-      @include for-size('desktop-up') {
+      @include for-size('tablet-portrait-up') {
         align-items: right;
         justify-content: right;
         text-align: right;
@@ -142,10 +153,25 @@
         }
       }
 
-      h2, p {
+      h2 {
         margin: 0;
         padding-bottom: 16px;
       }
+
+      p {
+
+        margin: 0;
+        padding-bottom: 16px;
+
+        max-width: 315px;
+
+        @include for-size('tablet-portrait-up') {
+          max-width: 1000px;
+        }
+
+      }
+
+      
 
     }
   }
@@ -211,6 +237,7 @@
       flex-direction: row;
       margin-right: 8px;
       padding-top: 0px;
+      flex: 1;
     }
 
     &.reverse {
@@ -221,12 +248,28 @@
         margin-right: 8px;
       }
     }
+
+    .lazy-image {
+      margin-left: -20px;
+      max-width: 380px;
+
+      @include for-size('tablet-portrait-up') {
+        margin-left: 0px;
+        max-width: 100%;
+      }        
+    }
+
+    
   }
   
   .text-column {
     padding: 0px;
 
     @include for-size('tablet-portrait-up') {
+      padding: 0px 40px;
+    }
+
+    @include for-size('desktop-up') {
       padding: 0px 100px;
     }
   }
@@ -330,8 +373,13 @@
 
   }
 
+  &.no-image-margin {
+    margin: 0 -20px;
+  }
+
   .listings-wrapper {
     //padding: 0px 48px;
   }
+
 
 }

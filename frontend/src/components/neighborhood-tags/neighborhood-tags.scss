@@ -15,7 +15,7 @@
         justify-content: left;
         flex-wrap: wrap;
 
-        @include for-size('desktop-up') {
+        @include for-size('tablet-portrait-up') {
             justify-content: flex-end;
         }
 
@@ -31,7 +31,7 @@
         font-size: 16px;
         text-transform: uppercase;
 
-        @include for-size('desktop-up') {
+        @include for-size('tablet-portrait-up') {
             margin-right: 0px;
             margin-left: 16px;
             margin-bottom: 16px;
