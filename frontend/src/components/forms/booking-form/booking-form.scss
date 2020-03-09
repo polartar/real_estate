@@ -196,13 +196,12 @@
     }
   }
 
-  button {
+  .tos-view {
     padding-bottom: 6px;
   }
 
   .main-content {
     position: relative;
-    //display: flex;
 
     &.hide {
       visibility: hidden;
