@@ -510,7 +510,7 @@ export class BookingForm {
               <label class="inline">
               I have read and agree to the terms &amp; conditions of service  
               </label>
-              <apt212-checkbox name="tos" value="1" class="tos" /><button type="button" class="button-reset tos-view" onClick={() => ModalService.bookingTOS()}>View</button>
+              <apt212-checkbox name="tos" value="1" class="tos" />
           </div>
         </div>
 
