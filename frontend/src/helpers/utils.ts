@@ -9,7 +9,7 @@ export function generateId(length) {
   return Array.from(arr, dec2hex).join('')
 }
 
-export function formatMoney(num: number, locale: string = 'en-US', options: any = {}) {
+export function formatMoney(num: number, options: any = {}, locale: string = 'en-US') {
   const formatter = new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: 'USD',
