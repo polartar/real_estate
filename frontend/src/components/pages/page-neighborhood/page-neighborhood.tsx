@@ -64,6 +64,8 @@ export class PageNeighborhood {
     if (rel) {
       rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL') + '/neighborhood/' + this.neighborhoodName);
     }
+
+    console.log(this.size);
   }
 
   @Watch('taxonomyLoaded')

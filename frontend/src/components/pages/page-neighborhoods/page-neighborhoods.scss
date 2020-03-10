@@ -8,6 +8,10 @@
     width: 100%;
     height: 713px;
 
+    @media only screen and (min-device-width: 320px) {
+      height: 568px;
+    }
+
     @include for-size(tablet-portrait-up) {
       height: 320px;
     }
@@ -34,6 +38,10 @@
       h1 {
         color: white;
         font-size: $font-size * 2;
+
+        @media only screen and (min-device-width: 320px) {
+          font-size: 30px;
+        }
 
         @include for-size(tablet-portrait-up) {
           font-size: $font-size-lg * 2;

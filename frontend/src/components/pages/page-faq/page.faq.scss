@@ -29,6 +29,10 @@
       padding-top: 200px;
       align-items: top;
 
+      @media only screen and (min-device-width: 320px) {
+        height: 568px;
+      }
+
       @include for-size(tablet-portrait-up) {
         height: 640px;
       }
