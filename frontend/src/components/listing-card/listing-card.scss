@@ -6,9 +6,13 @@
 
   .listing-title {
     margin-top: 10px;
-    font-size: $font-size-md;
+    font-size: 28px;
     margin-bottom: 5px;
     text-transform: none;
+
+    @include for-size(tablet-portrait-up) {
+      font-size: $font-size-md;
+    }
 
     @include for-size(desktop-up) {
       font-size: $font-size-lg;
@@ -22,15 +26,23 @@
   }
 
   .price {
-    font-size: $font-size-md;
+    font-size: 18px;
     padding-bottom: 0.5rem;
+    
+    @include for-size(tablet-portrait-up) {
+      font-size: $font-size-md;
+    }
   }
 
   .bed-bath {
     display: flex;
     align-items: center;
-    font-size: $font-size-xs;
+    font-size: 18px;
     padding-bottom: 0.5rem;
+
+    @include for-size(tablet-portrait-up) {
+      font-size: $font-size-xs;
+    }
 
     @include for-size(desktop-up) {
       font-size: $font-size-md;
@@ -48,9 +60,17 @@
 
   .bedrooms,
   .bathrooms {
-    width: 0.625rem;
-    height: 0.625rem;
+    width: 30px;
+    height: 14px;
     margin-right: 0.25rem;
+    display: flex;
+    align-items: center;
+
+    @include for-size(tablet-portrait-up) {
+      width: 0.625rem;
+      height: 0.625rem;
+      margin-right: 0.25rem;
+    }
 
     @include for-size(desktop-up) {
       width: 1rem;
@@ -62,11 +82,11 @@
   .rating-amenities {
     display: flex;
     align-items: center;
-    font-size: $font-size-xs;
+    font-size: 18px;
 
-    @include for-size(desktop-up) {
-      font-size: $font-size-md;
-    }
+      @include for-size(tablet-portrait-up) {
+        font-size: $font-size-xs;
+      }
 
     .amenities {
       padding-left: 0.5rem;
@@ -95,7 +115,17 @@
     }
 
     .rating-amenities {
-      font-size: $font-size-md;
+      font-size: 18px;
+
+      @include for-size(tablet-portrait-up) {
+        font-size: $font-size-md;
+      }
+
+
     }
+  }
+
+  .bed-bath .lazy-image img {
+    //height: 43px;
   }
 }
