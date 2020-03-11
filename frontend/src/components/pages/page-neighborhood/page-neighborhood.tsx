@@ -123,7 +123,14 @@ export class PageNeighborhood {
     let neighborhoodTitle = 'Other New York City Neighborhoods';
     let neighborhoodSubTitle = 'Experience some other neighborhoods';
 
+    //let explore_image = "/assets/images/neighborhoods/" + item.slug + "-explore.jpg";
 
+    let eat_image = "/assets/images/neighborhoods/" + item.slug + "-eat.jpg";
+    let drink_image = "/assets/images/neighborhoods/" + item.slug + "-drink.jpg";
+    let shop_image = "/assets/images/neighborhoods/" + item.slug + "-shop.jpg";
+    let play_image = "/assets/images/neighborhoods/" + item.slug + "-play.jpg";
+    let explore_image = "/assets/images/neighborhoods/" + item.slug + "-explore.jpg";
+    let life_image = "/assets/images/neighborhoods/" + item.slug + "-life.jpg";
 
     return [
       <app-header />,
@@ -158,7 +165,7 @@ export class PageNeighborhood {
             </div>
 
             <div class="experience no-margin">
-              <lazy-image src="/assets/images/neighborhoods/noho-experience.jpg"  alt="Experience"/>
+              <lazy-image src={explore_image}  alt="Experience"/>
             </div>
 
             
@@ -203,7 +210,7 @@ export class PageNeighborhood {
             <div class='row'>
               <div class='column'>
                 <div class={this.size == "phone-only" ? "image-column no-margin" : "image-column"}>
-                      <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+                      <lazy-image src={eat_image}  class="right" alt="Eat in" />
                 </div>
               </div>
               <div class='column'>
@@ -217,7 +224,7 @@ export class PageNeighborhood {
             <div class='row reverse'>
               <div class='column'>
                 <div class={this.size == "phone-only" ? "image-column reverse no-margin" : "image-column reverse"}>
-                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+                    <lazy-image src={drink_image}  class="left" alt="Eat in" />
                 </div>
               </div>
               <div class='column'>
@@ -230,8 +237,8 @@ export class PageNeighborhood {
 
             <div class='row'>
               <div class='column'>
-                <div class={this.size == "phone-only" ? "image-column no-margin" : "image-column"}>
-                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+              <div class={this.size == "phone-only" ? "image-column no-margin" : "image-column"}>
+                    <lazy-image src={shop_image} class="right" alt="Eat in" />
                 </div>
               </div>
               <div class='column'>
@@ -244,8 +251,8 @@ export class PageNeighborhood {
 
             <div class='row reverse'>
               <div class='column'>
-                <div class={this.size == "phone-only" ? "image-column reverse no-margin" : "image-column reverse"}>
-                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+              <div class={this.size == "phone-only" ? "image-column reverse no-margin" : "image-column reverse"}>
+                    <lazy-image src={play_image}  class="left" alt="Eat in" />
                 </div>
               </div>
               <div class='column'>
@@ -258,8 +265,8 @@ export class PageNeighborhood {
 
             <div class='row'>
               <div class='column'>
-                <div class={this.size == "phone-only" ? "image-column no-margin" : "image-column"}>
-                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+              <div class={this.size == "phone-only" ? "image-column no-margin" : "image-column"}>
+                    <lazy-image src={explore_image}  class="right" alt="Eat in" />
                 </div>
               </div>
               <div class='column'>
@@ -272,8 +279,8 @@ export class PageNeighborhood {
 
             <div class='row reverse'>
               <div class='column'>
-                <div class={this.size == "phone-only" ? "image-column reverse no-margin" : "image-column reverse"}>
-                    <lazy-image src="/assets/images/neighborhoods/neighborhood-alternating.jpg"  alt="Eat in" />
+              <div class={this.size == "phone-only" ? "image-column reverse no-margin" : "image-column reverse"}>
+                    <lazy-image src={life_image}  class="left" alt="Eat in" />
                 </div>
               </div>
               <div class='column'>

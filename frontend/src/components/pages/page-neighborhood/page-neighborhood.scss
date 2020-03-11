@@ -260,7 +260,17 @@
       @include for-size('tablet-portrait-up') {
         margin-left: 0px;
         max-width: 100%;
-      }        
+      }     
+      
+     
+    }
+
+    .right {
+      img {float: right;}
+    }
+
+    .left {
+      img {float: left;}
     }
 
     
