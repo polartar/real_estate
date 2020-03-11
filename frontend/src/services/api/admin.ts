@@ -205,7 +205,7 @@ class APIAdminInstance {
       console.log("here we are")
       const params = encodeURIComponent(JSON.stringify({...filters}));
 
-      let response = await fetch(APIService.getAPIUrl() + '/admin/agents?params=' + params, {
+      let response = await fetch(APIService.getAPIUrl() + '/admin/referrals?params=' + params, {
         headers: APIService.getHeaders(),
       });
 
