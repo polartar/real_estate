@@ -41,7 +41,7 @@ export class ListingSlider {
       rewind: false,
       breakpoints: {
         575: {
-          perView: 2,
+          perView: 1,
           startAt: 0,
           focusAt: 0,
         }
