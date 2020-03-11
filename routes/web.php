@@ -37,6 +37,7 @@ $front_end_routes = [
     '/admin/listing/edit/{id}',
     '/admin/owner-global',
     '/admin/referrals',
+    '/admin/agents',
 
     '/404'
 ];

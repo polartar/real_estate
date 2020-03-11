@@ -12,6 +12,7 @@ use App\Subway;
 use App\User;
 use App\Providers\SearchServiceProvider;
 use App\Referral;
+use App\Agents;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -170,6 +171,25 @@ class AdminController extends Controller
     public function deleteReferral(Referral $referral) {
         try {
             $referral->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false], 400);
+        }
+    }
+
+    public function agents() {
+
+        $agents = Agents::all();
+       
+        return [
+            'total' => $agents->count(),
+            'results' => $agents->get()
+        ];
+    }
+
+    public function deleteAgent(Agents $agent) {
+        try {
+            $agent->delete();
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
             return response()->json(['success' => false], 400);

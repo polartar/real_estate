@@ -123,8 +123,7 @@ export class PageNeighborhood {
     let neighborhoodTitle = 'Other New York City Neighborhoods';
     let neighborhoodSubTitle = 'Experience some other neighborhoods';
 
-    //let explore_image = "/assets/images/neighborhoods/" + item.slug + "-explore.jpg";
-
+    let main_image = "/assets/images/neighborhoods/" + item.slug + "-main.jpg";
     let eat_image = "/assets/images/neighborhoods/" + item.slug + "-eat.jpg";
     let drink_image = "/assets/images/neighborhoods/" + item.slug + "-drink.jpg";
     let shop_image = "/assets/images/neighborhoods/" + item.slug + "-shop.jpg";
@@ -165,7 +164,7 @@ export class PageNeighborhood {
             </div>
 
             <div class="experience no-margin">
-              <lazy-image src={explore_image}  alt="Experience"/>
+              <lazy-image src={main_image}  alt="Experience"/>
             </div>
 
             
