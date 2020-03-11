@@ -64,6 +64,8 @@ Route::group(['middleware' => ['cors', 'auth:api']], function() {
     Route::get('admin/apt-owners', 'AdminController@aptOwners');
     Route::get('admin/referrals', 'AdminController@referrals');
     Route::delete('admin/referral/{referral}', 'AdminController@deleteReferral');
+    Route::get('admin/agents', 'AdminController@agents');
+    Route::delete('admin/agents/{referral}', 'AdminController@deleteAgent');
 
     Route::get('admin/owner-global/{owner_name}', 'AdminController@ownerStats');
     Route::post('admin/owner-global/{owner_name}', 'AdminController@ownerGlobal');

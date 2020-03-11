@@ -29,6 +29,7 @@ export class PageAdminAgents {
 
   componentWillLoad() {
     
+    console.log("loading")
     this.store.mapStateToProps(this, state => {
       return {
         isLoggedIn: authSelectors.isLoggedIn(state),

@@ -147,7 +147,7 @@ class APIAdminInstance {
       console.log("trying to get agents...")
      
 
-      let response = await fetch(APIService.getAPIUrl() + '/admin/agents', {
+      let response = await fetch(APIService.getAPIUrl() + '/admin/agents/', {
         headers: APIService.getHeaders(),
       });
       if (!response.ok) {
