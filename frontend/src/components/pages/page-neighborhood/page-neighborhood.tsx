@@ -131,13 +131,14 @@ export class PageNeighborhood {
     let play_image = "/assets/images/neighborhoods/" + item.slug + "-play.jpg";
     let explore_image = "/assets/images/neighborhoods/" + item.slug + "-explore.jpg";
     let life_image = "/assets/images/neighborhoods/" + item.slug + "-life.jpg";
+    let cover_image = "/assets/images/neighborhoods/" + item.slug + "-cover.jpg";
 
     return [
       <app-header />,
       <ion-content class="page-neighborhood">
 
        <div class="hero">
-        <lazy-image src={item.image} class="hero-bg" alt="background image" />
+        <lazy-image src={cover_image} class="hero-bg" alt="background image" />
           <section class="section">
             <div class="cta">
               {title}
