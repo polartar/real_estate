@@ -13,7 +13,6 @@ import { AlertService } from '../../../../services/alerts.service';
 })
 export class PageAdminAgents {
   @Prop({ context: "store" }) store: Store;
-
   @State() isAdmin: boolean = false;
   @State() isLoggedIn: boolean = false;
   pageSize: number = 40;
@@ -137,16 +136,11 @@ export class PageAdminAgents {
         <h2 class="text-center">Agents</h2>
 
         <section class="section full">
-          {
-            this.loaded ?
-              <div class="listings-totals text-right">
-                Total Agents: {this.resultCount}
-              </div>
-            : null
-          }
-
-    
-
+        
+            <div class="listings-totals text-right">
+                <button type="button" class="button-dark add-new" aria-label="Add New" onClick={() => this.goTo('/admin/agent/')}><ion-icon name="add-circle" /></button>
+            </div>
+   
           { this.loaded ?
           <div
             class="listings"
@@ -181,9 +175,11 @@ export class PageAdminAgents {
                             <ion-icon name="trash" />
                           </button>
 
-                          <button class="button-dark" onClick={() => this.goTo(`/admin/agents/edit/${a.id}`)}>
+                          <button class="button-dark" onClick={() => this.goTo(`/admin/agent/${a.id}`)}>
                             <ion-icon name="settings" />
                           </button>
+
+                         
                         </td>
                       </tr>
                     )

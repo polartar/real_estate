@@ -242,7 +242,7 @@ export namespace Components {
   }
   interface PageAdmin {}
   interface PageAdminAgentEdit {
-    'apartmentId': number;
+    'agentId': number;
   }
   interface PageAdminAgents {}
   interface PageAdminListingAdd {}
@@ -1308,7 +1308,8 @@ declare namespace LocalJSX {
   }
   interface PageAdmin extends JSXBase.HTMLAttributes<HTMLPageAdminElement> {}
   interface PageAdminAgentEdit extends JSXBase.HTMLAttributes<HTMLPageAdminAgentEditElement> {
-    'apartmentId': number;
+    'agentId': number;
+    'onSuccess'?: (event: CustomEvent<any>) => void;
   }
   interface PageAdminAgents extends JSXBase.HTMLAttributes<HTMLPageAdminAgentsElement> {}
   interface PageAdminListingAdd extends JSXBase.HTMLAttributes<HTMLPageAdminListingAddElement> {}

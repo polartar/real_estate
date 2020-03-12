@@ -1,0 +1,144 @@
+@import '../../../../styles/mixins';
+@import '../../../../styles/variables';
+
+
+.agent-edit-form-component {
+  width: 1344px;
+  margin: auto;
+  
+  .action-button {
+    margin-bottom: 16px;
+  }
+
+  .fieldset-inputs {
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    &.address {
+      display: grid;
+      gap: 8px;
+      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    &.features {
+      display: grid;
+      gap: 8px;
+      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    &.subways {
+      display: grid;
+      gap: 8px;
+      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+      button {
+        border: 1px solid black;
+        padding-top: 4px;
+        padding-bottom: 4px;
+
+        &.selected {
+          background-color: $color-secondary;
+        }
+
+        img {
+          background-color: white;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    &.amenities {
+      display: grid;
+      gap: 8px;
+      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+      button {
+        border: 1px solid black;
+        padding-top: 4px;
+        padding-bottom: 4px;
+
+        &.selected {
+          background-color: $color-secondary;
+          color: white;
+        }
+
+        img {
+          width: 30px;
+          height: 30px;
+          padding: 3px;
+          background-color: white;
+          border-radius: 6px;
+          vertical-align: middle;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .monthly-rates-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .monthly-rates {
+    .monthly-rate {
+      min-width: 75px;
+    }
+
+    thead {
+      td {
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+
+    td {
+      vertical-align: middle;
+      padding-bottom: 4px;
+
+      input.apt212-input {
+        margin: 0;
+      }
+    }
+
+    .label {
+      white-space: nowrap;
+      padding-right: 4px;
+      font-weight: bold;
+    }
+  }
+
+  .block-date {
+    display: flex;
+    align-items: center;
+    padding-top: 16px;
+
+    button {
+      padding-top: 3px;
+      margin-left: 16px;
+      font-size: 18px;
+    }
+  }
+
+  .block-date-input {
+    padding-top: 16px;
+
+    .input {
+      display: inline-block;
+      padding-right: 16px;
+    }
+  }
+
+  .errors {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: red;
+  }
+}
+
