@@ -310,12 +310,21 @@ export class PageCorporateRooms {
 
           {
             this.privateRoomList.length && this.neighborhoodsLoaded ?
-              <div class="predefined-search">
+            
+            <div class="predefined-search">
 
-                {(this.isMobile) ? <listing-slider items={this.privateRoomList} /> : <listing-list items={this.privateRoomList} />}
-              </div>
-              : null
-          }
+              {(this.isMobile) ? <listing-slider items={this.privateRoomList.slice(0, 3)} /> : null}
+              {(this.isMobile) ? <listing-slider items={this.privateRoomList.slice(3, 6)} /> : null}
+              {(this.isMobile) ? <listing-slider items={this.privateRoomList.slice(6, 9)} /> : null}
+
+              {(this.isMobile) ? 
+                <listing-slider items={this.privateRoomList.slice(9, 12)} />
+              : 
+                <listing-list items={this.privateRoomList} />}
+            </div>
+            
+            : null
+          }   
 
           <find-more />
 
