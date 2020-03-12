@@ -15,6 +15,7 @@ use App\Referral;
 use App\Agents;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -179,12 +180,11 @@ class AdminController extends Controller
 
     public function agents() {
 
+        Log::error("WE ARE HERE");
+
         $agents = Agents::all();
        
-        return [
-            'total' => $agents->count(),
-            'results' => $agents->get()
-        ];
+        return $agents;
     }
 
     public function deleteAgent(Agents $agent) {

@@ -241,6 +241,9 @@ export namespace Components {
     'prefetching': boolean;
   }
   interface PageAdmin {}
+  interface PageAdminAgentEdit {
+    'apartmentId': number;
+  }
   interface PageAdminAgents {}
   interface PageAdminListingAdd {}
   interface PageAdminListingEdit {
@@ -752,6 +755,12 @@ declare global {
     new (): HTMLPageAdminElement;
   };
 
+  interface HTMLPageAdminAgentEditElement extends Components.PageAdminAgentEdit, HTMLStencilElement {}
+  var HTMLPageAdminAgentEditElement: {
+    prototype: HTMLPageAdminAgentEditElement;
+    new (): HTMLPageAdminAgentEditElement;
+  };
+
   interface HTMLPageAdminAgentsElement extends Components.PageAdminAgents, HTMLStencilElement {}
   var HTMLPageAdminAgentsElement: {
     prototype: HTMLPageAdminAgentsElement;
@@ -1039,6 +1048,7 @@ declare global {
     'page-404': HTMLPage404Element;
     'page-about': HTMLPageAboutElement;
     'page-admin': HTMLPageAdminElement;
+    'page-admin-agent-edit': HTMLPageAdminAgentEditElement;
     'page-admin-agents': HTMLPageAdminAgentsElement;
     'page-admin-listing-add': HTMLPageAdminListingAddElement;
     'page-admin-listing-edit': HTMLPageAdminListingEditElement;
@@ -1297,6 +1307,9 @@ declare namespace LocalJSX {
     'prefetching'?: boolean;
   }
   interface PageAdmin extends JSXBase.HTMLAttributes<HTMLPageAdminElement> {}
+  interface PageAdminAgentEdit extends JSXBase.HTMLAttributes<HTMLPageAdminAgentEditElement> {
+    'apartmentId': number;
+  }
   interface PageAdminAgents extends JSXBase.HTMLAttributes<HTMLPageAdminAgentsElement> {}
   interface PageAdminListingAdd extends JSXBase.HTMLAttributes<HTMLPageAdminListingAddElement> {}
   interface PageAdminListingEdit extends JSXBase.HTMLAttributes<HTMLPageAdminListingEditElement> {
@@ -1483,6 +1496,7 @@ declare namespace LocalJSX {
     'page-404': Page404;
     'page-about': PageAbout;
     'page-admin': PageAdmin;
+    'page-admin-agent-edit': PageAdminAgentEdit;
     'page-admin-agents': PageAdminAgents;
     'page-admin-listing-add': PageAdminListingAdd;
     'page-admin-listing-edit': PageAdminListingEdit;

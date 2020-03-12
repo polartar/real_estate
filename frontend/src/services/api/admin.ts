@@ -147,7 +147,7 @@ class APIAdminInstance {
       console.log("trying to get agents...")
      
 
-      let response = await fetch(APIService.getAPIUrl() + '/admin/agents/', {
+      let response = await fetch(APIService.getAPIUrl() + '/admin/agents', {
         headers: APIService.getHeaders(),
       });
       if (!response.ok) {
@@ -158,6 +158,7 @@ class APIAdminInstance {
         throw new Error(response.statusText);
       }
 
+        console.log("test")
       return await response.json();
     } catch (err) {
       throw new Error(err.message);
@@ -166,7 +167,7 @@ class APIAdminInstance {
 
   public async deleteAgent(id) {
     try {
-      let response = await fetch(`${APIService.getAPIUrl()}/admin/agent/${id}`, {
+      let response = await fetch(`${APIService.getAPIUrl()}/admin/agents/${id}`, {
         headers: APIService.getHeaders(),
         method: 'DELETE'
       });

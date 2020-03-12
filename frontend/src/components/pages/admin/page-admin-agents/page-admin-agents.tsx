@@ -29,7 +29,6 @@ export class PageAdminAgents {
 
   componentWillLoad() {
     
-    console.log("loading")
     this.store.mapStateToProps(this, state => {
       return {
         isLoggedIn: authSelectors.isLoggedIn(state),
@@ -64,12 +63,9 @@ export class PageAdminAgents {
 
   async renderAgents() {
     try {
-      console.log("we are trying to get agents")
       const result = await this.fetchAgents();
 
-      console.log("result says" + result)
-
-      this.agents = result.results;
+      this.agents = result;
       this.resultCount = result.total;
 
       this.loaded = true;
@@ -81,11 +77,7 @@ export class PageAdminAgents {
   
   async fetchAgents() {
     try {
-      console.log("WE ARE trying to fetch agents")
-
       const result = await APIAdminService.getAgents();
-
-      console.log("we fetched: " + result)
 
       return result;
 
@@ -101,6 +93,10 @@ export class PageAdminAgents {
 
     // magic # 150 to account for admin header height
     return `${this.screenHeight - this.agentsWrapper.offsetTop - 150}px`;
+  }
+
+  goTo(path) {
+    RouterService.forward(path);
   }
 
   async deleteAgent(id) {
@@ -183,6 +179,10 @@ export class PageAdminAgents {
                         <td>
                           <button class="button-dark" onClick={() => this.deleteAgent(a.id)}>
                             <ion-icon name="trash" />
+                          </button>
+
+                          <button class="button-dark" onClick={() => this.goTo(`/admin/agents/edit/${a.id}`)}>
+                            <ion-icon name="settings" />
                           </button>
                         </td>
                       </tr>
