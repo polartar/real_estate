@@ -278,9 +278,11 @@
   
   .text-column {
     padding: 0px;
+    max-width: 288px;
 
     @include for-size('tablet-portrait-up') {
       padding: 0px 40px;
+      max-width: 100%;
     }
 
     @include for-size('desktop-up') {
