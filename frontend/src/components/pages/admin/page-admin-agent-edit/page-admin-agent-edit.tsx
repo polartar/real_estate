@@ -19,6 +19,7 @@ export class PageAdminAgentEdit {
   @State() item: any;
   @State() loaded: boolean = false;
   @State() submitting: boolean = false;
+  @State() agents: any[] = [];
 
   @Event() success: EventEmitter;
 
@@ -74,7 +75,9 @@ export class PageAdminAgentEdit {
       ToastService.success('Agent has been saved');
       this.success.emit(agent);
 
-      RouterService.forward('admin/agents');
+      RouterService.reload('/admin/agents');
+
+      //window.open("/admin/agents","_self")
 
     } catch(err) {
       ToastService.error(err.message);
@@ -82,6 +85,7 @@ export class PageAdminAgentEdit {
       this.submitting = false;
     }
   }
+
 
   render() {
     

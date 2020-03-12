@@ -1,7 +1,7 @@
 @import '../../../../styles/mixins';
 
 .page-admin-agents {
-
+  
   .listings {
     margin-top: 32px;
     padding-bottom: 32px;
@@ -68,5 +68,11 @@
     button {
       height: 48px;
     }
+  }
+
+  th {
+    text-align: left;
+    padding-left: 8px;
+    padding-bottom: 10px;
   }
 }

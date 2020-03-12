@@ -78,6 +78,8 @@ export class PageAdminAgents {
     try {
       const result = await APIAdminService.getAgents();
 
+      console.log("fetched agents")
+
       return result;
 
     } catch(err) {
@@ -178,8 +180,6 @@ export class PageAdminAgents {
                           <button class="button-dark" onClick={() => this.goTo(`/admin/agent/${a.id}`)}>
                             <ion-icon name="settings" />
                           </button>
-
-                         
                         </td>
                       </tr>
                     )
