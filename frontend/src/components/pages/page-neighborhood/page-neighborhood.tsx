@@ -74,6 +74,7 @@ export class PageNeighborhood {
       try {
         const item = this.neighborhoods.find(v => v.slug === this.neighborhoodName);
         this.apartmentsList = await APISearchService.getNamedSearch('apartmentsByNeighborhood', {id: item.id});
+
       } catch (err) {
         console.log(err);
       }
@@ -184,7 +185,14 @@ export class PageNeighborhood {
             
             <div class="predefined-search">
 
-              {(this.isMobile) ? <listing-slider items={this.apartmentsList} /> : <listing-list items={this.apartmentsList} />}
+              {(this.isMobile) ? <listing-slider items={this.apartmentsList.slice(0, 3)} /> : null}
+              {(this.isMobile) ? <listing-slider items={this.apartmentsList.slice(3, 6)} /> : null}
+              {(this.isMobile) ? <listing-slider items={this.apartmentsList.slice(6, 9)} /> : null}
+
+              {(this.isMobile) ? 
+                <listing-slider items={this.apartmentsList.slice(9, 12)} />
+              : 
+                <listing-list items={this.apartmentsList} />}
             </div>
             
             : null
