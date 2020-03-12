@@ -41,6 +41,9 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
     Route::post('booking/share_apartment', 'BookingController@shareApartment');
     Route::post('booking/inquiry', 'BookingController@inquiry');
     // Route::get('booking/preview_mail', 'BookingController@previewMail');
+
+    // Agents
+    Route::get('admin/agents', 'AdminController@agents');
 });
 
 
@@ -64,7 +67,7 @@ Route::group(['middleware' => ['cors', 'auth:api']], function() {
     Route::get('admin/apt-owners', 'AdminController@aptOwners');
     Route::get('admin/referrals', 'AdminController@referrals');
     Route::delete('admin/referral/{referral}', 'AdminController@deleteReferral');
-    Route::get('admin/agents', 'AdminController@agents');
+    
     Route::get('admin/agent/{id}', 'AdminController@showAgent');
     Route::patch('admin/agent/{id}', 'AdminController@updateAgent');
     Route::post('admin/agent', 'AdminController@storeAgent');

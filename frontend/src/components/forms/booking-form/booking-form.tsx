@@ -11,6 +11,7 @@ import { LoadingService } from '../../../services/loading.service';
 import { APIBookingService } from '../../../services/api/booking';
 import { ToastService } from '../../../services/toast.service';
 import { ModalService } from '../../../services/modal.service';
+import { APIAdminService } from '../../../services/api/admin';
 
 declare var Stripe: any;
 declare var Plaid: any;
@@ -26,6 +27,7 @@ export class BookingForm {
   @State() bookingDetails: any = null;
   @State() errors: any = [];
   @State() submitted: boolean = false;
+  @State() agents: any[] = [];
 
   @State() idSuffix: string = generateId(5);
 
@@ -38,72 +40,19 @@ export class BookingForm {
   cardExpiry: any;
   cardCvc: any;
 
-  agents: any[] = [
-    {
-      name: 'Office',
-      email: 'office@apt212.com'
-    },
-    {
-      name: 'Adi',
-      email: 'adi@apt212.com'
-    },
-    {
-      name: 'Margaret',
-      email: 'margaret@apt212.com'
-    },
-    {
-      name: 'Rivka',
-      email: 'rivka@apt212.com'
-    },
-    {
-      name: 'Jane',
-      email: 'jane@apt212.com'
-    },
-    {
-      name: 'Dustin',
-      email: 'dustin@apt212.com'
-    },
-    {
-      name: 'Milena',
-      email: 'milena@apt212.com'
-    },
-    {
-      name: 'Dana',
-      email: 'dana@apt212.com'
-    },
-    {
-      name: 'Sara',
-      email: 'sara@apt212.com'
-    },
-    {
-      name: 'Katherine',
-      email: 'katie@apt212.com'
-    },
-    {
-      name: 'Karishma',
-      email: 'karishma@apt212.com'
-    },
-    {
-      name: 'Georgeann',
-      email: 'georgeann@apt212.com'
-    },
-    {
-      name: 'Esther',
-      email: 'esther@apt212.com'
-    },
-    {
-      name: 'Pritha',
-      email: 'pritha@apt212.com'
-    },
-    {
-      name: 'Francois',
-      email: 'francois@apt212.com'
-    },
-    {
-      name: 'Gloria',
-      email: 'gloria@apt212.com'
+
+  async fetchAgents() {
+    try {
+      const result = await APIAdminService.getAgents();
+
+      this.agents = result;
+
+      return result;
+
+    } catch(err) {
+      return ToastService.error(`Could not retrieve agents. Please try again later. ${err.message}`);
     }
-  ];
+  }
 
   componentWillLoad() {
     this.store.mapStateToProps(this, state => {
@@ -114,6 +63,8 @@ export class BookingForm {
   }
 
   componentDidLoad() {
+    this.fetchAgents();
+
     ScriptLoaderService.loadScript('Stripe', 'https://js.stripe.com/v3/')
       .then(() => {
         this.stripe = Stripe(EnvironmentConfigService.getInstance().get('STRIPE_PUBLIC_KEY'));
