@@ -278,7 +278,10 @@
   
   .text-column {
     padding: 0px;
-    max-width: 288px;
+    
+    @media only screen and (min-device-width: 320px) {
+      max-width: 288px;
+    }
 
     @include for-size('tablet-portrait-up') {
       padding: 0px 40px;
