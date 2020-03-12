@@ -155,7 +155,6 @@ class APIAdminInstance {
         throw new Error(response.statusText);
       }
 
-        console.log("test")
       return await response.json();
     } catch (err) {
       throw new Error(err.message);
@@ -253,15 +252,12 @@ class APIAdminInstance {
   public async getReferrals(filters) {
     try {
 
-
-      console.log("here we are")
       const params = encodeURIComponent(JSON.stringify({...filters}));
 
       let response = await fetch(APIService.getAPIUrl() + '/admin/referrals?params=' + params, {
         headers: APIService.getHeaders(),
       });
 
-      console.log("response says: "  + response)
       if (!response.ok) {
         if (response.status === 401) {
           throw new Error(`You have been logged out.  Please log in an try again`);

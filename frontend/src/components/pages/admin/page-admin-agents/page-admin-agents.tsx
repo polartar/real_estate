@@ -78,8 +78,6 @@ export class PageAdminAgents {
     try {
       const result = await APIAdminService.getAgents();
 
-      console.log("fetched agents")
-
       return result;
 
     } catch(err) {

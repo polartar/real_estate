@@ -191,8 +191,6 @@ class AdminController extends Controller
 
         $agent = Agents::findOrFail($id);
 
-        Log::error("here she is" . $agent);
-
         return $agent;
     }
 
