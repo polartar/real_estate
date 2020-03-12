@@ -68,6 +68,10 @@ export class AdminMenu {
               Owner Global Updates
             </ion-router-link>
 
+            <ion-router-link href="/admin/agents" onClick={() => this.closeMenu()}>
+              Agents
+            </ion-router-link>
+
             <ion-router-link href="/admin/referrals" onClick={() => this.closeMenu()}>
               Referrals
             </ion-router-link>

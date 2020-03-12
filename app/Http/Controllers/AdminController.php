@@ -12,8 +12,12 @@ use App\Subway;
 use App\User;
 use App\Providers\SearchServiceProvider;
 use App\Referral;
+use App\Agents;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Requests\StoreAgentRequest;
 
 class AdminController extends Controller
 {
@@ -170,6 +174,67 @@ class AdminController extends Controller
     public function deleteReferral(Referral $referral) {
         try {
             $referral->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false], 400);
+        }
+    }
+
+    public function agents() {
+
+        $agents = Agents::all();
+       
+        return $agents;
+    }
+
+    public function showAgent($id) {
+
+        $agent = Agents::findOrFail($id);
+
+        Log::error("here she is" . $agent);
+
+        return $agent;
+    }
+
+    public function updateAgent(Request $request, $agent_id)
+    {       
+
+        $data = $request->all();
+
+        try {
+            $agent = Agents::find($agent_id);
+            $agent->update($data);
+        } catch (\Exception $e) {
+            abort(response($e->getMessage(), 400));
+        }
+
+        Artisan::call('cache:clear');
+
+        return $agent->fresh();
+    }
+        
+    public function storeAgent(StoreAgentRequest $request)
+    {       
+        $data = $request->validated();
+
+        try {
+            $agent = Agents::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+              ]);
+        } catch (\Exception $e) {
+            abort(response($e->getMessage(), 400));
+        }
+
+        Artisan::call('cache:clear');
+
+        return $agent->fresh();
+    }
+
+
+    public function deleteAgent(Agents $agent) {
+        try {
+            $agent->delete();
             return response()->json(['success' => true]);
         } catch (\Exception $e) {
             return response()->json(['success' => false], 400);

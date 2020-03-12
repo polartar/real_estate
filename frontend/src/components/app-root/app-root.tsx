@@ -111,6 +111,9 @@ export class AppRoot {
             <ion-route url="/admin/listing/edit/:apartmentId" component={ this.isAdmin ? 'page-admin-listing-edit' : 'page-login' } />
             <ion-route url="/admin/owner-global" component={ this.isAdmin ? 'page-admin-owner' : 'page-login' } />
             <ion-route url="/admin/referrals" component={ this.isAdmin ? 'page-admin-referrals' : 'page-login' } />
+            <ion-route url="/admin/agents" component={ this.isAdmin ? 'page-admin-agents' : 'page-login' } />
+            <ion-route url="/admin/agent/:agentId" component={ this.isAdmin ? 'page-admin-agent-edit' : 'page-login' } />
+            <ion-route url="/admin/agent/" component={ this.isAdmin ? 'page-admin-agent-edit' : 'page-login' } />
 
             <ion-route url=":any" component="page-404" />
           </ion-router>

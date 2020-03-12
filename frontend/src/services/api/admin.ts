@@ -141,14 +141,127 @@ class APIAdminInstance {
     }
   }
 
+  public async getAgents() {
+    try {
+
+      let response = await fetch(APIService.getAPIUrl() + '/admin/agents', {
+        headers: APIService.getHeaders(),
+      });
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error(`You have been logged out.  Please log in an try again`);
+        }
+
+        throw new Error(response.statusText);
+      }
+
+        console.log("test")
+      return await response.json();
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
+  public async getAgent(id: number) {
+    try {
+      let response = await fetch(APIService.getAPIUrl() + '/admin/agent/' + id, {
+        headers: APIService.getHeaders()
+      });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      return await response.json();
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
+
+  public async updateAgent(formValues) {
+
+    const method = formValues.hasOwnProperty('id') && formValues.id ? 'PATCH' : 'POST'
+    const endpoint = formValues.hasOwnProperty('id') && formValues.id ? `${APIService.getAPIUrl()}/admin/agent/${formValues.id}` : `${APIService.getAPIUrl()}/admin/agent`;
+
+    try {
+      let response = await fetch(endpoint, {
+        headers: APIService.getHeaders(),
+        method: method,
+        body: JSON.stringify(formValues)
+      });
+
+      const r = await response.json();
+
+      if (!response.ok) {
+        if (r && r.errors) {
+          // caller will need to check success
+          const errMessages = [];
+
+          Object.keys(r.errors).forEach(re => errMessages.push(r.errors[re][0]));
+
+         throw new Error(errMessages.join('\n'));
+        }
+
+        if (r && r.message) {
+          throw new Error(r.message);
+        }
+
+        throw new Error(response.statusText);
+      }
+
+      return r;
+
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
+  public async deleteAgent(id) {
+    try {
+      let response = await fetch(`${APIService.getAPIUrl()}/admin/agents/${id}`, {
+        headers: APIService.getHeaders(),
+        method: 'DELETE'
+      });
+
+      const r = await response.json();
+
+      if (!response.ok) {
+        if (r && r.errors) {
+          // caller will need to check success
+          return {
+            success: false,
+            errors: r.errors
+          };
+        }
+
+        if (r && r.message) {
+          throw new Error(r.message);
+        }
+
+        throw new Error(response.statusText);
+      }
+
+      return {
+        success: true
+      };
+
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
   public async getReferrals(filters) {
     try {
 
+
+      console.log("here we are")
       const params = encodeURIComponent(JSON.stringify({...filters}));
 
       let response = await fetch(APIService.getAPIUrl() + '/admin/referrals?params=' + params, {
         headers: APIService.getHeaders(),
       });
+
+      console.log("response says: "  + response)
       if (!response.ok) {
         if (response.status === 401) {
           throw new Error(`You have been logged out.  Please log in an try again`);
