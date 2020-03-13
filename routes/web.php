@@ -46,18 +46,18 @@ $front_end_routes = [
     '/404'
 ];
 
-Route::get('/neighborhood/civic-center', function(){
-    return abort(404);
- });
-
- Route::get('/neighborhood/fort-george', function(){
-    return abort(404);
- });
-
- Route::get('/neighborhood/hudson-heights', function(){
-    return abort(404);
- });
-
 foreach ($front_end_routes as $route) {
     Route::get($route, 'SPAController@serve');
 }
+
+/* Return 404s for the neighborhood pages that APT212 doesn't want to display */
+
+Route::get('/neighborhood/civic-center', function(){
+    return abort(404);
+ });
+Route::get('/neighborhood/fort-george', function(){
+    return abort(404);
+ });
+Route::get('/neighborhood/hudson-heights', function(){
+    return abort(404);
+ });
