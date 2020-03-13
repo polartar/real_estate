@@ -141,12 +141,14 @@ export class PageNeighborhood {
         <lazy-image src={cover_image} class="hero-bg" alt="background image" />
           <section class="section">
             <div class="cta">
+              HELLO SIR
               {title}
               {subtitle}
               {search}
             </div>
           </section>
         </div>
+
         
         <section class={this.size == "phone-only" ? "section" : "section no-margin"}>
           <div class="neighborhood-about-wrapper">
@@ -300,7 +302,10 @@ export class PageNeighborhood {
             </div>
 
           </div>
+          </section>
 
+          <section class="section">
+          
           {
             this.neighborhoods.length && this.neighborhoodsLoaded?
             <div class="predefined-search">
@@ -317,6 +322,8 @@ export class PageNeighborhood {
           }
 
         </section>
+
+        
 
         <app-footer />
 
