@@ -71,7 +71,7 @@ export class ListingCard {
             <div class="rating-amenities">
               <star-rating
                   stars={5}
-                  size={this.isMobile && this.mode !== 'desktop' ? 10 : 16}
+                  size={this.isMobile && this.mode !== 'desktop' ? 16 : 16}
                   rating={this.item.rating}
                   readonly
               />
