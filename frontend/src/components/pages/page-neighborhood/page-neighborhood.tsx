@@ -141,7 +141,6 @@ export class PageNeighborhood {
         <lazy-image src={cover_image} class="hero-bg" alt="background image" />
           <section class="section">
             <div class="cta">
-              HELLO SIR
               {title}
               {subtitle}
               {search}
