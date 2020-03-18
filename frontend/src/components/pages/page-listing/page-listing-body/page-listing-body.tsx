@@ -402,7 +402,7 @@ export class PageListingBody {
                   <lazy-image src="/assets/images/icons/add.svg" />
                 </div>
 
-                Make a payment of 1 month's rent
+                Submit a payment of 1 month's rent to secure the apartment
               </div>
 
               <div class="booking-process flex-vertical-center">
@@ -410,7 +410,7 @@ export class PageListingBody {
                   <lazy-image src="/assets/images/icons/application.svg" />
                 </div>
 
-                Fill out an application online
+                Fill out an online application
               </div>
 
               <div class="booking-process flex-vertical-center">
@@ -426,7 +426,7 @@ export class PageListingBody {
                   <lazy-image src="/assets/images/icons/sign_lease.svg" />
                 </div>
 
-                Sign a lease
+                Sign a lease online
               </div>
 
               <div class="booking-process flex-vertical-center">
@@ -434,7 +434,7 @@ export class PageListingBody {
                   <lazy-image src="/assets/images/icons/shield.svg" />
                 </div>
 
-                Make final payment and move in
+                Pick up a key and check in
               </div>
             </div>
           </div>
