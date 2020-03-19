@@ -206,7 +206,7 @@ import { APISearchService } from '../../../services/api/search';
 
             
         
-              <div class="questions-wrapper">
+              <div data-simplebar-direction='ltr' class="questions-wrapper">
               
                   <div class="questions">
                     

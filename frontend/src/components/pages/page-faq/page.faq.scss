@@ -148,6 +148,10 @@
       }
     }
   }
+  
+  .rtl {
+    direction: rtl !important;
+  }
 
   .faq-wrapper {
     width: 100%;
@@ -183,7 +187,7 @@
         overflow-y: scroll;
         overflow-x: hidden;
         height: 600px;
-        direction: rtl;
+        direction: ltr !important;
         width: 50%;
         padding: 0 20px;
         display: block;
