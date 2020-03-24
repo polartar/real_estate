@@ -156,7 +156,7 @@ export class PageNeighborhood {
                 <h2>Experience {item.name}</h2>
 
                 <p>
-                  {item.experience}
+                  {item.description}
                 </p>
 
                 <h2 class="tag-title">Neighborhood tags</h2>
