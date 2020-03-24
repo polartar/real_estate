@@ -62,7 +62,7 @@ export class WishlistCard {
             </div>
             <div class="price">
               <ion-router-link href={'/listing/' + this.item.id}>
-                {formatMoney(this.item.rate)} /month
+                {formatMoney(this.item.rate, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} /month
               </ion-router-link>
             </div>
             <div class="bed-bath">
