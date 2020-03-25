@@ -32,7 +32,7 @@ export class PageNeighborhoods {
 
     let title = <h1 class="title">NEIGHBORHOODS</h1>
     let subtitle = <p class="subtitle">Explore Manhattan's most prestigious<br></br> neighborhoods.</p>
-
+  
     return [
 
       <app-header />,
@@ -56,10 +56,11 @@ export class PageNeighborhoods {
 
               {
                 this.neighborhoods.map(neighborhood =>
+                  
                   <div class="module">
                     <ion-router-link href={`/neighborhood/${neighborhood.slug}`}>
                       <div class="neighborhood-card">
-                        <lazy-image src={neighborhood.image} alt={neighborhood.name} class="neighborhood-feature-image" />
+                        <lazy-image src={`/assets/images/neighborhoods/${neighborhood.slug}-cover.jpg`} alt={neighborhood.name} class="neighborhood-feature-image" />
                         <h4 class="neighborhood-title">{neighborhood.name}</h4>
                       </div>
                     </ion-router-link>
