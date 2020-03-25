@@ -25,13 +25,11 @@ export class InputMonthRates {
 
         if (inputs) {
           inputs.forEach(i => {
-            if (!i.value.length) {
-              i.value = value;
+            i.value = value;
 
-              const evt = document.createEvent("HTMLEvents");
-              evt.initEvent("change", false, true);
-              i.dispatchEvent(evt);
-            }
+            const evt = document.createEvent("HTMLEvents");
+            evt.initEvent("change", false, true);
+            i.dispatchEvent(evt);
           });
         }
       break;
