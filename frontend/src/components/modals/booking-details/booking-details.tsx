@@ -25,6 +25,7 @@ export class BookingDetails {
   isMobile: boolean = true;
   checkinDate: Date;
   checkoutDate: Date;
+  depositReturnDate: Date;
   guests: number;
   neighborhoods: any[];
   bedroomTypes: any[];
@@ -43,6 +44,10 @@ export class BookingDetails {
         buildingTypes: taxonomySelectors.getBuildingTypes(state),
       }
     });
+
+    this.depositReturnDate = this.checkoutDate
+    this.depositReturnDate.setDate(this.depositReturnDate.getDate() + 14)
+    
   }
 
   setTooltip(e) {
@@ -134,13 +139,13 @@ export class BookingDetails {
         tooltip: 'Price of rent, per month.',
         description: 'Monthly Rent:',
         center: '',
-        value: this.details.monthly_rent ? formatMoney(this.details.monthly_rent) : null
+        value: this.details.monthly_rent ? formatMoney(this.details.monthly_rent, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null
       },
       {
         tooltip: 'Price per month, divided by the total amount of days in the month.',
         description: 'Night rate:',
         center: '',
-        value: this.details.night_rate ? formatMoney(this.details.night_rate) : null
+        value: this.details.night_rate ? formatMoney(this.details.night_rate, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null
       },
       {
         tooltip: 'Length of your stay, from check-in to check-out.',
@@ -161,44 +166,44 @@ export class BookingDetails {
         tooltip: 'The cost for a background check, required for all guests to ensure safety.',
         description: 'Background checks:',
         center: '',
-        value: this.details.background_checks ? formatMoney(this.details.background_checks) : null
+        value: this.details.background_checks ? formatMoney(this.details.background_checks, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null
       },
       {
         tooltip: 'Sum of (monthly rate x months) + (nightly rate x days).',
         description: 'Rent:',
         center: '',
-        value: this.details.rent ? formatMoney(this.details.rent) : null
+        value: this.details.rent ? formatMoney(this.details.rent, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null
       },
       {
         tooltip: 'New York Occupancy & Hotel tax.',
         description: 'Tax:',
         center: '',
-        value: this.details.tax ? formatMoney(this.details.tax) : null
+        value: this.details.tax ? formatMoney(this.details.tax, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null
       },
       {
         tooltip: 'Sum of your total utilities for the duration of your stay [Utilities includes: Electricity, Gas, Cable TV, Wifi].',
         description: 'Utilities:',
         center: '',
-        value: this.details.utilities ? formatMoney(this.details.utilities) : null
+        value: this.details.utilities ? formatMoney(this.details.utilities, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null
       },
       {
         tooltip: 'Fees help cover Apt212 service costs, including access to a personal agent to assist with the entire rental process, showing units, and processing paperwork.',
         description: 'Service Fee:',
         center: '',
-        value: this.details.service_fee ? formatMoney(this.details.service_fee) : null
+        value: this.details.service_fee ? formatMoney(this.details.service_fee, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null
       },
       {
         tooltip: 'A refundable deposit protects hosts, and guests, from any accidental damages.',
         description: 'Refundable Deposit:',
         center: '',
-        value: this.details.deposit ? formatMoney(this.details.deposit) : null,
+        value: this.details.deposit ? formatMoney(this.details.deposit, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null,
         class: 'highlight'
       },
       {
         tooltip: 'The sum of all costs of your rental, from check in to check out.  No hidden fees!',
         description: 'Total:',
         center: '',
-        value: this.details.total ? formatMoney(this.details.total) : null
+        value: this.details.total ? formatMoney(this.details.total, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null
       }
     ];
 
@@ -207,26 +212,26 @@ export class BookingDetails {
         tooltip: 'Portion of the total due now in order to secure your reservation.',
         description: 'Due now to reserve:',
         center: '',
-        value: this.details.timeline.due_to_reserve ? formatMoney(this.details.timeline.due_to_reserve) : null,
+        value: this.details.timeline.due_to_reserve ? formatMoney(this.details.timeline.due_to_reserve, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null,
         class: 'bg-highlight'
       },
       {
         tooltip: 'Portion of the total due by your check in date.',
         description: `Due by check in (${this.details.timeline.due_by_checkin_date}):`,
         center: '',
-        value: this.details.timeline.due_by_checkin ? formatMoney(this.details.timeline.due_by_checkin) : null
+        value: this.details.timeline.due_by_checkin ? formatMoney(this.details.timeline.due_by_checkin, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null
       },
       {
         tooltip: 'Total of all future payments minus the due now and due by check in.  Future payment due dates will be outlined on your lease agreement.',
         description: 'Future Payments:',
         center: '',
-        value: this.details.timeline.future_payments ? formatMoney(this.details.timeline.future_payments) : null
+        value: this.details.timeline.future_payments ? formatMoney(this.details.timeline.future_payments, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null
       },
       {
         tooltip: 'The refundable Deposit that will be paid back to you within a maximum of 14 days from your check out date.',
-        description: 'Deposit Refund:',
+        description: 'Deposit Refund: (' + formatDate(this.depositReturnDate, 'm/d/Y') + ')',
         center: '',
-        value: this.details.timeline.deposit_refund ? formatMoney(this.details.timeline.deposit_refund) : null,
+        value: this.details.timeline.deposit_refund ? formatMoney(this.details.timeline.deposit_refund, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null,
         class: 'highlight'
       }
     ];
@@ -389,7 +394,7 @@ export class BookingDetails {
               </div>
 
               <div class="price">
-                { formatMoney(this.item.rate) } /month
+                { formatMoney(this.item.rate, { minimumFractionDigits: 0, maximumFractionDigits: 0 })) } /month
               </div>
 
               <div class="bed-bath">
