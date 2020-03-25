@@ -26,6 +26,11 @@ export class WishlistCard {
     });
   }
 
+  getImageURL() {
+    console.log(this.item.images);
+    return this.item.images.length ? this.item.images[0].medium : '/assets/images/placeholder/apt1.jpeg';
+  }
+
   render() {
     let neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
     if (!neighborhood) {
@@ -37,8 +42,20 @@ export class WishlistCard {
     const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
 
-    let images = this.item.images.map((image, index) => { return { src: image, alt: `${this.item.street_address} image ${index + 1}` } });
+    let images;
+    if (this.item.images.length === 0) {
+      images = [
+        {
+          src: this.getImageURL(),
+          alt: this.item.street_address
+        }
+      ]
+    }
+    else {
+      images = this.item.images.map((image, index) => { return { src: image.small, alt: `${this.item.street_address} image ${index + 1}` } });
+    }
 
+  
     return (
       <div class="wishlist-card-component">
         {
