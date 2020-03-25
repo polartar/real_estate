@@ -108,7 +108,7 @@ export class SearchListingCard {
             </div>
             <div class="rating-amenities">
               <star-rating
-                  stars={5}
+                  stars={buildingType.rating}
                   size={16}
                   rating={this.item.rating}
                   readonly
