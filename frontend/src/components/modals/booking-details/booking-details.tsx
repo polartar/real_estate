@@ -394,7 +394,7 @@ export class BookingDetails {
               </div>
 
               <div class="price">
-                { formatMoney(this.item.rate, { minimumFractionDigits: 0, maximumFractionDigits: 0 })) } /month
+                { formatMoney(this.item.rate, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) } /month
               </div>
 
               <div class="bed-bath">
