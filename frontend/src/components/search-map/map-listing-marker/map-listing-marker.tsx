@@ -40,18 +40,18 @@ export class MapListingMarker {
 
     if (marker.apartments_count === 1) {
       const bedroomType = taxonomySelectors.getBedroomTypeById(marker.apartments[0].bedroom_type_id, this.bedroomTypes);
-      this.text = formatMoney(marker.apartments[0].rate, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+      this.text = formatMoney(marker.apartments[0].rate);
 
-      this.hoverText = `${formatMoney(marker.apartments[0].rate, {minimumFractionDigits: 0, maximumFractionDigits: 0})} | ${getBedsListingText(bedroomType, 'short')} | ${marker.apartments[0].bathrooms} BA`;
+      this.hoverText = `${formatMoney(marker.apartments[0].rate)} | ${getBedsListingText(bedroomType, 'short')} | ${marker.apartments[0].bathrooms} BA`;
     }
     else {
       this.text = `${marker.apartments_count} listings`;
 
       if (marker.min_rate === marker.max_rate) {
-        this.hoverText = formatMoney(marker.max_rate, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+        this.hoverText = formatMoney(marker.max_rate);
       }
       else {
-        this.hoverText = `${formatMoney(marker.min_rate, {minimumFractionDigits: 0, maximumFractionDigits: 0})} - ${formatMoney(marker.max_rate, {minimumFractionDigits: 0, maximumFractionDigits: 0})}`;
+        this.hoverText = `${formatMoney(marker.min_rate)} - ${formatMoney(marker.max_rate)}`;
       }
     }
   }

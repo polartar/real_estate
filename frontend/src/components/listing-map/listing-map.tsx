@@ -124,7 +124,7 @@ export class ListingMap {
             className: 'listing-marker'
           })
             .setLngLat([this.item.lng, this.item.lat])
-            .setHTML(`<div>${formatMoney(this.item.rate, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</div>`)
+            .setHTML(`<div>${formatMoney(this.item.rate)}</div>`)
             .addTo(this.map);
         });
 

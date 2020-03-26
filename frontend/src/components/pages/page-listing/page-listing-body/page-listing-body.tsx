@@ -251,7 +251,7 @@ export class PageListingBody {
             <div class="stickyblock">
               <div class="listing-price">
                 <div>
-                  <span class="rate">{formatMoney(this.item.rate, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</span> per month
+                  <span class="rate">{formatMoney(this.item.rate)}</span> per month
                 </div>
               </div>
 

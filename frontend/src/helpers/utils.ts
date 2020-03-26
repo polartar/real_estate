@@ -13,8 +13,8 @@ export function formatMoney(num: number, options: any = {}, locale: string = 'en
   const formatter = new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: 'USD',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
     ...options
   });
 

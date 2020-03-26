@@ -16,7 +16,7 @@
             @endif
 
             WebId: {{ $data->webid }}<br><br>
-            Amount Paid: {{ Apt212::formatMoney($data->amount) }}<br><br>
+            Amount Paid: {{ Apt212::formatMoney($data->amount, 2) }}<br><br>
 
             Transaction ID: {{ $data->transaction_id }}
 

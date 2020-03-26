@@ -131,7 +131,7 @@ export class PageListing {
           this.item && this.loaded && this.taxonomyLoaded ?
           <div class="mobile-booking">
             <div class="rate-date-details">
-              <span class="highlight">{ formatMoney(this.item.rate, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) }</span> per month<br />
+              <span class="highlight">{ formatMoney(this.item.rate) }</span> per month<br />
               <span class="highlight">{ formatDate(this.item.available_date, 'm.d.y')}</span> next available date
             </div>
 

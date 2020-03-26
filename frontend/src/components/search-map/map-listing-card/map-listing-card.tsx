@@ -42,7 +42,7 @@ export class MapListingCard {
                 { neighborhood.name }
               </div>
               <div class="price">
-                {formatMoney(this.item.rate, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} /month
+                {formatMoney(this.item.rate)} /month
               </div>
               <div class="avialable">
                 Available { formatDate(this.item.available_date, 'short') }

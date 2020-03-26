@@ -213,7 +213,7 @@
                     <div class="detail-item">
                         <div class="description">Night Rate:</div>
                         <div class="center"></div>
-                        <div class="value">{{ Apt212::formatMoney($booking_details['night_rate']) }}</div>
+                        <div class="value">{{ Apt212::formatMoney($booking_details['night_rate'], 2) }}</div>
                     </div>
                     <div class="detail-item">
                         <div class="description">Total Term:</div>

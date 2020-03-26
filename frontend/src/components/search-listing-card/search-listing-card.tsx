@@ -87,7 +87,7 @@ export class SearchListingCard {
             </div>
             <div class="price">
               <ion-router-link href={'/listing/' + this.item.id}>
-                {formatMoney(this.item.rate, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} /month
+                {formatMoney(this.item.rate)} /month
               </ion-router-link>
             </div>
             <div class="available">

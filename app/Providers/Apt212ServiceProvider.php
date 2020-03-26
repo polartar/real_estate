@@ -28,7 +28,10 @@ class Apt212ServiceProvider extends ServiceProvider
         //
     }
 
-    public static function formatMoney($value, $precision = 2, $input_currency = 'USD', $output_format = 'en_US') {
+    public static function formatMoney($value, $precision = 0, $input_currency = 'USD', $output_format = 'en_US') {
+        if ($precision === 0) {
+            $value = round($value);
+        }
 
         // use abs($value) to get a standard format we can prepend a `-` in front of for negative values
         // otherwise negative values are output in parenthesis, which they don't

@@ -154,7 +154,7 @@ export class InquiryForm {
                       val = '';
                       text = 'Budget';
                     } else {
-                      val = `${ formatMoney((k + 1) * 1000, {minimumFractionDigits: 0, maximumFractionDigits: 0})}${ k === 9 ? '+' : ''} / Month`;
+                      val = `${ formatMoney((k + 1) * 1000)}${ k === 9 ? '+' : ''} / Month`;
                       text = val;
                     }
 

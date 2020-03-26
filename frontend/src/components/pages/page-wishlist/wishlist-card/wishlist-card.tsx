@@ -55,7 +55,7 @@ export class WishlistCard {
       images = this.item.images.map((image, index) => { return { src: image.small, alt: `${this.item.street_address} image ${index + 1}` } });
     }
 
-  
+
     return (
       <div class="wishlist-card-component">
         {
@@ -79,7 +79,7 @@ export class WishlistCard {
             </div>
             <div class="price">
               <ion-router-link href={'/listing/' + this.item.id}>
-                {formatMoney(this.item.rate, { minimumFractionDigits: 0, maximumFractionDigits: 0 })} /month
+                {formatMoney(this.item.rate)} /month
               </ion-router-link>
             </div>
             <div class="bed-bath">
