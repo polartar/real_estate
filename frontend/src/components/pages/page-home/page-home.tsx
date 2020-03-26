@@ -5,6 +5,7 @@ import { searchFilterSelectors } from '../../../store/selectors/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 import { getNamedSearch } from '../../../store/actions/search';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
+import taxonomySelectors from '../../../store/selectors/taxonomy';
 
 @Component({
   tag: 'page-home',
@@ -41,7 +42,7 @@ export class PageHome {
         size,
         isMobile,
         displayFilter: searchFilterSelectors.getDisplayFilter(state),
-        neighborhoods: neighborhoodSelectors.getNeighborhoods(state),
+        neighborhoods: taxonomySelectors.getFeaturedNeighborhoods(state),
         neighborhoodsLoaded: neighborhoodSelectors.getNeighborhoodsLoaded(state)
       };
     });
