@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, EventEmitter, Event, Watch, Method } from '@stencil/core';
+import { Component, h, Prop, State, EventEmitter, Event, Method } from '@stencil/core';
 import SelectPure from 'select-pure';
 
 //https://github.com/dudyn5ky1/select-pure
