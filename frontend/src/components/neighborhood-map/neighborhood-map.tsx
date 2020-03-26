@@ -60,6 +60,7 @@ export class NeighborhoodMap {
           zoom: 15,
           minZoom: 10,
           maxZoom: 17,
+          scrollZoom: false
         });
 
         this.map.addControl(new mapboxgl.NavigationControl());

@@ -30,6 +30,7 @@ export class ListingCard {
         isMobile: screensizeSelectors.getIsMobile(state)
       };
     });
+
   }
 
   getImageURL() {
@@ -40,6 +41,9 @@ export class ListingCard {
     const neighborhood = taxonomySelectors.getNeighborhoodById(this.item.neighborhood_ids[0], this.neighborhoods);
     const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
+
+    console.log(buildingType.rating)
+
 
     const classObj = { 'listing-card': true };
     if (this.mode) {
@@ -70,7 +74,7 @@ export class ListingCard {
             </div>
             <div class="rating-amenities">
               <star-rating
-                  stars={5}
+                  stars={buildingType.rating}
                   size={this.isMobile && this.mode !== 'desktop' ? 16 : 16}
                   rating={this.item.rating}
                   readonly

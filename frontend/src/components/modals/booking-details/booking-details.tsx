@@ -415,7 +415,7 @@ export class BookingDetails {
                 </div>
 
                 <star-rating
-                    stars={5}
+                    stars={buildingType.rating}
                     size={this.isMobile ? 10 : 16}
                     rating={this.item.rating}
                     readonly
