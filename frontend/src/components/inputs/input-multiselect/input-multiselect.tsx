@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, EventEmitter, Event, Watch, Method } from '@stencil/core';
 import SelectPure from 'select-pure';
 
 //https://github.com/dudyn5ky1/select-pure
@@ -13,6 +13,9 @@ export class InputMultiselect {
   @Prop() value: any[] = [];
 
   @State() internalValue: any[] = [];
+  @State() internalOptions: any[] = [];
+
+  @Event() onValueChange: EventEmitter;
 
   renderNode: HTMLElement;
   closeIcon: HTMLElement;
@@ -20,6 +23,7 @@ export class InputMultiselect {
 
   componentWillLoad() {
     this.internalValue = this.value;
+    this.internalOptions = this.options;
   }
 
   componentDidLoad() {
@@ -27,10 +31,30 @@ export class InputMultiselect {
       return;
     }
 
+    this.initializeInput();
+  }
+
+  @Method()
+  async updateOptions(options: any[]) {
+    this.internalOptions = [...options];
+
+    const possibleValues = options.map(v => v.value);
+
+    this.internalValue = [...this.internalValue].filter(v => possibleValues.includes(v));
+
+    this.initializeInput();
+  }
+
+  initializeInput() {
+    if (this.instance) {
+      // remove old instance
+      this.renderNode.innerHTML = '';
+    }
+
     this.instance = new SelectPure(this.renderNode, {
-      options: this.options,
+      options: this.internalOptions,
       multiple: true,
-      value: this.value,
+      value: this.internalValue,
       onChange: () => this.valueChanged(),
       inlineIcon: this.closeIcon
     });
@@ -38,6 +62,8 @@ export class InputMultiselect {
 
   valueChanged() {
     this.internalValue = [...this.instance.value()];
+
+    this.onValueChange.emit(this.internalValue);
   }
 
   render() {

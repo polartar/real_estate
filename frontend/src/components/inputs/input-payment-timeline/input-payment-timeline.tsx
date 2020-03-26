@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'input-payment-timeline',
@@ -6,6 +6,61 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class InputPaymentTimeline {
   @Prop() item: any;
+
+  defaultOptions = [
+    {
+      label: 'Background Check',
+      value: 'background_check'
+    },
+    {
+      label: 'Full Service Fee',
+      value: 'service_fee'
+    },
+    {
+      label: 'Security Deposit',
+      value: 'security_deposit'
+    },
+    {
+      label: 'Months Due on Check In',
+      value: 'months_due_on_checkin'
+    },
+    {
+      label: 'Days Due on Check In',
+      value: 'days_due_on_checkin'
+    }
+  ];
+
+  @State() dtrOptions = [...this.defaultOptions];
+
+  @State() dbcOptions = [...this.defaultOptions];
+
+  dueToReserveInput: HTMLInputMultiselectElement;
+  dueByCheckinInput: HTMLInputMultiselectElement;
+
+  componentWillRender() {
+    if (this.item && this.item.due_by_checkin) {
+      const dtrOptions = [...this.dtrOptions].filter(option => !this.item.due_by_checkin.includes(option.value));
+
+      this.dtrOptions = dtrOptions;
+    }
+
+    if (this.item && this.item.due_to_reserve) {
+      const dbcOptions = [...this.dbcOptions].filter(option => !this.item.due_to_reserve.includes(option.value));
+
+      this.dbcOptions = dbcOptions;
+    }
+  }
+
+  timelineChanged(name, event) {
+    const newOptions = [...this.defaultOptions].filter(option => !event.detail.includes(option.value));
+
+    if (name === 'due_by_checkin') {
+      this.dueToReserveInput.updateOptions(newOptions);
+    }
+    else {
+      this.dueByCheckinInput.updateOptions(newOptions);
+    }
+  }
 
   render() {
     return (
@@ -52,29 +107,12 @@ export class InputPaymentTimeline {
           <input-multiselect
             id="due-to-reserve"
             name="due_to_reserve"
-            options={[
-              {
-                label: 'Background Check',
-                value: 'background_check'
-              },
-              {
-                label: 'Full Service Fee',
-                value: 'service_fee'
-              },
-              {
-                label: 'Security Deposit',
-                value: 'security_deposit'
-              },
-              {
-                label: 'Months Due on Check In',
-                value: 'months_due_on_checkin'
-              },
-              {
-                label: 'Days Due on Check In',
-                value: 'days_due_on_checkin'
-              }
-            ]}
+            options={this.dtrOptions}
             value={this.item ? this.item.due_to_reserve : []}
+
+            onOnValueChange={e => this.timelineChanged('due_to_reserve', e)}
+
+            ref={el => this.dueToReserveInput = el as HTMLInputMultiselectElement }
           />
         </div>
 
@@ -83,29 +121,12 @@ export class InputPaymentTimeline {
           <input-multiselect
             id="due-by-checkin"
             name="due_by_checkin"
-            options={[
-              {
-                label: 'Background Check',
-                value: 'background_check'
-              },
-              {
-                label: 'Full Service Fee',
-                value: 'service_fee'
-              },
-              {
-                label: 'Security Deposit',
-                value: 'security_deposit'
-              },
-              {
-                label: 'Months Due on Check In',
-                value: 'months_due_on_checkin'
-              },
-              {
-                label: 'Days Due on Check In',
-                value: 'days_due_on_checkin'
-              }
-            ]}
+            options={this.dbcOptions}
             value={this.item ? this.item.due_by_checkin : []}
+
+            onOnValueChange={e => this.timelineChanged('due_by_checkin', e)}
+
+            ref={el => this.dueByCheckinInput = el as HTMLInputMultiselectElement }
           />
         </div>
       </div>

@@ -48,10 +48,6 @@ export class PageAdminListingEdit {
     }
   }
 
-  onFormSuccess(e) {
-    RouterService.forward(`/listing/${e.detail.id}`);
-  }
-
   render() {
     return [
       <admin-header />,
@@ -60,7 +56,7 @@ export class PageAdminListingEdit {
 
           {
             this.loaded && this.item ?
-              <listing-edit-form item={this.item} onSuccess={e => this.onFormSuccess(e)} />
+              <listing-edit-form item={this.item} />
             : null
           }
 

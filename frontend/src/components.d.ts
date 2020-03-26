@@ -151,6 +151,7 @@ export namespace Components {
   interface InputMultiselect {
     'name': string;
     'options': any[];
+    'updateOptions': (options: any[]) => Promise<void>;
     'value': any[];
   }
   interface InputPaymentTimeline {
@@ -1214,6 +1215,7 @@ declare namespace LocalJSX {
   }
   interface InputMultiselect extends JSXBase.HTMLAttributes<HTMLInputMultiselectElement> {
     'name': string;
+    'onOnValueChange'?: (event: CustomEvent<any>) => void;
     'options': any[];
     'value'?: any[];
   }
