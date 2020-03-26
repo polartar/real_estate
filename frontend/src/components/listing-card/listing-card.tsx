@@ -42,8 +42,6 @@ export class ListingCard {
     const bedroomType = taxonomySelectors.getBedroomTypeById(this.item.bedroom_type_id, this.bedroomTypes);
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
 
-    console.log(buildingType.rating)
-
 
     const classObj = { 'listing-card': true };
     if (this.mode) {

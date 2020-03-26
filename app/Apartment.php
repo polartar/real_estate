@@ -420,7 +420,8 @@ class Apartment extends Model
                 'due_by_checkin' => $due_by_checkin,
                 'due_by_checkin_date' => $checkin->sub('days', $this->duci_advance_payment_days)->format($date_output_format),
                 'future_payments' => round($total_cost - $due_to_reserve - $due_by_checkin, 2),
-                'deposit_refund' => $deposit * -1
+                'deposit_refund' => $deposit * -1,
+                'deposit_refund_date' => $checkout->clone()->addDays(14)->format('n/j/Y')
             ]
         ];
     }

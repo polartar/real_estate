@@ -331,7 +331,7 @@
 
                     @if ($booking_details['timeline']['deposit_refund'])
                     <div class="detail-item highlight">
-                        <div class="description">Deposit Refund:</div>
+                        <div class="description">Deposit Refund ({{$booking_details['timeline']['deposit_refund_date']}}):</div>
                         <div class="center"></div>
                         <div class="value">{{ Apt212::formatMoney($booking_details['timeline']['deposit_refund']) }}</div>
                     </div>

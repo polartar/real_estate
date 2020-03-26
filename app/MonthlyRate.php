@@ -30,7 +30,7 @@ class MonthlyRate extends Model
     // custom attributes
     public function getDisplayRateAttribute() {
         //
-        $fees_percent = $this->attributes['service_fee_client'] + $this->attributes['service_fee_host'];
+        $fees_percent = $this->attributes['service_fee_host'];
         return round($this->attributes['monthly_rate'] * (1 + ($fees_percent / 100)), 2);
     }
 

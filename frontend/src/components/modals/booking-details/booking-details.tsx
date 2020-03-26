@@ -25,7 +25,6 @@ export class BookingDetails {
   isMobile: boolean = true;
   checkinDate: Date;
   checkoutDate: Date;
-  depositReturnDate: Date;
   guests: number;
   neighborhoods: any[];
   bedroomTypes: any[];
@@ -44,10 +43,6 @@ export class BookingDetails {
         buildingTypes: taxonomySelectors.getBuildingTypes(state),
       }
     });
-
-    this.depositReturnDate = this.checkoutDate
-    this.depositReturnDate.setDate(this.depositReturnDate.getDate() + 14)
-    
   }
 
   setTooltip(e) {
@@ -229,7 +224,7 @@ export class BookingDetails {
       },
       {
         tooltip: 'The refundable Deposit that will be paid back to you within a maximum of 14 days from your check out date.',
-        description: 'Deposit Refund: (' + formatDate(this.depositReturnDate, 'm/d/Y') + ')',
+        description: `Deposit Refund (${this.details.timeline.deposit_refund_date}):`,
         center: '',
         value: this.details.timeline.deposit_refund ? formatMoney(this.details.timeline.deposit_refund, { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : null,
         class: 'highlight'
