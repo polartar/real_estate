@@ -12,7 +12,7 @@ export class PageNeighborhoods {
   @State() isMobile: boolean = true;
   @State() loaded: boolean = false;
 
-  neighborhoods: any = [];
+  @State() neighborhoods: any[] = [];
 
   hasLoaded: boolean = false;
 
