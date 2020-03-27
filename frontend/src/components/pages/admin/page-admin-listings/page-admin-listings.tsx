@@ -460,7 +460,7 @@ export class PageAdminListings {
                         <td class="desktop-only">
                           <button class="button-reset" onClick={() => this.modalUpdate(l, 'available_date')}>
                             { formatDate(l.available_date) }
-                            </button>
+                          </button>
                         </td>
                         <td class="desktop-only">{ formatMoney(l.rate) }</td>
 
