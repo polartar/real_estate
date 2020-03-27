@@ -29,7 +29,16 @@ class ReservationFeeTypesValidator implements Rule
             return false;
         }
 
-        $allowed_values = ['background_check', 'security_deposit', 'service_fee', 'days_due_on_checkin', 'months_due_on_checkin'];
+        $allowed_values = [
+            'background_check',
+            'security_deposit',
+            'service_fee',
+            'days_due_on_checkin',
+            'months_due_on_checkin',
+            'move_out_cleaning',
+            'utilities',
+            'tax'
+        ];
 
         foreach ($value as $v) {
             if (!in_array($v, $allowed_values)) {

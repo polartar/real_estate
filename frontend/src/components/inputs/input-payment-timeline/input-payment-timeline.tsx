@@ -9,24 +9,36 @@ export class InputPaymentTimeline {
 
   defaultOptions = [
     {
-      label: 'Background Check',
+      label: '1. Background Check',
       value: 'background_check'
     },
     {
-      label: 'Full Service Fee',
-      value: 'service_fee'
-    },
-    {
-      label: 'Security Deposit',
+      label: '2. Refundable Deposit',
       value: 'security_deposit'
     },
     {
-      label: 'Months Due on Check In',
+      label: '3. Service Fee',
+      value: 'service_fee'
+    },
+    {
+      label: '4. Move out cleaning',
+      value: 'move_out_cleaning'
+    },
+    {
+      label: '5. Rent (Months due at ck in)',
       value: 'months_due_on_checkin'
     },
     {
-      label: 'Days Due on Check In',
+      label: '6. Rent (Days due at ck in)',
       value: 'days_due_on_checkin'
+    },
+    {
+      label: '7. Utilites',
+      value: 'utilities'
+    },
+    {
+      label: '8. Tax',
+      value: 'tax'
     }
   ];
 

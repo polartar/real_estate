@@ -171,11 +171,6 @@ export namespace Components {
     'expand': boolean;
     'src': string;
   }
-  interface ListingAttributeUpdateModal {
-    'attribute': string;
-    'item': any;
-    'month': number|null;
-  }
   interface ListingAvailabilityForm {
     'item': any;
   }
@@ -619,12 +614,6 @@ declare global {
     new (): HTMLLazyImageElement;
   };
 
-  interface HTMLListingAttributeUpdateModalElement extends Components.ListingAttributeUpdateModal, HTMLStencilElement {}
-  var HTMLListingAttributeUpdateModalElement: {
-    prototype: HTMLListingAttributeUpdateModalElement;
-    new (): HTMLListingAttributeUpdateModalElement;
-  };
-
   interface HTMLListingAvailabilityFormElement extends Components.ListingAvailabilityForm, HTMLStencilElement {}
   var HTMLListingAvailabilityFormElement: {
     prototype: HTMLListingAvailabilityFormElement;
@@ -1044,7 +1033,6 @@ declare global {
     'input-utilities': HTMLInputUtilitiesElement;
     'inquiry-form': HTMLInquiryFormElement;
     'lazy-image': HTMLLazyImageElement;
-    'listing-attribute-update-modal': HTMLListingAttributeUpdateModalElement;
     'listing-availability-form': HTMLListingAvailabilityFormElement;
     'listing-card': HTMLListingCardElement;
     'listing-edit-form': HTMLListingEditFormElement;
@@ -1257,11 +1245,6 @@ declare namespace LocalJSX {
     'alt'?: string;
     'expand'?: boolean;
     'src'?: string;
-  }
-  interface ListingAttributeUpdateModal extends JSXBase.HTMLAttributes<HTMLListingAttributeUpdateModalElement> {
-    'attribute': string;
-    'item': any;
-    'month'?: number|null;
   }
   interface ListingAvailabilityForm extends JSXBase.HTMLAttributes<HTMLListingAvailabilityFormElement> {
     'item': any;
@@ -1505,7 +1488,6 @@ declare namespace LocalJSX {
     'input-utilities': InputUtilities;
     'inquiry-form': InquiryForm;
     'lazy-image': LazyImage;
-    'listing-attribute-update-modal': ListingAttributeUpdateModal;
     'listing-availability-form': ListingAvailabilityForm;
     'listing-card': ListingCard;
     'listing-edit-form': ListingEditForm;

@@ -337,7 +337,7 @@ class Apartment extends Model
         $total_cost = round($background_checks + $total_rent + $total_tax + $service_fee_client + $deposit + $utilities + $this->move_out_fee, 2);
 
         // separate costs into the timeline
-        $due_to_reserve = $due_by_checkin = $future_payments = 0;
+        $due_to_reserve = $due_by_checkin = 0;
         $due_to_reserve_settings = is_array($this->due_to_reserve) ? $this->due_to_reserve : [];
         $due_by_checkin_settings = is_array($this->due_by_checkin) ? $this->due_by_checkin : [];
 
@@ -361,6 +361,23 @@ class Apartment extends Model
 
                 case 'days_due_on_checkin':
                     $due_to_reserve += $night_rate * $this->days_due_on_checkin;
+                break;
+
+                case 'move_out_cleaning':
+                    $due_to_reserve += $this->move_out_fee;
+                break;
+
+                case 'utilities':
+                    $due_to_reserve += $this->monthly_utilities * $this->months_due_on_checkin;
+                    $due_to_reserve += ($this->monthly_utilities / $checkin->daysInMonth) * $this->days_due_on_checkin;
+                break;
+
+                case 'tax':
+                    $mnth_tax = ($amortized_monthly_rent * $this->months_due_on_checkin) * ($defaultRate->tax_percent / 100);
+                    $day_tax = ($night_rate * $this->days_due_on_checkin) * ($defaultRate->tax_percent / 100);
+
+                    $due_to_reserve += $mnth_tax;
+                    $due_to_reserve += $day_tax;
                 break;
             }
         }
@@ -393,6 +410,26 @@ class Apartment extends Model
                 case 'days_due_on_checkin':
                     $due_by_checkin += $night_rate * $this->days_due_on_checkin;
                 break;
+
+                case 'move_out_cleaning':
+                    $due_by_checkin += $this->move_out_fee;
+                break;
+
+                case 'utilities':
+                    $util_mnths = $this->monthly_utilities * $this->months_due_on_checkin;
+                    $util_days = ($this->monthly_utilities / $checkin->daysInMonth) * $this->days_due_on_checkin;
+
+                    $due_by_checkin += $util_days;
+                    $due_by_checkin += $util_mnths;
+                break;
+
+                case 'tax':
+                    $mnth_tax = ($amortized_monthly_rent * $this->months_due_on_checkin) * ($defaultRate->tax_percent / 100);
+                    $day_tax = ($night_rate * $this->days_due_on_checkin) * ($defaultRate->tax_percent / 100);
+
+                    $due_by_checkin += $mnth_tax;
+                    $due_by_checkin += $day_tax;
+                break;
             }
         }
 
@@ -416,8 +453,8 @@ class Apartment extends Model
             'move_out_fee' => $this->move_out_fee,
             'total' => $total_cost,
             'timeline' => [
-                'due_to_reserve' => $due_to_reserve,
-                'due_by_checkin' => $due_by_checkin,
+                'due_to_reserve' => round($due_to_reserve, 2),
+                'due_by_checkin' => round($due_by_checkin, 2),
                 'due_by_checkin_date' => $checkin->sub('days', $this->duci_advance_payment_days)->format($date_output_format),
                 'future_payments' => round($total_cost - $due_to_reserve - $due_by_checkin, 2),
                 'deposit_refund' => $deposit * -1,
