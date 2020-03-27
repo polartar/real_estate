@@ -42,6 +42,8 @@ export class PageAdminListings {
   @State() activeCount: number = 0;
   @State() inactiveCount: number = 0;
 
+  @State() formFocus: null | string = null;
+
   listingsWrapper: HTMLElement;
   searchTypeInput: HTMLSelectElement;
 
@@ -221,33 +223,11 @@ export class PageAdminListings {
     return `${this.screenHeight - this.listingsWrapper.offsetTop - 150}px`;
   }
 
-  async modalUpdate(apt, attribute, month = null) {
-    const modal: any = document.createElement('ion-modal');
-    modal.component = 'listing-attribute-update-modal';
-    modal.componentProps = {
-      item: apt,
-      attribute,
-      month
-    };
+  updateApt(apt) {
+    const listings = this.listings.map(l => l.id === apt.id ? apt : l);
 
-    document.body.append(modal);
-    modal.present();
-
-    const result = await modal.onWillDismiss();
-
-    if (result && result.data) {
-      const listings = this.listings.map(l => {
-        if (l.id === result.data.id) {
-          return result.data;
-        }
-
-        return l;
-      });
-
-      this.listings = listings;
-
-      ToastService.success('Listing has been updated');
-    }
+    this.listings = listings;
+    this.formFocus = null;
   }
 
   changeSearchType() {
@@ -458,9 +438,14 @@ export class PageAdminListings {
                         <td class="desktop-only">{ bedroomType ? bedroomType.name : '' }</td>
                         <td class="desktop-only">{ l.bathrooms }</td>
                         <td class="desktop-only">
-                          <button class="button-reset" onClick={() => this.modalUpdate(l, 'available_date')}>
-                            { formatDate(l.available_date) }
-                          </button>
+                          {
+                            this.formFocus === `available_date-${l.id}` ?
+                              <listing-availability-form item={l} onUpdateSuccess={e => this.updateApt(e.detail)} />
+                            :
+                              <button class="button-reset" onClick={() => this.formFocus = `available_date-${l.id}`}>
+                                { formatDate(l.available_date) }
+                              </button>
+                          }
                         </td>
                         <td class="desktop-only">{ formatMoney(l.rate) }</td>
 
@@ -469,9 +454,14 @@ export class PageAdminListings {
 
                             return (
                               <td class="desktop-only">
-                                <button class="button-reset" onClick={() => this.modalUpdate(l, 'monthly_rate', m)}>
-                                  {formatMoney(l.rates.find(r => r.month == m).monthly_rate)}
-                                </button>
+                                {
+                                  this.formFocus === `monthly_rate-${l.id}-${m}` ?
+                                    <listing-monthly-rate-form item={l} month={m} onUpdateSuccess={e => this.updateApt(e.detail)}/>
+                                  :
+                                    <button class="button-reset" onClick={() => this.formFocus = `monthly_rate-${l.id}-${m}`}>
+                                      {formatMoney(l.rates.find(r => r.month == m).monthly_rate)}
+                                    </button>
+                                }
                               </td>
                             );
                           })

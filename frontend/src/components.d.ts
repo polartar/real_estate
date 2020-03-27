@@ -176,6 +176,9 @@ export namespace Components {
     'item': any;
     'month': number|null;
   }
+  interface ListingAvailabilityForm {
+    'item': any;
+  }
   interface ListingCard {
     'contentPadding': boolean;
     'item': any;
@@ -189,6 +192,10 @@ export namespace Components {
   }
   interface ListingMap {
     'item': any;
+  }
+  interface ListingMonthlyRateForm {
+    'item': any;
+    'month': number;
   }
   interface ListingSlider {
     'items': any[];
@@ -618,6 +625,12 @@ declare global {
     new (): HTMLListingAttributeUpdateModalElement;
   };
 
+  interface HTMLListingAvailabilityFormElement extends Components.ListingAvailabilityForm, HTMLStencilElement {}
+  var HTMLListingAvailabilityFormElement: {
+    prototype: HTMLListingAvailabilityFormElement;
+    new (): HTMLListingAvailabilityFormElement;
+  };
+
   interface HTMLListingCardElement extends Components.ListingCard, HTMLStencilElement {}
   var HTMLListingCardElement: {
     prototype: HTMLListingCardElement;
@@ -640,6 +653,12 @@ declare global {
   var HTMLListingMapElement: {
     prototype: HTMLListingMapElement;
     new (): HTMLListingMapElement;
+  };
+
+  interface HTMLListingMonthlyRateFormElement extends Components.ListingMonthlyRateForm, HTMLStencilElement {}
+  var HTMLListingMonthlyRateFormElement: {
+    prototype: HTMLListingMonthlyRateFormElement;
+    new (): HTMLListingMonthlyRateFormElement;
   };
 
   interface HTMLListingSliderElement extends Components.ListingSlider, HTMLStencilElement {}
@@ -1026,10 +1045,12 @@ declare global {
     'inquiry-form': HTMLInquiryFormElement;
     'lazy-image': HTMLLazyImageElement;
     'listing-attribute-update-modal': HTMLListingAttributeUpdateModalElement;
+    'listing-availability-form': HTMLListingAvailabilityFormElement;
     'listing-card': HTMLListingCardElement;
     'listing-edit-form': HTMLListingEditFormElement;
     'listing-list': HTMLListingListElement;
     'listing-map': HTMLListingMapElement;
+    'listing-monthly-rate-form': HTMLListingMonthlyRateFormElement;
     'listing-slider': HTMLListingSliderElement;
     'listing-table': HTMLListingTableElement;
     'location-filter': HTMLLocationFilterElement;
@@ -1242,6 +1263,10 @@ declare namespace LocalJSX {
     'item': any;
     'month'?: number|null;
   }
+  interface ListingAvailabilityForm extends JSXBase.HTMLAttributes<HTMLListingAvailabilityFormElement> {
+    'item': any;
+    'onUpdateSuccess'?: (event: CustomEvent<any>) => void;
+  }
   interface ListingCard extends JSXBase.HTMLAttributes<HTMLListingCardElement> {
     'contentPadding'?: boolean;
     'item'?: any;
@@ -1256,6 +1281,11 @@ declare namespace LocalJSX {
   }
   interface ListingMap extends JSXBase.HTMLAttributes<HTMLListingMapElement> {
     'item': any;
+  }
+  interface ListingMonthlyRateForm extends JSXBase.HTMLAttributes<HTMLListingMonthlyRateFormElement> {
+    'item': any;
+    'month'?: number;
+    'onUpdateSuccess'?: (event: CustomEvent<any>) => void;
   }
   interface ListingSlider extends JSXBase.HTMLAttributes<HTMLListingSliderElement> {
     'items'?: any[];
@@ -1476,10 +1506,12 @@ declare namespace LocalJSX {
     'inquiry-form': InquiryForm;
     'lazy-image': LazyImage;
     'listing-attribute-update-modal': ListingAttributeUpdateModal;
+    'listing-availability-form': ListingAvailabilityForm;
     'listing-card': ListingCard;
     'listing-edit-form': ListingEditForm;
     'listing-list': ListingList;
     'listing-map': ListingMap;
+    'listing-monthly-rate-form': ListingMonthlyRateForm;
     'listing-slider': ListingSlider;
     'listing-table': ListingTable;
     'location-filter': LocationFilter;
