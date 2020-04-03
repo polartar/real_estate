@@ -22,3 +22,4 @@ yarn-error.log
 /frontend/config.app.json
 
 /storage/app/importMap.csv
+/storage/app/import_images/
