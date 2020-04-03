@@ -60,9 +60,9 @@ export class MapListingCard {
               </div>
               <div class="rating-amenities">
                 <star-rating
-                    stars={buildingType.rating}
+                    stars={5}
                     size={16}
-                    rating={this.item.rating}
+                    rating={buildingType.rating}
                     readonly
                 />
 

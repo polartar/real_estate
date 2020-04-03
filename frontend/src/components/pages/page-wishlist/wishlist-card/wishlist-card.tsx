@@ -99,9 +99,9 @@ export class WishlistCard {
               </div>
 
               <star-rating
-                  stars={buildingType.rating}
+                  stars={5}
                   size={18}
-                  rating={this.item.rating}
+                  rating={buildingType.rating}
                   readonly
               />
             </div>
