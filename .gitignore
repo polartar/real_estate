@@ -20,3 +20,5 @@ yarn-error.log
 /public/robots.txt
 
 /frontend/config.app.json
+
+/storage/app/importMap.csv
