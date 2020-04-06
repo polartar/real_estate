@@ -54,6 +54,7 @@ export class PageNeighborhoods {
 
             <div class="neighborhoods-grid">
 
+      
               {
                 this.neighborhoods.map(neighborhood =>
                   
@@ -61,6 +62,8 @@ export class PageNeighborhoods {
                     <ion-router-link href={`/neighborhood/${neighborhood.slug}`}>
                       <div class="neighborhood-card">
                         <lazy-image src={`/assets/images/neighborhoods/${neighborhood.slug}-cover.jpg`} alt={neighborhood.name} class="neighborhood-feature-image" />
+                        <div class="hover-cover" />
+                        <div class="hover-cover-text">EXPLORE</div>
                         <h4 class="neighborhood-title">{neighborhood.name}</h4>
                       </div>
                     </ion-router-link>
