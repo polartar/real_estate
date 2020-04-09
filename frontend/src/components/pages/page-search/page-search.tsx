@@ -88,10 +88,24 @@ export class PageSearch {
       const header = document.querySelector('app-header');
 
       this.headerObserver.observe(header, config);
+
+      
     }
 
+    const myObj =
+    {
+      "beds": ["1"]
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Apply room filter if the user is coming from the private room link
     if (Build.isBrowser) {
-      this.performSearchAction(this.searchFilters);
+      if (urlParams.has('rooms')) {
+        this.performSearchAction(myObj);
+      } else {
+        this.performSearchAction(this.searchFilters);
+      }
     }
   }
 
@@ -159,9 +173,12 @@ export class PageSearch {
       return;
     }
 
+    console.log("SEARCH FILTERS CHANGED");
+
     this._lastSearchFilters = {...this.searchFilters};
 
     this.performSearchAction(this.searchFilters);
+    
   }
 
   getViewClass() {
