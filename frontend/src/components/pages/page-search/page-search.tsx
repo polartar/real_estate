@@ -173,8 +173,6 @@ export class PageSearch {
       return;
     }
 
-    console.log("SEARCH FILTERS CHANGED");
-
     this._lastSearchFilters = {...this.searchFilters};
 
     this.performSearchAction(this.searchFilters);
