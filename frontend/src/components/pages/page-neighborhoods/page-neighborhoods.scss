@@ -122,7 +122,7 @@
 .neighborhood-card {
   position: relative;
   overflow: hidden;
-  height: 192px;
+  height: 368px;
 
   @include for-size(tablet-portrait-up) {
     max-width: 304px;
