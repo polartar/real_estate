@@ -155,9 +155,7 @@ export class PageNeighborhood {
               <div>
                 <h2>Experience {item.name}</h2>
 
-                <p>
-                  {item.description}
-                </p>
+                <p innerHTML={item.description}></p>
 
                 <h2 class="tag-title">Neighborhood tags</h2>
 
@@ -225,7 +223,7 @@ export class PageNeighborhood {
               <div class='column'>
                 <div class='text-column'>
                 <h2>Eat in {item.name}</h2>
-                <p>{item.eat}</p>
+                <p innerHTML={item.eat}></p>
                 </div>
               </div>
             </div>
@@ -239,7 +237,7 @@ export class PageNeighborhood {
               <div class='column'>
                 <div class='text-column'>
                 <h2>Drink in {item.name}</h2>
-                <p>{item.drink}</p>
+                <p innerHTML={item.drink}></p>
                 </div>
               </div>
             </div>
@@ -253,7 +251,7 @@ export class PageNeighborhood {
               <div class='column'>
                 <div class='text-column'>
                 <h2>Shop in {item.name}</h2>
-                <p>{item.shop}</p>
+                <p innerHTML={item.shop}></p>
                 </div>
               </div>
             </div>
@@ -267,7 +265,7 @@ export class PageNeighborhood {
               <div class='column'>
                 <div class='text-column'>
                 <h2>Play in {item.name}</h2>
-                <p>{item.play}</p>
+                <p innerHTML={item.play}></p>
                 </div>
               </div>
             </div>
@@ -281,7 +279,7 @@ export class PageNeighborhood {
               <div class='column'>
                 <div class='text-column'>
                 <h2>Explore in {item.name}</h2>
-                <p>{item.explore}</p>
+                <p innerHTML={item.explore}></p>
                 </div>
               </div>
             </div>
@@ -295,7 +293,7 @@ export class PageNeighborhood {
               <div class='column'>
                 <div class='text-column'>
                 <h2>Life in {item.name}</h2>
-                <p>{item.life}</p>
+                <p innerHTML={item.life}></p>
                 </div>
               </div>
             </div>
