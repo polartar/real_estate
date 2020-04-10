@@ -59,6 +59,7 @@ export class ListingMap {
           zoom: 14,
           minZoom: 10,
           maxZoom: 17,
+          scrollZoom: false
           // maxBounds: [
           //   [-74.076242, 40.657445],
           //   [-73.815763, 40.907992]
