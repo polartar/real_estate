@@ -52,8 +52,8 @@ class MapImportedListings extends Command
             'Owner',
             'Title',
             'Description',
+            'Apt #',
             'Address',
-            'Amenities'
         ]);
 
         $linenum = 0;
@@ -72,6 +72,7 @@ class MapImportedListings extends Command
                 isset($data['ownerName']) ? $data['ownerName'] : '',
                 isset($data['title']) ? $data['title'] : '',
                 isset($data['description']) ? $data['description'] : '',
+                isset($data['apartmentNumber']) ? $data['apartmentNumber'] : '',
                 isset($data['address']) ? $data['address'] : ''
             ]);
         }
