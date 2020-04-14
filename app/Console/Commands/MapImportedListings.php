@@ -49,8 +49,11 @@ class MapImportedListings extends Command
         fputcsv($outputHandle, [
             'Original WebId',
             'New WebId',
+            'Owner',
             'Title',
-            'Owner'
+            'Description',
+            'Address',
+            'Amenities'
         ]);
 
         $linenum = 0;
@@ -66,8 +69,10 @@ class MapImportedListings extends Command
             fputcsv($outputHandle, [
                 isset($data['webId']) ? $data['webId'] : 'INVALID',
                 $linenum,
+                isset($data['ownerName']) ? $data['ownerName'] : '',
                 isset($data['title']) ? $data['title'] : '',
-                isset($data['ownerName']) ? $data['ownerName'] : ''
+                isset($data['description']) ? $data['description'] : '',
+                isset($data['address']) ? $data['address'] : ''
             ]);
         }
 
