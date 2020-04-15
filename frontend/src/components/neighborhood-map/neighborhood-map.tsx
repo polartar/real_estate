@@ -63,6 +63,9 @@ export class NeighborhoodMap {
           scrollZoom: false
         });
 
+        this.map.dragPan.disable();
+        this.map.touchZoomRotate.disable();
+
         this.map.addControl(new mapboxgl.NavigationControl());
 
         this.map.on('load', () => {
