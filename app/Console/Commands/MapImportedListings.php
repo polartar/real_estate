@@ -54,6 +54,13 @@ class MapImportedListings extends Command
             'Description',
             'Apt #',
             'Address',
+            'Rate',
+            'Sq Footage',
+            'Building Type',
+            'Available Date',
+            'Floor',
+            'Is Active',
+            
         ]);
 
         $linenum = 0;
@@ -66,6 +73,8 @@ class MapImportedListings extends Command
 
             $data = json_decode($line, true);
 
+            $availabledate = substr($data['availableDate']['$date'], 0, 10);
+
             fputcsv($outputHandle, [
                 isset($data['webId']) ? $data['webId'] : 'INVALID',
                 $linenum,
@@ -73,7 +82,13 @@ class MapImportedListings extends Command
                 isset($data['title']) ? $data['title'] : '',
                 isset($data['description']) ? $data['description'] : '',
                 isset($data['apartmentNumber']) ? $data['apartmentNumber'] : '',
-                isset($data['address']) ? $data['address'] : ''
+                isset($data['address']) ? $data['address'] : '',
+                isset($data['rate']) ? $data['rate'] : '',
+                isset($data['sqFootage']) ? $data['sqFootage'] : '',
+                isset($data['buildingType']) ? $data['buildingType'] : '',
+                isset($availabledate) ? $availabledate : '',
+                isset($data['floor']) ? $data['floor'] : '',
+                isset($data['isActive']) ? $data['isActive'] : ''
             ]);
         }
 
