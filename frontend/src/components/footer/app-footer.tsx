@@ -45,17 +45,22 @@ export class AppFooter {
             <div class="footer-col footer-left">
               <div class="footer-links">
                 <div class="links-left">
+                 <ion-router-link href="/search">Search</ion-router-link>
                   <ion-router-link href="/booking">Bookings</ion-router-link>
                   <ion-router-link href="/faq">FAQ</ion-router-link>
-                  <ion-router-link href="/about">About</ion-router-link>
-                  <ion-router-link href="/neighborhoods">Neighborhoods</ion-router-link>
-                  <ion-router-link href="/private-rooms">Private Rooms</ion-router-link>
+                  <ion-router-link href="/about">What is Apt212?</ion-router-link>
+                  <ion-router-link href="#">List with us</ion-router-link>
+                  <ion-router-link href="/referral">Referrals</ion-router-link>
+                  
                 </div>
                 <div class="links-right">
-                  <ion-router-link href="/brokers">Brokers</ion-router-link>
+                <ion-router-link href="/neighborhoods">Neighborhoods</ion-router-link>
+                  <ion-router-link href="/private-rooms">Private Rooms</ion-router-link>
+                  <ion-router-link href="/brokers">Corporate Accounts</ion-router-link>
                   <ion-router-link href="/careers">Careers</ion-router-link>
                   <ion-router-link href="/blog">APT212 blog</ion-router-link>
-                  <ion-router-link href="/referral">Referrals</ion-router-link>
+                  <ion-router-link href="/privacy">Privacy Policy</ion-router-link>
+                  
                 </div>
               </div>
             </div>

@@ -57,7 +57,15 @@ export class AppMenu {
             </ion-router-link>
 
             <ion-router-link href="/booking" onClick={() => this.closeMenu()}>
-              Bookings
+              Booking
+            </ion-router-link>
+
+            <ion-router-link href="/about" onClick={() => this.closeMenu()}>
+              What is APT212?
+            </ion-router-link>
+
+            <ion-router-link href="/faq" onClick={() => this.closeMenu()}>
+              FAQ
             </ion-router-link>
 
             <ion-router-link href="/" onClick={() => this.closeMenu()}>
@@ -67,23 +75,7 @@ export class AppMenu {
             <ion-router-link href="/referral" onClick={() => this.closeMenu()}>
               Referrals
             </ion-router-link>
-
-            <ion-router-link href="/" onClick={() => this.closeMenu()}>
-              Brokers
-            </ion-router-link>
-
-            <ion-router-link href="/corporate-rooms" onClick={() => this.closeMenu()}>
-              Corporate
-            </ion-router-link>
-
-            <ion-router-link href="/about" onClick={() => this.closeMenu()}>
-              About APT212
-            </ion-router-link>
-
-            <ion-router-link href="/faq" onClick={() => this.closeMenu()}>
-              FAQ
-            </ion-router-link>
-
+            
             {
               this.isLoggedIn ?
                 <ion-router-link href="/" onClick={() => { this.logout(); this.closeMenu(); }}>
