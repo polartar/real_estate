@@ -49,7 +49,7 @@ export class AppFooter {
                   <ion-router-link href="/booking">Bookings</ion-router-link>
                   <ion-router-link href="/faq">FAQ</ion-router-link>
                   <ion-router-link href="/about">What is Apt212?</ion-router-link>
-                  <ion-router-link href="#">List with us</ion-router-link>
+                  <ion-router-link href="/coming-soon">List with us</ion-router-link>
                   <ion-router-link href="/referral">Referrals</ion-router-link>
                   
                 </div>
@@ -58,7 +58,7 @@ export class AppFooter {
                   <ion-router-link href="/private-rooms">Private Rooms</ion-router-link>
                   <ion-router-link href="/brokers">Corporate Accounts</ion-router-link>
                   <ion-router-link href="/careers">Careers</ion-router-link>
-                  <ion-router-link href="/blog">APT212 blog</ion-router-link>
+                  <ion-router-link href="http://apt212.asuscomm.com">APT212 blog</ion-router-link>
                   <ion-router-link href="/privacy">Privacy Policy</ion-router-link>
                   
                 </div>

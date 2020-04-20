@@ -25,6 +25,7 @@ $front_end_routes = [
     '/faq',
     '/booking',
     '/privacy',
+    '/coming-soon',
 
     '/private-rooms',
     '/corporate-rooms',

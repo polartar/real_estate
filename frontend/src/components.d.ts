@@ -256,6 +256,7 @@ export namespace Components {
   interface PageAdminOwner {}
   interface PageAdminReferrals {}
   interface PageBooking {}
+  interface PageComingSoon {}
   interface PageCorporateRooms {
     'prefetching': boolean;
   }
@@ -812,6 +813,12 @@ declare global {
     new (): HTMLPageBookingElement;
   };
 
+  interface HTMLPageComingSoonElement extends Components.PageComingSoon, HTMLStencilElement {}
+  var HTMLPageComingSoonElement: {
+    prototype: HTMLPageComingSoonElement;
+    new (): HTMLPageComingSoonElement;
+  };
+
   interface HTMLPageCorporateRoomsElement extends Components.PageCorporateRooms, HTMLStencilElement {}
   var HTMLPageCorporateRoomsElement: {
     prototype: HTMLPageCorporateRoomsElement;
@@ -1066,6 +1073,7 @@ declare global {
     'page-admin-owner': HTMLPageAdminOwnerElement;
     'page-admin-referrals': HTMLPageAdminReferralsElement;
     'page-booking': HTMLPageBookingElement;
+    'page-coming-soon': HTMLPageComingSoonElement;
     'page-corporate-rooms': HTMLPageCorporateRoomsElement;
     'page-faq': HTMLPageFaqElement;
     'page-home': HTMLPageHomeElement;
@@ -1335,6 +1343,7 @@ declare namespace LocalJSX {
   interface PageAdminOwner extends JSXBase.HTMLAttributes<HTMLPageAdminOwnerElement> {}
   interface PageAdminReferrals extends JSXBase.HTMLAttributes<HTMLPageAdminReferralsElement> {}
   interface PageBooking extends JSXBase.HTMLAttributes<HTMLPageBookingElement> {}
+  interface PageComingSoon extends JSXBase.HTMLAttributes<HTMLPageComingSoonElement> {}
   interface PageCorporateRooms extends JSXBase.HTMLAttributes<HTMLPageCorporateRoomsElement> {
     'prefetching'?: boolean;
   }
@@ -1521,6 +1530,7 @@ declare namespace LocalJSX {
     'page-admin-owner': PageAdminOwner;
     'page-admin-referrals': PageAdminReferrals;
     'page-booking': PageBooking;
+    'page-coming-soon': PageComingSoon;
     'page-corporate-rooms': PageCorporateRooms;
     'page-faq': PageFaq;
     'page-home': PageHome;

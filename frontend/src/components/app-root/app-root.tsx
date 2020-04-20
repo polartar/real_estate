@@ -95,6 +95,7 @@ export class AppRoot {
             <ion-route url="/neighborhoods" component="page-neighborhoods" />
             <ion-route url="/neighborhood/:neighborhoodName" component="page-neighborhood" />
             <ion-route url="/faq" component="page-faq" />
+            <ion-route url="/coming-soon" component="page-coming-soon" />
             <ion-route url="/booking" component="page-booking" />
             <ion-route url="/privacy" component="page-privacy" />
 

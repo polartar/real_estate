@@ -68,7 +68,7 @@ export class AppMenu {
               FAQ
             </ion-router-link>
 
-            <ion-router-link href="/" onClick={() => this.closeMenu()}>
+            <ion-router-link href="/coming-soon" onClick={() => this.closeMenu()}>
               List with us
             </ion-router-link>
 
