@@ -78,8 +78,8 @@ export class YoutubeVideo {
         :
 
           <a aria-label={this.videoTitle} class="placeholder" onClick={() => { this.played = true }}>
-            <lazy-image src={`https://i3.ytimg.com/vi/${this.videoId}/hqdefault.jpg`} class="placeholder" alt="Youtube Video" />
-
+            <lazy-image src={`https://i3.ytimg.com/vi/${this.videoId}/maxresdefault.jpg`} class="placeholder" alt="Youtube Video" />
+        
             <div class="icon-wrapper">
               <div class="icon-container">
                 <svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
