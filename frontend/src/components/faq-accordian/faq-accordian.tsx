@@ -59,10 +59,7 @@ export class FAQAccordian {
             {this.activeInstance == 1 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>
           <p class="accordian-content active">
-            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, etc.)
-            and set up with Wifi and Cable TV.<br /><br />
-            Not all units come with linen and towels, but a package is available for purchase at our Soho office. For most units, landlords are able to
-            offer bed changes to accommodate larger groups.
+          Our apartments are located throughout Manhattan’s most vibrant neighborhoods and provide all the comforts and privacy of home at a fraction of the cost of nearby hotels. With an exceptional customer service team, we make it a priority to ensure our guests a comfortable and enjoyable stay.
           </p>
         </div>
 
@@ -72,10 +69,7 @@ export class FAQAccordian {
             {this.activeInstance == 2 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>
           <p class="accordian-content">
-            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, etc.)
-            and set up with Wifi and Cable TV.<br /><br />
-            Not all units come with linen and towels, but a package is available for purchase at our Soho office. For most units, landlords are able to
-            offer bed changes to accommodate larger groups.
+          All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, etc.) and set up with Wifi and Cable TV. Not all units come with linen and towels, but a package is available for purchase at our Soho office. For most units, landlords are able to offer bed changes to accommodate larger groups..
           </p>
         </div>
 
@@ -85,10 +79,7 @@ export class FAQAccordian {
             {this.activeInstance == 3 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>
           <p class="accordian-content">
-            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, etc.)
-            and set up with Wifi and Cable TV.<br /><br />
-            Not all units come with linen and towels, but a package is available for purchase at our Soho office. For most units, landlords are able to
-            offer bed changes to accommodate larger groups.
+          You are more than welcome to bring your own furniture and appliances to the residence. However we are not able to offer moving and storage services for the existing furniture already inside the apartment. If any of the original items are moved out, they must be returned to the unit prior to check-out.
           </p>
         </div>
 
@@ -98,10 +89,7 @@ export class FAQAccordian {
             {this.activeInstance == 4 ? <ion-icon name="remove" /> : <ion-icon name="add" /> }
           </button>
           <p class="accordian-content">
-            All of our apartments are move-in ready. They are complete with contemporary furniture, a fully equipped kitchen (cookware, cutlery, etc.)
-            and set up with Wifi and Cable TV.<br /><br />
-            Not all units come with linen and towels, but a package is available for purchase at our Soho office. For most units, landlords are able to
-            offer bed changes to accommodate larger groups.
+          Generally bookings must start on the advertised availability date for any particular listing. For example, if an apartment is listed as available from June 1, the lease start date must be June 1. Occasionally landlords may have flexibility, so if an apartment does not match your exact start date contact a booking agent directly to see if the landlord can accommodate your desired date.
           </p>
         </div>
       </div>

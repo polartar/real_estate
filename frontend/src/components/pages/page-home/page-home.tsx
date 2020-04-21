@@ -103,7 +103,7 @@ export class PageHome {
 
     let title = <h1 class="title">#1 SOURCE FOR NEW YORK<br></br> FURNISHED APARTMENTS</h1>
 
-    let subtitle = <p class="subtitle">Search, find, and book your New York<br></br> furnished apartment</p>
+    let subtitle = <p class="subtitle">Search, find, and book your New York furnished apartment</p>
 
     let search = <button class="light" onClick={() => { this.toggleSearchFilterDisplay(!this.displayFilter) }}>
                     Search
@@ -171,7 +171,7 @@ export class PageHome {
 
             <div class="video">
               <maintain-ratio width={640} height={360}>
-                  <youtube-video src="https://youtube.com/watch?v=C0DPdy98e4c" />
+                  <youtube-video src="https://www.youtube.com/watch?v=_5vSYLgwzjw" />
               </maintain-ratio>
             </div>
           </div>
