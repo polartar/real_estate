@@ -380,8 +380,8 @@ export class PageListingBody {
                   <div class="neighborhood">
                     <lazy-image src={n.image} class="neighborhood-image" />
 
-                    <div class="description">
-                      { n.description }
+                    <div class="description" innerHTML={n.description}>
+
 
                       <a href={`/neighborhood/${n.slug}`} class="button-dark">
                         Explore
