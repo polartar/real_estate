@@ -35,7 +35,7 @@ export class TestimonialsSlider {
       type: 'slider',
       perView: 1,
       rewind: true,
-      autoplay: 5000
+      autoplay: 2000
     });
 
     this.glide.mount({ Autoplay });
