@@ -85,10 +85,9 @@ export class InquiryForm {
   render() {
     return (
       <form class="inquiry-form-component" onSubmit={e => this.handleSubmit(e)} ref={el => this.form = el as HTMLFormElement }>
-        <div class="title desktop-center">Make An Inquiry</div>
+        <div class="title desktop-center">Contact An Agent</div>
 
-        <p class="desktop-center">We are here to help 24/7</p>
-        <p class="desktop-center">212.380.1375 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; info@apt212.com</p>
+        <p class="desktop-center">We are available to assist every step of the way insuring you have a seamless transaction.</p>
 
         <div class="columns">
           <div class="left">

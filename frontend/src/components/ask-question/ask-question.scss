@@ -48,7 +48,7 @@
     @include for-size(desktop-up) {
       width: auto;
       flex-grow: 1;
-      padding-left: 65px;
+      padding: 0 65px;
     }
   }
 
