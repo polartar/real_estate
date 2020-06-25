@@ -100,7 +100,7 @@ export class AppRoot {
             <ion-route url="/privacy" component="page-privacy" />
 
             <ion-route url="/private-rooms" component="page-private-rooms" />
-            <ion-route url="/corporate-rooms" component="page-corporate-rooms" />
+            <ion-route url="/corporate-housing" component="page-corporate-rooms" />
             <ion-route url="/about" component="page-about" />
             <ion-route url="/referral" component="page-referral" />
 

@@ -28,7 +28,7 @@ $front_end_routes = [
     '/coming-soon',
 
     '/private-rooms',
-    '/corporate-rooms',
+    '/corporate-housing',
     '/about',
     '/referral',
 
