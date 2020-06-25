@@ -76,7 +76,7 @@ import { APISearchService } from '../../../services/api/search';
       this.value = this.textInput.value
 
       this.toggleMatchesVisibility(this.value)
-      
+
       if (this.value.length < 2) {
         return;
       }
@@ -104,8 +104,11 @@ import { APISearchService } from '../../../services/api/search';
       if (guest == "yes") {
         this.guest = "yes"
         this.getQuestionsByCategory("guest")
-      } else {
+      } else if (guest == "no") {
         this.guest = "no"
+        this.getQuestionsByCategory("host")
+      } else if (guest == "sales") {
+        this.guest = "sales"
         this.getQuestionsByCategory("host")
       }
     }
@@ -176,7 +179,7 @@ import { APISearchService } from '../../../services/api/search';
                   </div>
                 </div>
             </div>
-            
+
             <section class="section">
             <div class="nav-wrapper">
             <div class="nav">
@@ -186,7 +189,7 @@ import { APISearchService } from '../../../services/api/search';
                       class={{ 'button-dark': true,  active: this.guest === 'yes'}}
                       onClick={() => this.showQuestions("yes")}
                     >
-                      Guest
+                      Furnished
                     </button>
 
                     <button
@@ -194,22 +197,30 @@ import { APISearchService } from '../../../services/api/search';
                       class={{ 'button-dark': true,  active: this.guest === 'no'}}
                       onClick={() => this.showQuestions("no")}
                     >
-                      Host
+                      Rentals
+                    </button>
+
+                    <button
+                      type="button"
+                      class={{ 'button-dark': true,  active: this.guest === 'sales'}}
+                      onClick={() => this.showQuestions("sales")}
+                    >
+                      Sales
                     </button>
                   </div>
                 </div>
             </div>
 
-            
+
 
             <div class="faq-wrapper">
 
-            
-        
+
+
               <div class="questions-wrapper">
-              
+
                   <div class="questions">
-                    
+
                     <h2>General</h2>
 
                       {this.general.map(faq => {
@@ -303,7 +314,7 @@ import { APISearchService } from '../../../services/api/search';
           </div>
         </div>
 
-          
+
 
         </ion-content>
       ];
