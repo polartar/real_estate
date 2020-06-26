@@ -11,11 +11,17 @@ Install dependencies:
 
 Configure database credentials in `.env` then run migrations
 
+`php artisan key:generate`
+
 `php artisan dev:refresh`
 
 To seed apartments for development call:
 
 `php artisan db:seed --class=ApartmentSeeder`
+
+Link Storage
+
+`php artisan storage:link`
 
 Clear caches
 
