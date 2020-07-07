@@ -90,3 +90,12 @@
     }
   }
 }
+
+.header-inner {
+  @include for-size(desktop-up) {
+    .search-filters-wrapper {
+      position: absolute;
+      bottom: -56px;
+    }
+  }
+}
