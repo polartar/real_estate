@@ -44,6 +44,16 @@ html.md {
   --ion-font-family: 'Source Sans Pro', sans-serif;
   --ion-default-font: 'Source Sans Pro', sans-serif;
   letter-spacing: 0;
+
+  page-search {
+    .header-inner {
+      .search-filters-wrapper {
+        @include for-size(desktop-up) {
+          position: initial;
+        }
+      }
+    }
+  }
 }
 
 

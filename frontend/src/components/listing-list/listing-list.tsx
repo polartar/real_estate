@@ -1,4 +1,5 @@
 import { Component, h, Prop  } from '@stencil/core';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   tag: 'listing-list',
@@ -13,7 +14,7 @@ export class ListingList {
         <div class="list-wrapper">
           { this.items.map(item => <listing-card item={item} />) }
         </div>
-        <ion-router-link href="/search" class="show-all">Show All ></ion-router-link>
+        <ion-router-link href={ RouterService.getRoute('search') } class="show-all">Show All ></ion-router-link>
       </div>
     ];
   }

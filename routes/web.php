@@ -17,7 +17,7 @@ Route::get('/api/pdf/booking-details/{apartment}', 'ApartmentController@getBooki
 
 $front_end_routes = [
     '/',
-    '/search',
+    '/search-apartments',
     '/listing/{id}',
     '/wishlist',
     '/neighborhoods',

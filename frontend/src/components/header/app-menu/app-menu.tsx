@@ -2,6 +2,7 @@ import { Component, h, Prop} from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import authSelectors from '../../../store/selectors/auth';
 import { logout } from '../../../store/actions/auth';
+import { RouterService } from '../../../services/router.service';
 
 @Component({
   tag: 'app-menu',
@@ -52,7 +53,7 @@ export class AppMenu {
         <ion-content class="app-menu-container app-wrapper">
 
           <div class="section main-menu">
-            <ion-router-link href="/search" onClick={() => this.closeMenu()}>
+            <ion-router-link href={ RouterService.getRoute('search') } onClick={() => this.closeMenu()}>
               Search Apartments
             </ion-router-link>
 

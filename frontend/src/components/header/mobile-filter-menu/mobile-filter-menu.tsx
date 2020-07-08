@@ -1,4 +1,5 @@
 import { Component, h, State, Element } from '@stencil/core';
+import { RouterService } from '../../../services/router.service';
 
 @Component({
   tag: 'mobile-filter-menu',
@@ -39,7 +40,7 @@ export class AppMenu {
           Building Type
         </ion-item>
 
-        <ion-item aria-label="Search" href="/search" class="search" button mode="md" detail onClick={() => this.closeModal()} detailIcon="md-arrow-dropright">
+        <ion-item aria-label="Search" href={ RouterService.getRoute('search') } class="search" button mode="md" detail onClick={() => this.closeModal()} detailIcon="md-arrow-dropright">
           Search
         </ion-item>
       </ion-list>

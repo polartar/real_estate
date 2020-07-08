@@ -9,6 +9,7 @@ import { APIService } from "../../services/api/api.service";
 import AuthSelectors from '../../store/selectors/auth';
 import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
 import { PrefetchComponentService } from '../../services/prefetch-components.service';
+import { RouterService } from '../../services/router.service';
 import Debounce from 'debounce-decorator';
 
 @Component({
@@ -89,7 +90,7 @@ export class AppRoot {
       <ion-app>
           <ion-router useHash={false}>
             <ion-route url="/" component="page-home" />
-            <ion-route url="/search" component="page-search" />
+            <ion-route url={ RouterService.getRoute('search') } component="page-search" />
             <ion-route url="/listing/:apartmentId" component="page-listing" />
             <ion-route url="/wishlist" component="page-wishlist" />
             <ion-route url="/neighborhoods" component="page-neighborhoods" />

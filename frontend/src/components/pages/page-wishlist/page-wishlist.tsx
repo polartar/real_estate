@@ -4,6 +4,7 @@ import wishlistSelectors from '../../../store/selectors/wishlist';
 import { removeFromWishlist } from '../../../store/actions/wishlist';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import { APIApartmentsService } from '../../../services/api/apartments';
+import { RouterService } from '../../../services/router.service';
 
 @Component({
   tag: 'page-wishlist',
@@ -101,7 +102,7 @@ export class PageWishlist {
               Your wishlist is empty.<br /><br />
               Search for listings that match your criteria, then add them to your wishlist.<br /><br />
 
-              <ion-router-link href="/search" class="button-dark">SEARCH</ion-router-link>
+              <ion-router-link href={ RouterService.getRoute('search') } class="button-dark">SEARCH</ion-router-link>
             </div>
             : null
           }

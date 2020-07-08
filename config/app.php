@@ -178,7 +178,6 @@ return [
 
         App\Providers\Apt212ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class
-
     ],
 
     /*

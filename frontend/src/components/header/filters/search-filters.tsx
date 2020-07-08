@@ -4,6 +4,7 @@ import { toggleSearchFilterDisplay } from "../../../store/actions/search";
 import { FilterTagsService } from '../../../services/search-filters/filter-tags.service';
 import { searchFilterSelectors } from '../../../store/selectors/search';
 import taxonomySelectors from '../../../store/selectors/taxonomy';
+import { RouterService } from '../../../services/router.service';
 
 @Component({
   tag: 'search-filters',
@@ -95,7 +96,7 @@ export class SearchFilters {
             </button>
 
             { this.closeable ?
-            <ion-button aria-label="Search" class="search" href="/search">Search</ion-button>
+            <ion-button aria-label="Search" class="search" href={ RouterService.getRoute('search') }>Search</ion-button>
             : null }
 
             <ion-button aria-label="Search Filters" class="reset mobile-filters" onClick={() => this.launchMobileFilterMenu()}>

@@ -7,6 +7,7 @@ import { formatMoney, formatDate, nl2br, xssFilter } from '../../../../helpers/u
 import { getBedsListingText } from '../../../../helpers/filters';
 import { APISearchService } from '../../../../services/api/search';
 import { ModalService } from '../../../../services/modal.service';
+import { RouterService } from '../../../../services/router.service';
 
 @Component({
   tag: 'page-listing-body',
@@ -453,7 +454,7 @@ export class PageListingBody {
                 </div>
               </div>
               <div>
-                <ion-router-link href="/search" class="show-all">Show All ></ion-router-link>
+                <ion-router-link href={ RouterService.getRoute('search') } class="show-all">Show All ></ion-router-link>
               </div>
             </section>
             : null

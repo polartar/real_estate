@@ -1,4 +1,5 @@
 import { Component, h } from '@stencil/core';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   tag: 'find-more',
@@ -15,10 +16,10 @@ export class FindMore {
             <div class="col">
               <h2>Find More Options!</h2>
               <p>
-                Browse all our <a href="/search?rooms=1">furnished apartments</a> for rent in New York City and select<br /> the right apartment you are looking for, whether it's a <a href="/search?rooms=1">room for rent</a>, or a<br /> <a href="/search?rooms=1">private furnished rental</a>.
+                Browse all our <a href={ RouterService.getRoute('search', { 'rooms': 1 }) } >furnished apartments</a> for rent in New York City and select<br /> the right apartment you are looking for, whether it's a <a href={ RouterService.getRoute('search', { 'rooms': 1 }) }>room for rent</a>, or a<br /> <a href={ RouterService.getRoute('search', { 'rooms': 1 }) }>private furnished rental</a>.
               </p>
 
-              <ion-button aria-label="Speak to an expert" class="static-button last" onClick={() => {window.open('/search', '_self') }}>
+              <ion-button aria-label="Speak to an expert" class="static-button last" onClick={() => { RouterService.reload(RouterService.getRoute('search')) }}>
                 Search Now
               </ion-button>
             </div>
