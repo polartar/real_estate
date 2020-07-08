@@ -14,7 +14,7 @@
     "test.watch": "stencil test --spec --e2e --watch",
     "generate": "stencil generate",
     "prod": "npm run production",
-    "production": "stencil build --prerender"
+    "production": "stencil build"
   },
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
