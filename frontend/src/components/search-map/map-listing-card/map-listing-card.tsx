@@ -49,13 +49,13 @@ export class MapListingCard {
               </div>
               <div class="bed-bath">
                 <div>
-                  <img src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {getBedsListingText(bedroomType)}
+                  <img src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom" /> {getBedsListingText(bedroomType)}
                 </div>
                 <div class="divider">
                   |
                 </div>
                 <div>
-                  <img src="/assets/images/icons/bathroom.svg" class="bathrooms" alt="bathroom icon" /> {this.item.bathrooms} Bathroom
+                  <img src="/assets/images/icons/bathroom.svg" class="bathrooms" alt="bathroom" /> {this.item.bathrooms} Bathroom
                 </div>
               </div>
               <div class="rating-amenities">

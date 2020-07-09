@@ -110,13 +110,13 @@ export class SearchListingCard {
             </div>
             <div class="bed-bath">
               <div>
-                <lazy-image src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom icon" /> {getBedsListingText(bedroomType)}
+                <lazy-image src="/assets/images/icons/bedroom.svg" class="bedrooms" alt="bedroom" /> {getBedsListingText(bedroomType)}
               </div>
               <div class="divider">
                 |
               </div>
               <div>
-                <lazy-image src="/assets/images/icons/bathroom.svg" class="bathrooms" alt="bathroom icon" /> {this.item.bathrooms} Bathroom
+                <lazy-image src="/assets/images/icons/bathroom.svg" class="bathrooms" alt="bathroom" /> {this.item.bathrooms} Bathroom
               </div>
             </div>
             <div class="rating-amenities">

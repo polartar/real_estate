@@ -46,12 +46,14 @@ class SEOServiceInstance {
         '/': {
           title: 'APT212 - #1 SOURCE FOR NEW YORK CITY FURNISHED APARTMENTS',
           description: "New York City's number 1 source for furnished apartments, sublets, and legal short term rentals. Search, find, and book your furnished apartment today.",
-          og: {
-            type: 'article',
-            url: EnvironmentConfigService.getInstance().get('BASE_URL'),
-            image: '/assets/images/og-social.jpg',
-            site_name: 'Apt212.com'
-          }
+        },
+        '/booking': {
+          title: 'APT212 Furnished Apartments, Rooms, Corporate House Booking',
+          description: 'Book your furnished apartments, rooms and corporate house online with APT212. We accept all payment mode like Visa, MasterCard and more. For any query call us today.'
+        },
+        '/rooms-for-rent': {
+          title: 'Private Rooms for Rent in New York, Manhattan NYC | APT212',
+          description: 'Welcome to APT212, Your number 1 source to find a room for rent around NYC & Manhattan. Use our quick filters and find your next room for rent in New York City.'
         },
         '/search-apartments': {
           title: 'NYC Apartment Finder | Search 1,000+ Short-term Rental in NYC | APT212',

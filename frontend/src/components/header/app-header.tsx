@@ -6,6 +6,7 @@ import wishlistSelectors from '../../store/selectors/wishlist';
 import taxonomySelectors from '../../store/selectors/taxonomy';
 import { FilterTagsService } from '../../services/search-filters/filter-tags.service';
 import { ModalService } from '../../services/modal.service';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   tag: 'app-header',
@@ -127,7 +128,7 @@ export class AppHeader {
             <div class="header-center" />
 
             <div class="header-right">
-              <ion-router-link href="/booking" class="nav">
+              <ion-router-link href={ RouterService.getRoute('booking') } class="nav">
                 Bookings
               </ion-router-link>
 

@@ -14,13 +14,15 @@ class RouterServiceInstance {
    * @param params - query params { key: value }
    */
   getRoute(name, params?) {
-    let path = '/';
 
-    switch (name) {
-      case 'search':
-        path = '/search-apartments';
-      break;
-    }
+    const routeMap = {
+      booking: '/booking',
+      'corporate-rooms': '/corporate-rooms',
+      'private-rooms': '/rooms-for-rent',
+      'search': '/search-apartments'
+    };
+
+    let path = routeMap.hasOwnProperty(name) ? routeMap[name] : '/';
 
     if (params && Object.keys(params).length) {
       const queryString = this.serializeQuery(params);

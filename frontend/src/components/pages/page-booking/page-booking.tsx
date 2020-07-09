@@ -89,7 +89,7 @@ export class PageBooking {
 
         <section class="page-booking-body">
           <div class="payment-section-wrapper">
-            <lazy-image src="/assets/images/booking_hero1.png" class="payment-bg" alt="background-image" aria-label="" />
+            <lazy-image src="/assets/images/booking_hero1.png" class="payment-bg" alt="apartments booking" aria-label="" />
 
             <div class="payment-bg-mask" />
 
@@ -177,7 +177,7 @@ export class PageBooking {
           </div>
 
           <div class="payment-section-wrapper payment-faq">
-            <lazy-image src="/assets/images/booking_hero2.png" class="payment-bg" alt="background-image" aria-label="" />
+            <lazy-image src="/assets/images/booking_hero2.png" class="payment-bg" alt="apartments booking" aria-label="" />
 
             <div class="payment-bg-mask" />
 

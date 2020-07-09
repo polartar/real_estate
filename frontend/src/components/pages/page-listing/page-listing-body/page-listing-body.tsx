@@ -64,11 +64,11 @@ export class PageListingBody {
 
     let features: any[] = [
       {
-        'name': <span><lazy-image src="/assets/images/icons/bedroom.svg" class="feature-icon" alt="bedroom icon" /> Bedrooms</span>,
+        'name': <span><lazy-image src="/assets/images/icons/bedroom.svg" class="feature-icon" alt="bedroom" /> Bedrooms</span>,
         'value': getBedsListingText(bedroomType, 'short')
       },
       {
-        'name': <span><lazy-image src="/assets/images/icons/bathroom.svg" class="feature-icon" alt="bathroom icon" /> Bathrooms</span>,
+        'name': <span><lazy-image src="/assets/images/icons/bathroom.svg" class="feature-icon" alt="bathroom" /> Bathrooms</span>,
         'value': this.item.bathrooms
       },
       {

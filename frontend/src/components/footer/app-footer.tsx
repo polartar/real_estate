@@ -46,7 +46,7 @@ export class AppFooter {
               <div class="footer-links">
                 <div class="links-left">
                  <ion-router-link href={ RouterService.getRoute('search') }>Search Apartments</ion-router-link>
-                  <ion-router-link href="/booking">Bookings</ion-router-link>
+                  <ion-router-link href={ RouterService.getRoute('booking') }>Bookings</ion-router-link>
                   <ion-router-link href="/faq">FAQ</ion-router-link>
                   <ion-router-link href="/about">What is Apt212?</ion-router-link>
                   <ion-router-link href="/coming-soon">List with us</ion-router-link>
@@ -55,7 +55,7 @@ export class AppFooter {
                 </div>
                 <div class="links-right">
                 <ion-router-link href="/neighborhoods">Neighborhoods</ion-router-link>
-                  <ion-router-link href="/private-rooms">Private Rooms</ion-router-link>
+                  <ion-router-link href={ RouterService.getRoute('private-rooms') }>Private Rooms</ion-router-link>
                   <ion-router-link href="/brokers">Corporate Accounts</ion-router-link>
                   <ion-router-link href="/careers">Careers</ion-router-link>
                   <ion-router-link href="http://apt212.asuscomm.com">APT212 blog</ion-router-link>

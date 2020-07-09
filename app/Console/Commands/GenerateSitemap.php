@@ -44,14 +44,36 @@ class GenerateSitemap extends Command
         $sitemap = Sitemap::create();
 
         $paths = [
-            '/' => 0.8,
-            '/search-apartments' => 0.5,
-            '/booking' => 0.5,
+            '/' => [
+                'priority' => 0.8,
+                'change' => Url::CHANGE_FREQUENCY_DAILY
+            ],
+            '/booking' => [
+                'priority' => 0.2,
+                'change' => Url::CHANGE_FREQUENCY_MONTHLY
+            ],
+            '/private-rooms' => [
+                'priority' => 0.4,
+                'change' => Url::CHANGE_FREQUENCY_WEEKLY
+            ],
+            '/rooms-for-rent' => [
+                'priority' => 0.4,
+                'change' => Url::CHANGE_FREQUENCY_WEEKLY
+            ],
+            '/search-apartments' => [
+                'priority' => 0.5,
+                'change' => Url::CHANGE_FREQUENCY_DAILY
+            ],
         ];
 
-        foreach ($paths as $path => $priority) {
-            $sitemap->add(Url::create($path)
-                ->setPriority($priority));
+        foreach ($paths as $path => $params) {
+            $url = Url::create($path)->setPriority($params['priority']);
+
+            if (isset($params['change'])) {
+                $url->setChangeFrequency($params['change']);
+            }
+
+            $sitemap->add($url);
         }
 
         $sitemap->writeToFile(public_path('sitemap.xml'));

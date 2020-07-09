@@ -84,11 +84,11 @@ export class AppRoot {
             <ion-route url="/neighborhood/:neighborhoodName" component="page-neighborhood" />
             <ion-route url="/faq" component="page-faq" />
             <ion-route url="/coming-soon" component="page-coming-soon" />
-            <ion-route url="/booking" component="page-booking" />
+            <ion-route url={ RouterService.getRoute('booking') } component="page-booking" />
             <ion-route url="/privacy" component="page-privacy" />
 
-            <ion-route url="/private-rooms" component="page-private-rooms" />
-            <ion-route url="/corporate-housing" component="page-corporate-rooms" />
+            <ion-route url={ RouterService.getRoute('private-rooms') } component="page-private-rooms" />
+            <ion-route url={ RouterService.getRoute('corporate-rooms' )} component="page-corporate-rooms" />
             <ion-route url="/about" component="page-about" />
             <ion-route url="/referral" component="page-referral" />
 

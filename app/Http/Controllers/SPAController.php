@@ -50,13 +50,35 @@ class SPAController extends Controller
         ];
 
         /**
-         * Replace default values with page-specific values
+         * 
+         * 
+         * Add new page SEO here
+         * key = path
+         * value = override
+         * 
+         * 
          */
-        switch ($request->path()) {
-            case 'search-apartments':
-                $config['title'] = 'NYC Apartment Finder | Search 1,000+ Short-term Rental in NYC | APT212';
-                $config['description'] = 'Search, find 1,000+ furnished apartments in New York City at your fingertips with APT212. Find budget-friendly apartments, private rooms with modern amenities.';
-            break;
+        $pageValues = [
+            'booking' => [
+                'title' => 'APT212 Furnished Apartments, Rooms, Corporate House Booking',
+                'description' => 'Book your furnished apartments, rooms and corporate house online with APT212. We accept all payment mode like Visa, MasterCard and more. For any query call us today.'
+            ],
+            'private-rooms' => [
+                'title' => 'Private Rooms for Rent in New York, Manhattan NYC | APT212',
+                'description' => 'Welcome to APT212, Your number 1 source to find a room for rent around NYC & Manhattan. Use our quick filters and find your next room for rent in New York City.'
+            ],
+            'rooms-for-rent' => [
+                'title' => 'Private Rooms for Rent in New York, Manhattan NYC | APT212',
+                'description' => 'Welcome to APT212, Your number 1 source to find a room for rent around NYC & Manhattan. Use our quick filters and find your next room for rent in New York City.'
+            ],
+            'search-apartments' => [
+                'title' => 'NYC Apartment Finder | Search 1,000+ Short-term Rental in NYC | APT212',
+                'description' => 'Search, find 1,000+ furnished apartments in New York City at your fingertips with APT212. Find budget-friendly apartments, private rooms with modern amenities.'
+            ],
+        ];
+
+        if (isset($pageValues[$request->path()])) {
+            $config = array_merge($config, $pageValues[$request->path()]);
         }
 
 
