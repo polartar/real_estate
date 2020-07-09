@@ -4,7 +4,6 @@ import { toggleSearchFilterDisplay } from "../../../store/actions/search";
 import { searchFilterSelectors } from '../../../store/selectors/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 import { getNamedSearch } from '../../../store/actions/search';
-import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 
 @Component({
   tag: 'page-private-rooms',
@@ -69,11 +68,6 @@ export class PagePrivateRooms {
       toggleSearchFilterDisplay,
       getNamedSearch
     });
-
-    const rel: any = document.querySelector('link[rel="canonical"]');
-    if (rel) {
-      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL'));
-    }
 
     this.testimonials = [
       ["\"I had an amazing experience with APT212 last summer! I saved a lot of money by going the private room route, splitting costs to live in a spacious 4-bedroom walking distance to NYU.\"", "-Chris W."],

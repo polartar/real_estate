@@ -1,4 +1,5 @@
 import { Component, h } from '@stencil/core';
+import { SEOService } from '../../../services/seo.service';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 
 @Component({
@@ -8,10 +9,8 @@ import { EnvironmentConfigService } from '../../../services/environment/environm
 export class Page404 {
 
   componentWillLoad() {
-    const rel: any = document.querySelector('link[rel="canonical"]');
-    if (rel) {
-      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL') + '/404');
-    }
+    //TODO - url generation by router service
+    SEOService.setCanonical(EnvironmentConfigService.getInstance().get('BASE_URL') + '/404');
   }
 
   render() {

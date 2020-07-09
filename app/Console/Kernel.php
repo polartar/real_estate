@@ -32,6 +32,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('queue:work --stop-when-empty')->everyMinute();
         $schedule->command('apt212:setApartmentRates')->daily();
         $schedule->command('apt212:clearOldImages')->hourly();
+        $schedule->command('sitemap:generate')->daily();
     }
 
     /**

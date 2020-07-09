@@ -20,6 +20,7 @@
         "laravel/framework": "^6.5",
         "laravel/passport": "^7.4",
         "laravel/tinker": "^1.0",
+        "spatie/laravel-sitemap": "^5.7",
         "stripe/stripe-php": "^7.24"
     },
     "require-dev": {

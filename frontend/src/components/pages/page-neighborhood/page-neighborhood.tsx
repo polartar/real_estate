@@ -7,6 +7,7 @@ import { getNamedSearch } from '../../../store/actions/search';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import { APISearchService } from '../../../services/api/search';
 import taxonomySelectors from '../../../store/selectors/taxonomy';
+import { SEOService } from '../../../services/seo.service';
 
 @Component({
   tag: 'page-neighborhood',
@@ -60,12 +61,8 @@ export class PageNeighborhood {
       getNamedSearch
     });
 
-    const rel: any = document.querySelector('link[rel="canonical"]');
-    if (rel) {
-      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL') + '/neighborhood/' + this.neighborhoodName);
-    }
-
-    console.log(this.size);
+    // TODO - routerservice url determination
+    SEOService.setCanonical(EnvironmentConfigService.getInstance().get('BASE_URL') + '/neighborhood/' + this.neighborhoodName);
   }
 
   @Watch('taxonomyLoaded')

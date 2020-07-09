@@ -7,10 +7,10 @@ import { configureStore } from "../../store/index";
 import { loadState } from "../../services/storage";
 import { APIService } from "../../services/api/api.service";
 import AuthSelectors from '../../store/selectors/auth';
-import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
 import { PrefetchComponentService } from '../../services/prefetch-components.service';
 import { RouterService } from '../../services/router.service';
 import Debounce from 'debounce-decorator';
+import { SEOService } from "../../services/seo.service";
 
 @Component({
   tag: 'app-root',
@@ -25,7 +25,6 @@ export class AppRoot {
   loadAuth: Action;
   updateScreenSize: Action;
   getTaxonomy: Action;
-  baseUrl: string = EnvironmentConfigService.getInstance().get('BASE_URL');
 
   @Listen('resize', { target: 'window' })
   @Debounce(250)
@@ -59,18 +58,6 @@ export class AppRoot {
       this.getTaxonomy();
     }
 
-    // note - this might already exist due to pre-rendering
-    let rel = document.querySelector('link[rel="canonical"]');
-    if (rel) {
-      rel.setAttribute('href', this.baseUrl);
-    }
-    else {
-      rel = document.createElement('link');
-      rel.setAttribute('rel', 'canonical');
-      rel.setAttribute('href', this.baseUrl);
-      document.querySelector('head').appendChild(rel);
-    }
-
     this.updateScreenSize(window.innerWidth, window.innerHeight);
   }
 
@@ -88,7 +75,7 @@ export class AppRoot {
   render() {
     return [
       <ion-app>
-          <ion-router useHash={false}>
+          <ion-router useHash={false} onIonRouteDidChange={e => SEOService.update(e) }>
             <ion-route url="/" component="page-home" />
             <ion-route url={ RouterService.getRoute('search') } component="page-search" />
             <ion-route url="/listing/:apartmentId" component="page-listing" />

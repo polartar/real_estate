@@ -4,7 +4,6 @@ import { toggleSearchFilterDisplay } from "../../../store/actions/search";
 import { searchFilterSelectors } from '../../../store/selectors/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 import { getNamedSearch } from '../../../store/actions/search';
-import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 
 @Component({
   tag: 'page-corporate-rooms',
@@ -69,11 +68,6 @@ export class PageCorporateRooms {
       toggleSearchFilterDisplay,
       getNamedSearch
     });
-
-    const rel: any = document.querySelector('link[rel="canonical"]');
-    if (rel) {
-      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL'));
-    }
 
     this.testimonials = [
       ["We had two employees in Italy that needed to be in New York for a 3 months construction project. My APT212 booking agent  was very efficient and professional and help me secure my our corporate housing.", "- Vanessa H."],

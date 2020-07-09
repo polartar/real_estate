@@ -1,6 +1,5 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import { Store } from '@stencil/redux';
-import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import bookingSelectors from '../../../store/selectors/booking';
 import sizeSelectors from '../../../store/selectors/screensize';
 import Debounce from 'debounce-decorator';
@@ -26,11 +25,6 @@ export class PageBooking {
         isMobile: sizeSelectors.getIsMobile(state)
       }
     });
-
-    const rel: any = document.querySelector('link[rel="canonical"]');
-    if (rel) {
-      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL') + '/booking');
-    }
   }
 
   toggleFAQ(num) {

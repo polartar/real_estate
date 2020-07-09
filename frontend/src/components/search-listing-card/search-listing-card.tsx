@@ -63,12 +63,25 @@ export class SearchListingCard {
       images = [
         {
           src: this.getImageURL(),
-          alt: this.item.street_address
+          alt: `${neighborhood.name} furnished apartments`
         }
       ]
     }
     else {
-      images = this.item.images.map((image, index) => { return { src: image.small, alt: `${this.item.street_address} image ${index + 1}` } });
+      images = this.item.images.map((image) => {
+        const suffixes = [
+          'furnished apartments',
+          'furnished rental',
+          'apartments'
+        ];
+
+        const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+
+        return {
+          src: image.small,
+          alt: `${neighborhood.name} ${suffix}`
+        }
+      });
     }
 
     return [

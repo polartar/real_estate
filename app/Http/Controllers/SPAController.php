@@ -44,7 +44,7 @@ class SPAController extends Controller
             'description' => "New York City's number 1 source for furnished apartments, sublets, and legal short term rentals. Search, find, and book your furnished apartment today.",
             'og' => [
                 'type' => 'article',
-                'url' => 'https://apt212.com/',
+                'url' => $request->url(),
                 'image' => '/assets/images/og-social.jpg'
             ]
         ];

@@ -4,7 +4,6 @@ import { toggleSearchFilterDisplay } from "../../../store/actions/search";
 import { searchFilterSelectors } from '../../../store/selectors/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 import { getNamedSearch } from '../../../store/actions/search';
-import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import taxonomySelectors from '../../../store/selectors/taxonomy';
 
 @Component({
@@ -51,11 +50,6 @@ export class PageHome {
       toggleSearchFilterDisplay,
       getNamedSearch
     });
-
-    const rel: any = document.querySelector('link[rel="canonical"]');
-    if (rel) {
-      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL'));
-    }
   }
 
   componentDidLoad() {

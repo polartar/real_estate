@@ -1,5 +1,4 @@
 import { Component, h, Prop } from '@stencil/core';
-import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 
 @Component({
   tag: 'page-about',
@@ -12,11 +11,6 @@ export class PageAbout {
     componentWillLoad() {
         if (this.prefetching) {
           return;
-        }
-    
-        const rel: any = document.querySelector('link[rel="canonical"]');
-        if (rel) {
-          rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL'));
         }
       }
 

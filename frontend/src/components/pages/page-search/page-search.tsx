@@ -3,9 +3,7 @@ import { Store, Action } from "@stencil/redux";
 import { searchFilterSelectors, searchSelectors } from '../../../store/selectors/search';
 import { getSearchListings } from '../../../store/actions/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
-import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import Debounce from 'debounce-decorator';
-import { RouterService } from '../../../services/router.service';
 
 @Component({
   tag: 'page-search',
@@ -65,11 +63,6 @@ export class PageSearch {
     this.store.mapDispatchToProps(this, {
       performSearchAction: getSearchListings
     });
-
-    const rel: any = document.querySelector('link[rel="canonical"]');
-    if (rel) {
-      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL') + RouterService.getRoute('search'));
-    }
   }
 
   componentDidLoad() {

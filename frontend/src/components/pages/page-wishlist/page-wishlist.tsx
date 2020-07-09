@@ -2,7 +2,6 @@ import { Component, h, Prop, State, Watch } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import wishlistSelectors from '../../../store/selectors/wishlist';
 import { removeFromWishlist } from '../../../store/actions/wishlist';
-import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import { APIApartmentsService } from '../../../services/api/apartments';
 import { RouterService } from '../../../services/router.service';
 
@@ -30,11 +29,6 @@ export class PageWishlist {
     this.store.mapDispatchToProps(this, {
       removeFromWishlist
     });
-
-    const rel: any = document.querySelector('link[rel="canonical"]');
-    if (rel) {
-      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL') + '/wishlist');
-    }
   }
 
   async componentDidLoad() {

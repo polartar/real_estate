@@ -1,18 +1,10 @@
 import { Component, h } from '@stencil/core';
-import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 
 @Component({
   tag: 'page-privacy',
   styleUrl: 'page-privacy.scss'
 })
 export class PagePrivacy {
-  componentWillLoad() {
-    // if item exists then we make this url canonical
-    const rel: any = document.querySelector('link[rel="canonical"]');
-    if (rel) {
-      rel.setAttribute('href', EnvironmentConfigService.getInstance().get('BASE_URL') + '/privacy');
-    }
-  }
 
   render() {
     return [

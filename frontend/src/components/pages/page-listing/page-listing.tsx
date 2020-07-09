@@ -6,6 +6,7 @@ import taxonomySelectors from '../../../store/selectors/taxonomy';
 import { APIApartmentsService } from '../../../services/api/apartments';
 import { EnvironmentConfigService } from '../../../services/environment/environment-config.service';
 import { formatMoney, formatDate, getUrlParameter, getDate } from '../../../helpers/utils';
+import { SEOService } from '../../../services/seo.service';
 
 @Component({
   tag: 'page-listing',
@@ -59,6 +60,7 @@ export class PageListing {
           this.item = apt;
           this.loaded = true;
 
+          // TODO - routerservice url determination
           canonicalURL = EnvironmentConfigService.getInstance().get('BASE_URL') + '/listing/' + this.item.id; // normalize ID
         }
       }
@@ -68,10 +70,7 @@ export class PageListing {
     }
 
     // if item exists then we make this url canonical
-    const rel: any = document.querySelector('link[rel="canonical"]');
-    if (rel) {
-      rel.setAttribute('href', canonicalURL);
-    }
+    SEOService.setCanonical(canonicalURL);
 
     if (getUrlParameter('checkin')) {
       this.bookingSetCheckin(this.apartmentId, getDate(getUrlParameter('checkin')));
