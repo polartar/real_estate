@@ -108,6 +108,14 @@ class SPAController extends Controller
             }
         }
 
+        foreach ($dom->getElementsByTagName("link") as $link) {
+            if (strpos($link->getAttribute('rel'), 'canonical') !== false) {
+                $url = isset($config['canonical']) ? $config['canonical'] : $request->url();
+
+                $link->setAttribute('href', $url);
+            }
+        }
+
         /**
          * Return the SEO-d html
          */
