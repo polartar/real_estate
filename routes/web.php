@@ -24,14 +24,14 @@ $front_end_routes = [
     'search' => '/search-apartments',
     'listing' => '/listing/{id}/{neighborhood_slug?}/{slug?}',
     'wishlist' => '/wishlist',
-    'neighborhoods' => '/neighborhoods',
+    'neighborhoods' => '/nyc-neighborhoods',
     'neightborhood' => '/neighborhood/{id}',
     'faq' => '/faq',
 
     'privacy' => '/privacy-policy',
     'coming-soon' => '/coming-soon',
 
-    
+
     'about' => '/about',
     'referral' => '/referral',
 

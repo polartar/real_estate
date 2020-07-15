@@ -51,13 +51,13 @@ class SPAController extends Controller
         ];
 
         /**
-         * 
-         * 
+         *
+         *
          * Add new page SEO here
          * key = path
          * value = override
-         * 
-         * 
+         *
+         *
          */
         $pageValues = [
             'booking' => [
@@ -87,6 +87,10 @@ class SPAController extends Controller
             'search-apartments' => [
                 'title' => 'NYC Apartment Finder | Search 1,000+ Short-term Rental in NYC | APT212',
                 'description' => 'Search, find 1,000+ furnished apartments in New York City at your fingertips with APT212. Find budget-friendly apartments, private rooms with modern amenities.'
+            ],
+            'nyc-neighborhoods' => [
+                'title' => 'NYC Apartments for Rent By Neighborhood | APT212',
+                'description' => 'Find your next NYC apartment in in Manhattan by neighborhood, price, amenity, and more at APT212. We are the NYC’s number 1 source to find your long or short term rental.'
             ],
         ];
 

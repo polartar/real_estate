@@ -256,6 +256,7 @@ export namespace Components {
   interface PageAdminOwner {}
   interface PageAdminReferrals {}
   interface PageBooking {}
+  interface PageBookingPw {}
   interface PageComingSoon {}
   interface PageCorporateRooms {
     'prefetching': boolean;
@@ -813,6 +814,12 @@ declare global {
     new (): HTMLPageBookingElement;
   };
 
+  interface HTMLPageBookingPwElement extends Components.PageBookingPw, HTMLStencilElement {}
+  var HTMLPageBookingPwElement: {
+    prototype: HTMLPageBookingPwElement;
+    new (): HTMLPageBookingPwElement;
+  };
+
   interface HTMLPageComingSoonElement extends Components.PageComingSoon, HTMLStencilElement {}
   var HTMLPageComingSoonElement: {
     prototype: HTMLPageComingSoonElement;
@@ -1073,6 +1080,7 @@ declare global {
     'page-admin-owner': HTMLPageAdminOwnerElement;
     'page-admin-referrals': HTMLPageAdminReferralsElement;
     'page-booking': HTMLPageBookingElement;
+    'page-booking-pw': HTMLPageBookingPwElement;
     'page-coming-soon': HTMLPageComingSoonElement;
     'page-corporate-rooms': HTMLPageCorporateRoomsElement;
     'page-faq': HTMLPageFaqElement;
@@ -1343,6 +1351,7 @@ declare namespace LocalJSX {
   interface PageAdminOwner extends JSXBase.HTMLAttributes<HTMLPageAdminOwnerElement> {}
   interface PageAdminReferrals extends JSXBase.HTMLAttributes<HTMLPageAdminReferralsElement> {}
   interface PageBooking extends JSXBase.HTMLAttributes<HTMLPageBookingElement> {}
+  interface PageBookingPw extends JSXBase.HTMLAttributes<HTMLPageBookingPwElement> {}
   interface PageComingSoon extends JSXBase.HTMLAttributes<HTMLPageComingSoonElement> {}
   interface PageCorporateRooms extends JSXBase.HTMLAttributes<HTMLPageCorporateRoomsElement> {
     'prefetching'?: boolean;
@@ -1530,6 +1539,7 @@ declare namespace LocalJSX {
     'page-admin-owner': PageAdminOwner;
     'page-admin-referrals': PageAdminReferrals;
     'page-booking': PageBooking;
+    'page-booking-pw': PageBookingPw;
     'page-coming-soon': PageComingSoon;
     'page-corporate-rooms': PageCorporateRooms;
     'page-faq': PageFaq;

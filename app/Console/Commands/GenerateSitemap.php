@@ -77,6 +77,10 @@ class GenerateSitemap extends Command
                 'priority' => 0.5,
                 'change' => Url::CHANGE_FREQUENCY_DAILY
             ],
+            '/nyc-neighborhoods' => [
+                'priority' => 0.2,
+                'change' => Url::CHANGE_FREQUENCY_MONTHLY
+            ],
         ];
 
         // add all of our apartment listing pages

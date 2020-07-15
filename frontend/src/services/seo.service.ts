@@ -6,7 +6,7 @@ class SEOServiceInstance {
       document.querySelector('meta[name="title"]').setAttribute("content", title);
       document.querySelector('meta[property="og:title"]').setAttribute("content", title);
     }
-    
+
     setDescription(description) {
       document.querySelector('meta[name="description"]').setAttribute("content", description);
       document.querySelector('meta[property="og:description"]').setAttribute("content", description);
@@ -16,15 +16,15 @@ class SEOServiceInstance {
       if (params.hasOwnProperty('type')) {
         document.querySelector('meta[property="og:type"]').setAttribute("content", params.type);
       }
-      
+
       if (params.hasOwnProperty('url')) {
         document.querySelector('meta[property="og:url"]').setAttribute("content", params.url);
       }
-      
+
       if (params.hasOwnProperty('image')) {
         document.querySelector('meta[property="og:image"]').setAttribute("content", params.image);
       }
-      
+
       if (params.hasOwnProperty('site_name')) {
         document.querySelector('meta[property="og:site_name"]').setAttribute("content", params.site_name);
       }
@@ -36,10 +36,10 @@ class SEOServiceInstance {
 
     /**
      * Update the metatags based on the path
-     * 
+     *
      * Add new values to seoValues for new pages
-     * 
-     * @param e 
+     *
+     * @param e
      */
     update(e) {
       const seoValues = {
@@ -75,6 +75,10 @@ class SEOServiceInstance {
           title: 'NYC Apartment Finder | Search 1,000+ Short-term Rental in NYC | APT212',
           description: "Search, find 1,000+ furnished apartments in New York City at your fingertips with APT212. Find budget-friendly apartments, private rooms with modern amenities."
         },
+        '/nyc-neighborhoods': {
+          title: 'NYC Apartment Finder | Search 1,000+ Short-term Rental in NYC | APT212',
+          description: "Search, find 1,000+ furnished apartments in New York City at your fingertips with APT212. Find budget-friendly apartments, private rooms with modern amenities."
+        },
       }
 
       const defaultOG = {
@@ -98,6 +102,5 @@ class SEOServiceInstance {
       }
     }
 }
-  
+
   export const SEOService = new SEOServiceInstance();
-  

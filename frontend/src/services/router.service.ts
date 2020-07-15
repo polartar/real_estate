@@ -9,7 +9,7 @@ class RouterServiceInstance {
   }
 
   /**
-   * 
+   *
    * @param name - name of the route
    * @param params - query params { key: value }
    */
@@ -19,7 +19,7 @@ class RouterServiceInstance {
       booking: '/booking',
       'corporate-rooms': '/corporate-housing',
       'faq': '/faq',
-      'neighborhoods': '/neighborhoods',
+      'neighborhoods': '/nyc-neighborhoods',
       'privacy': '/privacy-policy',
       'private-rooms': '/rooms-for-rent',
       'referral': '/referral',
@@ -40,14 +40,14 @@ class RouterServiceInstance {
   serializeQuery = (params, prefix?) => {
     const query = Object.keys(params).map((key) => {
       const value  = params[key];
-  
+
       if (params.constructor === Array) {
         key = `${prefix}[]`;
       }
       else if (params.constructor === Object) {
         key = (prefix ? `${prefix}[${key}]` : key);
       }
-  
+
       if (typeof value === 'object') {
         return this.serializeQuery(value, key);
       }
@@ -55,7 +55,7 @@ class RouterServiceInstance {
         return `${key}=${encodeURIComponent(value)}`;
       }
     });
-  
+
     return [].concat.apply([], query).join('&');
   }
 }
