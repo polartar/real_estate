@@ -130,6 +130,14 @@ export class PageNeighborhood {
     let life_image = "/assets/images/neighborhoods/" + item.slug + "-life.jpg";
     let cover_image = "/assets/images/neighborhoods/" + item.slug + "-cover.jpg";
 
+    let experience_alt = "Experience " + item.name;
+    let eat_alt = "Eat in " + item.name;
+    let drink_alt = "Drink in " + item.name;
+    let shop_alt = "Shop in " + item.name;
+    let play_alt = "Play in " + item.name;
+    let explore_alt = "Explore " + item.name;
+    let life_alt = "Life in " + item.name;
+
     return [
       <app-header />,
       <ion-content class="page-neighborhood">
@@ -145,7 +153,7 @@ export class PageNeighborhood {
           </section>
         </div>
 
-        
+
         <section class={this.size == "phone-only" ? "section" : "section no-margin"}>
           <div class="neighborhood-about-wrapper">
             <div class="about">
@@ -162,10 +170,10 @@ export class PageNeighborhood {
             </div>
 
             <div class="experience no-margin">
-              <lazy-image src={main_image}  alt="Experience"/>
+              <lazy-image src={main_image}  alt={experience_alt}/>
             </div>
 
-            
+
           </div>
 
           </section>
@@ -179,26 +187,26 @@ export class PageNeighborhood {
           <div class="listings-wrapper">
           {
             this.apartmentsList.length ?
-            
+
             <div class="predefined-search">
 
               {(this.isMobile) ? <listing-slider items={this.apartmentsList.slice(0, 3)} /> : null}
               {(this.isMobile) ? <listing-slider items={this.apartmentsList.slice(3, 6)} /> : null}
               {(this.isMobile) ? <listing-slider items={this.apartmentsList.slice(6, 9)} /> : null}
 
-              {(this.isMobile) ? 
+              {(this.isMobile) ?
                 <listing-slider items={this.apartmentsList.slice(9, 12)} />
-              : 
+              :
                 <listing-list items={this.apartmentsList} />}
             </div>
-            
+
             : null
           }
           </div>
 
           <find-more />
 
-          
+
 
           <div class="highlights">
               <h2>
@@ -210,11 +218,11 @@ export class PageNeighborhood {
           </div>
 
           <div class="highlights-wrapper">
-       
+
             <div class='row'>
               <div class='column'>
                 <div class={this.size == "phone-only" ? "image-column no-margin" : "image-column"}>
-                      <lazy-image src={eat_image}  class="right" alt="Eat in" />
+                      <lazy-image src={eat_image}  class="right" alt={eat_alt} />
                 </div>
               </div>
               <div class='column'>
@@ -228,7 +236,7 @@ export class PageNeighborhood {
             <div class='row reverse'>
               <div class='column'>
                 <div class={this.size == "phone-only" ? "image-column reverse no-margin" : "image-column reverse"}>
-                    <lazy-image src={drink_image}  class="left" alt="Eat in" />
+                    <lazy-image src={drink_image}  class="left" alt={drink_alt} />
                 </div>
               </div>
               <div class='column'>
@@ -242,7 +250,7 @@ export class PageNeighborhood {
             <div class='row'>
               <div class='column'>
               <div class={this.size == "phone-only" ? "image-column no-margin" : "image-column"}>
-                    <lazy-image src={shop_image} class="right" alt="Eat in" />
+                    <lazy-image src={shop_image} class="right" alt={shop_alt} />
                 </div>
               </div>
               <div class='column'>
@@ -256,7 +264,7 @@ export class PageNeighborhood {
             <div class='row reverse'>
               <div class='column'>
               <div class={this.size == "phone-only" ? "image-column reverse no-margin" : "image-column reverse"}>
-                    <lazy-image src={play_image}  class="left" alt="Eat in" />
+                    <lazy-image src={play_image}  class="left" alt={play_alt} />
                 </div>
               </div>
               <div class='column'>
@@ -270,7 +278,7 @@ export class PageNeighborhood {
             <div class='row'>
               <div class='column'>
               <div class={this.size == "phone-only" ? "image-column no-margin" : "image-column"}>
-                    <lazy-image src={explore_image}  class="right" alt="Eat in" />
+                    <lazy-image src={explore_image}  class="right" alt={explore_alt} />
                 </div>
               </div>
               <div class='column'>
@@ -284,7 +292,7 @@ export class PageNeighborhood {
             <div class='row reverse'>
               <div class='column'>
               <div class={this.size == "phone-only" ? "image-column reverse no-margin" : "image-column reverse"}>
-                    <lazy-image src={life_image}  class="left" alt="Eat in" />
+                    <lazy-image src={life_image}  class="left" alt={life_alt} />
                 </div>
               </div>
               <div class='column'>
@@ -299,7 +307,7 @@ export class PageNeighborhood {
           </section>
 
           <section class="section">
-          
+
           {
             this.neighborhoods.length && this.neighborhoodsLoaded?
             <div class="predefined-search">
@@ -317,7 +325,7 @@ export class PageNeighborhood {
 
         </section>
 
-        
+
 
         <app-footer />
 
