@@ -52,9 +52,17 @@ class GenerateSitemap extends Command
                 'priority' => 0.2,
                 'change' => Url::CHANGE_FREQUENCY_MONTHLY
             ],
-            '/private-rooms' => [
-                'priority' => 0.4,
-                'change' => Url::CHANGE_FREQUENCY_WEEKLY
+            '/corporate-housing' => [
+                'priority' => 0.2,
+                'change' => Url::CHANGE_FREQUENCY_MONTHLY
+            ],
+            '/faq' => [
+                'priority' => 0.2,
+                'change' => Url::CHANGE_FREQUENCY_MONTHLY
+            ],
+            '/referral' => [
+                'priority' => 0.2,
+                'change' => Url::CHANGE_FREQUENCY_MONTHLY
             ],
             '/rooms-for-rent' => [
                 'priority' => 0.4,

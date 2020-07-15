@@ -45,9 +45,6 @@ import { APISearchService } from '../../../services/api/search';
         };
       });
 
-      console.log(this.size)
-      //this.showAnswer("Why choose APT212?");
-
     }
 
     toggleMatchesVisibility(value = null, force = false) {
@@ -290,7 +287,7 @@ import { APISearchService } from '../../../services/api/search';
 
               <div class={this.size == "phone-only" ? "answers hide" : "answers show"} id="answers">
                   <h1>{this.question}</h1>
-                  <p class="answer">{this.answer}</p>
+                  <p class="answer" innerHTML={this.answer}></p>
               </div>
 
             </div>

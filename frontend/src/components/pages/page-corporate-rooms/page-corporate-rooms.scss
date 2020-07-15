@@ -359,8 +359,9 @@
 
     @include for-size(tablet-portrait-up) {
       font-size: 32px;
-    }
-    
+      line-height: 1;
+      top: 25px;
+    }    
   }
 
   .copy {
@@ -382,6 +383,7 @@
     @include for-size(desktop-up) {
       max-width: 336px;
       font-size: 16px;
+      top: 85px;
     }
     
   }
@@ -393,6 +395,7 @@
     margin-bottom: 28px;
     max-width: 387px;
     height: 288px;
+    overflow: hidden;
 
     @include for-size(tablet-landscape-up) {
       flex: 0 0 50%;  
@@ -691,7 +694,7 @@
       text-align: left;
     }
 
-    h2 {
+    h3 {
       margin: 0;
       padding-bottom: 16px;
       font-family: 'Montserrat-Bold', sans-serif;

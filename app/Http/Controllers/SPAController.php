@@ -63,9 +63,17 @@ class SPAController extends Controller
                 'title' => 'APT212 Furnished Apartments, Rooms, Corporate House Booking',
                 'description' => 'Book your furnished apartments, rooms and corporate house online with APT212. We accept all payment mode like Visa, MasterCard and more. For any query call us today.'
             ],
-            'private-rooms' => [
-                'title' => 'Private Rooms for Rent in New York, Manhattan NYC | APT212',
-                'description' => 'Welcome to APT212, Your number 1 source to find a room for rent around NYC & Manhattan. Use our quick filters and find your next room for rent in New York City.'
+            'corporate-housing' => [
+                'title' => 'Corporate Housing - Apartments, Rooms for Business Traveller’s | APT212.com',
+                'description' => 'APT212 is the NYC’s number 1 source for short-term corporate housing solution for business travelers. Search, find, & book your corporate rooms, apartments today.'
+            ],
+            'faq' => [
+                'title' => 'FAQ | APT212',
+                'description' => "We have tried hard to make APT212 a simple platform for all who looking for furnished apartments in New York City. If you have any query that aren't answered here, please get in touch."
+            ],
+            'referral' => [
+                'title' => 'REFER A FRIEND & EARN $200 | APT212',
+                'description' => 'Help your friend find the best short term, furnished rental options in NYC and in turn get a $200 gift card from APT212. We are a trusted player in the market.'
             ],
             'rooms-for-rent' => [
                 'title' => 'Private Rooms for Rent in New York, Manhattan NYC | APT212',

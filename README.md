@@ -59,6 +59,9 @@ Copy the `/frontend/config.app.json.example` to `/frontend/config.app.json` and 
     npm install
     npm run prod
 
+    cd ..
+    php artisan cache:clear
+
 ## Development Serve
 This starts the front end with hot module replacement for live updating during development
 

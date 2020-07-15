@@ -17,8 +17,11 @@ class RouterServiceInstance {
 
     const routeMap = {
       booking: '/booking',
-      'corporate-rooms': '/corporate-rooms',
+      'corporate-rooms': '/corporate-housing',
+      'faq': '/faq',
+      'neighborhoods': '/neighborhoods',
       'private-rooms': '/rooms-for-rent',
+      'referral': '/referral',
       'search': '/search-apartments'
     };
 

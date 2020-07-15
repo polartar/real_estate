@@ -16,7 +16,7 @@ class FAQSeeder extends Seeder
         collect([
             [
                 'question' => 'Why choose APT212?',
-                'answer' => 'Our apartments are located throughout Manhattan’s most vibrant neighborhoods and provide all the comforts and privacy of home at a fraction of the cost of nearby hotels. With an exceptional customer service team, we make it a priority to ensure our guests a comfortable and enjoyable stay.',
+                'answer' => 'Our apartments are located throughout Manhattan’s most vibrant <a href="/nyc-neighborhoods">neighborhoods</a> and provide all the comforts and privacy of home at a fraction of the cost of nearby hotels. With an exceptional customer service team, we make it a priority to ensure our guests a comfortable and enjoyable stay.',
                 'category' => 'General',
                 'role' => 'guest'
             ],
@@ -34,13 +34,13 @@ class FAQSeeder extends Seeder
             ],
             [
                 'question' => 'Can I flex the start-date?',
-                'answer' => 'Generally bookings must start on the advertised availability date for any particular listing. For example, if an apartment is listed as available from June 1, the lease start date must be June 1. Occasionally landlords may have flexibility, so if an apartment does not match your exact start date contact a booking agent directly to see if the landlord can accommodate your desired date.',
+                'answer' => 'Generally <a href="/booking">bookings</a> must start on the advertised availability date for any particular listing. For example, if an apartment is listed as available from June 1, the lease start date must be June 1. Occasionally landlords may have flexibility, so if an apartment does not match your exact start date contact a booking agent directly to see if the landlord can accommodate your desired date.',
                 'category' => 'General',
                 'role' => 'guest'
             ],
             [
                 'question' => 'Can I rent for less that 30 days?',
-                'answer' => 'Unfortunately not. APT212 operates within New York City laws, which prohibit rentals for under 30 days.',
+                'answer' => 'Unfortunately not. <a href="/">APT212</a> operates within New York City laws, which prohibit rentals for under 30 days.',
                 'category' => 'General',
                 'role' => 'guest'
             ],

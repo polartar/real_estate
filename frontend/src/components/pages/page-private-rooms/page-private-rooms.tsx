@@ -211,7 +211,7 @@ export class PagePrivateRooms {
               <div class="rectangle" />
             </div>
 
-            <ion-button aria-label="Speak to an expert" class="static-button faq-button" onClick={() => { window.open('/faq', '_self') }}>
+            <ion-button aria-label="Speak to an expert" class="static-button faq-button" onClick={() => { RouterService.forward(RouterService.getRoute('faq')) }}>
               Frequently Asked Questions
             </ion-button>
           </div>

@@ -1,14 +1,11 @@
 import { Component, h } from '@stencil/core';
+import { RouterService } from '../../../services/router.service';
 
 @Component({
   tag: 'page-referral',
   styleUrl: 'page-referral.scss'
 })
 export class PageReferral {
-  handleSubmit(e) {
-    e.preventDefault();
-  }
-
   render() {
     return [
       <app-header />,
@@ -28,9 +25,9 @@ export class PageReferral {
                   <h2>WHY RENT WITH US?</h2>
 
                   <p>
-                    Apt212 makes finding a furnished short-term rental easy. Our secure booking platform brings the entire rental process online, from searching inventory to signing a lease.
+                    Apt212 makes finding a <ion-router-link href="/">furnished short-term rental</ion-router-link> easy. Our secure booking platform brings the entire rental process online, from searching inventory to signing a lease.
                     <br /><br />
-                    A team of local booking agents is available ot help 24/7 if you need any assistance along the way.  We work only with verified landlords and hosts. No credit checks, tax returns, or guarantors required.  It's that simple!
+                    A team of local <ion-router-link href={ RouterService.getRoute('booking') }>booking</ion-router-link> agents is available ot help 24/7 if you need any assistance along the way.  We work only with verified landlords and hosts. No credit checks, tax returns, or guarantors required.  It's that simple!
                   </p>
 
                 </div>

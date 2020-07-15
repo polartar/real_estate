@@ -3,6 +3,7 @@ import { Store } from '@stencil/redux';
 import bookingSelectors from '../../../store/selectors/booking';
 import sizeSelectors from '../../../store/selectors/screensize';
 import Debounce from 'debounce-decorator';
+import { RouterService } from '../../../services/router.service';
 
 @Component({
   tag: 'page-booking',
@@ -214,7 +215,7 @@ export class PageBooking {
                   <h2 class="faq-title">FAQ</h2>
                   <p>Have anymore questions?</p>
 
-                  <ion-router-link class="button-light faq-link" href="/faq">
+                  <ion-router-link class="button-light faq-link" href={ RouterService.getRoute('faq') }>
                     Frequently Asked Questions
                   </ion-router-link>
                 </div>

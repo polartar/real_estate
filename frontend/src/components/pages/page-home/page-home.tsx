@@ -5,6 +5,7 @@ import { searchFilterSelectors } from '../../../store/selectors/search';
 import neighborhoodSelectors from '../../../store/selectors/neighborhoods';
 import { getNamedSearch } from '../../../store/actions/search';
 import taxonomySelectors from '../../../store/selectors/taxonomy';
+import { RouterService } from '../../../services/router.service';
 
 @Component({
   tag: 'page-home',
@@ -228,7 +229,7 @@ export class PageHome {
                 <div class="col-1of2">
                   <h3 class="h1 title no-padding-margin">FAQ</h3>
                   <p>Have anymore questions?</p>
-                  <ion-router-link class="button-light" href="/faq">
+                  <ion-router-link class="button-light" href={ RouterService.getRoute('faq') }>
                     FREQUENTLY ASKED QUESTIONS
                   </ion-router-link>
                 </div>

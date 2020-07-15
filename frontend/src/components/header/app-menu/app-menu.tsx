@@ -57,7 +57,7 @@ export class AppMenu {
               Search Apartments
             </ion-router-link>
 
-            <ion-router-link href="/booking" onClick={() => this.closeMenu()}>
+            <ion-router-link href={ RouterService.getRoute('booking') } onClick={() => this.closeMenu()}>
               Booking
             </ion-router-link>
 
@@ -65,7 +65,7 @@ export class AppMenu {
               What is APT212?
             </ion-router-link>
 
-            <ion-router-link href="/faq" onClick={() => this.closeMenu()}>
+            <ion-router-link href={ RouterService.getRoute('faq') } onClick={() => this.closeMenu()}>
               FAQ
             </ion-router-link>
 

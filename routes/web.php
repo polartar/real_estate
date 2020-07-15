@@ -15,36 +15,39 @@ Route::get('/login', ['as' => 'login', 'uses' => 'SPAController@serve']);
 
 Route::get('/api/pdf/booking-details/{apartment}', 'ApartmentController@getBookingDetailsPDF');
 
+// route name => path
 $front_end_routes = [
-    '/',
-    '/search-apartments',
-    '/listing/{id}',
-    '/wishlist',
-    '/neighborhoods',
-    '/neighborhood/{id}',
-    '/faq',
-    '/booking',
-    '/privacy',
-    '/coming-soon',
+    '/' => '/',
+    'booking' => '/booking',
+    'private-rooms' => '/rooms-for-rent',
+    'corporate-rooms' => '/corporate-housing',
+    'search' => '/search-apartments',
+    'listing' => '/listing/{id}',
+    'wishlist' => '/wishlist',
+    'neighborhoods' => '/neighborhoods',
+    'neightborhood' => '/neighborhood/{id}',
+    'faq' => '/faq',
 
-    '/private-rooms',
-    '/corporate-housing',
-    '/about',
-    '/referral',
+    'privacy' => '/privacy',
+    'coming-soon' => '/coming-soon',
 
-    '/admin',
-    '/admin/listings',
-    '/admin/listing/add',
-    '/admin/listing/edit/{id}',
-    '/admin/owner-global',
-    '/admin/referrals',
-    '/admin/agents',
-    '/admin/agent/add',
-    '/admin/agent/edit{id}',
-    '/admin/agent/{id}',
-    '/admin/agent',
+    
+    'about' => '/about',
+    'referral' => '/referral',
 
-    '/404'
+    'admin' => '/admin',
+    'admin-listings' => '/admin/listings',
+    'admin-add-listing' => '/admin/listing/add',
+    'admin-edit-listing' => '/admin/listing/edit/{id}',
+    'admin-owner-global' => '/admin/owner-global',
+    'admin-referrals' => '/admin/referrals',
+    'admin-agents' => '/admin/agents',
+    'admin-agent-add' => '/admin/agent/add',
+    'admin-agent-edit' => '/admin/agent/edit{id}',
+    'admin-agent-view' => '/admin/agent/{id}',
+    'admin-agent' => '/admin/agent',
+
+    '404' => '/404'
 ];
 
 /* Return 404s for the neighborhood pages that APT212 doesn't want to display */

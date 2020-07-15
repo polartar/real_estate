@@ -47,7 +47,7 @@ export class AppFooter {
                 <div class="links-left">
                  <ion-router-link href={ RouterService.getRoute('search') }>Search Apartments</ion-router-link>
                   <ion-router-link href={ RouterService.getRoute('booking') }>Bookings</ion-router-link>
-                  <ion-router-link href="/faq">FAQ</ion-router-link>
+                  <ion-router-link href={ RouterService.getRoute('faq') }>FAQ</ion-router-link>
                   <ion-router-link href="/about">What is Apt212?</ion-router-link>
                   <ion-router-link href="/coming-soon">List with us</ion-router-link>
                   <ion-router-link href="/referral">Referrals</ion-router-link>
