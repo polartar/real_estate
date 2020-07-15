@@ -26,7 +26,7 @@ $factory->define(ImageUpload::class, function (Faker $faker, $params) {
         'attachment_type' => $params['attachment_type'],
         'title' => $faker->sentence(8),
         'description' => $faker->paragraph($faker->numberBetween(3, 8)),
-        'size_original' => 'images-faked/' . $filename,
+        'size_original' => 'images/images-faked/' . $filename,
         'size_small' => $thumbs['small'],
         'size_medium' => $thumbs['medium'],
         'size_large' => $thumbs['large']

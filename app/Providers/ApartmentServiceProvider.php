@@ -64,7 +64,7 @@ class ApartmentServiceProvider extends ServiceProvider
             return;
         }
 
-        // only assign random subways to faked apartments
+        // only assign random rates to faked apartments
         // set a different rate per quarter
         $rate_q1 = random_int(1000, 15000);
         $rate_q2 = random_int(1000, 15000);

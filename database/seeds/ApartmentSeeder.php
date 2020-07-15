@@ -15,6 +15,6 @@ class ApartmentSeeder extends Seeder
         //
         $num_to_create = (int) env('APARTMENT_SEED_COUNT', 100);
 
-        factory(\App\Apartment::class, $num_to_create)->create(['faked' => true]);
+        factory(\App\Apartment::class, $num_to_create)->create();
     }
 }

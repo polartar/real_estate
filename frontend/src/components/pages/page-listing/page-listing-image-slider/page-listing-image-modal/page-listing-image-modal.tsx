@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element } from '@stencil/core';
+import { Component, h, Prop, Element, State } from '@stencil/core';
 import Glide from '@glidejs/glide';
 import { generateId } from '../../../../../helpers/utils';
 
@@ -10,6 +10,9 @@ export class PageListingImageModal {
   @Element() el: HTMLElement;
   @Prop() selected!: any;
   @Prop() images!: any[];
+
+  @State() description: string = '';
+  @State() title: string = '';
 
   sliderClass: string = 'glide';
   glide: any;
@@ -27,6 +30,9 @@ export class PageListingImageModal {
   }
 
   initializeSlider() {
+    this.title = this.selected.title;
+    this.description = this.selected.description;
+
     let slides = document.querySelectorAll('.' + this.sliderClass + ' .glide__slide');
 
     if (!slides.length) {
@@ -114,6 +120,8 @@ export class PageListingImageModal {
     this.glide.go('=' + newIndex);
 
     currentImage.setAttribute('src', this.images[newIndex].original);
+    this.description = this.images[newIndex].description;
+    this.title = this.images[newIndex].title;
   }
 
   close() {
@@ -132,25 +140,25 @@ export class PageListingImageModal {
         </ion-button>
 
         <div class="image-view">
-          <img src={this.selected.original} class="display-image" />
+          <img src={this.selected.original} class="display-image" alt={this.title} />
 
           <button aria-label="Previous image" class="button-reset arrow-left" onClick={() => this.changeImage('<')}>
-            <img src="/assets/images/icons/listing_gallery_slider_arrow.svg" />
+            <img src="/assets/images/icons/listing_gallery_slider_arrow.svg" alt="" />
           </button>
 
           <button aria-label="Next image" class="button-reset arrow-right" onClick={() => this.changeImage('>')}>
-            <img src="/assets/images/icons/listing_gallery_slider_arrow.svg" />
+            <img src="/assets/images/icons/listing_gallery_slider_arrow.svg" alt="" />
           </button>
         </div>
 
-        <div class="description">{this.selected.description}</div>
+        <div class="description">{this.description}</div>
 
         <div class={'glide ' + this.sliderClass} onClick={e => this.slideClick(e)}>
           <div class="glide__track" data-glide-el="track">
             <ul class="glide__slides">
               {
               this.images.map(img => <li class="glide__slide">
-                    <lazy-image src={img.original} class="slider__img" />
+                    <lazy-image src={img.original} class="slider__img" alt={img.title} />
                 </li>
               )
               }

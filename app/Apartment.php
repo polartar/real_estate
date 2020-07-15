@@ -155,7 +155,7 @@ class Apartment extends Model
     public function getUrlPathAttribute() {
         $neighborhood = $this->neighborhoods->first();
 
-        $title_slug = Str::limit(Str::slug($this->title), 50);
+        $title_slug = Str::limit(Str::slug($this->title), 50, '');
         return "/listing/{$this->id}/{$neighborhood->slug}/{$title_slug}";
     }
 

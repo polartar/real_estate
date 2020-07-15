@@ -286,7 +286,7 @@ export class PageListingBody {
 
           <div class="listing-left">
             <div class="listing-description">
-              <h2>{this.item.title}</h2>
+              <h1>{this.item.title}</h1>
 
               <p innerHTML={xssFilter(nl2br(this.item.description))} />
             </div>
@@ -445,9 +445,9 @@ export class PageListingBody {
           this.nearbyApts.length ?
             <section class="section">
               <div class="listing-section full-width">
-                <div class="title">
+                <h2 class="title">
                   Nearby Apartments
-                </div>
+                </h2>
 
                 <div class="nearby-list">
                   { this.nearbyApts.map(a => <listing-card item={a} mode="desktop" />)}

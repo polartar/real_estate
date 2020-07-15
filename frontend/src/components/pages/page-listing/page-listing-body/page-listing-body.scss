@@ -98,9 +98,10 @@
   }
 
   .listing-description {
-    h2 {
+    h1 {
       font-size: $font-size-lg;
       font-weight: bold;
+      font-family: $font-default;
 
       @include for-size(desktop-up) {
         margin-top: 48px;

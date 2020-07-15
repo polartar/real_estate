@@ -79,6 +79,7 @@ class GenerateSitemap extends Command
             ],
         ];
 
+        // add all of our apartment listing pages
         Apartment::orderBy('id')->chunk(100, function ($apartments) use (&$paths) {
             foreach ($apartments as $apartment) {
                 $paths[$apartment->url_path] = [

@@ -345,7 +345,7 @@
         
 
         h1 {
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: $font-default;
             font-size: 32px;
             font-weight: bold;
             line-height: 1.25;
@@ -362,7 +362,7 @@
              }
         
             h2 {
-                font-family: 'Source Sans Pro', sans-serif;
+                font-family: $font-default;
                 font-size: 24px;
                 font-weight: bold;
                 line-height: 1.25;
@@ -405,7 +405,7 @@
     h2, h3 {
       margin: 0;
       padding-bottom: 16px;
-      font-family: 'Montserrat-Bold', sans-serif;
+      font-family: $font-strong;
       font-size: 28px;
       font-weight: bold;
       padding-top: 27px; 

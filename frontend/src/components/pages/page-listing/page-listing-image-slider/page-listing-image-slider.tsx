@@ -178,7 +178,7 @@ export class PageListingImageSlider {
               {
               this.images.map(img => <li class="glide__slide">
                   <maintain-ratio width={478} height={504}>
-                    <lazy-image src={img.medium} class="slider__img" onClick={() => this.showImg(img)}/>
+                    <lazy-image src={img.medium} class="slider__img" onClick={() => this.showImg(img)} alt={img.title} />
                   </maintain-ratio>
                 </li>
               )

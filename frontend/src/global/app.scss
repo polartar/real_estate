@@ -114,7 +114,7 @@ html {
 }
 
 h1 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: $font-strong;
   font-weight: 900;
   text-transform: uppercase;
 }
@@ -124,7 +124,7 @@ h2, h3, h4 {
   text-transform: uppercase;
 
   &.h1 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: $font-strong;
   }
 }
 

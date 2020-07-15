@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use App\Apartment;
 
 class SPAController extends Controller
 {
@@ -98,7 +99,10 @@ class SPAController extends Controller
 
         if ($parts[0] === 'listing' && is_numeric($parts[1])) {
             // this is a listing page for an apartment
-            
+            $apt = Apartment::find($parts[1]);
+
+            $config['title'] = $apt->title . ' | APT212';
+            $config['description'] = 'Welcome #APT212 - Book online: ' . $apt->description;
         }
 
 
