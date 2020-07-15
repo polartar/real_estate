@@ -118,7 +118,7 @@ export class ShareListing {
   }
 
   getLink(item) {
-    const baseURL = EnvironmentConfigService.getInstance().get('BASE_URL') + '/listing/' + item.id;
+    const baseURL = EnvironmentConfigService.getInstance().get('BASE_URL') + item.url_path;
     const params: any = {};
 
     if (this.bookingId === item.id) {

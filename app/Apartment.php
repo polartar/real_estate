@@ -8,6 +8,7 @@ use Carbon\CarbonPeriod;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Apartment extends Model
 {
@@ -27,7 +28,7 @@ class Apartment extends Model
         'is_active' => true
     ];
 
-    protected $appends = ['neighborhood_ids', 'map_marker_ids', 'monthly_utilities'];
+    protected $appends = ['neighborhood_ids', 'map_marker_ids', 'monthly_utilities', 'url_path'];
     protected $hidden = ['neighborhoods', 'map_markers'];
     protected $with = ['amenities', 'subways', 'neighborhoods', 'map_markers', 'rates', 'images', 'floor_plans', 'block_dates'];
 
@@ -149,6 +150,13 @@ class Apartment extends Model
         $utilties = array_filter($utilities);
 
         return round(array_sum($utilities), 2);
+    }
+
+    public function getUrlPathAttribute() {
+        $neighborhood = $this->neighborhoods->first();
+
+        $title_slug = Str::limit(Str::slug($this->title), 50);
+        return "/listing/{$this->id}/{$neighborhood->slug}/{$title_slug}";
     }
 
     // if available date is in the past

@@ -60,8 +60,7 @@ export class PageListing {
           this.item = apt;
           this.loaded = true;
 
-          // TODO - routerservice url determination
-          canonicalURL = EnvironmentConfigService.getInstance().get('BASE_URL') + '/listing/' + this.item.id; // normalize ID
+          canonicalURL = EnvironmentConfigService.getInstance().get('BASE_URL') + this.item.url_path; // normalize ID
         }
       }
       catch (e) {

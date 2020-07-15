@@ -91,20 +91,20 @@ export class SearchListingCard {
             </maintain-ratio>
           <div class={{"listing-content-padding": this.contentPadding}}>
             <h4 class="listing-title">
-              <ion-router-link href={'/listing/' + this.item.id}>{this.item.cross_streets}</ion-router-link>
+              <ion-router-link href={this.item.url_path}>{this.item.cross_streets}</ion-router-link>
             </h4>
             <div class="neighborhood">
-              <ion-router-link href={'/listing/' + this.item.id}>
+              <ion-router-link href={this.item.url_path}>
                 {neighborhood.name}
               </ion-router-link>
             </div>
             <div class="price">
-              <ion-router-link href={'/listing/' + this.item.id}>
+              <ion-router-link href={this.item.url_path}>
                 {formatMoney(this.item.rate)} /month
               </ion-router-link>
             </div>
             <div class="available">
-              <ion-router-link href={'/listing/' + this.item.id}>
+              <ion-router-link href={this.item.url_path}>
                 Available {formatDate(new Date(this.item.available_date))}
               </ion-router-link>
             </div>

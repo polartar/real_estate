@@ -32,7 +32,7 @@ export class MapListingCard {
     const buildingType = taxonomySelectors.getBuildingTypeById(this.item.building_type_id, this.buildingTypes);
 
     return (
-      <ion-router-link href={`/listing/${this.item.id}`}>
+      <ion-router-link href={this.item.url_path}>
         <div class="map-listing-card-component">
           <img src={this.item.images[0].small} class="feature-image" />
 

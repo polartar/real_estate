@@ -20,6 +20,7 @@ class RouterServiceInstance {
       'corporate-rooms': '/corporate-housing',
       'faq': '/faq',
       'neighborhoods': '/neighborhoods',
+      'privacy': '/privacy-policy',
       'private-rooms': '/rooms-for-rent',
       'referral': '/referral',
       'search': '/search-apartments'

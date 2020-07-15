@@ -398,7 +398,7 @@ export class ListingTable {
                       </tr>
                     </table>
                   </td>
-                  <td><ion-button aria-label="View Listing" class="reset view-listing" href={`/listing/${item.id}`}><ion-icon src="/assets/images/icons/list_page_arrow.svg" slot="icon-only" /></ion-button></td>
+                  <td><ion-button aria-label="View Listing" class="reset view-listing" href={item.url_path}><ion-icon src="/assets/images/icons/list_page_arrow.svg" slot="icon-only" /></ion-button></td>
                 </tr>
                 )
               })

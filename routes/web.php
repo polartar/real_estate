@@ -22,13 +22,13 @@ $front_end_routes = [
     'private-rooms' => '/rooms-for-rent',
     'corporate-rooms' => '/corporate-housing',
     'search' => '/search-apartments',
-    'listing' => '/listing/{id}',
+    'listing' => '/listing/{id}/{neighborhood_slug?}/{slug?}',
     'wishlist' => '/wishlist',
     'neighborhoods' => '/neighborhoods',
     'neightborhood' => '/neighborhood/{id}',
     'faq' => '/faq',
 
-    'privacy' => '/privacy',
+    'privacy' => '/privacy-policy',
     'coming-soon' => '/coming-soon',
 
     

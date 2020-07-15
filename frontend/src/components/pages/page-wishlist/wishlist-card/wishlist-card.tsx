@@ -70,15 +70,15 @@ export class WishlistCard {
 
         <div class="info">
           <h4 class="listing-title">
-              <ion-router-link href={'/listing/' + this.item.id}>{this.item.cross_streets}</ion-router-link>
+              <ion-router-link href={this.item.url_path}>{this.item.cross_streets}</ion-router-link>
             </h4>
             <div class="neighborhood">
-              <ion-router-link href={'/listing/' + this.item.id}>
+              <ion-router-link href={this.item.url_path}>
                 {neighborhood.name}
               </ion-router-link>
             </div>
             <div class="price">
-              <ion-router-link href={'/listing/' + this.item.id}>
+              <ion-router-link href={this.item.url_path}>
                 {formatMoney(this.item.rate)} /month
               </ion-router-link>
             </div>
@@ -106,7 +106,7 @@ export class WishlistCard {
               />
             </div>
 
-            <ion-router-link class="button-dark view-apt" href={'/listing/' + this.item.id}>
+            <ion-router-link class="button-dark view-apt" href={this.item.url_path}>
               VIEW APARTMENT
             </ion-router-link>
         </div>

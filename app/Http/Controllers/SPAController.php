@@ -71,6 +71,10 @@ class SPAController extends Controller
                 'title' => 'FAQ | APT212',
                 'description' => "We have tried hard to make APT212 a simple platform for all who looking for furnished apartments in New York City. If you have any query that aren't answered here, please get in touch."
             ],
+            'privacy-policy' => [
+                'title' => 'Privacy Policy | APT212',
+                'description' => 'This privacy policy describes you about the type, scope, and purpose of data collection.  We use this data to provide and improve the service.'
+            ],
             'referral' => [
                 'title' => 'REFER A FRIEND & EARN $200 | APT212',
                 'description' => 'Help your friend find the best short term, furnished rental options in NYC and in turn get a $200 gift card from APT212. We are a trusted player in the market.'
@@ -87,6 +91,14 @@ class SPAController extends Controller
 
         if (isset($pageValues[$request->path()])) {
             $config = array_merge($config, $pageValues[$request->path()]);
+        }
+
+        // deal with any dynamic pages
+        $parts = explode('/', $request->path());
+
+        if ($parts[0] === 'listing' && is_numeric($parts[1])) {
+            // this is a listing page for an apartment
+            
         }
 
 

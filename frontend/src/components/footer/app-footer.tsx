@@ -59,7 +59,7 @@ export class AppFooter {
                   <ion-router-link href="/brokers">Corporate Accounts</ion-router-link>
                   <ion-router-link href="/careers">Careers</ion-router-link>
                   <ion-router-link href="http://apt212.asuscomm.com">APT212 blog</ion-router-link>
-                  <ion-router-link href="/privacy">Privacy Policy</ion-router-link>
+                  <ion-router-link href={ RouterService.getRoute('privacy') }>Privacy Policy</ion-router-link>
                   
                 </div>
               </div>

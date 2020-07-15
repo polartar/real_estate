@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use Carbon\Carbon;
+use App\Apartment;
 
 class GenerateSitemap extends Command
 {
@@ -60,6 +61,10 @@ class GenerateSitemap extends Command
                 'priority' => 0.2,
                 'change' => Url::CHANGE_FREQUENCY_MONTHLY
             ],
+            '/privacy-policy' => [
+                'priority' => 0.2,
+                'change' => Url::CHANGE_FREQUENCY_MONTHLY
+            ],
             '/referral' => [
                 'priority' => 0.2,
                 'change' => Url::CHANGE_FREQUENCY_MONTHLY
@@ -73,6 +78,15 @@ class GenerateSitemap extends Command
                 'change' => Url::CHANGE_FREQUENCY_DAILY
             ],
         ];
+
+        Apartment::orderBy('id')->chunk(100, function ($apartments) use (&$paths) {
+            foreach ($apartments as $apartment) {
+                $paths[$apartment->url_path] = [
+                    'priority' => 0.5,
+                    'change' => Url::CHANGE_FREQUENCY_DAILY
+                ];
+            }
+        });
 
         foreach ($paths as $path => $params) {
             $url = Url::create($path)->setPriority($params['priority']);

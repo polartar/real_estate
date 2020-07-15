@@ -49,7 +49,7 @@ export class ListingCard {
     }
 
     return [
-      <ion-router-link href={'/listing/' + this.item.id}>
+      <ion-router-link href={this.item.url_path}>
         <div class={classObj}>
             <maintain-ratio width={322} height={182}>
               <lazy-image src={this.getImageURL()} class="list-feature-image" alt={neighborhood.name} />
