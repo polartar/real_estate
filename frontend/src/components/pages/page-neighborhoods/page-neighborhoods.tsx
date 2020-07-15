@@ -30,9 +30,9 @@ export class PageNeighborhoods {
 
   render() {
 
-    let title = <h1 class="title">NEIGHBORHOODS</h1>
+    let title = <h1 class="title">NYC NEIGHBORHOODS</h1>
     let subtitle = <p class="subtitle">Explore Manhattan's most prestigious<br></br> neighborhoods.</p>
-  
+
     return [
 
       <app-header />,
@@ -54,10 +54,10 @@ export class PageNeighborhoods {
 
             <div class="neighborhoods-grid">
 
-      
+
               {
                 this.neighborhoods.map(neighborhood =>
-                  
+
                   <div class="module">
                     <ion-router-link href={`/neighborhood/${neighborhood.slug}`}>
                       <div class="neighborhood-card">
