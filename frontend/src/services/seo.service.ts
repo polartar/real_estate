@@ -79,6 +79,101 @@ class SEOServiceInstance {
           title: 'NYC Apartments for Rent By Neighborhood | APT212',
           description: "Find your next NYC apartment in in Manhattan by neighborhood, price, amenity, and more at APT212. We are the NYC’s number 1 source to find your long or short term rental."
         },
+        '/nyc-neighborhood/battery-park-city/apartments': {
+          title: 'Battery Park City Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Battery Park City at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/tribeca/apartments': {
+          title: 'Tribeca Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Tribeca at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/financial-district/apartments': {
+          title: 'Financial District Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in the Financial District at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/nomad/apartments': {
+          title: 'Nomad Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Nomad at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/chinatown/apartments': {
+          title: 'Chinatown Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Chinatown at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/little-italy/apartments': {
+          title: 'Little Italy Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Little Italy at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/nolita/apartments': {
+          title: 'Nolita Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Nolita at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/greenwich-village/apartments': {
+          title: 'Greenwich Village Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Greenwich Village at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/soho/apartments': {
+          title: 'Soho Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Soho at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/noho/apartments': {
+          title: 'Noho Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Noho at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/east-village/apartments': {
+          title: 'East Village Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in East Village at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/west-village/apartments': {
+          title: 'West Village Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in West Village at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/stuyvesant-town/apartments': {
+          title: 'Stuyvesant Town Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Stuyvesant Town at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/gramercy/apartments': {
+          title: 'Gramercy Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Gramercy at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/chelsea/apartments': {
+          title: 'Chelsea Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Chelsea at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/flatiron/apartments': {
+          title: 'Flatiron Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Flatiron at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/midtown-east/apartments': {
+          title: 'Midtown East Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Midtown East at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/midtown-west/apartments': {
+          title: 'Midtown Westr Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Midtown West at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/murray-hill/apartments': {
+          title: 'Murray Hill Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Murray Hill at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/midtown/apartments': {
+          title: 'Midtown Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Midtown at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/upper-east-side/apartments': {
+          title: 'Upper East Side Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Upper East Side at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/upper-west-side/apartments': {
+          title: 'Upper West Side Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Upper West Side at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+        '/nyc-neighborhood/harlem/apartments': {
+          title: 'Harlem Apartments for Rent, NYC, New York | APT212',
+          description: "Find your next furnished rental apartment in Harlem at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
+        },
+
+
+
       }
 
       const defaultOG = {
