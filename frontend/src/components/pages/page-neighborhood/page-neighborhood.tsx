@@ -62,7 +62,7 @@ export class PageNeighborhood {
     });
 
     // TODO - routerservice url determination
-    SEOService.setCanonical(EnvironmentConfigService.getInstance().get('BASE_URL') + '/neighborhood/' + this.neighborhoodName);
+    SEOService.setCanonical(EnvironmentConfigService.getInstance().get('BASE_URL') + '/nyc-neighborhood/' + this.neighborhoodName);
   }
 
   @Watch('taxonomyLoaded')

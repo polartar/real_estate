@@ -384,7 +384,7 @@ export class PageListingBody {
                     <div class="description" innerHTML={n.description}>
 
 
-                      <a href={`/neighborhood/${n.slug}`} class="button-dark">
+                      <a href={`/nyc-neighborhood/${n.slug}`} class="button-dark">
                         Explore
                       </a>
                     </div>

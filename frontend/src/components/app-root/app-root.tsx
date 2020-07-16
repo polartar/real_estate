@@ -81,7 +81,7 @@ export class AppRoot {
             <ion-route url="/listing/:apartmentId" component="page-listing" />
             <ion-route url="/wishlist" component="page-wishlist" />
             <ion-route url={ RouterService.getRoute('neighborhoods') } component="page-neighborhoods" />
-            <ion-route url="/neighborhood/:neighborhoodName" component="page-neighborhood" />
+            <ion-route url="/nyc-neighborhood/:neighborhoodName" component="page-neighborhood" />
             <ion-route url={ RouterService.getRoute('faq') } component="page-faq" />
             <ion-route url="/coming-soon" component="page-coming-soon" />
             <ion-route url={ RouterService.getRoute('booking') } component="page-booking" />

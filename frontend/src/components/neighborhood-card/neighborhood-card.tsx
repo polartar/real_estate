@@ -28,7 +28,7 @@ export class NeighborhoodCard {
     let cover_image = "/assets/images/neighborhoods/" + this.item.slug + "-cover.jpg";
 
     return [
-      <ion-router-link href={`/neighborhood/${this.item.slug}`}>
+      <ion-router-link href={`/nyc-neighborhood/${this.item.slug}`}>
         <div class="neighborhood-card">
           <lazy-image src={cover_image} alt={this.item.title} class="neighborhood-feature-image"/>
           <div class="hover-cover" />

@@ -25,7 +25,7 @@ $front_end_routes = [
     'listing' => '/listing/{id}/{neighborhood_slug?}/{slug?}',
     'wishlist' => '/wishlist',
     'neighborhoods' => '/nyc-neighborhoods',
-    'neightborhood' => '/neighborhood/{id}',
+    'neightborhood' => '/nyc-neighborhood/{id}',
     'faq' => '/faq',
 
     'privacy' => '/privacy-policy',
@@ -52,13 +52,13 @@ $front_end_routes = [
 
 /* Return 404s for the neighborhood pages that APT212 doesn't want to display */
 
-Route::get('/neighborhood/civic-center', function(){
+Route::get('/nyc-neighborhood/civic-center', function(){
     return abort(404);
  });
-Route::get('/neighborhood/fort-george', function(){
+Route::get('/nyc-neighborhood/fort-george', function(){
     return abort(404);
  });
-Route::get('/neighborhood/hudson-heights', function(){
+Route::get('/nyc-neighborhood/hudson-heights', function(){
     return abort(404);
  });
 
