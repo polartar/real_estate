@@ -25,7 +25,7 @@ $front_end_routes = [
     'listing' => '/listing/{id}/{neighborhood_slug?}/{slug?}',
     'wishlist' => '/wishlist',
     'neighborhoods' => '/nyc-neighborhoods',
-    'neightborhood' => '/nyc-neighborhood/{id}',
+    'neighborhood' => '/nyc-neighborhood/{id}/apartments',
     'faq' => '/faq',
 
     'privacy' => '/privacy-policy',

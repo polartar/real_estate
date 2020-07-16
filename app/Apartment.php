@@ -155,8 +155,10 @@ class Apartment extends Model
     public function getUrlPathAttribute() {
         $neighborhood = $this->neighborhoods->first();
 
-        $title_slug = Str::limit(Str::slug($this->title), 50, '');
-        return "/listing/{$this->id}/{$neighborhood->slug}/{$title_slug}";
+        if (is_object($neighborhood)) {
+            $title_slug = Str::limit(Str::slug($this->title), 50, '');
+            return "/listing/{$this->id}/{$neighborhood->slug}/{$title_slug}";
+        }
     }
 
     // if available date is in the past

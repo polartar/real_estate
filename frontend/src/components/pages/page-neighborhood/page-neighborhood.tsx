@@ -110,9 +110,9 @@ export class PageNeighborhood {
       return null;
     }
 
-    let title = <h1 class="title">{item.name}</h1>
+    let title = <h1 class="title">{item.name} APARTMENTS</h1>
 
-    let subtitle = <p class="subtitle">Find the best short term apartment rentals in {item.name}.</p>
+    let subtitle = <p class="subtitle">Find the best short term rental apartments, rooms, sublets in {item.name}.</p>
 
     let search = <button class="light" onClick={() => { this.toggleSearchFilterDisplay(!this.displayFilter) }}>
                     Search

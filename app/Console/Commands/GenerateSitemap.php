@@ -7,6 +7,7 @@ use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use Carbon\Carbon;
 use App\Apartment;
+use App\Neighborhood;
 
 class GenerateSitemap extends Command
 {
@@ -90,6 +91,17 @@ class GenerateSitemap extends Command
                     'priority' => 0.5,
                     'change' => Url::CHANGE_FREQUENCY_DAILY
                 ];
+            }
+        });
+
+        // add all of our neighborhood pages
+        Neighborhood::orderBy('id')->chunk(100, function ($neighborhoods) use (&$paths) {
+            foreach ($neighborhoods as $neighborhood) {
+                $paths['nyc-neighborhood/' . $neighborhood->slug . '/apartments'] = [
+                    'priority' => 0.5,
+                    'change' => Url::CHANGE_FREQUENCY_DAILY
+                ];
+
             }
         });
 
