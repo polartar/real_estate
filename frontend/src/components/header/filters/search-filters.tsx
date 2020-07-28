@@ -65,6 +65,11 @@ export class SearchFilters {
       <Host>
         <div class="search-filters">
           <div class="section">
+          <button aria-label="Market filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'market-filter')}>
+              Market
+              <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>
+            </button>
+
             <button aria-label="Location filter" class="button-reset dropdown" onClick={(e) => this.showFilterOptions(e, 'location-filter')}>
               Location
               <ion-icon mode="md" name="md-arrow-dropdown"></ion-icon>

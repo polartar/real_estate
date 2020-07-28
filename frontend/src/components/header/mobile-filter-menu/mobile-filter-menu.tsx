@@ -89,6 +89,14 @@ export class AppMenu {
     ]
   }
 
+  getMarkets() {
+    return [
+      <div class="center-content">
+        <market-filter />
+      </div>
+    ]
+  }
+
   bedBathSelectAll(on) {
     const beds = this.el.querySelector('bedroom-filter');
     const baths = this.el.querySelector('bathroom-filter');
@@ -123,6 +131,11 @@ export class AppMenu {
       case 'locations':
         title = 'Locations';
         content = this.getLocations();
+      break;
+
+      case 'markets':
+        title = 'Market';
+        content = this.getMarkets();
       break;
 
       case 'time':

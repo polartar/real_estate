@@ -218,6 +218,9 @@ export namespace Components {
   interface MapListingMarker {
     'markerId': any;
   }
+  interface MarketFilter {
+    'inModal': boolean;
+  }
   interface MediaLogos {}
   interface MobileBookingModal {
     'item': any;
@@ -694,6 +697,12 @@ declare global {
     new (): HTMLMapListingMarkerElement;
   };
 
+  interface HTMLMarketFilterElement extends Components.MarketFilter, HTMLStencilElement {}
+  var HTMLMarketFilterElement: {
+    prototype: HTMLMarketFilterElement;
+    new (): HTMLMarketFilterElement;
+  };
+
   interface HTMLMediaLogosElement extends Components.MediaLogos, HTMLStencilElement {}
   var HTMLMediaLogosElement: {
     prototype: HTMLMediaLogosElement;
@@ -1060,6 +1069,7 @@ declare global {
     'map-listing-card': HTMLMapListingCardElement;
     'map-listing-details': HTMLMapListingDetailsElement;
     'map-listing-marker': HTMLMapListingMarkerElement;
+    'market-filter': HTMLMarketFilterElement;
     'media-logos': HTMLMediaLogosElement;
     'mobile-booking-modal': HTMLMobileBookingModalElement;
     'mobile-filter-menu': HTMLMobileFilterMenuElement;
@@ -1312,6 +1322,9 @@ declare namespace LocalJSX {
   interface MapListingMarker extends JSXBase.HTMLAttributes<HTMLMapListingMarkerElement> {
     'markerId': any;
   }
+  interface MarketFilter extends JSXBase.HTMLAttributes<HTMLMarketFilterElement> {
+    'inModal'?: boolean;
+  }
   interface MediaLogos extends JSXBase.HTMLAttributes<HTMLMediaLogosElement> {}
   interface MobileBookingModal extends JSXBase.HTMLAttributes<HTMLMobileBookingModalElement> {
     'item': any;
@@ -1519,6 +1532,7 @@ declare namespace LocalJSX {
     'map-listing-card': MapListingCard;
     'map-listing-details': MapListingDetails;
     'map-listing-marker': MapListingMarker;
+    'market-filter': MarketFilter;
     'media-logos': MediaLogos;
     'mobile-booking-modal': MobileBookingModal;
     'mobile-filter-menu': MobileFilterMenu;

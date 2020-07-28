@@ -128,16 +128,9 @@ export class AppHeader {
             <div class="header-center" />
 
             <div class="header-right">
-              <ion-router-link href={ RouterService.getRoute('booking') } class="nav">
-                Bookings
-              </ion-router-link>
 
               <ion-router-link href="/wishlist" class="nav">
                 Wishlist{ this.wishlist.length ? ` | ${this.wishlist.length}` : null }
-              </ion-router-link>
-
-              <ion-router-link href={ RouterService.getRoute('faq') } class="nav">
-                FAQ
               </ion-router-link>
 
               <ion-button aria-label="Speak to an expert" class="call" onClick={() => ModalService.contactUs()}>

@@ -1,0 +1,30 @@
+.market-filter {
+    position: relative;
+    width: 380px;
+    height: 304px;
+    padding: 1.5rem;
+    font-weight: bold;
+
+    .market-types {
+        padding-top: 40px;
+        text-align: center;
+    }
+
+    .apt212-checkbox {
+      padding-bottom: 10px;
+    }
+
+    .checkbox {
+      margin-right: 10px;
+    }
+
+    ion-button.close {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        z-index: 9999;
+        --background-hover: transparent;
+        --padding-end: 0;
+        --ripple-color: transparent;
+    }
+}
