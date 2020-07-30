@@ -6,7 +6,6 @@ import wishlistSelectors from '../../store/selectors/wishlist';
 import taxonomySelectors from '../../store/selectors/taxonomy';
 import { FilterTagsService } from '../../services/search-filters/filter-tags.service';
 import { ModalService } from '../../services/modal.service';
-import { RouterService } from '../../services/router.service';
 
 @Component({
   tag: 'app-header',
