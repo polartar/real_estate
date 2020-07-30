@@ -35,14 +35,14 @@
 @import '../styles/forms';
 
 html.md {
-  --ion-default-font: 'Source Sans Pro', sans-serif;
+  --ion-default-font: 'Proxima Nova Regular', sans-serif;
 }
 
 :root {
   --ion-color-primary: #{$color-primary};
   --ion-color-secondary: #{$color-secondary};
-  --ion-font-family: 'Source Sans Pro', sans-serif;
-  --ion-default-font: 'Source Sans Pro', sans-serif;
+  --ion-font-family: 'Proxima Nova Regular', sans-serif;
+  --ion-default-font: 'Proxima Nova Regular', sans-serif;
   letter-spacing: 0;
 
   page-search {
@@ -120,6 +120,7 @@ h1 {
 }
 
 h2, h3, h4 {
+  font-family: $font-title;
   font-weight: 900;
   text-transform: uppercase;
 
