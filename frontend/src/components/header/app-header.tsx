@@ -109,7 +109,7 @@ export class AppHeader {
         <div class="header-inner">
           <div class="app-header section">
             <ion-router-link href="/" class="logo-link">
-              <img src="/assets/images/logo.svg" class="logo" alt="APT212 Logo" />
+              <img src="/assets/images/logo-black.svg" class="logo" alt="APT212 Logo" />
             </ion-router-link>
 
             <ion-router-link href="/wishlist" class="mobile-wishlist">

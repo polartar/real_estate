@@ -37,7 +37,7 @@ export class AdminHeader {
       <div class="admin-header-component">
         <div class="admin-header section">
             <ion-router-link href="/" class="logo-link">
-              <img src="/assets/images/logo.svg" class="logo" alt="APT212 Logo" />
+              <img src="/assets/images/logo-black.svg" class="logo" alt="APT212 Logo" />
             </ion-router-link>
 
             <div class="flex-spacer" />
