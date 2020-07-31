@@ -33,9 +33,13 @@
     flex-wrap: wrap;
   }
 
-  .region-container {
+  .region-column {
     flex: 1 1 auto;
     padding-top: 1rem;
+
+    .region-container:not(:first-child) {
+      padding-top: 14px;
+    }
 
     label {
       display: flex;
@@ -114,9 +118,13 @@
         padding-right: 0;
       }
 
-      .neighborhoods-container {
-        grid-template-rows: repeat(#{$region-upper-manhattan-count / 2}, auto);
-      }
+      // this is no longer needed
+      // with the hacky mid-array rendering of regions
+      // keeping it commented here in case we need to revert
+
+      // .neighborhoods-container {
+      //   grid-template-rows: repeat(#{$region-upper-manhattan-count / 2}, auto);
+      // }
     }
   }
 

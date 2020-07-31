@@ -170,7 +170,26 @@ export class LocationFilter {
           <form onSubmit={e => this.onSubmit(e)} novalidate>
 
             <div class="checkboxes-container">
-            {this.regions.map(region => {
+            {this.regions.map((region, regionIndex) => {
+
+              /**
+               *  WARNING - HACKY SHIT AHEAD
+               *  NOTHING I CAN DO ABOUT IT THOUGH
+               *  CLIENTS MAKE THE DECISIONS THAT ARE THE MOST COMPLICATED
+               *  ON A VERY REGULAR BASIS, EVEN WHEN IT CLEARLY GOES AGAINST THEIR
+               *  BEST INTEREST.
+               * 
+               *  MAKE STUPID DECISIONS, GET STUPID CODE.
+               */
+
+              // don't render the 4th region
+              // we're rendering it in the loop for the 3rd region
+              // to group them up
+              // blech!
+              if (regionIndex === 3) {
+                return null;
+              }
+
               let regionCheckboxProps: any = {
                 name: region.name,
                 class: 'region',
@@ -185,36 +204,98 @@ export class LocationFilter {
                 }
               });
 
+
+              // if we're rendering region #3,
+              // also render region #4 in the same column
+              // ugh, this is fucking ugly shit
+              let nextRegionCheckboxProps: any;
+              if (regionIndex === 2) {
+                nextRegionCheckboxProps = {
+                  name: this.regions[regionIndex + 1].name,
+                  class: 'region',
+                  onCheckBoxChange: e => this.regionChange(e),
+                  checked: "checked",
+                }
+
+                this.neighborhoods.forEach(neighborhood => {
+                  if (neighborhood.region_id === this.regions[regionIndex + 1].id && this.value.indexOf(neighborhood.id) === -1) {
+                    nextRegionCheckboxProps.checked = false;
+                    nextRegionCheckboxProps['data-checked'] = false;
+                  }
+                });
+              }
+
               return(
-                <div class="region-container">
-                  <apt212-checkbox {...regionCheckboxProps}>
-                    {region.name}
-                  </apt212-checkbox>
+                <div class="region-column">
+                  <div class="region-container">
+                    <apt212-checkbox {...regionCheckboxProps}>
+                      {region.name}
+                    </apt212-checkbox>
 
-                  <div class="neighborhoods-container">
-                    {this.neighborhoods.map(neighborhood => {
-                      if (neighborhood.region_id !== region.id) {
-                        return null;
-                      }
+                    <div class="neighborhoods-container">
+                      {this.neighborhoods.map(neighborhood => {
+                        if (neighborhood.region_id !== region.id) {
+                          return null;
+                        }
 
-                      let checkboxProps: any = {
-                        name: neighborhood.name,
-                        value: neighborhood.id,
-                        class: 'neighborhood',
-                        onCheckBoxChange: e => this.neighborhoodChanged(e),
-                      };
+                        let checkboxProps: any = {
+                          name: neighborhood.name,
+                          value: neighborhood.id,
+                          class: 'neighborhood',
+                          onCheckBoxChange: e => this.neighborhoodChanged(e),
+                        };
 
-                      if (this.value.indexOf(neighborhood.id) > -1) {
-                        checkboxProps.checked = 'checked';
-                      }
+                        if (this.value.indexOf(neighborhood.id) > -1) {
+                          checkboxProps.checked = 'checked';
+                        }
 
-                      return (
-                        <apt212-checkbox {...checkboxProps}>
-                          {neighborhood.name}
-                        </apt212-checkbox>
-                      )
-                    })}
+                        return (
+                          <apt212-checkbox {...checkboxProps}>
+                            {neighborhood.name}
+                          </apt212-checkbox>
+                        )
+                      })}
+                    </div>
                   </div>
+
+                  {
+                    // and then we just re-do the column for the next
+                    // region if we're rendering index 2
+                    // fucking hell
+                    // I'm never putting this in a resume that's for sure
+                    regionIndex === 2 ? 
+                      <div class="region-container">
+                        <apt212-checkbox {...nextRegionCheckboxProps}>
+                          {this.regions[regionIndex + 1].name}
+                        </apt212-checkbox>
+
+                        <div class="neighborhoods-container">
+                          {this.neighborhoods.map(neighborhood => {
+                            if (neighborhood.region_id !== this.regions[regionIndex + 1].id) {
+                              return null;
+                            }
+
+                            let checkboxProps: any = {
+                              name: neighborhood.name,
+                              value: neighborhood.id,
+                              class: 'neighborhood',
+                              onCheckBoxChange: e => this.neighborhoodChanged(e),
+                            };
+
+                            if (this.value.indexOf(neighborhood.id) > -1) {
+                              checkboxProps.checked = 'checked';
+                            }
+
+                            return (
+                              <apt212-checkbox {...checkboxProps}>
+                                {neighborhood.name}
+                              </apt212-checkbox>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    : null
+                  }
                 </div>
               )}
             )}
