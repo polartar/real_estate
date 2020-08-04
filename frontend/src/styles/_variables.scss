@@ -28,6 +28,11 @@ $region-downtown-count: 23;
 $region-midtown-count: 18;
 $region-upper-manhattan-count: 10;
 
-$font-default: "Proxima Nova", sans-serif;
+/*$font-default: "Proxima Nova", sans-serif;
 $font-strong: 'Proxima Nova Black', sans-serif;
 $font-title: 'Proxima Nova Extrabold', sans-serif;
+*/
+
+$font-default: proxima-nova, sans-serif;
+$font-strong: proxima-nova, sans-serif;
+$font-title: proxima-nova, sans-serif;

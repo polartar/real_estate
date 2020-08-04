@@ -35,14 +35,14 @@
 @import '../styles/forms';
 
 html.md {
-  --ion-default-font: 'Proxima Nova Regular', sans-serif;
+  --ion-default-font: proxima-nova, sans-serif;
 }
 
 :root {
   --ion-color-primary: #{$color-primary};
   --ion-color-secondary: #{$color-secondary};
-  --ion-font-family: 'Proxima Nova Regular', sans-serif;
-  --ion-default-font: 'Proxima Nova Regular', sans-serif;
+  --ion-font-family: proxima-nova, sans-serif;
+  --ion-default-font: proxima-nova, sans-serif;
   letter-spacing: 0;
 
   page-search {
