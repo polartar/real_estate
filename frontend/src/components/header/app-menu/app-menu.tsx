@@ -54,27 +54,35 @@ export class AppMenu {
 
           <div class="section main-menu">
             <ion-router-link href={ RouterService.getRoute('search') } onClick={() => this.closeMenu()}>
-              Search Apartments
+              Furnished Apartments
             </ion-router-link>
 
-            <ion-router-link href={ RouterService.getRoute('booking') } onClick={() => this.closeMenu()}>
+            <ion-router-link href="/coming-soon" onClick={() => this.closeMenu()}>
+              Rentals
+            </ion-router-link>
+
+            <ion-router-link href="/coming-soon" onClick={() => this.closeMenu()}>
+              Sales
+            </ion-router-link>
+
+            <ion-router-link href="/coming-soon" onClick={() => this.closeMenu()}>
+              Investments
+            </ion-router-link>
+
+            <ion-router-link href="#" onClick={() => this.closeMenu()}>
+              &nbsp;
+            </ion-router-link>
+
+            <ion-router-link href="/coming-soon" onClick={() => this.closeMenu()}>
+              Agents
+            </ion-router-link>
+
+            <ion-router-link href="/booking" onClick={() => this.closeMenu()}>
               Booking
-            </ion-router-link>
-
-            <ion-router-link href="/about" onClick={() => this.closeMenu()}>
-              What is APT212?
             </ion-router-link>
 
             <ion-router-link href={ RouterService.getRoute('faq') } onClick={() => this.closeMenu()}>
               FAQ
-            </ion-router-link>
-
-            <ion-router-link href="/coming-soon" onClick={() => this.closeMenu()}>
-              List with us
-            </ion-router-link>
-
-            <ion-router-link href="/referral" onClick={() => this.closeMenu()}>
-              Referrals
             </ion-router-link>
 
             {
