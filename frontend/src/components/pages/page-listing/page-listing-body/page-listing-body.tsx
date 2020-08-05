@@ -372,26 +372,33 @@ export class PageListingBody {
               <listing-map item={this.item} />
             </div>
 
-            {
-              marketingNeighborhoods.map(n => <div class="listing-section">
-                  <div class="title">
-                    { n.name }
+            {marketingNeighborhoods.map((region, i) => {
+
+                if (i === 0) {
+                  return (
+                    <div class="listing-section">
+
+                      <div class="title">
+                        { region.name }
+                      </div>
+
+                      <div class="neighborhood">
+                        <lazy-image src={region.image} class="neighborhood-image" />
+
+                        <div class="description" innerHTML={region.description}>
+
+
+                          <a href={`/nyc-neighborhood/${region.slug}/apartments`} class="button-dark">
+                            Explore
+                          </a>
+                        </div>
+                      </div>
                   </div>
+                  )
+                }
 
-                  <div class="neighborhood">
-                    <lazy-image src={n.image} class="neighborhood-image" />
-
-                    <div class="description" innerHTML={n.description}>
-
-
-                      <a href={`/nyc-neighborhood/${n.slug}/apartments`} class="button-dark">
-                        Explore
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              )
-            }
+              }
+              )}
 
             <div class="listing-section">
               <div class="title">
