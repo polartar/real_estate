@@ -76,8 +76,8 @@ ion-button {
   --background-hover: #{$color-primary-lighter} !important;
   --border-radius: 0 !important;
   --box-shadow: none !important;
-  --ion-default-font: 'Source Sans Pro', sans-serif !important;
-  --ion-font-family: 'Source Sans Pro', sans-serif !important;
+  --ion-default-font: proxima-nova, sans-serif !important;
+  --ion-font-family: proxima-nova, sans-serif !important;
   letter-spacing: normal !important;
   font-weight: bold;
   font-size: $font-size-md;
@@ -109,7 +109,7 @@ button {
 
 html {
   font-size: $font-size; /* standard rem */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: proxima-nova, sans-serif;
   color: $color-text-dark;
 }
 

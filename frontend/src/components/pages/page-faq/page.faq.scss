@@ -14,7 +14,7 @@
         padding: 1rem 0;
       }
     }
-    
+
     .hero {
       position: relative;
       background-size: cover;
@@ -36,7 +36,7 @@
       @include for-size(tablet-portrait-up) {
         height: 640px;
       }
-   
+
     .cta {
       //margin: auto;
       text-align: center;
@@ -111,7 +111,7 @@
     @include for-size(tablet-portrait-up) {
       width: 600px;
       max-width: 633px;
-     
+
       font-size: $font-size-md;
       font-weight: normal;
       height: $app-header-button-height;
@@ -132,9 +132,9 @@
       width: 600px;
       max-width: 633px;
     }
-    
+
     li {
-    
+
       a {
         display:block;
         padding-top: 10px;
@@ -203,7 +203,7 @@
           padding: 22px 0px;
           width: 100%;
           border-bottom: 1px solid #ddd;
-          
+
           @include for-size(tablet-portrait-up) {
             padding-bottom: 10px;
             border-bottom: none;
@@ -319,6 +319,11 @@
         font-size: 14px;
       }
 
+      @include for-size(phone-only) {
+        width: 100px;
+        font-size: 12px;
+      }
+
       &.active {
         background-color: black;
         color: white;
@@ -331,7 +336,7 @@
     position: relative;
     width: 100%;
     text-align: center;
-    top: 50px; 
+    top: 50px;
 
     @include for-size(tablet-portrait-up) {
       width: 50%
@@ -345,13 +350,13 @@
   /* width */
 ::-webkit-scrollbar {
   width: 12px;
-  
+
   color: #F5F5F5;
 }
 
 /* button */
 ::-webkit-scrollbar-button {
-  
+
 }
 
 /* Handle */
@@ -373,12 +378,12 @@
 
 /* Corner */
 ::-webkit-scrollbar-corner {
-  background: #999; 
+  background: #999;
 }
 
 /* Resizer */
 ::-webkit-resizer {
-  background: #111; 
+  background: #111;
 }
 
 

@@ -129,7 +129,7 @@ export class AppHeader {
             <div class="header-right">
 
               <ion-router-link href="/wishlist" class="nav">
-                Wishlist{ this.wishlist.length ? ` | ${this.wishlist.length}` : null }
+                Wish List{ this.wishlist.length ? ` | ${this.wishlist.length}` : null }
               </ion-router-link>
 
               <ion-button aria-label="Speak to an expert" class="call" onClick={() => ModalService.contactUs()}>

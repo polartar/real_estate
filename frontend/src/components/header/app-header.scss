@@ -48,12 +48,12 @@
 
   .nav {
     display: none;
-    text-transform: uppercase;
+
     padding-right: 3.5rem;
 
     @include for-size(desktop-up) {
       display: inline-block;
-      font-size: $font-size;
+      font-size: 20px;
       font-weight: normal;
     }
   }
