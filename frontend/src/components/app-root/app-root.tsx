@@ -70,13 +70,14 @@ export class AppRoot {
         prefetch.setComponents(PrefetchComponentService.getConfig());
       });
     }
-/*
-    ScriptLoaderService.loadScript('olark', '/assets/scripts/olark.js')
+
+    /*ScriptLoaderService.loadScript('olark', '/assets/scripts/olark.js')
       .then(() => {
        // do something
       });
+      */
   }
-*/
+
   render() {
     return [
       <ion-app>
