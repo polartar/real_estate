@@ -11,7 +11,6 @@ import { PrefetchComponentService } from '../../services/prefetch-components.ser
 import { RouterService } from '../../services/router.service';
 import Debounce from 'debounce-decorator';
 import { SEOService } from "../../services/seo.service";
-import { ScriptLoaderService } from '../../services/script-loader.service';
 
 @Component({
   tag: 'app-root',
@@ -71,13 +70,13 @@ export class AppRoot {
         prefetch.setComponents(PrefetchComponentService.getConfig());
       });
     }
-
+/*
     ScriptLoaderService.loadScript('olark', '/assets/scripts/olark.js')
       .then(() => {
        // do something
       });
   }
-
+*/
   render() {
     return [
       <ion-app>

@@ -3,7 +3,6 @@
 
 // Check if the page URL contains 'booking'
 if(window.location.href.indexOf("booking") > -1) {
-  console.log("we are on booking")
   // Enable the Attention Grabber
   olark.configure('CalloutBubble.slide', false );
 }
