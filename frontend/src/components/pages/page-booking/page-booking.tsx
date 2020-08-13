@@ -10,7 +10,6 @@ export class PageBooking {
 
   render() {
 
-
     return [
       <app-header hide-search />,
       <ion-content class="page-booking">
@@ -24,12 +23,6 @@ export class PageBooking {
             <div class={{ section: !this.isMobile }}>
             <div class="payment-hero flex">
               <div class="payment-content-wrapper">
-
-                <div class="payment-form-wrapper mobile">
-                  <div class="payment-form">
-                    <booking-form />
-                  </div>
-                </div>
 
                 <div class="payment-cta">
                   <h1 class="title">Wire Details</h1>
@@ -62,11 +55,6 @@ export class PageBooking {
 
         <app-footer />
 
-        <div class="mobile-booking-cta" ref={ el => this.mobileBookingCTA = el as HTMLElement }>
-          <button class="button-dark block" onClick={() => this.scrollContent.scrollToTop(1500)}>
-              BOOK NOW
-          </button>
-        </div>
       </ion-content>
     ];
   }
