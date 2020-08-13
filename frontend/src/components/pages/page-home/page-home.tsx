@@ -94,18 +94,11 @@ export class PageHome {
       return null;
     }
 
-    let phoneTitle, phoneSubtitle, phoneSearch;
-
-
-
     let title = <h1 class="title">Your Lifestyle<br></br>Your Home<br></br>Your New York City</h1>
 
     let subtitle = <p class="subtitle">A customized solution for
     <br></br>all of your  Real Estate needs</p>
 
-    let search = <button class="light" onClick={() => { this.toggleSearchFilterDisplay(!this.displayFilter) }}>
-                    Search
-                  </button>
 
     let luxuryTitle = 'Luxury Apartments in full service doorman buildings';
     let uniqueTitle = 'Unique homes in New York';
@@ -113,12 +106,6 @@ export class PageHome {
     let neighborhoodTitle = 'New York City Neighborhoods';
 
     if (this.size === 'phone-only') {
-      phoneTitle = title;
-      phoneSubtitle = subtitle;
-      phoneSearch = <button aria-label="Search" class="search-dark" onClick={() => { this.launchMobileFilterMenu() }}>
-                      Search
-                    </button>
-
       luxuryTitle = 'Luxury apartments';
       uniqueTitle = 'Unique homes';
       privateTitle = 'Private rooms';
@@ -131,93 +118,83 @@ export class PageHome {
 
         <section class="section">
 
-
           <div class="hero">
 
-          <div class="hero-inner">
-              <div class="hero-child tablet">
-                  {title}
-                  {subtitle}
-                  <lazy-image src={`/assets/images/home-hero.jpg`} class="markets-feature-image" />
-              </div>
-              <div class="hero-child info">
-                  <a href="/search">Furnished</a>
-                  <a href="/coming-soon">Rentals</a>
-                  <a href="/coming-soon">Sales</a><br /><br />
-                  <input type="text" class="home-search" placeholder="Search Apartments" />
-              </div>
-          </div>
-
-            { (this.size !== 'phone-only') ?
-            <div class="cta">
-
-            </div> : ''
-            }
+            <div class="hero-inner">
+                <div class="hero-child tablet">
+                    {title}
+                    {subtitle}
+                    <lazy-image src={`/assets/images/home-hero.jpg`} class="markets-feature-image" />
+                </div>
+                <div class="hero-child info">
+                    <a href="/search">Furnished</a>
+                    <a href="/coming-soon">Rentals</a>
+                    <a href="/coming-soon">Sales</a><br /><br />
+                    <input type="text" class="home-search" placeholder="Search Apartments" />
+                </div>
+            </div>
 
           </div>
 
           <div class="markets-grid">
+            <div class="module">
+              <div class="markets-card">
+                <lazy-image src={`/assets/images/market-furnished.jpg`} class="markets-feature-image" />
 
-          <div class="module">
-            <div class="markets-card">
-              <lazy-image src={`/assets/images/market-furnished.jpg`} class="markets-feature-image" />
+                <div class="markets-description">
+                  <h4 class="markets-title">Furnished Apartments</h4>
 
-              <div class="markets-description">
-                <h4 class="markets-title">Furnished Apartments</h4>
+                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
 
-                <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
-
-                <a href="#" class="learn-more">Learn More</a>
+                  <a href="#" class="learn-more">Learn More</a>
+                </div>
               </div>
-
             </div>
-          </div>
 
-          <div class="module">
-            <div class="markets-card">
-              <lazy-image src={`/assets/images/market-furnished.jpg`} class="markets-feature-image" />
+            <div class="module">
+              <div class="markets-card">
+                <lazy-image src={`/assets/images/market-furnished.jpg`} class="markets-feature-image" />
 
-              <div class="markets-description">
-                <h4 class="markets-title">Furnished Apartments</h4>
+                <div class="markets-description">
+                  <h4 class="markets-title">Furnished Apartments</h4>
 
-                <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
 
-                <a href="#" class="learn-more">Learn More</a>
+                  <a href="#" class="learn-more">Learn More</a>
+                </div>
+
               </div>
-
             </div>
-          </div>
 
-          <div class="module">
-            <div class="markets-card">
-              <lazy-image src={`/assets/images/market-furnished.jpg`} class="markets-feature-image" />
+            <div class="module">
+              <div class="markets-card">
+                <lazy-image src={`/assets/images/market-furnished.jpg`} class="markets-feature-image" />
 
-              <div class="markets-description">
-                <h4 class="markets-title">Furnished Apartments</h4>
+                <div class="markets-description">
+                  <h4 class="markets-title">Furnished Apartments</h4>
 
-                <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
 
-                <a href="#" class="learn-more">Learn More</a>
+                  <a href="#" class="learn-more">Learn More</a>
+                </div>
+
               </div>
-
             </div>
-          </div>
 
-          <div class="module">
-            <div class="markets-card">
-              <lazy-image src={`/assets/images/market-furnished.jpg`}  />
+            <div class="module">
+              <div class="markets-card">
+                <lazy-image src={`/assets/images/market-furnished.jpg`}  />
 
-              <div class="markets-description">
-                <h4 class="markets-title">Furnished Apartments</h4>
+                <div class="markets-description">
+                  <h4 class="markets-title">Furnished Apartments</h4>
 
-                <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
 
-                <a href="#" class="learn-more">Learn More</a>
+                  <a href="#" class="learn-more">Learn More</a>
+                </div>
+
               </div>
-
             </div>
-          </div>
-
 
           </div>
 
@@ -249,8 +226,6 @@ export class PageHome {
           </div>
 
           <media-logos />
-
-
 
           {
             this.luxuryList.length && this.neighborhoodsLoaded ?
