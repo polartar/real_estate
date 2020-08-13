@@ -4,12 +4,43 @@
 .page-booking {
   position: relative;
 
+  p, h1, h2, h3, h4 {
+    font-family: proxima-nova, sans-serif;
+    color: #f5f5f7;
+    text-transform: none;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 20px;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  .white {
+    height: 50px;
+    width: 130px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #131414;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .contact {
+    text-decoration: none;
+  }
+
+  .center {
+    text-align: center;
+  }
+
   .payment-content-wrapper {
     width: 100%;
-
-    @include for-size(desktop-up) {
-      width: calc(100% - 550px);
-    }
   }
 
   .page-booking-body {
@@ -21,6 +52,8 @@
   .payment-section-wrapper {
     position: relative;
     min-height: 1002px;
+    background-color: #131414;
+
 
     @include for-size(desktop-up) {
       min-height: 746px;
@@ -63,9 +96,11 @@
 
     .title {
       font-size: 21px;
+      text-align: center;
+      font-weight: 600;
 
       @include for-size(desktop-up) {
-        font-size: 48px;
+        font-size: 40px;
       }
     }
   }
@@ -75,14 +110,14 @@
     padding: 1rem;
     position: absolute;
     bottom: 60px;
+    font-weight: normal;
 
     @include for-size(desktop-up) {
       position: relative;
       bottom: 0;
-      max-width: 652px;
-      margin-left: 47px;
-      margin-top: 71px;
-      font-size: 18px;
+      max-width: 400px;
+      margin: 100px auto;
+      font-size: 16px;
       padding: 0;
     }
 
@@ -92,7 +127,7 @@
       padding-bottom: 1.5rem;
       padding-left: 1rem;
       line-height: 2;
-      font-weight: 600;
+      font-weight: normal;
 
       @include for-size(desktop-up) {
         display: block;
@@ -198,7 +233,7 @@
 
         h3 {
           text-transform: none;
-          font-size: $font-size-lg;
+          font-size: 16px;
         }
       }
     }
@@ -292,7 +327,7 @@
 
       .question {
         font-weight: 900;
-       
+
         font-family: $font-strong;
         padding-right: 70px;
         padding-top: 20px; // mobile only
@@ -358,4 +393,5 @@
       }
     }
   }
+
 }
