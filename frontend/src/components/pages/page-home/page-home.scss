@@ -31,7 +31,7 @@
 
     @include for-size (phone-only) {
       font-size: 16px;
-      top: 140px;
+      top: 120px;
       left: 40px;
     }
   }
@@ -45,7 +45,7 @@
     background-blend-mode: multiply;
     width: 100%;
     height: 100%;
-    padding: 0 30px 30px 30px;
+    padding: 0 12px 30px 12px;
 
     @include for-size(tablet-portrait-up) {
       height: 790px;
@@ -136,7 +136,7 @@
           float: right;
 
           @include for-size(phone-only) {
-              max-width: 320px;
+              max-width: 350px;
               padding-bottom: 16px;
               float: left;
           }
