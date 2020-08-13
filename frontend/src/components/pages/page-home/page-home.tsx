@@ -94,12 +94,6 @@ export class PageHome {
       return null;
     }
 
-    let title = <h1 class="title">Your Lifestyle<br></br>Your Home<br></br>Your New York City</h1>
-
-    let subtitle = <p class="subtitle">A customized solution for
-    <br></br>all of your  Real Estate needs</p>
-
-
     let luxuryTitle = 'Luxury Apartments in full service doorman buildings';
     let uniqueTitle = 'Unique homes in New York';
     let privateTitle = 'Private rooms in shared apartments';
@@ -115,27 +109,39 @@ export class PageHome {
     return [
       <app-header />,
       <ion-content class="page-home">
+        <section class="home-hero">
+          <div class="section">
+            <div class="hero">
+                <div class="hero-child">
+                  <h1 class="title">Your Lifestyle<br></br>Your Home<br></br>Your New York City</h1>
 
-        <section class="section">
-
-          <div class="hero">
-
-            <div class="hero-inner">
-                <div class="hero-child tablet">
-                    {title}
-                    {subtitle}
-                    <lazy-image src={`/assets/images/home-hero-new.jpg`} class="markets-feature-image" />
+                  <p class="subtitle">
+                      A customized solution for
+                      <br></br>all of your  Real Estate needs
+                  </p>
+                  
+                  <lazy-image src={`/assets/images/home-hero.jpg`} class="markets-feature-image" alt="A customized solution for your real estate needs" />
                 </div>
+
                 <div class="hero-child info">
-                    <a href="/search">Furnished</a>
-                    <a href="/coming-soon">Rentals</a>
-                    <a href="/coming-soon">Sales</a><br /><br />
-                    <input type="text" class="home-search" placeholder="Search Apartments" />
+                    <button class="button-reset market-tab" onClick={() => RouterService.forward(RouterService.getRoute('search'))}>Furnished</button>
+
+                    <button class="button-reset market-tab" onClick={() => RouterService.forward('/coming-soon')}>Rentals</button>
+
+                    <button class="button-reset market-tab" onClick={() => RouterService.forward('/coming-soon')}>Sales</button>
+
+                    <div class="home-search-wrapper">
+                      <input type="text" class="home-search" placeholder="Search Apartments" onClick={() => RouterService.forward(RouterService.getRoute('search'))}/>
+                      <button class="button-reset search-icon">
+                        <svg class="feather feather-search" viewBox="0 0 25 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><path d="M24,21.1886008 L18.6803754,15.9186997 C19.949079,14.3099652 20.6588954,12.3179013 20.6588954,10.238277 C20.6588954,5.14393658 16.472729,1 11.3303363,1 C6.18621089,1 2,5.14393658 2,10.238277 C2,15.3308573 6.18616646,19.4765539 11.3303363,19.4765539 C13.3071236,19.4765539 15.2318387,18.8457674 16.8196842,17.7010588 L22.1704099,23 L24,21.1886008 Z M11.3302919,16.9140717 C7.61273046,16.9140717 4.58934605,13.9182757 4.58934605,10.238365 C4.58934605,6.55849823 7.61268603,3.56265825 11.3302919,3.56265825 C15.0461205,3.56265825 18.0694605,6.55845423 18.0694605,10.238365 C18.0694605,12.2063608 17.1982293,14.0643123 15.6796059,15.3379854 C14.4664401,16.3537734 12.9218251,16.9140717 11.3302919,16.9140717 Z" fill="#f5f5f7"></path></g></svg>
+                      </button>
+                    </div>
                 </div>
             </div>
-
           </div>
+        </section>
 
+        <section class="section">
           <div class="markets-grid">
             <div class="module">
               <div class="markets-card">

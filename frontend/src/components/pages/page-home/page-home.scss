@@ -1,163 +1,115 @@
 @import '../../../styles/mixins';
 @import '../../../styles/variables';
 
+$home-white: #f5f5f7;
+
 .page-home {
 
-  .title {
-    font-size: 21px;
-    position: absolute;
-    top: 120px;
-    left: 100px;
-    font-size: 32px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    color: #f5f5f7;
-    text-transform: uppercase;
-
-    @include for-size (phone-only) {
-      font-size: 20px;
-      top: 32px;
-      left: 40px;
-    }
-  }
-
-  .subtitle {
-    position: absolute;
-    font-size: 20px;
-    font-weight: bold;
-    color: #f5f5f7;
-    top: 250px;
-    left: 100px;
-
-    @include for-size (phone-only) {
-      font-size: 16px;
-      top: 120px;
-      left: 40px;
-    }
+  .home-hero {
+    background-color: #131414;
   }
 
   .hero {
-    position: relative;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+    display: flex;
+    flex-direction: column;
     background-color: #131414;
-    background-blend-mode: multiply;
-    width: 100%;
-    height: 100%;
-    padding: 0 12px 30px 12px;
-
-    @include for-size(tablet-portrait-up) {
-      height: 790px;
-      padding: 0;
-    }
+    padding: 16px 0;
+    align-items: center;
 
     @include for-size(desktop-up) {
-      height: 790px;
-      padding: 0;
-    }
-
-    .cta {
-      position: absolute;
-      bottom: 4rem;
-      left: 3rem;
-      max-width: 740px;
-
-      h1 {
-        color: white;
-        font-size: $font-size * 2;
-
-        @include for-size(desktop-up) {
-          font-size: $font-size-lg * 2;
-        }
-      }
-
-
-
-      .light {
-        background-color: white;
-        height: 40px;
-        color: $color-primary;
-        font-weight: bold;
-        text-transform: uppercase;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-      }
-    }
-
-    .hero-inner {
-      position: absolute;
-      display: flex;
-      top: 100px;
-      left: 80px;
-      width: 90%;
-      justify-content: center;
-      align-items: center;
-
-      @include for-size(phone-only) {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        padding-top: 20px;
-        top: 0;
-        left: 0;
-
-      }
+      flex-direction: row;
+      padding: 105px 0;
     }
 
     .hero-child {
-      flex: 1;
-      width: 100%;
-
-      @include for-size(tablet-portrait-down) {
-          text-align: center;
-      }
+      position: relative;
 
       &.info {
-          padding: 0 30px 0 89px;
-          color: white;
+        width: 100%;
+        flex-grow: 1;
+        padding-top: 16px;
 
-          @include for-size(phone-only) {
-              padding: 0px;
-          }
-
-          a {
-            font-size: 20px;
-            font-weight: normal;
-            color: #f5f5f7;
-            padding-right: 20px;
-            text-decoration: none;
-
-          }
+        @include for-size(desktop-up) {
+          width: auto;
+          padding-top: 0;
+          padding-left: 89px;
+        }
       }
+    }
 
-      img:first-child {
-          max-width: 580px;
-          float: right;
+    .title {
+      position: absolute;
+      color: $home-white;
+      top: 10%;
+      left: 10%;
+      font-size: 20px;
+      font-weight: 900;
+      margin: 0;
 
-          @include for-size(phone-only) {
-              max-width: 350px;
-              padding-bottom: 16px;
-              float: left;
-          }
+      @include for-size(custom-up, 560) {
+        top: 120px;
+        left: 107px;
+        font-size: 32px;
       }
+    }
+
+    .subtitle {
+      position: absolute;
+      color: $home-white;
+      top: 40%;
+      left: 10%;
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0;
+      padding-bottom: 9px;
+      border-bottom: 3px solid $home-white;
+
+      @include for-size(custom-up, 560) {
+        font-size: 20px;
+        top: 261px;
+        left: 107px;
+        padding-bottom: 24px;
+      }
+    }
+
+    .market-tab {
+      font-size: 20px;
+      color: $home-white;
+      font-weight: normal;
+      padding: 16px 14px;
+    }
+  }
+
+  .home-search-wrapper {
+    position: relative;
+
+    .search-icon {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 26px;
+      height: 26px;
+    }
   }
 
  .home-search {
     flex: 1;
     width: 100%;
     height: 55px;
-    border: solid 2px #f5f5f7;
+    border: solid 2px $home-white;
     background-color: #131414;
-    margin-top: 16px;
+    margin-top: 0px;
     padding-left: 66px;
     font-size: 18px;
+    color: $home-white;
 
-    @include for-size(phone-only) {
-      margin-top: 0px;
+    @include for-size(desktop-up) {
+      margin-bottom: 100px;
     }
-  }
 
+    &:focus {
+      outline: none;
+    }
   }
 
   .static-button {
@@ -185,7 +137,7 @@
     display: flex;
     flex-direction: column-reverse;
 
-    @include for-size('desktop-up') {
+    @include for-size(desktop-up) {
       flex-direction: row-reverse;
       align-items: center;
     }
@@ -357,10 +309,10 @@
     grid-gap: 12px;
     justify-items: center;
 
-    margin: 100px 50px 0px 50px;
+    margin: 100px 12px 24px 12px;
 
-    @include for-size(phone-only) {
-      margin: 100px 12px 24px 12px;
+    @include for-size(desktop-up) {
+      margin: 100px 50px 0px 50px;
     }
 
   }
