@@ -124,7 +124,7 @@ export class PageHome {
                 <div class="hero-child tablet">
                     {title}
                     {subtitle}
-                    <lazy-image src={`/assets/images/home-hero.jpg`} class="markets-feature-image" />
+                    <lazy-image src={`/assets/images/home-hero-new.jpg`} class="markets-feature-image" />
                 </div>
                 <div class="hero-child info">
                     <a href="/search">Furnished</a>
