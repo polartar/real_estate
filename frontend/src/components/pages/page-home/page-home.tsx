@@ -96,9 +96,12 @@ export class PageHome {
 
     let phoneTitle, phoneSubtitle, phoneSearch;
 
-    let title = <h1 class="title">#1 SOURCE FOR NEW YORK<br></br> FURNISHED APARTMENTS</h1>
 
-    let subtitle = <p class="subtitle">Search, find, and book your New York furnished apartment</p>
+
+    let title = <h1 class="title">Your Lifestyle<br></br>Your Home<br></br>Your New York City</h1>
+
+    let subtitle = <p class="subtitle">A customized solution for
+    <br></br>all of your  Real Estate needs</p>
 
     let search = <button class="light" onClick={() => { this.toggleSearchFilterDisplay(!this.displayFilter) }}>
                     Search
@@ -127,24 +130,96 @@ export class PageHome {
       <ion-content class="page-home">
 
         <section class="section">
-          {phoneTitle}
-          {phoneSubtitle}
+
 
           <div class="hero">
 
+          <div class="hero-inner">
+              <div class="hero-child tablet">
+                  {title}
+                  {subtitle}
+                  <lazy-image src={`/assets/images/home-hero.jpg`} class="markets-feature-image" />
+              </div>
+              <div class="hero-child info">
+                  <a href="/search">Furnished</a>
+                  <a href="/coming-soon">Rentals</a>
+                  <a href="/coming-soon">Sales</a><br /><br />
+                  <input type="text" class="home-search" placeholder="Search Apartments" />
+              </div>
+          </div>
+
             { (this.size !== 'phone-only') ?
             <div class="cta">
-              {title}
-              {subtitle}
-              {search}
+
             </div> : ''
             }
 
           </div>
 
-          {phoneSearch}
+          <div class="markets-grid">
 
-          <media-logos />
+          <div class="module">
+            <div class="markets-card">
+              <lazy-image src={`/assets/images/market-furnished.jpg`} class="markets-feature-image" />
+
+              <div class="markets-description">
+                <h4 class="markets-title">Furnished Apartments</h4>
+
+                <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+
+                <a href="#" class="learn-more">Learn More</a>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="module">
+            <div class="markets-card">
+              <lazy-image src={`/assets/images/market-furnished.jpg`} class="markets-feature-image" />
+
+              <div class="markets-description">
+                <h4 class="markets-title">Furnished Apartments</h4>
+
+                <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+
+                <a href="#" class="learn-more">Learn More</a>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="module">
+            <div class="markets-card">
+              <lazy-image src={`/assets/images/market-furnished.jpg`} class="markets-feature-image" />
+
+              <div class="markets-description">
+                <h4 class="markets-title">Furnished Apartments</h4>
+
+                <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+
+                <a href="#" class="learn-more">Learn More</a>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="module">
+            <div class="markets-card">
+              <lazy-image src={`/assets/images/market-furnished.jpg`}  />
+
+              <div class="markets-description">
+                <h4 class="markets-title">Furnished Apartments</h4>
+
+                <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+
+                <a href="#" class="learn-more">Learn More</a>
+              </div>
+
+            </div>
+          </div>
+
+
+          </div>
 
           <div class="home-about-wrapper">
             <div class="about">
@@ -161,15 +236,21 @@ export class PageHome {
                   rentals.
                 </p>
 
+              <ion-button aria-label="Find an Agent" class="static-button last" onClick={() => { RouterService.reload(RouterService.getRoute('search')) }}>
+                Find an Agent
+              </ion-button>
+
               </div>
             </div>
 
-            <div class="video">
-              <maintain-ratio width={640} height={360}>
-                  <youtube-video src="https://www.youtube.com/watch?v=_5vSYLgwzjw" />
-              </maintain-ratio>
+            <div class="phone">
+              <lazy-image src={`/assets/images/phone-home.jpg`} class="markets-feature-image" />
             </div>
           </div>
+
+          <media-logos />
+
+
 
           {
             this.luxuryList.length && this.neighborhoodsLoaded ?

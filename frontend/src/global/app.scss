@@ -121,7 +121,7 @@ h1 {
 
 h2, h3, h4 {
   font-family: $font-title;
-  font-weight: 600;
+  font-weight: 800;
   text-transform: uppercase;
 
   &.h1 {
@@ -208,10 +208,10 @@ h2, h3, h4 {
 .section {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 3rem 0 3rem;
+  padding: 0;
 
   @include for-size(phone-only) {
-    padding: 0 1rem;
+    padding: 0;
   }
 
   &.full {
