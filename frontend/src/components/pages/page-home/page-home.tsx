@@ -111,14 +111,9 @@ export class PageHome {
           <div class="section">
             <div class="hero">
                 <div class="hero-child">
-                  <h1 class="title">Your Lifestyle<br></br>Your Home<br></br>Your New York City</h1>
-
-                  <p class="subtitle">
-                      A customized solution for
-                      <br></br>all of your  Real Estate needs
-                  </p>
-                  
-                  <lazy-image src={`/assets/images/home-hero.jpg`} class="markets-feature-image" alt="A customized solution for your real estate needs" />
+                  <video playsinline autoplay muted>
+                    <source src="/assets/video/home-animation.mp4" type="video/mp4" />
+                  </video>
                 </div>
 
                 <div class="hero-child info">

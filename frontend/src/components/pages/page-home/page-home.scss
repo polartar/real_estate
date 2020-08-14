@@ -37,41 +37,6 @@ $home-white: #f5f5f7;
       }
     }
 
-    .title {
-      position: absolute;
-      color: $home-white;
-      top: 10%;
-      left: 10%;
-      font-size: 20px;
-      font-weight: 900;
-      margin: 0;
-
-      @include for-size(custom-up, 560) {
-        top: 120px;
-        left: 107px;
-        font-size: 32px;
-      }
-    }
-
-    .subtitle {
-      position: absolute;
-      color: $home-white;
-      top: 40%;
-      left: 10%;
-      font-size: 16px;
-      font-weight: bold;
-      margin: 0;
-      padding-bottom: 9px;
-      border-bottom: 3px solid $home-white;
-
-      @include for-size(custom-up, 560) {
-        font-size: 20px;
-        top: 261px;
-        left: 107px;
-        padding-bottom: 24px;
-      }
-    }
-
     .market-tab {
       font-size: 20px;
       color: $home-white;
