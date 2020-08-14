@@ -8,20 +8,30 @@ export class MediaLogos {
 
   render() {
     let mediaLogos = {
-      techcrunch: "TechCrunch logo",
-      'business-insider': "Business Insider logo",
-      cnn: "CNN logo",
-      gizmodo: "Gizmodo logo",
-      fastcompany: "Fast company logo"
+      yahoo: "Yahoo!",
+      venturebeat: "VentureBeat",
+      usatoday: "USA Today",
+      forbes: "Forbes",
+      marketwatch: "MarketWatch",
+      'business-insider': 'Business Insider'
     };
 
     return [
       <div class="media-logos">
         {
-          Object.keys(mediaLogos).map(logo =>
-            <div class="logo-container">
-              <img src={`/assets/images/media-logos/${logo}.png`} class="media-logo" alt={mediaLogos[logo]}></img>
+          Object.keys(mediaLogos).map(logo => {
+            let classes = {
+              'logo-container': true
+            };
+
+            classes[logo] = true;
+
+            return (
+            <div class={classes}>
+              <lazy-image src={`/assets/images/media-logos/${logo}.jpg`} class="media-logo" alt={mediaLogos[logo]} />
             </div>
+            )
+          }
           )
         }
       </div>

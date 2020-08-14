@@ -209,6 +209,7 @@ h2, h3, h4 {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 12px;
+  width: 100%;
 
   @include for-size(tablet-portrait-up) {
     padding: 0 3rem 0 3rem;
@@ -231,7 +232,7 @@ h2, h3, h4 {
   }
 }
 
-app-header, app-menu {
+app-header, app-header-home, app-menu {
   position: sticky;
   top: 0;
   background-color: white;

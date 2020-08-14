@@ -26,15 +26,17 @@ class RouterServiceInstance {
       'search': '/search-apartments'
     };
 
-    let path = routeMap.hasOwnProperty(name) ? routeMap[name] : '/';
+    let path: any = routeMap.hasOwnProperty(name) ? routeMap[name] : false;
 
-    if (params && Object.keys(params).length) {
-      const queryString = this.serializeQuery(params);
-
-      path += `?${queryString}`;
+    if (path !== false) {
+      if (params && Object.keys(params).length) {
+        const queryString = this.serializeQuery(params);
+  
+        path += `?${queryString}`;
+      }
     }
 
-    return path;
+    return path ? path : name;
   }
 
   serializeQuery = (params, prefix?) => {

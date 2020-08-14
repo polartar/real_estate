@@ -23,6 +23,7 @@ export namespace Components {
     'hideSearch': boolean;
     'hideSearchButton': boolean;
   }
+  interface AppHeaderHome {}
   interface AppMenu {}
   interface AppRoot {}
   interface Apt212Accordion {
@@ -395,6 +396,12 @@ declare global {
   var HTMLAppHeaderElement: {
     prototype: HTMLAppHeaderElement;
     new (): HTMLAppHeaderElement;
+  };
+
+  interface HTMLAppHeaderHomeElement extends Components.AppHeaderHome, HTMLStencilElement {}
+  var HTMLAppHeaderHomeElement: {
+    prototype: HTMLAppHeaderHomeElement;
+    new (): HTMLAppHeaderHomeElement;
   };
 
   interface HTMLAppMenuElement extends Components.AppMenu, HTMLStencilElement {}
@@ -1019,6 +1026,7 @@ declare global {
     'admin-menu': HTMLAdminMenuElement;
     'app-footer': HTMLAppFooterElement;
     'app-header': HTMLAppHeaderElement;
+    'app-header-home': HTMLAppHeaderHomeElement;
     'app-menu': HTMLAppMenuElement;
     'app-root': HTMLAppRootElement;
     'apt212-accordion': HTMLApt212AccordionElement;
@@ -1135,6 +1143,7 @@ declare namespace LocalJSX {
     'hideSearch'?: boolean;
     'hideSearchButton'?: boolean;
   }
+  interface AppHeaderHome extends JSXBase.HTMLAttributes<HTMLAppHeaderHomeElement> {}
   interface AppMenu extends JSXBase.HTMLAttributes<HTMLAppMenuElement> {}
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface Apt212Accordion extends JSXBase.HTMLAttributes<HTMLApt212AccordionElement> {
@@ -1482,6 +1491,7 @@ declare namespace LocalJSX {
     'admin-menu': AdminMenu;
     'app-footer': AppFooter;
     'app-header': AppHeader;
+    'app-header-home': AppHeaderHome;
     'app-menu': AppMenu;
     'app-root': AppRoot;
     'apt212-accordion': Apt212Accordion;
