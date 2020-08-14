@@ -111,7 +111,7 @@ export class PageHome {
           <div class="section">
             <div class="hero">
                 <div class="hero-child">
-                  <video playsinline autoplay muted>
+                  <video playsinline autoplay muted style={{ 'max-width': '100%'}}>
                     <source src="/assets/video/home-animation.mp4" type="video/mp4" />
                   </video>
                 </div>
