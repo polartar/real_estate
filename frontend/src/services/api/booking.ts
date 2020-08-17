@@ -151,6 +151,8 @@ class APIBookingInstance {
         body: JSON.stringify(data)
       });
 
+      console.log(data);
+
       const r = await response.json();
 
       if (!response.ok) {

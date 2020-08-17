@@ -20,7 +20,7 @@ import { Component, h, Prop } from '@stencil/core';
 
 
         <div class="hero">
-          <lazy-image src="/assets/images/neighborhoods/neighborhood-full.jpg" class="hero-bg" alt="background image" />
+          <lazy-image src="/assets/images/coming-soon.jpg" class="hero-bg" alt="background image" />
           <section class="section">
             <div class="cta">
               {title}

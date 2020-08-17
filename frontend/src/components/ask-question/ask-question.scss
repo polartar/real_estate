@@ -4,10 +4,10 @@
 .ask-question-component {
   position: relative;
   display: flex;
-  padding: 38px 0px;
+
 
   @include for-size(desktop-up) {
-    padding: 38px;
+
   }
 
   .content-left {
@@ -48,7 +48,7 @@
     @include for-size(desktop-up) {
       width: auto;
       flex-grow: 1;
-      padding: 0 65px;
+      padding: 0 20px;
     }
   }
 

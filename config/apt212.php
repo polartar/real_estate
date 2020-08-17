@@ -19,5 +19,5 @@ return [
 
     'plaid_environment' => env('PLAID_ENVIRONMENT', 'sandbox'),
 
-    'office_email' => env('OFFICE_EMAIL', 'office@apt212.com')
+    'office_email' => env('OFFICE_EMAIL', 'paul@arckinteractive.com')
 ];
