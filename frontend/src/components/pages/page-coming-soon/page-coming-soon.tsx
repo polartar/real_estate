@@ -7,26 +7,30 @@ import { Component, h, Prop } from '@stencil/core';
   })
   export class PageComingSoon {
     @Prop({ context: "store" }) store: Store;
-   
+
     render() {
+
+      let title = <h1 class="title">COMING SOON</h1>
+      let subtitle = <p class="subtitle">We are working on something big.</p>
+
       return [
 
-        <app-header />,
+        <app-header-home />,
         <ion-content class="page-coming-soon">
 
-            <div class="hero">
-                <div class="section">
-                  <div class="cta">
 
-                    <h1>Coming Soon</h1>
-
-
-                  </div>
-                </div>
+        <div class="hero">
+          <lazy-image src="/assets/images/neighborhoods/neighborhood-full.jpg" class="hero-bg" alt="background image" />
+          <section class="section">
+            <div class="cta">
+              {title}
+              {subtitle}
             </div>
+          </section>
+        </div>
 
-            <app-footer />
-            
+        <app-footer />
+
         </ion-content>
       ];
     }
