@@ -11,7 +11,7 @@ export class PageBooking {
   render() {
 
     return [
-      <app-header hide-search />,
+      <app-header-home />,
       <ion-content class="page-booking">
 
         <section class="page-booking-body">
