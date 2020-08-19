@@ -51,8 +51,13 @@ export class AppHeader {
     });
   }
 
-  async openMenu() {
-    ModalService.siteMenu();
+  async openMenu(e) {
+    if (this.isMobile) {
+      this.openMobileMenu();
+    }
+    else {
+      this.openDesktopMenu(e);
+    }
   }
 
   async openMobileMenu() {
@@ -66,29 +71,30 @@ export class AppHeader {
     document.body.appendChild(slideover);
   }
 
-  async openDesktopMenu(ev) {
-    const popover = Object.assign(document.createElement('apt212-popover'), {
-      component: 'app-menu',
-      componentProps: {
-        inModal: true
-      },
-      target: ev.currentTarget,
-      styleOverride: {
-        width: '100%',
-        height: '100%',
-        top: 0,
-        left: 0,
-        transform: 'none'
-      },
-      bindTo: {
-        target: 'none',
-        popover: 'none'
-      },
-    });
+  async openDesktopMenu(_ev) {
+    ModalService.siteMenu();
+    // const popover = Object.assign(document.createElement('apt212-popover'), {
+    //   component: 'app-menu',
+    //   componentProps: {
+    //     inModal: true
+    //   },
+    //   target: _ev.currentTarget,
+    //   styleOverride: {
+    //     width: '100%',
+    //     height: '100%',
+    //     top: 0,
+    //     left: 0,
+    //     transform: 'none'
+    //   },
+    //   bindTo: {
+    //     target: 'none',
+    //     popover: 'none'
+    //   },
+    // });
 
-    popover.classList.add('app-menu');
+    // popover.classList.add('app-menu');
 
-    document.body.appendChild(popover);
+    // document.body.appendChild(popover);
   }
 
   async launchMobileFilterMenu() {
@@ -152,7 +158,7 @@ export class AppHeader {
                 Speak to an expert
               </ion-button>
 
-              <ion-button aria-label="Menu" fill="clear" class="menu reset" onClick={() => this.openMenu()}>
+              <ion-button aria-label="Menu" fill="clear" class="menu reset" onClick={e => this.openMenu(e)}>
                 <ion-icon aria-label="Menu" src="/assets/images/icons/hamburger.svg" slot="icon-only" />
               </ion-button>
             </div>

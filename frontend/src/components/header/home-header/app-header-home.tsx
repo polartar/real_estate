@@ -28,14 +28,57 @@ export class AppHeaderHome {
     });
   }
 
-  async openMenu() {
-    ModalService.siteMenu();
+  async openMenu(e) {
+    if (this.isMobile) {
+      this.openMobileMenu();
+    }
+    else {
+      this.openDesktopMenu(e);
+    }
+    
     // const popover = Object.assign(document.createElement('apt212-popover'), {
     //   component: 'app-menu',
     //   componentProps: {
     //     inModal: true
     //   },
     //   target: ev.currentTarget,
+    //   styleOverride: {
+    //     width: '100%',
+    //     height: '100%',
+    //     top: 0,
+    //     left: 0,
+    //     transform: 'none'
+    //   },
+    //   bindTo: {
+    //     target: 'none',
+    //     popover: 'none'
+    //   },
+    // });
+
+    // popover.classList.add('app-menu');
+
+    // document.body.appendChild(popover);
+  }
+
+  async openMobileMenu() {
+    const slideover = Object.assign(document.createElement('apt212-slideover'), {
+      component: 'app-menu-mobile',
+      componentProps: {
+        inModal: true
+      }
+    });
+
+    document.body.appendChild(slideover);
+  }
+
+  async openDesktopMenu(_ev) {
+    ModalService.siteMenu();
+    // const popover = Object.assign(document.createElement('apt212-popover'), {
+    //   component: 'app-menu',
+    //   componentProps: {
+    //     inModal: true
+    //   },
+    //   target: _ev.currentTarget,
     //   styleOverride: {
     //     width: '100%',
     //     height: '100%',
