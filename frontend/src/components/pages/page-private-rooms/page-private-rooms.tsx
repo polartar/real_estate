@@ -103,8 +103,10 @@ export class PagePrivateRooms {
 
 
     return [
-      <app-header />,
-      <ion-content class="page-private-rooms">
+      <ion-content>
+        <app-header />
+
+        <div class="page-private-rooms">
 
         <div class="hero">
           <lazy-image src="/assets/images/private-rooms/private-rooms-full.jpg" class="hero-bg" alt="furnished rooms for rent in nyc" />
@@ -476,6 +478,8 @@ export class PagePrivateRooms {
           </div>
 
         </section>
+
+        </div>
 
         <app-footer />
 

@@ -11,8 +11,8 @@ export class PageBooking {
   render() {
 
     return [
-      <app-header-home />,
       <ion-content class="page-booking">
+        <app-header-home />
 
         <section class="page-booking-body">
           <div class="payment-section-wrapper">

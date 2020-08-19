@@ -135,9 +135,9 @@ import { APISearchService } from '../../../services/api/search';
 
     render() {
       return [
-
-        <app-header />,
-        <ion-content class="page-faq">
+        <ion-content>
+          <app-header />
+            <div class="page-faq">
 
             <div class="hero">
                 <div class="section">
@@ -312,7 +312,7 @@ import { APISearchService } from '../../../services/api/search';
         </div>
 
 
-
+        </div>
         </ion-content>
       ];
     }

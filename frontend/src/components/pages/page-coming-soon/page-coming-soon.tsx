@@ -14,10 +14,8 @@ import { Component, h, Prop } from '@stencil/core';
       let subtitle = <p class="subtitle">We are working on something big.</p>
 
       return [
-
-        <app-header-home />,
         <ion-content class="page-coming-soon">
-
+          <app-header-home />
 
         <div class="hero">
           <lazy-image src="/assets/images/coming-soon.jpg" class="hero-bg" alt="background image" />

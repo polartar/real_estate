@@ -98,10 +98,10 @@ console.log('back to admin');
 
   render() {
     return [
-      <app-header />,
-      <ion-content class="page-login">
+      <ion-content>
+        <app-header />
 
-        <section class="section">
+        <section class="section page-login">
           <div class="login-form">
 
           </div>

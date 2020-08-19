@@ -8,10 +8,10 @@ export class PagePrivacy {
 
   render() {
     return [
-      <app-header />,
-      <ion-content class="page-privacy">
+      <ion-content>
+        <app-header />
 
-        <section class="section">
+        <section class="section page-privacy">
          
         <h1>Privacy Policy</h1>
 

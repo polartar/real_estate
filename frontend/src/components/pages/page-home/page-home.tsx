@@ -105,13 +105,13 @@ export class PageHome {
     }
 
     return [
-      <app-header-home />,
       <ion-content class="page-home">
+        <app-header-home />
         <section class="home-hero">
           <div class="section">
             <div class="hero">
                 <div class="hero-child">
-                  <video playsinline autoplay muted style={{ 'max-width': '100%'}}>
+                  <video playsinline autoplay muted loop style={{ 'max-width': '100%'}}>
                     <source src="/assets/video/home-animation.mp4" type="video/mp4" />
                   </video>
                 </div>

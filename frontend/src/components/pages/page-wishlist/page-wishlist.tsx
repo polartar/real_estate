@@ -74,8 +74,10 @@ export class PageWishlist {
 
   render() {
     return [
-      <app-header />,
-      <ion-content class="page-wishlist">
+      <ion-content>
+        <app-header />
+
+        <div class="page-wishlist">
 
         <section class="section">
           <h1 class="title text-center">Wishlist</h1>
@@ -112,6 +114,8 @@ export class PageWishlist {
           }
 
         </section>
+
+        </div>
 
         <app-footer />
       </ion-content>

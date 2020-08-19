@@ -16,8 +16,8 @@ export class PageAbout {
 
     render() {
         return [
-            <app-header />,
             <ion-content class="page-about">
+                <app-header />
 
 
                 <div class="hero">

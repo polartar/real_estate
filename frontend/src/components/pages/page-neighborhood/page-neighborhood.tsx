@@ -139,8 +139,10 @@ export class PageNeighborhood {
     let life_alt = "Life in " + item.name;
 
     return [
-      <app-header />,
-      <ion-content class="page-neighborhood">
+      <ion-content>
+        <app-header />
+
+        <div class="page-neighborhood">
 
        <div class="hero">
         <lazy-image src={cover_image} class="hero-bg" alt="background image" />
@@ -326,9 +328,8 @@ export class PageNeighborhood {
         </section>
 
 
-
+        </div>
         <app-footer />
-
       </ion-content>
     ];
   }
