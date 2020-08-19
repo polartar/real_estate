@@ -1,15 +1,17 @@
-import { Component, h, Prop} from '@stencil/core';
+import { Component, h, Prop, State} from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
 import authSelectors from '../../../store/selectors/auth';
 import { logout } from '../../../store/actions/auth';
 import { RouterService } from '../../../services/router.service';
 
 @Component({
-  tag: 'app-menu',
-  styleUrl: 'app-menu.scss'
+  tag: 'app-menu-mobile',
+  styleUrl: 'app-menu-mobile.scss'
 })
 export class AppMenu {
   @Prop({ context: "store" }) store: Store;
+
+  @State() expandPages: boolean = false;
   isLoggedIn: boolean = false;
   logout: Action;
 
@@ -26,7 +28,7 @@ export class AppMenu {
   }
 
   closeMenu() {
-    const modal: any = document.querySelector('apt212-popover.app-menu');
+    const modal: any = document.querySelector('ion-modal.site-menu');
 
     if (modal) {
       modal.dismiss();
@@ -35,22 +37,7 @@ export class AppMenu {
 
   render() {
     return [
-        <header class="app-menu-header">
-          <div class="header-inner">
-            <div class="app-header section">
-              <ion-router-link href="/" class="logo-link">
-                <img src="/assets/images/logo-black.svg" class="logo" alt="APT212 Logo" />
-              </ion-router-link>
-
-              <div class="header-center" />
-
-              <ion-button aria-label="close" class="reset close" onClick={() => this.closeMenu()}>
-                <ion-icon src="/assets/images/icons/cancel.svg" slot="icon-only" />
-              </ion-button>
-            </div>
-          </div>
-        </header>,
-        <ion-content class="app-menu-container app-wrapper">
+        <div class="app-menu-mobile">
 
           <div class="section main-menu">
             <ion-router-link href={ RouterService.getRoute('search') } onClick={() => this.closeMenu()}>
@@ -69,21 +56,51 @@ export class AppMenu {
               Investments
             </ion-router-link>
 
-            <ion-router-link href="#" onClick={() => this.closeMenu()}>
-              &nbsp;
+            <div class="separator" />
+
+            <ion-router-link href={ RouterService.getRoute('referral') } onClick={() => this.closeMenu()}>
+              Referrals
             </ion-router-link>
 
             <ion-router-link href="/coming-soon" onClick={() => this.closeMenu()}>
               Agents
             </ion-router-link>
 
-            <ion-router-link href="/booking" onClick={() => this.closeMenu()}>
+            <ion-router-link href={ RouterService.getRoute('booking') } onClick={() => this.closeMenu()}>
               Booking
             </ion-router-link>
 
             <ion-router-link href={ RouterService.getRoute('faq') } onClick={() => this.closeMenu()}>
               FAQ
             </ion-router-link>
+
+            <button class="reset expandable" onClick={() => this.expandPages = !this.expandPages }>
+              Other Pages
+
+              <ion-icon mode="md" name="md-arrow-dropdown" class={{ 'expand-indicator': true, 'expanded': this.expandPages }}></ion-icon>
+            </button>
+            {
+              this.expandPages ?
+              <div class="subsection">
+                  <ion-router-link href={ RouterService.getRoute('neighborhoods') } onClick={() => this.closeMenu()}>
+                    Neighborhoods Guide
+                  </ion-router-link>
+
+                  <ion-router-link href={ RouterService.getRoute('private-rooms') } onClick={() => this.closeMenu()}>
+                    Private Rooms
+                  </ion-router-link>
+
+                  <ion-router-link href={ RouterService.getRoute('brokers') } onClick={() => this.closeMenu()}>
+                    Corporate Accounts
+                  </ion-router-link>
+
+                  <ion-router-link href={ RouterService.getRoute('blog') } onClick={() => this.closeMenu()}>
+                    APT212 Blog
+                  </ion-router-link>
+              </div>
+
+              : null
+            }
 
             {
               this.isLoggedIn ?
@@ -94,7 +111,7 @@ export class AppMenu {
             }
 
           </div>
-        </ion-content>
+        </div>
     ]
   }
 }

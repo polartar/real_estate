@@ -29,28 +29,29 @@ export class AppHeaderHome {
   }
 
   async openMenu(ev) {
-    const popover = Object.assign(document.createElement('apt212-popover'), {
-      component: 'app-menu',
-      componentProps: {
-        inModal: true
-      },
-      target: ev.currentTarget,
-      styleOverride: {
-        width: '100%',
-        height: '100%',
-        top: 0,
-        left: 0,
-        transform: 'none'
-      },
-      bindTo: {
-        target: 'none',
-        popover: 'none'
-      },
-    });
+    ModalService.siteMenu();
+    // const popover = Object.assign(document.createElement('apt212-popover'), {
+    //   component: 'app-menu',
+    //   componentProps: {
+    //     inModal: true
+    //   },
+    //   target: ev.currentTarget,
+    //   styleOverride: {
+    //     width: '100%',
+    //     height: '100%',
+    //     top: 0,
+    //     left: 0,
+    //     transform: 'none'
+    //   },
+    //   bindTo: {
+    //     target: 'none',
+    //     popover: 'none'
+    //   },
+    // });
 
-    popover.classList.add('app-menu');
+    // popover.classList.add('app-menu');
 
-    document.body.appendChild(popover);
+    // document.body.appendChild(popover);
   }
 
   async launchMobileFilterMenu() {

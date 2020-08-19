@@ -25,6 +25,7 @@ export namespace Components {
   }
   interface AppHeaderHome {}
   interface AppMenu {}
+  interface AppMenuMobile {}
   interface AppRoot {}
   interface Apt212Accordion {
     'description': string;
@@ -63,6 +64,12 @@ export namespace Components {
     'dismiss': () => Promise<void>;
     'styleOverride': any;
     'target': any;
+  }
+  interface Apt212Slideover {
+    'component': string;
+    'componentProps': any;
+    'dismiss': () => Promise<void>;
+    'styleOverride': any;
   }
   interface Apt212Toast {
     'color': 'error' | 'success' | 'neutral';
@@ -410,6 +417,12 @@ declare global {
     new (): HTMLAppMenuElement;
   };
 
+  interface HTMLAppMenuMobileElement extends Components.AppMenuMobile, HTMLStencilElement {}
+  var HTMLAppMenuMobileElement: {
+    prototype: HTMLAppMenuMobileElement;
+    new (): HTMLAppMenuMobileElement;
+  };
+
   interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {}
   var HTMLAppRootElement: {
     prototype: HTMLAppRootElement;
@@ -450,6 +463,12 @@ declare global {
   var HTMLApt212PopoverElement: {
     prototype: HTMLApt212PopoverElement;
     new (): HTMLApt212PopoverElement;
+  };
+
+  interface HTMLApt212SlideoverElement extends Components.Apt212Slideover, HTMLStencilElement {}
+  var HTMLApt212SlideoverElement: {
+    prototype: HTMLApt212SlideoverElement;
+    new (): HTMLApt212SlideoverElement;
   };
 
   interface HTMLApt212ToastElement extends Components.Apt212Toast, HTMLStencilElement {}
@@ -1028,6 +1047,7 @@ declare global {
     'app-header': HTMLAppHeaderElement;
     'app-header-home': HTMLAppHeaderHomeElement;
     'app-menu': HTMLAppMenuElement;
+    'app-menu-mobile': HTMLAppMenuMobileElement;
     'app-root': HTMLAppRootElement;
     'apt212-accordion': HTMLApt212AccordionElement;
     'apt212-alert': HTMLApt212AlertElement;
@@ -1035,6 +1055,7 @@ declare global {
     'apt212-datepicker': HTMLApt212DatepickerElement;
     'apt212-modal-booking-frame': HTMLApt212ModalBookingFrameElement;
     'apt212-popover': HTMLApt212PopoverElement;
+    'apt212-slideover': HTMLApt212SlideoverElement;
     'apt212-toast': HTMLApt212ToastElement;
     'ask-question': HTMLAskQuestionElement;
     'bathroom-filter': HTMLBathroomFilterElement;
@@ -1145,6 +1166,7 @@ declare namespace LocalJSX {
   }
   interface AppHeaderHome extends JSXBase.HTMLAttributes<HTMLAppHeaderHomeElement> {}
   interface AppMenu extends JSXBase.HTMLAttributes<HTMLAppMenuElement> {}
+  interface AppMenuMobile extends JSXBase.HTMLAttributes<HTMLAppMenuMobileElement> {}
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface Apt212Accordion extends JSXBase.HTMLAttributes<HTMLApt212AccordionElement> {
     'description'?: string;
@@ -1182,6 +1204,11 @@ declare namespace LocalJSX {
     'componentProps'?: any;
     'styleOverride'?: any;
     'target'?: any;
+  }
+  interface Apt212Slideover extends JSXBase.HTMLAttributes<HTMLApt212SlideoverElement> {
+    'component': string;
+    'componentProps'?: any;
+    'styleOverride'?: any;
   }
   interface Apt212Toast extends JSXBase.HTMLAttributes<HTMLApt212ToastElement> {
     'color'?: 'error' | 'success' | 'neutral';
@@ -1493,6 +1520,7 @@ declare namespace LocalJSX {
     'app-header': AppHeader;
     'app-header-home': AppHeaderHome;
     'app-menu': AppMenu;
+    'app-menu-mobile': AppMenuMobile;
     'app-root': AppRoot;
     'apt212-accordion': Apt212Accordion;
     'apt212-alert': Apt212Alert;
@@ -1500,6 +1528,7 @@ declare namespace LocalJSX {
     'apt212-datepicker': Apt212Datepicker;
     'apt212-modal-booking-frame': Apt212ModalBookingFrame;
     'apt212-popover': Apt212Popover;
+    'apt212-slideover': Apt212Slideover;
     'apt212-toast': Apt212Toast;
     'ask-question': AskQuestion;
     'bathroom-filter': BathroomFilter;

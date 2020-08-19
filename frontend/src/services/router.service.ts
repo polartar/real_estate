@@ -18,12 +18,14 @@ class RouterServiceInstance {
     const routeMap = {
       booking: '/booking',
       'corporate-rooms': '/corporate-housing',
+      'brokers': '/brokers',
       'faq': '/faq',
       'neighborhoods': '/nyc-neighborhoods',
       'privacy': '/privacy-policy',
       'private-rooms': '/rooms-for-rent',
       'referral': '/referral',
-      'search': '/search-apartments'
+      'search': '/search-apartments',
+      'blog': 'http://apt212.asuscomm.com/'
     };
 
     let path: any = routeMap.hasOwnProperty(name) ? routeMap[name] : false;
