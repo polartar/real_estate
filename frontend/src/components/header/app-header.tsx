@@ -152,7 +152,7 @@ export class AppHeader {
                 Speak to an expert
               </ion-button>
 
-              <ion-button aria-label="Menu" fill="clear" class="menu reset" onClick={e => this.openMenu(e)}>
+              <ion-button aria-label="Menu" fill="clear" class="menu reset" onClick={e => this.openMenu()}>
                 <ion-icon aria-label="Menu" src="/assets/images/icons/hamburger.svg" slot="icon-only" />
               </ion-button>
             </div>

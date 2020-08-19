@@ -28,7 +28,7 @@ export class AppHeaderHome {
     });
   }
 
-  async openMenu(ev) {
+  async openMenu() {
     ModalService.siteMenu();
     // const popover = Object.assign(document.createElement('apt212-popover'), {
     //   component: 'app-menu',
@@ -93,7 +93,7 @@ export class AppHeaderHome {
                 Speak to an Expert
               </ion-button>
 
-              <ion-button aria-label="Menu" fill="clear" class="menu reset" onClick={e => this.openMenu(e)}>
+              <ion-button aria-label="Menu" fill="clear" class="menu reset" onClick={e => this.openMenu()}>
                 <ion-icon aria-label="Menu" src="/assets/images/icons/hamburger-white.svg" slot="icon-only" />
               </ion-button>
             </div>
