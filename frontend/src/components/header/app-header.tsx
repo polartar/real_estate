@@ -68,6 +68,8 @@ export class AppHeader {
       }
     });
 
+    slideover.classList.add('site-menu');
+
     document.body.appendChild(slideover);
   }
 

@@ -29,9 +29,14 @@ export class AppMenu {
 
   closeMenu() {
     const modal: any = document.querySelector('ion-modal.site-menu');
+    const slideover: any = document.querySelector('apt212-slideover.site-menu');
 
     if (modal) {
       modal.dismiss();
+    }
+
+    if (slideover) {
+      slideover.dismiss();
     }
   }
 
