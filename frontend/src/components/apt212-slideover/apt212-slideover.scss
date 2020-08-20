@@ -21,5 +21,11 @@
         right: 0;
       }
     }
+
+    .content {
+      height: 100%;
+      overflow: auto;
+      padding-bottom: 3rem;
+    }
   }
 }
