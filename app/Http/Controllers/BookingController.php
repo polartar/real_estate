@@ -188,6 +188,11 @@ class BookingController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function setPassword() {
+        
+        return response()->json(['success' => true]);
+    }
+
     // public function previewMail(Request $request) {
     //     $data = [
     //         'payment_method' => 'credit',

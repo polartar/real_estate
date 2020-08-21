@@ -259,6 +259,7 @@ export namespace Components {
     'agentId': number;
   }
   interface PageAdminAgents {}
+  interface PageAdminBookingSettings {}
   interface PageAdminListingAdd {}
   interface PageAdminListingEdit {
     'apartmentId': number;
@@ -813,6 +814,12 @@ declare global {
     new (): HTMLPageAdminAgentsElement;
   };
 
+  interface HTMLPageAdminBookingSettingsElement extends Components.PageAdminBookingSettings, HTMLStencilElement {}
+  var HTMLPageAdminBookingSettingsElement: {
+    prototype: HTMLPageAdminBookingSettingsElement;
+    new (): HTMLPageAdminBookingSettingsElement;
+  };
+
   interface HTMLPageAdminListingAddElement extends Components.PageAdminListingAdd, HTMLStencilElement {}
   var HTMLPageAdminListingAddElement: {
     prototype: HTMLPageAdminListingAddElement;
@@ -1113,6 +1120,7 @@ declare global {
     'page-admin': HTMLPageAdminElement;
     'page-admin-agent-edit': HTMLPageAdminAgentEditElement;
     'page-admin-agents': HTMLPageAdminAgentsElement;
+    'page-admin-booking-settings': HTMLPageAdminBookingSettingsElement;
     'page-admin-listing-add': HTMLPageAdminListingAddElement;
     'page-admin-listing-edit': HTMLPageAdminListingEditElement;
     'page-admin-listings': HTMLPageAdminListingsElement;
@@ -1392,6 +1400,7 @@ declare namespace LocalJSX {
     'onSuccess'?: (event: CustomEvent<any>) => void;
   }
   interface PageAdminAgents extends JSXBase.HTMLAttributes<HTMLPageAdminAgentsElement> {}
+  interface PageAdminBookingSettings extends JSXBase.HTMLAttributes<HTMLPageAdminBookingSettingsElement> {}
   interface PageAdminListingAdd extends JSXBase.HTMLAttributes<HTMLPageAdminListingAddElement> {}
   interface PageAdminListingEdit extends JSXBase.HTMLAttributes<HTMLPageAdminListingEditElement> {
     'apartmentId': number;
@@ -1586,6 +1595,7 @@ declare namespace LocalJSX {
     'page-admin': PageAdmin;
     'page-admin-agent-edit': PageAdminAgentEdit;
     'page-admin-agents': PageAdminAgents;
+    'page-admin-booking-settings': PageAdminBookingSettings;
     'page-admin-listing-add': PageAdminListingAdd;
     'page-admin-listing-edit': PageAdminListingEdit;
     'page-admin-listings': PageAdminListings;

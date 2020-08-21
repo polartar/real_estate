@@ -82,6 +82,8 @@ Route::group(['middleware' => ['cors', 'auth:api']], function() {
 
     // Misc
     Route::get('neighborhoods/geocode/{address}', 'NeighborhoodsController@geocodeAddress');
+
+    Route::post('admin/booking/set_password', 'BookingController@setPassword');
 });
 
 Route::fallback(function(){
