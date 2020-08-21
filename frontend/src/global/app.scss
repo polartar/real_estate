@@ -428,3 +428,10 @@ table.data-table {
     }
   }
 }
+
+// hide Olark on specific pages
+.page-listing {
+  #olark-wrapper {
+    display: none;
+  }
+}
