@@ -107,6 +107,7 @@
       padding-left: 1rem;
       line-height: 2;
       font-weight: normal;
+      list-style-type: none;
     }
 
     .cta-logos {
@@ -127,7 +128,7 @@
   }
 
   .payment-cta-form {
-    max-width: 600px;
+    max-width: 450px;
     margin: 0 auto;
 
     form {
@@ -143,6 +144,14 @@
         padding-right: 14px;
         color: white;
       }
+    }
+
+    p {
+      line-height: 1.38;
+    }
+
+    a {
+      color: white;
     }
   }
 

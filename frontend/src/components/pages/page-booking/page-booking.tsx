@@ -49,10 +49,10 @@ export class PageBooking {
                     <h1 class="title">Wire Details</h1>
 
                     <ul class="payment-cta-list">
-                      <li>Account Name: APT212</li>
-                      <li>Account # 616008915</li>
-                      <li>Routing # 021000021</li>
-                      <li>Swift Code* CHASUS33* only for international wires</li>
+                      <li><strong>Account Name</strong>: APT212</li>
+                      <li><strong>Account #</strong> 616008915</li>
+                      <li><strong>Routing #</strong> 021000021</li>
+                      <li><strong>Swift Code*</strong> CHASUS33* only for international wires</li>
                     </ul>
 
                     <p class="text-center">We are currently only accepting <b>Wire Transfers.</b><br></br> ACH Payments and CASH are not accepted.</p>
@@ -68,26 +68,20 @@ export class PageBooking {
                   :
 
                   <div class="payment-cta-form">
-                    <p class="text-center" style={{'padding-top': '50px'}}>
-                      Our new booking portal is still under construction.
-                    </p>
-                    <p class="text-center">
-                      The new and improved booking portal will integrate the full rental experience.
-                    </p>
-                    <p class="text-center">
-                      We expect to launch the portal very soon, check back soon for updates!
-                    </p>
+                    <h1 class="title">Secure Online Payment</h1>
 
                     <form onSubmit={e => this.handleSubmit(e)} ref={el => this.form = el as HTMLFormElement }>
-                      <div class="input input-inline">                       
-                          <label htmlFor="booking-password">Password</label>
-                          <input id="booking-password" type="password" class="apt212-input block" name="password" />
+                      <div class="input">                       
+                          <label htmlFor="booking-password" class="sr-only">Password</label>
+                          <input id="booking-password" type="password" class="apt212-input block" placeholder="Enter Password" name="password" />
                       </div>
-
-                      <div class="input text-right">
-                            <input type="submit" class="button-light" value="SUBMIT" />
-                        </div>
                     </form>
+
+                    <p>
+                    Payment online are made via wire transfers.<br />
+                    Please obtain a password from the Agent you are working with 
+                    or email <a href="mailto=info@apt212.com">info@apt212.com</a> to get one.
+                    </p>                    
                   </div>
                 }
                 
