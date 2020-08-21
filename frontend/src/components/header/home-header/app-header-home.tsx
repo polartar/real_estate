@@ -2,7 +2,6 @@ import { Component, h, State, Prop, Element } from '@stencil/core';
 import { Store } from "@stencil/redux";
 import wishlistSelectors from '../../../store/selectors/wishlist';
 import { ModalService } from '../../../services/modal.service';
-import { RouterService } from '../../../services/router.service';
 
 @Component({
   tag: 'app-header-home',
@@ -35,7 +34,7 @@ export class AppHeaderHome {
     else {
       this.openDesktopMenu(e);
     }
-    
+
     // const popover = Object.assign(document.createElement('apt212-popover'), {
     //   component: 'app-menu',
     //   componentProps: {
