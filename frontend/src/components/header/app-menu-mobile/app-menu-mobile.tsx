@@ -44,7 +44,7 @@ export class AppMenu {
     return [
         <div class="app-menu-mobile">
 
-          <div class="section main-menu">
+          <div class="main-menu">
             <ion-router-link href={ RouterService.getRoute('search') } onClick={() => this.closeMenu()}>
               Furnished Apartments
             </ion-router-link>
@@ -80,7 +80,7 @@ export class AppMenu {
             </ion-router-link>
 
             <button class="reset expandable" onClick={() => this.expandPages = !this.expandPages }>
-              Other Pages
+              More Pages
 
               <ion-icon mode="md" name="md-arrow-dropdown" class={{ 'expand-indicator': true, 'expanded': this.expandPages }}></ion-icon>
             </button>
