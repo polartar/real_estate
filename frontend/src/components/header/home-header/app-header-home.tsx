@@ -34,7 +34,7 @@ export class AppHeaderHome {
     else {
       this.openDesktopMenu(e);
     }
-    
+
     // const popover = Object.assign(document.createElement('apt212-popover'), {
     //   component: 'app-menu',
     //   componentProps: {
