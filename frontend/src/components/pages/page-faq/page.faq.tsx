@@ -16,6 +16,7 @@ import { APISearchService } from '../../../services/api/search';
     @State() answer : any = [];
     @State() category : any = [];
     @State() general : any = [];
+    @State() salesterms : any = [];
     @State() booking : any = [];
     @State() privaterooms : any = [];
     @State() stay : any = [];
@@ -102,11 +103,11 @@ import { APISearchService } from '../../../services/api/search';
         this.guest = "yes"
         this.getQuestionsByCategory("guest")
       } else if (guest == "no") {
-        this.guest = "no"
-        this.getQuestionsByCategory("host")
+        this.guest = "rentals"
+        this.getQuestionsByCategory("rentals")
       } else if (guest == "sales") {
         this.guest = "sales"
-        this.getQuestionsByCategory("host")
+        this.getQuestionsByCategory("sales")
       }
     }
 
@@ -131,6 +132,7 @@ import { APISearchService } from '../../../services/api/search';
       this.booking = this.faq.filter(o => o.category === "Booking" && o.role === role)
       this.privaterooms = this.faq.filter(o => o.category === "Private Rooms" && o.role === role)
       this.stay = this.faq.filter(o => o.category === "Your Stay" && o.role === role)
+      this.salesterms = this.faq.filter(o => o.category === "Sales Terms" && o.role === role)
     }
 
     render() {
@@ -208,41 +210,40 @@ import { APISearchService } from '../../../services/api/search';
                 </div>
             </div>
 
-
-
             <div class="faq-wrapper">
-
-
 
               <div class="questions-wrapper">
 
-                  <div class="questions">
+                  <div class={this.guest == "sales" ? "sales_terms show" : "sales_terms hide"}>
 
-                    <h2>General</h2>
+                    <h2>Sales Terms</h2>
 
-                      {this.general.map(faq => {
+                    {this.salesterms.map(faq => {
                         return (
                           <apt212-accordion questionID={faq.id} class={this.size == "phone-only" ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
                         );
                       })}
 
-                      {this.general.map(faq => {
+                      {this.salesterms.map(faq => {
                         return (
                           <div class={this.size == "phone-only" ? "hide" : "show"}>
                             <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
                           </div>
                         );
                       })}
+                  </div>
 
-                    <h2>Booking</h2>
+                  <div class={this.guest == "sales" ? "questions hide" : "questions show"}>
 
-                      {this.booking.map(faq => {
+                    <h2>General</h2>
+
+                        {this.general.map(faq => {
                           return (
                             <apt212-accordion questionID={faq.id} class={this.size == "phone-only" ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
                           );
                         })}
 
-                        {this.booking.map(faq => {
+                        {this.general.map(faq => {
                           return (
                             <div class={this.size == "phone-only" ? "hide" : "show"}>
                               <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
@@ -250,7 +251,23 @@ import { APISearchService } from '../../../services/api/search';
                           );
                         })}
 
-                    <h2>Private Rooms</h2>
+                      <h2>Booking</h2>
+
+                        {this.booking.map(faq => {
+                            return (
+                              <apt212-accordion questionID={faq.id} class={this.size == "phone-only" ? "show" : "hide"} label={faq.question} description={faq.answer}></apt212-accordion>
+                            );
+                          })}
+
+                          {this.booking.map(faq => {
+                            return (
+                              <div class={this.size == "phone-only" ? "hide" : "show"}>
+                                <a href="#"  onClick={() => this.showAnswer(faq.question)}>{faq.question}</a>
+                              </div>
+                            );
+                          })}
+
+                      <h2>Private Rooms</h2>
 
                         {this.privaterooms.map(faq => {
                           return (
