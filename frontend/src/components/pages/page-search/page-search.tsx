@@ -339,6 +339,7 @@ export class PageSearch {
                   Search in progress...
                 </div>
               </div>
+              
               <ion-infinite-scroll threshold="100px" onIonInfinite={e => this.infiniteScroll(e)}>
                 <ion-infinite-scroll-content
                   loading-spinner="lines"
