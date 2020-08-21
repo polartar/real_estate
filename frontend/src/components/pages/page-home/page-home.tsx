@@ -226,7 +226,7 @@ export class PageHome {
                   rentals.
                 </p>
 
-              <ion-button aria-label="Find an Agent" class="static-button last" onClick={() => { RouterService.reload(RouterService.getRoute('search')) }}>
+              <ion-button aria-label="Find an Agent" class="static-button last" onClick={() => { RouterService.reload(RouterService.getRoute('coming-soon')) }}>
                 Find an Agent
 
                 <img src="/assets/images/icons/arrow-white.svg" alt="" class="arrow-right" />
@@ -300,11 +300,11 @@ export class PageHome {
               <p>
               APT212 is a New York City marketplace for furnished apartments, sublets and short-term rentals.
               <br /><br />
-              We offer a fresh, simple solution to finding the perfect temporary housing, from private rooms in shared apartments 
+              We offer a fresh, simple solution to finding the perfect temporary housing, from private rooms in shared apartments
               to furnished luxury, high-end rentals.
               </p>
 
-              <ion-button aria-label="Find an Agent" class="static-button last" onClick={() => { RouterService.reload(RouterService.getRoute('search')) }}>
+              <ion-button aria-label="Find an Agent" class="static-button last" onClick={() => { RouterService.reload(RouterService.getRoute('coming-soon')) }}>
                 Find an Agent
 
                 <img src="/assets/images/icons/arrow-white.svg" alt="" class="arrow-right" />
