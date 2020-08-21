@@ -25,7 +25,11 @@
       text-transform: capitalize;
       border-bottom: 4px solid transparent;
       background: transparent;
-      font-size: $font-size;
+      font-size: $font-size-sm;
+
+      @include for-size(tablet-portrait-up) {
+        font-size: $font-size;
+      }
 
       &:after {
         content: "";

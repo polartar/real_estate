@@ -122,7 +122,7 @@ export class AppHeaderHome {
               <ion-icon src="/assets/images/icons/heart_icon_white.svg" />
             </ion-router-link>
 
-            <ion-router-link href={ RouterService.getRoute('search')} class="mobile-wishlist">
+            <ion-router-link onClick={() => this.launchMobileFilterMenu()} class="mobile-wishlist">
               <ion-icon src="/assets/images/icons/search-icon-white.svg" />
             </ion-router-link>
 

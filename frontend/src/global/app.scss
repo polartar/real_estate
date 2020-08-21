@@ -352,7 +352,8 @@ ion-footer.no-footer-border {
 }
 
 
-.ask-question-modal {
+.ask-question-modal,
+.site-menu {
   .modal-wrapper {
     @include for-size(desktop-up) {
       --width: 500px;
