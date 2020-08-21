@@ -13,6 +13,8 @@ use App\Referral;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Stripe\Exception\SignatureVerificationException;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
 {
@@ -189,8 +191,42 @@ class BookingController extends Controller
     }
 
     public function setPassword() {
+        $password = request()->password;
+
+        if (!$password) {
+            abort(response()->json(['errors' => ['Password must be set']], 400));
+        }
+
+        $hash = Hash::make($password);
+
+        try {
+            DB::table('booking_password')->updateOrInsert(['id' => 1], ['password' => $hash]);
+        } catch (\Exception $e) {
+            abort(response()->json(['errors' => ['Could not update password']], 500));
+        }
         
         return response()->json(['success' => true]);
+    }
+
+
+    public function checkPassword() {
+        $password = request()->password;
+
+        try {
+            $row = DB::table('booking_password')->find(1);
+            
+            if (!$row) {
+                abort(response()->json(['errors' => ['There was an error checking the password']], 500));
+            }
+
+            if (Hash::check($password, $row->password)) {
+                return response()->json(['success' => true]);
+            }
+        } catch (\Exception $e) {
+            abort(response()->json(['errors' => ['There was an error checking the password']], 500));
+        }
+
+        abort(response()->json(['errors' => ['Invalid password, please try again']], 400));
     }
 
     // public function previewMail(Request $request) {

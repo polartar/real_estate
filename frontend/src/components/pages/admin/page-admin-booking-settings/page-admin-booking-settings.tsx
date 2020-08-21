@@ -28,7 +28,6 @@ export class PageAdminBookingSettings {
         await LoadingService.showLoading();
 
         try {
-            console.log(results);
             await APIBookingService.updatePassword(results);
 
             ToastService.success('Booking password has been updated');

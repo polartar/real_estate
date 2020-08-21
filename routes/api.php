@@ -39,6 +39,8 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
     Route::post('booking/stripe_webhook', 'BookingController@stripeWebhook');
     Route::post('booking/referral', 'BookingController@referral');
     Route::post('booking/share_apartment', 'BookingController@shareApartment');
+    Route::post('booking/check_password', 'BookingController@checkPassword');
+    Route::get('booking/check_password', 'BookingController@checkPassword');
     Route::post('booking/inquiry', 'BookingController@inquiry');
     // Route::get('booking/preview_mail', 'BookingController@previewMail');
 

@@ -3,9 +3,9 @@
 
 .page-booking {
   position: relative;
+  --background: #131314;
 
   p, h1, h2, h3, h4 {
-    font-family: proxima-nova, sans-serif;
     color: #f5f5f7;
     text-transform: none;
   }
@@ -52,7 +52,6 @@
   .payment-section-wrapper {
     position: relative;
     min-height: 400px;
-    background-color: #131414;
 
 
     @include for-size(desktop-up) {
@@ -68,27 +67,7 @@
     }
   }
 
-  .payment-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-  }
-
-  .payment-bg-mask {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    // background-color: rgba(0,0,0, 0.5);
-  }
-
   .payment-hero {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    color: white;
 
     &.flex {
       display: flex;
@@ -108,9 +87,10 @@
   .payment-cta {
     font-size: 16px;
     padding: 1rem;
-    position: absolute;
-    bottom: 60px;
     font-weight: normal;
+    color: white;
+    margin: 0 auto;
+    max-width: 400px;
 
     @include for-size(desktop-up) {
       position: relative;
@@ -122,16 +102,11 @@
     }
 
     .payment-cta-list {
-      display: none;
       padding-top: 1.5rem;
       padding-bottom: 1.5rem;
       padding-left: 1rem;
       line-height: 2;
       font-weight: normal;
-
-      @include for-size(desktop-up) {
-        display: block;
-      }
     }
 
     .cta-logos {
@@ -147,6 +122,26 @@
 
       &:last-child {
         margin-left: 38px;
+      }
+    }
+  }
+
+  .payment-cta-form {
+    max-width: 600px;
+    margin: 0 auto;
+
+    form {
+      padding-top: 30px;
+    }
+
+    .input-inline {
+      display: flex;
+      align-items: center;
+
+      label {
+        margin-bottom: 14px;
+        padding-right: 14px;
+        color: white;
       }
     }
   }
