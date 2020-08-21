@@ -109,6 +109,7 @@ export class AppRoot {
             <ion-route url="/admin/agents" component={ this.isAdmin ? 'page-admin-agents' : 'page-login' } />
             <ion-route url="/admin/agent/:agentId" component={ this.isAdmin ? 'page-admin-agent-edit' : 'page-login' } />
             <ion-route url="/admin/agent/" component={ this.isAdmin ? 'page-admin-agent-edit' : 'page-login' } />
+            <ion-route url="/admin/booking-settings" component={ this.isAdmin ? 'page-admin-booking-settings' : 'page-login' } />
 
             <ion-route url=":any" component="page-404" />
           </ion-router>

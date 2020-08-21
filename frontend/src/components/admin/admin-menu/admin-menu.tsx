@@ -51,40 +51,47 @@ export class AdminMenu {
         </header>,
         <ion-content class="app-menu-container app-wrapper">
 
-          <div class="section main-menu">
-            <ion-router-link href="/admin" onClick={() => this.closeMenu()}>
-              Admin
-            </ion-router-link>
+          {
+            this.isLoggedIn ?
+            <div class="section main-menu">
+              <ion-router-link href="/admin" onClick={() => this.closeMenu()}>
+                Admin
+              </ion-router-link>
 
-            <ion-router-link href="/" onClick={() => this.closeMenu()}>
-              Home
-            </ion-router-link>
+              <ion-router-link href="/" onClick={() => this.closeMenu()}>
+                Home
+              </ion-router-link>
 
-            <ion-router-link href="/admin/listings" onClick={() => this.closeMenu()}>
-              Listings
-            </ion-router-link>
+              <ion-router-link href="/admin/listings" onClick={() => this.closeMenu()}>
+                Listings
+              </ion-router-link>
 
-            <ion-router-link href="/admin/owner-global" onClick={() => this.closeMenu()}>
-              Owner Global Updates
-            </ion-router-link>
+              <ion-router-link href="/admin/owner-global" onClick={() => this.closeMenu()}>
+                Owner Global Updates
+              </ion-router-link>
 
-            <ion-router-link href="/admin/agents" onClick={() => this.closeMenu()}>
-              Agents
-            </ion-router-link>
+              <ion-router-link href="/admin/agents" onClick={() => this.closeMenu()}>
+                Agents
+              </ion-router-link>
 
-            <ion-router-link href="/admin/referrals" onClick={() => this.closeMenu()}>
-              Referrals
-            </ion-router-link>
+              <ion-router-link href="/admin/referrals" onClick={() => this.closeMenu()}>
+                Referrals
+              </ion-router-link>
 
-            {
-              this.isLoggedIn ?
-                <ion-router-link href="/" onClick={() => { this.logout(); this.closeMenu(); }}>
-                  Log Out
-                </ion-router-link>
-              : null
-            }
+              <ion-router-link href="/admin/booking-settings" onClick={() => this.closeMenu()}>
+                Booking Settings
+              </ion-router-link>
 
-          </div>
+              <ion-router-link href="/" onClick={() => { this.logout(); this.closeMenu(); }}>
+                Log Out
+              </ion-router-link>
+
+            </div>
+
+            : null
+          }
+
+          
         </ion-content>
     ]
   }
