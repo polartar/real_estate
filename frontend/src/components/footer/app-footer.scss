@@ -4,23 +4,34 @@
 .app-footer {
   width: 100%;
   margin-top: 5rem;
-  padding-top: 2.5rem;
+  padding-top: 79px;
   padding-bottom: 4rem;
-  background-color: $color-primary;
+  background-color: $bg-dark;
   color: white;
   min-height: 300px;
+
+  .section {
+    max-width: 1092px;
+  }
 
   &.no-margin {
     margin-top: 0;
   }
 
   .footer-wrapper {
-
     @include for-size(tablet-landscape-up) {
-      padding-left: 50px;
       display: flex;
       flex-direction: row;
     }
+
+    &:not(.first) {
+      padding-top: 80px;
+    }
+  }
+
+  .hr {
+    border-top: 2px solid $color-text-light;
+    padding-bottom: 31px;
   }
 
   .footer-col {
@@ -60,29 +71,80 @@
       display: block;
       padding: 0.5rem 0;
       color: white;
-      text-transform: uppercase;
-      font-weight: 900;
-      font-size: $font-size;
+      text-transform: capitalize;
+      font-weight: bold;
+      font-size: 20px;
+
+      &.skinny {
+        font-size: 16px;
+        font-weight: 400;
+        padding: 0.65rem 0;
+      }
     }
   }
 
   .footer-right {
     font-size: $font-size-md;
+    padding-left: 84px;
 
     .input-webid {
       border: 0;
       margin-top: 1rem;
     }
 
-    .webid-icon {
-      position: absolute;
-      top: 40%;
-      right: 1rem;
+    form.dark {
 
-      width: 1rem;
-      height: 1rem;
+      &:first-child {
+        padding-bottom: 16px;
+      }
+
+      input,
+      input[type="text"],
+      input[type="email"] {
+        height: 55px;
+        border: 2px solid $color-text-light;
+        background-color: $bg-dark;
+        font-size: 18px;
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          color: #9a9a9c;
+        }
+      }
+
+      .reset:focus {
+        outline: none;
+      }
+
+      .submit-inline {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: $color-text-light;
+        font-size: 16px;
+        font-weight: bold;
+        height: 55px;
+        width: 96px;
+      }
+
+      button.submit-inline {
+        margin-top: 16px;
+      }
+
+      p {
+        font-size: 20px;
+      }
+    }
+
+    .webid-icon {
+      width: 26px;
+      height: 26px;
       * {
-        stroke: #5d5d5d;
+        fill: #000000;
+        // stroke: #000000;
       }
     }
 
@@ -98,7 +160,7 @@
 
   .copyright {
     display: none;
-    font-size: $font-size-md;
+    font-size: $font-size;
 
     @include for-size(tablet-landscape-up) {
       display: block;
@@ -107,23 +169,12 @@
 
   .social-media {
     a {
-      padding-right: 1rem;
+      padding-right: 44px;
     }
 
     lazy-image {
-      width: 14px;
-      height: 14px;
-    }
-  }
-
-  .contact {
-    padding-top: 2.5rem;
-    font-size: $font-size;
-    font-weight: bold;
-
-    a {
-      color: white;
-      text-decoration: none;
+      width: 32px;
+      height: 32px;
     }
   }
 }
