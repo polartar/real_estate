@@ -274,19 +274,13 @@ class FAQSeeder extends Seeder
                 'role' => 'guest'
             ],
             [
-                'question' => 'condo',
+                'question' => 'Condo',
                 'answer' => 'A condominium is real property — a form of ownership, in which the owner has a separate unit, but the owners of all the units have joint ownership of their common areas. Those areas could include the building’s lobby, elevators, garden, roof terrace, residents’ lounge, health club and other amenities. A condominium association (usually with a name like “Main Street Condominium Association”) runs the building, often by hiring a professional property manager as its managing agent.',
                 'category' => 'Sales Terms',
                 'role' => 'sales'
             ],
             [
-                'question' => 'condo',
-                'answer' => 'A condominium is real property — a form of ownership, in which the owner has a separate unit, but the owners of all the units have joint ownership of their common areas. Those areas could include the building’s lobby, elevators, garden, roof terrace, residents’ lounge, health club and other amenities. A condominium association (usually with a name like “Main Street Condominium Association”) runs the building, often by hiring a professional property manager as its managing agent.',
-                'category' => 'Sales Terms',
-                'role' => 'sales'
-            ],
-            [
-                'question' => 'co-op',
+                'question' => 'Co-op',
                 'answer' => 'A co-op, by contrast, is a building or buildings owned by a corporation (usually with a name like “1111 West 100th Street Owners Corp.”) and owners are actually stockholders in the corporation rather than unit owners. Along with your shares of stock in a co-op, you would get a special type of lease, known as a proprietary lease, that will allow you to reside in your unit as a long-term tenant. Share allocation is determined when the building converts to a co-op, so it can vary by building. Generally, a larger apartment in a building will be allocated more shares than a smaller one and a higher-floor apartment will be allocated more shares than a lower-floor one.',
                 'category' => 'Sales Terms',
                 'role' => 'sales'

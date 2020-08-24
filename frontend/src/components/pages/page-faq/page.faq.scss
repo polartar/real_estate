@@ -87,7 +87,7 @@
     color: black;
   }
 
-  .search {
+  .faq-search {
     display: flex;
     align-items: center;
     text-align: left;
@@ -106,7 +106,7 @@
     background-position:10px center;outline:0;
     background-size: 16px;
     background-color: white;
-    margin-top: 40px;
+    margin: 40px auto;
 
     @include for-size(tablet-portrait-up) {
       width: 600px;
@@ -196,7 +196,7 @@
         height: 900px;
       }
 
-      .questions, .sales_terms {
+      .questions, .sales_terms, .rentals {
         direction: ltr;
 
         &> div {

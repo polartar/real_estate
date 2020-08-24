@@ -150,9 +150,9 @@ import { APISearchService } from '../../../services/api/search';
                     <form onSubmit={(e) => this.handleSubmit(e)}>
 
                     <input
-                      id="search"
+                      id="faq-search"
                       type="text"
-                      class="search"
+                      class="faq-search"
                       ref={(el) => this.textInput = el as HTMLInputElement}
                       placeholder= "Ask a question"
                       value={this.value} onInput={() => this.handleChange()}
@@ -233,7 +233,13 @@ import { APISearchService } from '../../../services/api/search';
                       })}
                   </div>
 
-                  <div class={this.guest == "sales" ? "questions hide" : "questions show"}>
+                  <div class={this.guest == "rentals" ? "rentals show" : "rentals hide"}>
+
+                    <h2>Coming Soon</h2>
+
+                  </div>
+
+                  <div class={this.guest == "yes" ? "questions show" : "questions hide"}>
 
                     <h2>General</h2>
 
@@ -309,7 +315,6 @@ import { APISearchService } from '../../../services/api/search';
 
             </div>
 
-
           </section>
 
           <div class={{'search-footer': true, 'footer-open': this.footerOpen, 'footer-closed': !this.footerOpen }}>
@@ -327,7 +332,6 @@ import { APISearchService } from '../../../services/api/search';
             <app-footer no-margin />
           </div>
         </div>
-
 
         </div>
         </ion-content>
