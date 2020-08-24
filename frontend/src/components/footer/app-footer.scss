@@ -4,11 +4,16 @@
 .app-footer {
   width: 100%;
   margin-top: 5rem;
-  padding-top: 79px;
-  padding-bottom: 4rem;
+  padding-top: 39px;
+  padding-bottom: 40px;
   background-color: $bg-dark;
   color: white;
   min-height: 300px;
+
+  @include for-size(desktop-up) {
+    padding-top: 79px;
+    padding-bottom: 4rem;
+  }
 
   .section {
     max-width: 1092px;
@@ -19,34 +24,41 @@
   }
 
   .footer-wrapper {
-    @include for-size(tablet-landscape-up) {
+    @include for-size(desktop-up) {
       display: flex;
       flex-direction: row;
     }
 
     &:not(.first) {
-      padding-top: 80px;
+      padding-top: 60px;
+
+      @include for-size(desktop-up) {
+        padding-top: 80px;
+      }
+    }
+
+    &:last-child {
+      display: flex;
+      flex-direction: column-reverse;
+
+      @include for-size(desktop-up) {
+        flex-direction: row;
+      }
     }
   }
 
   .hr {
     border-top: 2px solid $color-text-light;
-    padding-bottom: 31px;
+    padding-bottom: 16px;
+
+    @include for-size(desktop-up) {
+      padding-bottom: 31px;
+    }
   }
 
   .footer-col {
     flex-grow: 1;
     flex-basis: 50%;
-
-    &.footer-center {
-      flex-grow: 0;
-      flex-shrink: 1;
-      flex-basis: 0%;
-
-      @include for-size(tablet-landscape-up) {
-        flex-basis: 33%;
-      }
-    }
 
     @include for-size(tablet-landscape-up) {
       flex-basis: 33%;
@@ -70,7 +82,7 @@
     ion-router-link {
       display: block;
       padding: 0.5rem 0;
-      color: white;
+      color: $color-text-light;
       text-transform: capitalize;
       font-weight: bold;
       font-size: 20px;
@@ -79,13 +91,49 @@
         font-size: 16px;
         font-weight: 400;
         padding: 0.65rem 0;
+
+        &.first {
+          padding-top: 16px;
+        }
+      }
+
+      &.explore-more {
+        padding-top: 16px;
+
+        @include for-size(tablet-portrait-up) {
+          display: none;
+        }
+
+        .expand-indicator {
+          margin-left: 3px;
+          transform: translateY(3px);
+
+          &.expanded {
+            transform: rotate(180deg) translateY(-3px);
+          }
+        }
+      }
+    }
+
+    div.explore-more {
+      display: none;
+
+      &.expanded {
+        display: block;
+      }
+
+      @include for-size(tablet-portrait-up) {
+        display: block;
       }
     }
   }
 
   .footer-right {
     font-size: $font-size-md;
-    padding-left: 84px;
+
+    @include for-size(desktop-up) {
+      padding-left: 84px;
+    }
 
     .input-webid {
       border: 0;
@@ -95,7 +143,11 @@
     form.dark {
 
       &:first-child {
-        padding-bottom: 16px;
+        padding-top: 32px;
+
+        @include for-size(desktop-up) {
+          padding-bottom: 16px;
+        }
       }
 
       input,
@@ -105,6 +157,11 @@
         border: 2px solid $color-text-light;
         background-color: $bg-dark;
         font-size: 18px;
+        margin-top: 0;
+
+        @include for-size(desktop-up) {
+          margin-top: 16px;
+        }
 
         &:focus {
           outline: none;
@@ -124,18 +181,31 @@
         top: 0;
         right: 0;
         background-color: $color-text-light;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         height: 55px;
-        width: 96px;
+        width: 75px;
+        padding: 0;
+        
+
+        @include for-size(desktop-up) {
+          font-size: 16px;
+          width: 96px;
+        }
       }
 
       button.submit-inline {
-        margin-top: 16px;
+        @include for-size(desktop-up) {
+          margin-top: 16px;
+        }
       }
 
       p {
-        font-size: 20px;
+        font-size: 16px;
+
+        @include for-size(desktop-up) {
+          font-size: 20px;
+        }
       }
     }
 
@@ -155,26 +225,55 @@
   }
 
   .logo {
-    height: 25px;
+    height: 32px;
+
+    @include for-size(desktop-up) {
+      height: 25px;
+    }
   }
 
   .copyright {
-    display: none;
     font-size: $font-size;
 
-    @include for-size(tablet-landscape-up) {
+    .lpny {
       display: block;
+      height: 26px;
+      margin-top: 8px;
+
+      @include for-size(desktop-up) {
+        height: 25px;
+      }
     }
   }
 
   .social-media {
-    a {
-      padding-right: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    margin-bottom: 60px;
+
+    @include for-size(desktop-up) {
+      margin-bottom: 16px;
     }
 
     lazy-image {
-      width: 32px;
-      height: 32px;
+      width: 27px;
+      height: 27px;
+
+      @include for-size(desktop-up) {
+        width: 32px;
+        height: 32px;
+      }
+
+      &.rebny {
+        width: auto;
+
+        @include for-size(desktop-up) {
+          width: 122px;
+          height: 44px;
+        }
+      }
     }
   }
 }

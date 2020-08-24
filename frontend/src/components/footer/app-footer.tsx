@@ -9,6 +9,7 @@ import { ToastService } from '../../services/toast.service';
 })
 export class AppFooter {
   @State() year: number = 2019;
+  @State() expandPages: boolean = false;
   @Prop() noMargin: boolean = false;
 
   webidInput: HTMLInputElement;
@@ -52,18 +53,25 @@ export class AppFooter {
                   <ion-router-link href={ RouterService.getRoute('coming-soon') }>Sales</ion-router-link>
                   <ion-router-link href={ RouterService.getRoute('coming-soon') }>Investments</ion-router-link>
 
-                  <ion-router-link href={ RouterService.getRoute('privacy') } class="skinny">Privacy</ion-router-link>
+                  <ion-router-link href={ RouterService.getRoute('privacy') } class="skinny first">Privacy</ion-router-link>
                   <ion-router-link href={ RouterService.getRoute('coming-soon') } class="skinny">Sitemap</ion-router-link>
                   <ion-router-link href={ RouterService.getRoute('faq') } class="skinny">FAQ</ion-router-link>
                 </div>
                 <div class="links-right">
-                  <ion-router-link href={ RouterService.getRoute('coming-soon') }>Agents</ion-router-link>
-                  <ion-router-link href={ RouterService.getRoute('booking') }>Bookings</ion-router-link>
-                  <ion-router-link href={ RouterService.getRoute('referral') }>Referrals</ion-router-link>
-                  <ion-router-link href={ RouterService.getRoute('neighborhoods') }>Neighborhood Guide</ion-router-link>
-                  <ion-router-link href={ RouterService.getRoute('private-rooms') }>Private Rooms</ion-router-link>
-                  <ion-router-link href={ RouterService.getRoute('brokers')}>Corporate Accounts</ion-router-link>
-                  <ion-router-link href={ RouterService.getRoute('blog') }>APT212 blog</ion-router-link>
+                  <ion-router-link href="javascript:void(0)" class="explore-more" onClick={() => { this.expandPages = !this.expandPages; } }>
+                    Explore more
+                    <ion-icon mode="md" name="md-arrow-dropdown" class={{ 'expand-indicator': true, 'expanded': this.expandPages }}></ion-icon>
+                  </ion-router-link>
+
+                  <div class={{'explore-more': true, expanded: this.expandPages }}>
+                    <ion-router-link href={ RouterService.getRoute('coming-soon') }>Agents</ion-router-link>
+                    <ion-router-link href={ RouterService.getRoute('booking') }>Bookings</ion-router-link>
+                    <ion-router-link href={ RouterService.getRoute('referral') }>Referrals</ion-router-link>
+                    <ion-router-link href={ RouterService.getRoute('neighborhoods') }>Neighborhood Guide</ion-router-link>
+                    <ion-router-link href={ RouterService.getRoute('private-rooms') }>Private Rooms</ion-router-link>
+                    <ion-router-link href={ RouterService.getRoute('brokers')}>Corporate Accounts</ion-router-link>
+                    <ion-router-link href={ RouterService.getRoute('blog') }>APT212 blog</ion-router-link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -96,13 +104,15 @@ export class AppFooter {
                 <ion-router-link href="/" class="logo-link">
                   <lazy-image src="/assets/images/logo-white.svg" class="logo" alt="APT212 logo" />
                 </ion-router-link>
+
+                <lazy-image src="/assets/images/live-play-new-york.png" alt="Live Play New York" class="lpny" />
                 <p>
                   &copy;{this.year} All Rights Reserved.
                 </p>
               </div>
             </div>
 
-            <div class="footer-col footer-right">
+            <div class="footer-col footer-right align-bottom">
               <div class="social-media">
                 <a href="https://www.facebook.com/Apt212/" target="_blank" rel="noopener">
                   <lazy-image src="/assets/images/icons/social-media/facebook-square.svg" alt="Facebook" />
@@ -118,6 +128,10 @@ export class AppFooter {
 
                 <a href="https://youtube.com/c/APT212NewYork" target="_blank" rel="noopener">
                   <lazy-image src="/assets/images/icons/social-media/youtube.svg" alt="Youtube" />
+                </a>
+
+                <a href="https://www.rebny.com/" target="_blank" rel="noopener">
+                  <lazy-image src="/assets/images/icons/rebny.png" alt="REBNY" class="rebny" />
                 </a>
               </div>
             </div>
