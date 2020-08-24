@@ -10,7 +10,7 @@ export class MediaLogos {
     let mediaLogos = {
       yahoo: {
         alt: "Yahoo!",
-        url: 'https://finance.yahoo.com/news/apt212-online-booking-platform-makes-195400133.html',
+        url: '',
       },
       venturebeat: {
         alt: "VentureBeat",
@@ -26,7 +26,7 @@ export class MediaLogos {
       },
       marketwatch: {
         alt: "MarketWatch",
-        url: 'https://www.marketwatch.com/press-release/apt212-your-home-away-from-home-2020-02-17',
+        url: '',
       },
       'business-insider': {
         alt: 'Business Insider',
