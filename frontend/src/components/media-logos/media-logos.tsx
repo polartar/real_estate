@@ -48,7 +48,7 @@ export class MediaLogos {
             <div class={classes}>
               {
                 mediaLogos[logo].url ?
-                <a href={mediaLogos[logo].url}>
+                <a href={mediaLogos[logo].url} target="_blank">
                   <lazy-image src={`/assets/images/media-logos/${logo}.jpg`} class="media-logo" alt={mediaLogos[logo].alt} />
                 </a>
 
@@ -56,7 +56,7 @@ export class MediaLogos {
 
                 <lazy-image src={`/assets/images/media-logos/${logo}.jpg`} class="media-logo" alt={mediaLogos[logo].alt} />
               }
-              
+
             </div>
             )
           }
