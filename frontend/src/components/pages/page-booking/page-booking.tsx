@@ -59,8 +59,6 @@ export class PageBooking {
 
                     <h3 class="center">Questions About Payments?</h3>
 
-                    <p class="center">Reach out to us and let us help</p>
-
                     <button class="white" onClick={() => ModalService.contactUs() }>Contact Us</button>
 
                   </div>
@@ -71,7 +69,7 @@ export class PageBooking {
                     <h1 class="title">Secure Online Payment</h1>
 
                     <form onSubmit={e => this.handleSubmit(e)} ref={el => this.form = el as HTMLFormElement }>
-                      <div class="input">                       
+                      <div class="input">
                           <label htmlFor="booking-password" class="sr-only">Password</label>
                           <input id="booking-password" type="password" class="apt212-input block" placeholder="Enter Password" name="password" />
                       </div>
@@ -79,12 +77,12 @@ export class PageBooking {
 
                     <p>
                     Payment online are made via wire transfers.<br />
-                    Please obtain a password from the Agent you are working with 
+                    Please obtain a password from the Agent you are working with
                     or email <a href="mailto=info@apt212.com">info@apt212.com</a> to get one.
-                    </p>                    
+                    </p>
                   </div>
                 }
-                
+
               </div>
             </div>
           </div>
