@@ -25,7 +25,7 @@ class RouterServiceInstance {
       'private-rooms': '/rooms-for-rent',
       'referral': '/referral',
       'search': '/search-apartments',
-      'blog': 'http://apt212.asuscomm.com/'
+      'blog': 'http://apt212-blog.asuscomm.com/'
     };
 
     let path: any = routeMap.hasOwnProperty(name) ? routeMap[name] : false;
@@ -33,7 +33,7 @@ class RouterServiceInstance {
     if (path !== false) {
       if (params && Object.keys(params).length) {
         const queryString = this.serializeQuery(params);
-  
+
         path += `?${queryString}`;
       }
     }
