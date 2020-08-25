@@ -69,7 +69,7 @@ export class AppFooter {
                     <ion-router-link href={ RouterService.getRoute('referral') }>Referrals</ion-router-link>
                     <ion-router-link href={ RouterService.getRoute('neighborhoods') }>Neighborhood Guide</ion-router-link>
                     <ion-router-link href={ RouterService.getRoute('private-rooms') }>Private Rooms</ion-router-link>
-                    <ion-router-link href={ RouterService.getRoute('brokers')}>Corporate Accounts</ion-router-link>
+                    <ion-router-link href={ RouterService.getRoute('coming-soon')}>Corporate Accounts</ion-router-link>
                     <ion-router-link href={ RouterService.getRoute('blog') }>APT212 blog</ion-router-link>
                   </div>
                 </div>
