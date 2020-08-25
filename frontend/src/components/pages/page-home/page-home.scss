@@ -1,8 +1,6 @@
 @import '../../../styles/mixins';
 @import '../../../styles/variables';
 
-$home-white: #f5f5f7;
-
 .page-home {
 
   .home-hero {
@@ -43,9 +41,14 @@ $home-white: #f5f5f7;
 
     .market-tab {
       font-size: 20px;
-      color: $home-white;
+      color: $color-text-light;
       font-weight: normal;
       padding: 16px 14px;
+
+      &:hover {
+        color: $bg-dark;
+        background: $color-text-light;
+      }
     }
   }
 
@@ -65,12 +68,12 @@ $home-white: #f5f5f7;
     flex: 1;
     width: 100%;
     height: 55px;
-    border: solid 2px $home-white;
+    border: solid 2px $color-text-light;
     background-color: #131414;
     margin-top: 0px;
     padding-left: 66px;
     font-size: 18px;
-    color: $home-white;
+    color: $color-text-light;
 
     @include for-size(desktop-up) {
       margin-bottom: 100px;
