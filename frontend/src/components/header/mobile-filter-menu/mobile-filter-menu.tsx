@@ -156,7 +156,7 @@ export class AppMenu {
       break;
 
       case 'time':
-        title = 'Time';
+        title = 'Move In Date';
         content = this.getTime();
       break;
 
