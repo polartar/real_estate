@@ -99,14 +99,16 @@ export class PageHome {
     }
 
     let neighborhoodTitle = 'New York City Neighborhoods';
+    let furnishedText = 'Furnished Apartments';
 
     if (this.size === 'phone-only') {
       neighborhoodTitle = 'Neighborhoods';
+      furnishedText = 'Furnished';
     }
 
     return [
       <ion-content class="page-home">
-        <app-header-home />
+        <app-header-home hide-search-button />
         <section class="home-hero">
           <div class="section">
             <div class="hero">
@@ -117,7 +119,7 @@ export class PageHome {
                 </div>
 
                 <div class="hero-child info">
-                    <button class="button-reset market-tab" onClick={() => RouterService.forward(RouterService.getRoute('search'))}>Furnished</button>
+                    <button class="button-reset market-tab" onClick={() => RouterService.forward(RouterService.getRoute('search'))}>{ furnishedText }</button>
 
                     <button class="button-reset market-tab" onClick={() => RouterService.forward('/coming-soon')}>Rentals</button>
 

@@ -48,12 +48,33 @@
       &:hover {
         color: $bg-dark;
         background: $color-text-light;
+
+        & ~ .home-search-wrapper {
+          input {
+            background-color: $color-text-light;
+          }
+
+          svg * {
+            fill: $bg-dark;
+          }
+        }
       }
     }
   }
 
   .home-search-wrapper {
     position: relative;
+
+    &:hover {
+      .home-search {
+        color: $bg-dark;
+        background-color: $color-text-light;
+      }
+
+      svg * {
+        fill: $bg-dark;
+      }
+    }
 
     .search-icon {
       position: absolute;

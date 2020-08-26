@@ -23,7 +23,9 @@ export namespace Components {
     'hideSearch': boolean;
     'hideSearchButton': boolean;
   }
-  interface AppHeaderHome {}
+  interface AppHeaderHome {
+    'hideSearchButton': boolean;
+  }
   interface AppMenu {}
   interface AppMenuMobile {}
   interface AppRoot {}
@@ -1172,7 +1174,9 @@ declare namespace LocalJSX {
     'hideSearch'?: boolean;
     'hideSearchButton'?: boolean;
   }
-  interface AppHeaderHome extends JSXBase.HTMLAttributes<HTMLAppHeaderHomeElement> {}
+  interface AppHeaderHome extends JSXBase.HTMLAttributes<HTMLAppHeaderHomeElement> {
+    'hideSearchButton'?: boolean;
+  }
   interface AppMenu extends JSXBase.HTMLAttributes<HTMLAppMenuElement> {}
   interface AppMenuMobile extends JSXBase.HTMLAttributes<HTMLAppMenuMobileElement> {}
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
