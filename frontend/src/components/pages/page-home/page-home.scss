@@ -169,10 +169,15 @@
       }
 
       h2 {
-        font-size: 32px;
+        font-family: 'Proxima Nova W01 Extrabold';
+        font-size: 28px;
         padding-bottom: 1rem;
         text-transform: none;
         margin: 0;
+      }
+
+      p {
+        font-family: 'Proxima Nova W01 Regular';
       }
     }
   }
@@ -355,11 +360,16 @@
 
     .markets-description {
       padding: 0 14px;
+
+      p {
+        font-family: 'Proxima Nova W01 Regular';
+      }
     }
 
     .markets-title {
+      font-family: 'Proxima Nova W01 Extrabold';
       width: 100%;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 800;
       text-transform: none;
 
