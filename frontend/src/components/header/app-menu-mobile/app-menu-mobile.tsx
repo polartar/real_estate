@@ -95,7 +95,7 @@ export class AppMenu {
                     Private Rooms
                   </ion-router-link>
 
-                  <ion-router-link href={ RouterService.getRoute('brokers') } onClick={() => this.closeMenu()}>
+                  <ion-router-link href={ RouterService.getRoute('corporate-rooms') } onClick={() => this.closeMenu()}>
                     Corporate Accounts
                   </ion-router-link>
 
