@@ -407,7 +407,7 @@ export class PageListingBody {
 
               <div class="booking-process flex-vertical-center">
                 <div class="icon">
-                  <lazy-image src="/assets/images/icons/add.svg" />
+                  <img src="/assets/images/icons/add.svg" />
                 </div>
 
                 Submit a payment of 1 month's rent to secure the apartment
@@ -415,7 +415,7 @@ export class PageListingBody {
 
               <div class="booking-process flex-vertical-center">
                 <div class="icon">
-                  <lazy-image src="/assets/images/icons/application.svg" />
+                  <img src="/assets/images/icons/application.svg" />
                 </div>
 
                 Fill out an online application
@@ -423,7 +423,7 @@ export class PageListingBody {
 
               <div class="booking-process flex-vertical-center">
                 <div class="icon">
-                  <lazy-image src="/assets/images/icons/approved.svg" />
+                  <img src="/assets/images/icons/approved.svg" />
                 </div>
 
                 We will get you approved within 48 hours
@@ -431,7 +431,7 @@ export class PageListingBody {
 
               <div class="booking-process flex-vertical-center">
                 <div class="icon">
-                  <lazy-image src="/assets/images/icons/sign_lease.svg" />
+                  <img src="/assets/images/icons/sign_lease.svg" />
                 </div>
 
                 Sign a lease online
