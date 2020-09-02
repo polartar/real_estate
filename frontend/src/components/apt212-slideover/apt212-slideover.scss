@@ -33,4 +33,12 @@
       padding-bottom: 3rem;
     }
   }
+
+  .app-menu-mobile .main-menu ion-router-link, .app-menu-mobile .main-menu button.expandable {
+    border: none;
+  }
+
+  .app-menu-mobile .main-menu ion-router-link:after, .app-menu-mobile .main-menu button.expandable:after {
+    height: 0px;
+  }
 }
