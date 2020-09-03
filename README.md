@@ -1,4 +1,5 @@
 # laravel-stencil
+
 Laravel back end with a StencilJS front PWA
 
 # Laravel (back end) installation
@@ -42,6 +43,7 @@ Test credentials: user_good / pass_good
 # PWA (front end)
 
 ## Installation
+
 The front end is a StencilJS PWA located in `/frontend` which will build to the `/public` directory
 
 Install the node_modules dependencies
@@ -58,17 +60,19 @@ Copy the `/frontend/config.app.json.example` to `/frontend/config.app.json` and 
     cd frontend
     npm install
     npm run prod
-
+    
     cd ..
     php artisan cache:clear
 
 ## Development Serve
+
 This starts the front end with hot module replacement for live updating during development
 
     cd frontend
     npm start
 
 ## Config Variables
+
 Instance config variables are stored in `/frontend/config.app.json` and are substituted into the app at compile time.
 
 When adding new config variables to the project add them to the `config.app.json.example` to self-document for other devs.
@@ -90,18 +94,18 @@ Add the key to `/frontend/src/global/app.ts` in the `setupConfig` function args 
 Now any component in the project can access the variables by importing the config service:
 
     import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
-
-    const API_URL = EnvironmentConfigService.getInstance().get('API_URL');
     
+    const API_URL = EnvironmentConfigService.getInstance().get('API_URL');
+
 ## Artisan Scripts
 
-The application includes a handful of artisan scripts used for everything from clearing stale images to mapping and important listings from a CSV file. To see a list of scripts, executve `php artisan list` from the root of the application. To execute a script, run `php artisan apt212:scriptname`. 
+The application includes a handful of artisan scripts used for everything from clearing stale images to mapping and important listings from a CSV file. 
 
-  apt212:MapNeighborhoods       Maps all apartment listing neighborhoods
-  apt212:clearOldImages         Deletes uploaded images that are unattached after 24hrs
-  apt212:listing_import         Import listings from the old mongodb dump
-  apt212:map_imported_listings  Create csv mapping between original webId and new webId for imported listings
-  apt212:regenerateMarkers      Regenerate map markers for all apartments
-  apt212:setApartmentRates      Sets all apartment rates based on the current month and next available date
+To see a list of scripts, execute `php artisan list` from the root of the application. To execute a script, run `php artisan apt212:scriptname`. 
 
-
+- apt212:MapNeighborhoods       Maps all apartment listing neighborhoods
+- apt212:clearOldImages         Deletes uploaded images that are unattached after 24hrs
+- apt212:listing_import         Import listings from the old mongodb dump
+- apt212:map_imported_listings  Create csv mapping between original webId and new webId for imported listings
+- apt212:regenerateMarkers      Regenerate map markers for all apartments
+- apt212:setApartmentRates      Sets all apartment rates based on the current month and next available date
