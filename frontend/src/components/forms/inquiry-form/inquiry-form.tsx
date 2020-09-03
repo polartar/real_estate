@@ -1,8 +1,6 @@
 import { Component, h, Prop, State, Element } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import TaxonomySelectors from '../../../store/selectors/taxonomy';
-import { getBedsListingText } from '../../../helpers/filters';
-import { formatMoney } from '../../../helpers/utils';
 import serialize from 'form-serialize';
 import Isemail from 'isemail';
 import { LoadingService } from '../../../services/loading.service';
@@ -105,66 +103,56 @@ export class InquiryForm {
               <label htmlFor="inquiry-phone" class="sr-only">Phone</label>
               <input id="inquiry-phone" type="text" name="phone" placeholder="Phone" class="apt212-input block" />
             </div>
-          </div>
 
-          <div class="right">
-            <div class={{ input: true, error: this.errors.includes('message')}}>
+            <p class="interest">I am interested in: </p>
+
+            <div class="radiobuttons-container">
+
+              <label htmlFor="buy" class="apt212-radio">
+                <input id="buy" class="apt212-radio__button" type="checkbox" name="interested" value="buy" />
+                <span class="apt212-radio__label">Buy</span>
+              </label>
+
+              <label htmlFor="sell" class="apt212-radio">
+                <input id="sell" class="apt212-radio__button" type="checkbox" name="interested" value="sell" />
+                <span class="apt212-radio__label">Sell</span>
+              </label>
+
+              <label htmlFor="rent" class="apt212-radio">
+                <input id="rent" class="apt212-radio__button" type="checkbox" name="interested" value="rent" />
+                <span class="apt212-radio__label">Rent</span>
+              </label>
+
+              <label htmlFor="list" class="apt212-radio">
+                <input id="list" class="apt212-radio__button" type="checkbox" name="interested" value="list" />
+                <span class="apt212-radio__label">List</span>
+              </label>
+
+              <label htmlFor="rent-furnished" class="apt212-radio">
+                <input id="rent-furnished" class="apt212-radio__button" type="checkbox" name="interested" value="rent-furnished" />
+                <span class="apt212-radio__label">Rent&nbsp;Furnished</span>
+              </label>
+
+              <label htmlFor="other" class="apt212-radio">
+                <input id="other" class="apt212-radio__button" type="checkbox" name="interested" value="other" />
+                <span class="apt212-radio__label">Other</span>
+              </label>
+
+			  	</div>
+
+            <div class={{ input: true, error: this.errors.includes('message')}} >
               <label htmlFor="inquiry-message" class="sr-only">How can we help?</label>
               <textarea id="inquiry-message" name="message" placeholder="How can we help?" class="apt212-input block" />
             </div>
-          </div>
-        </div>
 
-        <div class="tell-more">
-          Tell us more about your search
+          </div>
         </div>
 
         <div class="columns columns-mobile">
           <div class="left">
-            <div class="input">
-              <input-date name="arrival" placeholder="Arrival" />
-            </div>
 
-            <div class="input">
-              <label htmlFor="inquiry-apt-size" class="sr-only">Apt Size</label>
-              <select id="inquiry-apt-size" class="apt212-input block" name="size">
-                <option>Apt Size</option>
-                {
-                  this.bedroomTypes.map(b => <option value={ getBedsListingText(b, 'short') }>{ getBedsListingText(b, 'short') }</option>)
-                }
-              </select>
-            </div>
           </div>
 
-          <div class="right">
-            <div class="input">
-              <input-date name="departure" placeholder="Departure" />
-            </div>
-
-            <div class="input">
-              <label htmlFor="inquiry-budget" class="sr-only">Budget</label>
-              <select id="inquiry-budget" class="apt212-input block" name="budget">
-                {
-                  [...Array(10).keys()].map(k => {
-                    let val = '';
-                    let text = '';
-
-                    if (k === 0) {
-                      val = '';
-                      text = 'Budget';
-                    } else {
-                      val = `${ formatMoney((k + 1) * 1000)}${ k === 9 ? '+' : ''} / Month`;
-                      text = val;
-                    }
-
-                    return (
-                      <option value={val}>{text}</option>
-                    )
-                  })
-                }
-              </select>
-            </div>
-          </div>
         </div>
 
         <div class="input submit">

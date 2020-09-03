@@ -1,40 +1,49 @@
 @import '../../styles/mixins';
 
 .media-logos {
-  box-sizing: border-box;
-  padding-top: 8rem;
-  padding-bottom: 3rem;
+  display: none;
+  padding: 180px 0;
 
   @include for-size(tablet-landscape-up) {
-    display: flex;
-    place-content: center;
-    align-items: center;
-    padding-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
   }
 
   .logo-container {
     display: inline-block;
-    width: 50%;
-    text-align: center;
-    padding: 1rem 2.5rem;
+    text-align: left;
 
-    @include for-size(tablet-landscape-up) {
-      padding: 1rem;
+    &.venturebeat,
+    &.marketwatch {
+      text-align: center;
+    }
+
+    &.usatoday,
+    &.business-insider {
+      text-align: right;
+    }
+
+    &.usatoday {
+      .media-logo {
+        height: 87px;
+      }
+
+      padding-bottom: 180px;
+    }
+
+    &.venturebeat {
+      height: 40px;
     }
   }
 
   .media-logo {
-    width: 100%;
-    height: auto;
-    max-height: 37px;
+    display: block;
+    position: relative;
+    height: 45px;
     object-fit: contain;
-    vertical-align: middle;
 
     @include for-size(tablet-landscape-up) {
-      width: 150px;
-      height: 40px;
       object-fit: contain;
-      padding: 0.5rem;
     }
   }
 }

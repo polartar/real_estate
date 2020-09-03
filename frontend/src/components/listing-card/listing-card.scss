@@ -6,13 +6,9 @@
 
   .listing-title {
     margin-top: 10px;
-    font-size: 28px;
+    font-size: $font-size-lg;
     margin-bottom: 5px;
     text-transform: none;
-
-    @include for-size(tablet-portrait-up) {
-      font-size: $font-size-md;
-    }
 
     @include for-size(desktop-up) {
       font-size: $font-size-lg;
@@ -26,23 +22,15 @@
   }
 
   .price {
-    font-size: 18px;
+    font-size: $font-size-md;
     padding-bottom: 0.5rem;
-    
-    @include for-size(tablet-portrait-up) {
-      font-size: $font-size-md;
-    }
   }
 
   .bed-bath {
     display: flex;
     align-items: center;
-    font-size: 18px;
+    font-size: $font-size-sm;
     padding-bottom: 0.5rem;
-
-    @include for-size(tablet-portrait-up) {
-      font-size: $font-size-xs;
-    }
 
     @include for-size(desktop-up) {
       font-size: $font-size-md;
@@ -82,11 +70,7 @@
   .rating-amenities {
     display: flex;
     align-items: center;
-    font-size: 18px;
-
-      @include for-size(tablet-portrait-up) {
-        font-size: $font-size-xs;
-      }
+    font-size: $font-size-md;
 
     .amenities {
       padding-left: 0.5rem;
@@ -120,12 +104,6 @@
       @include for-size(tablet-portrait-up) {
         font-size: $font-size-md;
       }
-
-
     }
-  }
-
-  .bed-bath .lazy-image img {
-    //height: 43px;
   }
 }

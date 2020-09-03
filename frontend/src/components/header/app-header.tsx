@@ -6,6 +6,7 @@ import wishlistSelectors from '../../store/selectors/wishlist';
 import taxonomySelectors from '../../store/selectors/taxonomy';
 import { FilterTagsService } from '../../services/search-filters/filter-tags.service';
 import { ModalService } from '../../services/modal.service';
+import { RouterService } from '../../services/router.service';
 
 @Component({
   tag: 'app-header',
@@ -51,29 +52,52 @@ export class AppHeader {
     });
   }
 
-  async openMenu(ev) {
-    const popover = Object.assign(document.createElement('apt212-popover'), {
-      component: 'app-menu',
+  async openMenu(e) {
+    if (this.isMobile) {
+      this.openMobileMenu();
+    }
+    else {
+      this.openDesktopMenu(e);
+    }
+  }
+
+  async openMobileMenu() {
+    const slideover = Object.assign(document.createElement('apt212-slideover'), {
+      component: 'app-menu-mobile',
       componentProps: {
         inModal: true
-      },
-      target: ev.currentTarget,
-      styleOverride: {
-        width: '100%',
-        height: '100%',
-        top: 0,
-        left: 0,
-        transform: 'none'
-      },
-      bindTo: {
-        target: 'none',
-        popover: 'none'
-      },
+      }
     });
 
-    popover.classList.add('app-menu');
+    slideover.classList.add('site-menu');
 
-    document.body.appendChild(popover);
+    document.body.appendChild(slideover);
+  }
+
+  async openDesktopMenu(_ev) {
+    ModalService.siteMenu();
+    // const popover = Object.assign(document.createElement('apt212-popover'), {
+    //   component: 'app-menu',
+    //   componentProps: {
+    //     inModal: true
+    //   },
+    //   target: _ev.currentTarget,
+    //   styleOverride: {
+    //     width: '100%',
+    //     height: '100%',
+    //     top: 0,
+    //     left: 0,
+    //     transform: 'none'
+    //   },
+    //   bindTo: {
+    //     target: 'none',
+    //     popover: 'none'
+    //   },
+    // });
+
+    // popover.classList.add('app-menu');
+
+    // document.body.appendChild(popover);
   }
 
   async launchMobileFilterMenu() {
@@ -91,7 +115,8 @@ export class AppHeader {
       this.launchMobileFilterMenu();
     }
     else {
-      this.toggleSearchFilterDisplay(!this.displayFilter);
+      //this.toggleSearchFilterDisplay(!this.displayFilter);
+      RouterService.forward(RouterService.getRoute('search'));
     }
   }
 

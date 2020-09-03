@@ -1,4 +1,4 @@
-@mixin for-size($range) {
+@mixin for-size($range, $size: 0) {
   $phone-upper-boundary: 768px;
   $tablet-portrait-upper-boundary: 900px;
   $tablet-landscape-upper-boundary: 1200px;
@@ -16,5 +16,9 @@
     @media (min-width: $tablet-landscape-upper-boundary) { @content; }
   } @else if $range == big-desktop-up {
     @media (min-width: $desktop-upper-boundary) { @content; }
+  } @else if $range == custom-up {
+    @media (min-width: #{$size}px) { @content; }
+  } @else if $range == custom-down {
+    @media (max-width: #{$size}px) { @content; }
   }
 }

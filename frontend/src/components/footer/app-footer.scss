@@ -4,38 +4,61 @@
 .app-footer {
   width: 100%;
   margin-top: 5rem;
-  padding-top: 2.5rem;
-  padding-bottom: 4rem;
-  background-color: $color-primary;
+  padding-top: 39px;
+  padding-bottom: 40px;
+  background-color: $bg-dark;
   color: white;
   min-height: 300px;
+
+  @include for-size(desktop-up) {
+    padding-top: 79px;
+    padding-bottom: 4rem;
+  }
+
+  .section {
+    max-width: 1092px;
+  }
 
   &.no-margin {
     margin-top: 0;
   }
 
   .footer-wrapper {
-
-    @include for-size(tablet-landscape-up) {
-      padding-left: 50px;
+    @include for-size(desktop-up) {
       display: flex;
       flex-direction: row;
+    }
+
+    &:not(.first) {
+      padding-top: 60px;
+
+      @include for-size(desktop-up) {
+        padding-top: 80px;
+      }
+    }
+
+    &:last-child {
+      display: flex;
+      flex-direction: column-reverse;
+
+      @include for-size(desktop-up) {
+        flex-direction: row;
+      }
+    }
+  }
+
+  .hr {
+    border-top: 2px solid $color-text-light;
+    padding-bottom: 16px;
+
+    @include for-size(desktop-up) {
+      padding-bottom: 31px;
     }
   }
 
   .footer-col {
     flex-grow: 1;
     flex-basis: 50%;
-
-    &.footer-center {
-      flex-grow: 0;
-      flex-shrink: 1;
-      flex-basis: 0%;
-
-      @include for-size(tablet-landscape-up) {
-        flex-basis: 33%;
-      }
-    }
 
     @include for-size(tablet-landscape-up) {
       flex-basis: 33%;
@@ -59,30 +82,140 @@
     ion-router-link {
       display: block;
       padding: 0.5rem 0;
-      color: white;
-      text-transform: uppercase;
-      font-weight: 900;
-      font-size: $font-size;
+      color: $color-text-light;
+      text-transform: capitalize;
+      font-weight: bold;
+      font-size: 20px;
+
+      &.skinny {
+        font-size: 16px;
+        font-weight: 400;
+        padding: 0.65rem 0;
+
+        &.first {
+          padding-top: 16px;
+        }
+      }
+
+      &.explore-more {
+        padding-top: 16px;
+
+        @include for-size(tablet-portrait-up) {
+          display: none;
+        }
+
+        .expand-indicator {
+          margin-left: 3px;
+          transform: translateY(3px);
+
+          &.expanded {
+            transform: rotate(180deg) translateY(-3px);
+          }
+        }
+      }
+    }
+
+    div.explore-more {
+      display: none;
+
+      &.expanded {
+        display: block;
+      }
+
+      @include for-size(tablet-portrait-up) {
+        display: block;
+      }
     }
   }
 
   .footer-right {
     font-size: $font-size-md;
 
+    @include for-size(desktop-up) {
+      padding-left: 84px;
+    }
+
     .input-webid {
       border: 0;
       margin-top: 1rem;
     }
 
-    .webid-icon {
-      position: absolute;
-      top: 40%;
-      right: 1rem;
+    form.dark {
 
-      width: 1rem;
-      height: 1rem;
+      &:first-child {
+        padding-top: 32px;
+
+        @include for-size(desktop-up) {
+          padding-bottom: 16px;
+        }
+      }
+
+      input,
+      input[type="text"],
+      input[type="email"] {
+        height: 55px;
+        border: 2px solid $color-text-light;
+        background-color: $bg-dark;
+        font-size: 14px;
+        margin-top: 0;
+
+        @include for-size(desktop-up) {
+          margin-top: 16px;
+          font-size: 18px;
+        }
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          color: #9a9a9c;
+        }
+      }
+
+      .reset:focus {
+        outline: none;
+      }
+
+      .submit-inline {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: $color-text-light;
+        font-size: 14px;
+        font-weight: bold;
+        height: 55px;
+        width: 75px;
+        padding: 0;
+        
+
+        @include for-size(desktop-up) {
+          font-size: 16px;
+          width: 96px;
+        }
+      }
+
+      button.submit-inline {
+        @include for-size(desktop-up) {
+          margin-top: 16px;
+        }
+      }
+
+      p {
+        font-size: 16px;
+
+        @include for-size(desktop-up) {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .webid-icon {
+      width: 26px;
+      height: 26px;
       * {
-        stroke: #5d5d5d;
+        fill: #000000;
+        // stroke: #000000;
       }
     }
 
@@ -93,38 +226,56 @@
   }
 
   .logo {
-    height: 25px;
+    height: 32px;
   }
 
   .copyright {
-    display: none;
-    font-size: $font-size-md;
+    font-size: $font-size;
 
-    @include for-size(tablet-landscape-up) {
+    .lpny {
       display: block;
+      height: 26px;
+      margin-top: 8px;
+
+      @include for-size(desktop-up) {
+        height: 25px;
+      }
     }
   }
 
   .social-media {
-    a {
-      padding-right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    margin-bottom: 60px;
+
+    @include for-size(desktop-up) {
+      margin-bottom: 16px;
     }
 
     lazy-image {
-      width: 14px;
-      height: 14px;
+      width: 27px;
+      height: 27px;
+
+      @include for-size(desktop-up) {
+        width: 32px;
+        height: 32px;
+      }
+
+      &.rebny {
+        width: auto;
+
+        @include for-size(desktop-up) {
+          width: 122px;
+          height: 44px;
+        }
+      }
     }
   }
 
-  .contact {
-    padding-top: 2.5rem;
-    font-size: $font-size;
-    font-weight: bold;
-
-    a {
-      color: white;
-      text-decoration: none;
-    }
+  .align-bottom {
+    display: flex;
   }
 }
 

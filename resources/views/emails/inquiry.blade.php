@@ -1,3 +1,7 @@
+<?php
+error_log("crap");
+?>
+
 @extends('emails.layout')
 
 @section('content')
@@ -49,6 +53,12 @@
         @if (isset($data['budget']) && $data['budget'] && $data['budget'] != 'Budget')
         <p>
             Budget: {{ $data['budget'] }}
+        </p>
+        @endif
+
+        @if (isset($data['interested']) && $data['interested'])
+        <p>
+            Interested in: {{ $data['interested'] }}
         </p>
         @endif
 

@@ -69,9 +69,8 @@ import { APISearchService } from '../../../services/api/search';
 
     render() {
       return [
-
-        <app-header />,
         <ion-content class="page-booking-pw">
+          <app-header />
 
             <div class="hero">
                 <div class="section">

@@ -16,8 +16,8 @@ export class Page404 {
   render() {
 
     return [
-      <app-header />,
       <ion-content class="page-404">
+        <app-header />
 
         <content-404 />
 

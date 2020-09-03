@@ -99,8 +99,11 @@ export class PageListing {
 
   render() {
     return [
-      <app-header />,
-      <ion-content class="page-listing">
+      <ion-content>
+        <app-header />
+
+        <div class="page-listing">
+
           {
             !this.item && this.loaded && this.taxonomyLoaded ?
             <section class="section">
@@ -142,6 +145,7 @@ export class PageListing {
           : null
         }
 
+      </div>
       </ion-content>
     ]
 

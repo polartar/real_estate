@@ -23,7 +23,11 @@ export namespace Components {
     'hideSearch': boolean;
     'hideSearchButton': boolean;
   }
+  interface AppHeaderHome {
+    'hideSearchButton': boolean;
+  }
   interface AppMenu {}
+  interface AppMenuMobile {}
   interface AppRoot {}
   interface Apt212Accordion {
     'description': string;
@@ -62,6 +66,12 @@ export namespace Components {
     'dismiss': () => Promise<void>;
     'styleOverride': any;
     'target': any;
+  }
+  interface Apt212Slideover {
+    'component': string;
+    'componentProps': any;
+    'dismiss': () => Promise<void>;
+    'styleOverride': any;
   }
   interface Apt212Toast {
     'color': 'error' | 'success' | 'neutral';
@@ -251,6 +261,7 @@ export namespace Components {
     'agentId': number;
   }
   interface PageAdminAgents {}
+  interface PageAdminBookingSettings {}
   interface PageAdminListingAdd {}
   interface PageAdminListingEdit {
     'apartmentId': number;
@@ -397,10 +408,22 @@ declare global {
     new (): HTMLAppHeaderElement;
   };
 
+  interface HTMLAppHeaderHomeElement extends Components.AppHeaderHome, HTMLStencilElement {}
+  var HTMLAppHeaderHomeElement: {
+    prototype: HTMLAppHeaderHomeElement;
+    new (): HTMLAppHeaderHomeElement;
+  };
+
   interface HTMLAppMenuElement extends Components.AppMenu, HTMLStencilElement {}
   var HTMLAppMenuElement: {
     prototype: HTMLAppMenuElement;
     new (): HTMLAppMenuElement;
+  };
+
+  interface HTMLAppMenuMobileElement extends Components.AppMenuMobile, HTMLStencilElement {}
+  var HTMLAppMenuMobileElement: {
+    prototype: HTMLAppMenuMobileElement;
+    new (): HTMLAppMenuMobileElement;
   };
 
   interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {}
@@ -443,6 +466,12 @@ declare global {
   var HTMLApt212PopoverElement: {
     prototype: HTMLApt212PopoverElement;
     new (): HTMLApt212PopoverElement;
+  };
+
+  interface HTMLApt212SlideoverElement extends Components.Apt212Slideover, HTMLStencilElement {}
+  var HTMLApt212SlideoverElement: {
+    prototype: HTMLApt212SlideoverElement;
+    new (): HTMLApt212SlideoverElement;
   };
 
   interface HTMLApt212ToastElement extends Components.Apt212Toast, HTMLStencilElement {}
@@ -787,6 +816,12 @@ declare global {
     new (): HTMLPageAdminAgentsElement;
   };
 
+  interface HTMLPageAdminBookingSettingsElement extends Components.PageAdminBookingSettings, HTMLStencilElement {}
+  var HTMLPageAdminBookingSettingsElement: {
+    prototype: HTMLPageAdminBookingSettingsElement;
+    new (): HTMLPageAdminBookingSettingsElement;
+  };
+
   interface HTMLPageAdminListingAddElement extends Components.PageAdminListingAdd, HTMLStencilElement {}
   var HTMLPageAdminListingAddElement: {
     prototype: HTMLPageAdminListingAddElement;
@@ -1019,7 +1054,9 @@ declare global {
     'admin-menu': HTMLAdminMenuElement;
     'app-footer': HTMLAppFooterElement;
     'app-header': HTMLAppHeaderElement;
+    'app-header-home': HTMLAppHeaderHomeElement;
     'app-menu': HTMLAppMenuElement;
+    'app-menu-mobile': HTMLAppMenuMobileElement;
     'app-root': HTMLAppRootElement;
     'apt212-accordion': HTMLApt212AccordionElement;
     'apt212-alert': HTMLApt212AlertElement;
@@ -1027,6 +1064,7 @@ declare global {
     'apt212-datepicker': HTMLApt212DatepickerElement;
     'apt212-modal-booking-frame': HTMLApt212ModalBookingFrameElement;
     'apt212-popover': HTMLApt212PopoverElement;
+    'apt212-slideover': HTMLApt212SlideoverElement;
     'apt212-toast': HTMLApt212ToastElement;
     'ask-question': HTMLAskQuestionElement;
     'bathroom-filter': HTMLBathroomFilterElement;
@@ -1084,6 +1122,7 @@ declare global {
     'page-admin': HTMLPageAdminElement;
     'page-admin-agent-edit': HTMLPageAdminAgentEditElement;
     'page-admin-agents': HTMLPageAdminAgentsElement;
+    'page-admin-booking-settings': HTMLPageAdminBookingSettingsElement;
     'page-admin-listing-add': HTMLPageAdminListingAddElement;
     'page-admin-listing-edit': HTMLPageAdminListingEditElement;
     'page-admin-listings': HTMLPageAdminListingsElement;
@@ -1135,7 +1174,11 @@ declare namespace LocalJSX {
     'hideSearch'?: boolean;
     'hideSearchButton'?: boolean;
   }
+  interface AppHeaderHome extends JSXBase.HTMLAttributes<HTMLAppHeaderHomeElement> {
+    'hideSearchButton'?: boolean;
+  }
   interface AppMenu extends JSXBase.HTMLAttributes<HTMLAppMenuElement> {}
+  interface AppMenuMobile extends JSXBase.HTMLAttributes<HTMLAppMenuMobileElement> {}
   interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
   interface Apt212Accordion extends JSXBase.HTMLAttributes<HTMLApt212AccordionElement> {
     'description'?: string;
@@ -1173,6 +1216,11 @@ declare namespace LocalJSX {
     'componentProps'?: any;
     'styleOverride'?: any;
     'target'?: any;
+  }
+  interface Apt212Slideover extends JSXBase.HTMLAttributes<HTMLApt212SlideoverElement> {
+    'component': string;
+    'componentProps'?: any;
+    'styleOverride'?: any;
   }
   interface Apt212Toast extends JSXBase.HTMLAttributes<HTMLApt212ToastElement> {
     'color'?: 'error' | 'success' | 'neutral';
@@ -1356,6 +1404,7 @@ declare namespace LocalJSX {
     'onSuccess'?: (event: CustomEvent<any>) => void;
   }
   interface PageAdminAgents extends JSXBase.HTMLAttributes<HTMLPageAdminAgentsElement> {}
+  interface PageAdminBookingSettings extends JSXBase.HTMLAttributes<HTMLPageAdminBookingSettingsElement> {}
   interface PageAdminListingAdd extends JSXBase.HTMLAttributes<HTMLPageAdminListingAddElement> {}
   interface PageAdminListingEdit extends JSXBase.HTMLAttributes<HTMLPageAdminListingEditElement> {
     'apartmentId': number;
@@ -1482,7 +1531,9 @@ declare namespace LocalJSX {
     'admin-menu': AdminMenu;
     'app-footer': AppFooter;
     'app-header': AppHeader;
+    'app-header-home': AppHeaderHome;
     'app-menu': AppMenu;
+    'app-menu-mobile': AppMenuMobile;
     'app-root': AppRoot;
     'apt212-accordion': Apt212Accordion;
     'apt212-alert': Apt212Alert;
@@ -1490,6 +1541,7 @@ declare namespace LocalJSX {
     'apt212-datepicker': Apt212Datepicker;
     'apt212-modal-booking-frame': Apt212ModalBookingFrame;
     'apt212-popover': Apt212Popover;
+    'apt212-slideover': Apt212Slideover;
     'apt212-toast': Apt212Toast;
     'ask-question': AskQuestion;
     'bathroom-filter': BathroomFilter;
@@ -1547,6 +1599,7 @@ declare namespace LocalJSX {
     'page-admin': PageAdmin;
     'page-admin-agent-edit': PageAdminAgentEdit;
     'page-admin-agents': PageAdminAgents;
+    'page-admin-booking-settings': PageAdminBookingSettings;
     'page-admin-listing-add': PageAdminListingAdd;
     'page-admin-listing-edit': PageAdminListingEdit;
     'page-admin-listings': PageAdminListings;

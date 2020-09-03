@@ -1,0 +1,90 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+.app-menu-mobile {
+
+  .main-menu {
+    position: relative;
+    padding-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    text-align: right;
+    font-size: $font-size;
+
+    ion-router-link,
+    button.expandable {
+      position: relative;
+      font-weight: 600;
+      padding: 0 0 0.25rem 0;
+      margin-bottom: 1.25rem;
+      text-transform: capitalize;
+      border-bottom: 4px solid transparent;
+      background: transparent;
+      font-size: $font-size-sm;
+
+      @include for-size(tablet-portrait-up) {
+        font-size: $font-size;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        bottom: -2px;
+        left: 0;
+        background-color: $color-primary;
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: all 0.3s ease-in-out 0s;
+      }
+
+      &:hover:after {
+        visibility: visible;
+        transform: scaleX(1);
+      }
+
+      &:last-child {
+        margin-bottom: 0.5rem;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    ion-button {
+      min-height: 48px;
+    }
+  }
+
+  .separator {
+    border-top: 1px solid black;
+    margin-bottom: 1.75rem;
+    width: 40%;
+  }
+
+  .subsection {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .expand-indicator {
+    margin-left: 6px;
+    font-size: 18px;
+    margin-bottom: -4px;
+
+    &.expanded {
+      transform: rotate(180deg);
+    }
+  }
+}

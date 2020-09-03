@@ -93,10 +93,6 @@ export class AppMenu {
               : null
             }
 
-            <ion-button aria-label="Speak to an expert" href="/" onClick={() => this.closeMenu()}>
-              <ion-icon name="call" slot="start" />
-              Speak to an expert
-            </ion-button>
           </div>
         </ion-content>
     ]

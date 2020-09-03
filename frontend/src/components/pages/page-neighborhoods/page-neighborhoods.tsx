@@ -34,10 +34,10 @@ export class PageNeighborhoods {
     let subtitle = <p class="subtitle">Explore Manhattan's most prestigious<br></br> neighborhoods.</p>
 
     return [
+      <ion-content>
+        <app-header />
 
-      <app-header />,
-      <ion-content class="page-neighborhoods">
-
+        <div class="page-neighborhoods">
 
         <div class="hero">
           <lazy-image src="/assets/images/neighborhoods/neighborhood-full.jpg" class="hero-bg" alt="background image" />
@@ -76,6 +76,7 @@ export class PageNeighborhoods {
           </section>
 
         </section>
+        </div>
 
         <app-footer />
       </ion-content>

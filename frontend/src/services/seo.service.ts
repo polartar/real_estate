@@ -170,10 +170,7 @@ class SEOServiceInstance {
         '/nyc-neighborhood/harlem/apartments': {
           title: 'Harlem Apartments for Rent, NYC, New York | APT212',
           description: "Find your next furnished rental apartment in Harlem at great prices with APT212. We are NYC’s number 1 source to find your short or long term rental."
-        },
-
-
-
+        }
       }
 
       const defaultOG = {
@@ -195,6 +192,16 @@ class SEOServiceInstance {
 
         this.setCanonical(defaultOG.url);
       }
+
+      // set a body class based on first section of url
+      const handler = e.detail.to.split('/')[1];
+      document.body.classList.forEach(className => {
+        if (className.startsWith('page-')) {
+          document.body.classList.remove(className);
+        }
+      });
+
+      document.body.classList.add(`page-${handler}`);
     }
 }
 

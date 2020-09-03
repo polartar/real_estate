@@ -3,62 +3,120 @@
 
 .page-home {
 
-  .title {
-    font-size: 21px;
+  .home-hero {
+    background-color: #131414;
   }
 
   .hero {
-    position: relative;
-    background-image: url('/assets/images/home-hero.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color: #ccc;
-    background-blend-mode: multiply;
-    width: 100%;
-    height: 271px;
-
-    @include for-size(tablet-portrait-up) {
-      height: 320px;
-    }
+    display: flex;
+    flex-direction: column;
+    background-color: #131414;
+    padding: 80px 0;
+    align-items: center;
 
     @include for-size(desktop-up) {
-      height: 640px;
+      flex-direction: row;
+      padding: 105px 0;
     }
 
-    .cta {
-      position: absolute;
-      bottom: 4rem;
-      left: 3rem;
-      max-width: 740px;
+    .hero-child {
+      position: relative;
+      max-width: 540px;
+      max-height: 540px;
 
-      h1 {
-        color: white;
-        font-size: $font-size * 2;
+      &.info {
+        max-width: none;
+        max-height: none;
+        width: 100%;
+        flex-grow: 1;
+        padding-top: 16px;
 
         @include for-size(desktop-up) {
-          font-size: $font-size-lg * 2;
+          width: auto;
+          padding-top: 0;
+          padding-left: 129px;
         }
       }
+    }
 
-      .subtitle {
-        color: white;
-        line-height: 1.5;
-        font-size: $font-size;
-        margin-top: 0;
-      }
+    .market-tab {
+      font-size: 20px;
+      color: $color-text-light;
+      font-weight: normal;
+      padding: 16px 14px;
+      margin-bottom: -3px;
 
-      .light {
-        background-color: white;
-        height: 40px;
-        color: $color-primary;
-        font-weight: bold;
-        text-transform: uppercase;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
+      &:hover {
+        color: $bg-dark;
+        background: $color-text-light;
+
+        & ~ .home-search-wrapper {
+          input {
+            background-color: $color-text-light;
+          }
+
+          svg * {
+            fill: $bg-dark;
+          }
+        }
       }
     }
   }
+
+  .home-search-wrapper {
+    position: relative;
+
+    &:hover {
+      .home-search {
+        color: $bg-dark;
+        background-color: $color-text-light;
+      }
+
+      svg * {
+        fill: $bg-dark;
+      }
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+ .home-search {
+    flex: 1;
+    width: 100%;
+    height: 55px;
+    border: solid 2px $color-text-light;
+    background-color: #131414;
+    margin-top: 0px;
+    padding-left: 66px;
+    font-size: 18px;
+    color: $color-text-light;
+
+    @include for-size(desktop-up) {
+      margin-bottom: 100px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .static-button {
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    text-transform: none;
+
+    @include for-size(desktop-up) {
+      width: 190px;
+    }
+  }
+
 
   .search-dark {
     background-color: $color-primary;
@@ -75,21 +133,25 @@
   .home-about-wrapper {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
 
-    @include for-size('desktop-up') {
+    @include for-size(desktop-up) {
       flex-direction: row-reverse;
       align-items: center;
     }
 
-    .video {
+    .phone {
       position: relative;
-      width: 100%;
-      margin-bottom: 50px;
+      width: 192px;
+      margin: 0 auto 50px;
+      text-align: center;
+
+      @include for-size(tablet-portrait-up) {
+        width: 100%;
+      }
 
       @include for-size(desktop-up) {
         width: 640px;
-        height: 360px;
         margin-bottom: 0;
       }
     }
@@ -107,10 +169,15 @@
       }
 
       h2 {
-        font-size: 32px;
+        font-family: 'Proxima Nova W01 Extrabold';
+        font-size: 28px;
         padding-bottom: 1rem;
         text-transform: none;
         margin: 0;
+      }
+
+      p {
+        font-family: 'Proxima Nova W01 Regular';
       }
     }
   }
@@ -235,5 +302,156 @@
         }
       }
     }
+  }
+
+  .markets-grid {
+    padding: 0 12px;
+    margin: 24px 0 50px;
+
+    @include for-size(tablet-portrait-up) {
+      /* Grid Fallback */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      justify-items: center;
+      margin: 80px 0 80px;
+    }
+
+  }
+
+  .module {
+    background: #eaeaea;
+    display: block;
+    margin: 0 auto 24px;
+    min-height: 368px;
+    max-width: 296px;
+    width: 100%;
+
+    @include for-size(custom-up, 340) {
+      max-width: 325px;
+    }
+
+    @include for-size(tablet-portrait-up) {
+      display: flex;
+      justify-content: center;
+      width: 325px;
+      height: 368px;
+      max-width: 325px;
+
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-bottom: 200px;
+      flex: 1 1 325px;
+    }
+  }
+
+  .markets-card {
+    position: relative;
+    overflow: hidden;
+    height: 529px;
+    box-shadow: 1px 1px 12px 0 rgba(92, 92, 92, 0.5);
+    background-color: #ffffff;
+
+    @include for-size(tablet-portrait-up) {
+      max-width: 325px;
+      height: 529px;
+    }
+
+    .markets-description {
+      padding: 0 14px;
+
+      p {
+        font-family: 'Proxima Nova W01 Regular';
+      }
+    }
+
+    .markets-title {
+      font-family: 'Proxima Nova W01 Extrabold';
+      width: 100%;
+      font-size: 20px;
+      font-weight: 800;
+      text-transform: none;
+
+      @include for-size(desktop-up) {
+        font-size: 24px;
+        font-weight: 800;
+        bottom: 20px;
+        text-transform: none;
+      }
+    }
+
+    .markets-feature-image {
+      max-width: 325px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .learn-more {
+      font-weight: 900;
+    }
+  }
+
+  .agent-cta {
+    margin-top: 40px;
+
+    @include for-size(custom-up, 320) {
+      background-size: 320px auto;
+    }
+
+    @include for-size(desktop-up) {
+      display: flex;
+      align-items: center;
+      margin: 100px 0;
+      min-height: 839px;
+    }
+
+    .cta-wrapper {
+      @include for-size(desktop-up) {
+        display: flex;
+      }
+    }
+
+    .hexagons {
+      flex-grow: 1;
+      text-align: center;
+
+      @include for-size(desktop-up) {
+        text-align: left;
+      }
+    }
+
+    .cta {
+      text-align: left;
+      align-self: center;
+
+      @include for-size(desktop-up) {
+        max-width: 513px;
+      }
+    }
+
+    .mobile-only {
+      @include for-size(desktop-up) {
+        display: none;
+      }
+    }
+
+    .desktop-only {
+      display: none;
+
+      @include for-size(desktop-up) {
+        display: block;
+      }
+    }
+  }
+
+  .arrow-right {
+    transform: rotate(180deg);
+    vertical-align: middle;
+    padding-right: 5px;
+  }
+
+  h2, h3, h4 {
+    text-transform: none;
   }
 }

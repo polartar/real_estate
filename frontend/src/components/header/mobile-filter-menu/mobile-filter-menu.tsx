@@ -20,12 +20,16 @@ export class AppMenu {
   getMenu() {
     return (
       <ion-list mode="md">
+        <ion-item button mode="md" detail detailIcon="md-arrow-dropright" onClick={() => this.display = 'market'}>
+          Market
+        </ion-item>
+
         <ion-item button mode="md" detail detailIcon="md-arrow-dropright" onClick={() => this.display = 'locations'}>
           Locations
         </ion-item>
 
         <ion-item button mode="md" detail detailIcon="md-arrow-dropright" onClick={() => this.display = 'time'}>
-          Time
+          Move In Date
         </ion-item>
 
         <ion-item button mode="md" detail detailIcon="md-arrow-dropright" onClick={() => this.display = 'price'}>
@@ -44,6 +48,14 @@ export class AppMenu {
           Search
         </ion-item>
       </ion-list>
+    )
+  }
+
+  getMarket() {
+    return (
+      <div class="center-content">
+        <market-filter />
+      </div>
     )
   }
 
@@ -128,6 +140,11 @@ export class AppMenu {
     let className = `mobile-filter-menu ${this.display}`;
 
     switch (this.display) {
+      case 'market':
+        title = 'Market';
+        content = this.getMarket();
+      break;
+
       case 'locations':
         title = 'Locations';
         content = this.getLocations();
@@ -139,7 +156,7 @@ export class AppMenu {
       break;
 
       case 'time':
-        title = 'Time';
+        title = 'Move In Date';
         content = this.getTime();
       break;
 

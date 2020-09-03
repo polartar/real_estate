@@ -4,16 +4,12 @@
   .columns {
 
     @include for-size(desktop-up) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+
       padding-top: 25px;
     }
 
     &.columns-mobile {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      padding-top: 0px;
     }
   }
 
@@ -23,6 +19,14 @@
     &.submit {
       margin-top: 8px;
     }
+  }
+
+  .markets {
+    width: 100%;
+    margin-bottom: 12px;
+    height: 135px;
+    overflow: hidden;
+    padding: 10px;
   }
 
   .desktop-center {
@@ -58,4 +62,56 @@
       }
     }
   }
+
+  .apt212-radio__button {
+    height: 10px;
+    margin-right: 10px;
+    width: 1.1em;
+    height: 1.1em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .apt212-radio__button:checked {
+    background-color: #131414;
+  }
+
+  .apt212-radio {
+    display:block;
+    margin:15px auto;
+  }
+
+  .apt212-radio, .choose-message-caption {
+    margin-right: 20px;
+  }
+
+  .radiobuttons-container {
+      column-count: 3;
+      width: 250px;
+
+      @include for-size(tablet-portrait-up) {
+        width: 400px;
+      }
+  }
+
+  label.apt212-radio {
+    display:inline-block;
+    width: 200px;
+  }
+
+  .apt212-radio__label {
+    line-height: 20px;
+    vertical-align: middle;
+  }
+
+  .interest {
+    margin-bottom: 0;
+  }
+
+
 }

@@ -295,6 +295,14 @@ $state-height-desktop: calc(100vh - (#{$search-filters-desktop-height} + #{$head
         }
       }
     }
+
+    ion-infinite-scroll {
+      display: none;
+
+      @include for-size(desktop-up) {
+        display: block;
+      }
+    }
   }
 
   .search-footer {
@@ -346,7 +354,7 @@ $state-height-desktop: calc(100vh - (#{$search-filters-desktop-height} + #{$head
 
       @include for-size(desktop-up) {
         .footer-wrapper {
-          max-height: 520px;
+          max-height: 620px;
         }
       }
     }

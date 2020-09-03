@@ -109,7 +109,7 @@ button {
 
 html {
   font-size: $font-size; /* standard rem */
-  font-family: proxima-nova, sans-serif;
+  font-family: $font-default;
   color: $color-text-dark;
 }
 
@@ -121,7 +121,7 @@ h1 {
 
 h2, h3, h4 {
   font-family: $font-title;
-  font-weight: 600;
+  font-weight: 800;
   text-transform: uppercase;
 
   &.h1 {
@@ -208,10 +208,11 @@ h2, h3, h4 {
 .section {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 3rem 0 3rem;
+  padding: 0 12px;
+  width: 100%;
 
-  @include for-size(phone-only) {
-    padding: 0 1rem;
+  @include for-size(tablet-portrait-up) {
+    padding: 0 3rem 0 3rem;
   }
 
   &.full {
@@ -231,8 +232,7 @@ h2, h3, h4 {
   }
 }
 
-app-header, app-menu {
-  position: sticky;
+app-header, app-header-home, app-menu {
   top: 0;
   background-color: white;
   z-index: 999;
@@ -351,11 +351,12 @@ ion-footer.no-footer-border {
 }
 
 
-.ask-question-modal {
+.ask-question-modal,
+.site-menu {
   .modal-wrapper {
     @include for-size(desktop-up) {
-      --width: 1255px;
-      --height: 694px;
+      --width: 500px;
+      --height: 800px;
       --max-height: 100%;
       --max-width: 100%;
     }
@@ -425,5 +426,12 @@ table.data-table {
         display: none;
       }
     }
+  }
+}
+
+// hide Olark on specific pages
+.page-listing {
+  #olark-wrapper {
+    display: none;
   }
 }

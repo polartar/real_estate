@@ -1,8 +1,9 @@
 import { Component, h, Prop } from '@stencil/core';
-import { Store } from '@stencil/redux';
+import { Store, Action } from '@stencil/redux';
 import taxonomySelectors from '../../../../store/selectors/taxonomy';
 import { formatMoney } from '../../../../helpers/utils';
 import { getBedsListingText } from '../../../../helpers/filters';
+import { removeFromWishlist } from '../../../../store/actions/wishlist';
 
 @Component({
   tag: 'wishlist-card',
@@ -11,6 +12,8 @@ import { getBedsListingText } from '../../../../helpers/filters';
 export class WishlistCard {
   @Prop({ context: "store" }) store: Store;
   @Prop() item!: any;
+
+  removeFromWishlist: Action;
 
   neighborhoods: any[] = [];
   bedroomTypes: any[] = [];
@@ -24,11 +27,19 @@ export class WishlistCard {
         buildingTypes: taxonomySelectors.getBuildingTypes(state),
       };
     });
+
+    this.store.mapDispatchToProps(this, {
+      removeFromWishlist
+    });
   }
 
   getImageURL() {
     console.log(this.item.images);
     return this.item.images.length ? this.item.images[0].medium : '/assets/images/placeholder/apt1.jpeg';
+  }
+
+  removeWishlist() {
+    this.removeFromWishlist([this.item.id]);
   }
 
   render() {
@@ -108,6 +119,10 @@ export class WishlistCard {
 
             <ion-router-link class="button-dark view-apt" href={this.item.url_path}>
               VIEW APARTMENT
+            </ion-router-link>
+
+            <ion-router-link class="button-dark view-apt" onClick={() => this.removeWishlist()}>
+              REMOVE FROM WISHLIST
             </ion-router-link>
         </div>
       </div>

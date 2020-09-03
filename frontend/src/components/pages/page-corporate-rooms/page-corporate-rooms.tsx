@@ -104,9 +104,8 @@ export class PageCorporateRooms {
 
 
     return [
-      <app-header />,
-
       <ion-content class="page-corporate-rooms">
+        <app-header />
 
         <div class="hero">
           <lazy-image src="/assets/images/corporate-rooms/corporate-hero-full.jpg" class="hero-bg" alt="premium corporate housing" />

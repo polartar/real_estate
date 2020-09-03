@@ -18,23 +18,27 @@ class RouterServiceInstance {
     const routeMap = {
       booking: '/booking',
       'corporate-rooms': '/corporate-housing',
+      'brokers': '/brokers',
       'faq': '/faq',
       'neighborhoods': '/nyc-neighborhoods',
       'privacy': '/privacy-policy',
       'private-rooms': '/rooms-for-rent',
       'referral': '/referral',
-      'search': '/search-apartments'
+      'search': '/search-apartments',
+      'blog': 'http://apt212-blog.asuscomm.com/'
     };
 
-    let path = routeMap.hasOwnProperty(name) ? routeMap[name] : '/';
+    let path: any = routeMap.hasOwnProperty(name) ? routeMap[name] : false;
 
-    if (params && Object.keys(params).length) {
-      const queryString = this.serializeQuery(params);
+    if (path !== false) {
+      if (params && Object.keys(params).length) {
+        const queryString = this.serializeQuery(params);
 
-      path += `?${queryString}`;
+        path += `?${queryString}`;
+      }
     }
 
-    return path;
+    return path ? path : name;
   }
 
   serializeQuery = (params, prefix?) => {

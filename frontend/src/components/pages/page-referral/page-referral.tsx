@@ -8,8 +8,10 @@ import { RouterService } from '../../../services/router.service';
 export class PageReferral {
   render() {
     return [
-      <app-header />,
-        <ion-content class="page-referral">
+        <ion-content>
+          <app-header />
+
+          <div class="page-referral">
 
           <section class="section hero">
                 <div class="cta">
@@ -39,6 +41,8 @@ export class PageReferral {
                 </div>
 
           </section>
+
+          </div>
 
           <app-footer />
         </ion-content>
