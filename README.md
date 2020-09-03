@@ -109,3 +109,23 @@ To see a list of scripts, execute `php artisan list` from the root of the applic
 - apt212:map_imported_listings  Create csv mapping between original webId and new webId for imported listings
 - apt212:regenerateMarkers      Regenerate map markers for all apartments
 - apt212:setApartmentRates      Sets all apartment rates based on the current month and next available date
+
+## Coding Standards
+
+#### File Structure
+
+- One component per file.
+- One component per directory. Though it may make sense to group similar components into the same directory, we've found it's easier to document components when each one has its own directory.
+- Implementation (.tsx) and styles (.scss) of a component should live in the same directory.
+- All styles should be scoped to the component and included in the components style definition .scss). No styles are allowed within the component (.tsx) definition. 
+
+#### Third-Party Scripts
+
+- This application was originally designed for optimal performance. Generally speaking, third-party scripts and resources should be  avoided. If a script or service is deemed absolutely necessary, it should be asynchronously loaded via the Script Loader service provided by the application.
+- All UI development should be done within the StencilJS ecosystem. No additional UI libraries (e.g. jquery) are necessary or permitted.
+
+#### Assets
+
+- All images and videos should be properly compressed and encoded for the web prior to being added to the site.
+- Image assets should generally be lazy loaded via the `<lazy-image>` component.
+- Video assets should be off-loaded to a third-party streaming service.
