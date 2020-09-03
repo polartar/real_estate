@@ -92,3 +92,16 @@ Now any component in the project can access the variables by importing the confi
     import { EnvironmentConfigService } from '../../services/environment/environment-config.service';
 
     const API_URL = EnvironmentConfigService.getInstance().get('API_URL');
+    
+## Artisan Scripts
+
+The application includes a handful of artisan scripts used for everything from clearing stale images to mapping and important listings from a CSV file. To see a list of scripts, executve `php artisan list` from the root of the application. To execute a script, run `php artisan apt212:scriptname`. 
+
+  apt212:MapNeighborhoods       Maps all apartment listing neighborhoods
+  apt212:clearOldImages         Deletes uploaded images that are unattached after 24hrs
+  apt212:listing_import         Import listings from the old mongodb dump
+  apt212:map_imported_listings  Create csv mapping between original webId and new webId for imported listings
+  apt212:regenerateMarkers      Regenerate map markers for all apartments
+  apt212:setApartmentRates      Sets all apartment rates based on the current month and next available date
+
+
