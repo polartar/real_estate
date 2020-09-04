@@ -138,7 +138,7 @@ import { APISearchService } from '../../../services/api/search';
     render() {
       return [
         <ion-content>
-          <app-header />
+          <app-header-home />
             <div class="page-faq">
 
             <div class="hero">
