@@ -3,6 +3,7 @@ import { Store, Action } from '@stencil/redux';
 import authSelectors from '../../../store/selectors/auth';
 import { logout } from '../../../store/actions/auth';
 import { RouterService } from '../../../services/router.service';
+import { ModalService } from '../../../services/modal.service';
 
 @Component({
   tag: 'app-menu-mobile',
@@ -95,13 +96,10 @@ export class AppMenu {
             <ion-router-link class="right" href={ RouterService.getRoute('blog') } onClick={() => this.closeMenu()}>
               APT212 Blog
             </ion-router-link>
-            {
-              this.isLoggedIn ?
-                <ion-router-link class="right" href="/" onClick={() => { this.logout(); this.closeMenu(); }}>
-                  Log Out
-                </ion-router-link>
-              : null
-            }
+
+            <ion-button aria-label="Speak to an expert" class="call button-light" onClick={() => ModalService.contactUs()}>
+              Contact Us
+            </ion-button>
 
           </div>
         </div>
