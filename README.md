@@ -55,6 +55,10 @@ Node version: 10.16.1
 
 Copy the `/frontend/config.app.json.example` to `/frontend/config.app.json` and add/update the required variables
 
+## MySQL Version
+
+This application requires MySQL 5.7 or higher.
+
 ## Production Build
 
     cd frontend
