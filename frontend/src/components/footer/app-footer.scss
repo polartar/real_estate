@@ -33,7 +33,7 @@
       padding-top: 60px;
 
       @include for-size(desktop-up) {
-        padding-top: 80px;
+        padding-top: 56px;
       }
     }
 
@@ -48,7 +48,7 @@
   }
 
   .hr {
-    border-top: 2px solid $color-text-light;
+    border-top: 3px solid $color-text-light;
     padding-bottom: 16px;
 
     @include for-size(desktop-up) {
@@ -85,10 +85,10 @@
       color: $color-text-light;
       text-transform: capitalize;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 16px;
 
       &.skinny {
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 400;
         padding: 0.65rem 0;
 
@@ -99,9 +99,11 @@
 
       &.explore-more {
         padding-top: 16px;
+        padding-bottom: 25px;
 
         @include for-size(tablet-portrait-up) {
           display: none;
+          padding-bottom: 0px;
         }
 
         .expand-indicator {
@@ -143,7 +145,6 @@
     form.dark {
 
       &:first-child {
-        padding-top: 32px;
 
         @include for-size(desktop-up) {
           padding-bottom: 16px;
@@ -158,10 +159,11 @@
         background-color: $bg-dark;
         font-size: 14px;
         margin-top: 0;
+        margin-bottom: 15px;
 
         @include for-size(desktop-up) {
-          margin-top: 16px;
-          font-size: 18px;
+          font-size: 14px;
+          margin-bottom: 0px;
         }
 
         &:focus {
@@ -187,17 +189,11 @@
         height: 55px;
         width: 75px;
         padding: 0;
-        
+
 
         @include for-size(desktop-up) {
           font-size: 16px;
-          width: 96px;
-        }
-      }
-
-      button.submit-inline {
-        @include for-size(desktop-up) {
-          margin-top: 16px;
+          width: 58px;
         }
       }
 
@@ -226,7 +222,7 @@
   }
 
   .logo {
-    height: 32px;
+    height: 26px;
   }
 
   .copyright {
@@ -234,7 +230,7 @@
 
     .lpny {
       display: block;
-      height: 26px;
+      height: 25px;
       margin-top: 8px;
 
       @include for-size(desktop-up) {
@@ -252,23 +248,24 @@
 
     @include for-size(desktop-up) {
       margin-bottom: 16px;
+      padding-left: 140px;
     }
 
     lazy-image {
-      width: 27px;
-      height: 27px;
+      width: 26px;
+      height: 26px;
 
       @include for-size(desktop-up) {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
       }
 
       &.rebny {
         width: auto;
 
         @include for-size(desktop-up) {
-          width: 122px;
-          height: 44px;
+          width: 78px;
+          height: 28px;
         }
       }
     }
@@ -276,6 +273,11 @@
 
   .align-bottom {
     display: flex;
+    max-height: 30px;
+
+    @include for-size(tablet-portrait-up) {
+      max-height: auto;
+    }
   }
 }
 

@@ -76,14 +76,6 @@ export class AppFooter {
               </div>
             </div>
             <div class="footer-col footer-right">
-              <form onSubmit={e => this.handleSubmit(e)} novalidate class="dark">
-                <p>Sign up for offers, updates, and more</p>
-                <div class="input">
-                  <label htmlFor="signup-email" class="sr-only">Email</label>
-                  <input type="email" name="email" placeholder="Email Address" id="signup-email" class="block" autocomplete="off" />
-                  <input type="submit" value="Sign Up" class="submit-inline" />
-                </div>
-              </form>
 
               <form onSubmit={e => this.handleWebIDSearch(e)} novalidate class="dark">
                 <div class="input">
