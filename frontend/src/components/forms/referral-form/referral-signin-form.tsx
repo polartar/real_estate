@@ -6,7 +6,7 @@ import { ToastService } from "../../../services/toast.service";
 import { APIBookingService } from "../../../services/api/booking";
 import { RouterService } from "../../../services/router.service";
 @Component({
-  tag: "referral-form",
+  tag: "referral-signin-form",
   styleUrl: "referral-form.scss",
 })
 export class ReferralForm {
@@ -41,7 +41,7 @@ export class ReferralForm {
   checkErrors(results) {
     const errors = [];
 
-    let required = ["email", "name", "password", "confPassword"];
+    let required = ["email", "password"];
 
     required.forEach((r) => {
       if (!results[r]) {
@@ -51,7 +51,7 @@ export class ReferralForm {
     if (results.email && !Isemail.validate(results.email)) {
       errors.push("email");
     }
-    if (results.password !== results.confPassword) errors.push("confPassword");
+
     this.errors = errors;
   }
 
@@ -63,14 +63,14 @@ export class ReferralForm {
         ref={(el) => (this.form = el as HTMLFormElement)}
       >
         <div class={{ "form-content": true, submitted: this.submitted }}>
-          <div class="title">Sign Up to Submit Your Referal</div>
+          <div class="title">Sign In</div>
           <div class="subtitle">
-            <span class="grey">Already have an account? </span>
+            <span class="grey">New User? </span>{" "}
             <ion-router-link
-              href={RouterService.getRoute("referral/signin")}
+              href={RouterService.getRoute("referral")}
               class="white"
             >
-              Sign In
+              Sign Up
             </ion-router-link>
           </div>
           <div
@@ -88,20 +88,6 @@ export class ReferralForm {
               name="email"
             />
           </div>
-          <div
-            class={{
-              input: true,
-              error: this.errors.includes("name"),
-            }}
-          >
-            <div class="label">Name</div>
-            <input
-              id="name"
-              type="text"
-              class="apt212-input block"
-              name="name"
-            />
-          </div>
 
           <div
             class={{
@@ -110,7 +96,6 @@ export class ReferralForm {
             }}
           >
             <div class="label">Password</div>
-
             <input
               id="password"
               type="password"
@@ -118,38 +103,18 @@ export class ReferralForm {
               name="password"
             />
           </div>
-          <div
-            class={{
-              input: true,
-              error: this.errors.includes("confPassword"),
-            }}
-          >
-            <div class="label">Confirm Password</div>
+          <div class="label">
+            <span class="grey">Forgot Password? </span>
+            <ion-router-link
+              href={RouterService.getRoute("referral")}
+              class="white"
+            >
+              Restore
+            </ion-router-link>
+          </div>
 
-            <input
-              id="confPassword"
-              type="password"
-              class="apt212-input block"
-              name="confPassword"
-            />
-          </div>
-          <div class="label ">
-            <label class="agreesection">
-              {" "}
-              <input type="checkbox" name="agree"></input>
-              <span class="grey">
-                Creating an account means you're okay with our&nbsp;{" "}
-              </span>
-              <ion-router-link
-                href={RouterService.getRoute("privacy")}
-                class="white"
-              >
-                Terms and Conditions
-              </ion-router-link>
-            </label>
-          </div>
           <div class="input">
-            <input type="submit" class="button-dark block" value="Continue" />
+            <input type="submit" class="button-dark block" value="Sign In" />
           </div>
         </div>
 

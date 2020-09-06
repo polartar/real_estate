@@ -4,14 +4,11 @@
 .page-referral {
   .hero {
     width: 100%;
-    min-height: 1000px;
-    margin-bottom: -80px;
+    min-height: 741px;
 
     background-repeat: no-repeat;
     background-size: cover;
-
-    padding-top: 140px;
-    padding-bottom: 300px;
+    margin-bottom: 80px;
     color: #f5f5f7;
 
     @include for-size(desktop-up) {
@@ -20,9 +17,11 @@
     }
     .right-body {
       background: black;
+      padding-top: 50px;
       display: flex;
       justify-content: center;
     }
+
     .left-body {
       background-image: url("/assets/images/referral_background.jpg");
       padding: 80px 107px 0px 170px;

@@ -134,6 +134,7 @@ export class AppRoot {
           <ion-route url="/about" component="page-about" />
           <ion-route url="/referral" component="page-referral" />
           <ion-route url="/referral/submit" component="page-referral-submit" />
+          <ion-route url="/referral/signin" component="page-referral-signin" />
 
           <ion-route url="/login" component="page-login" />
 
