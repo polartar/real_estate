@@ -153,7 +153,7 @@ export class ReferralForm {
           </div>
         </div>
 
-        {this.submitted ? (
+        {/* {this.submitted ? (
           <div class="thank-you-msg flex-vertical-center text-center">
             <div>
               <p>
@@ -164,7 +164,7 @@ export class ReferralForm {
               <ion-icon name="md-checkmark" />
             </div>
           </div>
-        ) : null}
+        ) : null} */}
       </form>
     );
   }

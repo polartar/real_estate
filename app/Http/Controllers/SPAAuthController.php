@@ -36,9 +36,7 @@ class SPAAuthController extends AccessTokenController
         $parsedBody['grant_type'] = 'password';
         $parsedBody['client_id'] = $client_id;
         $parsedBody['client_secret'] = $client_secret;
-
-        // dd($parsedBody);
-
+         
         return parent::issueToken($request->withParsedBody($parsedBody));
     }
 

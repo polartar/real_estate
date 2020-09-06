@@ -120,11 +120,14 @@ class APIBookingInstance {
   }
   public async signupReferer(data) {
     try {
-      const response = await fetch(`${APIService.getAPIUrl()}/signup/referer`, {
-        method: "POST",
-        headers: APIService.getHeaders(),
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${APIService.getAPIUrl()}/booking/referral/signup`,
+        {
+          method: "POST",
+          headers: APIService.getHeaders(),
+          body: JSON.stringify(data),
+        }
+      );
 
       const r = await response.json();
 
