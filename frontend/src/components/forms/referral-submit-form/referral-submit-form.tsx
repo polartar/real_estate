@@ -4,12 +4,12 @@ import Isemail from "isemail";
 import { LoadingService } from "../../../services/loading.service";
 import { ToastService } from "../../../services/toast.service";
 import { APIBookingService } from "../../../services/api/booking";
-import { RouterService } from "../../../services/router.service";
+
 @Component({
-  tag: "referral-form",
+  tag: "referral-submit-form",
   styleUrl: "referral-form.scss",
 })
-export class ReferralForm {
+export class ReferralSubmitForm {
   @State() submitted: boolean = false;
   @State() errors: string[] = [];
 
@@ -17,10 +17,11 @@ export class ReferralForm {
 
   async handleSubmit(e) {
     e.preventDefault();
-    RouterService.forward("/referral/submit");
+
     const results = serialize(this.form, { hash: true, empty: true });
+
     this.checkErrors(results);
-    console.log(this.errors);
+
     if (this.errors.length) {
       return;
     }
@@ -28,7 +29,7 @@ export class ReferralForm {
     await LoadingService.showLoading();
 
     try {
-      await APIBookingService.signupReferer(results);
+      await APIBookingService.sendReferral(results);
 
       this.submitted = true;
     } catch (err) {
@@ -41,17 +42,18 @@ export class ReferralForm {
   checkErrors(results) {
     const errors = [];
 
-    let required = ["email", "name", "password", "confPassword"];
+    let required = ["referral_phone", "referral_name", "referral_email"];
 
     required.forEach((r) => {
       if (!results[r]) {
         errors.push(r);
       }
     });
-    if (results.email && !Isemail.validate(results.email)) {
-      errors.push("email");
+
+    if (results.referral_email && !Isemail.validate(results.referral_email)) {
+      errors.push("referral_email");
     }
-    if (results.password !== results.confPassword) errors.push("confPassword");
+
     this.errors = errors;
   }
 
@@ -63,77 +65,84 @@ export class ReferralForm {
         ref={(el) => (this.form = el as HTMLFormElement)}
       >
         <div class={{ "form-content": true, submitted: this.submitted }}>
-          <div class="title">Sign Up to Submit Your Referal</div>
-          <div class="subtitle">
-            <span class="grey">Already have an account? </span>Sign In
-          </div>
+          <div class="title">Complete Your Referral</div>
           <div
             class={{
               input: true,
-              error: this.errors.includes("email"),
+              error: this.errors.includes("referral_name"),
             }}
           >
-            <div class="label">Email Address</div>
-
+            <div class="label">Referral Name</div>
             <input
-              id="email"
-              type="email"
-              class="apt212-input block"
-              name="email"
-            />
-          </div>
-          <div
-            class={{
-              input: true,
-              error: this.errors.includes("name"),
-            }}
-          >
-            <div class="label">Name</div>
-            <input
-              id="name"
+              id="referral_name"
               type="text"
               class="apt212-input block"
-              name="name"
+              name="referral_name"
             />
           </div>
 
           <div
             class={{
               input: true,
-              error: this.errors.includes("password"),
+              error: this.errors.includes("referral_phone"),
             }}
           >
-            <label htmlFor="referral-name" class="sr-only">
-              Password
-            </label>
+            <div class="label">Referral Phone Number</div>
 
             <input
-              id="password"
-              type="password"
+              id="referral-phone"
+              type="text"
               class="apt212-input block"
-              name="password"
+              name="referral_phone"
+            />
+          </div>
+
+          <div
+            class={{
+              input: true,
+              error: this.errors.includes("referral_email"),
+            }}
+          >
+            <div class="label">Referral Email Address</div>
+
+            <input
+              id="referrer-email"
+              type="email"
+              class="apt212-input block"
+              name="referrer_email"
             />
           </div>
           <div
             class={{
               input: true,
-              error: this.errors.includes("confPassword"),
+              error: this.errors.includes("referral_details"),
             }}
           >
-            <label htmlFor="referral-name" class="sr-only">
-              Password
-            </label>
+            <div class="label">Referral by Agent</div>
 
             <input
-              id="confPassword"
-              type="password"
+              id="referral-details"
+              type="text"
               class="apt212-input block"
-              name="confPassword"
+              name="referral_details"
+            />
+          </div>
+          <div
+            class={{
+              input: true,
+              error: this.errors.includes("referral_details"),
+            }}
+          >
+            <div class="label">Referral Details</div>
+            <textarea
+              id="referral-details"
+              class="apt212-input block"
+              name="referral_details"
             />
           </div>
 
           <div class="input">
-            <input type="submit" class="button-dark block" value="SUBMIT" />
+            <input type="submit" class="button-dark block" value="Submit" />
           </div>
         </div>
 

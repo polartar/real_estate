@@ -2,10 +2,10 @@ import { Component, h } from "@stencil/core";
 import { RouterService } from "../../../services/router.service";
 
 @Component({
-  tag: "page-referral",
+  tag: "page-referral-submit",
   styleUrl: "page-referral.scss",
 })
-export class PageReferral {
+export class PageReferralSubmit {
   render() {
     return [
       <ion-content>
@@ -39,7 +39,7 @@ export class PageReferral {
 
             <div class="right-body">
               <div class="form">
-                <referral-form />
+                <referral-submit-form />
               </div>
             </div>
           </section>

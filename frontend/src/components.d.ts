@@ -307,6 +307,7 @@ export namespace Components {
     'prefetching': boolean;
   }
   interface PageReferral {}
+  interface PageReferralSubmit {}
   interface PageSearch {
     'location': any;
     'neighborhoods': any;
@@ -319,6 +320,7 @@ export namespace Components {
     'inModal': boolean;
   }
   interface ReferralForm {}
+  interface ReferralSubmitForm {}
   interface SearchFilters {
     'closeable': boolean;
   }
@@ -954,6 +956,12 @@ declare global {
     new (): HTMLPageReferralElement;
   };
 
+  interface HTMLPageReferralSubmitElement extends Components.PageReferralSubmit, HTMLStencilElement {}
+  var HTMLPageReferralSubmitElement: {
+    prototype: HTMLPageReferralSubmitElement;
+    new (): HTMLPageReferralSubmitElement;
+  };
+
   interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
   var HTMLPageSearchElement: {
     prototype: HTMLPageSearchElement;
@@ -976,6 +984,12 @@ declare global {
   var HTMLReferralFormElement: {
     prototype: HTMLReferralFormElement;
     new (): HTMLReferralFormElement;
+  };
+
+  interface HTMLReferralSubmitFormElement extends Components.ReferralSubmitForm, HTMLStencilElement {}
+  var HTMLReferralSubmitFormElement: {
+    prototype: HTMLReferralSubmitFormElement;
+    new (): HTMLReferralSubmitFormElement;
   };
 
   interface HTMLSearchFiltersElement extends Components.SearchFilters, HTMLStencilElement {}
@@ -1145,10 +1159,12 @@ declare global {
     'page-privacy': HTMLPagePrivacyElement;
     'page-private-rooms': HTMLPagePrivateRoomsElement;
     'page-referral': HTMLPageReferralElement;
+    'page-referral-submit': HTMLPageReferralSubmitElement;
     'page-search': HTMLPageSearchElement;
     'page-wishlist': HTMLPageWishlistElement;
     'price-filter': HTMLPriceFilterElement;
     'referral-form': HTMLReferralFormElement;
+    'referral-submit-form': HTMLReferralSubmitFormElement;
     'search-filters': HTMLSearchFiltersElement;
     'search-listing-card': HTMLSearchListingCardElement;
     'search-map': HTMLSearchMapElement;
@@ -1456,6 +1472,7 @@ declare namespace LocalJSX {
     'prefetching'?: boolean;
   }
   interface PageReferral extends JSXBase.HTMLAttributes<HTMLPageReferralElement> {}
+  interface PageReferralSubmit extends JSXBase.HTMLAttributes<HTMLPageReferralSubmitElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
@@ -1468,6 +1485,7 @@ declare namespace LocalJSX {
     'inModal'?: boolean;
   }
   interface ReferralForm extends JSXBase.HTMLAttributes<HTMLReferralFormElement> {}
+  interface ReferralSubmitForm extends JSXBase.HTMLAttributes<HTMLReferralSubmitFormElement> {}
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {
     'closeable'?: boolean;
   }
@@ -1622,10 +1640,12 @@ declare namespace LocalJSX {
     'page-privacy': PagePrivacy;
     'page-private-rooms': PagePrivateRooms;
     'page-referral': PageReferral;
+    'page-referral-submit': PageReferralSubmit;
     'page-search': PageSearch;
     'page-wishlist': PageWishlist;
     'price-filter': PriceFilter;
     'referral-form': ReferralForm;
+    'referral-submit-form': ReferralSubmitForm;
     'search-filters': SearchFilters;
     'search-listing-card': SearchListingCard;
     'search-map': SearchMap;
