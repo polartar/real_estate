@@ -3,6 +3,7 @@ import { Store, Action } from '@stencil/redux';
 import authSelectors from '../../../store/selectors/auth';
 import { logout } from '../../../store/actions/auth';
 import { RouterService } from '../../../services/router.service';
+import { ModalService } from '../../../services/modal.service';
 
 @Component({
   tag: 'app-menu-mobile',
@@ -44,7 +45,7 @@ export class AppMenu {
     return [
         <div class="app-menu-mobile">
 
-          <div class="main-menu">
+          <div class="main-menu left">
             <ion-router-link href={ RouterService.getRoute('search') } onClick={() => this.closeMenu()}>
               Furnished Apartments
             </ion-router-link>
@@ -60,60 +61,45 @@ export class AppMenu {
             <ion-router-link href="/coming-soon" onClick={() => this.closeMenu()}>
               Investments
             </ion-router-link>
+          </div>
 
-            <div class="separator" />
+          <div class="main-menu right">
 
-            <ion-router-link href={ RouterService.getRoute('referral') } onClick={() => this.closeMenu()}>
+            <ion-router-link class="right" href={ RouterService.getRoute('referral') } onClick={() => this.closeMenu()}>
               Referrals
             </ion-router-link>
 
-            <ion-router-link href="/coming-soon" onClick={() => this.closeMenu()}>
+            <ion-router-link class="right" href="/coming-soon" onClick={() => this.closeMenu()}>
               Agents
             </ion-router-link>
 
-            <ion-router-link href={ RouterService.getRoute('booking') } onClick={() => this.closeMenu()}>
+            <ion-router-link class="right" href={ RouterService.getRoute('booking') } onClick={() => this.closeMenu()}>
               Booking
             </ion-router-link>
 
-            <ion-router-link href={ RouterService.getRoute('faq') } onClick={() => this.closeMenu()}>
+            <ion-router-link class="right" href={ RouterService.getRoute('faq') } onClick={() => this.closeMenu()}>
               FAQ
             </ion-router-link>
 
-            <button class="reset expandable" onClick={() => this.expandPages = !this.expandPages }>
-              More Pages
+            <ion-router-link class="right" href={ RouterService.getRoute('neighborhoods') } onClick={() => this.closeMenu()}>
+              Neighborhoods Guide
+            </ion-router-link>
 
-              <ion-icon mode="md" name="md-arrow-dropdown" class={{ 'expand-indicator': true, 'expanded': this.expandPages }}></ion-icon>
-            </button>
-            {
-              this.expandPages ?
-              <div class="subsection">
-                  <ion-router-link href={ RouterService.getRoute('neighborhoods') } onClick={() => this.closeMenu()}>
-                    Neighborhoods Guide
-                  </ion-router-link>
+            <ion-router-link class="right" href={ RouterService.getRoute('private-rooms') } onClick={() => this.closeMenu()}>
+              Private Rooms
+            </ion-router-link>
 
-                  <ion-router-link href={ RouterService.getRoute('private-rooms') } onClick={() => this.closeMenu()}>
-                    Private Rooms
-                  </ion-router-link>
+            <ion-router-link class="right" href={ RouterService.getRoute('corporate-rooms') } onClick={() => this.closeMenu()}>
+              Corporate Accounts
+            </ion-router-link>
 
-                  <ion-router-link href={ RouterService.getRoute('corporate-rooms') } onClick={() => this.closeMenu()}>
-                    Corporate Accounts
-                  </ion-router-link>
+            <ion-router-link class="right" href={ RouterService.getRoute('blog') } onClick={() => this.closeMenu()}>
+              APT212 Blog
+            </ion-router-link>
 
-                  <ion-router-link href={ RouterService.getRoute('blog') } onClick={() => this.closeMenu()}>
-                    APT212 Blog
-                  </ion-router-link>
-              </div>
-
-              : null
-            }
-
-            {
-              this.isLoggedIn ?
-                <ion-router-link href="/" onClick={() => { this.logout(); this.closeMenu(); }}>
-                  Log Out
-                </ion-router-link>
-              : null
-            }
+            <ion-button aria-label="Speak to an expert" class="call button-light" onClick={() => ModalService.contactUs()}>
+              Contact Us
+            </ion-button>
 
           </div>
         </div>

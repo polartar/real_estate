@@ -3,18 +3,10 @@
 
 .app-menu-mobile {
 
-  .main-menu {
-    position: relative;
-    padding-top: 1rem;
-    width: 100%;
+  .menu {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    justify-items: center;
-    justify-content: center;
-    text-align: right;
-    font-size: $font-size;
+    height: 570px;
+    word-break: break-all;
 
     ion-router-link,
     button.expandable {
@@ -26,6 +18,7 @@
       border-bottom: 4px solid transparent;
       background: transparent;
       font-size: $font-size-sm;
+      color: $home-white;
 
       @include for-size(tablet-portrait-up) {
         font-size: $font-size;
@@ -42,6 +35,110 @@
         visibility: hidden;
         transform: scaleX(0);
         transition: all 0.3s ease-in-out 0s;
+      }
+
+      &:hover:after {
+        visibility: visible;
+        transform: scaleX(1);
+      }
+
+      &:last-child {
+        margin-bottom: 0.5rem;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    ion-button {
+      min-height: 48px;
+    }
+  }
+
+  .links {
+    flex: 50%;
+  }
+
+  @include for-size(tablet-portrait-up) {
+    margin-top: 160px;
+    margin: 0 auto;
+    max-width: 690px;
+  }
+
+  .main-menu {
+    position: relative;
+    width: 100%;
+    font-size: $font-size;
+    padding-left: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* CHANGED */
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    @include for-size(tablet-portrait-up) {
+      padding-top: 100px;
+      padding-left: 0px;
+    }
+
+    &.left {
+      padding-bottom: 30px;
+
+      @include for-size(tablet-portrait-up) {
+        float: left;
+        width: 30%;
+        padding-bottom: 0px;
+      }
+    }
+
+    &.right {
+      @include for-size(tablet-portrait-up) {
+        float: right;
+        width: 25%;
+      }
+    }
+
+    ion-router-link,
+    button.expandable {
+      font-family: 'Proxima Nova W01 Extrabold';
+      position: relative;
+      font-weight: 600;
+      padding: 0 0 0.25rem 0;
+      margin-bottom: 1rem;
+      text-transform: capitalize;
+      border-bottom: 4px solid transparent;
+      background: transparent;
+      font-size: 16px;
+      color: $home-white;
+
+      &.right {
+        font-size: 14px;
+      }
+
+      @include for-size(tablet-portrait-up) {
+        font-size: 20px;
+        font-weight: normal;
+        margin-bottom: .5rem;
+        margin-bottom: 1.25rem;
+
+        &.right, &.left {
+          font-size: 16px;
+        }
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        bottom: -2px;
+        left: 0;
+        background-color: $home-white;
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: all 0.3s ease-in-out 0s;
+        transform-origin: left;
       }
 
       &:hover:after {
@@ -85,6 +182,18 @@
 
     &.expanded {
       transform: rotate(180deg);
+    }
+  }
+
+  .button-light {
+    --background: white;
+    height: 40px;
+    width: 135px;
+
+    @include for-size(tablet-portrait-up) {
+      --background: white;
+      height: 40px;
+      width: 135px;
     }
   }
 }

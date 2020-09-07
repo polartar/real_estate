@@ -5,9 +5,25 @@
   position: relative;
   --background: #131314;
 
-  p, h1, h2, h3, h4 {
+  p {
     color: #f5f5f7;
     text-transform: none;
+    font-family: 'Proxima Nova W01 Regular';
+  }
+
+  h1, h2, h3, h4 {
+    color: #f5f5f7;
+    text-transform: none;
+    font-family: 'Proxima Nova W01 Extrabold';
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .ask-question-component p {
+    color: $bg-dark;
   }
 
   h3 {
@@ -48,6 +64,10 @@
     position: relative;
     padding: 0;
 
+    @include for-size(desktop-up) {
+      margin-top: 60px;
+    }
+
   }
 
   .payment-section-wrapper {
@@ -80,7 +100,7 @@
       font-weight: 600;
 
       @include for-size(desktop-up) {
-        font-size: 40px;
+        font-size: 32px;
       }
     }
   }
@@ -149,6 +169,7 @@
 
     p {
       line-height: 1.38;
+      margin-top: -10px;
     }
 
     a {
@@ -403,6 +424,14 @@
     background-color: #131414;
     border: solid 2px #f5f5f7;
     color: white;
+    margin-top: 3px;
+  }
+
+
+  .input-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: $home-white;
   }
 
 }

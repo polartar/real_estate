@@ -98,7 +98,7 @@ export class Apt212Slideover {
           <div class="slideover" style={this.getStyle()}>
               <div class="slideover-header">
                 <ion-button aria-label="close" class="reset close" onClick={() => this.dismiss()}>
-                  <ion-icon src="/assets/images/icons/cancel.svg" slot="icon-only" />
+                  <ion-icon src="/assets/images/icons/cancel-icon.svg" class="cancel-mobile" slot="icon-only" />
                 </ion-button>
               </div>
               <div class="content">

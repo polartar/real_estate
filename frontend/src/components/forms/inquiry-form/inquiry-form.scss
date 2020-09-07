@@ -1,11 +1,12 @@
 @import '../../../styles/mixins';
+@import '../../../styles/variables';
 
 .inquiry-form-component {
   .columns {
 
     @include for-size(desktop-up) {
 
-      padding-top: 25px;
+      padding-top: 5px;
     }
 
     &.columns-mobile {
@@ -17,8 +18,14 @@
     padding-bottom: 0;
 
     &.submit {
-      margin-top: 8px;
+      margin-top: 12px;
     }
+
+  }
+
+  .button-dark {
+    background-color: $bg-dark;
+    text-transform: none;
   }
 
   .markets {
@@ -30,15 +37,12 @@
   }
 
   .desktop-center {
-    text-align: left;
+    text-align: center;
 
     &p {
       margin-top: 4px;
     }
 
-    @include for-size(desktop-up) {
-      text-align: center;
-    }
   }
 
   .tell-more {
@@ -56,11 +60,16 @@
       textarea.apt212-input {
         height: 172px;
 
+
         @include for-size(desktop-up) {
           height: calc(100% - 14px);
         }
       }
     }
+  }
+
+  .apt212-input {
+    border: solid 2px #131414;
   }
 
   .apt212-radio__button {
@@ -71,7 +80,7 @@
     background-color: white;
     border-radius: 50%;
     vertical-align: middle;
-    border: 1px solid #ddd;
+    border: solid 2px #131414;
     -webkit-appearance: none;
     outline: none;
     cursor: pointer;
@@ -82,8 +91,8 @@
   }
 
   .apt212-radio {
-    display:block;
-    margin:15px auto;
+    display: block;
+    margin: 10px auto;
   }
 
   .apt212-radio, .choose-message-caption {
@@ -113,5 +122,15 @@
     margin-bottom: 0;
   }
 
+  .input-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #131414;
+
+  }
+
+ .short {
+   height: 110px;
+ }
 
 }

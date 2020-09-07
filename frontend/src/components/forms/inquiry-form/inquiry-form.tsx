@@ -85,23 +85,26 @@ export class InquiryForm {
       <form class="inquiry-form-component" onSubmit={e => this.handleSubmit(e)} ref={el => this.form = el as HTMLFormElement }>
         <div class="title desktop-center">Contact An Agent</div>
 
-        <p class="desktop-center">We are available to assist every step of the way insuring you have a seamless transaction.</p>
+        <p>We are available to assist every step of the way insuring you have a seamless transaction.</p>
 
         <div class="columns">
           <div class="left">
+          <label htmlFor="inquiry-name" class="input-label">Full Name</label>
             <div class={{ input: true, error: this.errors.includes('name')}}>
               <label htmlFor="inquiry-name" class="sr-only">Name</label>
-              <input id="inquiry-name" type="text" name="name" placeholder="Name" class="apt212-input block" />
+              <input id="inquiry-name" type="text" name="name"  class="apt212-input block" />
             </div>
 
+            <label htmlFor="inquiry-email" class="input-label">Email</label>
             <div class={{ input: true, error: this.errors.includes('email')}}>
               <label htmlFor="inquiry-email" class="sr-only">Email</label>
-              <input id="inquiry-email" type="email" name="email" placeholder="Email" class="apt212-input block" />
+              <input id="inquiry-email" type="email" name="email"  class="apt212-input block" />
             </div>
 
+            <label htmlFor="inquiry-phone" class="input-label">Phone</label>
             <div class="input">
               <label htmlFor="inquiry-phone" class="sr-only">Phone</label>
-              <input id="inquiry-phone" type="text" name="phone" placeholder="Phone" class="apt212-input block" />
+              <input id="inquiry-phone" type="text" name="phone" class="apt212-input block" />
             </div>
 
             <p class="interest">I am interested in: </p>
@@ -140,9 +143,10 @@ export class InquiryForm {
 
 			  	</div>
 
+          <label htmlFor="inquiry-message" class="input-label">Tell Us More</label>
             <div class={{ input: true, error: this.errors.includes('message')}} >
               <label htmlFor="inquiry-message" class="sr-only">How can we help?</label>
-              <textarea id="inquiry-message" name="message" placeholder="How can we help?" class="apt212-input block" />
+              <textarea id="inquiry-message" name="message"  class="apt212-input block short" />
             </div>
 
           </div>
@@ -156,7 +160,7 @@ export class InquiryForm {
         </div>
 
         <div class="input submit">
-          <input type="submit" value="SUBMIT" class="button-dark block" />
+          <input type="submit" value="Submit" class="button-dark block" />
         </div>
       </form>
     )
