@@ -25,11 +25,14 @@
     .left-body {
       background-image: url("/assets/images/referral_background.jpg");
       padding: 80px 107px 0px 170px;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
     .cta {
       max-width: 470px;
       margin: 0 auto;
       font-size: 16px;
+      min-height: 300px;
       h3 {
         font-size: 20px;
         margin-top: 0;

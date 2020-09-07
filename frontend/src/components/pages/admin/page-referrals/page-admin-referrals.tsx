@@ -179,198 +179,60 @@ export class PageAdminReferrals {
 
   render() {
     return [
-      <admin-header />,
-      <ion-content class="page-admin-referrals">
-        <h2 class="text-center">Referrals</h2>
+      <div class="page-admin-referrals">
+        <admin-header />,
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email;</th>
+              <th>Phone</th>
+              <th>Detail</th>
+              <th>AgentName</th>
+              <th>Submitted Date</th>
+              <th>Progress</th>
+              <th>Closed</th>
+              <th>Paid</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.referrals.map((r) => {
+              return (
+                <tr>
+                  <td>{r.referrer_name}</td>
+                  <td>{r.referrer_email}</td>
+                  <td>{r.referrer_phone}</td>
+                  <td>{r.referral_name}</td>
+                  <td>{r.referral_email}</td>
+                  <td>{r.referral_phone}</td>
+                  <td>{formatDate(r.created_at)}</td>
 
-        <section class="section full">
-          {this.loaded ? (
-            <div class="listings-totals text-right">
-              Total Referrals: {this.resultCount}
-            </div>
-          ) : null}
-
-          <form class="search" onSubmit={(e) => this.search(e)}>
-            <label htmlFor="admin-listing-search" class="sr-only">
-              Search
-            </label>
-            <input
-              id="admin-listing-search"
-              type="text"
-              class="apt212-input"
-              name="search_query"
-              placeholder="search"
-              ref={(el) => (this.searchInput = el as HTMLInputElement)}
-            />
-
-            <button
-              type="submit"
-              class="button-dark search-submit"
-              aria-label="Search"
-            >
-              <svg
-                class="feather feather-search"
-                viewBox="0 0 25 24"
-                version="1.1"
-              >
-                <g
-                  stroke="none"
-                  stroke-width="1"
-                  fill="none"
-                  fill-rule="evenodd"
-                >
-                  <path
-                    d="M24,21.1886008 L18.6803754,15.9186997 C19.949079,14.3099652 20.6588954,12.3179013 20.6588954,10.238277 C20.6588954,5.14393658 16.472729,1 11.3303363,1 C6.18621089,1 2,5.14393658 2,10.238277 C2,15.3308573 6.18616646,19.4765539 11.3303363,19.4765539 C13.3071236,19.4765539 15.2318387,18.8457674 16.8196842,17.7010588 L22.1704099,23 L24,21.1886008 Z M11.3302919,16.9140717 C7.61273046,16.9140717 4.58934605,13.9182757 4.58934605,10.238365 C4.58934605,6.55849823 7.61268603,3.56265825 11.3302919,3.56265825 C15.0461205,3.56265825 18.0694605,6.55845423 18.0694605,10.238365 C18.0694605,12.2063608 17.1982293,14.0643123 15.6796059,15.3379854 C14.4664401,16.3537734 12.9218251,16.9140717 11.3302919,16.9140717 Z"
-                    fill="#ffffff"
-                  ></path>
-                </g>
-              </svg>
-            </button>
-          </form>
-
-          {this.loaded ? (
-            <div
-              class="listings"
-              onScroll={(e) => this.listingsScroll(e)}
-              style={{ maxHeight: this.getTableHeight() }}
-              ref={(el) => (this.referralsWrapper = el as HTMLElement)}
-            >
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>
-                      <button
-                        class={{
-                          "button-reset": true,
-                          desc:
-                            this.searchParams.sortBy === "referrer_name_desc",
-                        }}
-                        onClick={() =>
-                          this.setSort(
-                            this.searchParams.sortBy === "referrer_name_desc"
-                              ? "referrer_name_asc"
-                              : "referrer_name_desc"
-                          )
-                        }
-                      >
-                        User Name{" "}
-                        <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
-                      </button>
-                    </th>
-                    <th>
-                      <button
-                        class={{
-                          "button-reset": true,
-                          desc:
-                            this.searchParams.sortBy === "referrer_email_desc",
-                        }}
-                        onClick={() =>
-                          this.setSort(
-                            this.searchParams.sortBy === "referrer_email_desc"
-                              ? "referrer_email_asc"
-                              : "referrer_email_desc"
-                          )
-                        }
-                      >
-                        User Email
-                        <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
-                      </button>
-                    </th>
-                    <th>User Phone</th>
-                    <th>
-                      <button
-                        class={{
-                          "button-reset": true,
-                          desc:
-                            this.searchParams.sortBy === "referral_name_desc",
-                        }}
-                        onClick={() =>
-                          this.setSort(
-                            this.searchParams.sortBy === "referral_name_desc"
-                              ? "referral_name_asc"
-                              : "referral_name_desc"
-                          )
-                        }
-                      >
-                        Referral Name
-                        <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
-                      </button>
-                    </th>
-                    <th>
-                      <button
-                        class={{
-                          "button-reset": true,
-                          desc:
-                            this.searchParams.sortBy === "referral_email_desc",
-                        }}
-                        onClick={() =>
-                          this.setSort(
-                            this.searchParams.sortBy === "referral_email_desc"
-                              ? "referral_email_asc"
-                              : "referral_email_desc"
-                          )
-                        }
-                      >
-                        Referral Email
-                        <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
-                      </button>
-                    </th>
-                    <th>Referral Phone</th>
-                    <th>
-                      <button
-                        class={{
-                          "button-reset": true,
-                          desc: this.searchParams.sortBy === "created_at_desc",
-                        }}
-                        onClick={() =>
-                          this.setSort(
-                            this.searchParams.sortBy === "created_at_desc"
-                              ? "created_at_asc"
-                              : "created_at_desc"
-                          )
-                        }
-                      >
-                        Created
-                        <ion-icon src="/assets/images/icons/page_sort_arrow.svg" />
-                      </button>
-                    </th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {this.referrals.map((r) => {
-                    return (
-                      <tr>
-                        <td>{r.referrer_name}</td>
-                        <td>{r.referrer_email}</td>
-                        <td>{r.referrer_phone}</td>
-                        <td>{r.referral_name}</td>
-                        <td>{r.referral_email}</td>
-                        <td>{r.referral_phone}</td>
-                        <td>{formatDate(r.created_at)}</td>
-
-                        <td>
-                          <button
-                            class="button-dark"
-                            onClick={() => this.deleteReferral(r.id)}
-                          >
-                            <ion-icon name="trash" />
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <div class="text-center">
-              <ion-spinner name="lines" />
-            </div>
-          )}
-        </section>
-      </ion-content>,
+                  <td>
+                    <button
+                      class="button-dark"
+                      onClick={() => this.deleteReferral(r.id)}
+                    >
+                      <ion-icon name="trash" />
+                    </button>
+                  </td>
+                  <td></td>
+                </tr>
+              );
+            })}
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>,
     ];
   }
 }

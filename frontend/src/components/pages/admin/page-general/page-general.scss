@@ -1,0 +1,16 @@
+@import "../../../../styles/mixins";
+
+.page-general {
+  background: black;
+  .page-general-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 120px);
+    .content {
+      width: 100%;
+      max-width: 420px;
+      padding-top: 30px;
+    }
+  }
+}

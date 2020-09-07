@@ -1,0 +1,74 @@
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
+.page-payout {
+  background: black;
+
+  .page-payout-content {
+    color: #f5f5f7;
+    font-size: 16px;
+    p {
+      text-align: center;
+    }
+    padding-top: 30px;
+
+    .hero {
+      width: 100%;
+      min-height: 741px;
+
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-bottom: 80px;
+      color: #f5f5f7;
+
+      @include for-size(desktop-up) {
+        display: grid;
+        grid-template-columns: 50% 50%;
+      }
+      .right-body {
+        padding-top: 50px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .left-body {
+        padding-top: 50px;
+        display: flex;
+        justify-content: center;
+      }
+      .cta {
+        max-width: 470px;
+        margin: 0 auto;
+        font-size: 16px;
+        h3 {
+          font-size: 20px;
+          margin-top: 0;
+
+          @include for-size(desktop-up) {
+            font-size: 28px;
+          }
+        }
+
+        p {
+          line-height: 1.29;
+          letter-spacing: 0.6px;
+
+          ion-router-link {
+            color: white;
+          }
+        }
+
+        .subtitle {
+          line-height: 1.15;
+          font-size: $font-size-lg;
+          padding-bottom: 190px;
+        }
+      }
+
+      .form {
+        max-width: 420px;
+        padding: 30px;
+        width: 100%;
+      }
+    }
+  }
+}

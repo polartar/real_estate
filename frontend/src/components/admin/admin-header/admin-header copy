@@ -15,7 +15,6 @@ export class AdminHeader {
       styleOverride: {
         width: "100%",
         height: "100%",
-        background: "black",
         top: 0,
         left: 0,
         transform: "none",
@@ -35,15 +34,15 @@ export class AdminHeader {
     return (
       <div class="admin-header-component">
         <div class="admin-header section">
-          <ion-router-link href="/admin" class="logo">
-            Referral Dashboard
+          <ion-router-link href="/" class="logo-link">
+            <img
+              src="/assets/images/logo-black.svg"
+              class="logo"
+              alt="APT212 Logo"
+            />
           </ion-router-link>
-          <ion-router-link href="/addreferral">
-            <button class="add-button">+ Add New Referal</button>
-          </ion-router-link>
-
           <div class="flex-spacer" />
-
+          adsf
           <ion-button
             aria-label="Menu"
             fill="clear"
@@ -52,8 +51,7 @@ export class AdminHeader {
           >
             <ion-icon
               aria-label="Menu"
-              color="#444444"
-              src="/assets/images/icons/hamburger-white.svg"
+              src="/assets/images/icons/hamburger.svg"
               slot="icon-only"
             />
           </ion-button>

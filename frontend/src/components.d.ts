@@ -14,6 +14,7 @@ import {
 } from './components/inline-gallery/inline-gallery';
 
 export namespace Components {
+  interface AddReferralForm {}
   interface AdminHeader {}
   interface AdminMenu {}
   interface AppFooter {
@@ -119,6 +120,7 @@ export namespace Components {
   interface FilterTags {}
   interface FilterTagsAll {}
   interface FindMore {}
+  interface GeneralForm {}
   interface InlineGallery {
     'images': InlineImageInterface[];
   }
@@ -256,6 +258,7 @@ export namespace Components {
   interface PageAbout {
     'prefetching': boolean;
   }
+  interface PageAddReferral {}
   interface PageAdmin {}
   interface PageAdminAgentEdit {
     'agentId': number;
@@ -276,6 +279,7 @@ export namespace Components {
     'prefetching': boolean;
   }
   interface PageFaq {}
+  interface PageGeneral {}
   interface PageHome {
     'prefetching': boolean;
   }
@@ -302,6 +306,7 @@ export namespace Components {
     'prefetching': boolean;
   }
   interface PageNeighborhoods {}
+  interface PagePayout {}
   interface PagePrivacy {}
   interface PagePrivateRooms {
     'prefetching': boolean;
@@ -316,7 +321,10 @@ export namespace Components {
     'size': string;
     'width': any;
   }
+  interface PageTerms {}
   interface PageWishlist {}
+  interface PayoutCheckForm {}
+  interface PayoutWireForm {}
   interface PriceFilter {
     'inModal': boolean;
   }
@@ -387,6 +395,12 @@ export namespace Components {
 
 declare global {
 
+
+  interface HTMLAddReferralFormElement extends Components.AddReferralForm, HTMLStencilElement {}
+  var HTMLAddReferralFormElement: {
+    prototype: HTMLAddReferralFormElement;
+    new (): HTMLAddReferralFormElement;
+  };
 
   interface HTMLAdminHeaderElement extends Components.AdminHeader, HTMLStencilElement {}
   var HTMLAdminHeaderElement: {
@@ -572,6 +586,12 @@ declare global {
   var HTMLFindMoreElement: {
     prototype: HTMLFindMoreElement;
     new (): HTMLFindMoreElement;
+  };
+
+  interface HTMLGeneralFormElement extends Components.GeneralForm, HTMLStencilElement {}
+  var HTMLGeneralFormElement: {
+    prototype: HTMLGeneralFormElement;
+    new (): HTMLGeneralFormElement;
   };
 
   interface HTMLInlineGalleryElement extends Components.InlineGallery, HTMLStencilElement {}
@@ -802,6 +822,12 @@ declare global {
     new (): HTMLPageAboutElement;
   };
 
+  interface HTMLPageAddReferralElement extends Components.PageAddReferral, HTMLStencilElement {}
+  var HTMLPageAddReferralElement: {
+    prototype: HTMLPageAddReferralElement;
+    new (): HTMLPageAddReferralElement;
+  };
+
   interface HTMLPageAdminElement extends Components.PageAdmin, HTMLStencilElement {}
   var HTMLPageAdminElement: {
     prototype: HTMLPageAdminElement;
@@ -886,6 +912,12 @@ declare global {
     new (): HTMLPageFaqElement;
   };
 
+  interface HTMLPageGeneralElement extends Components.PageGeneral, HTMLStencilElement {}
+  var HTMLPageGeneralElement: {
+    prototype: HTMLPageGeneralElement;
+    new (): HTMLPageGeneralElement;
+  };
+
   interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {}
   var HTMLPageHomeElement: {
     prototype: HTMLPageHomeElement;
@@ -940,6 +972,12 @@ declare global {
     new (): HTMLPageNeighborhoodsElement;
   };
 
+  interface HTMLPagePayoutElement extends Components.PagePayout, HTMLStencilElement {}
+  var HTMLPagePayoutElement: {
+    prototype: HTMLPagePayoutElement;
+    new (): HTMLPagePayoutElement;
+  };
+
   interface HTMLPagePrivacyElement extends Components.PagePrivacy, HTMLStencilElement {}
   var HTMLPagePrivacyElement: {
     prototype: HTMLPagePrivacyElement;
@@ -976,10 +1014,28 @@ declare global {
     new (): HTMLPageSearchElement;
   };
 
+  interface HTMLPageTermsElement extends Components.PageTerms, HTMLStencilElement {}
+  var HTMLPageTermsElement: {
+    prototype: HTMLPageTermsElement;
+    new (): HTMLPageTermsElement;
+  };
+
   interface HTMLPageWishlistElement extends Components.PageWishlist, HTMLStencilElement {}
   var HTMLPageWishlistElement: {
     prototype: HTMLPageWishlistElement;
     new (): HTMLPageWishlistElement;
+  };
+
+  interface HTMLPayoutCheckFormElement extends Components.PayoutCheckForm, HTMLStencilElement {}
+  var HTMLPayoutCheckFormElement: {
+    prototype: HTMLPayoutCheckFormElement;
+    new (): HTMLPayoutCheckFormElement;
+  };
+
+  interface HTMLPayoutWireFormElement extends Components.PayoutWireForm, HTMLStencilElement {}
+  var HTMLPayoutWireFormElement: {
+    prototype: HTMLPayoutWireFormElement;
+    new (): HTMLPayoutWireFormElement;
   };
 
   interface HTMLPriceFilterElement extends Components.PriceFilter, HTMLStencilElement {}
@@ -1078,6 +1134,7 @@ declare global {
     new (): HTMLYoutubeVideoElement;
   };
   interface HTMLElementTagNameMap {
+    'add-referral-form': HTMLAddReferralFormElement;
     'admin-header': HTMLAdminHeaderElement;
     'admin-menu': HTMLAdminMenuElement;
     'app-footer': HTMLAppFooterElement;
@@ -1109,6 +1166,7 @@ declare global {
     'filter-tags': HTMLFilterTagsElement;
     'filter-tags-all': HTMLFilterTagsAllElement;
     'find-more': HTMLFindMoreElement;
+    'general-form': HTMLGeneralFormElement;
     'inline-gallery': HTMLInlineGalleryElement;
     'input-booking-date': HTMLInputBookingDateElement;
     'input-booking-guests': HTMLInputBookingGuestsElement;
@@ -1147,6 +1205,7 @@ declare global {
     'owner-global-form': HTMLOwnerGlobalFormElement;
     'page-404': HTMLPage404Element;
     'page-about': HTMLPageAboutElement;
+    'page-add-referral': HTMLPageAddReferralElement;
     'page-admin': HTMLPageAdminElement;
     'page-admin-agent-edit': HTMLPageAdminAgentEditElement;
     'page-admin-agents': HTMLPageAdminAgentsElement;
@@ -1161,6 +1220,7 @@ declare global {
     'page-coming-soon': HTMLPageComingSoonElement;
     'page-corporate-rooms': HTMLPageCorporateRoomsElement;
     'page-faq': HTMLPageFaqElement;
+    'page-general': HTMLPageGeneralElement;
     'page-home': HTMLPageHomeElement;
     'page-listing': HTMLPageListingElement;
     'page-listing-body': HTMLPageListingBodyElement;
@@ -1170,13 +1230,17 @@ declare global {
     'page-login': HTMLPageLoginElement;
     'page-neighborhood': HTMLPageNeighborhoodElement;
     'page-neighborhoods': HTMLPageNeighborhoodsElement;
+    'page-payout': HTMLPagePayoutElement;
     'page-privacy': HTMLPagePrivacyElement;
     'page-private-rooms': HTMLPagePrivateRoomsElement;
     'page-referral': HTMLPageReferralElement;
     'page-referral-signin': HTMLPageReferralSigninElement;
     'page-referral-submit': HTMLPageReferralSubmitElement;
     'page-search': HTMLPageSearchElement;
+    'page-terms': HTMLPageTermsElement;
     'page-wishlist': HTMLPageWishlistElement;
+    'payout-check-form': HTMLPayoutCheckFormElement;
+    'payout-wire-form': HTMLPayoutWireFormElement;
     'price-filter': HTMLPriceFilterElement;
     'referral-form': HTMLReferralFormElement;
     'referral-signin-form': HTMLReferralSigninFormElement;
@@ -1197,6 +1261,7 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface AddReferralForm extends JSXBase.HTMLAttributes<HTMLAddReferralFormElement> {}
   interface AdminHeader extends JSXBase.HTMLAttributes<HTMLAdminHeaderElement> {}
   interface AdminMenu extends JSXBase.HTMLAttributes<HTMLAdminMenuElement> {}
   interface AppFooter extends JSXBase.HTMLAttributes<HTMLAppFooterElement> {
@@ -1290,6 +1355,7 @@ declare namespace LocalJSX {
   }
   interface FilterTagsAll extends JSXBase.HTMLAttributes<HTMLFilterTagsAllElement> {}
   interface FindMore extends JSXBase.HTMLAttributes<HTMLFindMoreElement> {}
+  interface GeneralForm extends JSXBase.HTMLAttributes<HTMLGeneralFormElement> {}
   interface InlineGallery extends JSXBase.HTMLAttributes<HTMLInlineGalleryElement> {
     'images': InlineImageInterface[];
   }
@@ -1430,6 +1496,7 @@ declare namespace LocalJSX {
   interface PageAbout extends JSXBase.HTMLAttributes<HTMLPageAboutElement> {
     'prefetching'?: boolean;
   }
+  interface PageAddReferral extends JSXBase.HTMLAttributes<HTMLPageAddReferralElement> {}
   interface PageAdmin extends JSXBase.HTMLAttributes<HTMLPageAdminElement> {}
   interface PageAdminAgentEdit extends JSXBase.HTMLAttributes<HTMLPageAdminAgentEditElement> {
     'agentId': number;
@@ -1451,6 +1518,7 @@ declare namespace LocalJSX {
     'prefetching'?: boolean;
   }
   interface PageFaq extends JSXBase.HTMLAttributes<HTMLPageFaqElement> {}
+  interface PageGeneral extends JSXBase.HTMLAttributes<HTMLPageGeneralElement> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {
     'prefetching'?: boolean;
   }
@@ -1483,6 +1551,7 @@ declare namespace LocalJSX {
     'prefetching'?: boolean;
   }
   interface PageNeighborhoods extends JSXBase.HTMLAttributes<HTMLPageNeighborhoodsElement> {}
+  interface PagePayout extends JSXBase.HTMLAttributes<HTMLPagePayoutElement> {}
   interface PagePrivacy extends JSXBase.HTMLAttributes<HTMLPagePrivacyElement> {}
   interface PagePrivateRooms extends JSXBase.HTMLAttributes<HTMLPagePrivateRoomsElement> {
     'prefetching'?: boolean;
@@ -1497,7 +1566,10 @@ declare namespace LocalJSX {
     'size'?: string;
     'width'?: any;
   }
+  interface PageTerms extends JSXBase.HTMLAttributes<HTMLPageTermsElement> {}
   interface PageWishlist extends JSXBase.HTMLAttributes<HTMLPageWishlistElement> {}
+  interface PayoutCheckForm extends JSXBase.HTMLAttributes<HTMLPayoutCheckFormElement> {}
+  interface PayoutWireForm extends JSXBase.HTMLAttributes<HTMLPayoutWireFormElement> {}
   interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {
     'inModal'?: boolean;
   }
@@ -1563,6 +1635,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'add-referral-form': AddReferralForm;
     'admin-header': AdminHeader;
     'admin-menu': AdminMenu;
     'app-footer': AppFooter;
@@ -1594,6 +1667,7 @@ declare namespace LocalJSX {
     'filter-tags': FilterTags;
     'filter-tags-all': FilterTagsAll;
     'find-more': FindMore;
+    'general-form': GeneralForm;
     'inline-gallery': InlineGallery;
     'input-booking-date': InputBookingDate;
     'input-booking-guests': InputBookingGuests;
@@ -1632,6 +1706,7 @@ declare namespace LocalJSX {
     'owner-global-form': OwnerGlobalForm;
     'page-404': Page404;
     'page-about': PageAbout;
+    'page-add-referral': PageAddReferral;
     'page-admin': PageAdmin;
     'page-admin-agent-edit': PageAdminAgentEdit;
     'page-admin-agents': PageAdminAgents;
@@ -1646,6 +1721,7 @@ declare namespace LocalJSX {
     'page-coming-soon': PageComingSoon;
     'page-corporate-rooms': PageCorporateRooms;
     'page-faq': PageFaq;
+    'page-general': PageGeneral;
     'page-home': PageHome;
     'page-listing': PageListing;
     'page-listing-body': PageListingBody;
@@ -1655,13 +1731,17 @@ declare namespace LocalJSX {
     'page-login': PageLogin;
     'page-neighborhood': PageNeighborhood;
     'page-neighborhoods': PageNeighborhoods;
+    'page-payout': PagePayout;
     'page-privacy': PagePrivacy;
     'page-private-rooms': PagePrivateRooms;
     'page-referral': PageReferral;
     'page-referral-signin': PageReferralSignin;
     'page-referral-submit': PageReferralSubmit;
     'page-search': PageSearch;
+    'page-terms': PageTerms;
     'page-wishlist': PageWishlist;
+    'payout-check-form': PayoutCheckForm;
+    'payout-wire-form': PayoutWireForm;
     'price-filter': PriceFilter;
     'referral-form': ReferralForm;
     'referral-signin-form': ReferralSigninForm;
