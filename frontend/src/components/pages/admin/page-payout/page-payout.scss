@@ -2,7 +2,7 @@
 @import "../../../../styles/variables";
 .page-payout {
   background: black;
-
+  height: 100%;
   .page-payout-content {
     color: #f5f5f7;
     font-size: 16px;
@@ -13,8 +13,9 @@
 
     .hero {
       width: 100%;
-      min-height: 741px;
 
+      height: calc(100vh - 202px);
+      overflow: scroll;
       background-repeat: no-repeat;
       background-size: cover;
       margin-bottom: 80px;

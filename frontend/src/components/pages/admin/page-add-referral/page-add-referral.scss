@@ -5,12 +5,11 @@
   .page-addreferral-content {
     display: flex;
     justify-content: center;
-    align-items: center;
     height: calc(100vh - 120px);
-    .content {
-      width: 100%;
+    .form {
       max-width: 420px;
-      padding: 10px;
+      padding: 30px;
+      width: 100%;
     }
   }
 }

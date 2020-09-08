@@ -53,7 +53,7 @@ export class PageAddReferal {
       <div class="page-add-referral">
         <referral-header />
         <div class="page-addreferral-content">
-          <div class="content">
+          <div class="form">
             <add-referral-form />
           </div>
         </div>

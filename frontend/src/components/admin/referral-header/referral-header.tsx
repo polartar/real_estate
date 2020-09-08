@@ -35,13 +35,14 @@ export class ReferralHeader {
     return (
       <div class="referral-header-component">
         <div class="referral-header section">
-          <ion-router-link href="/admin" class="logo">
-            Referral Dashboard
-          </ion-router-link>
-          <ion-router-link href="/admin/addreferral">
-            <button class="add-button">+ Add New Referal</button>
-          </ion-router-link>
-
+          <div class="logo-container">
+            <ion-router-link href="/admin" class="logo">
+              Referral Dashboard
+            </ion-router-link>
+            <ion-router-link href="/admin/addreferral">
+              <button class="add-button">+ Add New Referal</button>
+            </ion-router-link>
+          </div>
           <div class="flex-spacer" />
 
           <ion-button

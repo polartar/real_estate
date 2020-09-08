@@ -53,7 +53,7 @@ export class PageGeneral {
       <div class="page-general">
         <referral-header />
         <div class="page-general-content">
-          <div class="content">
+          <div class="form">
             <general-form />
           </div>
         </div>
