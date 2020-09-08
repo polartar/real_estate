@@ -32,6 +32,12 @@ export class ReferralMenu {
     }
   }
 
+  componentDidRender() {
+    var host = document.getElementById("ioncontent");
+    var style = document.createElement("style");
+    style.innerHTML = ".inner-scroll { background: unset!important; }";
+    host.shadowRoot.appendChild(style);
+  }
   render() {
     return [
       <header class="referral-menu-header">
@@ -52,7 +58,7 @@ export class ReferralMenu {
           </div>
         </div>
       </header>,
-      <ion-content class="app-menu-container app-wrapper">
+      <ion-content class="app-menu-container app-wrapper" id="ioncontent">
         {this.isLoggedIn ? (
           <div class=" main-menu">
             <ion-router-link href="/" onClick={() => this.closeMenu()}>
