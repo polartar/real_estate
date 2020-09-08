@@ -35,7 +35,7 @@
 @import '../styles/forms';
 
 html.md {
-  --ion-default-font: proxima-nova, sans-serif;
+  --ion-default-font: "Proxima Nova W01 Regular";
 }
 
 :root {
@@ -463,9 +463,3 @@ table.data-table {
     display: none;
   }
 }
-
-/*
-.site-menu {
-  opacity: .9;
-}
-*/
