@@ -31,7 +31,7 @@ export class PageReferral {
                 </p>
                 <p>
                   <ion-router-link href={RouterService.getRoute("privacy")}>
-                    <span class="underline"> Terms and Conditions </span>{" "}
+                    <span class="underline"> Terms and Conditions </span>
                     <img src="/assets/images/arrow.png" />
                   </ion-router-link>
                 </p>
