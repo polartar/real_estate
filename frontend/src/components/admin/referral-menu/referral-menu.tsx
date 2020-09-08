@@ -60,28 +60,30 @@ export class ReferralMenu {
             </ion-router-link>
 
             <ion-router-link
-              href="/admin/referrals"
+              href="/admin/general"
               onClick={() => this.closeMenu()}
             >
-              Referrals
-            </ion-router-link>
-
-            <ion-router-link href="/general" onClick={() => this.closeMenu()}>
               Gerneral Information
             </ion-router-link>
 
-            <ion-router-link href="/payout" onClick={() => this.closeMenu()}>
+            <ion-router-link
+              href="/admin/payout"
+              onClick={() => this.closeMenu()}
+            >
               Payout Info
             </ion-router-link>
 
             <ion-router-link
-              href="/addreferral"
+              href="/admin/addreferral"
               onClick={() => this.closeMenu()}
             >
               Add New Referal
             </ion-router-link>
 
-            <ion-router-link href="/terms" onClick={() => this.closeMenu()}>
+            <ion-router-link
+              href="/admin/terms"
+              onClick={() => this.closeMenu()}
+            >
               Terms and Conditions
             </ion-router-link>
 

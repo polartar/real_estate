@@ -143,19 +143,20 @@ export class AppRoot {
             component={this.isAdmin ? "page-admin" : "page-login"}
           />
           <ion-route
-            url="/general"
+            url="/admin/general"
             component={this.isAdmin ? "page-general" : "page-login"}
           />
+
           <ion-route
-            url="/payout"
+            url="/admin/payout"
             component={this.isAdmin ? "page-payout" : "page-login"}
           />
           <ion-route
-            url="addreferral"
+            url="admin/addreferral"
             component={this.isAdmin ? "page-add-referral" : "page-login"}
           />
           <ion-route
-            url="/terms"
+            url="/admin/terms"
             component={this.isAdmin ? "page-terms" : "page-login"}
           />
           <ion-route

@@ -6,7 +6,6 @@
   --height: 100%;
 
   .admin-menu-header {
-    background: #131414;
     .app-header {
       display: flex;
       align-items: center;
@@ -54,7 +53,6 @@
     }
 
     .main-menu {
-      background: #131414;
       height: calc(100% - 70px);
 
       position: relative;
@@ -74,7 +72,6 @@
         font-weight: 600;
         padding: 0 0 0.25rem 0;
         margin-bottom: 1.75rem;
-        color: #f5f5f7;
         border-bottom: 4px solid transparent;
 
         &:after {
