@@ -38,7 +38,7 @@ export class ReferralHeader {
           <ion-router-link href="/admin" class="logo">
             Referral Dashboard
           </ion-router-link>
-          <ion-router-link href="/addreferral">
+          <ion-router-link href="/admin/addreferral">
             <button class="add-button">+ Add New Referal</button>
           </ion-router-link>
 
