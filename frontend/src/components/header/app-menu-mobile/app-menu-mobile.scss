@@ -186,14 +186,14 @@
   }
 
   .button-light {
-    --background: white;
+    --background: $home-white;
     height: 40px;
     width: 135px;
 
     @include for-size(tablet-portrait-up) {
-      --background: white;
       height: 40px;
       width: 135px;
+      --background-hover: $home-white !important;
     }
   }
 }
