@@ -116,8 +116,6 @@ export class PageHome {
     if (this.size === 'phone-only') {
       neighborhoodTitle = 'Neighborhoods';
       furnishedText = 'Furnished';
-
-      furnishedLink = "#";
       salesLink = "#";
       rentalsLink = "#";
     }
