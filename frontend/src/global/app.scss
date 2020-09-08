@@ -283,6 +283,8 @@ app-header, app-header-home, app-menu {
         --padding-start: 2rem;
       }
     }
+
+
   }
 
   .header-inner {
@@ -292,7 +294,10 @@ app-header, app-header-home, app-menu {
       width: 100%;
       background-color: #fff;
     }
+
   }
+
+
 }
 
 .chat {
@@ -376,6 +381,8 @@ ion-footer.no-footer-border {
 }
 
 .site-menu {
+  opacity: .9;
+
   .modal-content{
     @include for-size(desktop-up) {
       height: 100%;
