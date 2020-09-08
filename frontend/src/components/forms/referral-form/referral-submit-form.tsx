@@ -118,14 +118,17 @@ export class ReferralSubmitForm {
               error: this.errors.includes("referral_details"),
             }}
           >
-            <div class="label">Referral by Agent</div>
+            <div class="label">Referred by Agent</div>
 
-            <input
+            <select
               id="referral-details"
-              type="text"
-              class="apt212-input block"
+              class="apt212-input block agent-select"
               name="referral_details"
-            />
+            >
+              <option value="agent1">Agent1</option>
+              <option value="agent2">Agent2</option>
+              <option value="agent3">Agent3</option>
+            </select>
           </div>
           <div
             class={{
