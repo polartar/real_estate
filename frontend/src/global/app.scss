@@ -463,3 +463,11 @@ table.data-table {
     display: none;
   }
 }
+
+@include for-size(phone-only) {
+  .page- {
+    #olark-wrapper {
+      display: none;
+    }
+  }
+}
