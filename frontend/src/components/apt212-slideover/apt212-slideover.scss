@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .apt212-slideover {
   position: absolute;
   width: 100%;
@@ -5,22 +7,26 @@
   background-color: rgba(0,0,0,0.5);
   z-index: 2147483646 !important;
 
+  .cancel-mobile {
+    max-width: 18px;
+  }
+
   .slideover-header {
     text-align: right;
+    padding-top: 15px;
   }
 
   .slideover {
     position: absolute;
-    width: 286px;
+    width: 100%;
     height: 100%;
     top: 0;
-    right: -286px;
-    background-color: white;
-    opacity: 0;
+    background-color: rgba(19, 20, 20, 0.9);
     transition: right 0.25s ease;
+    color: $home-white;
+
 
     &.initialized {
-      opacity: 1;
 
       &.active {
         right: 0;

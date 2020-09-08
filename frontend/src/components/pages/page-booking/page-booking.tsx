@@ -69,9 +69,10 @@ export class PageBooking {
                     <h1 class="title">Secure Online Payment</h1>
 
                     <form onSubmit={e => this.handleSubmit(e)} ref={el => this.form = el as HTMLFormElement }>
+                    <label htmlFor="inquiry-message" class="input-label">Enter Password</label>
                       <div class="input">
                           <label htmlFor="booking-password" class="sr-only">Password</label>
-                          <input id="booking-password" type="password" class="apt212-input block" placeholder="Enter Password" name="password" />
+                          <input id="booking-password" type="password" class="apt212-input block" name="password" />
                       </div>
                     </form>
 
