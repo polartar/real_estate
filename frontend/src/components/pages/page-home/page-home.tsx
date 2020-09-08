@@ -110,7 +110,6 @@ export class PageHome {
 
     let neighborhoodTitle = 'New York City Neighborhoods';
     let furnishedText = 'Furnished Apartments';
-    let furnishedLink = "/search-apartments";
     let salesLink = "/coming-soon";
     let rentalsLink = "/coming-soon";
 
