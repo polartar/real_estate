@@ -2,7 +2,7 @@
 
 .page-general {
   background: black;
-
+  overflow-x: auto;
   .page-general-content {
     height: calc(100vh - 120px);
     display: flex;
