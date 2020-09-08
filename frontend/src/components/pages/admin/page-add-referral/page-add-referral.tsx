@@ -51,7 +51,7 @@ export class PageAddReferal {
   render() {
     return (
       <div class="page-add-referral">
-        <admin-header />
+        <referral-header />
         <div class="page-addreferral-content">
           <div class="content">
             <add-referral-form />

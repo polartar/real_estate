@@ -51,7 +51,7 @@ export class PagePayout {
   render() {
     return (
       <div class="page-payout">
-        <admin-header />
+        <referral-header />
         <div class="page-payout-content">
           <p>
             Please choose your preferred payout method below to recieve you

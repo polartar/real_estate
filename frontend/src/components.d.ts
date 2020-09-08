@@ -329,6 +329,7 @@ export namespace Components {
     'inModal': boolean;
   }
   interface ReferralForm {}
+  interface ReferralMenu {}
   interface ReferralSigninForm {}
   interface ReferralSubmitForm {}
   interface SearchFilters {
@@ -1050,6 +1051,12 @@ declare global {
     new (): HTMLReferralFormElement;
   };
 
+  interface HTMLReferralMenuElement extends Components.ReferralMenu, HTMLStencilElement {}
+  var HTMLReferralMenuElement: {
+    prototype: HTMLReferralMenuElement;
+    new (): HTMLReferralMenuElement;
+  };
+
   interface HTMLReferralSigninFormElement extends Components.ReferralSigninForm, HTMLStencilElement {}
   var HTMLReferralSigninFormElement: {
     prototype: HTMLReferralSigninFormElement;
@@ -1243,6 +1250,7 @@ declare global {
     'payout-wire-form': HTMLPayoutWireFormElement;
     'price-filter': HTMLPriceFilterElement;
     'referral-form': HTMLReferralFormElement;
+    'referral-menu': HTMLReferralMenuElement;
     'referral-signin-form': HTMLReferralSigninFormElement;
     'referral-submit-form': HTMLReferralSubmitFormElement;
     'search-filters': HTMLSearchFiltersElement;
@@ -1574,6 +1582,7 @@ declare namespace LocalJSX {
     'inModal'?: boolean;
   }
   interface ReferralForm extends JSXBase.HTMLAttributes<HTMLReferralFormElement> {}
+  interface ReferralMenu extends JSXBase.HTMLAttributes<HTMLReferralMenuElement> {}
   interface ReferralSigninForm extends JSXBase.HTMLAttributes<HTMLReferralSigninFormElement> {}
   interface ReferralSubmitForm extends JSXBase.HTMLAttributes<HTMLReferralSubmitFormElement> {}
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {
@@ -1744,6 +1753,7 @@ declare namespace LocalJSX {
     'payout-wire-form': PayoutWireForm;
     'price-filter': PriceFilter;
     'referral-form': ReferralForm;
+    'referral-menu': ReferralMenu;
     'referral-signin-form': ReferralSigninForm;
     'referral-submit-form': ReferralSubmitForm;
     'search-filters': SearchFilters;

@@ -180,7 +180,7 @@ export class PageAdminReferrals {
   render() {
     return [
       <div class="page-admin-referrals">
-        <admin-header />,
+        <referral-header />,
         <table>
           <thead>
             <tr>

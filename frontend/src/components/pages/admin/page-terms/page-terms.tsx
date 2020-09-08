@@ -51,7 +51,7 @@ export class PageTerms {
   render() {
     return (
       <div class="page-terms">
-        <admin-header />
+        <referral-header />
         <div class="page-terms-content">
           <div class="content">
             <h1>Terms and Conditions</h1>

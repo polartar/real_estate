@@ -51,7 +51,7 @@ export class PageGeneral {
   render() {
     return (
       <div class="page-general">
-        <admin-header />
+        <referral-header />
         <div class="page-general-content">
           <div class="content">
             <general-form />

@@ -140,7 +140,7 @@ export class AppRoot {
 
           <ion-route
             url="/admin"
-            component={this.isAdmin ? "page-admin-referrals" : "page-login"}
+            component={this.isAdmin ? "page-admin" : "page-login"}
           />
           <ion-route
             url="/general"
@@ -157,6 +157,22 @@ export class AppRoot {
           <ion-route
             url="/terms"
             component={this.isAdmin ? "page-terms" : "page-login"}
+          />
+          <ion-route
+            url="/admin/listings"
+            component={this.isAdmin ? "page-admin-listings" : "page-login"}
+          />
+          <ion-route
+            url="/admin/listing/add"
+            component={this.isAdmin ? "page-admin-listing-add" : "page-login"}
+          />
+          <ion-route
+            url="/admin/listing/edit/:apartmentId"
+            component={this.isAdmin ? "page-admin-listing-edit" : "page-login"}
+          />
+          <ion-route
+            url="/admin/owner-global"
+            component={this.isAdmin ? "page-admin-owner" : "page-login"}
           />
           <ion-route
             url="/admin/referrals"
