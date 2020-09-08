@@ -3,23 +3,27 @@
 .referral-form-component {
   position: relative;
 
-  font-family: ProximaNova;
+  font-family: $font-refer-default;
+
   .title {
-    padding-bottom: 16px;
-    font-size: 16px;
+    padding-bottom: $font-size;
+    font-size: $font-size;
     color: #f5f5f7;
     font-weight: bold;
     line-height: 20px;
-    font-family: ProximaNova-Extrabld;
+    font-family: $font-refer-title;
   }
+
   .subtitle {
-    font-size: 16px;
+    font-size: $font-size;
     font-weight: bold;
     margin-bottom: 32px;
   }
+
   .grey {
     color: #9a9a9c;
   }
+
   .form-content {
     text-align: center;
     &.submitted {
@@ -29,13 +33,15 @@
 
   .label {
     text-align: left;
-    font-size: 12px;
+    font-size: $font-size-sm;
     color: #f5f5f7;
   }
+
   .apt212-input {
     border: solid 2px #f5f5f7;
     background: transparent;
   }
+
   .agree_checkbox {
     width: 9px;
     height: 9px;
@@ -45,6 +51,7 @@
     color: white;
     cursor: pointer;
     border: solid 1px #979797;
+
     &:checked + span:before {
       content: "\2713";
       display: block;
@@ -54,16 +61,20 @@
       top: -20%;
       color: white;
     }
+
   }
+
   .agreesection {
     display: inline-flex;
     cursor: pointer;
     display: flex;
     align-items: center;
     position: relative;
+
     & > span {
       padding: 0.5rem 0.25rem;
     }
+
     & > input {
       height: 9px;
       width: 9px;
@@ -92,15 +103,18 @@
       border: 2px solid #131414;
     }
   }
+
   .button-dark {
     background: #f5f5f7;
     color: #131414;
     margin-top: 20px;
     text-transform: none;
   }
+
   .input {
     padding-bottom: 0px;
   }
+
   .thank-you-msg {
     position: absolute;
     top: 0;
@@ -119,6 +133,7 @@
       font-size: 120px;
       color: $color-secondary;
     }
+    
   }
 
   .error {

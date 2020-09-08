@@ -4,7 +4,7 @@ import Isemail from "isemail";
 import { LoadingService } from "../../../services/loading.service";
 import { ToastService } from "../../../services/toast.service";
 import { APIBookingService } from "../../../services/api/booking";
-import { RouterService } from "../../../services/router.service";
+
 @Component({
   tag: "add-referral-form",
   styleUrl: "add-referral-form.scss",
@@ -17,10 +17,10 @@ export class AddReferralForm {
 
   async handleSubmit(e) {
     e.preventDefault();
-    RouterService.forward("/referral/submit");
+
     const results = serialize(this.form, { hash: true, empty: true });
     this.checkErrors(results);
-    console.log(this.errors);
+
     if (this.errors.length) {
       return;
     }
@@ -68,6 +68,7 @@ export class AddReferralForm {
       >
         <div class={{ "form-content": true, submitted: this.submitted }}>
           <div class="title">Add New Referrral</div>
+          
           <div
             class={{
               input: true,
@@ -75,6 +76,7 @@ export class AddReferralForm {
             }}
           >
             <div class="label">Referral Name</div>
+
             <input
               id="referral_name"
               type="text"
@@ -114,6 +116,7 @@ export class AddReferralForm {
               name="referrer_email"
             />
           </div>
+
           <div
             class={{
               input: true,
@@ -129,6 +132,7 @@ export class AddReferralForm {
               name="referral_agent"
             />
           </div>
+
           <div
             class={{
               input: true,
@@ -136,6 +140,7 @@ export class AddReferralForm {
             }}
           >
             <div class="label">Referral Details</div>
+
             <textarea
               id="referral-details"
               class="apt212-input block"
@@ -147,19 +152,7 @@ export class AddReferralForm {
             <input type="submit" class="button-dark block" value="Submit" />
           </div>
         </div>
-
-        {/* {this.submitted ? (
-          <div class="thank-you-msg flex-vertical-center text-center">
-            <div>
-              <p>
-                Thank you. <br />
-                Your referral has now been sent.
-              </p>
-
-              <ion-icon name="md-checkmark" />
-            </div>
-          </div>
-        ) : null} */}
+ 
       </form>
     );
   }

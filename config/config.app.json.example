@@ -1,0 +1,25 @@
+{
+  "//": "Entries with a key starting with // are comments, can be removed in the config.app.json",
+
+
+  "//API_URL": "The url of the api, with NO trailing /",
+  "API_URL": "http://laravel-stencil.localhost:8080/api",
+
+  "//BASE_URL": "The url of the site itself, with NO trailing /",
+  "BASE_URL": "http://laravel-stencil.localhost:8080",
+
+  "//APP_ENVIRONMENT": "The build env of the app, 'production' removes redux logging and various dev things",
+  "APP_ENVIRONMENT": "development",
+
+  "//MAPBOX_PUBLIC_TOKEN": "The public API token for mapbox integration",
+  "MAPBOX_PUBLIC_TOKEN": "pk.lkasjfljfljsdlfjsdalfjsdalkfjasljasldk",
+
+  "//STRIPE_PUBLIC_KEY": "The public API key for stripe integration",
+  "STRIPE_PUBLIC_KEY": "pk_test_ueTcimG0c82FSjGWAWVwdk9n003ryYO6iV",
+
+  "//PLAID_PUBLIC_KEY": "The public API key for Plaid integration",
+  "PLAID_PUBLIC_KEY": "abcde12345",
+
+  "//PLAID_ENVIRONMENT": "Plaid api environment: 'sandbox' | 'production'",
+  "PLAID_ENVIRONMENT": "sandbox"
+}

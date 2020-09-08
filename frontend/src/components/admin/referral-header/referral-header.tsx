@@ -8,10 +8,13 @@ export class ReferralHeader {
   async openMenu(ev) {
     const popover = Object.assign(document.createElement("apt212-popover"), {
       component: "referral-menu",
+
       componentProps: {
         inModal: true,
       },
+
       target: ev.currentTarget,
+
       styleOverride: {
         width: "100%",
         height: "100%",
@@ -20,6 +23,7 @@ export class ReferralHeader {
         left: 0,
         transform: "none",
       },
+
       bindTo: {
         target: "none",
         popover: "none",
@@ -39,10 +43,13 @@ export class ReferralHeader {
             <ion-router-link href="/admin" class="logo">
               Referral Dashboard
             </ion-router-link>
+
             <ion-router-link href="/admin/addreferral">
-              <button class="add-button">+ Add New Referal</button>
+              <button class="add-button">+ Add New Referral</button>
             </ion-router-link>
+
           </div>
+
           <div class="flex-spacer" />
 
           <ion-button

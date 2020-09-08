@@ -4,10 +4,10 @@ import Isemail from "isemail";
 import { LoadingService } from "../../../services/loading.service";
 import { ToastService } from "../../../services/toast.service";
 import { APIBookingService } from "../../../services/api/booking";
-import { RouterService } from "../../../services/router.service";
+ 
 @Component({
-  tag: "general-form",
-  styleUrl: "general-form.scss",
+  tag: "general-information-form",
+  styleUrl: "general-information-form.scss",
 })
 export class GeneralForm {
   @State() submitted: boolean = false;
@@ -17,10 +17,11 @@ export class GeneralForm {
 
   async handleSubmit(e) {
     e.preventDefault();
-    RouterService.forward("/referral/submit");
+
     const results = serialize(this.form, { hash: true, empty: true });
+
     this.checkErrors(results);
-    console.log(this.errors);
+
     if (this.errors.length) {
       return;
     }
@@ -48,10 +49,15 @@ export class GeneralForm {
         errors.push(r);
       }
     });
+
     if (results.email && !Isemail.validate(results.email)) {
       errors.push("email");
     }
-    if (results.password !== results.confPassword) errors.push("confPassword");
+
+    if (results.password !== results.confPassword){
+      errors.push("confPassword");
+    } 
+
     this.errors = errors;
   }
 
@@ -64,6 +70,7 @@ export class GeneralForm {
       >
         <div class={{ "form-content": true, submitted: this.submitted }}>
           <div class="title">General Information</div>
+
           <div
             class={{
               input: true,
@@ -71,6 +78,7 @@ export class GeneralForm {
             }}
           >
             <div class="label white">Name</div>
+
             <input
               id="name"
               type="text"
@@ -130,19 +138,6 @@ export class GeneralForm {
             <input type="submit" class="button-dark block" value="Submit" />
           </div>
         </div>
-
-        {/* {this.submitted ? (
-          <div class="thank-you-msg flex-vertical-center text-center">
-            <div>
-              <p>
-                Thank you. <br />
-                Your referral has now been sent.
-              </p>
-
-              <ion-icon name="md-checkmark" />
-            </div>
-          </div>
-        ) : null} */}
       </form>
     );
   }

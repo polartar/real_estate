@@ -120,7 +120,7 @@ export namespace Components {
   interface FilterTags {}
   interface FilterTagsAll {}
   interface FindMore {}
-  interface GeneralForm {}
+  interface GeneralInformationForm {}
   interface InlineGallery {
     'images': InlineImageInterface[];
   }
@@ -279,7 +279,7 @@ export namespace Components {
     'prefetching': boolean;
   }
   interface PageFaq {}
-  interface PageGeneral {}
+  interface PageGeneralInformation {}
   interface PageHome {
     'prefetching': boolean;
   }
@@ -590,10 +590,10 @@ declare global {
     new (): HTMLFindMoreElement;
   };
 
-  interface HTMLGeneralFormElement extends Components.GeneralForm, HTMLStencilElement {}
-  var HTMLGeneralFormElement: {
-    prototype: HTMLGeneralFormElement;
-    new (): HTMLGeneralFormElement;
+  interface HTMLGeneralInformationFormElement extends Components.GeneralInformationForm, HTMLStencilElement {}
+  var HTMLGeneralInformationFormElement: {
+    prototype: HTMLGeneralInformationFormElement;
+    new (): HTMLGeneralInformationFormElement;
   };
 
   interface HTMLInlineGalleryElement extends Components.InlineGallery, HTMLStencilElement {}
@@ -914,10 +914,10 @@ declare global {
     new (): HTMLPageFaqElement;
   };
 
-  interface HTMLPageGeneralElement extends Components.PageGeneral, HTMLStencilElement {}
-  var HTMLPageGeneralElement: {
-    prototype: HTMLPageGeneralElement;
-    new (): HTMLPageGeneralElement;
+  interface HTMLPageGeneralInformationElement extends Components.PageGeneralInformation, HTMLStencilElement {}
+  var HTMLPageGeneralInformationElement: {
+    prototype: HTMLPageGeneralInformationElement;
+    new (): HTMLPageGeneralInformationElement;
   };
 
   interface HTMLPageHomeElement extends Components.PageHome, HTMLStencilElement {}
@@ -1180,7 +1180,7 @@ declare global {
     'filter-tags': HTMLFilterTagsElement;
     'filter-tags-all': HTMLFilterTagsAllElement;
     'find-more': HTMLFindMoreElement;
-    'general-form': HTMLGeneralFormElement;
+    'general-information-form': HTMLGeneralInformationFormElement;
     'inline-gallery': HTMLInlineGalleryElement;
     'input-booking-date': HTMLInputBookingDateElement;
     'input-booking-guests': HTMLInputBookingGuestsElement;
@@ -1234,7 +1234,7 @@ declare global {
     'page-coming-soon': HTMLPageComingSoonElement;
     'page-corporate-rooms': HTMLPageCorporateRoomsElement;
     'page-faq': HTMLPageFaqElement;
-    'page-general': HTMLPageGeneralElement;
+    'page-general-information': HTMLPageGeneralInformationElement;
     'page-home': HTMLPageHomeElement;
     'page-listing': HTMLPageListingElement;
     'page-listing-body': HTMLPageListingBodyElement;
@@ -1371,7 +1371,7 @@ declare namespace LocalJSX {
   }
   interface FilterTagsAll extends JSXBase.HTMLAttributes<HTMLFilterTagsAllElement> {}
   interface FindMore extends JSXBase.HTMLAttributes<HTMLFindMoreElement> {}
-  interface GeneralForm extends JSXBase.HTMLAttributes<HTMLGeneralFormElement> {}
+  interface GeneralInformationForm extends JSXBase.HTMLAttributes<HTMLGeneralInformationFormElement> {}
   interface InlineGallery extends JSXBase.HTMLAttributes<HTMLInlineGalleryElement> {
     'images': InlineImageInterface[];
   }
@@ -1534,7 +1534,7 @@ declare namespace LocalJSX {
     'prefetching'?: boolean;
   }
   interface PageFaq extends JSXBase.HTMLAttributes<HTMLPageFaqElement> {}
-  interface PageGeneral extends JSXBase.HTMLAttributes<HTMLPageGeneralElement> {}
+  interface PageGeneralInformation extends JSXBase.HTMLAttributes<HTMLPageGeneralInformationElement> {}
   interface PageHome extends JSXBase.HTMLAttributes<HTMLPageHomeElement> {
     'prefetching'?: boolean;
   }
@@ -1685,7 +1685,7 @@ declare namespace LocalJSX {
     'filter-tags': FilterTags;
     'filter-tags-all': FilterTagsAll;
     'find-more': FindMore;
-    'general-form': GeneralForm;
+    'general-information-form': GeneralInformationForm;
     'inline-gallery': InlineGallery;
     'input-booking-date': InputBookingDate;
     'input-booking-guests': InputBookingGuests;
@@ -1739,7 +1739,7 @@ declare namespace LocalJSX {
     'page-coming-soon': PageComingSoon;
     'page-corporate-rooms': PageCorporateRooms;
     'page-faq': PageFaq;
-    'page-general': PageGeneral;
+    'page-general-information': PageGeneralInformation;
     'page-home': PageHome;
     'page-listing': PageListing;
     'page-listing-body': PageListingBody;

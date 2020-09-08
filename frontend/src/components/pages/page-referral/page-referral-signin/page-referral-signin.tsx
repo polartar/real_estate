@@ -3,7 +3,7 @@ import { RouterService } from "../../../../services/router.service";
 
 @Component({
   tag: "page-referral-signin",
-  styleUrl: "../page-referral.scss",
+  styleUrl: "page-referral.scss",
 })
 export class PageReferral {
   render() {

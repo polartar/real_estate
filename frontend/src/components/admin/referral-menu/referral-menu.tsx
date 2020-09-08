@@ -66,7 +66,7 @@ export class ReferralMenu {
             </ion-router-link>
 
             <ion-router-link
-              href="/admin/general"
+              href="/admin/information"
               onClick={() => this.closeMenu()}
             >
               Gerneral Information

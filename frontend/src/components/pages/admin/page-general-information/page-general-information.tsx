@@ -5,30 +5,17 @@ import screenSizeSelectors from "../../../../store/selectors/screensize";
 import { RouterService } from "../../../../services/router.service";
 
 @Component({
-  tag: "page-general",
-  styleUrl: "page-general.scss",
+  tag: "page-general-information",
+  styleUrl: "page-general-information.scss",
 })
 export class PageGeneral {
   @Prop({ context: "store" }) store: Store;
 
   @State() isAdmin: boolean = false;
   @State() isLoggedIn: boolean = false;
-  pageSize: number = 40;
-  @State() loaded: boolean = false;
-  @State() referrals: any[] = [];
-  @State() searchParams: any = {
-    query: "",
-    sortBy: "created_date_desc",
-    offset: 0,
-    limit: this.pageSize,
-  };
+ 
   @State() screenHeight: number;
-
-  @State() resultCount: number = 0;
-
-  referralsWrapper: HTMLElement;
-  searchInput: HTMLInputElement;
-
+ 
   componentWillLoad() {
     this.store.mapStateToProps(this, (state) => {
       return {
@@ -54,7 +41,7 @@ export class PageGeneral {
         <referral-header />
         <div class="page-general-content">
           <div class="form">
-            <general-form />
+            <general-information-form />
           </div>
         </div>
       </div>

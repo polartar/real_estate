@@ -5,6 +5,7 @@ import { LoadingService } from "../../../services/loading.service";
 import { ToastService } from "../../../services/toast.service";
 import { APIBookingService } from "../../../services/api/booking";
 import { RouterService } from "../../../services/router.service";
+
 @Component({
   tag: "payout-check-form",
   styleUrl: "payout-form.scss",
@@ -13,10 +14,13 @@ export class PayoutCheckForm {
   @State() submitted: boolean = false;
   @State() errors: string[] = [];
   @State() isVisible: boolean = false;
+
   form: HTMLFormElement;
+
   showForm() {
     this.isVisible = !this.isVisible;
   }
+
   async handleSubmit(e) {
     e.preventDefault();
     RouterService.forward("/referral/submit");
@@ -65,10 +69,12 @@ export class PayoutCheckForm {
         <div class={{ "form-content": true, submitted: this.submitted }}>
           <div class="title" onClick={() => this.showForm()}>
             <span>Check</span>{" "}
+
             <img
               src="/assets/icon/arrowright.svg"
               class={this.isVisible ? "arrowdown" : "arrowup"}
             ></img>
+
           </div>
           {this.isVisible ? (
             <div>
@@ -79,12 +85,14 @@ export class PayoutCheckForm {
                 }}
               >
                 <div class="label white">Pay To</div>
+
                 <input
                   id="payto"
                   type="text"
                   class="apt212-input block"
                   name="payto"
                 />
+
               </div>
 
               <div
@@ -101,6 +109,7 @@ export class PayoutCheckForm {
                   class="apt212-input block"
                   name="email"
                 />
+
               </div>
 
               <div class="input">
@@ -109,18 +118,7 @@ export class PayoutCheckForm {
             </div>
           ) : null}
         </div>
-        {/* {this.submitted ? (
-          <div class="thank-you-msg flex-vertical-center text-center">
-            <div>
-              <p>
-                Thank you. <br />
-                Your referral has now been sent.
-              </p>
-
-              <ion-icon name="md-checkmark" />
-            </div>
-          </div>
-        ) : null} */}
+      
       </form>
     );
   }

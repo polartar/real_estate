@@ -5,19 +5,19 @@
   height: 100%;
   overflow-y: auto;
   font-family: ProximaNova;
+
   .page-payout-content {
     color: #f5f5f7;
     font-size: 16px;
+    padding-top: 50px;
+
     p {
       text-align: center;
     }
-    padding-top: 50px;
 
-    .hero {
+   .hero {
       width: 100%;
-
       height: calc(100vh - 280px);
-
       background-repeat: no-repeat;
       background-size: cover;
       margin-bottom: 80px;
@@ -27,6 +27,7 @@
         display: grid;
         grid-template-columns: 50% 50%;
       }
+
       .right-body {
         display: flex;
         justify-content: center;
@@ -36,6 +37,7 @@
         display: flex;
         justify-content: center;
       }
+      
       .cta {
         max-width: 470px;
         margin: 0 auto;

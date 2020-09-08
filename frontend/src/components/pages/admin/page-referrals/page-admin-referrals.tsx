@@ -207,7 +207,6 @@ export class PageAdminReferrals {
                     <td>{r.referral_email}</td>
                     <td>{r.referral_phone}</td>
                     <td>{formatDate(r.created_at)}</td>
-
                     <td>
                       <button
                         class="button-dark"
@@ -220,17 +219,6 @@ export class PageAdminReferrals {
                   </tr>
                 );
               })}
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
             </tbody>
           </table>
         </div>

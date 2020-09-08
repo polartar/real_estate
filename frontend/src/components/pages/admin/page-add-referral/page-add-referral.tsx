@@ -13,22 +13,9 @@ export class PageAddReferal {
 
   @State() isAdmin: boolean = false;
   @State() isLoggedIn: boolean = false;
-  pageSize: number = 40;
-  @State() loaded: boolean = false;
-  @State() referrals: any[] = [];
-  @State() searchParams: any = {
-    query: "",
-    sortBy: "created_date_desc",
-    offset: 0,
-    limit: this.pageSize,
-  };
+ 
   @State() screenHeight: number;
-
-  @State() resultCount: number = 0;
-
-  referralsWrapper: HTMLElement;
-  searchInput: HTMLInputElement;
-
+  
   componentWillLoad() {
     this.store.mapStateToProps(this, (state) => {
       return {
@@ -52,6 +39,7 @@ export class PageAddReferal {
     return (
       <div class="page-add-referral">
         <referral-header />
+        
         <div class="page-addreferral-content">
           <div class="form">
             <add-referral-form />

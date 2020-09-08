@@ -4,14 +4,18 @@ import { Component, h } from "@stencil/core";
   tag: "admin-header",
   styleUrl: "admin-header.scss",
 })
+
 export class AdminHeader {
+
   async openMenu(ev) {
     const popover = Object.assign(document.createElement("apt212-popover"), {
       component: "admin-menu",
       componentProps: {
         inModal: true,
       },
+
       target: ev.currentTarget,
+
       styleOverride: {
         width: "100%",
         height: "100%",
@@ -19,6 +23,7 @@ export class AdminHeader {
         left: 0,
         transform: "none",
       },
+
       bindTo: {
         target: "none",
         popover: "none",
@@ -41,7 +46,9 @@ export class AdminHeader {
               alt="APT212 Logo"
             />
           </ion-router-link>
+
           <div class="flex-spacer" />
+          
           <ion-button
             aria-label="Menu"
             fill="clear"

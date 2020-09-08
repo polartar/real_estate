@@ -13,22 +13,9 @@ export class PagePayout {
 
   @State() isAdmin: boolean = false;
   @State() isLoggedIn: boolean = false;
-  pageSize: number = 40;
-  @State() loaded: boolean = false;
-  @State() referrals: any[] = [];
-  @State() searchParams: any = {
-    query: "",
-    sortBy: "created_date_desc",
-    offset: 0,
-    limit: this.pageSize,
-  };
+ 
   @State() screenHeight: number;
-
-  @State() resultCount: number = 0;
-
-  referralsWrapper: HTMLElement;
-  searchInput: HTMLInputElement;
-
+ 
   componentWillLoad() {
     this.store.mapStateToProps(this, (state) => {
       return {
@@ -52,11 +39,13 @@ export class PagePayout {
     return (
       <div class="page-payout">
         <referral-header />
+
         <div class="page-payout-content">
           <p>
             Please choose your preferred payout method below to recieve you
             referral bonus
           </p>
+
           <section class="section hero">
             <div class="left-body">
               <div class="form">
@@ -69,6 +58,7 @@ export class PagePayout {
                 <payout-wire-form />
               </div>
             </div>
+
           </section>
         </div>
       </div>
