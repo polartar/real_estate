@@ -110,6 +110,7 @@
 
   .home-search-wrapper {
     position: relative;
+    max-width: 426px;
 
     svg * {
       fill: $bg-dark;
@@ -140,7 +141,7 @@
 
       @include for-size (tablet-portrait-up) {
         height: 55px;
-        width: 65px;
+        width: 55px;
       }
     }
   }
@@ -161,6 +162,7 @@
     @include for-size(desktop-up) {
       margin-bottom: 100px;
       height: 55px;
+
     }
 
     &:focus {
