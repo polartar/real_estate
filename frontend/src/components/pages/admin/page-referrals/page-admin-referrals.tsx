@@ -181,57 +181,59 @@ export class PageAdminReferrals {
     return [
       <div class="page-admin-referrals">
         <referral-header />,
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email;</th>
-              <th>Phone</th>
-              <th>Detail</th>
-              <th>AgentName</th>
-              <th>Submitted Date</th>
-              <th>Progress</th>
-              <th>Closed</th>
-              <th>Paid</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.referrals.map((r) => {
-              return (
-                <tr>
-                  <td>{r.referrer_name}</td>
-                  <td>{r.referrer_email}</td>
-                  <td>{r.referrer_phone}</td>
-                  <td>{r.referral_name}</td>
-                  <td>{r.referral_email}</td>
-                  <td>{r.referral_phone}</td>
-                  <td>{formatDate(r.created_at)}</td>
+        <div class="tbl-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Detail</th>
+                <th>AgentName</th>
+                <th>Submitted Date</th>
+                <th>Progress</th>
+                <th>Closed</th>
+                <th>Paid</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.referrals.map((r) => {
+                return (
+                  <tr>
+                    <td>{r.referrer_name}</td>
+                    <td>{r.referrer_email}</td>
+                    <td>{r.referrer_phone}</td>
+                    <td>{r.referral_name}</td>
+                    <td>{r.referral_email}</td>
+                    <td>{r.referral_phone}</td>
+                    <td>{formatDate(r.created_at)}</td>
 
-                  <td>
-                    <button
-                      class="button-dark"
-                      onClick={() => this.deleteReferral(r.id)}
-                    >
-                      <ion-icon name="trash" />
-                    </button>
-                  </td>
-                  <td></td>
-                </tr>
-              );
-            })}
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+                    <td>
+                      <button
+                        class="button-dark"
+                        onClick={() => this.deleteReferral(r.id)}
+                      >
+                        <ion-icon name="trash" />
+                      </button>
+                    </td>
+                    <td></td>
+                  </tr>
+                );
+              })}
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>,
     ];
   }
