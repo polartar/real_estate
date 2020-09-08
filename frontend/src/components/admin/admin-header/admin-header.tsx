@@ -42,7 +42,6 @@ export class AdminHeader {
             />
           </ion-router-link>
           <div class="flex-spacer" />
-          adsf
           <ion-button
             aria-label="Menu"
             fill="clear"
