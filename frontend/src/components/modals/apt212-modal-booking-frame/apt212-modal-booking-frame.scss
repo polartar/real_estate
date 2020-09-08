@@ -11,17 +11,21 @@
 
   .close {
     position: absolute;
-    top: 46px;
-    right: 63px;
+    top: 43px;
+    right: 50px;
     font-size: 24px;
     z-index: 1;
     cursor: pointer;
+
+    img {
+      height: 25px;
+    }
   }
 
   .header-wrapper {
     @include for-size(tablet-portrait-up) {
       max-width: 1440px;
-      width: 1440px;
+      width: 100%;
       background-color: transparent;
       position: absolute;
       top: 0;
