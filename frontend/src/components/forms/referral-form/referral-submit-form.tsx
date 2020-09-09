@@ -41,7 +41,7 @@ export class ReferralSubmitForm {
 
     try {
       results.referrer_uid = this.user.uid;  
-      console.log("resutls",results);
+ 
       await APIBookingService.sendReferral(results);
 
       this.submitted = true;
