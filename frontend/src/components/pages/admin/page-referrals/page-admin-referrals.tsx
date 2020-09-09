@@ -1,20 +1,20 @@
-import { Component, h, State, Prop } from "@stencil/core";
-import { Store } from "@stencil/redux";
-import authSelectors from "../../../../store/selectors/auth";
-import screenSizeSelectors from "../../../../store/selectors/screensize";
-import { RouterService } from "../../../../services/router.service";
-import { ToastService } from "../../../../services/toast.service";
-import { APIAdminService } from "../../../../services/api/admin";
-import Debounce from "debounce-decorator";
-import { formatDate } from "../../../../helpers/utils";
-import { AlertService } from "../../../../services/alerts.service";
+import { Component, h, State, Prop } from '@stencil/core';
+import { Store } from '@stencil/redux';
+import authSelectors from '../../../../store/selectors/auth';
+import screenSizeSelectors from '../../../../store/selectors/screensize';
+import { RouterService } from '../../../../services/router.service';
+import { ToastService } from '../../../../services/toast.service';
+import { APIAdminService } from '../../../../services/api/admin';
+import Debounce from 'debounce-decorator';
+import { formatDate } from '../../../../helpers/utils';
+import { AlertService } from '../../../../services/alerts.service';
 
 @Component({
-  tag: "page-admin-referrals",
-  styleUrl: "page-admin-referrals.scss",
+  tag: 'page-admin-referrals',
+  styleUrl: 'page-admin-referrals.scss',
 })
 export class PageAdminReferrals {
-  @Prop({ context: "store" }) store: Store;
+  @Prop({ context: 'store' }) store: Store;
 
   @State() isAdmin: boolean = false;
   @State() isLoggedIn: boolean = false;
@@ -22,8 +22,8 @@ export class PageAdminReferrals {
   @State() loaded: boolean = false;
   @State() referrals: any[] = [];
   @State() searchParams: any = {
-    query: "",
-    sortBy: "created_date_desc",
+    query: '',
+    sortBy: 'created_date_desc',
     offset: 0,
     limit: this.pageSize,
   };
@@ -44,11 +44,11 @@ export class PageAdminReferrals {
     });
 
     if (!this.isLoggedIn) {
-      RouterService.forward("/login");
+      RouterService.forward('/login');
     } else {
       // we're logged in, but as admin?
       if (!this.isAdmin) {
-        RouterService.forward("/");
+        RouterService.forward('/');
       }
     }
   }
@@ -105,7 +105,7 @@ export class PageAdminReferrals {
 
   getTableHeight() {
     if (!this.referralsWrapper) {
-      return "500px";
+      return '500px';
     }
 
     // magic # 150 to account for admin header height
@@ -127,6 +127,7 @@ export class PageAdminReferrals {
   }
 
   @Debounce(100)
+  
   listingsScroll(e) {
     const distance =
       e.target.scrollHeight - e.target.clientHeight - e.target.scrollTop;
@@ -147,8 +148,8 @@ export class PageAdminReferrals {
     try {
       if (
         !(await AlertService.confirm(
-          "Deleting this is a permanent action, are you sure you want to delete the referral?",
-          "Are you sure?"
+          'Deleting this is a permanent action, are you sure you want to delete the referral?',
+          'Are you sure?'
         ))
       ) {
         return;
@@ -161,10 +162,10 @@ export class PageAdminReferrals {
 
         this.referrals = referrals;
 
-        ToastService.success("Referral has been deleted");
+        ToastService.success('Referral has been deleted');
       } else {
         if (result.errors) {
-          ToastService.error(result.errors.join("\n"));
+          ToastService.error(result.errors.join('\n'));
           return;
         }
 
@@ -179,9 +180,10 @@ export class PageAdminReferrals {
 
   render() {
     return [
-      <div class="page-admin-referrals">
+      <div class='page-admin-referrals'>
         <referral-header />,
-        <div class="tbl-container">
+
+        <div class='tbl-container'>
           <table>
             <thead>
               <tr>
@@ -196,6 +198,7 @@ export class PageAdminReferrals {
                 <th>Paid</th>
               </tr>
             </thead>
+
             <tbody>
               {this.referrals.map((r) => {
                 return (
@@ -207,14 +210,16 @@ export class PageAdminReferrals {
                     <td>{r.referral_email}</td>
                     <td>{r.referral_phone}</td>
                     <td>{formatDate(r.created_at)}</td>
+
                     <td>
                       <button
-                        class="button-dark"
+                        class='button-dark'
                         onClick={() => this.deleteReferral(r.id)}
                       >
-                        <ion-icon name="trash" />
+                        <ion-icon name='trash' />
                       </button>
                     </td>
+
                     <td></td>
                   </tr>
                 );

@@ -1,13 +1,14 @@
-@import "../../../../styles/mixins";
-@import "../../../../styles/variables";
+@import '../../../../styles/mixins';
+@import '../../../../styles/variables';
+
 .page-payout {
-  background: black;
+  background: #131414;
   height: 100%;
   overflow-y: auto;
-  font-family: ProximaNova;
+  font-family: $font-refer-default;
 
   .page-payout-content {
-    color: #f5f5f7;
+    color: $color-text-light;
     font-size: 16px;
     padding-top: 50px;
 
@@ -21,7 +22,7 @@
       background-repeat: no-repeat;
       background-size: cover;
       margin-bottom: 80px;
-      color: #f5f5f7;
+      color: $color-text-light;
 
       @include for-size(desktop-up) {
         display: grid;
@@ -42,6 +43,7 @@
         max-width: 470px;
         margin: 0 auto;
         font-size: 16px;
+
         h3 {
           font-size: 20px;
           margin-top: 0;

@@ -1,14 +1,13 @@
-import { Component, h, State } from "@stencil/core";
-import serialize from "form-serialize";
-import Isemail from "isemail";
-import { LoadingService } from "../../../services/loading.service";
-import { ToastService } from "../../../services/toast.service";
-import { APIBookingService } from "../../../services/api/booking";
-import { RouterService } from "../../../services/router.service";
+import { Component, h, State } from '@stencil/core';
+import serialize from 'form-serialize';
+import Isemail from 'isemail';
+import { LoadingService } from '../../../services/loading.service';
+import { ToastService } from '../../../services/toast.service';
+import { APIBookingService } from '../../../services/api/booking';
 
 @Component({
-  tag: "payout-check-form",
-  styleUrl: "payout-form.scss",
+  tag: 'payout-check-form',
+  styleUrl: 'payout-form.scss',
 })
 export class PayoutCheckForm {
   @State() submitted: boolean = false;
@@ -23,10 +22,9 @@ export class PayoutCheckForm {
 
   async handleSubmit(e) {
     e.preventDefault();
-    RouterService.forward("/referral/submit");
     const results = serialize(this.form, { hash: true, empty: true });
     this.checkErrors(results);
-    console.log(this.errors);
+
     if (this.errors.length) {
       return;
     }
@@ -47,7 +45,7 @@ export class PayoutCheckForm {
   checkErrors(results) {
     const errors = [];
 
-    let required = ["payto", "email"];
+    let required = ['payto', 'email'];
 
     required.forEach((r) => {
       if (!results[r]) {
@@ -55,7 +53,7 @@ export class PayoutCheckForm {
       }
     });
     if (results.email && !Isemail.validate(results.email)) {
-      errors.push("email");
+      errors.push('email');
     }
   }
 
@@ -63,16 +61,16 @@ export class PayoutCheckForm {
     return (
       <form
         onSubmit={(e) => this.handleSubmit(e)}
-        class="referral-form-component"
+        class='referral-form-component'
         ref={(el) => (this.form = el as HTMLFormElement)}
       >
-        <div class={{ "form-content": true, submitted: this.submitted }}>
-          <div class="title" onClick={() => this.showForm()}>
-            <span>Check</span>{" "}
+        <div class={{ 'form-content': true, submitted: this.submitted }}>
+          <div class='title' onClick={() => this.showForm()}>
+            <span>Check</span>{' '}
 
             <img
-              src="/assets/icon/arrowright.svg"
-              class={this.isVisible ? "arrowdown" : "arrowup"}
+              src='/assets/icon/arrowright.svg'
+              class={this.isVisible ? 'arrowdown' : 'arrowup'}
             ></img>
 
           </div>
@@ -81,39 +79,37 @@ export class PayoutCheckForm {
               <div
                 class={{
                   input: true,
-                  error: this.errors.includes("payto"),
+                  error: this.errors.includes('payto'),
                 }}
               >
-                <div class="label white">Pay To</div>
+                <div class='label white'>Pay To</div>
 
                 <input
-                  id="payto"
-                  type="text"
-                  class="apt212-input block"
-                  name="payto"
+                  id='payto'
+                  type='text'
+                  class='apt212-input block'
+                  name='payto'
                 />
-
               </div>
 
               <div
                 class={{
                   input: true,
-                  error: this.errors.includes("email"),
+                  error: this.errors.includes('email'),
                 }}
               >
-                <div class="label">Email Address</div>
+                <div class='label'>Email Address</div>
 
                 <input
-                  id="email"
-                  type="email"
-                  class="apt212-input block"
-                  name="email"
+                  id='email'
+                  type='email'
+                  class='apt212-input block'
+                  name='email'
                 />
-
               </div>
 
-              <div class="input">
-                <input type="submit" class="button-dark block" value="Submit" />
+              <div class='input'>
+                <input type='submit' class='button-dark block' value='Submit' />
               </div>
             </div>
           ) : null}

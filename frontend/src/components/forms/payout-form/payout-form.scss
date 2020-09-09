@@ -1,29 +1,32 @@
-@import "../../../styles/variables";
+@import '../../../styles/variables';
 
 .referral-form-component {
   position: relative;
+  font-family: $font-refer-default;
 
-  font-family: ProximaNova;
   .title {
     padding-bottom: 16px;
     font-size: 20px;
-    color: #f5f5f7;
+    color: $color-text-light;
     font-weight: bold;
     line-height: 20px;
-    font-family: ProximaNova-Extrabld;
+    font-family: $font-refer-title;
     display: flex;
     justify-content: center;
     cursor: pointer;
   }
+
   .arrowup {
     transition-duration: 0.4s;
     margin-left: 5px;
   }
+
   .arrowdown {
     transform: rotate(90deg);
     margin-left: 5px;
     transition-duration: 0.4s;
   }
+  
   .form-content {
     text-align: center;
     &.submitted {
@@ -34,22 +37,25 @@
   .label {
     text-align: left;
     font-size: 12px;
-    color: #f5f5f7;
+    color: $color-text-light;
   }
+
   .apt212-input {
-    border: solid 2px #f5f5f7;
+    border: solid 2px $color-text-light;
     background: transparent;
   }
 
   .button-dark {
-    background: #f5f5f7;
-    color: #131414;
+    background: $color-text-light;
+    color: $bg-dark;
     margin-top: 20px;
     text-transform: none;
   }
+
   .input {
     padding-bottom: 0px;
   }
+  
   .thank-you-msg {
     position: absolute;
     top: 0;

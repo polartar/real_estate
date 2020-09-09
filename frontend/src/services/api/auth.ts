@@ -15,8 +15,7 @@ class APIAuthInstance {
       });
       let responseJSON = await response.json();
       if (!response.ok) {
-        return responseJSON.access_token;
-        // throw new Error(response.statusText);
+         throw new Error(response.statusText);
       }
 
       return responseJSON.access_token;

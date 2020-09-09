@@ -1,60 +1,44 @@
-import { Component, h, State, Prop } from "@stencil/core";
-import { Store } from "@stencil/redux";
-import authSelectors from "../../../../store/selectors/auth";
-import screenSizeSelectors from "../../../../store/selectors/screensize";
-import { RouterService } from "../../../../services/router.service";
+import { Component, h, State, Prop } from '@stencil/core';
+import { Store } from '@stencil/redux';
+import authSelectors from '../../../../store/selectors/auth';
+import { RouterService } from '../../../../services/router.service';
 
 @Component({
-  tag: "page-terms",
-  styleUrl: "page-terms.scss",
+  tag: 'page-terms',
+  styleUrl: 'page-terms.scss',
 })
 export class PageTerms {
-  @Prop({ context: "store" }) store: Store;
+  @Prop({ context: 'store' }) store: Store;
 
   @State() isAdmin: boolean = false;
   @State() isLoggedIn: boolean = false;
-  pageSize: number = 40;
-  @State() loaded: boolean = false;
-  @State() referrals: any[] = [];
-  @State() searchParams: any = {
-    query: "",
-    sortBy: "created_date_desc",
-    offset: 0,
-    limit: this.pageSize,
-  };
-  @State() screenHeight: number;
-
-  @State() resultCount: number = 0;
-
-  referralsWrapper: HTMLElement;
-  searchInput: HTMLInputElement;
-
+  
   componentWillLoad() {
     this.store.mapStateToProps(this, (state) => {
       return {
         isLoggedIn: authSelectors.isLoggedIn(state),
         isAdmin: authSelectors.isAdmin(state),
-        screenHeight: screenSizeSelectors.getHeight(state),
       };
     });
 
     if (!this.isLoggedIn) {
-      RouterService.forward("/login");
+      RouterService.forward('/login');
     } else {
       // we're logged in, but as admin?
       if (!this.isAdmin) {
-        RouterService.forward("/");
+        RouterService.forward('/');
       }
     }
   }
 
   render() {
     return (
-      <div class="page-terms">
+      <div class='page-terms'>
         <referral-header />
-        <div class="page-terms-content">
-          <div class="content">
+        <div class='page-terms-content'>
+          <div class='content'>
             <h1>Terms and Conditions</h1>
+            
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text

@@ -118,6 +118,7 @@ export class GeneralForm {
               name="password"
             />
           </div>
+          
           <div
             class={{
               input: true,

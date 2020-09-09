@@ -1,7 +1,7 @@
-@import "../../../../styles/mixins";
+@import '../../../../styles/mixins';
 
 .page-general {
-  background: black;
+  background: #131414;
   overflow-x: auto;
   .page-general-content {
     height: calc(100vh - 120px);

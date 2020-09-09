@@ -118,10 +118,11 @@ class APIBookingInstance {
       throw new Error(err.message);
     }
   }
+
   public async signupReferer(data) {
     try {
       const response = await fetch(
-        `${APIService.getAPIUrl()}/booking/referral/signup`,
+        `${APIService.getAPIUrl()}/register`,
         {
           method: "POST",
           headers: APIService.getHeaders(),
@@ -130,29 +131,29 @@ class APIBookingInstance {
       );
 
       const r = await response.json();
+        if (!response.ok) {
+          if (r && r.errors) {
+            // caller will need to check success
+            const errMessages = [];
 
-      if (!response.ok) {
-        if (r && r.errors) {
-          // caller will need to check success
-          const errMessages = [];
+            Object.keys(r.errors).forEach((re) => errMessages.push(r.errors[re]));
 
-          Object.keys(r.errors).forEach((re) => errMessages.push(r.errors[re]));
+            throw new Error(errMessages.join("\n"));
+          }
 
-          throw new Error(errMessages.join("\n"));
-        }
+          if (r && r.message) {
+            throw new Error(r.message);
+          }
 
-        if (r && r.message) {
-          throw new Error(r.message);
-        }
-
-        throw new Error(response.statusText);
+          throw new Error(response.statusText);
       }
 
-      return r;
+       return r.uid;
     } catch (err) {
       throw new Error(err.message);
     }
   }
+  
   public async shareListing(data) {
     try {
       const response = await fetch(

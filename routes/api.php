@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Auth::routes();
 
 // unauthenticated endpoints
 Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
@@ -38,7 +39,6 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
     Route::post('booking/checkout_ach', 'BookingController@checkoutACH');
     Route::post('booking/stripe_webhook', 'BookingController@stripeWebhook');
     Route::post('booking/referral', 'BookingController@referral');
-    Route::post('booking/referral/signup', 'BookingController@referral/singup');
     Route::post('booking/share_apartment', 'BookingController@shareApartment');
     Route::post('booking/check_password', 'BookingController@checkPassword');
     Route::post('booking/inquiry', 'BookingController@inquiry');
