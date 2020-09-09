@@ -56,6 +56,8 @@ export class PayoutWireForm {
         errors.push(r);
       }
     });
+    
+    this.errors = errors;
   }
 
   render() {
@@ -84,7 +86,7 @@ export class PayoutWireForm {
                   error: this.errors.includes('bankName'),
                 }}
               >
-                <div class='label white'>Bank Name</div>
+                <label class='label' htmlFor="bankName">Bank Name</label>
 
                 <input
                   id='bankName'
@@ -100,7 +102,7 @@ export class PayoutWireForm {
                   error: this.errors.includes('accountName'),
                 }}
               >
-                <div class='label white'>Account Name</div>
+                <label class='label' htmlFor="accountName">Account Name</label>
 
                 <input
                   id='accountName'
@@ -116,7 +118,7 @@ export class PayoutWireForm {
                   error: this.errors.includes('accountNumber'),
                 }}
               >
-                <div class='label white'>Account Number</div>
+                <label class='label' htmlFor="accountNumber">Account Number</label>
 
                 <input
                   id='accountNumber'
@@ -132,7 +134,7 @@ export class PayoutWireForm {
                   error: this.errors.includes('routingNumber'),
                 }}
               >
-                <div class='label white'>Routing Number</div>
+                <label class='label' htmlFor="routingNumber">Routing Number</label>
 
                 <input
                   id='routingNumber'

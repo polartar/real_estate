@@ -28,18 +28,20 @@ export class ReferralSubmitForm {
 
   async handleSubmit(e) {
     e.preventDefault();
- 
-    const results = serialize(this.form, { hash: true, empty: true });
+    console.log('dd');
+    let results = serialize(this.form, { hash: true, empty: true });
 
     this.checkErrors(results);
 
     if (this.errors.length) {
       return;
     }
-
+    
     await LoadingService.showLoading();
 
     try {
+      results.referrer_uid = this.user.uid;  
+      console.log("resutls",results);
       await APIBookingService.sendReferral(results);
 
       this.submitted = true;
@@ -84,7 +86,7 @@ export class ReferralSubmitForm {
               error: this.errors.includes('referral_name'),
             }}
           >
-            <div class='label'>Referral Name</div>
+            <label class='label' htmlFor="referral_name">Referral Name</label>
 
             <input
               id='referral_name'
@@ -100,7 +102,7 @@ export class ReferralSubmitForm {
               error: this.errors.includes('referral_phone'),
             }}
           >
-            <div class='label'>Referral Phone Number</div>
+            <label class='label' htmlFor="referral-phone">Referral Phone Number</label>
 
             <input
               id='referral-phone'
@@ -116,7 +118,7 @@ export class ReferralSubmitForm {
               error: this.errors.includes('referral_email'),
             }}
           >
-            <div class='label'>Referral Email Address</div>
+            <label class='label' htmlFor="referral_email">Referral Email Address</label>
 
             <input
               id='referral_email'
@@ -129,15 +131,15 @@ export class ReferralSubmitForm {
           <div
             class={{
               input: true,
-              error: this.errors.includes('referral_agent'),
+              error: this.errors.includes('referrer_agent'),
             }}
           >
-            <div class='label'>Referred by Agent</div>
+            <label class='label' htmlFor="referrer_agent">Referred by Agent</label>
 
             <select
-              id='referer_agent'
+              id='referrer_agent'
               class='apt212-input block agent-select'
-              name='referer_agent'
+              name='referrer_agent'
             >
               <option value='agent1'>Agent1</option>
 
@@ -153,7 +155,7 @@ export class ReferralSubmitForm {
               error: this.errors.includes('referral_details'),
             }}
           >
-            <div class='label'>Referral Details</div>
+            <label class='label' htmlFor="referral-details">Referral Details</label>
 
             <textarea
               id='referral-details'

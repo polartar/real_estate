@@ -2,7 +2,7 @@
 @import '../../../../styles/variables';
 
 .page-admin-referrals {
-  background-color: #131414;
+  background-color: $bg-dark;
   height: 100vh;
   font-family: $font-refer-default;
   color: $color-text-light;
@@ -38,7 +38,7 @@
     font-size: 16px;
     font-weight: bold;
     background-color: $color-text-light;
-    color: #131414;
+    color: $bg-dark;
   }
 
   td,

@@ -1,8 +1,10 @@
 @import '../../../../styles/mixins';
+@import '../../../../styles/variables';
 
 .page-general {
-  background: #131414;
+  background: $bg-dark;
   overflow-x: auto;
+
   .page-general-content {
     height: calc(100vh - 120px);
     display: flex;

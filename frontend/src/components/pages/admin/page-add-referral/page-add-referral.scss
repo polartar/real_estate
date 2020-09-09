@@ -1,12 +1,15 @@
 @import '../../../../styles/mixins';
+@import '../../../../styles/variables';
 
 .page-add-referral {
-  background: #131414;
+  background: $bg-dark;
   overflow-x: auto;
+
   .page-addreferral-content {
     display: flex;
     justify-content: center;
     height: calc(100vh - 120px);
+
     .form {
       max-width: 420px;
       padding: 30px;

@@ -82,7 +82,7 @@ export class ReferralForm {
               error: this.errors.includes('email'),
             }}
           >
-            <div class='label'>Email Address</div>
+           <label class='label' htmlFor="email">Email Address</label>
 
             <input
               id='email'
@@ -98,7 +98,7 @@ export class ReferralForm {
               error: this.errors.includes('password'),
             }}
           >
-            <div class='label'>Password</div>
+            <label class='label' htmlFor="password">Password</label>
 
             <input
               id='password'

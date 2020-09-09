@@ -7,6 +7,7 @@ import { ToastService } from '../../../services/toast.service';
 import { APIBookingService } from '../../../services/api/booking';
 import { RouterService } from '../../../services/router.service';
 import { bookingSetUser } from '../../../store/actions/booking';
+import { AlertService } from '../../../services/alerts.service';
 
 @Component({
   tag: 'referral-form',
@@ -41,7 +42,7 @@ export class ReferralForm {
  
     if(results.agree !== 'on')
      {
-       alert('You should agree our Terms and Policy')
+       await AlertService.alert('Error', 'You should agree to our Terms and Policy');
        return;
      }
    
@@ -77,7 +78,10 @@ export class ReferralForm {
       errors.push('email');
     }
 
-    if (results.password !== results['password_confirmation']) errors.push('password_confirmation');
+    if (results.password !== results['password_confirmation']) { 
+      errors.push('password_confirmation');
+    }
+    
     this.errors = errors;
   }
 
@@ -108,7 +112,7 @@ export class ReferralForm {
               error: this.errors.includes('email'),
             }}
           >
-            <div class='label'>Email Address</div>
+            <label class='label' htmlFor="email">Email Address</label>
 
             <input
               id='email'
@@ -124,7 +128,7 @@ export class ReferralForm {
               error: this.errors.includes('name'),
             }}
           >
-            <div class='label'>Name</div>
+            <label class='label' htmlFor="name">Name</label>
 
             <input
               id='name'
@@ -140,7 +144,7 @@ export class ReferralForm {
               error: this.errors.includes('password'),
             }}
           >
-            <div class='label'>Password</div>
+            <label class='label' htmlFor="password">Password</label>
 
             <input
               id='password'
@@ -156,7 +160,7 @@ export class ReferralForm {
               error: this.errors.includes('password_confirmation'),
             }}
           >
-            <div class='label'>Confirm Password</div>
+            <label class='label' htmlFor="password_confirmation">Confirm Password</label>
 
             <input
               id='password_confirmation'
@@ -165,7 +169,7 @@ export class ReferralForm {
               name='password_confirmation'
             />
           </div>
-
+          
           <div class='label '>
             <label class='agreesection'>
               <input type='checkbox' name='agree'></input>

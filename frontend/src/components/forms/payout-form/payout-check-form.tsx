@@ -55,6 +55,8 @@ export class PayoutCheckForm {
     if (results.email && !Isemail.validate(results.email)) {
       errors.push('email');
     }
+
+    this.errors = errors;
   }
 
   render() {
@@ -82,7 +84,7 @@ export class PayoutCheckForm {
                   error: this.errors.includes('payto'),
                 }}
               >
-                <div class='label white'>Pay To</div>
+                <label class='label' htmlFor="payto">Pay To</label>
 
                 <input
                   id='payto'
@@ -98,7 +100,7 @@ export class PayoutCheckForm {
                   error: this.errors.includes('email'),
                 }}
               >
-                <div class='label'>Email Address</div>
+                <label class='label' htmlFor="email">Email Address</label>
 
                 <input
                   id='email'

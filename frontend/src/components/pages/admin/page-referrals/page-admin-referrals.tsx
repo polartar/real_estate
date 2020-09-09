@@ -8,7 +8,7 @@ import { APIAdminService } from '../../../../services/api/admin';
 import Debounce from 'debounce-decorator';
 import { formatDate } from '../../../../helpers/utils';
 import { AlertService } from '../../../../services/alerts.service';
-
+ 
 @Component({
   tag: 'page-admin-referrals',
   styleUrl: 'page-admin-referrals.scss',
@@ -18,21 +18,16 @@ export class PageAdminReferrals {
 
   @State() isAdmin: boolean = false;
   @State() isLoggedIn: boolean = false;
-  pageSize: number = 40;
   @State() loaded: boolean = false;
   @State() referrals: any[] = [];
-  @State() searchParams: any = {
-    query: '',
-    sortBy: 'created_date_desc',
-    offset: 0,
-    limit: this.pageSize,
-  };
+  @State() user: any = null   ;
+
   @State() screenHeight: number;
 
   @State() resultCount: number = 0;
 
   referralsWrapper: HTMLElement;
-  searchInput: HTMLInputElement;
+  // searchInput: HTMLInputElement;
 
   componentWillLoad() {
     this.store.mapStateToProps(this, (state) => {
@@ -40,9 +35,10 @@ export class PageAdminReferrals {
         isLoggedIn: authSelectors.isLoggedIn(state),
         isAdmin: authSelectors.isAdmin(state),
         screenHeight: screenSizeSelectors.getHeight(state),
+        user: authSelectors.getUser(state),
       };
     });
-
+    
     if (!this.isLoggedIn) {
       RouterService.forward('/login');
     } else {
@@ -80,29 +76,15 @@ export class PageAdminReferrals {
   }
 
   async fetchReferrals() {
-    try {
-      const result = await APIAdminService.getReferrals(this.searchParams);
-
+     try {
+      const result = await APIAdminService.getReferrals(this.user.id);
+      
       return result;
     } catch (err) {
       return ToastService.error(`Could not retrieve referrals: ${err.message}`);
     }
   }
-
-  search(e?) {
-    if (e) {
-      e.preventDefault();
-    }
-
-    if (this.searchInput.value !== this.searchParams.search_query) {
-      this.searchParams.query = this.searchInput.value;
-    }
-
-    this.searchParams.offset = 0;
-
-    this.renderReferrals();
-  }
-
+ 
   getTableHeight() {
     if (!this.referralsWrapper) {
       return '500px';
@@ -113,7 +95,7 @@ export class PageAdminReferrals {
   }
 
   async infiniteScroll() {
-    this.searchParams.offset = this.referrals.length;
+    // this.searchParams.offset = this.referrals.length;
 
     try {
       const results = await this.fetchReferrals();
@@ -136,12 +118,6 @@ export class PageAdminReferrals {
     }
 
     this.infiniteScroll();
-  }
-
-  setSort(sort) {
-    this.searchParams = { ...this.searchParams, sortBy: sort };
-
-    this.search();
   }
 
   async deleteReferral(id) {
@@ -203,12 +179,11 @@ export class PageAdminReferrals {
               {this.referrals.map((r) => {
                 return (
                   <tr>
-                    <td>{r.referrer_name}</td>
-                    <td>{r.referrer_email}</td>
-                    <td>{r.referrer_phone}</td>
                     <td>{r.referral_name}</td>
                     <td>{r.referral_email}</td>
                     <td>{r.referral_phone}</td>
+                    <td>{r.referral_details}</td>
+                    <td>{r.referrer_agent}</td>
                     <td>{formatDate(r.created_at)}</td>
 
                     <td>

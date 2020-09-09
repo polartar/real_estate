@@ -46,7 +46,7 @@ export class AddReferralForm {
       'referral_phone',
       'referral_email',
       'referral_details',
-      'referral_agent',
+      'referrer_agent',
     ];
 
     required.forEach((r) => {
@@ -58,6 +58,8 @@ export class AddReferralForm {
     if (results.referral_email && !Isemail.validate(results.referral_email)) {
       errors.push('referral_email');
     }
+
+    this.errors = errors;
   }
 
   render() {
@@ -76,7 +78,7 @@ export class AddReferralForm {
               error: this.errors.includes('referral_name'),
             }}
           >
-            <div class='label'>Referral Name</div>
+            <label class='label' htmlFor="referral_name">Referral Name</label>
 
             <input
               id='referral_name'
@@ -92,8 +94,8 @@ export class AddReferralForm {
               error: this.errors.includes('referral_phone'),
             }}
           >
-            <div class='label'>Referral Phone Number</div>
-
+            <label class='label' htmlFor="referral-phone">Referral Phone Number</label>
+ 
             <input
               id='referral-phone'
               type='text'
@@ -108,29 +110,29 @@ export class AddReferralForm {
               error: this.errors.includes('referral_email'),
             }}
           >
-            <div class='label'>Referral Email Address</div>
+            <label class='label' htmlFor="referral_email">Referral Email Address</label>
 
             <input
-              id='referrer-email'
+              id='referral_email'
               type='email'
               class='apt212-input block'
-              name='referrer_email'
+              name='referral_email'
             />
           </div>
 
           <div
             class={{
               input: true,
-              error: this.errors.includes('referral_agent'),
+              error: this.errors.includes('referrer_agent'),
             }}
           >
-            <div class='label'>Referral by Agent</div>
+            <label class='label' htmlFor="referrer_agent">Referral by Agent</label>
 
             <input
-              id='referral_agent'
+              id='referrer_agent'
               type='text'
               class='apt212-input block'
-              name='referral_agent'
+              name='referrer_agent'
             />
           </div>
 
@@ -140,7 +142,7 @@ export class AddReferralForm {
               error: this.errors.includes('referral_details'),
             }}
           >
-            <div class='label'>Referral Details</div>
+            <label class='label' htmlFor="referral-details">Referral Details</label>
 
             <textarea
               id='referral-details'

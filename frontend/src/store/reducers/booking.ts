@@ -6,7 +6,7 @@ interface bookingState {
   checkoutDate: Date | null,
   guests: number | null,
   bookingDetails: object | null,
-  user:object | null
+  user: object | null
 }
 
 const getInitialState = () => {
