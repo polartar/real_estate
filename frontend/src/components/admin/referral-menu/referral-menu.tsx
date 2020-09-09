@@ -32,13 +32,6 @@ export class ReferralMenu {
     }
   }
 
-  componentDidRender() {
-    var host = document.getElementById('ioncontent');
-    var style = document.createElement('style');
-    style.innerHTML = '.inner-scroll { background: unset!important; }';
-    host.shadowRoot.appendChild(style);
-  }
-  
   render() {
     return [
       <header class='referral-menu-header'>
