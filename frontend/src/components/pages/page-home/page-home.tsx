@@ -124,14 +124,10 @@ export class PageHome {
 
     let neighborhoodTitle = 'New York City Neighborhoods';
     let furnishedText = 'Furnished Apartments';
-    let salesLink = "/coming-soon";
-    let rentalsLink = "/coming-soon";
 
     if (this.size === 'phone-only') {
       neighborhoodTitle = 'Neighborhoods';
       furnishedText = 'Furnished';
-      salesLink = "#";
-      rentalsLink = "#";
     }
 
     return [
