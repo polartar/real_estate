@@ -85,3 +85,17 @@ export interface BookingSetDetails {
   type: Actions.BOOKING_SET_DETAILS,
   payload: any
 }
+
+export function bookingSetUser(user) {
+   return async dispatch => {
+    dispatch({
+      type: Actions.BOOKING_SET_USER,
+      payload: user
+    })
+  };
+}
+
+export interface BookingSetUser {
+  type: Actions.BOOKING_SET_USER,
+  payload: any
+}

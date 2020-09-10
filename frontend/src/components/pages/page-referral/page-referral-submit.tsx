@@ -2,10 +2,10 @@ import { Component, h } from '@stencil/core';
 import { RouterService } from '../../../services/router.service';
 
 @Component({
-  tag: 'page-referral',
+  tag: 'page-referral-submit',
   styleUrl: 'page-referral.scss',
 })
-export class PageReferral {
+export class PageReferralSubmit {
   render() {
     return [
       <ion-content>
@@ -26,17 +26,16 @@ export class PageReferral {
                   <br />
 
                   <br />
-                  
+
                   it to make a type specimen book. It has survived not only five
                   centuries, but also the leap into electronic typesetting,
                   remaining essentially unchanged. It was popularised in the
                   1960s with the release of Letraset
                 </p>
-
                 <p>
                   <ion-router-link href={RouterService.getRoute('privacy')}>
-                    <span class='underline'> Terms and Conditions </span>
-
+                    <span class='underline'> Terms and Conditions </span>{' '}
+                    
                     <img src='/assets/images/arrow.png' />
                   </ion-router-link>
                 </p>
@@ -45,7 +44,7 @@ export class PageReferral {
 
             <div class='right-body'>
               <div class='form'>
-                <referral-form />
+                <referral-submit-form />
               </div>
             </div>
           </section>

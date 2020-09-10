@@ -249,15 +249,12 @@ class APIAdminInstance {
     }
   }
 
-  public async getReferrals(filters) {
+  public async getReferrals(uid) {
     try {
-
-      const params = encodeURIComponent(JSON.stringify({...filters}));
-
-      let response = await fetch(APIService.getAPIUrl() + '/admin/referrals?params=' + params, {
+       let response = await fetch(APIService.getAPIUrl() + '/admin/referrals?uid=' + uid, {
         headers: APIService.getHeaders(),
       });
-
+ 
       if (!response.ok) {
         if (response.status === 401) {
           throw new Error(`You have been logged out.  Please log in an try again`);
@@ -265,8 +262,8 @@ class APIAdminInstance {
 
         throw new Error(response.statusText);
       }
-
-      return await response.json();
+      
+       return await response.json();
     } catch (err) {
       throw new Error(err.message);
     }

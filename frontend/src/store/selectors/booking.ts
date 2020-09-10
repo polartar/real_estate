@@ -3,7 +3,11 @@ const bookingSelectors = {
   getBooking: state => {
     return [...state.booking];
   },
-
+  
+  getUser: state => {
+     return state.booking.user;
+  },
+  
   getGuests: state => {
     return state.booking.guests;
   },

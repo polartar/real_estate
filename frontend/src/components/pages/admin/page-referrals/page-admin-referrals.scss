@@ -1,72 +1,59 @@
 @import '../../../../styles/mixins';
+@import '../../../../styles/variables';
 
 .page-admin-referrals {
+  background-color: $bg-dark;
+  height: 100vh;
+  font-family: $font-refer-default;
+  color: $color-text-light;
+  overflow-x: auto;
+  padding: 30px;
 
-  .listings {
-    margin-top: 32px;
-    padding-bottom: 32px;
-    max-height: 500px;
+  table {
+    width: 100%;
+    
+    tr {
+      height: 30px;
+    }
+  }
+
+  .tbl-container {
     overflow: auto;
+  }
 
-    .data-table thead th {
-      position: sticky;
-      top: 0;
-      background-color: white;
-      white-space: nowrap;
-      padding-right: 8px;
-      z-index: 1;
+  thead {
+    border: 1px solid;
+  }
 
-      button {
-        font-weight: inherit;
+  h1 {
+    text-transform: inherit;
+    font-size: 16px;
+    display: inline-block;
+    margin-right: 80px;
+  }
 
-        &.desc {
-          ion-icon {
-            transform: rotate(180deg);
-          }
-        }
-      }
+  .add-button {
+    width: 199px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: $color-text-light;
+    color: $bg-dark;
+  }
 
-      ion-icon {
-        font-size: 12px;
-        margin-left: 4px;
-      }
-    }
+  td,
+  th {
+    border-right: 1px solid;
+    padding: 5px;
 
-    .data-table td {
-      white-space: nowrap;
-      border-left: 1px solid #d8d8d8;
-      background-color: white;
+    &:first-child {
+      border-left: 1px solid;
     }
   }
 
-  button.button-dark {
-    &.inactive {
-      background-color: #888888;
-    }
-
-    &.active-filter {
-      margin-right: 8px;
-    }
-  }
-
-  .listings-totals {
-    margin-top: -40px;
-    padding-bottom: 8px;
-  }
-
-  .search {
-    display: flex;
-    align-items: center;
-
-    .search-submit {
-      svg {
-        width: 1rem;
-        height: 1rem;
-      }
-    }
-
-    button {
-      height: 48px;
+  tr {
+    &:last-child {
+      border-bottom: 1px solid;
     }
   }
 }
