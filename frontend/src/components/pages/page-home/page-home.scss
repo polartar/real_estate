@@ -83,14 +83,8 @@
       margin-bottom: -3px;
 
       &:hover {
-        color: $bg-dark;
-        background: $color-text-light;
 
         & ~ .home-search-wrapper {
-          input {
-            background-color: $color-text-light;
-          }
-
           svg * {
             fill: $bg-dark;
           }
@@ -121,10 +115,6 @@
     }
 
     &:hover {
-      .home-search {
-        color: $bg-dark;
-        background-color: $color-text-light;
-      }
 
       svg * {
         fill: $bg-dark;
