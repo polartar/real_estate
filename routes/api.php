@@ -19,7 +19,7 @@ Auth::routes();
 Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
 
     Route::post('auth', 'SPAAuthController@login')->middleware('throttle');
-
+    Route::post('forgotpassword', 'Auth\ForgotPasswordController@forgotpassword');
     Route::get('taxonomy', 'TaxonomyController@taxonomy');
 
     // Searches

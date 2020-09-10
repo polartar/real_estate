@@ -312,6 +312,8 @@ export namespace Components {
     'prefetching': boolean;
   }
   interface PageReferral {}
+  interface PageReferralForgotpassword {}
+  interface PageReferralPasswordreset {}
   interface PageReferralSignin {}
   interface PageReferralSubmit {}
   interface PageSearch {
@@ -328,9 +330,13 @@ export namespace Components {
   interface PriceFilter {
     'inModal': boolean;
   }
+  interface ReferralForgotpasswordForm {}
   interface ReferralForm {}
   interface ReferralHeader {}
   interface ReferralMenu {}
+  interface ReferralPasswordresetForm {
+    'match': any;
+  }
   interface ReferralSigninForm {}
   interface ReferralSubmitForm {}
   interface SearchFilters {
@@ -998,6 +1004,18 @@ declare global {
     new (): HTMLPageReferralElement;
   };
 
+  interface HTMLPageReferralForgotpasswordElement extends Components.PageReferralForgotpassword, HTMLStencilElement {}
+  var HTMLPageReferralForgotpasswordElement: {
+    prototype: HTMLPageReferralForgotpasswordElement;
+    new (): HTMLPageReferralForgotpasswordElement;
+  };
+
+  interface HTMLPageReferralPasswordresetElement extends Components.PageReferralPasswordreset, HTMLStencilElement {}
+  var HTMLPageReferralPasswordresetElement: {
+    prototype: HTMLPageReferralPasswordresetElement;
+    new (): HTMLPageReferralPasswordresetElement;
+  };
+
   interface HTMLPageReferralSigninElement extends Components.PageReferralSignin, HTMLStencilElement {}
   var HTMLPageReferralSigninElement: {
     prototype: HTMLPageReferralSigninElement;
@@ -1046,6 +1064,12 @@ declare global {
     new (): HTMLPriceFilterElement;
   };
 
+  interface HTMLReferralForgotpasswordFormElement extends Components.ReferralForgotpasswordForm, HTMLStencilElement {}
+  var HTMLReferralForgotpasswordFormElement: {
+    prototype: HTMLReferralForgotpasswordFormElement;
+    new (): HTMLReferralForgotpasswordFormElement;
+  };
+
   interface HTMLReferralFormElement extends Components.ReferralForm, HTMLStencilElement {}
   var HTMLReferralFormElement: {
     prototype: HTMLReferralFormElement;
@@ -1062,6 +1086,12 @@ declare global {
   var HTMLReferralMenuElement: {
     prototype: HTMLReferralMenuElement;
     new (): HTMLReferralMenuElement;
+  };
+
+  interface HTMLReferralPasswordresetFormElement extends Components.ReferralPasswordresetForm, HTMLStencilElement {}
+  var HTMLReferralPasswordresetFormElement: {
+    prototype: HTMLReferralPasswordresetFormElement;
+    new (): HTMLReferralPasswordresetFormElement;
   };
 
   interface HTMLReferralSigninFormElement extends Components.ReferralSigninForm, HTMLStencilElement {}
@@ -1248,6 +1278,8 @@ declare global {
     'page-privacy': HTMLPagePrivacyElement;
     'page-private-rooms': HTMLPagePrivateRoomsElement;
     'page-referral': HTMLPageReferralElement;
+    'page-referral-forgotpassword': HTMLPageReferralForgotpasswordElement;
+    'page-referral-passwordreset': HTMLPageReferralPasswordresetElement;
     'page-referral-signin': HTMLPageReferralSigninElement;
     'page-referral-submit': HTMLPageReferralSubmitElement;
     'page-search': HTMLPageSearchElement;
@@ -1256,9 +1288,11 @@ declare global {
     'payout-check-form': HTMLPayoutCheckFormElement;
     'payout-wire-form': HTMLPayoutWireFormElement;
     'price-filter': HTMLPriceFilterElement;
+    'referral-forgotpassword-form': HTMLReferralForgotpasswordFormElement;
     'referral-form': HTMLReferralFormElement;
     'referral-header': HTMLReferralHeaderElement;
     'referral-menu': HTMLReferralMenuElement;
+    'referral-passwordreset-form': HTMLReferralPasswordresetFormElement;
     'referral-signin-form': HTMLReferralSigninFormElement;
     'referral-submit-form': HTMLReferralSubmitFormElement;
     'search-filters': HTMLSearchFiltersElement;
@@ -1573,6 +1607,8 @@ declare namespace LocalJSX {
     'prefetching'?: boolean;
   }
   interface PageReferral extends JSXBase.HTMLAttributes<HTMLPageReferralElement> {}
+  interface PageReferralForgotpassword extends JSXBase.HTMLAttributes<HTMLPageReferralForgotpasswordElement> {}
+  interface PageReferralPasswordreset extends JSXBase.HTMLAttributes<HTMLPageReferralPasswordresetElement> {}
   interface PageReferralSignin extends JSXBase.HTMLAttributes<HTMLPageReferralSigninElement> {}
   interface PageReferralSubmit extends JSXBase.HTMLAttributes<HTMLPageReferralSubmitElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
@@ -1589,9 +1625,13 @@ declare namespace LocalJSX {
   interface PriceFilter extends JSXBase.HTMLAttributes<HTMLPriceFilterElement> {
     'inModal'?: boolean;
   }
+  interface ReferralForgotpasswordForm extends JSXBase.HTMLAttributes<HTMLReferralForgotpasswordFormElement> {}
   interface ReferralForm extends JSXBase.HTMLAttributes<HTMLReferralFormElement> {}
   interface ReferralHeader extends JSXBase.HTMLAttributes<HTMLReferralHeaderElement> {}
   interface ReferralMenu extends JSXBase.HTMLAttributes<HTMLReferralMenuElement> {}
+  interface ReferralPasswordresetForm extends JSXBase.HTMLAttributes<HTMLReferralPasswordresetFormElement> {
+    'match'?: any;
+  }
   interface ReferralSigninForm extends JSXBase.HTMLAttributes<HTMLReferralSigninFormElement> {}
   interface ReferralSubmitForm extends JSXBase.HTMLAttributes<HTMLReferralSubmitFormElement> {}
   interface SearchFilters extends JSXBase.HTMLAttributes<HTMLSearchFiltersElement> {
@@ -1753,6 +1793,8 @@ declare namespace LocalJSX {
     'page-privacy': PagePrivacy;
     'page-private-rooms': PagePrivateRooms;
     'page-referral': PageReferral;
+    'page-referral-forgotpassword': PageReferralForgotpassword;
+    'page-referral-passwordreset': PageReferralPasswordreset;
     'page-referral-signin': PageReferralSignin;
     'page-referral-submit': PageReferralSubmit;
     'page-search': PageSearch;
@@ -1761,9 +1803,11 @@ declare namespace LocalJSX {
     'payout-check-form': PayoutCheckForm;
     'payout-wire-form': PayoutWireForm;
     'price-filter': PriceFilter;
+    'referral-forgotpassword-form': ReferralForgotpasswordForm;
     'referral-form': ReferralForm;
     'referral-header': ReferralHeader;
     'referral-menu': ReferralMenu;
+    'referral-passwordreset-form': ReferralPasswordresetForm;
     'referral-signin-form': ReferralSigninForm;
     'referral-submit-form': ReferralSubmitForm;
     'search-filters': SearchFilters;

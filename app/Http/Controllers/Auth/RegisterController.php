@@ -75,8 +75,9 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
         $user = '' ;    
-        $this->guard()->login($user = $this->create($request->all()));
+        
+        $this->guard()->login( $user = config('roles.models.defaultUser')::create($request->all() ) );
 
-        return response()->json(['ok' => true, "uid"=> $user->id]);
+        return response()->json( ['ok' => true, 'id' => $user->id] );
     }
 }

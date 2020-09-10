@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/login', ['as' => 'login', 'uses' => 'SPAController@serve']);
 
 Route::get('/api/pdf/booking-details/{apartment}', 'ApartmentController@getBookingDetailsPDF');
@@ -31,9 +30,10 @@ $front_end_routes = [
     'privacy' => '/privacy-policy',
     'coming-soon' => '/coming-soon',
 
-
     'about' => '/about',
     'referral' => '/referral',
+    'referral/signin' => '/referral/signin',
+    'referral/passwordreset' => '/referral/passwordreset/{token}',
 
     'admin' => '/admin',
     'admin-listings' => '/admin/listings',

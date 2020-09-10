@@ -159,7 +159,7 @@ export class ReferralForm {
             <span class='grey'>Forgot Password? </span>
             
             <ion-router-link
-              href={RouterService.getRoute('referral')}
+              href={RouterService.getRoute('referral/forgotpassword')}
               class='white'
             >
               Restore

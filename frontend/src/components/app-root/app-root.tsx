@@ -136,7 +136,9 @@ export class AppRoot {
           <ion-route url="/about" component="page-about" />
           <ion-route url="/referral" component={this.isLoggedin ? "page-referral-submit" : "page-referral"} />
           <ion-route url="/referral/submit" component={this.isLoggedin ? "page-referral-submit" : "page-referral"} />
-          <ion-route url="/referral/signin" component={this.isAdmin ? "page-referral-submit" : "page-referral-signin"} />
+          <ion-route url="/referral/signin" component={this.isLoggedin ? "page-referral-submit" : "page-referral-signin"} />
+          <ion-route url="/referral/forgotpassword" component="page-referral-forgotpassword" />
+          <ion-route url="/referral/passwordreset/:token" component="page-referral-passwordreset" />
 
           <ion-route url="/login" component="page-login" />
 

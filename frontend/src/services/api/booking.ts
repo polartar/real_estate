@@ -119,6 +119,46 @@ class APIBookingInstance {
     }
   }
 
+  public async resetPasswordReferrer(data) {
+    try {
+      const response = await fetch(
+        `${APIService.getAPIUrl()}/password/reset`,
+        {
+          method: "POST",
+          headers: APIService.getHeaders(),
+          body: JSON.stringify(data),
+        }
+      );
+
+      const r = await response.json();
+
+      if (!response.ok) {
+        if (r && r.errors) {
+          // caller will need to check success
+          const errMessages = [];
+
+          Object.keys(r.errors).forEach((re) => errMessages.push(r.errors[re]));
+
+          throw new Error(errMessages.join("\n"));
+        }
+
+        if (r && r.message) {
+          throw new Error(r.message);
+        }
+
+        throw new Error(response.statusText);
+      }
+     
+      if(!r.ok){
+        throw new Error(r.message);
+      }
+
+      return r;
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
   public async signupReferer(data) {
     try {
       const response = await fetch(
@@ -154,6 +194,45 @@ class APIBookingInstance {
     }
   }
   
+  public async forgotPassword(data) {
+    try {
+      const response = await fetch(
+        `${APIService.getAPIUrl()}/password/email`,
+        {
+          method: "POST",
+          headers: APIService.getHeaders(),
+          body: JSON.stringify(data),
+        }
+      );
+
+      const r = await response.json();
+         if (!response.ok) {
+          if (r && r.errors) {
+            // caller will need to check success
+            const errMessages = [];
+
+            Object.keys(r.errors).forEach((re) => errMessages.push(r.errors[re]));
+
+            throw new Error(errMessages.join("\n"));
+          }
+
+          if (r && r.message) {
+            throw new Error(r.message);
+          }
+
+          throw new Error(response.statusText);
+      }
+ 
+      if(r.ok)
+        return r;
+      else
+        throw new Error(r.message);
+
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
   public async shareListing(data) {
     try {
       const response = await fetch(
