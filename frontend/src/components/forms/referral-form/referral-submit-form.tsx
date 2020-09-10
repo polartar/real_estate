@@ -28,7 +28,6 @@ export class ReferralSubmitForm {
 
   async handleSubmit(e) {
     e.preventDefault();
-    console.log('dd');
     let results = serialize(this.form, { hash: true, empty: true });
 
     this.checkErrors(results);

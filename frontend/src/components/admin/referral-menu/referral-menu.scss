@@ -54,7 +54,7 @@
     margin: 0 auto;
     padding: 1.5rem 3rem 1.5rem 3rem;
 
-    @include for-size(phone-only) {
+    @include for-size(tablet-portrait-up) {
       padding: 0 1rem;
     }
 
