@@ -4,37 +4,49 @@
 .page-referral {
   .hero {
     width: 100%;
-    min-height: 1000px;
-    margin-bottom: -80px;
-
-    background-image: url('/assets/images/referral_background.jpg');
+    min-height: 741px;
     background-repeat: no-repeat;
     background-size: cover;
-
-    padding-top: 140px;
-    padding-bottom: 300px;
-    color: white;
+    margin-bottom: 80px;
+    color: $color-text-light;
 
     @include for-size(desktop-up) {
       display: grid;
-      grid-template-columns:  60% 40%;
+      grid-template-columns: 50% 50%;
     }
 
-    .cta {
-      max-width: 470px;
-      margin: 0 auto;
+    .right-body {
+      background: $bg-dark;
+      padding-top: 55px;
+      display: flex;
+      justify-content: center;
+    }
 
-      h1 {
-        font-size: $font-size-xl;
+    .left-body {
+      background-image: url('/assets/images/referral_background.jpg');
+      padding-top: 80px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: $font-refer-default;
+    }
+
+    .underline {
+      border-bottom: 2px solid $color-text-light;
+    }
+    
+    .cta {
+      max-width: 500px;
+      margin: 0 auto;
+      font-size: 16px;
+      min-height: 300px;
+
+      h3 {
+        font-size: 20px;
         margin-top: 0;
 
         @include for-size(desktop-up) {
-          font-size: $font-size-xl * 1.5;
+          font-size: 28px;
         }
-      }
-
-      h2 {
-        font-size: $font-size-xl;
       }
 
       p {
@@ -54,10 +66,9 @@
     }
 
     .form {
-      max-width: 410px;
-      padding: 30px;
-      background-color: white;
-      color: black;
+      max-width: 420px;
+      padding: 30px 0;
+      width: 100%;
     }
   }
 }

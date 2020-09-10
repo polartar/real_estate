@@ -1,0 +1,81 @@
+@import '../../../styles/variables';
+
+.referral-form-component {
+  position: relative;
+  font-family: $font-refer-default;
+
+  .title {
+    padding-bottom: 16px;
+    font-size: 16px;
+    color: $color-text-light;
+    font-weight: bold;
+    line-height: 20px;
+    font-family: $font-refer-title;
+  }
+  
+  .subtitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 32px;
+  }
+
+  .grey {
+    color: #9a9a9c;
+  }
+
+  .form-content {
+    text-align: center;
+    &.submitted {
+      visibility: hidden;
+    }
+  }
+
+  .label {
+    text-align: left;
+    font-size: 12px;
+    color: $color-text-light;
+  }
+
+  .apt212-input {
+    border: solid 2px $color-text-light;
+    background: transparent;
+  }
+   
+  .button-dark {
+    background: $color-text-light;
+    color: $bg-dark;
+    margin-top: 20px;
+    text-transform: none;
+  }
+
+  .input {
+    padding-bottom: 0px;
+    text-align: left;
+  }
+
+  .thank-you-msg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+
+    p {
+      font-size: $font-size-xl;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    ion-icon {
+      font-size: 120px;
+      color: $color-secondary;
+    }
+  }
+
+  .error {
+    label {
+      color: red;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import { Component, h } from '@stencil/core';
 import { RouterService } from '../../../services/router.service';
 
 @Component({
-  tag: 'page-referral',
+  tag: 'page-referral-signin',
   styleUrl: 'page-referral.scss',
 })
 export class PageReferral {
@@ -22,11 +22,10 @@ export class PageReferral {
                   typesetting industry. Lorem Ipsum has been the industry's
                   standard dummy text ever since the 1500s, when an unknown
                   printer took a galley of type and scrambled
-
                   <br />
 
                   <br />
-                  
+
                   it to make a type specimen book. It has survived not only five
                   centuries, but also the leap into electronic typesetting,
                   remaining essentially unchanged. It was popularised in the
@@ -36,7 +35,7 @@ export class PageReferral {
                 <p>
                   <ion-router-link href={RouterService.getRoute('privacy')}>
                     <span class='underline'> Terms and Conditions </span>
-
+                    
                     <img src='/assets/images/arrow.png' />
                   </ion-router-link>
                 </p>
@@ -45,7 +44,7 @@ export class PageReferral {
 
             <div class='right-body'>
               <div class='form'>
-                <referral-form />
+                <referral-signin-form />
               </div>
             </div>
           </section>

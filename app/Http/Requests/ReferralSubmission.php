@@ -24,9 +24,7 @@ class ReferralSubmission extends FormRequest
     public function rules()
     {
         return [
-            'referrer_name' => ['required', 'string'],
-            'referrer_email' => ['required', 'email:rfc'],
-            'referrer_phone' => ['sometimes', 'string'],
+            'referrer_uid' => ['required', 'integer'],
             'referral_name' => ['required', 'string'],
             'referral_email' => ['required', 'email:rfc'],
             'referral_phone' => ['sometimes', 'string']

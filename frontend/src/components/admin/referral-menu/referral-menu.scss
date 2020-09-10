@@ -1,11 +1,17 @@
 @import "../../../styles/mixins";
 @import "../../../styles/variables";
 
-.admin-menu {
+.referral-menu {
   --width: 100%;
   --height: 100%;
 
-  .admin-menu-header {
+  #ioncontent{
+   --background:unset!important;
+  }
+
+  .referral-menu-header {
+    background: $bg-dark;
+
     .app-header {
       display: flex;
       align-items: center;
@@ -48,12 +54,14 @@
     margin: 0 auto;
     padding: 1.5rem 3rem 1.5rem 3rem;
 
-    @include for-size(phone-only) {
+    @include for-size(tablet-portrait-up) {
       padding: 0 1rem;
     }
 
     .main-menu {
+      background: rgb(0, 0, 0, 0.8);
       height: calc(100% - 70px);
+      font-family: $font-refer-default;
       position: relative;
       padding-top: 3rem;
       width: 100%;
@@ -71,8 +79,10 @@
         font-weight: 600;
         padding: 0 0 0.25rem 0;
         margin-bottom: 1.75rem;
+        color: $color-text-light;
         border-bottom: 4px solid transparent;
-
+        font-size: 20px;
+        
         &:after {
           content: "";
           position: absolute;
@@ -80,7 +90,7 @@
           height: 3px;
           bottom: -2px;
           left: 0;
-          background-color: $color-primary;
+          background-color: $color-text-light;
           visibility: hidden;
           transform: scaleX(0);
           transition: all 0.3s ease-in-out 0s;

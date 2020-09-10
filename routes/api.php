@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Auth::routes();
 
 // unauthenticated endpoints
 Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {

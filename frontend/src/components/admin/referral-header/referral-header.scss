@@ -1,0 +1,49 @@
+ @import '../../../styles/variables';
+ @import '../../../styles/mixins';
+
+.referral-header-component {
+  font-family: $font-refer-default;
+
+  .logo {
+    text-transform: inherit;
+    font-size: $font-size;
+    display: inline-block;
+    color: $color-text-light;
+    font-weight: bold;
+    margin-right: 7%;
+  }
+
+  .logo-container {
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+
+    @include for-size(custom-down, 450px) {
+      display: block;
+    }
+
+  }
+
+  .add-button {
+    width: 199px;
+    height: 50px;
+    font-size: $font-size;
+    font-weight: bold;
+    font-family: $font-refer-default;
+    background-color: $color-text-light;
+    color: $bg-dark;
+  }
+
+  .referral-header {
+    display: flex;
+    align-items: center;
+    padding-top: 34px;
+    padding-bottom: 16px;
+  }
+
+  .menu {
+    font-size: 16px;
+    --padding-end: 0;
+  }
+}
