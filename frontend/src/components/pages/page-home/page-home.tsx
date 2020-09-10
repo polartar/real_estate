@@ -166,7 +166,7 @@ export class PageHome {
 
                   <p>A New York City marketplace for furnished apartments, sublets, and legal short term rentals.</p>
 
-                  <ion-router-link href={ RouterService.getRoute('coming-soon') } class="learn-more">
+                  <ion-router-link href={ RouterService.getRoute('search') } class="learn-more">
                     Learn More
                     <img src="/assets/images/icons/arrow.svg" alt="" class="arrow-right" />
                   </ion-router-link>
