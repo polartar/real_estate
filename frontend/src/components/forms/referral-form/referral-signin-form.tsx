@@ -1,24 +1,71 @@
-import { Component, h, State } from '@stencil/core';
+import { Component, h, State, Prop, Watch } from '@stencil/core';
 import serialize from 'form-serialize';
 import Isemail from 'isemail';
 import { LoadingService } from '../../../services/loading.service';
 import { ToastService } from '../../../services/toast.service';
-import { APIBookingService } from '../../../services/api/booking';
 import { RouterService } from '../../../services/router.service';
+import { Store, Action } from '@stencil/redux';
+import authSelectors from '../../../store/selectors/auth';
+import { login } from '../../../store/actions/auth';
 
 @Component({
   tag: 'referral-signin-form',
   styleUrl: 'referral-form.scss',
 })
 export class ReferralForm {
+  @Prop({ context: "store" }) store: Store;
+
   @State() submitted: boolean = false;
   @State() errors: string[] = [];
+  @State() loading: boolean = false;
+  @State() loginError;
+  @State() isLoggedIn;
 
   form: HTMLFormElement;
+  loginAction: Action;
+
+  componentWillLoad() {
+    this.store.mapStateToProps(this, state => {
+      return {
+        loading: authSelectors.getIsLoading(state),
+
+        loginError: authSelectors.getLoginError(state),
+
+        isLoggedIn: authSelectors.isLoggedIn(state)
+      }
+    });
+
+    this.store.mapDispatchToProps(this, {
+      loginAction: login
+    });
+  }
+
+  @Watch('loginError')
+  loginErrorChanged() {
+    if (this.loginError) {
+      let message = this.loginError;
+
+      if (message === 'Unauthorized') {
+        message = 'Could not log in. Please check your email/password.';
+      }
+
+      return ToastService.error(message);
+    }
+  }
+
+  @Watch('isLoggedIn')
+  loginChanged() {
+    if (this.isLoggedIn) {
+      ToastService.success('You have been logged in');
+      
+      RouterService.forward('/referral/submit');
+    }
+  }
 
   async handleSubmit(e) {
     e.preventDefault();
     const results = serialize(this.form, { hash: true, empty: true });
+    
     this.checkErrors(results);
 
     if (this.errors.length) {
@@ -28,9 +75,8 @@ export class ReferralForm {
     await LoadingService.showLoading();
 
     try {
-      await APIBookingService.signupReferer(results);
+      this.loginAction(results.email, results.password);
 
-      this.submitted = true;
     } catch (err) {
       ToastService.error(err.message);
     }
@@ -48,6 +94,7 @@ export class ReferralForm {
         errors.push(r);
       }
     });
+    
     if (results.email && !Isemail.validate(results.email)) {
       errors.push('email');
     }
@@ -120,22 +167,12 @@ export class ReferralForm {
           </div>
 
           <div class='input'>
-            <input type='submit' class='button-dark block' value='Sign In' />
+            <input type='submit' class='button-dark block' value='Sign In' disabled={this.loading}/>
+          
           </div>
         </div>
 
-        {this.submitted ? (
-          <div class='thank-you-msg flex-vertical-center text-center'>
-            <div>
-              <p>
-                Thank you. <br />
-                Your referral has now been sent.
-              </p>
-
-              <ion-icon name='md-checkmark' />
-            </div>
-          </div>
-        ) : null}
+       
       </form>
     );
   }

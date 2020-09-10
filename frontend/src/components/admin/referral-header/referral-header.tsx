@@ -40,7 +40,7 @@ export class ReferralHeader {
       <div class='referral-header-component'>
         <div class='referral-header section'>
           <div class='logo-container'>
-            <ion-router-link href='/admin' class='logo'>
+            <ion-router-link href='/admin/referrals' class='logo'>
               Referral Dashboard
             </ion-router-link>
 

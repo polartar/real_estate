@@ -15,6 +15,7 @@ export class PageAdmin {
   @State() loading: boolean = false;
   @State() loginError;
   @State() isLoggedIn;
+  @State() isAdmin;
 
   loginAction: Action;
   email!: HTMLInputElement;
@@ -28,7 +29,8 @@ export class PageAdmin {
       return {
         loading: authSelectors.getIsLoading(state),
         loginError: authSelectors.getLoginError(state),
-        isLoggedIn: authSelectors.isLoggedIn(state)
+        isLoggedIn: authSelectors.isLoggedIn(state),
+        isAdmin: authSelectors.isAdmin(state)
       }
     });
 
@@ -41,6 +43,7 @@ export class PageAdmin {
   loginErrorChanged() {
     if (this.loginError) {
       let message = this.loginError;
+
       if (message === 'Unauthorized') {
         message = 'Could not log in. Please check your email/password.';
       }
@@ -51,10 +54,14 @@ export class PageAdmin {
 
   @Watch('isLoggedIn')
   loginChanged() {
+    if (this.isAdmin) {
+      ToastService.success('You have been logged in');
+      RouterService.forward('/admin');
+    }
+
     if (this.isLoggedIn) {
       ToastService.success('You have been logged in');
-console.log('back to admin');
-      RouterService.forward('/admin');
+      RouterService.forward('/admin/referrals');
     }
   }
 
@@ -68,6 +75,7 @@ console.log('back to admin');
 
   validate() {
     const errors = [];
+    
     if (!this.email.value) {
       errors.push('Please enter an email address');
     }

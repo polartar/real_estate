@@ -30,6 +30,7 @@ export class AppRoot {
   @Element() el: HTMLElement;
 
   @State() isAdmin: boolean = false;
+  @State() isLoggedin: boolean = false;
 
   loadAuth: Action;
   updateScreenSize: Action;
@@ -59,6 +60,7 @@ export class AppRoot {
     this.store.mapStateToProps(this, (state) => {
       return {
         isAdmin: AuthSelectors.isAdmin(state),
+        isLoggedin: AuthSelectors.isLoggedIn(state),
       };
     });
 
@@ -132,9 +134,9 @@ export class AppRoot {
             component="page-corporate-rooms"
           />
           <ion-route url="/about" component="page-about" />
-          <ion-route url="/referral" component="page-referral" />
-          <ion-route url="/referral/submit" component="page-referral-submit" />
-          <ion-route url="/referral/signin" component="page-referral-signin" />
+          <ion-route url="/referral" component={this.isLoggedin ? "page-referral-submit" : "page-referral"} />
+          <ion-route url="/referral/submit" component={this.isLoggedin ? "page-referral-submit" : "page-referral"} />
+          <ion-route url="/referral/signin" component={this.isAdmin ? "page-referral-submit" : "page-referral-signin"} />
 
           <ion-route url="/login" component="page-login" />
 
@@ -144,20 +146,20 @@ export class AppRoot {
           />
           <ion-route
             url="/admin/information"
-            component={this.isAdmin ? "page-general-information" : "page-login"}
+            component={this.isLoggedin ? "page-general-information" : "page-login"}
           />
 
           <ion-route
             url="/admin/payout"
-            component={this.isAdmin ? "page-payout" : "page-login"}
+            component={this.isLoggedin ? "page-payout" : "page-login"}
           />
           <ion-route
             url="admin/addreferral"
-            component={this.isAdmin ? "page-add-referral" : "page-login"}
+            component={this.isLoggedin ? "page-add-referral" : "page-login"}
           />
           <ion-route
             url="/admin/terms"
-            component={this.isAdmin ? "page-terms" : "page-login"}
+            component={this.isLoggedin ? "page-terms" : "page-login"}
           />
           <ion-route
             url="/admin/listings"
@@ -177,7 +179,7 @@ export class AppRoot {
           />
           <ion-route
             url="/admin/referrals"
-            component={this.isAdmin ? "page-admin-referrals" : "page-login"}
+            component={this.isLoggedin ? "page-admin-referrals" : "page-login"}
           />
           <ion-route
             url="/admin/agents"

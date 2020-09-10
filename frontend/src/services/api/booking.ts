@@ -148,7 +148,7 @@ class APIBookingInstance {
           throw new Error(response.statusText);
       }
 
-       return r.uid;
+       return r.id;
     } catch (err) {
       throw new Error(err.message);
     }

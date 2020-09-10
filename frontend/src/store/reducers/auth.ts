@@ -39,9 +39,8 @@ const authReducer = (
         access_token: action.payload.access_token
       };
     }
-
+   
     case Actions.LOGIN_FAIL: {
-      console.log(action.payload.message);
       return {
         ...state,
         loading: false,

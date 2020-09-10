@@ -3,7 +3,7 @@ import {
   LoginFailAction,
   loginSuccessAction,
   logoutAction,
-  saveStateAction
+  saveStateAction,
 } from "./auth";
 
 import {
@@ -12,13 +12,11 @@ import {
   BookingSetCheckout,
   BookingSetGuests,
   BookingSetDetails,
-  BookingSetUser
 } from "./booking";
 
 import {
   UpdateScreenSize
 } from "./screensize";
-
 
 import {
   ToggleSearchFilters,
@@ -83,7 +81,6 @@ export type ActionTypes =
   | BookingSetCheckout
   | BookingSetGuests
   | BookingSetDetails
-  | BookingSetUser
 ;
 
 export enum Actions {
@@ -118,6 +115,5 @@ export enum Actions {
   BOOKING_SET_CHECKOUT_DATE = "BOOKING_SET_CHECKOUT_DATE",
   BOOKING_SET_GUESTS = "BOOKING_SET_GUESTS",
   BOOKING_RESET = "BOOKING_RESET",
-  BOOKING_SET_USER = "BOOKING_SET_USER",
   BOOKING_SET_DETAILS = "BOOKING_SET_DETAILS"
 }

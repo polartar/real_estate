@@ -5,30 +5,36 @@ import Isemail from 'isemail';
 import { LoadingService } from '../../../services/loading.service';
 import { ToastService } from '../../../services/toast.service';
 import { APIBookingService } from '../../../services/api/booking';
-import bookingSelectors from '../../../store/selectors/booking';
+import authSelectors from '../../../store/selectors/auth';
+import { APIAdminService } from '../../../services/api/admin';
 
 @Component({
   tag: 'referral-submit-form',
   styleUrl: 'referral-form.scss',
 })
 export class ReferralSubmitForm {
-  @State() submitted: boolean = false;
   @Prop({  context: 'store' }) store: Store;
+  
+  @State() submitted: boolean = false;
   @State() errors: string[] = [];
   @State() user: any = null   ;
-  form: HTMLFormElement;
   
-  componentWillLoad() {
+  form: HTMLFormElement;
+  agents:any[] = []
+  
+  async componentWillLoad() {
     this.store.mapStateToProps(this, state => {
        return {
-        user: bookingSelectors.getUser(state),
+        user: authSelectors.getUser(state),
       }
     });
+   
+    this.agents = await this.fetchAgents();
   }
 
   async handleSubmit(e) {
     e.preventDefault();
-    console.log('dd');
+
     let results = serialize(this.form, { hash: true, empty: true });
 
     this.checkErrors(results);
@@ -40,7 +46,7 @@ export class ReferralSubmitForm {
     await LoadingService.showLoading();
 
     try {
-      results.referrer_uid = this.user.uid;  
+      results.referrer_uid = this.user.id;  
  
       await APIBookingService.sendReferral(results);
 
@@ -50,6 +56,17 @@ export class ReferralSubmitForm {
     }
 
     await LoadingService.hideLoading();
+  }
+
+  async fetchAgents() {
+    try {
+      const result = await APIAdminService.getAgents();
+
+      return result;
+
+    } catch(err) {
+      return ToastService.error(`Could not retrieve agents: ${err.message}`);
+    }
   }
 
   checkErrors(results) {
@@ -141,11 +158,11 @@ export class ReferralSubmitForm {
               class='apt212-input block agent-select'
               name='referrer_agent'
             >
-              <option value='agent1'>Agent1</option>
-
-              <option value='agent2'>Agent2</option>
-              
-              <option value='agent3'>Agent3</option>
+              {
+                this.agents.map(agent=>{
+                  return <option key={`agent_${agent.id}`} value={agent.name}>{agent.name}</option>    
+                })
+              }
             </select>
           </div>
 

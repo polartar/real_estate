@@ -6,7 +6,6 @@ interface bookingState {
   checkoutDate: Date | null,
   guests: number | null,
   bookingDetails: object | null,
-  user: object | null
 }
 
 const getInitialState = () => {
@@ -16,7 +15,6 @@ const getInitialState = () => {
     checkoutDate: null,
     guests: null,
     bookingDetails: null,
-    user: null
   };
 };
 
@@ -44,14 +42,7 @@ const bookingReducer = (
         checkinDate: action.payload.date
       }
     }
-    
-    case Actions.BOOKING_SET_USER: {
-       return {
-        ...state,
-        user: action.payload,
-      }
-    }
-
+  
     case Actions.BOOKING_SET_CHECKOUT_DATE: {
       return {
         ...state,

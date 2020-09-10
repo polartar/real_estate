@@ -1,13 +1,11 @@
 import { Component, h, State, Prop } from '@stencil/core';
 import serialize from 'form-serialize';
 import Isemail from 'isemail';
-import { Store, Action } from '@stencil/redux';
+import { Store } from '@stencil/redux';
 import { LoadingService } from '../../../services/loading.service';
 import { ToastService } from '../../../services/toast.service';
 import { APIBookingService } from '../../../services/api/booking';
 import { RouterService } from '../../../services/router.service';
-import { bookingSetUser } from '../../../store/actions/booking';
-import { AlertService } from '../../../services/alerts.service';
 
 @Component({
   tag: 'referral-form',
@@ -16,20 +14,12 @@ import { AlertService } from '../../../services/alerts.service';
 export class ReferralForm {
   
   @Prop({ context: 'store' }) store: Store;
-  bookingSetUser: Action;
 
   @State() submitted: boolean = false;
   @State() errors: string[] = [];
 
   form: HTMLFormElement;
 
-  componentWillLoad() {
-
-    this.store.mapDispatchToProps(this, {
-      bookingSetUser
-    });
-  }
-  
   async handleSubmit(e) {
     e.preventDefault();
 
@@ -40,21 +30,18 @@ export class ReferralForm {
       return;
     }
  
-    if(results.agree !== 'on')
-     {
-       await AlertService.alert('Error', 'You should agree to our Terms and Policy');
+    if(results.agree !== 'on'){
+       await ToastService.error('You should agree to our Terms and Policy');
        return;
      }
    
-     await LoadingService.showLoading();
+    await LoadingService.showLoading();
 
     try {
-      const user_id = await APIBookingService.signupReferer(results);
+      await APIBookingService.signupReferer(results);
       
-      this.bookingSetUser({name:results.name, email:results.email, uid:user_id});
-
-      this.submitted = true;
-      RouterService.forward('/referral/submit')
+      ToastService.success('You have been registered successfully');
+      RouterService.forward('/referral/signin')
 
     } catch (err) {
       ToastService.error(err.message);

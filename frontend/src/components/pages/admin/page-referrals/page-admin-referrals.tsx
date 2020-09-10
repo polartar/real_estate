@@ -2,7 +2,6 @@ import { Component, h, State, Prop } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import authSelectors from '../../../../store/selectors/auth';
 import screenSizeSelectors from '../../../../store/selectors/screensize';
-import { RouterService } from '../../../../services/router.service';
 import { ToastService } from '../../../../services/toast.service';
 import { APIAdminService } from '../../../../services/api/admin';
 import Debounce from 'debounce-decorator';
@@ -16,8 +15,6 @@ import { AlertService } from '../../../../services/alerts.service';
 export class PageAdminReferrals {
   @Prop({ context: 'store' }) store: Store;
 
-  @State() isAdmin: boolean = false;
-  @State() isLoggedIn: boolean = false;
   @State() loaded: boolean = false;
   @State() referrals: any[] = [];
   @State() user: any = null   ;
@@ -32,21 +29,10 @@ export class PageAdminReferrals {
   componentWillLoad() {
     this.store.mapStateToProps(this, (state) => {
       return {
-        isLoggedIn: authSelectors.isLoggedIn(state),
-        isAdmin: authSelectors.isAdmin(state),
         screenHeight: screenSizeSelectors.getHeight(state),
         user: authSelectors.getUser(state),
       };
     });
-    
-    if (!this.isLoggedIn) {
-      RouterService.forward('/login');
-    } else {
-      // we're logged in, but as admin?
-      if (!this.isAdmin) {
-        RouterService.forward('/');
-      }
-    }
   }
 
   componentDidLoad() {
@@ -77,7 +63,7 @@ export class PageAdminReferrals {
 
   async fetchReferrals() {
      try {
-      const result = await APIAdminService.getReferrals(this.user.id);
+       const result = await APIAdminService.getReferrals(this.user.id);
       
       return result;
     } catch (err) {
@@ -159,7 +145,7 @@ export class PageAdminReferrals {
       <div class='page-admin-referrals'>
         <referral-header />,
 
-        <div class='tbl-container'>
+        <div class='tbl-container section'>
           <table>
             <thead>
               <tr>
@@ -180,10 +166,15 @@ export class PageAdminReferrals {
                 return (
                   <tr>
                     <td>{r.referral_name}</td>
+
                     <td>{r.referral_email}</td>
+
                     <td>{r.referral_phone}</td>
+
                     <td>{r.referral_details}</td>
+                    
                     <td>{r.referrer_agent}</td>
+
                     <td>{formatDate(r.created_at)}</td>
 
                     <td>
@@ -191,11 +182,14 @@ export class PageAdminReferrals {
                         class='button-dark'
                         onClick={() => this.deleteReferral(r.id)}
                       >
+                        
                         <ion-icon name='trash' />
                       </button>
                     </td>
 
-                    <td></td>
+                    <td>closed</td>
+
+                    <td>paid</td>
                   </tr>
                 );
               })}
