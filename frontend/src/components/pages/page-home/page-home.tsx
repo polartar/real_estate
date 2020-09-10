@@ -164,7 +164,7 @@ export class PageHome {
                 <div class="markets-description">
                   <h4 class="markets-title">Furnished Apartments</h4>
 
-                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+                  <p>A New York City marketplace for furnished apartments, sublets, and legal short term rentals.</p>
 
                   <ion-router-link href={ RouterService.getRoute('coming-soon') } class="learn-more">
                     Learn More
@@ -181,7 +181,7 @@ export class PageHome {
                 <div class="markets-description">
                   <h4 class="markets-title">Rentals</h4>
 
-                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+                  <p>A clear and accurate listings data of New York rental apartments, pulled from 95% of new york city landlords and top brokers. Powered by REBNY IDX.</p>
 
                   <ion-router-link href={ RouterService.getRoute('coming-soon') } class="learn-more">
                     Learn More
@@ -199,7 +199,7 @@ export class PageHome {
                 <div class="markets-description">
                   <h4 class="markets-title">Sales</h4>
 
-                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+                  <p>Access to all of New York City Real Estate databases. Powered by a local team of licensed advisers uniquely suited to understand real time proprietary data and trends that are indispensable to navigating the city's dynamic Real Estate landscape.</p>
 
                   <ion-router-link href={ RouterService.getRoute('coming-soon') } class="learn-more">
                     Learn More
@@ -217,7 +217,7 @@ export class PageHome {
                 <div class="markets-description">
                   <h4 class="markets-title">Investments</h4>
 
-                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+                  <p>Targeting investment properties that yield high returns. Working with our buyers to reposition and optimize properties to deliver stable, robust returns.</p>
 
                   <ion-router-link href={ RouterService.getRoute('coming-soon') } class="learn-more">
                     Learn More
@@ -319,10 +319,7 @@ export class PageHome {
               <h3>Work with an Agent</h3>
 
               <p>
-              APT212 is a New York City marketplace for furnished apartments, sublets and short-term rentals.
-              <br /><br />
-              We offer a fresh, simple solution to finding the perfect temporary housing, from private rooms in shared apartments
-              to furnished luxury, high-end rentals.
+              Pairing the industry's top technology with unsurpassed local expertise  APT212 Team of professionals operates at the highest standards and provide an unmatched experience throughout all phases of the transaction cycle.
               </p>
 
               <ion-button aria-label="Find an Agent" class="static-button last" onClick={() => { RouterService.reload(RouterService.getRoute('coming-soon')) }}>

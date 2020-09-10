@@ -415,13 +415,13 @@
   .markets-card {
     position: relative;
     overflow: hidden;
-    height: 529px;
+    height: 600px;
     box-shadow: 1px 1px 12px 0 rgba(92, 92, 92, 0.5);
     background-color: #ffffff;
 
     @include for-size(tablet-portrait-up) {
       max-width: 325px;
-      height: 529px;
+      height: 600px;
     }
 
     .markets-description {
@@ -455,6 +455,9 @@
 
     .learn-more {
       font-weight: 900;
+      position: absolute;
+      bottom: 10px;
+      left: 14px;
     }
   }
 
