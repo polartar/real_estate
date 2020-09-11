@@ -13,6 +13,7 @@ export class PageReferral {
 
         <div class='page-referral'>
           <section class='hero'>
+
             <div class='left-body'>
               <div class='cta'>
                 <h3>REFER A FRIEND &amp; EARN $200!</h3>
