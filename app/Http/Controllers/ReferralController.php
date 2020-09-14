@@ -34,4 +34,14 @@ class ReferralController extends Controller
         return response()->json(['success' => true]);
 
     }
+
+    public function referrals() {
+        $uid = request()->uid;
+        $referrals = Referral::where('referrer_uid', $uid);
+
+        return [
+            'total' => $referrals->count(),
+            'results' => $referrals->get()
+        ];
+    }
 }

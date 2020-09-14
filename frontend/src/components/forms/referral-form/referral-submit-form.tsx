@@ -194,7 +194,7 @@ export class ReferralSubmitForm {
             <div>
               <p>
                 Thank you. <br />
-                Your referral has now been sent.
+                Your referral has been sent. <a href="/referrals">Click here</a> to access your Referral Dashboard.
               </p>
 
               <ion-icon name='md-checkmark' />

@@ -4,6 +4,10 @@
   position: relative;
   font-family: $font-refer-default;
 
+  a {
+    color: white;
+  }
+
   .title {
     padding-bottom: 16px;
     font-size: 20px;
@@ -121,7 +125,7 @@
     padding-bottom: 0px;
     text-align:left;
   }
-  
+
   .thank-you-msg {
     position: absolute;
     top: 0;

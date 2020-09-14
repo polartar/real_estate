@@ -72,7 +72,9 @@ export class PageReferrals {
 
   async fetchReferrals() {
      try {
-      const result = await APIAdminService.getReferrals(this.user.id);
+
+      const result = await APIAdminService.getUserReferrals(this.user.id);
+
 
       return result;
     } catch (err) {

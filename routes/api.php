@@ -38,8 +38,7 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
     Route::get('booking/payment_intent', 'BookingController@paymentIntent');
     Route::post('booking/checkout_ach', 'BookingController@checkoutACH');
     Route::post('booking/stripe_webhook', 'BookingController@stripeWebhook');
-    Route::post('booking/referral', 'ReferralController@referral');
-    Route::post('booking/createuser', 'ReferralController@createUser');
+
     Route::post('booking/share_apartment', 'BookingController@shareApartment');
     Route::post('booking/check_password', 'BookingController@checkPassword');
     Route::post('booking/inquiry', 'BookingController@inquiry');
@@ -47,6 +46,11 @@ Route::group(['middleware' => ['api', 'cors', 'apiUser']], function () {
 
     // Agents
     Route::get('admin/agents', 'AdminController@agents');
+
+    // Referrals
+    Route::post('booking/referral', 'ReferralController@referral');
+    Route::post('booking/createuser', 'ReferralController@createUser');
+    Route::get('booking/referrals', 'ReferralController@referrals');
 });
 
 
