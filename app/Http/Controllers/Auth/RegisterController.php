@@ -74,7 +74,7 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-        $user = '' ;    
+        $user = '' ;
         $this->guard()->login($user = $this->create($request->all()));
 
         return response()->json(['ok' => true, "uid"=> $user->id]);

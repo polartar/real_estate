@@ -1,9 +1,12 @@
-import { Component, h, State } from '@stencil/core';
+import { Component, h, State, Prop } from '@stencil/core';
+import { Store } from '@stencil/redux';
 import serialize from 'form-serialize';
 import Isemail from 'isemail';
 import { LoadingService } from '../../../services/loading.service';
 import { ToastService } from '../../../services/toast.service';
 import { APIBookingService } from '../../../services/api/booking';
+import authSelectors from '../../../store/selectors/auth';
+import { APIAdminService } from '../../../services/api/admin';
 
 @Component({
   tag: 'add-referral-form',
@@ -12,8 +15,39 @@ import { APIBookingService } from '../../../services/api/booking';
 export class AddReferralForm {
   @State() submitted: boolean = false;
   @State() errors: string[] = [];
+  @Prop({  context: 'store' }) store: Store;
+  @State() user: any = null;
+  @State() agents: any[] = [];
 
   form: HTMLFormElement;
+
+  componentWillLoad() {
+
+    this.store.mapStateToProps(this, state => {
+       return {
+        user: authSelectors.getUser(state),
+      }
+    });
+
+  }
+
+
+  async fetchAgents() {
+    try {
+      const result = await APIAdminService.getAgents();
+
+      this.agents = result;
+
+      return result;
+
+    } catch(err) {
+      return ToastService.error(`Could not retrieve agents. Please try again later. ${err.message}`);
+    }
+  }
+
+  componentDidLoad() {
+    this.fetchAgents();
+  }
 
   async handleSubmit(e) {
     e.preventDefault();
@@ -28,7 +62,10 @@ export class AddReferralForm {
     await LoadingService.showLoading();
 
     try {
-      await APIBookingService.signupReferer(results);
+      results.referrer_uid = this.user.id;
+      results.referrer_email = this.user.email;
+
+      await APIBookingService.sendReferral(results);
 
       this.submitted = true;
     } catch (err) {
@@ -54,7 +91,7 @@ export class AddReferralForm {
         errors.push(r);
       }
     });
-    
+
     if (results.referral_email && !Isemail.validate(results.referral_email)) {
       errors.push('referral_email');
     }
@@ -71,7 +108,7 @@ export class AddReferralForm {
       >
         <div class={{ 'form-content': true, submitted: this.submitted }}>
           <div class='title'>Add New Referrral</div>
-          
+
           <div
             class={{
               input: true,
@@ -95,7 +132,7 @@ export class AddReferralForm {
             }}
           >
             <label class='label' htmlFor="referral-phone">Referral Phone Number</label>
- 
+
             <input
               id='referral-phone'
               type='text'
@@ -128,12 +165,15 @@ export class AddReferralForm {
           >
             <label class='label' htmlFor="referrer_agent">Referral by Agent</label>
 
-            <input
+            <select
               id='referrer_agent'
-              type='text'
-              class='apt212-input block'
+              class='apt212-input block agent-select'
               name='referrer_agent'
-            />
+            >
+              {
+                this.agents.map(a => <option value={a.name}>{a.name}</option>)
+              }
+            </select>
           </div>
 
           <div
@@ -155,7 +195,7 @@ export class AddReferralForm {
             <input type='submit' class='button-dark block' value='Submit' />
           </div>
         </div>
- 
+
       </form>
     );
   }

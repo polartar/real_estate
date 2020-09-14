@@ -7,12 +7,13 @@ import { RouterService } from '../../../../services/router.service';
   tag: 'page-payout',
   styleUrl: 'page-payout.scss',
 })
+
 export class PagePayout {
   @Prop({ context: 'store' }) store: Store;
 
   @State() isAdmin: boolean = false;
   @State() isLoggedIn: boolean = false;
- 
+
   componentWillLoad() {
     this.store.mapStateToProps(this, (state) => {
       return {
@@ -38,8 +39,7 @@ export class PagePayout {
 
         <div class='page-payout-content'>
           <p>
-            Please choose your preferred payout method below to recieve you
-            referral bonus
+            Please choose your preferred payout method below to recieve your referral bonus.
           </p>
 
           <section class='section hero'>

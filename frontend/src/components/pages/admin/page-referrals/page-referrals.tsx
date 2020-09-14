@@ -10,10 +10,10 @@ import { formatDate } from '../../../../helpers/utils';
 import { AlertService } from '../../../../services/alerts.service';
 
 @Component({
-  tag: 'page-admin-referrals',
-  styleUrl: 'page-admin-referrals.scss',
+  tag: 'page-referrals',
+  styleUrl: 'page-referrals.scss',
 })
-export class PageAdminReferrals {
+export class PageReferrals {
   @Prop({ context: 'store' }) store: Store;
 
   @State() isAdmin: boolean = false;
@@ -41,11 +41,6 @@ export class PageAdminReferrals {
 
     if (!this.isLoggedIn) {
       RouterService.forward('/login');
-    } else {
-      // we're logged in, but as admin?
-      if (!this.isAdmin) {
-        RouterService.forward('/');
-      }
     }
   }
 
@@ -156,22 +151,21 @@ export class PageAdminReferrals {
 
   render() {
     return [
-      <div class='page-admin-referrals'>
-        <referral-header />,
+      <div class='page-referrals'>
+        <referral-header />
 
         <div class='tbl-container'>
           <table>
             <thead>
               <tr>
+                <th>Agent I Am Working With</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Detail</th>
-                <th>AgentName</th>
-                <th>Submitted Date</th>
+                <th>Market</th>
+                <th>Details</th>
+                <th>Created Date</th>
                 <th>Progress</th>
-                <th>Closed</th>
-                <th>Paid</th>
               </tr>
             </thead>
 
@@ -179,23 +173,14 @@ export class PageAdminReferrals {
               {this.referrals.map((r) => {
                 return (
                   <tr>
+                    <td>{r.referrer_agent}</td>
                     <td>{r.referral_name}</td>
                     <td>{r.referral_email}</td>
                     <td>{r.referral_phone}</td>
+                    <td>&nbsp;</td>
                     <td>{r.referral_details}</td>
-                    <td>{r.referrer_agent}</td>
                     <td>{formatDate(r.created_at)}</td>
-
-                    <td>
-                      <button
-                        class='button-dark'
-                        onClick={() => this.deleteReferral(r.id)}
-                      >
-                        <ion-icon name='trash' />
-                      </button>
-                    </td>
-
-                    <td></td>
+                    <td>&nbsp;</td>
                   </tr>
                 );
               })}

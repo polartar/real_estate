@@ -8,6 +8,7 @@ import { APIBookingService } from '../../../services/api/booking';
   tag: 'payout-wire-form',
   styleUrl: 'payout-form.scss',
 })
+
 export class PayoutWireForm {
   @State() submitted: boolean = false;
   @State() errors: string[] = [];
@@ -56,7 +57,7 @@ export class PayoutWireForm {
         errors.push(r);
       }
     });
-    
+
     this.errors = errors;
   }
 

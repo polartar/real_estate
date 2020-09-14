@@ -31,9 +31,11 @@ $front_end_routes = [
     'privacy' => '/privacy-policy',
     'coming-soon' => '/coming-soon',
 
-
     'about' => '/about',
     'referral' => '/referral',
+    'referrals' => '/referrals',
+    'referral-submit' => '/referral/submit',
+    'referral-signin' => '/referral/signin',
 
     'admin' => '/admin',
     'admin-listings' => '/admin/listings',

@@ -7,6 +7,7 @@ import { logout } from '../../../store/actions/auth';
   tag: 'referral-menu',
   styleUrl: 'referral-menu.scss',
 })
+
 export class ReferralMenu {
   @Prop({ context: 'store' }) store: Store;
   isLoggedIn: boolean = false;
@@ -52,7 +53,7 @@ export class ReferralMenu {
           </div>
         </div>
       </header>,
-      
+
       <ion-content class='app-menu-container app-wrapper' id='ioncontent'>
         {this.isLoggedIn ? (
           <div class=' main-menu'>
@@ -75,7 +76,7 @@ export class ReferralMenu {
             </ion-router-link>
 
             <ion-router-link
-              href='/admin/addreferral'
+              href='/addreferral'
               onClick={() => this.closeMenu()}
             >
               Add New Referal

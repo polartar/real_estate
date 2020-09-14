@@ -314,6 +314,7 @@ export namespace Components {
   interface PageReferral {}
   interface PageReferralSignin {}
   interface PageReferralSubmit {}
+  interface PageReferrals {}
   interface PageSearch {
     'location': any;
     'neighborhoods': any;
@@ -321,7 +322,6 @@ export namespace Components {
     'size': string;
     'width': any;
   }
-  interface PageTerms {}
   interface PageWishlist {}
   interface PayoutCheckForm {}
   interface PayoutWireForm {}
@@ -1010,16 +1010,16 @@ declare global {
     new (): HTMLPageReferralSubmitElement;
   };
 
+  interface HTMLPageReferralsElement extends Components.PageReferrals, HTMLStencilElement {}
+  var HTMLPageReferralsElement: {
+    prototype: HTMLPageReferralsElement;
+    new (): HTMLPageReferralsElement;
+  };
+
   interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
   var HTMLPageSearchElement: {
     prototype: HTMLPageSearchElement;
     new (): HTMLPageSearchElement;
-  };
-
-  interface HTMLPageTermsElement extends Components.PageTerms, HTMLStencilElement {}
-  var HTMLPageTermsElement: {
-    prototype: HTMLPageTermsElement;
-    new (): HTMLPageTermsElement;
   };
 
   interface HTMLPageWishlistElement extends Components.PageWishlist, HTMLStencilElement {}
@@ -1250,8 +1250,8 @@ declare global {
     'page-referral': HTMLPageReferralElement;
     'page-referral-signin': HTMLPageReferralSigninElement;
     'page-referral-submit': HTMLPageReferralSubmitElement;
+    'page-referrals': HTMLPageReferralsElement;
     'page-search': HTMLPageSearchElement;
-    'page-terms': HTMLPageTermsElement;
     'page-wishlist': HTMLPageWishlistElement;
     'payout-check-form': HTMLPayoutCheckFormElement;
     'payout-wire-form': HTMLPayoutWireFormElement;
@@ -1575,6 +1575,7 @@ declare namespace LocalJSX {
   interface PageReferral extends JSXBase.HTMLAttributes<HTMLPageReferralElement> {}
   interface PageReferralSignin extends JSXBase.HTMLAttributes<HTMLPageReferralSigninElement> {}
   interface PageReferralSubmit extends JSXBase.HTMLAttributes<HTMLPageReferralSubmitElement> {}
+  interface PageReferrals extends JSXBase.HTMLAttributes<HTMLPageReferralsElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
@@ -1582,7 +1583,6 @@ declare namespace LocalJSX {
     'size'?: string;
     'width'?: any;
   }
-  interface PageTerms extends JSXBase.HTMLAttributes<HTMLPageTermsElement> {}
   interface PageWishlist extends JSXBase.HTMLAttributes<HTMLPageWishlistElement> {}
   interface PayoutCheckForm extends JSXBase.HTMLAttributes<HTMLPayoutCheckFormElement> {}
   interface PayoutWireForm extends JSXBase.HTMLAttributes<HTMLPayoutWireFormElement> {}
@@ -1755,8 +1755,8 @@ declare namespace LocalJSX {
     'page-referral': PageReferral;
     'page-referral-signin': PageReferralSignin;
     'page-referral-submit': PageReferralSubmit;
+    'page-referrals': PageReferrals;
     'page-search': PageSearch;
-    'page-terms': PageTerms;
     'page-wishlist': PageWishlist;
     'payout-check-form': PayoutCheckForm;
     'payout-wire-form': PayoutWireForm;

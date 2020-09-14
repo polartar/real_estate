@@ -5,12 +5,14 @@ namespace App\Jobs;
 use App\Mail\ReferralMailReferral;
 use App\Mail\ReferralMailReferrer;
 use App\Referral;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class ProcessReferral implements ShouldQueue
 {
@@ -27,6 +29,7 @@ class ProcessReferral implements ShouldQueue
     {
         //
         $this->referral = $referral;
+
     }
 
     /**
@@ -36,7 +39,10 @@ class ProcessReferral implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->referral->referrer_email)->send(new ReferralMailReferrer($this->referral));
-        Mail::to($this->referral->referral_email)->send(new ReferralMailReferral($this->referral));
+        $referral_email = $this->referral->referral_email;
+        $referrer_email = $this->referral->referrer_email;
+
+        Mail::to($referral_email)->send(new ReferralMailReferrer($this->referral));
+        Mail::to($referrer_email)->send(new ReferralMailReferral($this->referral));
     }
 }

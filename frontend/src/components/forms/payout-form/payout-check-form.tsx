@@ -9,6 +9,7 @@ import { APIBookingService } from '../../../services/api/booking';
   tag: 'payout-check-form',
   styleUrl: 'payout-form.scss',
 })
+
 export class PayoutCheckForm {
   @State() submitted: boolean = false;
   @State() errors: string[] = [];
@@ -116,7 +117,7 @@ export class PayoutCheckForm {
             </div>
           ) : null}
         </div>
-      
+
       </form>
     );
   }

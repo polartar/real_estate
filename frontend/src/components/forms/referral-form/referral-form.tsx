@@ -8,13 +8,16 @@ import { APIBookingService } from '../../../services/api/booking';
 import { RouterService } from '../../../services/router.service';
 import { bookingSetUser } from '../../../store/actions/booking';
 import { AlertService } from '../../../services/alerts.service';
+import { login } from '../../../store/actions/auth';
 
 @Component({
   tag: 'referral-form',
   styleUrl: 'referral-form.scss',
 })
 export class ReferralForm {
-  
+
+  loginAction: Action;
+
   @Prop({ context: 'store' }) store: Store;
   bookingSetUser: Action;
 
@@ -26,32 +29,36 @@ export class ReferralForm {
   componentWillLoad() {
 
     this.store.mapDispatchToProps(this, {
-      bookingSetUser
+      bookingSetUser,
+      loginAction: login
     });
+
   }
-  
+
   async handleSubmit(e) {
     e.preventDefault();
 
     const results = serialize(this.form, { hash: true, empty: true });
     this.checkErrors(results);
- 
+
     if (this.errors.length) {
       return;
     }
- 
+
     if(results.agree !== 'on')
      {
        await AlertService.alert('Error', 'You should agree to our Terms and Policy');
        return;
      }
-   
+
      await LoadingService.showLoading();
 
     try {
       const user_id = await APIBookingService.signupReferer(results);
-      
+
       this.bookingSetUser({name:results.name, email:results.email, uid:user_id});
+
+      this.loginAction(results.email, results.password);
 
       this.submitted = true;
       RouterService.forward('/referral/submit')
@@ -78,10 +85,10 @@ export class ReferralForm {
       errors.push('email');
     }
 
-    if (results.password !== results['password_confirmation']) { 
+    if (results.password !== results['password_confirmation']) {
       errors.push('password_confirmation');
     }
-    
+
     this.errors = errors;
   }
 
@@ -169,7 +176,7 @@ export class ReferralForm {
               name='password_confirmation'
             />
           </div>
-          
+
           <div class='label '>
             <label class='agreesection'>
               <input type='checkbox' name='agree'></input>
@@ -186,7 +193,7 @@ export class ReferralForm {
               </ion-router-link>
             </label>
           </div>
-          
+
           <div class='input'>
             <input type='submit' class='button-dark block' value='Continue' />
           </div>
