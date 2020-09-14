@@ -97,6 +97,22 @@ export class AppMenu {
               APT212 Blog
             </ion-router-link>
 
+            {
+              this.isLoggedIn ?
+                <ion-router-link class="right" href="referrals/" >
+                  Referrals
+                </ion-router-link>
+              : null
+            }
+
+            {
+              this.isLoggedIn ?
+                <ion-router-link class="right" href="/" onClick={() => { this.logout(); this.closeMenu(); }}>
+                  Log Out
+                </ion-router-link>
+              : null
+            }
+
             <ion-button aria-label="Speak to an expert" class="call button-light" onClick={() => ModalService.contactUs()}>
               Contact Us
             </ion-button>
