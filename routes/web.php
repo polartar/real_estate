@@ -48,6 +48,7 @@ $front_end_routes = [
     'admin-agent-edit' => '/admin/agent/edit{id}',
     'admin-agent-view' => '/admin/agent/{id}',
     'admin-agent' => '/admin/agent',
+    'admin/terms' => '/admin/terms',
 
     '404' => '/404'
 ];
