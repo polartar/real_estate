@@ -9,7 +9,7 @@
 
   .page-payout-content {
     color: $color-text-light;
-    font-size: 16px;
+    font-size: $font-size;
     padding-top: 50px;
 
     p {
@@ -42,7 +42,7 @@
       .cta {
         max-width: 470px;
         margin: 0 auto;
-        font-size: 16px;
+        font-size: $font-size;
 
         h3 {
           font-size: 20px;

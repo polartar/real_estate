@@ -3,12 +3,10 @@
 
 .page-admin-referrals {
   background-color: $bg-dark;
-  height: 100vh;
   font-family: $font-refer-default;
   color: $color-text-light;
-  overflow-x: auto;
-  padding: 30px;
-
+  overflow-y: auto;
+ 
   table {
     width: 100%;
     
@@ -19,6 +17,8 @@
 
   .tbl-container {
     overflow: auto;
+    height: calc(100vh - 120px);
+    padding:30px;
   }
 
   thead {
@@ -27,7 +27,7 @@
 
   h1 {
     text-transform: inherit;
-    font-size: 16px;
+    font-size: $font-size;
     display: inline-block;
     margin-right: 80px;
   }
@@ -35,7 +35,7 @@
   .add-button {
     width: 199px;
     height: 50px;
-    font-size: 16px;
+    font-size: $font-size;
     font-weight: bold;
     background-color: $color-text-light;
     color: $bg-dark;

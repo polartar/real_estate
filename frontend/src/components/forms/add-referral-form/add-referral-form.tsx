@@ -70,7 +70,7 @@ export class AddReferralForm {
         ref={(el) => (this.form = el as HTMLFormElement)}
       >
         <div class={{ 'form-content': true, submitted: this.submitted }}>
-          <div class='title'>Add New Referrral</div>
+          <div class='title'>Add New Referral</div>
           
           <div
             class={{

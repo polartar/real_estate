@@ -7,7 +7,7 @@ import { ToastService } from '../../../services/toast.service';
 import { APIBookingService } from '../../../services/api/booking';
 import { RouterService } from '../../../services/router.service';
 import { bookingSetUser } from '../../../store/actions/booking';
-import { AlertService } from '../../../services/alerts.service';
+import { ReferralAlertService } from '../../../services/referral-alerts.service';
 
 @Component({
   tag: 'referral-form',
@@ -18,7 +18,6 @@ export class ReferralForm {
   @Prop({ context: 'store' }) store: Store;
   bookingSetUser: Action;
 
-  @State() submitted: boolean = false;
   @State() errors: string[] = [];
 
   form: HTMLFormElement;
@@ -42,7 +41,7 @@ export class ReferralForm {
  
     if(results.agree !== 'on')
      {
-       await AlertService.alert('Error', 'You should agree to our Terms and Policy');
+       await ReferralAlertService.alert('', 'Please check terms and conditions box to proceed');
        return;
      }
    
@@ -53,7 +52,6 @@ export class ReferralForm {
       
       this.bookingSetUser({name:results.name, email:results.email, uid:user_id});
 
-      this.submitted = true;
       RouterService.forward('/referral/submit')
 
     } catch (err) {
@@ -92,7 +90,7 @@ export class ReferralForm {
         class='referral-form-component'
         ref={(el) => (this.form = el as HTMLFormElement)}
       >
-        <div class={{ 'form-content': true, submitted: this.submitted }}>
+        <div class={{ 'form-content': true }}>
           <div class='title'>Sign Up to Submit Your Referal</div>
 
           <div class='subtitle'>
@@ -192,18 +190,6 @@ export class ReferralForm {
           </div>
         </div>
 
-        {this.submitted ? (
-          <div class='thank-you-msg flex-vertical-center text-center'>
-            <div>
-              <p>
-                Thank you. <br />
-                Your referral has now been sent.
-              </p>
-
-              <ion-icon name='md-checkmark' />
-            </div>
-          </div>
-        ) : null}
       </form>
     );
   }

@@ -11,7 +11,6 @@ import { RouterService } from '../../../services/router.service';
   styleUrl: 'referral-form.scss',
 })
 export class ReferralForm {
-  @State() submitted: boolean = false;
   @State() errors: string[] = [];
 
   form: HTMLFormElement;
@@ -30,7 +29,6 @@ export class ReferralForm {
     try {
       await APIBookingService.signupReferer(results);
 
-      this.submitted = true;
     } catch (err) {
       ToastService.error(err.message);
     }
@@ -62,7 +60,7 @@ export class ReferralForm {
         class='referral-form-component'
         ref={(el) => (this.form = el as HTMLFormElement)}
       >
-        <div class={{ 'form-content': true, submitted: this.submitted }}>
+        <div class={{ 'form-content': true }}>
           <div class='title'>Sign In</div>
 
           <div class='subtitle'>
@@ -123,19 +121,6 @@ export class ReferralForm {
             <input type='submit' class='button-dark block' value='Sign In' />
           </div>
         </div>
-
-        {this.submitted ? (
-          <div class='thank-you-msg flex-vertical-center text-center'>
-            <div>
-              <p>
-                Thank you. <br />
-                Your referral has now been sent.
-              </p>
-
-              <ion-icon name='md-checkmark' />
-            </div>
-          </div>
-        ) : null}
       </form>
     );
   }

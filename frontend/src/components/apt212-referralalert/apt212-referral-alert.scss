@@ -1,0 +1,44 @@
+@import '../../styles/variables';
+
+.apt212-alert-component {
+
+  .alert-head {
+    padding: 23px;
+    background-color: $bg-dark;
+  }
+
+  .header {
+    font-size: $font-size;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    color:$color-text-light;
+  }
+
+  .subheader {
+    font-size: $font-size;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+
+  .message {
+    padding: 0 24px 20px;
+    color: lighten(#000000, 30%);
+  }
+
+  .buttons {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content:center;
+
+    .button {
+      height: 40px;
+      padding: 0 16px;
+      text-transform: uppercase;
+      font-size: $font-size-md;
+    }
+  }
+}

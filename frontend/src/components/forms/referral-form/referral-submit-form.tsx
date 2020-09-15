@@ -12,7 +12,6 @@ import bookingSelectors from '../../../store/selectors/booking';
   styleUrl: 'referral-form.scss',
 })
 export class ReferralSubmitForm {
-  @State() submitted: boolean = false;
   @Prop({  context: 'store' }) store: Store;
   @State() errors: string[] = [];
   @State() user: any = null   ;
@@ -43,7 +42,6 @@ export class ReferralSubmitForm {
  
       await APIBookingService.sendReferral(results);
 
-      this.submitted = true;
     } catch (err) {
       ToastService.error(err.message);
     }
@@ -76,7 +74,7 @@ export class ReferralSubmitForm {
         class='referral-form-component'
         ref={(el) => (this.form = el as HTMLFormElement)}
       >
-        <div class={{ 'form-content': true, submitted: this.submitted }}>
+        <div class={{ 'form-content': true }}>
           <div class='title'>Complete Your Referral</div>
 
           <div
@@ -167,19 +165,6 @@ export class ReferralSubmitForm {
             <input type='submit' class='button-dark block' value='Submit' />
           </div>
         </div>
-
-        {this.submitted ? (
-          <div class='thank-you-msg flex-vertical-center text-center'>
-            <div>
-              <p>
-                Thank you. <br />
-                Your referral has now been sent.
-              </p>
-
-              <ion-icon name='md-checkmark' />
-            </div>
-          </div>
-        ) : null}
       </form>
     );
   }

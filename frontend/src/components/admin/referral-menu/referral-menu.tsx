@@ -55,48 +55,42 @@ export class ReferralMenu {
       
       <ion-content class='app-menu-container app-wrapper' id='ioncontent'>
         {this.isLoggedIn ? (
-          <div class=' main-menu'>
-            <ion-router-link href='/' onClick={() => this.closeMenu()}>
-              Home
-            </ion-router-link>
+         
+          <div class=' main-menu'> 
+            <div class='menu-align'>
+              <ion-router-link href='/admin/referrals' onClick={() => this.closeMenu()}>
+                Referrals Dashbaord
+              </ion-router-link>
 
-            <ion-router-link
-              href='/admin/information'
-              onClick={() => this.closeMenu()}
-            >
-              Gerneral Information
-            </ion-router-link>
+              <ion-router-link
+                href='/admin/information'
+                onClick={() => this.closeMenu()}
+              >
+                General Information
+              </ion-router-link>
 
-            <ion-router-link
-              href='/admin/payout'
-              onClick={() => this.closeMenu()}
-            >
-              Payout Info
-            </ion-router-link>
+              <ion-router-link
+                href='/admin/payout'
+                onClick={() => this.closeMenu()}
+              >
+                Payout Info
+              </ion-router-link>
 
-            <ion-router-link
-              href='/admin/addreferral'
-              onClick={() => this.closeMenu()}
-            >
-              Add New Referal
-            </ion-router-link>
+              <ion-router-link
+                href='/admin/addreferral'
+                onClick={() => this.closeMenu()}
+              >
+                Add New Referral
+              </ion-router-link>
 
-            <ion-router-link
-              href='/admin/terms'
-              onClick={() => this.closeMenu()}
-            >
-              Terms and Conditions
-            </ion-router-link>
+              <ion-router-link
+                href='/admin/terms'
+                onClick={() => this.closeMenu()}
+              >
+                Terms and Conditions
+              </ion-router-link>
 
-            <ion-router-link
-              href='/'
-              onClick={() => {
-                this.logout();
-                this.closeMenu();
-              }}
-            >
-              Log Out
-            </ion-router-link>
+            </div>
           </div>
         ) : null}
       </ion-content>,

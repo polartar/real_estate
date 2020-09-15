@@ -4,7 +4,7 @@
 .page-referral {
   .hero {
     width: 100%;
-    min-height: 741px;
+    min-height: calc(100vh - 112px);
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 80px;
@@ -37,7 +37,7 @@
     .cta {
       max-width: 500px;
       margin: 0 auto;
-      font-size: 16px;
+      font-size: $font-size;
       min-height: 300px;
 
       h3 {
@@ -53,8 +53,9 @@
         line-height: 1.29;
         letter-spacing: 0.6px;
 
-        ion-router-link {
-          color: white;
+        a {
+          color: $color-text-light;
+          text-decoration: none;
         }
       }
 

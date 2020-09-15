@@ -68,6 +68,12 @@ export namespace Components {
     'styleOverride': any;
     'target': any;
   }
+  interface Apt212ReferralAlert {
+    'buttons': any[];
+    'header'?: string;
+    'message': string;
+    'subheader'?: string;
+  }
   interface Apt212Slideover {
     'component': string;
     'componentProps': any;
@@ -486,6 +492,12 @@ declare global {
   var HTMLApt212PopoverElement: {
     prototype: HTMLApt212PopoverElement;
     new (): HTMLApt212PopoverElement;
+  };
+
+  interface HTMLApt212ReferralAlertElement extends Components.Apt212ReferralAlert, HTMLStencilElement {}
+  var HTMLApt212ReferralAlertElement: {
+    prototype: HTMLApt212ReferralAlertElement;
+    new (): HTMLApt212ReferralAlertElement;
   };
 
   interface HTMLApt212SlideoverElement extends Components.Apt212Slideover, HTMLStencilElement {}
@@ -1163,6 +1175,7 @@ declare global {
     'apt212-datepicker': HTMLApt212DatepickerElement;
     'apt212-modal-booking-frame': HTMLApt212ModalBookingFrameElement;
     'apt212-popover': HTMLApt212PopoverElement;
+    'apt212-referral-alert': HTMLApt212ReferralAlertElement;
     'apt212-slideover': HTMLApt212SlideoverElement;
     'apt212-toast': HTMLApt212ToastElement;
     'ask-question': HTMLAskQuestionElement;
@@ -1329,6 +1342,12 @@ declare namespace LocalJSX {
     'componentProps'?: any;
     'styleOverride'?: any;
     'target'?: any;
+  }
+  interface Apt212ReferralAlert extends JSXBase.HTMLAttributes<HTMLApt212ReferralAlertElement> {
+    'buttons'?: any[];
+    'header'?: string;
+    'message'?: string;
+    'subheader'?: string;
   }
   interface Apt212Slideover extends JSXBase.HTMLAttributes<HTMLApt212SlideoverElement> {
     'component': string;
@@ -1668,6 +1687,7 @@ declare namespace LocalJSX {
     'apt212-datepicker': Apt212Datepicker;
     'apt212-modal-booking-frame': Apt212ModalBookingFrame;
     'apt212-popover': Apt212Popover;
+    'apt212-referral-alert': Apt212ReferralAlert;
     'apt212-slideover': Apt212Slideover;
     'apt212-toast': Apt212Toast;
     'ask-question': AskQuestion;

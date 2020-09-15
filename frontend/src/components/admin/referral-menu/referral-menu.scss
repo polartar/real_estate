@@ -7,6 +7,8 @@
 
   #ioncontent{
    --background:unset!important;
+   
+   
   }
 
   .referral-menu-header {
@@ -70,9 +72,14 @@
       align-items: center;
       align-content: center;
       justify-items: center;
-      justify-content: center;
       text-align: center;
       font-size: $font-size;
+      
+      .menu-align{
+        align-items: end;
+        display: flex;
+        flex-direction: column;
+      }
 
       ion-router-link {
         position: relative;
