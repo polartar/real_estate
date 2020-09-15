@@ -33,7 +33,7 @@ export class PageReferralSignIn {
                 </p>
 
                 <p>
-                <a target='_blank' href={RouterService.getRoute('admin/terms')}>
+                  <a target='_blank' href={`/${RouterService.getRoute('admin/terms')}`}>
                     <span class='underline'> Terms and Conditions </span>
 
                     <img src='/assets/images/arrow.png' />
