@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use Stripe\Exception\SignatureVerificationException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class BookingController extends Controller
 {
@@ -24,6 +25,23 @@ class BookingController extends Controller
 
         dispatch(new ProcessReferral($referral));
         return $referral;
+    }
+
+    public function createUser(Request $request)
+    {
+        $userRole = config('roles.models.role')::where('name', '=', 'User')->first();
+
+        $newUser = config('roles.models.defaultUser')::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => $request->password
+        ]);
+
+        $newUser;
+        $newUser->attachRole($userRole);
+
+        return response()->json(['success' => true]);
+
     }
 
     public function shareApartment(ShareApartment $request) {
@@ -204,7 +222,7 @@ class BookingController extends Controller
         } catch (\Exception $e) {
             abort(response()->json(['errors' => ['Could not update password']], 500));
         }
-        
+
         return response()->json(['success' => true]);
     }
 
@@ -214,7 +232,7 @@ class BookingController extends Controller
 
         try {
             $row = DB::table('booking_password')->find(1);
-            
+
             if (!$row) {
                 abort(response()->json(['errors' => ['There was an error checking the password']], 500));
             }

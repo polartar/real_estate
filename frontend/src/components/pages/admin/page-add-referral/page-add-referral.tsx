@@ -12,7 +12,7 @@ export class PageAddReferal {
 
   @State() isAdmin: boolean = false;
   @State() isLoggedIn: boolean = false;
- 
+
   componentWillLoad() {
     this.store.mapStateToProps(this, (state) => {
       return {
@@ -23,11 +23,6 @@ export class PageAddReferal {
 
     if (!this.isLoggedIn) {
       RouterService.forward('/login');
-    } else {
-      // we're logged in, but as admin?
-      if (!this.isAdmin) {
-        RouterService.forward('/');
-      }
     }
   }
 
@@ -35,7 +30,7 @@ export class PageAddReferal {
     return (
       <div class='page-add-referral'>
         <referral-header />
-        
+
         <div class='page-addreferral-content'>
           <div class='form'>
             <add-referral-form />

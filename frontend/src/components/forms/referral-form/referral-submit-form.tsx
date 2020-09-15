@@ -5,7 +5,8 @@ import Isemail from 'isemail';
 import { LoadingService } from '../../../services/loading.service';
 import { ToastService } from '../../../services/toast.service';
 import { APIBookingService } from '../../../services/api/booking';
-import bookingSelectors from '../../../store/selectors/booking';
+import { APIAdminService } from '../../../services/api/admin';
+import authSelectors from '../../../store/selectors/auth';
 
 @Component({
   tag: 'referral-submit-form',
@@ -14,15 +15,32 @@ import bookingSelectors from '../../../store/selectors/booking';
 export class ReferralSubmitForm {
   @Prop({  context: 'store' }) store: Store;
   @State() errors: string[] = [];
-  @State() user: any = null   ;
+  @State() user: any = null;
+  @State() agents: any[] = [];
+
   form: HTMLFormElement;
-  
+
   componentWillLoad() {
+
     this.store.mapStateToProps(this, state => {
        return {
-        user: bookingSelectors.getUser(state),
+        user: authSelectors.getUser(state),
       }
     });
+
+  }
+
+  async fetchAgents() {
+    try {
+      const result = await APIAdminService.getAgents();
+
+      this.agents = result;
+
+      return result;
+
+    } catch(err) {
+      return ToastService.error(`Could not retrieve agents. Please try again later. ${err.message}`);
+    }
   }
 
   async handleSubmit(e) {
@@ -34,12 +52,13 @@ export class ReferralSubmitForm {
     if (this.errors.length) {
       return;
     }
-    
+
     await LoadingService.showLoading();
 
     try {
-      results.referrer_uid = this.user.uid;  
- 
+      results.referrer_uid = this.user.id;
+      results.referrer_email = this.user.email;
+
       await APIBookingService.sendReferral(results);
 
     } catch (err) {
@@ -65,6 +84,10 @@ export class ReferralSubmitForm {
     }
 
     this.errors = errors;
+  }
+
+  componentDidLoad() {
+    this.fetchAgents();
   }
 
   render() {
@@ -138,11 +161,9 @@ export class ReferralSubmitForm {
               class='apt212-input block agent-select'
               name='referrer_agent'
             >
-              <option value='agent1'>Agent1</option>
-
-              <option value='agent2'>Agent2</option>
-              
-              <option value='agent3'>Agent3</option>
+              {
+                this.agents.map(a => <option value={a.name}>{a.name}</option>)
+              }
             </select>
           </div>
 

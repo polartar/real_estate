@@ -111,7 +111,8 @@ class AdminController extends Controller
 
     public function referrals() {
         $uid = request()->uid;
-        $referrals = Referral::where('referrer_uid', $uid);
+        //$referrals = Referral::where('referrer_uid', $uid);
+        $referrals = Referral::all();
          // $filters = json_decode($params, true);
 
         // $limit = isset($filters['limit']) && is_numeric($filters['limit']) && (int) $filters['limit'] > 0 ? (int) $filters['limit'] : 40;
@@ -167,7 +168,7 @@ class AdminController extends Controller
 
         return [
             'total' => $referrals->count(),
-            'results' => $referrals->get()
+            'results' => $referrals->all()
         ];
     }
 
@@ -183,7 +184,7 @@ class AdminController extends Controller
     public function agents() {
 
         $agents = Agents::all();
-       
+
         return $agents;
     }
 
@@ -195,7 +196,7 @@ class AdminController extends Controller
     }
 
     public function updateAgent(Request $request, $agent_id)
-    {       
+    {
 
         $data = $request->all();
 
@@ -210,9 +211,9 @@ class AdminController extends Controller
 
         return $agent->fresh();
     }
-        
+
     public function storeAgent(StoreAgentRequest $request)
-    {       
+    {
         $data = $request->validated();
 
         try {

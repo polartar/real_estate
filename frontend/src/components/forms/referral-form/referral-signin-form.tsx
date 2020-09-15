@@ -10,7 +10,8 @@ import { RouterService } from '../../../services/router.service';
   tag: 'referral-signin-form',
   styleUrl: 'referral-form.scss',
 })
-export class ReferralForm {
+
+export class ReferralSignInForm {
   @State() errors: string[] = [];
 
   form: HTMLFormElement;
@@ -108,7 +109,7 @@ export class ReferralForm {
 
           <div class='label'>
             <span class='grey'>Forgot Password? </span>
-            
+
             <ion-router-link
               href={RouterService.getRoute('referral')}
               class='white'

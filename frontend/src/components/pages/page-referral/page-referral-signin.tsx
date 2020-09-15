@@ -5,7 +5,7 @@ import { RouterService } from '../../../services/router.service';
   tag: 'page-referral-signin',
   styleUrl: 'page-referral.scss',
 })
-export class PageReferral {
+export class PageReferralSignIn {
   render() {
     return [
       <ion-content>

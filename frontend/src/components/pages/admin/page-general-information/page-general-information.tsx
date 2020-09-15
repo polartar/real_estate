@@ -12,7 +12,7 @@ export class PageGeneral {
 
   @State() isAdmin: boolean = false;
   @State() isLoggedIn: boolean = false;
- 
+
   componentWillLoad() {
     this.store.mapStateToProps(this, (state) => {
       return {
@@ -35,7 +35,7 @@ export class PageGeneral {
     return (
       <div class='page-general'>
         <referral-header />
-        
+
         <div class='page-general-content'>
           <div class='form'>
             <general-information-form />

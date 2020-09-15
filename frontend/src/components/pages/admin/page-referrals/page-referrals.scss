@@ -1,0 +1,59 @@
+@import '../../../../styles/mixins';
+@import '../../../../styles/variables';
+
+.page-referrals {
+  background-color: $bg-dark;
+  height: 100vh;
+  font-family: $font-refer-default;
+  color: $color-text-light;
+  overflow-x: auto;
+  padding: 30px;
+
+  table {
+    width: 100%;
+
+    tr {
+      height: 30px;
+    }
+  }
+
+  .tbl-container {
+    overflow: auto;
+  }
+
+  thead {
+    border: 1px solid;
+  }
+
+  h1 {
+    text-transform: inherit;
+    font-size: 16px;
+    display: inline-block;
+    margin-right: 80px;
+  }
+
+  .add-button {
+    width: 199px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: $color-text-light;
+    color: $bg-dark;
+  }
+
+  td,
+  th {
+    border-right: 1px solid;
+    padding: 5px;
+
+    &:first-child {
+      border-left: 1px solid;
+    }
+  }
+
+  tr {
+    &:last-child {
+      border-bottom: 1px solid;
+    }
+  }
+}

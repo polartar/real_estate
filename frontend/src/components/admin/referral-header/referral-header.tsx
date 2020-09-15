@@ -6,6 +6,7 @@ import { Component, h } from '@stencil/core';
 })
 export class ReferralHeader {
   async openMenu(ev) {
+
     const popover = Object.assign(document.createElement('apt212-popover'), {
       component: 'referral-menu',
 
@@ -44,7 +45,7 @@ export class ReferralHeader {
               Referral Dashboard
             </ion-router-link>
 
-            <ion-router-link href='/admin/addreferral'>
+            <ion-router-link href='/addreferral'>
               <button class='add-button'>+ Add New Referral</button>
             </ion-router-link>
 

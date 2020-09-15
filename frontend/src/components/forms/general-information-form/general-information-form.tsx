@@ -4,11 +4,12 @@ import Isemail from "isemail";
 import { LoadingService } from "../../../services/loading.service";
 import { ToastService } from "../../../services/toast.service";
 import { APIBookingService } from "../../../services/api/booking";
- 
+
 @Component({
   tag: "general-information-form",
   styleUrl: "general-information-form.scss",
 })
+
 export class GeneralForm {
   @State() submitted: boolean = false;
   @State() errors: string[] = [];
@@ -56,7 +57,7 @@ export class GeneralForm {
 
     if (results.password !== results.confPassword){
       errors.push("confPassword");
-    } 
+    }
 
     this.errors = errors;
   }
@@ -118,7 +119,7 @@ export class GeneralForm {
               name="password"
             />
           </div>
-          
+
           <div
             class={{
               input: true,

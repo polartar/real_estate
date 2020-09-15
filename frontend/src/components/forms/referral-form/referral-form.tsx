@@ -14,7 +14,7 @@ import { ReferralAlertService } from '../../../services/referral-alerts.service'
   styleUrl: 'referral-form.scss',
 })
 export class ReferralForm {
-  
+
   @Prop({ context: 'store' }) store: Store;
   bookingSetUser: Action;
 
@@ -25,31 +25,32 @@ export class ReferralForm {
   componentWillLoad() {
 
     this.store.mapDispatchToProps(this, {
-      bookingSetUser
+      bookingSetUser,
     });
+
   }
-  
+
   async handleSubmit(e) {
     e.preventDefault();
 
     const results = serialize(this.form, { hash: true, empty: true });
     this.checkErrors(results);
- 
+
     if (this.errors.length) {
       return;
     }
- 
+
     if(results.agree !== 'on')
      {
        await ReferralAlertService.alert('', 'Please check terms and conditions box to proceed');
        return;
      }
-   
+
      await LoadingService.showLoading();
 
     try {
       const user_id = await APIBookingService.signupReferer(results);
-      
+
       this.bookingSetUser({name:results.name, email:results.email, uid:user_id});
 
       RouterService.forward('/referral/submit')
@@ -76,10 +77,10 @@ export class ReferralForm {
       errors.push('email');
     }
 
-    if (results.password !== results['password_confirmation']) { 
+    if (results.password !== results['password_confirmation']) {
       errors.push('password_confirmation');
     }
-    
+
     this.errors = errors;
   }
 
@@ -167,7 +168,7 @@ export class ReferralForm {
               name='password_confirmation'
             />
           </div>
-          
+
           <div class='label '>
             <label class='agreesection'>
               <input type='checkbox' name='agree'></input>
@@ -184,7 +185,7 @@ export class ReferralForm {
               </ion-router-link>
             </label>
           </div>
-          
+
           <div class='input'>
             <input type='submit' class='button-dark block' value='Continue' />
           </div>

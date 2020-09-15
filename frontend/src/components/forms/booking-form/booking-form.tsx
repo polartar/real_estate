@@ -459,7 +459,7 @@ export class BookingForm {
         <div class={{ input: true, error: this.errors.includes('tos') }}>
           <div class="flex-vertical-center">
               <label class="inline">
-              I have read and agree to the terms &amp; conditions of service  
+              I have read and agree to the terms &amp; conditions of service
               </label>
               <apt212-checkbox name="tos" value="1" class="tos" />
               <button type="button" class="button-reset tos-view" onClick={() => ModalService.bookingTOS()}>View</button>
@@ -474,7 +474,7 @@ export class BookingForm {
         </div>
 
         {
-        this.submitted ?      
+        this.submitted ?
           <div class="thank-you-msg flex-vertical-center text-center">
             <div>
               <p>

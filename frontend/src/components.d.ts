@@ -320,6 +320,7 @@ export namespace Components {
   interface PageReferral {}
   interface PageReferralSignin {}
   interface PageReferralSubmit {}
+  interface PageReferrals {}
   interface PageSearch {
     'location': any;
     'neighborhoods': any;
@@ -1022,6 +1023,12 @@ declare global {
     new (): HTMLPageReferralSubmitElement;
   };
 
+  interface HTMLPageReferralsElement extends Components.PageReferrals, HTMLStencilElement {}
+  var HTMLPageReferralsElement: {
+    prototype: HTMLPageReferralsElement;
+    new (): HTMLPageReferralsElement;
+  };
+
   interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
   var HTMLPageSearchElement: {
     prototype: HTMLPageSearchElement;
@@ -1263,6 +1270,7 @@ declare global {
     'page-referral': HTMLPageReferralElement;
     'page-referral-signin': HTMLPageReferralSigninElement;
     'page-referral-submit': HTMLPageReferralSubmitElement;
+    'page-referrals': HTMLPageReferralsElement;
     'page-search': HTMLPageSearchElement;
     'page-terms': HTMLPageTermsElement;
     'page-wishlist': HTMLPageWishlistElement;
@@ -1594,6 +1602,7 @@ declare namespace LocalJSX {
   interface PageReferral extends JSXBase.HTMLAttributes<HTMLPageReferralElement> {}
   interface PageReferralSignin extends JSXBase.HTMLAttributes<HTMLPageReferralSigninElement> {}
   interface PageReferralSubmit extends JSXBase.HTMLAttributes<HTMLPageReferralSubmitElement> {}
+  interface PageReferrals extends JSXBase.HTMLAttributes<HTMLPageReferralsElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
@@ -1775,6 +1784,7 @@ declare namespace LocalJSX {
     'page-referral': PageReferral;
     'page-referral-signin': PageReferralSignin;
     'page-referral-submit': PageReferralSubmit;
+    'page-referrals': PageReferrals;
     'page-search': PageSearch;
     'page-terms': PageTerms;
     'page-wishlist': PageWishlist;

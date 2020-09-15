@@ -69,6 +69,14 @@ export class AppMenu {
               Referrals
             </ion-router-link>
 
+            {
+              this.isLoggedIn ?
+                <ion-router-link class="right" href="referrals/" onClick={() => this.closeMenu()}>
+                  Referral Dashboard
+                </ion-router-link>
+              : null
+            }
+
             <ion-router-link class="right" href="/coming-soon" onClick={() => this.closeMenu()}>
               Agents
             </ion-router-link>
@@ -96,6 +104,14 @@ export class AppMenu {
             <ion-router-link class="right" href={ RouterService.getRoute('blog') } onClick={() => this.closeMenu()}>
               APT212 Blog
             </ion-router-link>
+
+            {
+              this.isLoggedIn ?
+                <ion-router-link class="right" href="/" onClick={() => { this.logout(); this.closeMenu(); }}>
+                  Log Out
+                </ion-router-link>
+              : null
+            }
 
             <ion-button aria-label="Speak to an expert" class="call button-light" onClick={() => ModalService.contactUs()}>
               Contact Us
