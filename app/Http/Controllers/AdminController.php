@@ -115,7 +115,7 @@ class AdminController extends Controller
 
         return [
             'total' => $referrals->count(),
-            'results' => $referrals->get()
+            'results' => $referrals->all()
         ];
     }
 
@@ -131,7 +131,7 @@ class AdminController extends Controller
     public function agents() {
 
         $agents = Agents::all();
-       
+
         return $agents;
     }
 
@@ -143,7 +143,7 @@ class AdminController extends Controller
     }
 
     public function updateAgent(Request $request, $agent_id)
-    {       
+    {
 
         $data = $request->all();
 
@@ -158,9 +158,9 @@ class AdminController extends Controller
 
         return $agent->fresh();
     }
-        
+
     public function storeAgent(StoreAgentRequest $request)
-    {       
+    {
         $data = $request->validated();
 
         try {

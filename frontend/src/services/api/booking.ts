@@ -162,7 +162,7 @@ class APIBookingInstance {
   public async signupReferer(data) {
     try {
       const response = await fetch(
-        `${APIService.getAPIUrl()}/register`,
+        `${APIService.getAPIUrl()}/booking/createuser`,
         {
           method: "POST",
           headers: APIService.getHeaders(),

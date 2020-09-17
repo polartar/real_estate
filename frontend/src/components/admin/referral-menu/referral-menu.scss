@@ -7,6 +7,8 @@
 
   #ioncontent{
    --background:unset!important;
+   
+   
   }
 
   .referral-menu-header {
@@ -54,7 +56,7 @@
     margin: 0 auto;
     padding: 1.5rem 3rem 1.5rem 3rem;
 
-    @include for-size(phone-only) {
+    @include for-size(tablet-portrait-up) {
       padding: 0 1rem;
     }
 
@@ -70,9 +72,14 @@
       align-items: center;
       align-content: center;
       justify-items: center;
-      justify-content: center;
       text-align: center;
       font-size: $font-size;
+      
+      .menu-align{
+        align-items: end;
+        display: flex;
+        flex-direction: column;
+      }
 
       ion-router-link {
         position: relative;

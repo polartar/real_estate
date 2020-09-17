@@ -140,6 +140,7 @@ export class AppRoot {
           <ion-route url="/referral/forgotpassword" component="page-referral-forgotpassword" />
           <ion-route url="/referral/passwordreset/:token" component="page-referral-passwordreset" />
 
+
           <ion-route url="/login" component="page-login" />
 
           <ion-route
@@ -161,7 +162,7 @@ export class AppRoot {
           />
           <ion-route
             url="/admin/terms"
-            component={this.isLoggedin ? "page-terms" : "page-login"}
+            component="page-terms"
           />
           <ion-route
             url="/admin/listings"

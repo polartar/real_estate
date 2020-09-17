@@ -12,7 +12,8 @@ export class PageReferral {
         <app-header-home />
 
         <div class='page-referral'>
-          <section class='section hero'>
+          <section class='hero'>
+
             <div class='left-body'>
               <div class='cta'>
                 <h3>REFER A FRIEND &amp; EARN $200!</h3>
@@ -34,11 +35,11 @@ export class PageReferral {
                 </p>
 
                 <p>
-                  <ion-router-link href={RouterService.getRoute('privacy')}>
+                  <a target='_blank' href={RouterService.getRoute('admin/terms')}>
                     <span class='underline'> Terms and Conditions </span>
 
                     <img src='/assets/images/arrow.png' />
-                  </ion-router-link>
+                  </a>
                 </p>
               </div>
             </div>

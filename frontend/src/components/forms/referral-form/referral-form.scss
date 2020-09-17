@@ -1,9 +1,20 @@
 @import '../../../styles/variables';
+@import '../../../styles/mixins';
+
 
 .referral-form-component {
   position: relative;
   font-family: $font-refer-default;
 
+  a {
+    color: $color-text-light;
+    text-decoration: none;
+  }
+
+  select{
+    cursor: pointer;
+  }
+  
   .title {
     padding-bottom: 16px;
     font-size: 20px;
@@ -14,7 +25,7 @@
   }
 
   .subtitle {
-    font-size: 16px;
+    font-size: $font-size;
     font-weight: bold;
     margin-bottom: 32px;
   }
@@ -41,7 +52,7 @@
 
   .label {
     text-align: left;
-    font-size: 12px;
+    font-size: $font-size-sm;
   }
 
   .apt212-input {
@@ -76,6 +87,14 @@
     display: flex;
     align-items: center;
     position: relative;
+
+    @include for-size(custom-down, 450) {
+      display: block;
+      
+      .terms{
+        padding-left: 14px;
+      }
+    }
 
     & > span {
       padding: 0.5rem 0.25rem;
@@ -121,7 +140,7 @@
     padding-bottom: 0px;
     text-align:left;
   }
-  
+
   .thank-you-msg {
     position: absolute;
     top: 0;

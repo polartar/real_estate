@@ -14,6 +14,7 @@ import { RouterService } from '../../../services/router.service';
 export class PageHome {
   @Prop({ context: "store" }) store: Store;
   @Prop() prefetching: boolean = false;
+  @State() searchLink: string = '';
   @State() size: string = 'phone-only';
   @State() isMobile: boolean = true;
   @State() displayFilter: boolean;
@@ -93,6 +94,29 @@ export class PageHome {
     return this.neighborhoods.slice(splitIndex + 1);
   }
 
+  setSearchLink(market) {
+
+    if (market == "furnished") {
+      this.searchLink = "/search-apartments";
+      document.getElementById('furnished').style.cssText = 'background-color: #f5f5f7; color: #131414;';
+      document.getElementById('sales').style.cssText = 'background-color: #131414; color: #f5f5f7;';
+      document.getElementById('rentals').style.cssText = 'background-color: #131414; color: #f5f5f7;';
+      document.getElementById('home-search').style.cssText = 'background-color: #f5f5f7;';
+    } else if (market == "sales") {
+      this.searchLink = "/coming-soon";
+      document.getElementById('sales').style.cssText = 'background-color: #f5f5f7; color: #131414;';
+      document.getElementById('rentals').style.cssText = 'background-color: #131414; color: #f5f5f7;';
+      document.getElementById('furnished').style.cssText = 'background-color: #131414; color: #f5f5f7;';
+      document.getElementById('home-search').style.cssText = 'background-color: #f5f5f7;';
+    } else if (market == "rentals") {
+      this.searchLink = "/coming-soon";
+      document.getElementById('rentals').style.cssText = 'background-color: #f5f5f7; color: #131414;';
+      document.getElementById('furnished').style.cssText = 'background-color: #131414; color: #f5f5f7;';
+      document.getElementById('sales').style.cssText = 'background-color: #131414; color: #f5f5f7;';
+      document.getElementById('home-search').style.cssText = 'background-color: #f5f5f7;';
+    }
+  }
+
   render() {
     if (this.prefetching) {
       return null;
@@ -124,14 +148,14 @@ export class PageHome {
               </div>
 
                 <div class="hero-child info">
-                    <button class="button-reset market-tab" onClick={() => RouterService.forward(RouterService.getRoute('search'))}>{ furnishedText }</button>
+                    <button id="furnished" class="button-reset market-tab" onClick={() =>  this.setSearchLink("furnished") }>{ furnishedText }</button>
 
-                    <button class="button-reset market-tab" onClick={() => RouterService.forward('/coming-soon')}>Rentals</button>
+                    <button id="rentals" class="button-reset market-tab" onClick={() => this.setSearchLink("rentals") }>Rentals</button>
 
-                    <button class="button-reset market-tab" onClick={() => RouterService.forward('/coming-soon')}>Sales</button>
+                    <button id="sales" class="button-reset market-tab" onClick={() => this.setSearchLink("sales") }>Sales</button>
 
                     <div class="home-search-wrapper">
-                      <input type="text" class="home-search" placeholder="Search Apartments" onClick={() => RouterService.forward(RouterService.getRoute('search'))}/>
+                      <input id="home-search" type="text" class="home-search" onClick={() => window.location.replace( this.searchLink )}/>
                       <button class="button-reset search-icon">
                         <svg class="feather feather-search" viewBox="0 0 25 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><path d="M24,21.1886008 L18.6803754,15.9186997 C19.949079,14.3099652 20.6588954,12.3179013 20.6588954,10.238277 C20.6588954,5.14393658 16.472729,1 11.3303363,1 C6.18621089,1 2,5.14393658 2,10.238277 C2,15.3308573 6.18616646,19.4765539 11.3303363,19.4765539 C13.3071236,19.4765539 15.2318387,18.8457674 16.8196842,17.7010588 L22.1704099,23 L24,21.1886008 Z M11.3302919,16.9140717 C7.61273046,16.9140717 4.58934605,13.9182757 4.58934605,10.238365 C4.58934605,6.55849823 7.61268603,3.56265825 11.3302919,3.56265825 C15.0461205,3.56265825 18.0694605,6.55845423 18.0694605,10.238365 C18.0694605,12.2063608 17.1982293,14.0643123 15.6796059,15.3379854 C14.4664401,16.3537734 12.9218251,16.9140717 11.3302919,16.9140717 Z" fill="#f5f5f7"></path></g></svg>
                       </button>
@@ -150,9 +174,9 @@ export class PageHome {
                 <div class="markets-description">
                   <h4 class="markets-title">Furnished Apartments</h4>
 
-                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+                  <p>A New York City marketplace for furnished apartments, sublets, and legal short term rentals.</p>
 
-                  <ion-router-link href={ RouterService.getRoute('coming-soon') } class="learn-more">
+                  <ion-router-link href={ RouterService.getRoute('search') } class="learn-more">
                     Learn More
                     <img src="/assets/images/icons/arrow.svg" alt="" class="arrow-right" />
                   </ion-router-link>
@@ -167,7 +191,7 @@ export class PageHome {
                 <div class="markets-description">
                   <h4 class="markets-title">Rentals</h4>
 
-                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+                  <p>A clear and accurate listings data of New York rental apartments, pulled from 95% of new york city landlords and top brokers. Powered by REBNY IDX.</p>
 
                   <ion-router-link href={ RouterService.getRoute('coming-soon') } class="learn-more">
                     Learn More
@@ -185,7 +209,7 @@ export class PageHome {
                 <div class="markets-description">
                   <h4 class="markets-title">Sales</h4>
 
-                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+                  <p>Access to all of New York City Real Estate databases. Powered by a local team of licensed advisers uniquely suited to understand real time proprietary data and trends that are indispensable to navigating the city's dynamic Real Estate landscape.</p>
 
                   <ion-router-link href={ RouterService.getRoute('coming-soon') } class="learn-more">
                     Learn More
@@ -203,7 +227,7 @@ export class PageHome {
                 <div class="markets-description">
                   <h4 class="markets-title">Investments</h4>
 
-                  <p>New York City marketplace for furnished apartments, sublets and short-term rentals. We offer a fresh, simple solution</p>
+                  <p>Targeting investment properties that yield high returns. Working with our buyers to reposition and optimize properties to deliver stable, robust returns.</p>
 
                   <ion-router-link href={ RouterService.getRoute('coming-soon') } class="learn-more">
                     Learn More
@@ -305,10 +329,7 @@ export class PageHome {
               <h3>Work with an Agent</h3>
 
               <p>
-              APT212 is a New York City marketplace for furnished apartments, sublets and short-term rentals.
-              <br /><br />
-              We offer a fresh, simple solution to finding the perfect temporary housing, from private rooms in shared apartments
-              to furnished luxury, high-end rentals.
+              Pairing the industry's top technology with unsurpassed local expertise  APT212 Team of professionals operates at the highest standards and provide an unmatched experience throughout all phases of the transaction cycle.
               </p>
 
               <ion-button aria-label="Find an Agent" class="static-button last" onClick={() => { RouterService.reload(RouterService.getRoute('coming-soon')) }}>

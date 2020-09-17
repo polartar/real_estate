@@ -6,16 +6,16 @@ import { LoadingService } from '../../../services/loading.service';
 import { ToastService } from '../../../services/toast.service';
 import { APIBookingService } from '../../../services/api/booking';
 import { RouterService } from '../../../services/router.service';
+import { ReferralAlertService } from '../../../services/referral-alerts.service';
 
 @Component({
   tag: 'referral-form',
   styleUrl: 'referral-form.scss',
 })
 export class ReferralForm {
-  
+
   @Prop({ context: 'store' }) store: Store;
 
-  @State() submitted: boolean = false;
   @State() errors: string[] = [];
 
   form: HTMLFormElement;
@@ -25,22 +25,23 @@ export class ReferralForm {
 
     const results = serialize(this.form, { hash: true, empty: true });
     this.checkErrors(results);
- 
+
     if (this.errors.length) {
       return;
     }
- 
-    if(results.agree !== 'on'){
-       await ToastService.error('You should agree to our Terms and Policy');
+
+
+    if(results.agree !== 'on')
+     {
+       await ReferralAlertService.alert('', 'Please check terms and conditions box to proceed');
        return;
      }
-   
-    await LoadingService.showLoading();
+
+     await LoadingService.showLoading();
 
     try {
       await APIBookingService.signupReferer(results);
-      
-      ToastService.success('You have been registered successfully');
+
       RouterService.forward('/referral/signin')
 
     } catch (err) {
@@ -65,10 +66,10 @@ export class ReferralForm {
       errors.push('email');
     }
 
-    if (results.password !== results['password_confirmation']) { 
+    if (results.password !== results['password_confirmation']) {
       errors.push('password_confirmation');
     }
-    
+
     this.errors = errors;
   }
 
@@ -79,7 +80,7 @@ export class ReferralForm {
         class='referral-form-component'
         ref={(el) => (this.form = el as HTMLFormElement)}
       >
-        <div class={{ 'form-content': true, submitted: this.submitted }}>
+        <div class={{ 'form-content': true }}>
           <div class='title'>Sign Up to Submit Your Referal</div>
 
           <div class='subtitle'>
@@ -156,7 +157,7 @@ export class ReferralForm {
               name='password_confirmation'
             />
           </div>
-          
+
           <div class='label '>
             <label class='agreesection'>
               <input type='checkbox' name='agree'></input>
@@ -164,33 +165,22 @@ export class ReferralForm {
               <span class='grey'>
                 Creating an account means you're okay with our&nbsp;{' '}
               </span>
+              
+              <div class='terms'>
+                <a target='_blank' href={RouterService.getRoute('admin/terms')}>
+                  Terms and Conditions
+                </a>
+              </div>
 
-              <ion-router-link
-                href={RouterService.getRoute('privacy')}
-                class='white'
-              >
-                Terms and Conditions
-              </ion-router-link>
+              
             </label>
           </div>
-          
+
           <div class='input'>
             <input type='submit' class='button-dark block' value='Continue' />
           </div>
         </div>
 
-        {this.submitted ? (
-          <div class='thank-you-msg flex-vertical-center text-center'>
-            <div>
-              <p>
-                Thank you. <br />
-                Your referral has now been sent.
-              </p>
-
-              <ion-icon name='md-checkmark' />
-            </div>
-          </div>
-        ) : null}
       </form>
     );
   }

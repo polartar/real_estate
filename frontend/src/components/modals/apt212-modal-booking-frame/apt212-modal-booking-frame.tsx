@@ -28,9 +28,12 @@ export class Apt212ModalBookingFrame {
       <ion-content class="apt212-modal-booking-frame-component">
         <div class="modal-content" />
 
-        <button aria-label="close" class="close button-reset" onClick={() => this.closeModal()}>
-          <img src="/assets/images/icons/cancel-icon.svg" />
-        </button>
+        <div class="header-wrapper">
+          <button aria-label="close" class="close button-reset" onClick={() => this.closeModal()}>
+            <img src="/assets/images/icons/cancel-icon.svg" />
+          </button>
+        </div>
+
       </ion-content>
     )
   }

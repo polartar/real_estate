@@ -5,8 +5,9 @@ import Isemail from 'isemail';
 import { LoadingService } from '../../../services/loading.service';
 import { ToastService } from '../../../services/toast.service';
 import { APIBookingService } from '../../../services/api/booking';
-import authSelectors from '../../../store/selectors/auth';
+
 import { APIAdminService } from '../../../services/api/admin';
+import authSelectors from '../../../store/selectors/auth';
 
 @Component({
   tag: 'referral-submit-form',
@@ -17,19 +18,31 @@ export class ReferralSubmitForm {
   
   @State() submitted: boolean = false;
   @State() errors: string[] = [];
-  @State() user: any = null   ;
-  
+
+  @State() user: any = null;
+  @State() agents: any[] = [];
+
   form: HTMLFormElement;
-  agents:any[] = []
-  
-  async componentWillLoad() {
+
+  componentWillLoad() {
     this.store.mapStateToProps(this, state => {
        return {
         user: authSelectors.getUser(state),
       }
     });
-   
-    this.agents = await this.fetchAgents();
+  }
+
+  async fetchAgents() {
+    try {
+      const result = await APIAdminService.getAgents();
+
+      this.agents = result;
+
+      return result;
+
+    } catch(err) {
+      return ToastService.error(`Could not retrieve agents. Please try again later. ${err.message}`);
+    }
   }
 
   async handleSubmit(e) {
@@ -42,31 +55,21 @@ export class ReferralSubmitForm {
     if (this.errors.length) {
       return;
     }
-    
+
     await LoadingService.showLoading();
 
     try {
-      results.referrer_uid = this.user.id;  
- 
+
+      results.referrer_uid = this.user.id;
+      results.referrer_email = this.user.email;
+
       await APIBookingService.sendReferral(results);
 
-      this.submitted = true;
     } catch (err) {
       ToastService.error(err.message);
     }
 
     await LoadingService.hideLoading();
-  }
-
-  async fetchAgents() {
-    try {
-      const result = await APIAdminService.getAgents();
-
-      return result;
-
-    } catch(err) {
-      return ToastService.error(`Could not retrieve agents: ${err.message}`);
-    }
   }
 
   checkErrors(results) {
@@ -87,6 +90,10 @@ export class ReferralSubmitForm {
     this.errors = errors;
   }
 
+  componentDidLoad() {
+    this.fetchAgents();
+  }
+
   render() {
     return (
       <form
@@ -94,8 +101,27 @@ export class ReferralSubmitForm {
         class='referral-form-component'
         ref={(el) => (this.form = el as HTMLFormElement)}
       >
-        <div class={{ 'form-content': true, submitted: this.submitted }}>
+        <div class={{ 'form-content': true }}>
           <div class='title'>Complete Your Referral</div>
+
+          <div
+            class={{
+              input: true,
+              error: this.errors.includes('referrer_agent'),
+            }}
+          >
+            <label class='label' htmlFor="referrer_agent">Agent I am Working With</label>
+
+            <select
+              id='referrer_agent'
+              class='apt212-input block agent-select'
+              name='referrer_agent'
+            >
+              {
+                this.agents.map(a => <option value={a.name}>{a.name}</option>)
+              }
+            </select>
+          </div>
 
           <div
             class={{
@@ -151,18 +177,16 @@ export class ReferralSubmitForm {
               error: this.errors.includes('referrer_agent'),
             }}
           >
-            <label class='label' htmlFor="referrer_agent">Referred by Agent</label>
+            <label class='label' htmlFor="market">Market</label>
 
             <select
-              id='referrer_agent'
+              id='market'
               class='apt212-input block agent-select'
-              name='referrer_agent'
+              name='market'
             >
-              {
-                this.agents.map(agent=>{
-                  return <option key={`agent_${agent.id}`} value={agent.name}>{agent.name}</option>    
-                })
-              }
+                <option value='Rentals'>Rentals</option>
+
+                <option value='Sales'>Sales</option>
             </select>
           </div>
 
@@ -172,7 +196,7 @@ export class ReferralSubmitForm {
               error: this.errors.includes('referral_details'),
             }}
           >
-            <label class='label' htmlFor="referral-details">Referral Details</label>
+            <label class='label' htmlFor="referral-details">Details</label>
 
             <textarea
               id='referral-details'
@@ -185,19 +209,6 @@ export class ReferralSubmitForm {
             <input type='submit' class='button-dark block' value='Submit' />
           </div>
         </div>
-
-        {this.submitted ? (
-          <div class='thank-you-msg flex-vertical-center text-center'>
-            <div>
-              <p>
-                Thank you. <br />
-                Your referral has now been sent.
-              </p>
-
-              <ion-icon name='md-checkmark' />
-            </div>
-          </div>
-        ) : null}
       </form>
     );
   }

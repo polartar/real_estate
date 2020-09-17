@@ -9,12 +9,12 @@ export class PageAddReferal {
   @Prop({ context: 'store' }) store: Store;
 
   @State() isLoggedIn: boolean = false;
- 
+
   render() {
     return (
       <div class='page-add-referral'>
         <referral-header />
-        
+
         <div class='page-addreferral-content'>
           <div class='form'>
             <add-referral-form />

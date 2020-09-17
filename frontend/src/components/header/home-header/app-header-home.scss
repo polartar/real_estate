@@ -59,6 +59,7 @@
         .header-right {
           display: flex;
           align-items: center;
+          font-family: 'Proxima Nova A W01 Bold';
         }
 
         .nav {
@@ -94,7 +95,8 @@
         .call {
           display: none;
           font-size: 16px;
-          font-weight: bold;
+          font-family: 'Proxima Nova A W01 Bold' !important;
+          font-weight: bold !important;
           height: $app-header-button-height;
           text-transform: uppercase !important;
           --background: $home-white;

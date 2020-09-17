@@ -78,6 +78,7 @@ class RegisterController extends Controller
         
         $this->guard()->login( $user = config('roles.models.defaultUser')::create($request->all() ) );
 
+
         return response()->json( ['ok' => true, 'id' => $user->id] );
     }
 }

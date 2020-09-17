@@ -5,7 +5,7 @@ import { RouterService } from '../../../services/router.service';
   tag: 'page-referral-signin',
   styleUrl: 'page-referral.scss',
 })
-export class PageReferral {
+export class PageReferralSignIn {
   render() {
     return [
       <ion-content>
@@ -33,11 +33,11 @@ export class PageReferral {
                 </p>
 
                 <p>
-                  <ion-router-link href={RouterService.getRoute('privacy')}>
+                  <a target='_blank' href={`/${RouterService.getRoute('admin/terms')}`}>
                     <span class='underline'> Terms and Conditions </span>
-                    
+
                     <img src='/assets/images/arrow.png' />
-                  </ion-router-link>
+                  </a>
                 </p>
               </div>
             </div>

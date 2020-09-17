@@ -43,6 +43,7 @@
   .header-right {
     display: flex;
     align-items: center;
+    font-family: 'Proxima Nova A W01 Bold';
   }
 
   .nav {
@@ -78,8 +79,9 @@
     display: none;
     font-size: 16px;
     text-transform: uppercase !important;
-    font-weight: bold;
     height: $app-header-button-height;
+    font-family: 'Proxima Nova A W01 Bold' !important;
+    font-weight: bold !important;
 
     ion-icon {
       padding-right: 0.5rem;

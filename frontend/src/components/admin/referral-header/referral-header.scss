@@ -19,8 +19,10 @@
     width: 100%;
     max-width: 400px;
 
-    @include for-size(custom-down, 450px) {
-      display: block;
+    @include for-size(custom-down, 450) {
+      .add-button{
+        display: none;
+      }
     }
 
   }
@@ -43,7 +45,7 @@
   }
 
   .menu {
-    font-size: 16px;
+    font-size: $font-size;
     --padding-end: 0;
   }
 }

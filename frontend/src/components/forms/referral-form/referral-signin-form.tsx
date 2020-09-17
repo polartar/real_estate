@@ -16,6 +16,7 @@ export class ReferralForm {
   @Prop({ context: "store" }) store: Store;
 
   @State() submitted: boolean = false;
+
   @State() errors: string[] = [];
   @State() loading: boolean = false;
   @State() loginError;
@@ -109,7 +110,7 @@ export class ReferralForm {
         class='referral-form-component'
         ref={(el) => (this.form = el as HTMLFormElement)}
       >
-        <div class={{ 'form-content': true, submitted: this.submitted }}>
+        <div class={{ 'form-content': true }}>
           <div class='title'>Sign In</div>
 
           <div class='subtitle'>
@@ -157,7 +158,7 @@ export class ReferralForm {
 
           <div class='label'>
             <span class='grey'>Forgot Password? </span>
-            
+
             <ion-router-link
               href={RouterService.getRoute('referral/forgotpassword')}
               class='white'
@@ -171,8 +172,6 @@ export class ReferralForm {
           
           </div>
         </div>
-
-       
       </form>
     );
   }

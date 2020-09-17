@@ -6,6 +6,7 @@ import { Component, h } from '@stencil/core';
 })
 export class ReferralHeader {
   async openMenu(ev) {
+
     const popover = Object.assign(document.createElement('apt212-popover'), {
       component: 'referral-menu',
 

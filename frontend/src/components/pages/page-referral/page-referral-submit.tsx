@@ -33,11 +33,11 @@ export class PageReferralSubmit {
                   1960s with the release of Letraset
                 </p>
                 <p>
-                  <ion-router-link href={RouterService.getRoute('privacy')}>
-                    <span class='underline'> Terms and Conditions </span>{' '}
-                    
+                  <a target='_blank' href={`/${RouterService.getRoute('admin/terms')}`}>
+                    <span class='underline'> Terms and Conditions </span>
+
                     <img src='/assets/images/arrow.png' />
-                  </ion-router-link>
+                  </a>
                 </p>
               </div>
             </div>

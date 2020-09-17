@@ -68,6 +68,12 @@ export namespace Components {
     'styleOverride': any;
     'target': any;
   }
+  interface Apt212ReferralAlert {
+    'buttons': any[];
+    'header'?: string;
+    'message': string;
+    'subheader'?: string;
+  }
   interface Apt212Slideover {
     'component': string;
     'componentProps': any;
@@ -316,6 +322,7 @@ export namespace Components {
   interface PageReferralPasswordreset {}
   interface PageReferralSignin {}
   interface PageReferralSubmit {}
+  interface PageReferrals {}
   interface PageSearch {
     'location': any;
     'neighborhoods': any;
@@ -492,6 +499,12 @@ declare global {
   var HTMLApt212PopoverElement: {
     prototype: HTMLApt212PopoverElement;
     new (): HTMLApt212PopoverElement;
+  };
+
+  interface HTMLApt212ReferralAlertElement extends Components.Apt212ReferralAlert, HTMLStencilElement {}
+  var HTMLApt212ReferralAlertElement: {
+    prototype: HTMLApt212ReferralAlertElement;
+    new (): HTMLApt212ReferralAlertElement;
   };
 
   interface HTMLApt212SlideoverElement extends Components.Apt212Slideover, HTMLStencilElement {}
@@ -1028,6 +1041,12 @@ declare global {
     new (): HTMLPageReferralSubmitElement;
   };
 
+  interface HTMLPageReferralsElement extends Components.PageReferrals, HTMLStencilElement {}
+  var HTMLPageReferralsElement: {
+    prototype: HTMLPageReferralsElement;
+    new (): HTMLPageReferralsElement;
+  };
+
   interface HTMLPageSearchElement extends Components.PageSearch, HTMLStencilElement {}
   var HTMLPageSearchElement: {
     prototype: HTMLPageSearchElement;
@@ -1193,6 +1212,7 @@ declare global {
     'apt212-datepicker': HTMLApt212DatepickerElement;
     'apt212-modal-booking-frame': HTMLApt212ModalBookingFrameElement;
     'apt212-popover': HTMLApt212PopoverElement;
+    'apt212-referral-alert': HTMLApt212ReferralAlertElement;
     'apt212-slideover': HTMLApt212SlideoverElement;
     'apt212-toast': HTMLApt212ToastElement;
     'ask-question': HTMLAskQuestionElement;
@@ -1282,6 +1302,7 @@ declare global {
     'page-referral-passwordreset': HTMLPageReferralPasswordresetElement;
     'page-referral-signin': HTMLPageReferralSigninElement;
     'page-referral-submit': HTMLPageReferralSubmitElement;
+    'page-referrals': HTMLPageReferralsElement;
     'page-search': HTMLPageSearchElement;
     'page-terms': HTMLPageTermsElement;
     'page-wishlist': HTMLPageWishlistElement;
@@ -1363,6 +1384,12 @@ declare namespace LocalJSX {
     'componentProps'?: any;
     'styleOverride'?: any;
     'target'?: any;
+  }
+  interface Apt212ReferralAlert extends JSXBase.HTMLAttributes<HTMLApt212ReferralAlertElement> {
+    'buttons'?: any[];
+    'header'?: string;
+    'message'?: string;
+    'subheader'?: string;
   }
   interface Apt212Slideover extends JSXBase.HTMLAttributes<HTMLApt212SlideoverElement> {
     'component': string;
@@ -1611,6 +1638,7 @@ declare namespace LocalJSX {
   interface PageReferralPasswordreset extends JSXBase.HTMLAttributes<HTMLPageReferralPasswordresetElement> {}
   interface PageReferralSignin extends JSXBase.HTMLAttributes<HTMLPageReferralSigninElement> {}
   interface PageReferralSubmit extends JSXBase.HTMLAttributes<HTMLPageReferralSubmitElement> {}
+  interface PageReferrals extends JSXBase.HTMLAttributes<HTMLPageReferralsElement> {}
   interface PageSearch extends JSXBase.HTMLAttributes<HTMLPageSearchElement> {
     'location'?: any;
     'neighborhoods'?: any;
@@ -1708,6 +1736,7 @@ declare namespace LocalJSX {
     'apt212-datepicker': Apt212Datepicker;
     'apt212-modal-booking-frame': Apt212ModalBookingFrame;
     'apt212-popover': Apt212Popover;
+    'apt212-referral-alert': Apt212ReferralAlert;
     'apt212-slideover': Apt212Slideover;
     'apt212-toast': Apt212Toast;
     'ask-question': AskQuestion;
@@ -1797,6 +1826,7 @@ declare namespace LocalJSX {
     'page-referral-passwordreset': PageReferralPasswordreset;
     'page-referral-signin': PageReferralSignin;
     'page-referral-submit': PageReferralSubmit;
+    'page-referrals': PageReferrals;
     'page-search': PageSearch;
     'page-terms': PageTerms;
     'page-wishlist': PageWishlist;

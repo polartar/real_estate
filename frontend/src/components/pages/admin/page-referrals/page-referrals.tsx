@@ -2,6 +2,7 @@ import { Component, h, State, Prop } from '@stencil/core';
 import { Store } from '@stencil/redux';
 import authSelectors from '../../../../store/selectors/auth';
 import screenSizeSelectors from '../../../../store/selectors/screensize';
+import { RouterService } from '../../../../services/router.service';
 import { ToastService } from '../../../../services/toast.service';
 import { APIAdminService } from '../../../../services/api/admin';
 import Debounce from 'debounce-decorator';
@@ -9,12 +10,14 @@ import { formatDate } from '../../../../helpers/utils';
 import { AlertService } from '../../../../services/alerts.service';
 
 @Component({
-  tag: 'page-admin-referrals',
-  styleUrl: 'page-admin-referrals.scss',
+  tag: 'page-referrals',
+  styleUrl: 'page-referrals.scss',
 })
-export class PageAdminReferrals {
+export class PageReferrals {
   @Prop({ context: 'store' }) store: Store;
 
+  @State() isAdmin: boolean = false;
+  @State() isLoggedIn: boolean = false;
   @State() loaded: boolean = false;
   @State() referrals: any[] = [];
   @State() user: any = null   ;
@@ -29,10 +32,16 @@ export class PageAdminReferrals {
   componentWillLoad() {
     this.store.mapStateToProps(this, (state) => {
       return {
+        isLoggedIn: authSelectors.isLoggedIn(state),
+        isAdmin: authSelectors.isAdmin(state),
         screenHeight: screenSizeSelectors.getHeight(state),
         user: authSelectors.getUser(state),
       };
     });
+
+    if (!this.isLoggedIn) {
+      RouterService.forward('/login');
+    }
   }
 
   componentDidLoad() {
@@ -64,7 +73,8 @@ export class PageAdminReferrals {
   async fetchReferrals() {
      try {
 
-      const result = await APIAdminService.getReferrals(this.user.id);
+      const result = await APIAdminService.getUserReferrals(this.user.id);
+
 
       return result;
     } catch (err) {
@@ -143,21 +153,21 @@ export class PageAdminReferrals {
 
   render() {
     return [
-      <div class='page-admin-referrals'>
+      <div class='page-referrals'>
         <referral-header />
 
-        <div class='tbl-container section'>
+        <div class='tbl-container'>
           <table>
             <thead>
               <tr>
                 <th>Agent I Am Working With</th>
                 <th>Name</th>
-                <th class='email desktop'>Email</th>
-                <th class='desktop'>Phone</th>
-                <th class='desktop'>Market</th>
-                <th class='desktop'>Details</th>
-                <th class='desktop'>Submitted Date</th>
-                <th class='progress desktop'>Progress</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Market</th>
+                <th>Details</th>
+                <th>Created Date</th>
+                <th>Progress</th>
               </tr>
             </thead>
 
@@ -167,33 +177,12 @@ export class PageAdminReferrals {
                   <tr>
                     <td>{r.referrer_agent}</td>
                     <td>{r.referral_name}</td>
-
-                    <td class='desktop'>{r.referral_email}</td>
-
-                    <td class='desktop'>{r.referral_phone}</td>
-
-                    
-                    <td class='desktop'>
-                      <select>
-                        <option value='Rentals' 
-                         selected={r.market==='Rentals'?true:false} 
-                        >
-                          Rentals
-                        </option>
-                        
-                        <option value='Sales' 
-                         selected={r.market==='Sales'?true:false} 
-                        >
-                          Sales
-                        </option>
-                      </select>
-                    </td >
-
-                    <td class='desktop'>{r.referral_details}</td>
-
-                    <td class='desktop'>{formatDate(r.created_at)}</td>
-
-                    <td class='desktop'></td>
+                    <td>{r.referral_email}</td>
+                    <td>{r.referral_phone}</td>
+                    <td>&nbsp;</td>
+                    <td>{r.referral_details}</td>
+                    <td>{formatDate(r.created_at)}</td>
+                    <td>&nbsp;</td>
                   </tr>
                 );
               })}

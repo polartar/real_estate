@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .admin-header-component {
   .logo {
     height: 27px;
@@ -12,7 +14,7 @@
   }
 
   .menu {
-    font-size: 16px;
+    font-size: $font-size;
     --padding-end: 0;
   }
 }

@@ -3,7 +3,7 @@
 
 .page-add-referral {
   background: $bg-dark;
-  overflow-x: auto;
+  overflow-y: auto;
 
   .page-addreferral-content {
     display: flex;
@@ -12,7 +12,7 @@
 
     .form {
       max-width: 420px;
-      padding: 30px;
+      padding: 0 12px;
       width: 100%;
     }
   }

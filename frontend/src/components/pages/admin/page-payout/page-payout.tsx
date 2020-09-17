@@ -5,20 +5,20 @@ import { Store } from '@stencil/redux';
   tag: 'page-payout',
   styleUrl: 'page-payout.scss',
 })
+
 export class PagePayout {
   @Prop({ context: 'store' }) store: Store;
 
   @State() isLoggedIn: boolean = false;
- 
+
   render() {
     return (
       <div class='page-payout'>
         <referral-header />
 
         <div class='page-payout-content'>
-          <p>
-            Please choose your preferred payout method below to recieve you
-            referral bonus
+          <p class='title'>
+            Please choose your preferred payout method below to recieve your referral bonus.
           </p>
 
           <section class='section hero'>

@@ -1,7 +1,7 @@
 @import '../../../../styles/mixins';
 @import '../../../../styles/variables';
 
-.page-admin-referrals {
+.page-referrals {
   background-color: $bg-dark;
   font-family: $font-refer-default;
   color: $color-text-light;
@@ -9,36 +9,15 @@
  
   table {
     width: 100%;
-    white-space: nowrap;
+    height: 100vh;
 
     tr {
       height: 30px;
     }
-
-    .email{
-      max-width: 60px;
-    }
-
-    .progress{
-      padding:0 10px;
-    }
-    
-    select{
-      background-color: $bg-dark;
-    }
-
-    @include for-size(custom-down, 450) {
-      .desktop{
-        display: none;
-      }
-    }
-    
   }
 
   .tbl-container {
     overflow: auto;
-    height: calc(100vh - 120px);
-    padding-top:30px;
   }
 
   thead {
@@ -47,7 +26,7 @@
 
   h1 {
     text-transform: inherit;
-    font-size: $font-size;
+    font-size: 16px;
     display: inline-block;
     margin-right: 80px;
   }
@@ -55,7 +34,7 @@
   .add-button {
     width: 199px;
     height: 50px;
-    font-size: $font-size;
+    font-size: 16px;
     font-weight: bold;
     background-color: $color-text-light;
     color: $bg-dark;
@@ -65,8 +44,7 @@
   th {
     border-right: 1px solid;
     padding: 5px;
-    text-align: center;
-    
+
     &:first-child {
       border-left: 1px solid;
     }

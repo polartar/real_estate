@@ -3,7 +3,7 @@
 
 .page-terms {
   background: $bg-dark;
-  overflow-x: auto;
+  overflow-y: auto;
 
   .page-terms-content {
     display: flex;
@@ -15,11 +15,11 @@
       width: 100%;
       max-width: 420px;
       padding: 30px;
-      font-size: 16px;
+      font-size: $font-size;
 
       h1 {
         text-align: center;
-        font-size: 16px;
+        font-size: $font-size;
       }
     }
   }

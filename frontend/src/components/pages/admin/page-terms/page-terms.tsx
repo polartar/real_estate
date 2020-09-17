@@ -1,15 +1,11 @@
-import { Component, h, State, Prop } from '@stencil/core';
-import { Store } from '@stencil/redux';
 
+import { Component, h, } from '@stencil/core';
+  
 @Component({
   tag: 'page-terms',
   styleUrl: 'page-terms.scss',
 })
 export class PageTerms {
-  @Prop({ context: 'store' }) store: Store;
-
-  @State() isLoggedIn: boolean = false;
-
   render() {
     return (
       <div class='page-terms'>
