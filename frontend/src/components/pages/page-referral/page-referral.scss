@@ -4,7 +4,7 @@
 .page-referral {
   .hero {
     width: 100%;
-    min-height: 741px;
+    min-height: calc(100vh - 112px);
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 80px;

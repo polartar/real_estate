@@ -9,10 +9,10 @@ export class PageReferral {
   render() {
     return [
       <ion-content>
-        <app-header />
+        <app-header-home />
 
         <div class='page-referral'>
-          <section class='section hero'>
+          <section class='hero'>
             <div class='left-body'>
               <div class='cta'>
                 <h3>REFER A FRIEND &amp; EARN $200!</h3>

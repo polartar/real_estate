@@ -9,7 +9,7 @@ export class PageReferral {
   render() {
     return [
       <ion-content>
-        <app-header />
+        <app-header-home />
 
         <div class='page-referral'>
           <section class='section hero'>
