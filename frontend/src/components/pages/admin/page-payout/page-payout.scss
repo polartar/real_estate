@@ -7,10 +7,14 @@
   overflow-y: auto;
   font-family: $font-refer-default;
 
+  .title{
+    padding: 0 40px;
+  }
+
   .page-payout-content {
     color: $color-text-light;
     font-size: $font-size;
-    padding-top: 50px;
+    padding-top: 40px;
 
     p {
       text-align: center;
@@ -58,7 +62,7 @@
           letter-spacing: 0.6px;
 
           ion-router-link {
-            color: white;
+            color: $color-text-light;
           }
         }
 
@@ -71,8 +75,7 @@
 
       .form {
         max-width: 420px;
-        padding: 30px;
-        width: 100%;
+         width: 100%;
       }
     }
   }

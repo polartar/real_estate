@@ -103,6 +103,25 @@ export class ReferralSubmitForm {
           <div
             class={{
               input: true,
+              error: this.errors.includes('referrer_agent'),
+            }}
+          >
+            <label class='label' htmlFor="referrer_agent">Agent I am Working With</label>
+
+            <select
+              id='referrer_agent'
+              class='apt212-input block agent-select'
+              name='referrer_agent'
+            >
+              {
+                this.agents.map(a => <option value={a.name}>{a.name}</option>)
+              }
+            </select>
+          </div>
+
+          <div
+            class={{
+              input: true,
               error: this.errors.includes('referral_name'),
             }}
           >
@@ -154,16 +173,16 @@ export class ReferralSubmitForm {
               error: this.errors.includes('referrer_agent'),
             }}
           >
-            <label class='label' htmlFor="referrer_agent">Referred by Agent</label>
+            <label class='label' htmlFor="market">Market</label>
 
             <select
-              id='referrer_agent'
+              id='market'
               class='apt212-input block agent-select'
-              name='referrer_agent'
+              name='market'
             >
-              {
-                this.agents.map(a => <option value={a.name}>{a.name}</option>)
-              }
+                <option value='Rentals'>Rentals</option>
+
+                <option value='Sales'>Sales</option>
             </select>
           </div>
 
@@ -173,7 +192,7 @@ export class ReferralSubmitForm {
               error: this.errors.includes('referral_details'),
             }}
           >
-            <label class='label' htmlFor="referral-details">Referral Details</label>
+            <label class='label' htmlFor="referral-details">Details</label>
 
             <textarea
               id='referral-details'

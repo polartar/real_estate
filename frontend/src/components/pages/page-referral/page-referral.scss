@@ -7,7 +7,6 @@
     min-height: calc(100vh - 112px);
     background-repeat: no-repeat;
     background-size: cover;
-    margin-bottom: 80px;
     color: $color-text-light;
 
     @include for-size(desktop-up) {
@@ -17,17 +16,25 @@
 
     .right-body {
       background: $bg-dark;
-      padding-top: 55px;
+      padding-top: 0px;
       display: flex;
       justify-content: center;
+
+      @include for-size(desktop-up) {
+        padding-top: 55px;
+      }
     }
 
     .left-body {
       background-image: url('/assets/images/referral_background.jpg');
-      padding-top: 80px;
+      padding: 32px 0;
       background-size: cover;
       background-repeat: no-repeat;
       font-family: $font-refer-default;
+
+      @include for-size(desktop-up) {
+        padding-top: 80px;
+      }
     }
 
     .underline {
@@ -39,6 +46,7 @@
       margin: 0 auto;
       font-size: $font-size;
       min-height: 300px;
+      padding:0 12px;
 
       h3 {
         font-size: 20px;
@@ -68,7 +76,7 @@
 
     .form {
       max-width: 420px;
-      padding: 30px 0;
+      padding: 30px 12px;
       width: 100%;
     }
   }

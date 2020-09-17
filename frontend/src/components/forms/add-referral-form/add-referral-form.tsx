@@ -108,6 +108,26 @@ export class AddReferralForm {
       >
         <div class={{ 'form-content': true, submitted: this.submitted }}>
           <div class='title'>Add New Referral</div>
+
+          <div
+            class={{
+              input: true,
+              error: this.errors.includes('referrer_agent'),
+            }}
+          >
+            <label class='label' htmlFor="referrer_agent">Agent I Am Working With</label>
+
+            <select
+              id='referrer_agent'
+              class='apt212-input block agent-select'
+              name='referrer_agent'
+            >
+              {
+                this.agents.map(a => <option value={a.name}>{a.name}</option>)
+              }
+            </select>
+          </div>
+
           <div
             class={{
               input: true,
@@ -159,19 +179,18 @@ export class AddReferralForm {
           <div
             class={{
               input: true,
-              error: this.errors.includes('referrer_agent'),
             }}
           >
-            <label class='label' htmlFor="referrer_agent">Referral by Agent</label>
+            <label class='label' htmlFor="market">Market</label>
 
             <select
-              id='referrer_agent'
+              id='market'
               class='apt212-input block agent-select'
-              name='referrer_agent'
+              name='market'
             >
-              {
-                this.agents.map(a => <option value={a.name}>{a.name}</option>)
-              }
+              <option value='Rental'>Rental</option>
+
+              <option value='Sales'>Sales</option>
             </select>
           </div>
 
@@ -181,7 +200,7 @@ export class AddReferralForm {
               error: this.errors.includes('referral_details'),
             }}
           >
-            <label class='label' htmlFor="referral-details">Referral Details</label>
+            <label class='label' htmlFor="referral-details">Details</label>
 
             <textarea
               id='referral-details'

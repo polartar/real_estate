@@ -38,7 +38,7 @@ export class PagePayout {
         <referral-header />
 
         <div class='page-payout-content'>
-          <p>
+          <p class='title'>
             Please choose your preferred payout method below to recieve your referral bonus.
           </p>
 

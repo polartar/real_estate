@@ -9,16 +9,32 @@
  
   table {
     width: 100%;
-    
+    white-space: nowrap;
+
     tr {
       height: 30px;
     }
+
+    .email{
+      max-width: 60px;
+    }
+
+    .progress{
+      padding:0 10px;
+    }
+
+    @include for-size(custom-down, 450) {
+      .desktop{
+        display: none;
+      }
+    }
+    
   }
 
   .tbl-container {
     overflow: auto;
     height: calc(100vh - 120px);
-    padding:30px;
+    padding-top:30px;
   }
 
   thead {

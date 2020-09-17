@@ -3,14 +3,13 @@
 
 .page-referrals {
   background-color: $bg-dark;
-  height: 100vh;
   font-family: $font-refer-default;
   color: $color-text-light;
-  overflow-x: auto;
-  padding: 30px;
-
+  overflow-y: auto;
+ 
   table {
     width: 100%;
+    height: 100vh;
 
     tr {
       height: 30px;

@@ -1,6 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
 import { Store, Action } from '@stencil/redux';
-import authSelectors from '../../../store/selectors/auth';
 import { logout } from '../../../store/actions/auth';
 
 @Component({
@@ -14,12 +13,6 @@ export class ReferralMenu {
   logout: Action;
 
   componentWillRender() {
-    this.store.mapStateToProps(this, (state) => {
-      return {
-        isLoggedIn: authSelectors.isLoggedIn(state),
-      };
-    });
-
     this.store.mapDispatchToProps(this, {
       logout: logout,
     });
@@ -55,8 +48,6 @@ export class ReferralMenu {
       </header>,
 
       <ion-content class='app-menu-container app-wrapper' id='ioncontent'>
-        {this.isLoggedIn ? (
-         
           <div class=' main-menu'> 
             <div class='menu-align'>
               <ion-router-link href='/admin/referrals' onClick={() => this.closeMenu()}>
@@ -93,7 +84,6 @@ export class ReferralMenu {
 
             </div>
           </div>
-        ) : null}
       </ion-content>,
     ];
   }

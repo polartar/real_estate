@@ -49,11 +49,9 @@ export class ReferralForm {
      await LoadingService.showLoading();
 
     try {
-      const user_id = await APIBookingService.signupReferer(results);
+      await APIBookingService.signupReferer(results);
 
-      this.bookingSetUser({name:results.name, email:results.email, uid:user_id});
-
-      RouterService.forward('/referral/submit')
+      RouterService.forward('/referral/signin')
 
     } catch (err) {
       ToastService.error(err.message);
@@ -177,12 +175,9 @@ export class ReferralForm {
                 Creating an account means you're okay with our&nbsp;{' '}
               </span>
 
-              <ion-router-link
-                href={RouterService.getRoute('privacy')}
-                class='white'
-              >
+              <a target='_blank' href={RouterService.getRoute('admin/terms')}>
                 Terms and Conditions
-              </ion-router-link>
+              </a>
             </label>
           </div>
 

@@ -94,7 +94,7 @@ export class GeneralForm {
               error: this.errors.includes("email"),
             }}
           >
-            <label class='label' htmlFor="email">Email Address</label>
+            <label class='label' htmlFor="email">Email</label>
 
             <input
               id="email"

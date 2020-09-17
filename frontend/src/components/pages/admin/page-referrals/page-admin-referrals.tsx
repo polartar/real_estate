@@ -157,21 +157,20 @@ export class PageAdminReferrals {
   render() {
     return [
       <div class='page-admin-referrals'>
-        <referral-header />,
+        <referral-header />
 
         <div class='tbl-container'>
           <table>
             <thead>
               <tr>
+                <th>Agent I Am Working With</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Detail</th>
-                <th>AgentName</th>
-                <th>Submitted Date</th>
-                <th>Progress</th>
-                <th>Closed</th>
-                <th>Paid</th>
+                <th class='email desktop'>Email</th>
+                <th class='desktop'>Phone</th>
+                <th class='desktop'>Market</th>
+                <th class='desktop'>Details</th>
+                <th class='desktop'>Submitted Date</th>
+                <th class='progress desktop'>Progress</th>
               </tr>
             </thead>
 
@@ -179,23 +178,33 @@ export class PageAdminReferrals {
               {this.referrals.map((r) => {
                 return (
                   <tr>
+                    <td>{r.referrer_agent}</td>
                     <td>{r.referral_name}</td>
                     <td>{r.referral_email}</td>
                     <td>{r.referral_phone}</td>
-                    <td>{r.referral_details}</td>
-                    <td>{r.referrer_agent}</td>
-                    <td>{formatDate(r.created_at)}</td>
-
+                    
                     <td>
-                      <button
-                        class='button-dark'
-                        onClick={() => this.deleteReferral(r.id)}
-                      >
-                        <ion-icon name='trash' />
-                      </button>
+                      <select>
+                        <option value='Rentals' 
+                         selected={r.market==='Rentals'?true:false} 
+                        >
+                          Rentals
+                        </option>
+                        
+                        <option value='Sales' 
+                         selected={r.market==='Sales'?true:false} 
+                        >
+                          Sales
+                        </option>
+                      </select>
                     </td>
 
+                    <td>{r.referral_details}</td>
+
+                    <td>{formatDate(r.created_at)}</td>
+
                     <td></td>
+                    <td ></td>
                   </tr>
                 );
               })}
