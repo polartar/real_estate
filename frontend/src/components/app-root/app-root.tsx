@@ -134,9 +134,12 @@ export class AppRoot {
             component="page-corporate-rooms"
           />
           <ion-route url="/about" component="page-about" />
-          <ion-route url="/referral" component={this.isLoggedin ? "page-referral-submit" : "page-referral"} />
+          {/* <ion-route url="/referral" component={this.isLoggedin ? "page-referral-submit" : "page-referral"} />
           <ion-route url="/referral/submit" component={this.isLoggedin ? "page-referral-submit" : "page-referral"} />
-          <ion-route url="/referral/signin" component={this.isLoggedin ? "page-referral-submit" : "page-referral-signin"} />
+          <ion-route url="/referral/signin" component={this.isLoggedin ? "page-referral-submit" : "page-referral-signin"} /> */}
+          <ion-route url="/referral" component="page-referral" />
+          <ion-route url="/referral/submit" component="page-referral-submit" />
+          <ion-route url="/referral/signin" component="page-referral-signin" />
           <ion-route url="/referral/forgotpassword" component="page-referral-forgotpassword" />
           <ion-route url="/referral/passwordreset/:token" component="page-referral-passwordreset" />
 

@@ -42,7 +42,7 @@ export class ReferralForm {
     try {
       await APIBookingService.signupReferer(results);
 
-      RouterService.forward('/referral/signin')
+      RouterService.forward('/referral/submit')
 
     } catch (err) {
       ToastService.error(err.message);

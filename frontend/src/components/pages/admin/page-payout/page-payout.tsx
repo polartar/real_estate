@@ -18,7 +18,7 @@ export class PagePayout {
 
         <div class='page-payout-content'>
           <p class='title'>
-            Please choose your preferred payout method below to recieve your referral bonus.
+            Please choose your preferred payout method below to recieve your referral Pay Out
           </p>
 
           <section class='section hero'>

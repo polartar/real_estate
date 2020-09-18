@@ -150,14 +150,14 @@ export class PageAdminReferrals {
           <table>
             <thead>
               <tr>
-                <th>Agent I Am Working With</th>
-                <th>Name</th>
-                <th class='email desktop'>Email</th>
-                <th class='desktop'>Phone</th>
-                <th class='desktop'>Market</th>
-                <th class='desktop'>Details</th>
-                <th class='desktop'>Submitted Date</th>
-                <th class='progress desktop'>Progress</th>
+                <th class='agent_name'>Agent I Am Working With</th>
+                <th class='ref_name'>Name</th>
+                <th class='email'>Email</th>
+                <th >Phone</th>
+                <th >Market</th>
+                <th >Details</th>
+                <th >Submitted Date</th>
+                <th class='progress'>Progress</th>
               </tr>
             </thead>
 
@@ -168,32 +168,17 @@ export class PageAdminReferrals {
                     <td>{r.referrer_agent}</td>
                     <td>{r.referral_name}</td>
 
-                    <td class='desktop'>{r.referral_email}</td>
+                    <td >{r.referral_email}</td>
 
-                    <td class='desktop'>{r.referral_phone}</td>
-
+                    <td >{r.referral_phone}</td>
                     
-                    <td class='desktop'>
-                      <select>
-                        <option value='Rentals' 
-                         selected={r.market==='Rentals'?true:false} 
-                        >
-                          Rentals
-                        </option>
-                        
-                        <option value='Sales' 
-                         selected={r.market==='Sales'?true:false} 
-                        >
-                          Sales
-                        </option>
-                      </select>
-                    </td >
+                    <td >{r.market}</td >
 
-                    <td class='desktop'>{r.referral_details}</td>
+                    <td >{r.referral_details}</td>
 
-                    <td class='desktop'>{formatDate(r.created_at)}</td>
+                    <td >{formatDate(r.created_at)}</td>
 
-                    <td class='desktop'></td>
+                    <td ></td>
                   </tr>
                 );
               })}

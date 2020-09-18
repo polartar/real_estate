@@ -1,12 +1,12 @@
-@import '../../../../styles/mixins';
-@import '../../../../styles/variables';
+@import "../../../../styles/mixins";
+@import "../../../../styles/variables";
 
 .page-admin-referrals {
   background-color: $bg-dark;
   font-family: $font-refer-default;
   color: $color-text-light;
   overflow-y: auto;
- 
+
   table {
     width: 100%;
     white-space: nowrap;
@@ -15,30 +15,34 @@
       height: 30px;
     }
 
-    .email{
+    .email {
       max-width: 60px;
     }
 
-    .progress{
-      padding:0 10px;
-    }
-    
-    select{
-      background-color: $bg-dark;
-    }
-
     @include for-size(custom-down, 450) {
-      .desktop{
-        display: none;
+      .progress {
+        padding: 0 10px;
+        min-width: 220px;
+      }
+
+      .agent_name {
+        min-width: 200px;
       }
     }
-    
+
+    .ref_name {
+      min-width: 120px;
+    }
+
+    select {
+      background-color: $bg-dark;
+    }
   }
 
   .tbl-container {
     overflow: auto;
     height: calc(100vh - 120px);
-    padding-top:30px;
+    padding-top: 30px;
   }
 
   thead {
@@ -64,9 +68,9 @@
   td,
   th {
     border-right: 1px solid;
-    padding: 5px;
-    text-align: center;
-    
+    padding: 14px 16px !important;
+    text-align: left;
+
     &:first-child {
       border-left: 1px solid;
     }

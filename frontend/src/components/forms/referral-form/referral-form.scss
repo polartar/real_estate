@@ -13,6 +13,13 @@
 
   select{
     cursor: pointer;
+    background-color: $bg-dark!important  ;
+    color: $color-text-light;
+  }
+
+  option{
+    background-color: $bg-dark!important  ;
+    color: $color-text-light;
   }
   
   .title {
@@ -33,11 +40,7 @@
   .grey {
     color: #9a9a9c;
   }
-
-  .agent-select option {
-    color: black;
-  }
-
+ 
   .form-content {
     text-align: center;
 
@@ -58,27 +61,6 @@
   .apt212-input {
     border: solid 2px $color-text-light;
     background: transparent;
-  }
-
-  .agree_checkbox {
-    width: 9px;
-    height: 9px;
-    background: transparent;
-    margin-right: 6px;
-    appearance: none;
-    color: $color-text-light;
-    cursor: pointer;
-    border: solid 1px #979797;
-
-    &:checked + span:before {
-      content: '\2713';
-      display: block;
-      text-align: center;
-      position: absolute;
-      left: 0%;
-      top: -20%;
-      color: $color-text-light;
-    }
   }
 
   .agreesection {
@@ -108,6 +90,7 @@
       -o-appearance: none;
       appearance: none;
       border: 1px solid #979797;
+      border-radius: 0% !important;
       outline: none;
       transition-duration: 0.3s;
       background-color: $bg-dark;
@@ -122,6 +105,11 @@
       position: absolute;
       left: 1px;
       top: 5px;
+
+      @include for-size(custom-down, 450) {
+        top: 0px;
+        left: 0px;
+      }
     }
 
     & > input:active {

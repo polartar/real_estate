@@ -25,9 +25,9 @@ export class PageReferral {
                   printer took a galley of type and scrambled
 
                   <br />
+                </p>
 
-                  <br />
-                  
+                <p class='desktop'>
                   it to make a type specimen book. It has survived not only five
                   centuries, but also the leap into electronic typesetting,
                   remaining essentially unchanged. It was popularised in the

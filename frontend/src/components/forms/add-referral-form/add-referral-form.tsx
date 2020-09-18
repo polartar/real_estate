@@ -122,6 +122,8 @@ export class AddReferralForm {
               class='apt212-input block agent-select'
               name='referrer_agent'
             >
+              <option value='no'>No Agent</option>
+
               {
                 this.agents.map(a => <option value={a.name}>{a.name}</option>)
               }

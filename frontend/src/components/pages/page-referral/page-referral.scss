@@ -1,5 +1,5 @@
-@import '../../../styles/mixins';
-@import '../../../styles/variables';
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
 
 .page-referral {
   .hero {
@@ -8,10 +8,18 @@
     background-size: cover;
     color: $color-text-light;
 
+    .desktop {
+      display: none;
+    }
+
     @include for-size(desktop-up) {
       display: grid;
       min-height: calc(100vh - 112px);
       grid-template-columns: 50% 50%;
+
+      .desktop {
+        display: block;
+      }
     }
 
     .right-body {
@@ -26,7 +34,7 @@
     }
 
     .left-body {
-      background-image: url('/assets/images/referral_background.jpg');
+      background-image: url("/assets/images/referral_background.jpg");
       padding: 32px 0;
       background-size: cover;
       background-repeat: no-repeat;
@@ -40,20 +48,25 @@
     .underline {
       border-bottom: 2px solid $color-text-light;
     }
-    
+
     .cta {
-      max-width: 500px;
+      max-width: 520px;
       margin: 0 auto;
       font-size: $font-size;
       min-height: 300px;
-      padding:0 12px;
+      padding: 0 12px;
 
       h3 {
         font-size: 20px;
         margin-top: 0;
+        font-family: $font-refer-title;
 
         @include for-size(desktop-up) {
           font-size: 28px;
+        }
+
+        @include for-size(custom-down, 380) {
+          font-size: 15px;
         }
       }
 
@@ -64,6 +77,10 @@
         a {
           color: $color-text-light;
           text-decoration: none;
+        }
+
+        @include for-size(custom-down, 380) {
+          font-size: 13px;
         }
       }
 

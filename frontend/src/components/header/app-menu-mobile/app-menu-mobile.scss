@@ -11,7 +11,7 @@
     ion-router-link,
     button.expandable {
       position: relative;
-      font-weight: 600;
+      font-weight: normal;
       padding: 0 0 0.25rem 0;
       margin-bottom: 1.25rem;
       text-transform: capitalize;
@@ -27,8 +27,8 @@
       &:after {
         content: "";
         position: absolute;
-        width: 100%;
-        height: 3px;
+        width: 105%;
+        height: 4px;
         bottom: -2px;
         left: 0;
         background-color: $color-primary;

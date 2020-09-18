@@ -13,6 +13,16 @@
     font-family: $font-refer-title;
   }
   
+  select{
+    background: $bg-dark!important;
+    color: $color-text-light;
+  }
+
+  option{
+    background-color: $bg-dark!important  ;
+    color: $color-text-light;
+  }
+
   .subtitle {
     font-size: $font-size;
     font-weight: bold;

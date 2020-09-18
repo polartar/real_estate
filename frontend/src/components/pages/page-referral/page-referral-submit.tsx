@@ -24,14 +24,15 @@ export class PageReferralSubmit {
                   printer took a galley of type and scrambled
 
                   <br />
+                </p>
 
-                  <br />
-
+                <p class='desktop'>
                   it to make a type specimen book. It has survived not only five
                   centuries, but also the leap into electronic typesetting,
                   remaining essentially unchanged. It was popularised in the
                   1960s with the release of Letraset
                 </p>
+                 
                 <p>
                   <a target='_blank' href={`/${RouterService.getRoute('admin/terms')}`}>
                     <span class='underline'> Terms and Conditions </span>
